@@ -1,0 +1,33 @@
+#tomcat config
+server :
+  port : 8081
+  tomcat :
+    max-threads : 128
+    min-spare-threads : 5
+    uri-encoding : UTF-8
+spring :
+  # 环境 dev|test|prod
+  profiles :
+    active : dev
+  http :
+    multipart :
+      maxRequestSize : 100MB
+      maxFileSize : 10MB
+  mvc :   #静态文件
+    static-path-pattern : /static/**
+  thymeleaf:
+    model: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+mybatis :
+  mapperLocations : classpath*:mybatis/*/*.xml
+  executor-type : reuse
+  type-aliases-package : com.*.model
+  configuration :
+    map-underscore-to-camel-case : true
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

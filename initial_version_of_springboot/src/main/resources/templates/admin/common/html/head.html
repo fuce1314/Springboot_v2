@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head" >
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Admin</title>
+	<meta name="description" content="Goofy is a Dashboard & Admin Site Responsive Template by hencework." />
+	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Goofy Admin, Goofyadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+	<meta name="author" content="hencework"/>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" th:href="@{favicon.ico}">
+	<link rel="icon" th:href="@{favicon.ico}" type="image/x-icon">
+	
+	<!-- Data table CSS -->
+	<link th:href="@{{path}/static/admin/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css(path=${rootPath})}" rel="stylesheet" type="text/css"/>
+	
+	<!-- Custom CSS -->
+	<link th:href="@{{path}/static/admin/full-width-light/dist/css/style.css(path=${rootPath})}" rel="stylesheet" type="text/css">
+</head>
