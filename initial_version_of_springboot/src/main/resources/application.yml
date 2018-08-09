@@ -9,9 +9,9 @@ spring :
   # 环境 dev|test|prod
   profiles :
     active : dev
-  http :
-    multipart :
-      maxRequestSize : 100MB
+  servlet:
+    multipart:
+      max-request-size: 100MB
       maxFileSize : 10MB
   mvc :   #静态文件
     static-path-pattern : /static/**
