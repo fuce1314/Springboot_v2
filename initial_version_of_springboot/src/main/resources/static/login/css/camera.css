@@ -1,0 +1,126 @@
+/**************************
+*
+*	GENERAL
+*
+**************************/
+.camera_wrap a, .camera_wrap img, 
+.camera_wrap table, .camera_wrap tbody, .camera_wrap tfoot, .camera_wrap thead, .camera_wrap tr, .camera_wrap th, .camera_wrap td
+.camera_thumbs_wrap a, .camera_thumbs_wrap img {
+	background: none;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	list-style: none
+}
+.camera_wrap {
+	display: none;
+	float: left;
+	position: relative;
+	z-index: 0;
+	padding-top:0px;
+}
+.camera_wrap img {
+	max-width: none!important;
+}
+
+.camera_wrap {
+	width: 100%;
+}
+.camera_src {
+	display: none;
+}
+.cameraCont, .cameraContents {
+	height: 100%;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+}
+.cameraSlide {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+.cameraContent {
+	bottom: 0;
+	display: none;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+.camera_target {
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	text-align: left;
+	top: 0;
+	width: 100%;
+	z-index: 0;
+}
+
+
+.camera_loader {
+    background: #fff url(../images/camera-loader.gif) no-repeat center;
+	background: rgba(255, 255, 255, 0.9) url(../images/camera-loader.gif) no-repeat center;
+	border: 1px solid #ffffff;
+	-webkit-border-radius: 18px;
+	-moz-border-radius: 18px;
+	border-radius: 18px;
+	height: 36px;
+	left: 50%;
+	overflow: hidden;
+	position: absolute;
+	margin: -18px 0 0 -18px;
+	top: 76%;
+	width: 36px;
+	z-index: 999999999999;
+}
+.camera_bar {
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 3;
+}
+
+
+.camera_prev, .camera_next, .camera_commands {
+	cursor: pointer;
+	height: 40px;
+	margin-top: -20px;
+	position: absolute;
+	top: 50%;
+	width: 40px;
+	z-index: 2;
+}
+.camera_prev {
+	left: 0;
+}
+.camera_prev > span {
+	background: url(../images/camera_skins.png) no-repeat 0 0;
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+.camera_next {
+	right: 0;
+}
+.camera_next > span {
+	background: url(../images/camera_skins.png) no-repeat -40px 0;
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+
+
+

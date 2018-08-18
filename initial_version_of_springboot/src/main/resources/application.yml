@@ -1,3 +1,13 @@
+# 项目相关配置
+fuce:
+  #名称
+  name: Fc
+  #版本
+  version: 1.0
+  #版权年份
+  copyrightYear: 2018
+  #头像上传路径
+  profile: D:/profile/
 #tomcat config
 server :
   port : 8081
