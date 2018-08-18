@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  ~ Copyright (c) 2017. 好砼快车
-  ~ 上海金眼睛信息技术有限公司
-  -->
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
+	
+	
+	<property name="log.pattern" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n" />
 
+	<!-- 控制台输出 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		
+	</appender>
+	
+	
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <!--
@@ -19,7 +28,6 @@
             <pattern>
                  %white(%-40.40logger{40}) %boldMagenta(%3.3L) %blue(:) %cyan(%m%n)
             </pattern>
-            <charset>UTF-8</charset>
         </encoder>
     </appender>
 
@@ -29,7 +37,7 @@
     </logger>
 
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="console" />
         <!--<appender-ref ref="LOG-ALL" />-->
         <!--<appender-ref ref="LOG-INFO" />-->
         <!--<appender-ref ref="LOG-ERROR" />-->
