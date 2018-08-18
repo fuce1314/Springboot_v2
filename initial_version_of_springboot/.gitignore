@@ -7,3 +7,5 @@ target/
 ### IntelliJ IDEA ###
 
 ### NetBeans ###
+.classpath
+.settings
