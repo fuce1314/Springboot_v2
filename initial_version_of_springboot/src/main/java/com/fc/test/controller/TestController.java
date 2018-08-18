@@ -3,7 +3,6 @@ package com.fc.test.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.fc.test.model.auto.Test;
-import com.fc.test.model.auto.TestExample;
 import com.fc.test.service.TestService;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
