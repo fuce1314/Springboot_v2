@@ -1,0 +1,510 @@
+/*
+ * Copyright (c) 2013 Thibaut Courouble
+ * http://www.cssflow.com
+ *
+ * Licensed under the MIT License:
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+ .wrap-price-table {
+    margin-top: 60px;
+}
+.plans {
+    width: 836px;
+    margin: 50px auto;
+    overflow: hidden;
+}
+.plan {
+    float: left;
+    width: 100%;
+    margin: 20px 2px;
+    padding: 15px 25px;
+    text-align: center;
+    background: white;
+    background-clip: padding-box;
+    border: 1px solid #e5ded6;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.plan-title {
+    margin-bottom: 12px;
+    font-size: 24px;
+    color: #36bce6;
+}
+.plan-price {
+    margin-bottom: 20px;
+    line-height: 1;
+    font-size: 40px;
+    font-weight: bold;
+    color: #37BCE5;
+}
+.plan-unit {
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #aaa;
+}
+.plan-features {
+    width: 80%;
+    margin: 20px auto 15px;
+    padding: 15px 0 0 15px;
+    border-top: 1px solid #e5ded6;
+    text-align: left;
+}
+.plan-feature {
+    line-height: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    list-style: none;
+}
+.plan-feature + .plan-feature {
+    line-height: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    list-style: none;
+}
+.plan-feature-unit {
+    margin-left: 2px;
+    font-size: 16px;
+}
+.plan-feature-name {
+    font-size: 13px;
+    font-weight: normal;
+    color: #aaa;
+}
+.plan-button {
+    position: relative;
+    display: block;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    background: #37BCE5;
+    /**/
+    border-bottom: 2px solid #cf7e3b;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+}
+.plan-button:active {
+    top: 2px;
+    margin-bottom: 2px;
+    border-bottom: 0;
+}
+.plan-highlight {
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+.plan-highlight .plan-button {
+    font-size: 18px;
+    line-height: 49px;
+    background: #45B6B0;
+    border-color: #3996b3;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+.plan-recommended {
+    width: 100%;
+    margin: -15px auto 15px;
+    padding-bottom: 2px;
+    line-height: 22px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.05);
+    background: #45B6B0;
+    border-radius: 0 0 4px 4px;
+}
+.plan-circle {
+    background: #37BCE5;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius:80px;
+    color: #fff!important;
+}
+.plan-circle h3 {
+    color: #fff;
+    padding: 35px 0 0 0;
+}
+.plan-circle p {
+    margin-bottom: 0;
+    line-height: 1;
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+}
+.plan-circle span {
+    margin: 0;
+}
+.plan-circle-highlight {
+    background: #45B6B0;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius:80px;
+    color: #fff!important;
+}
+.plan-circle-highlight h3 {
+    color: #fff;
+    padding: 35px 0 0 0;
+}
+.plan-circle-highlight p {
+    margin-bottom: 0;
+    line-height: 1;
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+}
+.plan-circle-highlight span {
+    margin: 0;
+}
+/*TIME LINE*/
+ .time-wrap {
+    margin: 30px 0 0 0;
+}
+.bg-time {
+    background: #A8BDCF!important;
+    color: #FFFFFF!important;
+}
+.timeline {
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style: none;
+}
+.timeline:before {
+    content:'';
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    width: 3px;
+    background: #A8BDCF;
+    left: 47px;
+    /* border: 1px solid #FFFFFF; */
+    margin: 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.timeline > li {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+.timeline > li:before, .timeline > li:after {
+    display: table;
+    content:" ";
+}
+.timeline > li:after {
+    clear: both;
+}
+.timeline > li > .timeline-item {
+    margin-top: 10px;
+    border: 0px solid #dfdfdf;
+    background: #fff;
+    margin-left: 60px;
+    margin-right: 15px;
+    padding: 5px;
+    position: relative;
+    border-radius: 4px;
+}
+.timeline > li > .timeline-item > .time {
+    color: #999;
+    float: right;
+    margin: 2px 0 0 0;
+}
+.timeline > li > .timeline-item > .timeline-header {
+    margin: 0;
+    /* color: #555; */
+    border-bottom: 1px solid #f4f4f4;
+    padding: 5px 5px 5px 10px;
+    font-size: 14px;
+    line-height: 2.1;
+}
+.timeline > li > .timeline-item > .timeline-header > a {
+    font-weight: 600;
+}
+.timeline > li > .timeline-item > .timeline-body, .timeline > li > .timeline-item > .timeline-footer {
+    padding: 10px;
+}
+.timeline > li.time-label > span {
+    font-weight: 600;
+    padding: 5px;
+    display: inline-block;
+    background-color: #A8BDCF;
+    color: #FFFFFF;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.timeline > li > .fa, .timeline > li > .glyphicon, .timeline > li > .ion {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    position: absolute;
+    color: #666;
+    background: #eee;
+    border-radius: 50%;
+    text-align: center;
+    left: 18px;
+    top: 0;
+}
+img.margin {
+    width: 80px;
+    margin-right: 6px;
+    border-radius: 60px;
+}
+/*END OF TIME LINE*/
+
+/*404*/
+ .error-link {
+    color: #FFA200;
+}
+.error-link:hover {
+    color: #FFFFFF;
+}
+.page-error {
+    min-width: 200px;
+}
+div.error-content {
+    color: #fff;
+}
+h2.headline.text-info {
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.logo-error {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 3px 3px 0 0;
+    color: #FFFFFF;
+    left: 0;
+    padding: 0 0 15px 25px;
+    position: absolute;
+    top: -120px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1);
+}
+.logo-error h1 {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: 200;
+    letter-spacing: -1px;
+    text-decoration: inherit;
+    text-transform: uppercase;
+}
+.logo-error h1 span {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    font-size: 11px;
+    margin-left: 0;
+    padding: 0 5px;
+    position: relative;
+    top: -3px;
+}
+.text-yellow {
+    color: #FFA200;
+}
+.wrap-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+/*END OF 404*/
+
+/*LOCKED SCREEN*/
+
+/* ADD THIS CLASS TO THE <HTML> TAG */
+ .lockscreen {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/* Remove the background from the body element */
+ .lockscreen > body {
+    background: transparent;
+}
+/* We will put the dynamically generated digital clock here */
+ .lockscreen .headline {
+    color: #fff;
+    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased !important;
+    opacity: 0.8;
+    margin: 10px 0 30px 0;
+    font-size: 90px;
+}
+@media screen and (max-width: 480px) {
+    .lockscreen .headline {
+        font-size: 60px;
+        margin-bottom: 40px;
+    }
+}
+/* User name [optional] */
+ .lockscreen .lockscreen-name {
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+/* Will contain the image and the sign in form */
+ .lockscreen-item {
+    padding: 0;
+    background: #fff;
+    position: relative;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin: 10px auto;
+    width: 290px;
+}
+.lockscreen-item:before, .lockscreen-item:after {
+    display: table;
+    content:" ";
+}
+.lockscreen-item:after {
+    clear: both;
+}
+/* User image */
+ .lockscreen-item > .lockscreen-image {
+    position: absolute;
+    left: -10px;
+    top: -30px;
+    background: #fff;
+    padding: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 10;
+}
+.lockscreen-item > .lockscreen-image > img {
+    width: 70px;
+    height: 70px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+/* Contains the password input and the login button */
+ .lockscreen-item > .lockscreen-credentials {
+    margin-left: 0;
+}
+.lockscreen-item > .lockscreen-credentials input {
+    border: 0 !important;
+}
+.lockscreen-item > .lockscreen-credentials .btn {
+    background-color: #fff;
+    border: 0;
+}
+/* Extra to give the user an option to navigate the website [optional]*/
+ .lockscreen-link {
+    margin-top:0;
+    text-align: center;
+}
+.headline {
+    /* color: rgba(255, 255, 255, 0.5)!important; */
+    /* font-size: 70px; */
+    letter-spacing: -1px;
+    /* background: rgba(0, 0, 0, 0.1); */
+    /* width: 500px; */
+    margin: 0 auto 20px;
+    border-radius: 66px;
+    /* border: 1px solid rgba(0, 0, 0, 0.2); */
+    /* box-shadow: 2px 2px 0px rgba(255, 255, 255, 0.1); */
+}
+.headline-lock {
+    color: rgba(255, 255, 255, 0.5)!important;
+font-size: 450%;
+letter-spacing: -1px;
+background: rgba(0, 0, 0, 0.1);
+width: 500px;
+margin: 0 auto 20px;
+border-radius: 66px;
+border: 1px solid rgba(0, 0, 0, 0.2);
+box-shadow: 2px 2px 0px rgba(255, 255, 255, 0.1);
+/* height: 80px; */
+line-height: 78px;
+}
+div.lockscreen-image {
+    width: 140px;
+    height:105px;
+    margin: 0 auto;
+    text-align: center;
+}
+div.lockscreen-image img {
+    width: 100px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 63px;
+    border: 5px solid #fff;
+}
+div.lockscreen-name {
+    color: #fff;
+    font-size: 22px;
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: -1px;
+}
+div.lockscreen-name {
+    color: #fff;
+    font-size: 20px;
+    margin: 20px auto 0;
+    text-align: center;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+.lock-link {
+    color: #FFBC49;
+    margin-top: -30px;
+}
+.lock-link:hover {
+    color: #FFFFFF;
+}
+@media (max-width: 767px) {
+    .headline {
+        color: rgba(255, 255, 255, 0.5)!important;
+        font-size: 20px;
+        letter-spacing: -1px;
+        background: rgba(0, 0, 0, 0.1);
+        width: auto;
+        margin: 0 auto 20px;
+        border-radius: 66px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 2px 0px rgba(255, 255, 255, 0.1);
+    }
+	.headline-lock {
+color: rgba(255, 255, 255, 0.5)!important;
+font-size: 2em;
+letter-spacing: -1px;
+background: rgba(0, 0, 0, 0.1);
+width: auto;
+margin: 35% auto 20px;
+border-radius: 66px;
+border: 1px solid rgba(0, 0, 0, 0.2);
+box-shadow: 2px 2px 0px rgba(255, 255, 255, 0.1);
+/* height: 80px; */
+line-height: 38px;
+text-align: center;
+}
+    .page-error {
+        margin: 0 auto;
+    }
+    #lock {
+        padding: 0!important;
+    }
+}
+.invoice-header {
+    background: #c9e7f2!important;
+    color: #31708f!important;
+}
+/*END OF LOCKED SCREEN*/
+ small.pull-right {
+    color: #31708f!important;
+}

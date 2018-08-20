@@ -1,0 +1,138 @@
+.img-profile {
+    margin:0 auto;
+    text-align:left;
+    width:13em;
+    height:13em;
+}
+.profile {
+    min-height: 355px;
+    display: inline-block;
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.5)!important;
+}
+.profile-edit {
+    min-height: 355px;
+    display: inline-block;
+    margin: 40px 20px 0 20px;
+    background: rgba(255, 255, 255, 0.5)!important;
+    width: 100%!important;
+}
+.ratings {
+    margin: 0;
+    text-align: right;
+}
+.ratings a {
+    color: #F1C40F;
+    font-size: 13px;
+}
+.ratings a:hover {
+    color:#f39c12;
+    text-decoration:none;
+}
+.divider {
+    border-top:1px solid rgba(0, 0, 0, 0.1);
+}
+.emphasis {
+    border-top: 4px solid transparent;
+}
+.emphasis:hover {
+    border-top: 4px solid #1abc9c;
+}
+.emphasis h2 {
+    margin-bottom:0;
+}
+span.tags {
+    background: #1abc9c;
+    border-radius: 2px;
+    color: #f5f5f5;
+    font-weight: bold;
+    padding: 2px 4px;
+}
+.dropdown-menu {
+/*    background-color: #34495e;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    width: 250px;
+    margin-left: -125px;
+    left: 50%;*/
+}
+.dropdown-menu .divider {
+    background:none;
+}
+.dropdown-menu>li>a {
+    color:#f5f5f5;
+}
+.dropup .dropdown-menu {
+    margin-bottom:10px;
+}
+.dropup .dropdown-menu:before {
+    content:"";
+    border-top: 10px solid #34495e;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -10px;
+    z-index: 10;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 999px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.profile-name{
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid #EEEEEE !important;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.social-profile i{
+    font-style: normal;
+    cursor: pointer;
+}
+.profile-content{
+    border-bottom: 1px dashed #eee;
+    width: 100%;
+    padding: 5px 0;
+}
+..profile-content > span{
+    width: 100px;
+}
+.profile-content > i {
+    font-style: normal;
+    padding: 0 30px;
+}
+.dl-horizontal-profile dt {
+    clear: left;
+    float: left;
+    overflow: hidden;
+    padding: 8px 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 160px;
+}
+.dl-horizontal-profile dd{
+     padding: 8px 0;
+  
+
+}
+.dl-horizontal-profile dd:before{
+    content: ":";
+    padding-right: 20px;
+

@@ -1,0 +1,48 @@
+.side-mail{
+/* 	background:#fff;
+	padding:10px; */
+	margin-top:20px;
+}
+.button-mail{
+	margin: 0 0 15px;
+    text-align: left;
+    width: 100%;
+}
+.list-btn-mail{
+	margin-bottom: 15px;
+}
+.list-btn-mail > span {
+	float: left;
+    font-size: 18px;
+    font-style: normal;
+    width: 33px;
+}
+.list-btn-mail > i{	
+	  background: none repeat scroll 0 0 #39B3D7;
+    border-radius: 12px;
+    color: #FFFFFF;
+    float: right;
+    font-style: normal;
+    padding: 0 5px;
+	
+}
+.list-btn-mail > a{
+	color:#666;	
+}
+.list-btn-mail.active {
+    border-bottom: 1px solid #39B3D7;
+    padding: 0 0 14px;
+}
+#content-mail{
+	 background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    margin-top: 20px;
+    min-height: 500px;
+    padding: 10px 11px;
+    width: 100%;
+}
+.mail_header{
+    border-radius: 4px;
+    margin-top: 20px;
+    width: 100%;
+}

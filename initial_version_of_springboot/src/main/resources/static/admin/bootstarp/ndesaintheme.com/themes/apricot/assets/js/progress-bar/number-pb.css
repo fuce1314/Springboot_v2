@@ -1,0 +1,30 @@
+.number-pb {
+    background-color: #DDDDDD;
+    height: 10px;
+    margin: 10px 0;
+    position: relative;
+}
+.number-pb .number-pb-shown {
+    position: absolute;
+    background-color: #65C3DF;
+    /*  background-image: linear-gradient(to right, #176785, #499989); */
+    top: -1px;
+    left: 0;
+    height: 11px;
+}
+.number-pb .number-pb-num {
+    position: absolute;
+    background-color: #fff;
+    left: 0;
+    top: -0.45em;
+    padding: 0 5px;
+    min-width: 20px;
+}
+.number-pb-shown.dream {
+    /*   background-image: linear-gradient(to right, #0e153a, #1d2b64, #f8cdda); */
+    background: #45B6B0;
+}
+.number-pb-shown.sun {
+    /* background-image: linear-gradient(to right, #0f1b58, #e0a681, #e5e9bf); */
+    background: #FF6B6B;
+}

@@ -1,0 +1,168 @@
+#skin-select h3, #skin-select h4 {
+}
+.menu-left-nest {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+#menu-showhide {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+#skin-select {
+    height: auto;
+    position: absolute;
+    top: 20px;
+    width: 250px;
+    z-index: 1000;
+}
+#skin-select #toggle {
+    /*  background: url("img/style-toggle.png") no-repeat scroll -5px -5px  rgba(0, 0, 0, 0.4);*/
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    top: -10px;
+    width: 30px;
+    font-size: 14px;
+}
+#skin-select #toggle:hover {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+}
+#skin-select #toggle.active {
+    background-position: -5px -45px;
+    height: 30px;
+    left: 210px;
+    position: absolute;
+    top: -10px;
+    width: 30px;
+    border-radius: 3px;
+}
+#skin-select li {
+    font-size: 20px;
+    line-height: 0;
+    list-style: none outside none;
+    margin: 0;
+    text-align: left;
+    color: #FFFFFF;
+    /*  border-top: 1px solid rgba(0,0,0,0.2);  */
+}
+#skin-select li span {
+    /*    font-size: 14px; */
+    left: 10px;
+    position: relative;
+}
+.menu-hide span {
+    color: red;
+}
+#skin-select li ul li {
+    line-height: 20px;
+}
+#skin-select li i {
+    font-size: 18px;
+    font-style: normal;
+    left: -5px;
+    line-height: 15px;
+    position: relative;
+    width: 20px;
+    top:5px;
+}
+#skin-select li li i {
+    display: inline-block;
+    font-size: 18px;
+    font-style: normal;
+    left: -5px;
+    line-height: 15px;
+    position: relative;
+    width: 23px;
+    top:2px;
+}
+/* #skin-select ul { margin:0; padding:0; list-style:none; }
+#skin-select ul li { display:inline-block; margin-right:1px; margin-bottom:4px; }
+#skin-select ul li a { padding: 4px 6px; font-family:Tahoma, "Times New Roman", Times, serif; font-size:11px; text-shadow:none; color:#000; background:#eee; border:1px solid rgba(0,0,0,.2) }
+#skin-select ul li a.active, #skin-select ul li a.active:hover { background-color:#fff; outline:2px solid #000; border-color:transparent; }
+#skin-select ul li a:hover { text-decoration:none; background:#e3e3e3; } 
+
+#skin-select .colors li { margin-bottom:0; }
+#skin-select .colors a { display:block; width:4px; height:6px; line-height:100%; border:1px solid rgba(0,0,0,.2); }
+#skin-select .colors a:hover { outline:2px solid #ccc; }
+ */
+ .skin-part {
+    padding: 0;
+    position: relative;
+    top: 0;
+}
+.skin-part h3 {
+    color:#000;
+    text-shadow:none;
+    margin-bottom:10px;
+}
+.skin-part h3 small {
+    margin-left:6px;
+    color:#999;
+}
+.skin-part h4 {
+    font-size:1em;
+    margin:4px 0!important;
+}
+/*@media screen and (max-height: 800px) {
+    #skin-select {
+        top: 0px;
+    }
+}
+@media screen and (max-width: 767px) {
+    #skin-select {
+        top: 0px;
+    }
+}*/
+ .title-leftmenu {
+    padding: 10px;
+}
+.title-menu-left {
+    /*       background: none repeat scroll 0 0 rgba(0, 0, 0, 0.15); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);*/
+    color: rgba(255, 255, 255, 0.5) !important;
+    display: block;
+    font-size: 10px !important;
+    line-height: 25px;
+    list-style: none outside none;
+    padding: 5px 10px 5px 0 !important;
+    text-decoration: none;
+    text-transform: uppercase !important;
+    width: 100%;
+}
+.title-menu-left:hover {
+    background: transparent!important;
+}
+.title-menu-left:hover:after {
+    display: none!important;
+    border-left:4px solid transparent!important;
+}
+.title-menu-left span {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    height: 22px;
+    line-height: 20px;
+    padding: 0 11px;
+}
+.config-wrap {
+    margin: 0 -12px 0 0;
+}
+.config-wrap[title]:hover:after {
+    font-size: 9px!important;
+}
+.widget-menu:before {
+    content:"Widget Menu" !important;
+}
+.design-kit:before {
+    content:"Design Kit Menu" !important;
+}
+.component:before {
+    content:"Component Kit Menu" !important;
+}

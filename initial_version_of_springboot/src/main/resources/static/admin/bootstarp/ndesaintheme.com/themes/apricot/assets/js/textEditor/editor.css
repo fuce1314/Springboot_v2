@@ -1,0 +1,65 @@
+
+  small {
+    display: block;
+    margin-top: 40px;
+    font-size: 9px;
+  }
+  
+  small,
+  small a {
+    color: #666;
+  }
+  
+
+  #toolbar [data-wysihtml5-action] {
+    float: right;
+  }
+   #toolbar a{
+    text-decoration: none;
+    color: #555;
+   }
+  #toolbar,
+  textarea {
+  margin: 10px 0;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    height: 280px;
+    border: 1px solid #eee;
+    font-family: Verdana;
+    font-size: 13px;
+    width: 100%;
+  }
+  
+  textarea:focus {
+    color: black;
+    border: 2px solid black;
+  }
+  
+  .wysihtml5-command-active {
+    font-weight: bold;
+  }
+  
+  [data-wysihtml5-dialog] {
+       background: none repeat scroll 0 0 #F4F4F4;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    margin: 15px 0 0;
+    padding: 5px 5px 0;
+  }
+  
+  a[data-wysihtml5-command-value="red"] {
+    color: red;
+  }
+  
+  a[data-wysihtml5-command-value="green"] {
+    color: green;
+  }
+  
+  a[data-wysihtml5-command-value="blue"] {
+    color: blue;
+  }

@@ -1,0 +1,76 @@
+.chart, .speed-car, .overall {
+    display: inline-block;
+    height: 60px;
+    position: relative;
+    text-align: center;
+    width: 60px;
+}
+.chart canvas, .speed-car canvas, .overall canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 60px;
+}
+.percent {
+    display: inline-block;
+    line-height: 60px;
+    z-index: 2;
+    color: #FFFFFF;
+}
+.percent:after {
+    content:'%';
+    margin-left: 0.1em;
+    font-size: .8em;
+}
+.percent2 {
+    display: inline-block;
+    line-height: 60px;
+    z-index: 2;
+    color: #FFFFFF;
+    margin-top: -5px;
+}
+.percent2:after {
+    content:'KM/h';
+    margin-top: -48px;
+    font-size: .8em;
+    display: block;
+}
+.chart3 {
+    display: inline-block;
+    height: 110px;
+    margin-bottom: 75px;
+    margin-top: 15px;
+    padding-bottom: 27px;
+    position: relative;
+    text-align: center;
+    width: 110px;
+}
+.chart3 canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.percent3 {
+    display: none;
+    line-height: 110px;
+    z-index: 2;
+}
+.percent3:after {
+    content:'Views';
+    margin-left: 0.1em;
+    font-size: .8em;
+}
+.percentage {
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: 100;
+    padding: 8px;
+    text-align: center;
+}
+.angular {
+    margin-top: 100px;
+}
+.angular .chart {
+    margin-top: 0;
+}

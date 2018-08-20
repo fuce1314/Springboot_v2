@@ -1,0 +1,21 @@
+
+<!-- saved from url=(0090)http://ndesaintheme.com/themes/apricot/assets/js/calendar/tmpls/month.html?_=1534665731969 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body><div class="cal-row-fluid cal-row-head">
+	&lt;% _.each(months, function(name){ %&gt;
+		<div class="cal-cell1">&lt;%= name %&gt;</div>
+	&lt;% }) %&gt;
+</div>
+<div class="cal-month-box">
+	&lt;% for(i = 0; i &lt; 6; i++) { %&gt;
+		&lt;% if(cal.stop_cycling == true) break; %&gt;
+		<div class="cal-row-fluid cal-before-eventlist">
+			<div class="cal-cell1 cal-cell" data-cal-row="-day1">&lt;%= cal._day(i, day++) %&gt;</div>
+			<div class="cal-cell1 cal-cell" data-cal-row="-day2">&lt;%= cal._day(i, day++) %&gt;</div>
+			<div class="cal-cell1 cal-cell" data-cal-row="-day3">&lt;%= cal._day(i, day++) %&gt;</div>
+			<div class="cal-cell1 cal-cell" data-cal-row="-day4">&lt;%= cal._day(i, day++) %&gt;</div>
+			<div class="cal-cell1 cal-cell" data-cal-row="-day5">&lt;%= cal._day(i, day++) %&gt;</div>
+			<div class="cal-cell1 cal-cell" data-cal-row="-day6">&lt;%= cal._day(i, day++) %&gt;</div>
+			<div class="cal-cell1 cal-cell" data-cal-row="-day7">&lt;%= cal._day(i, day++) %&gt;</div>
+		</div>
+	&lt;% } %&gt;
+</div></body></html>
