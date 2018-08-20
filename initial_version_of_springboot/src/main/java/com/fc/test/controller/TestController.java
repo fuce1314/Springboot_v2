@@ -33,7 +33,7 @@ public class TestController {
     public String loginView(){
     	Gson gson=new Gson();
         PageInfo<Test> list=testService.all();
-        return "admin/blank";
+        return "admin/blank2";
 
     }
 

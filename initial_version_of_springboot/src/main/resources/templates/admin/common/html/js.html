@@ -1,29 +1,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <!-- JavaScript -->
-<div  th:fragment="onload_js">
- <!-- jQuery -->
-    <script th:src="@{{path}/static/admin/vendors/bower_components/jquery/dist/jquery.min.js(path=${rootPath})}"></script>
+<div  th:fragment="onload_js">	
+	<script type="text/javascript">
+	window.rootPath="[[${rootPath}]]";
+	</script>
+	<script type="text/javascript" th:src="@{{path}static/admin/jquery/2.0.0/jquery.js(path=${rootPath})}"></script>
+   
+    <!--主效果-->
+    <script type="text/javascript" th:src="@{{path}static/admin/assets/js/preloader.js(path=${rootPath})}"></script>
+    <script type="text/javascript" th:src="@{{path}static/admin/assets/js/bootstrap.js(path=${rootPath})}"></script>
+    <script type="text/javascript" th:src="@{{path}static/admin/assets/js/app.js(path=${rootPath})}"></script>
+    <script type="text/javascript" th:src="@{{path}static/admin/assets/js/load.js(path=${rootPath})}"></script>
+    <script type="text/javascript" th:src="@{{path}static/admin/assets/js/main.js(path=${rootPath})}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script th:src="@{{path}/static/admin/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js(path=${rootPath})}"></script>
-    
-	<!-- Data table JavaScript -->
-	<script th:src="@{{path}/static/admin/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js(path=${rootPath})}"></script>
-	<script th:src="@{{path}/static/admin/full-width-light/dist/js/dataTables-data.js(path=${rootPath})}"></script>
+   
 	
-	<!-- Slimscroll JavaScript -->
-	<script th:src="@{{path}/static/admin/full-width-light/dist/js/jquery.slimscroll.js(path=${rootPath})}"></script>
 	
-	<!-- Owl JavaScript -->
-	<script th:src="@{{path}/static/admin/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js(path=${rootPath})}"></script>
 	
-	<!-- Switchery JavaScript -->
-	<script th:src="@{{path}/static/admin/vendors/bower_components/switchery/dist/switchery.min.js(path=${rootPath})}"></script>
-	
-	<!-- Fancy Dropdown JS -->
-	<script th:src="@{{path}/static/admin/full-width-light/dist/js/dropdown-bootstrap-extended.js(path=${rootPath})}"></script>
-	
-	<!-- Init JavaScript -->
-	<script th:src="@{{path}/static/admin/full-width-light/dist/js/init.js(path=${rootPath})}"></script>
 </div>
    
