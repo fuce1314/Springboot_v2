@@ -68,11 +68,18 @@
             <artifactId>pagehelper</artifactId>
             <version>4.1.4</version>
         </dependency>
-		<!-- mysql驱动 -->
+        <!-- mysql驱动7.0 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.40</version><!--$NO-MVN-MAN-VER$-->
+            <version>5.1.40</version>
+        </dependency> -->
+        
+		<!-- mysql驱动8.0 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version><!--$NO-MVN-MAN-VER$-->
         </dependency>
 
 		<!-- 权限控制 -->
