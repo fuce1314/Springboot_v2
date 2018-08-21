@@ -24,7 +24,7 @@
     <!-- 顶部导航栏 -->
     <nav role="navigation" class="navbar navbar-static-top">
         <div class="container-fluid">
-            <!-- 品牌和切换分组，以更好的移动显示 -->
+            <!-- 手机端的和切换分组，以更好的移动显示 -->
             <div class="navbar-header">
                 <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
                     <span class="entypo-menu"></span>
@@ -34,24 +34,19 @@
                 </button>
 
 
-
-
                 <div id="logo-mobile" class="visible-xs">
-                   <h1>Apricot<span>v1.3</span></h1>
+                   <h1>Apricot<span>v1.34</span></h1>
                 </div>
 
             </div>
 
 
-            <!-- 收集导航链接，窗体，和其他内容切换 -->
+            <!-- 右侧顶部-->
             <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-
+					<!-- 消息通知栏 -->
                     <li class="dropdown">
-
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">23</div></a>
-
-
                         <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
                             <li>
                                 <a href="#">
@@ -90,6 +85,8 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- END消息通知栏 -->
+                    <!-- 右边警告图标通知栏 -->
                     <li>
 
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green">5</div></a>
@@ -129,18 +126,22 @@
                             </li>
                         </ul>
                     </li>
+                    <!--END 右边警告图标通知栏 -->
+                    
+                    <!-- 右边帮助图标通知栏  -->
                     <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;" class="icon-help tooltitle"></i></a>
                     </li>
-
+					<!-- END右边帮助图标通知栏  -->
                 </ul>
+                <!-- 右侧顶部 日期 时间  天气预报  div-->
                 <div id="nt-title-container" class="navbar-left running-text visible-lg">
+                	<!-- 日期空间 -->
                     <ul class="date-top">
                         <li class="entypo-calendar" style="margin-right:5px"></li>
                         <li id="Date"></li>
-
-
                     </ul>
-
+                    <!--end 日期空间 -->
+					<!-- 时间DIV -->
                     <ul id="digital-clock" class="digital">
                         <li class="entypo-clock" style="margin-right:5px"></li>
                         <li class="hour"></li>
@@ -150,6 +151,8 @@
                         <li class="sec"></li>
                         <li class="meridiem"></li>
                     </ul>
+                    <!--end 时间DIV -->
+                    <!-- 天气预报div -->
                     <ul id="nt-title">
                         <li><i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160;
                             <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
@@ -171,9 +174,13 @@
                         </li>
 
                     </ul>
+                    <!--end 天气预报div -->
                 </div>
-
+				<!-- end 右侧顶部 日期 时间  天气预报 -->
+				
+				<!-- 右侧顶部 头像设置-->
                 <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+                    <!-- 头像设置 -->
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <img alt="" class="admin-pic img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/10.jpg(path=${rootPath})}">Hi, Dave Mattew <b class="caret"></b>
@@ -198,6 +205,8 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- END头像设置 -->
+                    <!-- 背景设置 -->
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="icon-gear"></span>&#160;&#160;Setting</a>
@@ -219,47 +228,55 @@
                             </li>
                         </ul>
                     </li>
+                    <!--END 背景设置 -->
+                    
+                    <!-- 顶部右侧隐藏按钮 -->
                     <li class="hidden-xs">
                         <a class="toggle-left" href="#">
                             <span style="font-size:20px;" class="entypo-list-add"></span>
                         </a>
                     </li>
+                    <!-- END顶部右侧隐藏按钮 -->
                 </ul>
-
+                <!-- end 右侧顶部 头像设置-->
             </div>
-            <!-- /.navbar-collapse -->
+            <!-- end 右侧顶部 -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
-
     <!-- /结束顶部导航条 -->
-
+    
     <!-- 左边菜单 -->
     <div id="skin-select">
+    	<!-- PC端 LOGO -->
         <div id="logo">
          <h1>Apricot<span>v1.3</span></h1>
         </div>
-
+		<!--END PC端 LOGO -->
+		
+		<!--点击隐藏左边菜单栏按钮 -->
         <a id="toggle">
             <span class="entypo-menu"></span>
         </a>
+        <!--END点击隐藏左边菜单栏按钮 -->
+        
+        <!-- PC端搜索按钮 -->
         <div class="dark">
             <form action="#">
                 <span>
-                    <input type="text" name="search" value="" class="search rounded id_search" placeholder="Search Menu..." autofocus />
+                    <input type="text" name="search" value="" class="search rounded id_search" placeholder="菜单搜索" autofocus />
                 </span>
             </form>
         </div>
-
+		<!-- 手机端搜索按钮  有bug-->
         <div class="search-hover">
             <form id="demo-2">
-                <input type="search" placeholder="Search Menu..." class="id_search">
+                <input type="search" placeholder="Search4 Menu..." class="id_search">
             </form>
         </div>
 
 
 
-
+		<!-- 左侧菜单栏 -->
         <div class="skin-part">
             <div id="tree-wrap">
                 <div class="side-bar">
@@ -471,7 +488,7 @@
 
                     <div class="side-dash">
                         <h3>
-                            <span>Device</span>
+                            <span>设备</span>
                         </h3>
                         <ul class="side-dashh-list">
                             <li>Avg. Traffic
@@ -488,7 +505,7 @@
                             </li>
                         </ul>
                         <h3>
-                            <span>Traffic</span>
+                            <span>交通</span>
                         </h3>
                         <ul class="side-bar-list">
                             <li>Avg. Traffic
@@ -502,13 +519,14 @@
                             </li>
                         </ul>
                         <h3>
-                            <span>Visitors</span>
+                            <span>游客</span>
                         </h3>
                         <div id="g1" style="height:180px" class="gauge"></div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- 左侧菜单栏 -->
     </div>
     <!-- 结束左边菜单栏 -->
 
@@ -518,14 +536,11 @@
     <div class="wrap-fluid">
         <div class="container-fluid paper-wrap bevel tlbr">
 
-
-
-
-
             <!-- 内容 -->
             <!--标题 -->
             <div class="row">
                 <div id="paper-top">
+                	<!-- 标题 -->
                     <div class="col-lg-3">
                         <h2 class="tittle-content-header">
                             <i class="icon-window"></i> 
@@ -534,7 +549,8 @@
                         </h2>
 
                     </div>
-
+					
+					<!-- 欢迎div -->
                     <div class="col-lg-7">
                         <div class="devider-vertical visible-lg"></div>
                         <div class="tittle-middle-header">
@@ -545,11 +561,9 @@
                                 Welcome back,&nbsp;
                                 <strong>Dave mattew!</strong>&nbsp;&nbsp;Your last sig in at Yesterday, 16:54 PM
                             </div>
-
-
                         </div>
-
                     </div>
+                    <!-- END欢迎div -->
                     <div class="col-lg-2">
                         <div class="devider-vertical visible-lg"></div>
                         <div class="btn-group btn-wigdet pull-right visible-lg">
@@ -581,7 +595,7 @@
             </div>
             <!--/ titile结束 -->
 
-            <!-- 面包屑 -->
+            <!-- 标题-->
             <ul id="breadcrumb">
                 <li>
                     <span class="entypo-home"></span>
@@ -602,7 +616,7 @@
                 </li>
             </ul>
 
-            <!-- 结束面包屑 -->
+            <!-- 结束标题 -->
 			<div class="content-wrap">
                 <div class="row">
                     <div class="col-sm-12">
@@ -653,14 +667,12 @@
 
                 </div>
                 <!-- 结束页脚 -->
-
-
             </div>
         </div>
     </div>
     <!--  结束右边内容 -->
 
-    <!-- 右滑块内容 -->
+    <!-- 右侧隐藏滑块内容 -->
     <div class="sb-slidebar sb-right">
         <div class="right-wrapper">
             <div class="row">
@@ -791,7 +803,7 @@
         </div>
     </div>
 
-    <!-- END OF 右滑块内容-->
+    <!-- END 右侧隐藏滑块内容-->
     
     <!-- 通用js -->
      <div th:include="admin/common/html/js :: onload_js">
