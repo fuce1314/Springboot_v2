@@ -1,309 +1,235 @@
-<nav  th:fragment="topMenu" class="navbar navbar-inverse navbar-fixed-top">
-			<div class="mobile-only-brand pull-left">
-				<div class="nav-header pull-left">
-					<div class="logo-wrap">
-						<a href="index.html">
-							<img class="brand-img" th:src="@{{path}/static/admin/img/logo.png(path=${rootPath})}" alt="brand"/>
-							<span class="brand-text">Goofy2</span>
-						</a>
-					</div>
-				</div>	
-				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
-				<a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
-				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
-				<form id="search_form" role="search" class="top-nav-search collapse pull-left">
-					<div class="input-group">
-						<input type="text" name="example-input1-group2" class="form-control" placeholder="Search">
-						<span class="input-group-btn">
-						<button type="button" class="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
-						</span>
-					</div>
-				</form>
-			</div>
-			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
-				<ul class="nav navbar-right top-nav pull-right">
-					<li>
-						<a id="open_right_sidebar" href="#"><i class="zmdi zmdi-settings top-nav-icon"></i></a>
-					</li>
-					<li class="dropdown app-drp">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-apps top-nav-icon"></i></a>
-						<ul class="dropdown-menu app-dropdown" data-dropdown-in="slideInRight" data-dropdown-out="flipOutX">
-							<li>
-								<div class="app-nicescroll-bar">
-									<ul class="app-icon-wrap pa-10">
-										<li>
-											<a href="weather.html" class="connection-item">
-											<i class="zmdi zmdi-cloud-outline txt-info"></i>
-											<span class="block">weather</span>
-											</a>
-										</li>
-										<li>
-											<a href="inbox.html" class="connection-item">
-											<i class="zmdi zmdi-email-open txt-success"></i>
-											<span class="block">e-mail</span>
-											</a>
-										</li>
-										<li>
-											<a href="calendar.html" class="connection-item">
-											<i class="zmdi zmdi-calendar-check txt-primary"></i>
-											<span class="block">calendar</span>
-											</a>
-										</li>
-										<li>
-											<a href="vector-map.html" class="connection-item">
-											<i class="zmdi zmdi-map txt-danger"></i>
-											<span class="block">map</span>
-											</a>
-										</li>
-										<li>
-											<a href="chats.html" class="connection-item">
-											<i class="zmdi zmdi-comment-outline txt-warning"></i>
-											<span class="block">chat</span>
-											</a>
-										</li>
-										<li>
-											<a href="contact-card.html" class="connection-item">
-											<i class="zmdi zmdi-assignment-account"></i>
-											<span class="block">contact</span>
-											</a>
-										</li>
-									</ul>
-								</div>	
-							</li>
-							<li>
-								<div class="app-box-bottom-wrap">
-									<hr class="light-grey-hr ma-0"/>
-									<a class="block text-center read-all" href="javascript:void(0)"> more </a>
-								</div>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown full-width-drp">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-more-vert top-nav-icon"></i></a>
-						<ul class="dropdown-menu mega-menu pa-0" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-							<li class="product-nicescroll-bar row">
-								<ul class="pa-20">
-									<li class="col-md-3 col-xs-6 col-menu-list">
-										<a href="javascript:void(0);"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
-										<hr class="light-grey-hr ma-0"/>
-										<ul>
-											<li>
-												<a href="index.html">Analytical</a>
-											</li>
-											<li>
-												<a href="index2.html">Demographic</a>
-											</li>
-											<li>
-												<a href="index3.html">Project</a>
-											</li>
-											<li>
-												<a href="index4.html">Hospital</a>
-											</li>
-											<li>
-												<a href="index5.html">HRM</a>
-											</li>
-											<li>
-												<a href="index6.html">Real Estate</a>
-											</li>
-											<li>
-												<a href="profile.html">profile</a>
-											</li>
-										</ul>
-									</li>
-									<li class="col-md-3 col-xs-6 col-menu-list">
-										<a href="javascript:void(0);">
-											<div class="pull-left">
-												<i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">E-Commerce</span>
-											</div>	
-											<div class="pull-right"><span class="label label-primary">hot</span>
-											</div>
-											<div class="clearfix"></div>
-										</a>
-										<hr class="light-grey-hr ma-0"/>
-										<ul>
-											<li>
-												<a href="e-commerce.html">Dashboard</a>
-											</li>
-											<li>
-												<a href="product.html">Products</a>
-											</li>
-											<li>
-												<a href="product-detail.html">Product Detail</a>
-											</li>
-											<li>
-												<a href="add-products.html">Add Product</a>
-											</li>
-											<li>
-												<a href="product-orders.html">Orders</a>
-											</li>
-											<li>
-												<a href="product-cart.html">Cart</a>
-											</li>
-											<li>
-												<a href="product-checkout.html">Checkout</a>
-											</li>
-										</ul>
-									</li>
-									<li class="col-md-6 col-xs-12 preview-carousel">
-										<a href="javascript:void(0);"><div class="pull-left"><span class="right-nav-text">latest products</span></div><div class="clearfix"></div></a>
-										<hr class="light-grey-hr ma-0"/>
-										<div class="product-carousel owl-carousel owl-theme text-center">
-											<a href="#">
-												<img th:src="@{{path}static/admin/img/chair.jpg(path=${rootPath})}" alt="chair">
-												<span>Circle chair</span>
-											</a>
-											<a href="#">
-												<img th:src="@{{path}static/admin/img/chair2.jpg(path=${rootPath})}" alt="chair">
-												<span>square chair</span>
-											</a>
-											<a href="#">
-												<img th:src="@{{path}static/admin/img/chair3.jpg(path=${rootPath})}" alt="chair">
-												<span>semi circle chair</span>
-											</a>
-											<a href="#">
-												<img th:src="@{{path}static/admin/img/chair4.jpg(path=${rootPath})}" alt="chair">
-												<span>wooden chair</span>
-											</a>
-											<a href="#">
-												<img th:src="@{{path}static/admin/img/chair2.jpg(path=${rootPath})}" alt="chair">
-												<span>square chair</span>
-											</a>								
-										</div>
-									</li>
-								</ul>
-							</li>	
-						</ul>
-					</li>
-					<li class="dropdown alert-drp">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="top-nav-icon-badge">5</span></a>
-						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
-							<li>
-								<div class="notification-box-head-wrap">
-									<span class="notification-box-head pull-left inline-block">notifications</span>
-									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:void(0)"> clear all </a>
-									<div class="clearfix"></div>
-									<hr class="light-grey-hr ma-0"/>
-								</div>
-							</li>
-							<li>
-								<div class="streamline message-nicescroll-bar">
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="icon bg-green">
-												<i class="zmdi zmdi-flag"></i>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications">
-												New subscription created</span>
-												<span class="inline-block font-11  pull-right notifications-time">2pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate">Your customer subscribed for the basic plan. The customer will pay $25 per month.</p>
-											</div>
-										</a>	
-									</div>
-									<hr class="light-grey-hr ma-0"/>
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="icon bg-yellow">
-												<i class="zmdi zmdi-trending-down"></i>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications txt-warning">Server #2 not responding</span>
-												<span class="inline-block font-11 pull-right notifications-time">1pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate">Some technical error occurred needs to be resolved.</p>
-											</div>
-										</a>	
-									</div>
-									<hr class="light-grey-hr ma-0"/>
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="icon bg-blue">
-												<i class="zmdi zmdi-email"></i>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications">2 new messages</span>
-												<span class="inline-block font-11  pull-right notifications-time">4pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate"> The last payment for your G Suite Basic subscription failed.</p>
-											</div>
-										</a>	
-									</div>
-									<hr class="light-grey-hr ma-0"/>
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="sl-avatar">
-												<img class="img-responsive" th:src="@{{path}static/admin/img/avatar.jpg(path=${rootPath})}" alt="avatar"/>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications">Sandy Doe</span>
-												<span class="inline-block font-11  pull-right notifications-time">1pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-											</div>
-										</a>	
-									</div>
-									<hr class="light-grey-hr ma-0"/>
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="icon bg-red">
-												<i class="zmdi zmdi-storage"></i>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications txt-danger">99% server space occupied.</span>
-												<span class="inline-block font-11  pull-right notifications-time">1pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate">consectetur, adipisci velit.</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="notification-box-bottom-wrap">
-									<hr class="light-grey-hr ma-0"/>
-									<a class="block text-center read-all" href="javascript:void(0)"> read all </a>
-									<div class="clearfix"></div>
-								</div>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown auth-drp">
-						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img th:src="@{{path}static/admin/img/user1.png(path=${rootPath})}" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
-						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-							<li>
-								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
-							</li>
-							<li>
-								<a href="#"><i class="zmdi zmdi-card"></i><span>my balance</span></a>
-							</li>
-							<li>
-								<a href="inbox.html"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
-							</li>
-							<li>
-								<a href="#"><i class="zmdi zmdi-settings"></i><span>Settings</span></a>
-							</li>
-							<li class="divider"></li>
-							<li class="sub-menu show-on-hover">
-								<a href="#" class="dropdown-toggle pr-0 level-2-drp"><i class="zmdi zmdi-check text-success"></i> available</a>
-								<ul class="dropdown-menu open-left-side">
-									<li>
-										<a href="#"><i class="zmdi zmdi-check text-success"></i><span>available</span></a>
-									</li>
-									<li>
-										<a href="#"><i class="zmdi zmdi-circle-o text-warning"></i><span>busy</span></a>
-									</li>
-									<li>
-										<a href="#"><i class="zmdi zmdi-minus-circle-outline text-danger"></i><span>offline</span></a>
-									</li>
-								</ul>	
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="#"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>	
-		</nav>
+<html xmlns:th="http://www.thymeleaf.org">
+<nav  th:fragment="topMenu">
+	<!-- 彩带 -->
+	<div id="awwwards" class="right black">
+		<a href="http://www.awwwards.com/best-websites/apricot-navigation-admin-dashboard-template" target="_blank">best websites of the world</a>
+	</div>
+	<!-- END彩带 -->
+	<!-- 预加载器 -->
+	<div id="preloader">
+	    <div id="status">&nbsp;</div>
+	</div>
+	<!-- 顶部导航栏 -->
+	<nav role="navigation" class="navbar navbar-static-top">
+	    <div class="container-fluid">
+	        <!-- 手机端的和切换分组，以更好的移动显示 -->
+	        <div class="navbar-header">
+	            <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+	                <span class="entypo-menu"></span>
+	            </button>
+	            <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
+	                <span class="entypo-list-add"></span>
+	            </button>
+	
+	
+	            <div id="logo-mobile" class="visible-xs">
+	               <h1>Apricot<span>v1.34</span></h1>
+	            </div>
+	
+	        </div>
+	
+	
+	        <!-- 右侧顶部-->
+	        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+	            <ul class="nav navbar-nav">
+		<!-- 消息通知栏 -->
+	                <li class="dropdown">
+	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">23</div></a>
+	                    <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
+	                        <li>
+	                            <a href="#">
+	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/1.jpg(path=${rootPath})}">Jhon Doe <b>Just Now</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="#">
+	                            
+						<span th:text="${rootPath}"></span>
+	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/women/1.jpg(path=${rootPath})} ">Jeniffer <b>3 Min Ago</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="#">
+	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/2.jpg(path=${rootPath})}">Dave <b>2 Hours Ago</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="#">
+	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/3.jpg(path=${rootPath})}"><i>Keanu</i>  <b>1 Day Ago</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="#">
+	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/4.jpg(path=${rootPath})}"><i>Masashi</i>  <b>2 Mounth Ago</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <div>See All Messege</div>
+	                        </li>
+	                    </ul>
+	                </li>
+	                <!-- END消息通知栏 -->
+	                <!-- 右边警告图标通知栏 -->
+	                <li>
+	
+	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green">5</div></a>
+	                    <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
+	                        <li>
+	                            <a href="#">
+	                                <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>From Station</i>  <b>01B</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="#">
+	                                <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Departing at</i>  <b>9:00 AM</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="#">
+	                                <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Delay for</i>  <b>09 Min</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="#">
+	                                <span style="background:#86C440" class="noft-icon maki-airport"></span><i>Take of</i>  <b>08:30 AM</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="#">
+	                                <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Take of</i>  <b>08:30 AM</b>
+	                            </a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <div>See All Notification</div>
+	                        </li>
+	                    </ul>
+	                </li>
+	                <!--END 右边警告图标通知栏 -->
+	                
+	                <!-- 右边帮助图标通知栏  -->
+	                <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;" class="icon-help tooltitle"></i></a>
+	                </li>
+		<!-- END右边帮助图标通知栏  -->
+	            </ul>
+	            <!-- 右侧顶部 日期 时间  天气预报  div-->
+	            <div id="nt-title-container" class="navbar-left running-text visible-lg">
+	            	<!-- 日期空间 -->
+	                <ul class="date-top">
+	                    <li class="entypo-calendar" style="margin-right:5px"></li>
+	                    <li id="Date"></li>
+	                </ul>
+	                <!--end 日期空间 -->
+		<!-- 时间DIV -->
+	                <ul id="digital-clock" class="digital">
+	                    <li class="entypo-clock" style="margin-right:5px"></li>
+	                    <li class="hour"></li>
+	                    <li>:</li>
+	                    <li class="min"></li>
+	                    <li>:</li>
+	                    <li class="sec"></li>
+	                    <li class="meridiem"></li>
+	                </ul>
+	                <!--end 时间DIV -->
+	                <!-- 天气预报div -->
+	                <ul id="nt-title">
+	                    <li><i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160;
+	                        <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
+	                    </li>
+	                    <li><i class="wi-day-lightning"></i>&#160;&#160;Yogyakarta&#160;
+	                        <b>85</b><i class="wi-fahrenheit"></i>&#160;; Tonight- 72 °F (22.2 °C)
+	                    </li>
+	
+	                    <li><i class="wi-day-lightning"></i>&#160;&#160;Sttugart&#160;
+	                        <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
+	                    </li>
+	
+	                    <li><i class="wi-day-lightning"></i>&#160;&#160;Muchen&#160;
+	                        <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
+	                    </li>
+	
+	                    <li><i class="wi-day-lightning"></i>&#160;&#160;Frankurt&#160;
+	                        <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
+	                    </li>
+	
+	                </ul>
+	                <!--end 天气预报div -->
+	            </div>
+	<!-- end 右侧顶部 日期 时间  天气预报 -->
+	
+	<!-- 右侧顶部 头像设置-->
+	            <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+	                <!-- 头像设置 -->
+	                <li>
+	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+	                        <img alt="" class="admin-pic img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/10.jpg(path=${rootPath})}">Hi, Dave Mattew <b class="caret"></b>
+	                    </a>
+	                    <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
+	                        <li>
+	                            <a href="#">
+	                                <span class="entypo-user"></span>&#160;&#160;My Profile</a>
+	                        </li>
+	                        <li>
+	                            <a href="#">
+	                                <span class="entypo-vcard"></span>&#160;&#160;Account Setting</a>
+	                        </li>
+	                        <li>
+	                            <a href="#">
+	                                <span class="entypo-lifebuoy"></span>&#160;&#160;Help</a>
+	                        </li>
+	                        <li class="divider"></li>
+	                        <li>
+	                            <a href="http://themeforest.net/item/apricot-navigation-admin-dashboard-template/7664475?WT.ac=category_item&amp;WT.z_author=themesmile">
+	                                <span class="entypo-basket"></span>&#160;&#160; Purchase</a>
+	                        </li>
+	                    </ul>
+	                </li>
+	                <!-- END头像设置 -->
+	                <!-- 背景设置 -->
+	                <li>
+	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+	                        <span class="icon-gear"></span>&#160;&#160;Setting</a>
+	                    <ul role="menu" class="dropdown-setting dropdown-menu">
+	
+	                        <li class="theme-bg">
+	                            <div id="button-bg"></div>
+	                            <div id="button-bg2"></div>
+	                            <div id="button-bg3"></div>
+	                            <div id="button-bg5"></div>
+	                            <div id="button-bg6"></div>
+	                            <div id="button-bg7"></div>
+	                            <div id="button-bg8"></div>
+	                            <div id="button-bg9"></div>
+	                            <div id="button-bg10"></div>
+	                            <div id="button-bg11"></div>
+	                            <div id="button-bg12"></div>
+	                            <div id="button-bg13"></div>
+	                        </li>
+	                    </ul>
+	                </li>
+	                <!--END 背景设置 -->
+	                
+	                <!-- 顶部右侧隐藏按钮 -->
+	                <li class="hidden-xs">
+	                    <a class="toggle-left" href="#">
+	                        <span style="font-size:20px;" class="entypo-list-add"></span>
+	                    </a>
+	                </li>
+	                <!-- END顶部右侧隐藏按钮 -->
+	            </ul>
+	            <!-- end 右侧顶部 头像设置-->
+	        </div>
+	        <!-- end 右侧顶部 -->
+	    </div>
+	</nav>
+	<!-- /结束顶部导航条 -->	
+</nav>
