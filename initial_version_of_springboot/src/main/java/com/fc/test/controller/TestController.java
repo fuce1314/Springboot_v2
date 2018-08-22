@@ -36,6 +36,12 @@ public class TestController {
         return "admin/blank2";
 
     }
+    @RequestMapping(value = "loginView2", produces = "text/json;charset=UTF-8")
+    public String loginView2(){
+    	Gson gson=new Gson();
+        PageInfo<Test> list=testService.all();
+        return "admin/back";
 
+    }
 
 }

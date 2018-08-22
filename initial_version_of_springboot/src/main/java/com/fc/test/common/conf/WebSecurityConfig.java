@@ -42,12 +42,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
              .antMatchers("/static/**").permitAll()
              .antMatchers("/webjars/**","/swagger-resources/**","/v2/**","/swagger-ui.html","/api-docs").permitAll()
 	    	 .antMatchers("/api/**").permitAll()//访问API下无需登录认证权限
-	    	 .antMatchers("/login/**").permitAll()//访问API下无需登录认证权限
+	    	 .antMatchers("/login").permitAll()//访问API下无需登录认证权限
 	    	  .antMatchers("/error/**").permitAll()
-	    	 .anyRequest().authenticated();
+	    	 .anyRequest().authenticated();//允许验证过的用户访问
 			// 自定义登录页面
 			 http.formLogin().loginPage("/login")   //这个/必须加上，配置登录url
-			         .and().logout().permitAll() ;//用户退出
+			 //.loginProcessingUrl("/index")//登录处理的请求
+			 .and().logout().permitAll() ;//用户退出
 	    	 // swagger end
 			 
 	    	
