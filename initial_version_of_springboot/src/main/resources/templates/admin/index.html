@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
-<title>空白页</title>
+
+<title sec:authentication="name"></title>
 <!-- 这儿引用单独的css link -->
 <link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
 <style type="text/css">

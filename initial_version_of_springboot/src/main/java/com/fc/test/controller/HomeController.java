@@ -13,7 +13,9 @@ import com.fc.test.model.custom.Msg;
 
 @Controller
 public class HomeController {
-	@RequestMapping("/")
+	
+	/***权限测试方法先注销****/
+	/*@RequestMapping("/")
 	public String index(Model model) {
 		// Msg msg = new Msg("测试标题","测试内容","欢迎来到HOME页面,您拥有 ROLE_HOME 权限");
 		Msg msg = new Msg("标题", "内容", "额外信息，只对管理员显示");
@@ -30,12 +32,17 @@ public class HomeController {
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
+	}*/
+	@RequestMapping("/login")
+	public String login() {
+		System.out.println("xxx");
+		return "login";
 	}
-
+	
 	// 系统首页
 	@GetMapping("/index")
 	public String index(ModelMap mmap) {
-
-		return "admin/login";
+		System.out.println("x");
+		return "admin/index";
 	}
 }

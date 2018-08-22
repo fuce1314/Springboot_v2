@@ -42,7 +42,7 @@
 		<!-- 登录 -->
 		<div id="windows1">
 		<div id="loginbox" >
-			<form action="" method="post" name="loginForm" id="loginForm">
+			<form th:action="@{/index}"  method="post" id="loginForm">
 				<div class="control-group normal_text">
 					<h3>
 						<img src="static/login/logo.png" alt="Logo" />
@@ -53,7 +53,7 @@
 						<div class="main_input_box">
 							<span class="add-on bg_lg">
 							<i><img height="37" src="static/login/user.png" /></i>
-							</span><input type="text" name="loginname" id="loginname" value="" placeholder="请输入用户名" />
+							</span><input type="text" name="username" id="loginname" value="" placeholder="请输入用户名" />
 						</div>
 					</div>
 				</div>
@@ -105,7 +105,7 @@
 		<!-- 注册 -->
 		<div id="windows2" style="display: none;">
 		<div id="loginbox">
-			<form action="" method="post" name="loginForm" id="loginForm2">
+			<form  th:action="@{/login}" action="/login" name="loginForm" id="loginForm2">
 				<div class="control-group normal_text">
 					<h3>
 						<img src="static/login/logo.png" alt="Logo" />
@@ -116,7 +116,7 @@
 						<div class="main_input_box">
 							<span class="add-on bg_lg">
 							<i>用户</i>
-							</span><input type="text" name="USERNAME" id="USERNAME" value="" placeholder="请输入用户名" />
+							</span><input type="text" name="username" id="USERNAME" value="" placeholder="请输入用户名" />
 						</div>
 					</div>
 				</div>
@@ -215,6 +215,12 @@
 	<script type="text/javascript" src="static/login/keypad/js/form/keypad.js"></script>
 	<script type="text/javascript" src="static/login/keypad/js/framework.js"></script>
 	<!-- 软键盘控件end -->
-
+	<script type="text/javascript">
+	
+		function severCheck(){
+			$("#loginForm").submit();
+			
+		}
+	</script>
 </body>
 </html>

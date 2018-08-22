@@ -42,8 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
              .antMatchers("/static/**").permitAll()
              .antMatchers("/webjars/**","/swagger-resources/**","/v2/**","/swagger-ui.html","/api-docs").permitAll()
 	    	 .antMatchers("/api/**").permitAll()//访问API下无需登录认证权限
-	    	  .antMatchers("/error/**").permitAll();
-	    	
+	    	 .antMatchers("/login/**").permitAll()//访问API下无需登录认证权限
+	    	  .antMatchers("/error/**").permitAll()
+	    	 .anyRequest().authenticated();
 			// 自定义登录页面
 			 http.formLogin().loginPage("/login")   //这个/必须加上，配置登录url
 			         .and().logout().permitAll() ;//用户退出
