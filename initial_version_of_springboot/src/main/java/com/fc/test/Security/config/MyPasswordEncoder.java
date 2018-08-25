@@ -1,4 +1,4 @@
-package com.fc.test.common.conf;
+package com.fc.test.Security.config;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

@@ -1,4 +1,4 @@
-package com.fc.test.service;
+package com.fc.test.Security.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +38,7 @@ public class CustomUserService implements UserDetailsService {
 		TsysUserExample userExample=new TsysUserExample();
 		userExample.createCriteria().andUsernameEqualTo(username);
 		List<TsysUser> users=userMapper.selectByExample(userExample);
+
 		if(users!=null&&users.size()>0){
 			  TsysUser user=users.get(0);
 			  if (user != null) {
@@ -53,10 +54,10 @@ public class CustomUserService implements UserDetailsService {
 		            }
 		            return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
 		        } else {
-		            throw new UsernameNotFoundException("admin: " + username + " do not exist!");
+		            throw new UsernameNotFoundException("找不到该用户： " + username + "!");
 		        }
 		}else{
-			 throw new UsernameNotFoundException("admin: " + username + " do not exist!");
+			 throw new UsernameNotFoundException("找不到该用户： " + username + "!");
 		}
        
        

@@ -1,4 +1,4 @@
-package com.fc.test.service;
+package com.fc.test.Security.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,7 +65,7 @@ public class MyInvocationSecurityMetadataSourceService  implements FilterInvocat
 	@Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 		 // object 是一个URL，被用户请求的url。
-        String url = ((FilterInvocation) object).getRequestUrl();
+       /* String url = ((FilterInvocation) object).getRequestUrl();
         int firstQuestionMarkIndex = url.indexOf("?");
 
         if (firstQuestionMarkIndex != -1) {
@@ -81,7 +81,7 @@ public class MyInvocationSecurityMetadataSourceService  implements FilterInvocat
 
                 return resourceMap.get(resURL);
             }
-        }
+        }*/
 
         return null;
 	    

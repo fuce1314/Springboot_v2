@@ -1,4 +1,4 @@
-package com.fc.test.common.interceptor;
+package com.fc.test.Security.service;
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -13,8 +13,7 @@ import org.springframework.security.access.intercept.AbstractSecurityInterceptor
 import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.stereotype.Component;
-import com.fc.test.service.MyAccessDecisionManager;
+import org.springframework.stereotype.Service;
 
 /**
  * 权限拦截器
@@ -24,7 +23,7 @@ import com.fc.test.service.MyAccessDecisionManager;
 * @date 2018年6月10日
 *
  */
-@Component
+@Service
 public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter{
 
    @Autowired

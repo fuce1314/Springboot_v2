@@ -42,7 +42,7 @@ public class HomeController {
 	}*/
 	
 	//登录界面
-	@RequestMapping("/login")
+	@RequestMapping("/denglu")
 	public String login() {
 		return "login";
 	}

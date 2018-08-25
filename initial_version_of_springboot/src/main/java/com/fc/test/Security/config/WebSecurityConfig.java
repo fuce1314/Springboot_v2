@@ -1,7 +1,8 @@
-package com.fc.test.common.conf;
+package com.fc.test.Security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,10 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
-import com.fc.test.common.interceptor.MyFilterSecurityInterceptor;
-import com.fc.test.service.CustomUserService;
+import com.fc.test.Security.service.CustomUserService;
+import com.fc.test.Security.service.MyFilterSecurityInterceptor;
 
 
+@Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
@@ -42,11 +44,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
              .antMatchers("/static/**").permitAll()
              .antMatchers("/webjars/**","/swagger-resources/**","/v2/**","/swagger-ui.html","/api-docs").permitAll()
 	    	 .antMatchers("/api/**").permitAll()//访问API下无需登录认证权限
-	    	 .antMatchers("/login").permitAll()//访问API下无需登录认证权限
+	    	 .antMatchers("/denglu").permitAll()//访问API下无需登录认证权限
 	    	  .antMatchers("/error/**").permitAll()
 	    	 .anyRequest().authenticated();//允许验证过的用户访问
 			// 自定义登录页面
-			 http.formLogin().loginPage("/login")   //这个/必须加上，配置登录url
+			 http.formLogin().loginPage("/denglu")   //这个/必须加上，配置登录url
 			 //.loginProcessingUrl("/index")//登录处理的请求
 			 .and().logout().permitAll() ;//用户退出
 	    	 // swagger end
