@@ -1,8 +1,6 @@
 package com.fc.test.model.auto;
 
-import java.io.Serializable;
-
-public class TsysPremission implements Serializable {
+public class TsysPremission {
     private String id;
 
     private String name;
@@ -13,7 +11,7 @@ public class TsysPremission implements Serializable {
 
     private String pid;
 
-    private static final long serialVersionUID = 1L;
+    private String perms;
 
     public String getId() {
         return id;
@@ -53,5 +51,13 @@ public class TsysPremission implements Serializable {
 
     public void setPid(String pid) {
         this.pid = pid == null ? null : pid.trim();
+    }
+
+    public String getPerms() {
+        return perms;
+    }
+
+    public void setPerms(String perms) {
+        this.perms = perms == null ? null : perms.trim();
     }
 }

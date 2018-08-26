@@ -453,6 +453,76 @@ public class TsysPremissionExample {
             addCriterion("pid not between", value1, value2, "pid");
             return (Criteria) this;
         }
+
+        public Criteria andPermsIsNull() {
+            addCriterion("perms is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsIsNotNull() {
+            addCriterion("perms is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsEqualTo(String value) {
+            addCriterion("perms =", value, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsNotEqualTo(String value) {
+            addCriterion("perms <>", value, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsGreaterThan(String value) {
+            addCriterion("perms >", value, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsGreaterThanOrEqualTo(String value) {
+            addCriterion("perms >=", value, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsLessThan(String value) {
+            addCriterion("perms <", value, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsLessThanOrEqualTo(String value) {
+            addCriterion("perms <=", value, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsLike(String value) {
+            addCriterion("perms like", value, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsNotLike(String value) {
+            addCriterion("perms not like", value, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsIn(List<String> values) {
+            addCriterion("perms in", values, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsNotIn(List<String> values) {
+            addCriterion("perms not in", values, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsBetween(String value1, String value2) {
+            addCriterion("perms between", value1, value2, "perms");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermsNotBetween(String value1, String value2) {
+            addCriterion("perms not between", value1, value2, "perms");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
