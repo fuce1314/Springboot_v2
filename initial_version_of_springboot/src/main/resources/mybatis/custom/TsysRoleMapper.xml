@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.test.mapper.custom.RoleDao">
+  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysRole">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  
+   <sql id="Base_Column_List">
+    id, name
+   </sql>
+  <select id="queryUserRole" parameterType="String" resultType="com.fc.test.model.auto.TsysRole">
+        select r.id,r.`name`  from t_sys_role r
+		LEFT JOIN t_sys_role_user ru ON  r.id=ru.sys_role_id
+		where ru.sys_user_id=#{userid}
+ </select>
+</mapper>

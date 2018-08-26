@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fc.test.mapper.custom.PermissionDao">
-  
+  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysPremission">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="descripion" jdbcType="VARCHAR" property="descripion" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+  </resultMap>
+   <sql id="Base_Column_List">
+    id, `name`, descripion, url, pid
+  </sql>
    <select id="findAll"  resultType="com.fc.test.model.auto.TsysPremission">
 
 	  select  * from t_sys_premission
@@ -16,4 +25,14 @@
         LEFT JOIN t_sys_premission p on p.id =spr.permission_id
         where u.id=#{userId}
  </select>
+ 
+ <select id="queryRoleId"  parameterType="String" resultType="com.fc.test.model.auto.TsysPremission">
+ 	select p.* from t_sys_premission p
+	left join t_sys_permission_role pr on p.id=pr.permission_id
+	where pr.role_id=#{roleid}
+ 
+ </select>
+ 
+ 
+ 
 </mapper>

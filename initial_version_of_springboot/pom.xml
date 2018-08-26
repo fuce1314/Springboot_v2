@@ -68,31 +68,39 @@
             <artifactId>pagehelper</artifactId>
             <version>4.1.4</version>
         </dependency>
-        <!-- mysql驱动7.0 
+        <!-- mysql驱动7.0 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.40</version>
-        </dependency> -->
+        </dependency> 
         
-		<!-- mysql驱动8.0 -->
+		<!-- mysql驱动8.0
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.11</version><!--$NO-MVN-MAN-VER$-->
-        </dependency>
+            <version>8.0.11</version>
+        </dependency> -->
 
-		<!-- 权限控制 -->
-	    <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <!-- thymeleaf模版  -->
-        <!-- 引入thymeleaf 的shiro命名空间 -->
+	
+		
 		<dependency>
-			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.4.0</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.github.theborakompanioni</groupId>
+		    <artifactId>thymeleaf-extras-shiro</artifactId>
+		    <version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		
+		
+		  <!-- thymeleaf模版  -->
     	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>

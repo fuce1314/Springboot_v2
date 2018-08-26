@@ -2,7 +2,7 @@ package com.fc.test.model.auto;
 
 import java.io.Serializable;
 
-public class tSysRoleUser implements Serializable {
+public class TSysRoleUser implements Serializable {
     private String id;
 
     private String sysUserId;

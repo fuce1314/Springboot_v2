@@ -3,14 +3,14 @@ package com.fc.test.model.auto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class tSysRoleUserExample {
+public class TSysRoleUserExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public tSysRoleUserExample() {
+    public TSysRoleUserExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
