@@ -29,20 +29,14 @@ public class HomeController {
 	/*** 权限测试方法先注销 ****/
 
 
+	
+	
+	
 	/**
-	 * 注销功能
-	 * 
+	 * 请求到登陆界面
 	 * @param request
-	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPage(HttpServletRequest request,
-			HttpServletResponse response) {
-
-		return "redirect:/login?logout";
-	}
-	
 	@GetMapping("/login")
     public String login(HttpServletRequest request) {
         try {
@@ -92,7 +86,6 @@ public class HomeController {
 		            redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
 		        }
 		 }
-		 
 		 view.setViewName("redirect:/login");
 		 return view;
 		 

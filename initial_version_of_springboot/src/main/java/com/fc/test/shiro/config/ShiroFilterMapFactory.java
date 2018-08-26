@@ -38,12 +38,12 @@ user:例如/admins/user/**=user没有参数表示必须存在用户，当登入�
 //		设置路径映射，注意这里要用LinkedHashMap 保证有序
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		//对所有用户认证
-		//对所有页面进行认证
-		filterChainDefinitionMap.put("/**","authc");
+		filterChainDefinitionMap.put("/static/**", "anon");
+		filterChainDefinitionMap.put("/login", "anon");
 		filterChainDefinitionMap.put("/login", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");
-		filterChainDefinitionMap.put("/**", "user");//user允许 记住我和授权用户 访问，但在进行下单和支付时建议使用authc
-
+		//对所有页面进行认证
+		filterChainDefinitionMap.put("/**","authc");
 		return filterChainDefinitionMap;
 	}
 }

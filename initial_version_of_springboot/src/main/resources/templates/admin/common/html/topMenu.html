@@ -1,7 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<nav  th:fragment="topMenu">
+
+<nav th:fragment="topMenu(isribbon)">
 	<!-- 彩带 -->
-	<div id="awwwards" class="right black">
+	<div th:if="${isribbon eq true}" id="awwwards" class="right black">
 		<a href="http://www.awwwards.com/best-websites/apricot-navigation-admin-dashboard-template" target="_blank">best websites of the world</a>
 	</div>
 	<!-- END彩带 -->
@@ -188,8 +189,9 @@
 	                        </li>
 	                        <li class="divider"></li>
 	                        <li>
-	                            <a href="http://themeforest.net/item/apricot-navigation-admin-dashboard-template/7664475?WT.ac=category_item&amp;WT.z_author=themesmile">
-	                                <span class="entypo-basket"></span>&#160;&#160; Purchase</a>
+	                        
+	                            <a th:href="@{{path}/Loginout(path=${rootPath})}">
+	                                <span class="entypo-basket"></span>&#160;&#160; 退出</a>
 	                        </li>
 	                    </ul>
 	                </li>

@@ -4,9 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+
 import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.model.custom.TitleVo;
 import com.fc.test.util.StringUtils;
 
 /**
@@ -90,6 +93,25 @@ public class BaseController
     public String redirect(String url)
     {
         return StringUtils.format("redirect:{}", url);
+    }
+    
+    
+    /**
+     * 设置标题通用方法
+     * @param model
+     */
+    public void setTitle(Model model,TitleVo titleVo){
+    	//标题
+		model.addAttribute("title",titleVo.getTitle());
+		model.addAttribute("parenttitle",titleVo.getParenttitle());
+		//是否打开欢迎语
+		model.addAttribute("isMsg",titleVo.isMsg());
+		//欢迎语
+		model.addAttribute("msgHTML",titleVo.getMsgHtml());
+		//小控件
+		model.addAttribute("isControl",titleVo.isControl());
+		model.addAttribute("isribbon", titleVo.isIsribbon());
+		System.out.println("x");
     }
 
    

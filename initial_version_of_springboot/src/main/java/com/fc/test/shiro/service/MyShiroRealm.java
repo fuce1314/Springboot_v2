@@ -106,7 +106,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 			List<TsysPremission> premissions=permissionDao.queryRoleId(rolid);
 			for(TsysPremission p:premissions){
 				System.out.println("角色下面的权限:"+gson.toJson(p));
-				authorizationInfo.addStringPermission(p.getName());
+				authorizationInfo.addStringPermission(p.getPerms());
 				
 				
 			}
