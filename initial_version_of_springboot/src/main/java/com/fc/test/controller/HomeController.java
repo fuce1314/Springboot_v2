@@ -14,22 +14,23 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.fc.test.common.base.BaseController;
 import com.fc.test.model.auto.TsysUser;
+import com.fc.test.model.custom.TitleVo;
 
 @Controller
-public class HomeController {
+public class HomeController extends BaseController{
 	private static Logger logger=LoggerFactory.getLogger(HomeController.class);
 	
-	/*** 权限测试方法先注销 ****/
 
-
-	
 	
 	
 	/**
@@ -38,10 +39,11 @@ public class HomeController {
 	 * @return
 	 */
 	@GetMapping("/login")
-    public String login(HttpServletRequest request) {
+    public String login(HttpServletRequest request,Model model) {
         try {
             if ((null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) || SecurityUtils.getSubject().isRemembered()) {
-                return "admin/index";
+            	setTitle(model, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
+            	return "admin/index";
             } else {
             	System.out.println("--进行登录验证..验证开始");
                 return "login";
@@ -53,7 +55,7 @@ public class HomeController {
     }
 	
 	@PostMapping("login")
-	public ModelAndView login(TsysUser user,RedirectAttributes redirectAttributes,boolean rememberMe) {
+	public ModelAndView login(TsysUser user,RedirectAttributes redirectAttributes,boolean rememberMe,Model model) {
 		ModelAndView view =new ModelAndView();
 		 String userName = user.getUsername();
 		 Subject currentUser = SecurityUtils.getSubject();
@@ -65,7 +67,8 @@ public class HomeController {
 				 }
 				 currentUser.login(token);
 				 
-				 
+				 setTitle(model, new TitleVo("欢迎页面", "首页", true,"欢迎进入", true, false));
+					
 				 view.setViewName("redirect:admin/index");
 			 }catch (UnknownAccountException uae) {
 		            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");

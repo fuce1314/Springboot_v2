@@ -3,7 +3,7 @@
       xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
 <head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
 
-<title sec:authentication="name"></title>
+<title th:text=${title}></title>
 <!-- 这儿引用单独的css link -->
 <link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
 <style type="text/css">
@@ -17,7 +17,7 @@
 <body>
 
 <!-- 顶部通用-->
-<div th:replace="admin/common/html/topMenu :: topMenu">
+<div th:replace="admin/common/html/topMenu :: topMenu(${isribbon})">
 </div>
 <!-- 结束顶部通用 -->
    
@@ -36,7 +36,7 @@
     <div class="container-fluid paper-wrap bevel tlbr">
         <!-- 内容 -->
         <!--标题 通用-->
-        <div th:replace="admin/common/html/title :: title('通用页面',true,'Welcome back,&nbsp;<strong>Dave mattew!</strong>&nbsp;&nbsp;Your last sig in at Yesterday, 16:54 PM',true)">
+        <div th:replace="admin/common/html/title :: title(${title},${parenttitle},${isMsg},${msgHTML})">
         </div>
         <!-- 结束标题 通用-->
         <div class="content-wrap">
@@ -93,8 +93,11 @@
    
 </div>
     
-
-
+<script type="text/javascript" src="/static/admin/assets/js/toggle_close.js"></script>
+    <script src="/static/admin/assets/js/footable/js/footablecd98.js?v=2-0-1" type="text/javascript"></script>
+    <script src="/static/admin/assets/js/footable.sortcd98.js?v=2-0-1" type="text/javascript"></script>
+    <script src="/static/admin/assets/js/footable.filtercd98.js?v=2-0-1" type="text/javascript"></script>
+    <script src="/static/admin/assets/js/footable.paginatecd98.js?v=2-0-1" type="text/javascript"></script>
 
 </body>
 
