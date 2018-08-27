@@ -63,7 +63,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         
-        <!-- 配置需要生成的表 -->
+        <!-- 配置需要生成的表 
         <table tableName="t_sys_user" domainObjectName="TsysUser" enableCountByExample="true">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
@@ -78,7 +78,7 @@
         </table>
         <table tableName="t_sys_permission_role" domainObjectName="TsysPermissionRole" enableCountByExample="true">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
+        </table>-->
         
         
     </context>

@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.TSysRoleUserMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TSysRoleUser">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="sys_user_id" jdbcType="VARCHAR" property="sysUserId" />
-    <result column="sys_role_id" jdbcType="VARCHAR" property="sysRoleId" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fc.test.mapper.auto.TSysRoleUserMapper" >
+  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TSysRoleUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="sys_user_id" property="sysUserId" jdbcType="VARCHAR" />
+    <result column="sys_role_id" property="sysRoleId" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -35,25 +35,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -64,113 +64,115 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     id, sys_user_id, sys_role_id
   </sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.TSysRoleUserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.test.model.auto.TSysRoleUserExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from t_sys_role_user
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from t_sys_role_user
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from t_sys_role_user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TSysRoleUserExample">
+  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TSysRoleUserExample" >
     delete from t_sys_role_user
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fc.test.model.auto.TSysRoleUser">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_sys_role_user (sys_user_id, sys_role_id)
-    values (#{sysUserId,jdbcType=VARCHAR}, #{sysRoleId,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.fc.test.model.auto.TSysRoleUser" >
+    insert into t_sys_role_user (id, sys_user_id, sys_role_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{sysUserId,jdbcType=VARCHAR}, #{sysRoleId,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TSysRoleUser">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TSysRoleUser" >
     insert into t_sys_role_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="sysUserId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sysUserId != null" >
         sys_user_id,
       </if>
-      <if test="sysRoleId != null">
+      <if test="sysRoleId != null" >
         sys_role_id,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="sysUserId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserId != null" >
         #{sysUserId,jdbcType=VARCHAR},
       </if>
-      <if test="sysRoleId != null">
+      <if test="sysRoleId != null" >
         #{sysRoleId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fc.test.model.auto.TSysRoleUserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.test.model.auto.TSysRoleUserExample" resultType="java.lang.Integer" >
     select count(*) from t_sys_role_user
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update t_sys_role_user
-    <set>
-      <if test="record.id != null">
+    <set >
+      <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.sysUserId != null">
+      <if test="record.sysUserId != null" >
         sys_user_id = #{record.sysUserId,jdbcType=VARCHAR},
       </if>
-      <if test="record.sysRoleId != null">
+      <if test="record.sysRoleId != null" >
         sys_role_id = #{record.sysRoleId,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update t_sys_role_user
     set id = #{record.id,jdbcType=VARCHAR},
       sys_user_id = #{record.sysUserId,jdbcType=VARCHAR},
       sys_role_id = #{record.sysRoleId,jdbcType=VARCHAR}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TSysRoleUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TSysRoleUser" >
     update t_sys_role_user
-    <set>
-      <if test="sysUserId != null">
+    <set >
+      <if test="sysUserId != null" >
         sys_user_id = #{sysUserId,jdbcType=VARCHAR},
       </if>
-      <if test="sysRoleId != null">
+      <if test="sysRoleId != null" >
         sys_role_id = #{sysRoleId,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TSysRoleUser">
+  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TSysRoleUser" >
     update t_sys_role_user
     set sys_user_id = #{sysUserId,jdbcType=VARCHAR},
       sys_role_id = #{sysRoleId,jdbcType=VARCHAR}

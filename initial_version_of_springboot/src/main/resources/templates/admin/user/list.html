@@ -6,6 +6,10 @@
 <title th:text=${title}></title>
 <!-- 这儿引用单独的css link -->
 <link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
+<link th:href="@{{path}static/admin/assets/js/footable/css/footable.corecd98.css?v=2-0-1(path=${rootPath})}" rel="stylesheet" type="text/css" />
+<link th:href="@{{path}static/admin/assets/js/footable/css/footable.standalone.css(path=${rootPath})}" rel="stylesheet" type="text/css" />
+<link th:href="@{{path}static/admin/assets/js/footable/css/footable-demos.css(path=${rootPath})}" rel="stylesheet" type="text/css" />
+
 <style type="text/css">
 /**
 *这里写单独的css样式
@@ -59,7 +63,14 @@
                             </div>
                         </div>
                         <div class="body-nest" id="Blank_Page_Content">
-                            Content Goes Here
+                           
+                           
+                           <table class="table-striped footable-res footable metro-blue" data-page-size="6">
+                                   
+                                    
+                           </table>
+                           
+                           
                         </div>
                     </div>
                 </div>
@@ -94,10 +105,21 @@
 </div>
     
 <script type="text/javascript" src="/static/admin/assets/js/toggle_close.js"></script>
-    <script src="/static/admin/assets/js/footable/js/footablecd98.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/admin/assets/js/footable.sortcd98.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/admin/assets/js/footable.filtercd98.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/admin/assets/js/footable.paginatecd98.js?v=2-0-1" type="text/javascript"></script>
+<script src="/static/admin/assets/js/footable/js/footablecd98.js?v=2-0-1" type="text/javascript"></script>
+<script src="/static/admin/assets/js/footable/js/footable.sortcd98.js?v=2-0-1" type="text/javascript"></script>
+<script src="/static/admin/assets/js/footable/js/footable.filtercd98.js?v=2-0-1" type="text/javascript"></script>
+<script src="/static/admin/assets/js/footable/js/footable.paginatecd98.js?v=2-0-1" type="text/javascript"></script>
+<script type="text/javascript">
+
+$('.footable-res').footable({
+	"columns":[
+	 	{"name":"id","title":"id"},
+	 	{"name":"username","title":"username"},
+	 	{"name":"password","title":"password"}
+	 ] ,
+	"rows": $.post("http://localhost:8081/UserController/list")
+});
+</script>
 
 </body>
 

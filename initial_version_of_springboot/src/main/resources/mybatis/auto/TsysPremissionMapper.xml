@@ -101,20 +101,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fc.test.model.auto.TsysPremission" >
-    <selectKey resultType="java.lang.String" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_sys_premission (name, descripion, url, 
-      pid, perms)
-    values (#{name,jdbcType=VARCHAR}, #{descripion,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{pid,jdbcType=VARCHAR}, #{perms,jdbcType=VARCHAR})
+    insert into t_sys_premission (id, name, descripion, 
+      url, pid, perms)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{descripion,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{perms,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysPremission" >
-    <selectKey resultType="java.lang.String" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into t_sys_premission
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="name != null" >
         name,
       </if>
@@ -132,6 +129,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>

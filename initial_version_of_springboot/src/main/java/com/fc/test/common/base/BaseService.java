@@ -12,13 +12,11 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface BaseService<T,T2> {
 	
-    int deleteByPrimaryKey(Long id);
-
-    int insert(T record);
+    int deleteByPrimaryKey(String id);
 
     int insertSelective(T record);
 
-    T selectByPrimaryKey(Long id);
+    T selectByPrimaryKey(String id);
    
     int updateByPrimaryKeySelective(T record);
     

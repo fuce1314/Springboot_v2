@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 * @date 2018年6月3日
 *
  */
-@Configuration
+@Configuration(value="false")
 @EnableSwagger2 //启动swagger注解 启动服务，浏览器输入"http://服务名:8080/swagger-ui.html"
 public class Swagger {
 	@Bean

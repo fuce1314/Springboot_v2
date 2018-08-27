@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fc.test.common.base.BaseController;
+import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysUserService;
 
@@ -38,7 +40,21 @@ public class UserController extends BaseController{
 	@RequiresPermissions("system:user:list")
 	@ResponseBody
 	public Object list(){
-		
 		return sysUserService.list(1,10);
 	}
+	
+	@PostMapping("add")
+	@RequiresPermissions("system:user:add")
+	@ResponseBody
+	public AjaxResult add(TsysUser user){
+		int i=sysUserService.insertSelective(user);
+		if(i>0){
+			return success();
+		}else{
+			return error();
+		}
+	}
+	
+	
+	
 }

@@ -70,6 +70,7 @@ public class BaseController
     {
         return AjaxResult.success(message);
     }
+    
 
     /**
      * 返回失败消息

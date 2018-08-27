@@ -28,15 +28,9 @@ public class TestService implements BaseService<Test,TestExample> {
     }
 
 	@Override
-	public int deleteByPrimaryKey(Long id) {
+	public int deleteByPrimaryKey(String id) {
 		
-		return testMapper.deleteByPrimaryKey(id);
-	}
-
-	@Override
-	public int insert(Test record) {
-		
-		return testMapper.insert(record);
+		return testMapper.deleteByPrimaryKey(Long.valueOf(id));
 	}
 
 	@Override
@@ -46,9 +40,9 @@ public class TestService implements BaseService<Test,TestExample> {
 	}
 
 	@Override
-	public Test selectByPrimaryKey(Long id) {
+	public Test selectByPrimaryKey(String id) {
 		
-		return testMapper.selectByPrimaryKey(id);
+		return testMapper.selectByPrimaryKey(Long.valueOf(id));
 	}
 
 	@Override

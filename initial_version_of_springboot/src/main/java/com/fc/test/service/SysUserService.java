@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fc.test.common.base.BaseService;
 import com.fc.test.mapper.auto.TsysUserMapper;
-import com.fc.test.model.auto.Test;
-import com.fc.test.model.auto.TestExample;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.auto.TsysUserExample;
+import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -21,7 +21,7 @@ import com.github.pagehelper.PageInfo;
  *
  */
 @Service
-public class SysUserService {
+public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	@Autowired
 	private TsysUserMapper tsysUserMapper;
 	
@@ -38,4 +38,66 @@ public class SysUserService {
 	        PageInfo<TsysUser> pageInfo = new PageInfo<TsysUser>(list);
 	        return  pageInfo;
 	    }
+
+	
+	@Override
+	public int deleteByPrimaryKey(String id) {
+		
+		return tsysUserMapper.deleteByPrimaryKey(id);
+	}
+
+
+	
+	@Override
+	public int insertSelective(TsysUser record) {
+		record.setId(SnowflakeIdWorker.getUUID());
+		return tsysUserMapper.insertSelective(record);
+	}
+
+	
+	public TsysUser selectByPrimaryKey(String id) {
+		
+		return tsysUserMapper.selectByPrimaryKey(id);
+	}
+
+	
+	@Override
+	public int updateByPrimaryKeySelective(TsysUser record) {
+		
+		return tsysUserMapper.updateByPrimaryKeySelective(record);
+	}
+
+	
+	@Override
+	public int updateByExampleSelective(TsysUser record, TsysUserExample example) {
+		
+		return tsysUserMapper.updateByExampleSelective(record, example);
+	}
+
+	
+	@Override
+	public int updateByExample(TsysUser record, TsysUserExample example) {
+		
+		return tsysUserMapper.updateByExample(record, example);
+	}
+
+	
+	public List<TsysUser> selectByExample(TsysUserExample example) {
+		
+		return tsysUserMapper.selectByExample(example);
+	}
+
+	
+	
+	public long countByExample(TsysUserExample example) {
+		
+		return tsysUserMapper.countByExample(example);
+	}
+
+	
+	
+	public int deleteByExample(TsysUserExample example) {
+		
+		return tsysUserMapper.deleteByExample(example);
+	}
 }
