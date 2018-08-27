@@ -47,7 +47,7 @@ public class UserController extends BaseController{
 	@ResponseBody
 	public Object list(@RequestBody Tablepar tablepar){
 		PageInfo<TsysUser> page=sysUserService.list(tablepar.getPageNum(), tablepar.getPageSize()) ; 
-		TableSplitResult<TsysUser> result=new TableSplitResult<TsysUser>(page.getNavigatePages(), page.getTotal(), page.getList()); 
+		TableSplitResult<TsysUser> result=new TableSplitResult<TsysUser>(tablepar.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}
 	

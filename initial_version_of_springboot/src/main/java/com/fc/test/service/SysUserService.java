@@ -2,6 +2,7 @@ package com.fc.test.service;
 
 import java.util.List;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import com.fc.test.common.base.BaseService;
 import com.fc.test.mapper.auto.TsysUserMapper;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.auto.TsysUserExample;
+import com.fc.test.util.MD5Util;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -51,6 +53,8 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	@Override
 	public int insertSelective(TsysUser record) {
 		record.setId(SnowflakeIdWorker.getUUID());
+		//密码加密
+		record.setPassword(MD5Util.encode(record.getPassword()));
 		return tsysUserMapper.insertSelective(record);
 	}
 
