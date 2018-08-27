@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2018-08-27 20:45:40
+Date: 2018-08-28 00:03:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,6 +52,9 @@ INSERT INTO `t_sys_permission_role` VALUES ('1', '1', '1');
 INSERT INTO `t_sys_permission_role` VALUES ('2', '1', '2');
 INSERT INTO `t_sys_permission_role` VALUES ('3', '2', '1');
 INSERT INTO `t_sys_permission_role` VALUES ('4', '1', '3');
+INSERT INTO `t_sys_permission_role` VALUES ('5', '1', '4');
+INSERT INTO `t_sys_permission_role` VALUES ('6', '1', '5');
+INSERT INTO `t_sys_permission_role` VALUES ('7', '1', '6');
 
 -- ----------------------------
 -- Table structure for `t_sys_premission`
@@ -70,9 +73,12 @@ CREATE TABLE `t_sys_premission` (
 -- ----------------------------
 -- Records of t_sys_premission
 -- ----------------------------
-INSERT INTO `t_sys_premission` VALUES ('1', 'ROLE_HOME', 'home', '/home', null, null);
-INSERT INTO `t_sys_premission` VALUES ('2', 'ROLE_ADMIN', 'ABel', '/admin', null, null);
-INSERT INTO `t_sys_premission` VALUES ('3', 'ROLE_ADMIN', 'json', '/TestController/test', null, null);
+INSERT INTO `t_sys_premission` VALUES ('1', 'ROLE_HOME', 'home', '/home', null, 'home');
+INSERT INTO `t_sys_premission` VALUES ('2', 'ROLE_ADMIN', 'ABel', '/admin', null, 'admin');
+INSERT INTO `t_sys_premission` VALUES ('3', 'ROLE_ADMIN', 'json', '/TestController/test', null, 'test');
+INSERT INTO `t_sys_premission` VALUES ('4', '用户展示', '用户展示', '/UserController/view', null, 'system:user:view');
+INSERT INTO `t_sys_premission` VALUES ('5', '用户集合', '用户集合', '/UserController/list', null, 'system:user:list');
+INSERT INTO `t_sys_premission` VALUES ('6', '用户添加', '用户添加', '/UserController/add', null, 'system:user:add');
 
 -- ----------------------------
 -- Table structure for `t_sys_role`
@@ -111,14 +117,60 @@ INSERT INTO `t_sys_role_user` VALUES ('2', '2', '2');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_user`;
 CREATE TABLE `t_sys_user` (
-  `id` varchar(255) NOT NULL,
-  `username` varchar(255) DEFAULT NULL COMMENT '用户账号',
-  `password` varchar(255) DEFAULT NULL COMMENT '用户密码',
+  `id` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '用户账号',
+  `password` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '用户密码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户表';
 
 -- ----------------------------
 -- Records of t_sys_user
 -- ----------------------------
-INSERT INTO `t_sys_user` VALUES ('1', 'admin', 'admin');
-INSERT INTO `t_sys_user` VALUES ('2', 'f', 'f');
+INSERT INTO `t_sys_user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `t_sys_user` VALUES ('2', 'f', '8fa14cdd754f91cc6554c9e71929cce7');
+INSERT INTO `t_sys_user` VALUES ('483781996040945664', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782007394926592', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782008053432320', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782008695160832', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782009362055168', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782009966034944', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782010607763456', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782011245297664', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782011849277440', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782012482617344', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782013120151552', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782013761880064', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782014395219968', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782015036948480', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782015703842816', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782016416874496', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782017050214400', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782017683554304', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782018354642944', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782019025731584', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782019663265792', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782020334354432', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782020976082944', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782021642977280', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782022280511488', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782022918045696', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782023555579904', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782024201502720', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782024830648320', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782025472376832', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782026139271168', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782026776805376', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782027414339584', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782028051873792', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782028689408000', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782029331136512', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782029998030848', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782030568456192', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782031210184704', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782031843524608', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782032481058816', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782033085038592', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782033693212672', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782034326552576', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782035027001344', '38052z138', '33333333333333');
+INSERT INTO `t_sys_user` VALUES ('483782035702284288', '38052z138', '33333333333333');
