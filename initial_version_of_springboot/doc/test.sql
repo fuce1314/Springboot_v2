@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50540
+Source Server Version : 80012
 Source Host           : localhost:3306
 Source Database       : test
 
 Target Server Type    : MYSQL
-Target Server Version : 50540
+Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2018-08-21 08:35:24
+Date: 2018-08-27 20:45:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `test` (
   `t_name` varchar(255) DEFAULT NULL,
   `t_txt` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of test
@@ -43,7 +43,7 @@ CREATE TABLE `t_sys_permission_role` (
   `role_id` varchar(255) DEFAULT NULL COMMENT '角色id',
   `permission_id` varchar(255) DEFAULT NULL COMMENT '权限id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='角色权限中间表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色权限中间表';
 
 -- ----------------------------
 -- Records of t_sys_permission_role
@@ -63,15 +63,16 @@ CREATE TABLE `t_sys_premission` (
   `descripion` varchar(255) DEFAULT NULL COMMENT '权限描述',
   `url` varchar(255) DEFAULT NULL COMMENT '授权链接',
   `pid` varchar(255) DEFAULT NULL COMMENT '父节点id',
+  `perms` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '权限标识',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='权限表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 -- ----------------------------
 -- Records of t_sys_premission
 -- ----------------------------
-INSERT INTO `t_sys_premission` VALUES ('1', 'ROLE_HOME', 'home', '/home', null);
-INSERT INTO `t_sys_premission` VALUES ('2', 'ROLE_ADMIN', 'ABel', '/admin', null);
-INSERT INTO `t_sys_premission` VALUES ('3', 'ROLE_ADMIN', 'json', '/TestController/test', null);
+INSERT INTO `t_sys_premission` VALUES ('1', 'ROLE_HOME', 'home', '/home', null, null);
+INSERT INTO `t_sys_premission` VALUES ('2', 'ROLE_ADMIN', 'ABel', '/admin', null, null);
+INSERT INTO `t_sys_premission` VALUES ('3', 'ROLE_ADMIN', 'json', '/TestController/test', null, null);
 
 -- ----------------------------
 -- Table structure for `t_sys_role`
@@ -80,7 +81,7 @@ DROP TABLE IF EXISTS `t_sys_role`;
 CREATE TABLE `t_sys_role` (
   `id` varchar(255) DEFAULT NULL COMMENT 'id',
   `name` varchar(255) DEFAULT NULL COMMENT '角色名称'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='角色表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of t_sys_role
@@ -94,10 +95,10 @@ INSERT INTO `t_sys_role` VALUES ('2', 'ROLE_USER');
 DROP TABLE IF EXISTS `t_sys_role_user`;
 CREATE TABLE `t_sys_role_user` (
   `id` varchar(255) NOT NULL,
-  `sys_user_id` varchar(255) DEFAULT NULL COMMENT '用户id',
+  `sys_user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'ç”¨æˆ·id',
   `sys_role_id` varchar(255) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='用户角色中间表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色中间表';
 
 -- ----------------------------
 -- Records of t_sys_role_user
@@ -114,7 +115,7 @@ CREATE TABLE `t_sys_user` (
   `username` varchar(255) DEFAULT NULL COMMENT '用户账号',
   `password` varchar(255) DEFAULT NULL COMMENT '用户密码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of t_sys_user

@@ -5,10 +5,11 @@
 
 <title th:text=${title}></title>
 <!-- 这儿引用单独的css link -->
+<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
 <link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
-<link th:href="@{{path}static/admin/assets/js/footable/css/footable.corecd98.css?v=2-0-1(path=${rootPath})}" rel="stylesheet" type="text/css" />
-<link th:href="@{{path}static/admin/assets/js/footable/css/footable.standalone.css(path=${rootPath})}" rel="stylesheet" type="text/css" />
-<link th:href="@{{path}static/admin/assets/js/footable/css/footable-demos.css(path=${rootPath})}" rel="stylesheet" type="text/css" />
+<!-- bootstrap-table表单样式 -->
+<link th:href="@{{path}static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css(path=${rootPath})}" rel="stylesheet"/>
+
 
 <style type="text/css">
 /**
@@ -65,7 +66,7 @@
                         <div class="body-nest" id="Blank_Page_Content">
                            
                            
-                           <table class="table-striped footable-res footable metro-blue" data-page-size="6">
+                           <table id="dataTable" class="table-striped footable-res footable metro-blue" data-page-size="6">
                                    
                                     
                            </table>
@@ -103,22 +104,42 @@
 <div th:include="admin/common/html/js :: onload_js">
    
 </div>
-    
-<script type="text/javascript" src="/static/admin/assets/js/toggle_close.js"></script>
-<script src="/static/admin/assets/js/footable/js/footablecd98.js?v=2-0-1" type="text/javascript"></script>
-<script src="/static/admin/assets/js/footable/js/footable.sortcd98.js?v=2-0-1" type="text/javascript"></script>
-<script src="/static/admin/assets/js/footable/js/footable.filtercd98.js?v=2-0-1" type="text/javascript"></script>
-<script src="/static/admin/assets/js/footable/js/footable.paginatecd98.js?v=2-0-1" type="text/javascript"></script>
-<script type="text/javascript"> 
+<script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap.min.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js(path=${rootPath})}" type="text/javascript"></script>
 
-$('.footable-res').footable({
-	"columns":[
-	 	{"name":"id","title":"id"},
-	 	{"name":"username","title":"username"},
-	 	{"name":"password","title":"password"}
-	 ] ,
-	"rows": $.post("http://localhost:8081/UserController/list")
-});
+<script th:src="@{{path}static/admin/assets/js/bootstrap/js/base_list.js(path=${rootPath})}" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var dataUrl=window.rootPath+"/UserController/list";
+var dataColumns = [{
+    field: 'id',
+    title: '序号'
+}, {
+    field: 'username',
+    title: '用户name'
+}, {
+    field: 'password',
+    title: '密码'
+}, {
+    title: '操作',
+    formatter: function (value, row, index) {
+        var id = row.id;
+        return '<a class="btn btn-xs btn-danger" onclick="delPermission(' + "'" + id + "'" + ')"><i class="fa fa-remove"></i>删除</a>';
+    }
+}];
+
+function dataQueryParams(params) {
+	console.log(params)
+	return {
+		pageSize: params.limit,  //每页要显示的数据条数
+		pageNum: params.offset, //页码
+		/*sort: params.sort, // 要排序的字段
+        sortOrder: params.order, // 排序规则
+        dataId: $("#dataId").val() // 额外添加的参数*/
+	};
+}
 </script>
 
 </body>
