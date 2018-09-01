@@ -302,14 +302,12 @@ body {
     min-height: 100px;
 }
 .btn {
-    border-color: #c7d5e0!important;
+    border-color: #c7d5e0;
     background: #FFFFFF;
     display: inline-block;
-    padding: 6px 12px !important;
     margin-bottom: 0;
     font-size: 12px !important;
     font-weight: normal;
-    line-height: 1.428571429;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -320,8 +318,7 @@ body {
     -o-user-select: none;
     user-select: none;
     background-image: none;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 .btn-success {
     color: #fff!important;
@@ -385,7 +382,7 @@ body {
     box-shadow: none!important;
 }
 input:-webkit-autofill, textarea:-webkit-autofill {
-    background: #FFFFFF!important;
+   
 }
 .form-control:focus {
     border-color:#45B6B0!important;

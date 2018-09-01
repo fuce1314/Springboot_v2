@@ -10,6 +10,7 @@ import com.fc.test.common.base.BaseService;
 import com.fc.test.mapper.auto.TsysUserMapper;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.auto.TsysUserExample;
+import com.fc.test.model.custom.Tablepar;
 import com.fc.test.util.MD5Util;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
@@ -33,9 +34,14 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<TsysUser> list(int pageNum, int pageSize){
+	 public PageInfo<TsysUser> list(Tablepar tablepar,String username){
 	        TsysUserExample testExample=new TsysUserExample();
-	        PageHelper.startPage(pageNum, pageSize);
+	        testExample.setOrderByClause("id ASC");
+	        if(username!=null&&!"".equals(username)){
+	        	testExample.createCriteria().andUsernameLike("%"+username+"%");
+	        }
+
+	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
 	        List<TsysUser> list= tsysUserMapper.selectByExample(testExample);
 	        PageInfo<TsysUser> pageInfo = new PageInfo<TsysUser>(list);
 	        return  pageInfo;

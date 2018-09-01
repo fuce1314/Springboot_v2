@@ -10,11 +10,14 @@
 <!-- bootstrap-table表单样式 -->
 <link th:href="@{{path}static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css(path=${rootPath})}" rel="stylesheet"/>
 
-
 <style type="text/css">
 /**
 *这里写单独的css样式
 */
+.select-list ul li{
+	list-style-type: none;
+	float: left;
+}
 </style>
 
 </head>
@@ -48,10 +51,40 @@
             <!-- 结束内容 -->
             <div class="row">
                 <div class="col-sm-12">
+                <!-- 搜索条件 -->
+                
+                	 <div class="nest" id="inlineClose">
+                            <div class="title-alt">
+                                <h6>搜索条件</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#inlineClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#inline">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="body-nest">
+                                <div class="form_left">
+                                    <form role="form" class="form-inline">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail2" class="sr-only">用户名字</label>
+                                            <input type="text" name="username" placeholder="用户名字"class="form-control">
+                                        </div>
+                                        <button onclick="$.fc.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                	<!-- END搜索条件 -->
                     <!-- 空白页开始-->
                     <div class="nest" id="Blank_PageClose">
                         <div class="title-alt">
-                            <h6>Blank Page</h6>
+                            <h6>表单</h6>
                             <div class="titleClose">
                                 <a class="gone" href="#Blank_PageClose">
                                     <span class="entypo-cancel"></span>
@@ -63,21 +96,17 @@
                                 </a>
                             </div>
                         </div>
+                        
                         <div class="body-nest" id="Blank_Page_Content">
-                           
-                           
-                           
                             <!-- 工具条 -->
                             <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
-                               <button type="button" class="btn btn-outline btn-default">
-                                   <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                            	<button type="button" class="btn btn-primary">
+                                    <span class="entypo-plus-squared"></span>&nbsp;&nbsp;新增
+                                </button>
+                               <button type="button" class="btn btn-info">
+                                    <span class="entypo-trash"></span>&nbsp;&nbsp;删除
                                </button>
-                               <button type="button" class="btn btn-outline btn-default">
-                                   <i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
-                               </button>
-                               <button type="button" class="btn btn-outline btn-default">
-                                   <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-                               </button>
+                               
                            </div>
                             <!-- 工具条 end-->
                            <table id="dataTable" class="table-striped footable-res footable metro-blue" data-page-size="6">
@@ -120,18 +149,28 @@
 </div>
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js(path=${rootPath})}" type="text/javascript"></script>
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js(path=${rootPath})}" type="text/javascript"></script>
-
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/base_list.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{{path}static/admin/assets/js/bootstrap/extensions/export/bootstrap-table-export.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{{path}static/admin/assets/js/bootstrap/extensions/export/tableExport.js(path=${rootPath})}" type="text/javascript"></script>
 
 <script type="text/javascript">
+<!-- jquery-export 表格导出插件 -->
 
+<!-- 导出 -->
 var dataUrl=window.rootPath+"/UserController/list";
-var dataColumns = [{
+var removeUrl=window.rootPath+"/UserController/remove";
+var dataColumns = [
+{
+    checkbox: true
+},                   
+{
     field: 'id',
     title: '序号'
-}, {
+}, 
+
+{
     field: 'username',
-    title: '用户name'
+    title: '账号'
 }, {
     field: 'password',
     title: '密码'
@@ -143,17 +182,20 @@ var dataColumns = [{
     }
 }];
 
-function dataQueryParams(params) {
-	console.log(params)
-	return {
-		pageSize: params.limit,  //每页要显示的数据条数
-		pageNum: params.offset, //页码
-		/*sort: params.sort, // 要排序的字段
-        sortOrder: params.order, // 排序规则
-        dataId: $("#dataId").val() // 额外添加的参数*/
-	};
-}
+$(function(){
+	var oTab=$.table.oTableInit({"dataUrl":dataUrl,"removeUrl":removeUrl,"dataColumns":dataColumns});
+	oTab.Init();
+})
 </script>
+
+
+<script type="text/javascript">
+
+
+
+</script>
+
+
 
 </body>
 

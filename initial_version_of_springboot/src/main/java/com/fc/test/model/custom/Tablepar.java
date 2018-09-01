@@ -6,8 +6,8 @@ package com.fc.test.model.custom;
  *
  */
 public class Tablepar {
-	private int pageNum;
-	private int pageSize;
+	private int pageNum;//页码
+	private int pageSize;//数量
 	public int getPageNum() {
 		return pageNum;
 	}
