@@ -2,6 +2,7 @@ package com.fc.test.shiro.service;
 
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -116,5 +117,13 @@ public class MyShiroRealm extends AuthorizingRealm {
 		
 		return authorizationInfo;
 	}
+	
+	 /**
+     * 清理缓存权限
+     */
+    public void clearCachedAuthorizationInfo()
+    {
+        this.clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());
+    }
 
 }

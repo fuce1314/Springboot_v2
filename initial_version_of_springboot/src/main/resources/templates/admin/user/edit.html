@@ -93,7 +93,7 @@ label.error {
 
 
 <script type="text/javascript">
-$("#form-user-add").validate({
+$("#form-user-edit").validate({
 	rules:{
 		username:{
 			required:true,
@@ -168,11 +168,12 @@ $("#form-user-add").validate({
 		}
     },
 	submitHandler:function(form){
-		add();
+		edit();
 	}
 });
 
 function edit() {
+	var id=$("input[name='id']").val();
 	var userName = $("input[name='username']").val();
 	var password = $("input[name='password']").val();
 	/*
@@ -191,6 +192,7 @@ function edit() {
 		type : "POST",
 		url : rootPath + "/UserController/edit",
 		data : {
+			"id":id,
 			"username": userName,
 			"password": password
 			/*"userId": userId,
