@@ -1,12 +1,10 @@
 package com.fc.test.service;
 
 import java.util.List;
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.fc.test.common.base.BaseService;
+import com.fc.test.common.support.Convert;
 import com.fc.test.mapper.auto.TsysUserMapper;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.auto.TsysUserExample;
@@ -49,9 +47,11 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 
 	
 	@Override
-	public int deleteByPrimaryKey(String id) {
-		
-		return tsysUserMapper.deleteByPrimaryKey(id);
+	public int deleteByPrimaryKey(String ids) {
+		List<String> lista=Convert.toListStrArray(ids);
+		TsysUserExample example=new TsysUserExample();
+		example.createCriteria().andIdIn(lista);
+		return tsysUserMapper.deleteByExample(example);
 	}
 
 
@@ -109,5 +109,18 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	public int deleteByExample(TsysUserExample example) {
 		
 		return tsysUserMapper.deleteByExample(example);
+	}
+	
+	/**
+	 * 检查用户name
+	 * @param tsysUser
+	 * @return
+	 */
+	public int checkLoginNameUnique(TsysUser tsysUser){
+		TsysUserExample example=new TsysUserExample();
+		example.createCriteria().andUsernameEqualTo(tsysUser.getUsername());
+		List<TsysUser> list=tsysUserMapper.selectByExample(example);
+		
+		return list.size();
 	}
 }

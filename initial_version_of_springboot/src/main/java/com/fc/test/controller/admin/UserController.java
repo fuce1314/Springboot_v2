@@ -1,14 +1,11 @@
 package com.fc.test.controller.admin;
 
-import java.awt.print.Pageable;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +17,6 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysUserService;
 import com.github.pagehelper.PageInfo;
-import com.google.gson.Gson;
 
 import io.swagger.annotations.Api;
 
@@ -51,6 +47,16 @@ public class UserController extends BaseController{
 		return  result;
 	}
 	
+	/**
+     * 新增角色
+     */
+    @GetMapping("/add")
+    public String add()
+    {
+        return prefix + "/add";
+    }
+	
+	
 	@PostMapping("add")
 	@RequiresPermissions("system:user:add")
 	@ResponseBody
@@ -63,8 +69,28 @@ public class UserController extends BaseController{
 		}
 	}
 	
-
+	@PostMapping("remove")
+	@RequiresPermissions("system:user:remove")
+	@ResponseBody
+	public AjaxResult remove(String ids){
+		int b=sysUserService.deleteByPrimaryKey(ids);
+		if(b>0){
+			return success();
+		}else{
+			return error();
+		}
+	}
 	
+	@PostMapping("checkLoginNameUnique")
+	@ResponseBody
+	public int checkLoginNameUnique(TsysUser tsysUser){
+		int b=sysUserService.checkLoginNameUnique(tsysUser);
+		if(b>0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
 	
 	
 }

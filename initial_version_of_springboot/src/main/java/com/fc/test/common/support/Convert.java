@@ -5,7 +5,10 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
+
 import com.fc.test.util.StringUtils;
 
 /**
@@ -297,6 +300,18 @@ public class Convert
     public static Integer[] toIntArray(String str)
     {
         return toIntArray(",", str);
+    }
+    
+    /**
+     * 转换为List<String>数组<br>
+     * 
+     * @param split 被转换的值
+     * @return 结果
+     */
+    public static List<String> toListStrArray(String str){
+    	String[] stringArray= toStrArray(str);
+    	List<String> stringB = Arrays.asList(stringArray);
+    	return stringB;
     }
 
     /**
