@@ -8,7 +8,7 @@
 
 
 (function($) {
-	var x=$.extend({
+	$.extend({
 		table:{
 			_option: {},
 			oTableInit:function(parms){//初始化表单
@@ -26,7 +26,7 @@
 			            pagination: true,          //是否显示分页（*）
 			            sortable: false,           //是否启用排序
 			            sortOrder: "asc",          //排序方式
-			            queryParams: oTableInit.queryParams,//传递参数（*）
+			            queryParams: $.table.queryParams,//传递参数（*）
 			            smartDisplay:false,
 			            sidePagination: "server",      //分页方式：client客户端分页，server服务端分页（*）
 			            pageNumber:1,            //初始化加载第一页，默认第一页
@@ -50,9 +50,9 @@
 			            Icons:'glyphicon-export',
 			            exportOptions:{
 			                ignoreColumn: [0,1],  //忽略某一列的索引
-			                fileName: '总台帐报表',  //文件名称设置
+			                fileName: '报表导出',  //文件名称设置
 			                worksheetName: 'sheet1',  //表格工作区名称
-			                tableName: '总台帐报表',
+			                tableName: '报表导出',
 			                excelstyles: ['background-color', 'color', 'font-size', 'font-weight']
 			            },
 
@@ -68,7 +68,14 @@
 			    };
 			    return oTableInit;
 			},
-			search:function(my){
+			queryParams:function(params){//参数查询
+				 var search = {};
+				 search.pageSize= params.pageSize;
+				 search.pageNum=params.pageNumber;
+				 return search;
+				 
+			},
+			search:function(my){//查询条件
 				var form=$(my).parents("form");
 				var search = {};
 				 $.each(form.serializeArray(), function(i, field) {
@@ -85,7 +92,6 @@
 					        dataId: $("#dataId").val() // 额外添加的参数
 						};*/
 						search.pageSize= params.pageSize;
-						
 						search.pageNum=params.pageNumber;
 						
 					 return search;

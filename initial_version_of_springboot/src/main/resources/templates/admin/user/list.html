@@ -75,7 +75,7 @@
                                             <label for="exampleInputEmail2" class="sr-only">用户名字</label>
                                             <input type="text" name="username" placeholder="用户名字"class="form-control">
                                         </div>
-                                        <button onclick="$.fc.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+                                        <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
                                     </form>
                                 </div>
                             </div>
@@ -178,7 +178,12 @@ var dataColumns = [
     title: '操作',
     formatter: function (value, row, index) {
         var id = row.id;
-        return '<a class="btn btn-xs btn-danger" onclick="delPermission(' + "'" + id + "'" + ')"><i class="fa fa-remove"></i>删除</a>';
+        var actions = [];
+        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.roleId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.roleId + '\')"><i class="fa fa-remove"></i>删除</a>');
+        return actions.join('');
+
+        //return '<a class="btn btn-xs btn-danger" onclick="delPermission(' + "'" + id + "'" + ')"><i class="fa fa-remove"></i>删除</a>';
     }
 }];
 
