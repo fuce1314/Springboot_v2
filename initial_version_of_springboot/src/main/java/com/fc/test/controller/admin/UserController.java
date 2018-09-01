@@ -4,7 +4,9 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +19,6 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysUserService;
 import com.github.pagehelper.PageInfo;
-
 import io.swagger.annotations.Api;
 
 @Controller
@@ -69,6 +70,11 @@ public class UserController extends BaseController{
 		}
 	}
 	
+	/**
+	 * 删除用户
+	 * @param ids
+	 * @return
+	 */
 	@PostMapping("remove")
 	@RequiresPermissions("system:user:remove")
 	@ResponseBody
@@ -81,6 +87,11 @@ public class UserController extends BaseController{
 		}
 	}
 	
+	/**
+	 * 检查用户
+	 * @param tsysUser
+	 * @return
+	 */
 	@PostMapping("checkLoginNameUnique")
 	@ResponseBody
 	public int checkLoginNameUnique(TsysUser tsysUser){
@@ -92,5 +103,32 @@ public class UserController extends BaseController{
 		}
 	}
 	
+	
+	/**
+	 * 修改用户
+	 * @param id
+	 * @param mmap
+	 * @return
+	 */
+	@GetMapping("/edit/{roleId}")
+    public String edit(@PathVariable("roleId") String id, ModelMap mmap)
+    {
+		System.out.println("xxxxxxxxxxx");
+        mmap.put("TsysUser", sysUserService.selectByPrimaryKey(id));
+
+        return prefix + "/edit";
+    }
+	
+	/**
+     * 修改保存角色
+     */
+    @RequiresPermissions("system:user:edit")
+    @PostMapping("/edit")
+    @ResponseBody
+    public AjaxResult editSave(TsysUser tsysUser)
+    {
+        return toAjax(sysUserService.updateByPrimaryKeySelective(tsysUser));
+    }
+
 	
 }
