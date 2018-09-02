@@ -2,12 +2,10 @@ package com.fc.test.common.quartz;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import com.fc.test.model.auto.Test;
-import com.fc.test.service.TestService;
 import com.google.gson.Gson;
 
 /**
@@ -21,8 +19,8 @@ import com.google.gson.Gson;
 @Configuration         //证明这个类是一个配置文件  
 @EnableScheduling       //打开quartz定时器总开关  
 public class Myquartz {
-	@Autowired
-	private TestService testService;
+	//@Autowired
+	//private TestService testService;
 	
     @Scheduled(cron = "* * * * 2 *")
     public void timer(){

@@ -64,7 +64,7 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 		return tsysUserMapper.insertSelective(record);
 	}
 
-	
+	@Override
 	public TsysUser selectByPrimaryKey(String id) {
 		
 		return tsysUserMapper.selectByPrimaryKey(id);
@@ -91,21 +91,21 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 		return tsysUserMapper.updateByExample(record, example);
 	}
 
-	
+	@Override
 	public List<TsysUser> selectByExample(TsysUserExample example) {
 		
 		return tsysUserMapper.selectByExample(example);
 	}
 
 	
-	
+	@Override
 	public long countByExample(TsysUserExample example) {
 		
 		return tsysUserMapper.countByExample(example);
 	}
 
 	
-	
+	@Override
 	public int deleteByExample(TsysUserExample example) {
 		
 		return tsysUserMapper.deleteByExample(example);

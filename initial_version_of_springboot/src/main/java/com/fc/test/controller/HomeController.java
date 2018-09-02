@@ -97,7 +97,7 @@ public class HomeController extends BaseController{
 	 * @return
 	 */
 	@GetMapping("Loginout")
-	public String Loginout(HttpServletRequest request, HttpServletResponse response){
+	public String LoginOut(HttpServletRequest request, HttpServletResponse response){
 		//在这里执行退出系统前需要清空的数据
 		Subject subject = SecurityUtils.getSubject();
 		 //注销

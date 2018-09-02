@@ -58,7 +58,7 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 		return tsysRoleMapper.insertSelective(record);
 	}
 
-	
+	@Override
 	public TsysRole selectByPrimaryKey(String id) {
 		
 		return tsysRoleMapper.selectByPrimaryKey(id);
@@ -84,21 +84,21 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 		return tsysRoleMapper.updateByExample(record, example);
 	}
 
-	
+	@Override
 	public List<TsysRole> selectByExample(TsysRoleExample example) {
 		
 		return tsysRoleMapper.selectByExample(example);
 	}
 
 	
-	
+	@Override
 	public long countByExample(TsysRoleExample example) {
 		
 		return tsysRoleMapper.countByExample(example);
 	}
 
 	
-	
+	@Override
 	public int deleteByExample(TsysRoleExample example) {
 		
 		return tsysRoleMapper.deleteByExample(example);
