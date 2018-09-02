@@ -1,9 +1,6 @@
 package com.fc.test.shiro.service;
 
 import java.io.IOException;
-
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
