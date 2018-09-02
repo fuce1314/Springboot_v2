@@ -1,7 +1,6 @@
 package com.fc.test.controller.admin;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,7 +16,6 @@ import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
-import com.fc.test.service.SysUserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 
@@ -25,8 +23,7 @@ import io.swagger.annotations.Api;
 @RequestMapping("UserController")
 @Api(value = "用户数据")
 public class UserController extends BaseController{
-	@Autowired
-	private SysUserService sysUserService; //系统用户
+	
 	private String prefix = "admin/user";
 	
 	
@@ -49,7 +46,7 @@ public class UserController extends BaseController{
 	}
 	
 	/**
-     * 新增角色
+     * 新增用户
      */
     @GetMapping("/add")
     public String add()
@@ -113,14 +110,13 @@ public class UserController extends BaseController{
 	@GetMapping("/edit/{roleId}")
     public String edit(@PathVariable("roleId") String id, ModelMap mmap)
     {
-		System.out.println("xxxxxxxxxxx");
         mmap.put("TsysUser", sysUserService.selectByPrimaryKey(id));
 
         return prefix + "/edit";
     }
 	
 	/**
-     * 修改保存角色
+     * 修改保存用户
      */
     @RequiresPermissions("system:user:edit")
     @PostMapping("/edit")

@@ -3,13 +3,17 @@ package com.fc.test.common.base;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.custom.TitleVo;
+import com.fc.test.service.SysRoleService;
+import com.fc.test.service.SysUserService;
 import com.fc.test.util.StringUtils;
 
 /**
@@ -19,8 +23,14 @@ import com.fc.test.util.StringUtils;
 * @date 2018年8月18日
 *
  */
+@Controller
 public class BaseController
 {
+	@Autowired
+	public SysUserService sysUserService; //系统用户
+	@Autowired
+	public SysRoleService sysRoleService; //系统角色
+	
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
      */

@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TSysRoleUserMapper {
-    long countByExample(TSysRoleUserExample example);
+    int countByExample(TSysRoleUserExample example);
 
     int deleteByExample(TSysRoleUserExample example);
 

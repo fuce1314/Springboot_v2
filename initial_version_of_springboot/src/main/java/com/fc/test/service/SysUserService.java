@@ -43,7 +43,7 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	        List<TsysUser> list= tsysUserMapper.selectByExample(testExample);
 	        PageInfo<TsysUser> pageInfo = new PageInfo<TsysUser>(list);
 	        return  pageInfo;
-	    }
+	 }
 
 	
 	@Override
@@ -73,7 +73,7 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	
 	@Override
 	public int updateByPrimaryKeySelective(TsysUser record) {
-		
+		record.setPassword(MD5Util.encode(record.getPassword()));
 		return tsysUserMapper.updateByPrimaryKeySelective(record);
 	}
 

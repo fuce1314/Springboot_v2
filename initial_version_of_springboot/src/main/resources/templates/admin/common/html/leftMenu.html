@@ -163,43 +163,17 @@
 	                    <li>
 	                        <a class="tooltip-tip" th:href="@{${rootPath}+'UserController/view'}" title="sysUser">
 	                            <i class="icon icon-user"></i>
-								<span>系统用户</span>
+								<span>用户管理</span>
 	                 		</a>
 	                    </li>
 	                    <li>
-	                        <a class="tooltip-tip" href="#" title="Form">
-	                            <i class="icon-document"></i>
-	                            <span>Form</span>
-	                        </a>
-	                        <ul>
-	                            <li>
-	                                <a class="tooltip-tip2 ajax-load" href="form-element.html" title="Form Elements"><i class="icon-document-edit"></i><span>Form Elements</span></a>
-	                            </li>
-	                            <li>
-	             					<a class="tooltip-tip2 ajax-load" href="andvance-form.html" title="Andvance Form"><i class="icon-map"></i><span>Andvance Form</span></a>
-	           					</li>
-	                            <li>
-	                                <a class="tooltip-tip2 ajax-load" href="text-editor.html" title="Text Editor"><i class="icon-code"></i><span>Text Editor</span></a>
-	                            </li>
-	                            <li>
-	                                <a class="tooltip-tip2 ajax-load" href="file-upload.html" title="File Upload"><i class="icon-upload"></i><span>File Upload</span></a>
-	                            </li>
-	                        </ul>
-		                </li>
-	                    <li>
-	                        <a class="tooltip-tip" href="#" title="Tables">
-                            <i class="icon-view-thumb"></i>
-	                         <span>Tables</span>
-	                        </a>
-	                        <ul>
-	                            <li>
-	                                <a class="tooltip-tip2 ajax-load" href="table-static.html" title="Table Static"><i class="entypo-layout"></i><span>Table Static</span></a>
-	                            </li>
-					           <li>
-	                                <a class="tooltip-tip2 ajax-load" href="table-dynamic.html" title="Table Dynamic"><i class="entypo-menu"></i><span>Table Dynamic</span></a>
-	                            </li>
-	                        </ul>
+	                        <a class="tooltip-tip" th:href="@{${rootPath}+'RoleController/view'}" title="sysUser">
+	                            <i class="icon icon-user-group"></i>
+								<span>角色管理</span>
+	                 		</a>
 	                    </li>
+	                    
+	                    
 	
 	                    <li>
 	                        <a class="tooltip-tip ajax-load" href="map.html" title="Map">

@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TsysPermissionRoleMapper {
-    long countByExample(TsysPermissionRoleExample example);
+    int countByExample(TsysPermissionRoleExample example);
 
     int deleteByExample(TsysPermissionRoleExample example);
 
