@@ -126,7 +126,7 @@ $("#form-add").validate({
 		},url:{
 			required:true,
 			minlength: 2,
-			maxlength: 20,
+			maxlength: 100,
 			remote: {
                 url: rootPath + "/PremissionController/checkURLUnique",
                 type: "post",
@@ -141,7 +141,7 @@ $("#form-add").validate({
 		},perms:{
 			required:true,
 			minlength: 2,
-			maxlength: 20,
+			maxlength: 100,
 			remote: {
                 url: rootPath + "/PremissionController/checkPermsUnique",
                 type: "post",
