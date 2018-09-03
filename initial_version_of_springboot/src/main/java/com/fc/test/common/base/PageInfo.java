@@ -253,8 +253,9 @@ public class PageInfo<T> implements Serializable {
         sb.append(", hasNextPage=").append(hasNextPage);
         sb.append(", navigatePages=").append(navigatePages);
         sb.append(", navigatepageNums=");
-        if (navigatepageNums == null) sb.append("null");
-        else {
+        if (navigatepageNums == null){
+        	sb.append("null");
+        }else {
             sb.append('[');
             for (int i = 0; i < navigatepageNums.length; ++i){
             	sb.append(i == 0 ? "" : ", ").append(navigatepageNums[i]);
