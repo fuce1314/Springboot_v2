@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.custom.TitleVo;
+import com.fc.test.service.SysPremissionService;
 import com.fc.test.service.SysRoleService;
 import com.fc.test.service.SysUserService;
 import com.fc.test.util.StringUtils;
@@ -26,10 +27,17 @@ import com.fc.test.util.StringUtils;
 @Controller
 public class BaseController
 {
+	//系统用户
 	@Autowired
-	public SysUserService sysUserService; //系统用户
+	public SysUserService sysUserService; 
+	
+	//系统角色
 	@Autowired
-	public SysRoleService sysRoleService; //系统角色
+	public SysRoleService sysRoleService; 
+	
+	//权限
+	@Autowired
+	public SysPremissionService sysPremissionService;
 	
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型

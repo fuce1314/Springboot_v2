@@ -3,10 +3,6 @@
  * 
  * @Author Jack
  */
-
-
-
-
 (function($) {
 	$.extend({
 		table:{

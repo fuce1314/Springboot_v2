@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
+
+<title th:text=${title}></title>
+<!-- 这儿引用单独的css link -->
+<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
+<link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
+<!-- bootstrap-table表单样式 -->
+<link th:href="@{{path}static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css(path=${rootPath})}" rel="stylesheet"/>
+
+<style type="text/css">
+/**
+*这里写单独的css样式
+*/
+.select-list ul li{
+	list-style-type: none;
+	float: left;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 顶部通用-->
+<div th:replace="admin/common/html/topMenu :: topMenu(${isribbon})">
+</div>
+<!-- 结束顶部通用 -->
+   
+<!-- 左边菜单栏通用 -->
+<div th:replace="admin/common/html/leftMenu :: leftMenu">
+</div>
+<!-- 结束左边菜单栏通用 -->
+
+
+
+
+<!-- ###############################代码编写出############################### -->
+
+<!-- 右边内容 -->
+<div class="wrap-fluid">
+    <div class="container-fluid paper-wrap bevel tlbr">
+        <!-- 内容 -->
+        <!--标题 通用-->
+        <div th:replace="admin/common/html/title :: title(${title},${parenttitle},${isMsg},${msgHTML})">
+        </div>
+        <!-- 结束标题 通用-->
+        <div class="content-wrap">
+            <!-- 结束内容 -->
+            <div class="row">
+                <div class="col-sm-12">
+                <!-- 搜索条件 -->
+                
+                	 <div class="nest" id="inlineClose">
+                            <div class="title-alt">
+                                <h6>搜索条件</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#inlineClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#inline">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="body-nest">
+                                <div class="form_left">
+                                    <form role="form" class="form-inline">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail2" class="sr-only">权限名字</label>
+                                            <input type="text" name="searchTxt" placeholder="角色名字"class="form-control">
+                                        </div>
+                                        <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                	<!-- END搜索条件 -->
+                    <!-- 空白页开始-->
+                    <div class="nest" id="Blank_PageClose">
+                        <div class="title-alt">
+                            <h6>表单</h6>
+                            <div class="titleClose">
+                                <a class="gone" href="#Blank_PageClose">
+                                    <span class="entypo-cancel"></span>
+                                </a>
+                            </div>
+                            <div class="titleToggle">
+                                <a class="nav-toggle-alt" href="#Blank_Page_Content">
+                                    <span class="entypo-up-open"></span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="body-nest" id="Blank_Page_Content">
+                            <!-- 工具条 -->
+                            <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
+                            	<button onclick="$.operate.add()" type="button" class="btn btn-primary">
+                                    <span class="entypo-plus-squared"></span>&nbsp;&nbsp;新增
+                                </button>
+                               <button onclick="$.operate.batRemove()" type="button" class="btn btn-info">
+                                    <span class="entypo-trash"></span>&nbsp;&nbsp;删除
+                               </button>
+                               
+                           </div>
+                            <!-- 工具条 end-->
+                           <table id="dataTable" class="table-striped footable-res footable metro-blue" data-page-size="6">
+                                   
+                                    
+                           </table>
+                           
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- 空白页结束 -->
+            </div>
+            <!-- 结束内容 -->
+            <!-- 页脚 通用-->
+            <div th:replace="admin/common/html/footer :: footer">
+            </div>
+            <!-- 结束页脚通用 -->
+        </div>
+    </div>
+</div>
+<!-- 结束右边内容 -->
+<!-- ###############################代码编写出############################### -->
+
+
+
+
+
+
+
+<!-- 右侧隐藏滑块内容 -->
+<div th:include="admin/common/html/rightHide :: rightHide">
+    
+</div>
+   <!-- END 右侧隐藏滑块内容-->
+
+<!-- 通用js -->
+<div th:include="admin/common/html/js :: onload_js">
+   
+</div>
+<!-- bootstarp 表格 -->
+<script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{{path}static/admin/assets/js/bootstrap/js/base_list.js(path=${rootPath})}" type="text/javascript"></script>
+<!-- 导出 -->
+<script th:src="@{{path}static/admin/assets/js/bootstrap/extensions/export/bootstrap-table-export.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{{path}static/admin/assets/js/bootstrap/extensions/export/tableExport.js(path=${rootPath})}" type="text/javascript"></script>
+
+<!-- 弹窗 -->
+<script th:src="@{{path}static/admin/assets/js/layer/layer.js(path=${rootPath})}" type="text/javascript"></script>
+<!-- 遮罩层 -->
+<script th:src="@{{path}static/admin/assets/js/blockUI/jquery.blockUI.js(path=${rootPath})}" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+<!-- jquery-export 表格导出插件 -->
+
+<!-- 导出 -->
+var dataUrl=window.rootPath+"/PremissionController/list";
+var removeUrl=window.rootPath+"/PremissionController/remove";
+var createUrl=window.rootPath+"/PremissionController/add";
+var updateUrl=window.rootPath+"/PremissionController/edit/{id}";
+var exportUrl=window.rootPath+"/PremissionController/export";
+  var options = {
+		dataUrl: dataUrl,
+        createUrl: createUrl,
+        updateUrl: updateUrl,
+        removeUrl:removeUrl,
+        exportUrl: exportUrl,
+        sortName: "id",
+        modalName: "权限",
+        search: false,
+	   dataColumns: [
+			{
+			    checkbox: true
+			},                   
+			{
+			    field: 'id',
+			    title: '序号'
+			},{
+			    field: 'name',
+			    title: '权限名称'
+			},
+			{
+			    field: 'url',
+			    title: '权限URL'
+			},
+			{
+			    field: 'perms',
+			    title: '权限关键字'
+			},
+			{
+			    field: 'descripion',
+			    title: '描述'
+			},
+			{
+			    title: '操作',
+			    formatter: function (value, row, index) {
+			        var id = row.id;
+			        var actions = [];
+			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+			        return actions.join('');
+			
+			        //return '<a class="btn btn-xs btn-danger" onclick="delPermission(' + "'" + id + "'" + ')"><i class="fa fa-remove"></i>删除</a>';
+			    }
+			}]
+  };
+$(function(){
+	var oTab=$.table.oTableInit(options);
+	oTab.Init();
+})
+</script>
+
+
+<script type="text/javascript">
+
+
+
+</script>
+
+
+
+</body>
+
+
+</html>
