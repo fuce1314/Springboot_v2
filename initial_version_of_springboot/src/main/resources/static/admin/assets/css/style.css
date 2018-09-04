@@ -269,7 +269,8 @@ body {
     background-color: #FF6B6B!important;
 }
 .label, .badge {
-    background-color: #A8BDCF!important;
+	/*表单的按钮样式冲突*/
+    /*background-color: #A8BDCF!important;*/
     color: #FFFFFF;
     display: inline-block;
     font-family: Open Sans;

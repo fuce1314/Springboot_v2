@@ -13,6 +13,12 @@ public class TsysPremission {
 
     private String perms;
 
+    private Integer type;
+
+    private String icon;
+
+    private Integer orderNum;
+
     public String getId() {
         return id;
     }
@@ -59,5 +65,29 @@ public class TsysPremission {
 
     public void setPerms(String perms) {
         this.perms = perms == null ? null : perms.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
+    }
+
+    public Integer getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
     }
 }

@@ -69,6 +69,10 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	public int updateByPrimaryKeySelective(TsysPremission record) {
 		return tsysPremissionMapper.updateByPrimaryKeySelective(record);
 	}
+	
+	public int updateByPrimaryKey(TsysPremission record) {
+		return tsysPremissionMapper.updateByPrimaryKey(record);
+	}
 
 	
 	@Override

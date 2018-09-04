@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TsysPremissionMapper {
-    int countByExample(TsysPremissionExample example);
+    long countByExample(TsysPremissionExample example);
 
     int deleteByExample(TsysPremissionExample example);
 

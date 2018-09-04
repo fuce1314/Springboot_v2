@@ -171,6 +171,6 @@ public class PremissionController  extends BaseController{
     @ResponseBody
     public AjaxResult editSave(TsysPremission TsysPremission)
     {
-        return toAjax(sysPremissionService.updateByPrimaryKeySelective(TsysPremission));
+        return toAjax(sysPremissionService.updateByPrimaryKey(TsysPremission));
     }
 }
