@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2018-09-02 21:47:22
+Date: 2018-09-04 21:16:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,6 +54,11 @@ INSERT INTO `t_sys_permission_role` VALUES ('11', '1', '10');
 INSERT INTO `t_sys_permission_role` VALUES ('12', '1', '11');
 INSERT INTO `t_sys_permission_role` VALUES ('13', '1', '12');
 INSERT INTO `t_sys_permission_role` VALUES ('14', '1', '13');
+INSERT INTO `t_sys_permission_role` VALUES ('15', '1', '14');
+INSERT INTO `t_sys_permission_role` VALUES ('16', '1', '15');
+INSERT INTO `t_sys_permission_role` VALUES ('17', '1', '16');
+INSERT INTO `t_sys_permission_role` VALUES ('18', '1', '17');
+INSERT INTO `t_sys_permission_role` VALUES ('19', '1', '18');
 INSERT INTO `t_sys_permission_role` VALUES ('2', '1', '2');
 INSERT INTO `t_sys_permission_role` VALUES ('3', '2', '1');
 INSERT INTO `t_sys_permission_role` VALUES ('4', '1', '3');
@@ -85,6 +90,11 @@ INSERT INTO `t_sys_premission` VALUES ('10', '角色集合', '角色集合', '/R
 INSERT INTO `t_sys_premission` VALUES ('11', '角色添加', '角色添加', '/RoleController/add', null, 'system:role:add');
 INSERT INTO `t_sys_premission` VALUES ('12', '角色删除', '角色删除', '/RoleController/remove', null, 'system:role:remove');
 INSERT INTO `t_sys_premission` VALUES ('13', '角色修改', '角色修改', '/RoleController/edit', null, 'system:role:edit');
+INSERT INTO `t_sys_premission` VALUES ('14', '权限展示', '权限展示', '/PremissionController/view', '', 'system:premission:view');
+INSERT INTO `t_sys_premission` VALUES ('15', '权限集合', '权限集合', '/PremissionController/list', '', 'system:premission:list');
+INSERT INTO `t_sys_premission` VALUES ('16', '权限添加', '权限添加', '/PremissionController/add', '', 'system:premission:add');
+INSERT INTO `t_sys_premission` VALUES ('17', '权限删除', '权限删除', '/PremissionController/remove', '', 'system:premission:remove');
+INSERT INTO `t_sys_premission` VALUES ('18', '权限修改', '权限修改', '/PremissionController/edit', '', 'system:premission:edit');
 INSERT INTO `t_sys_premission` VALUES ('2', 'ROLE_ADMIN', 'ABel', '/admin', null, 'admin');
 INSERT INTO `t_sys_premission` VALUES ('3', 'ROLE_ADMIN', 'json', '/TestController/test', null, 'test');
 INSERT INTO `t_sys_premission` VALUES ('4', '用户展示', '用户展示', '/UserController/view', null, 'system:user:view');
