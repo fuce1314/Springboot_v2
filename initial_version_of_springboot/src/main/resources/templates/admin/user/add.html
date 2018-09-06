@@ -36,6 +36,23 @@ label.error {
     color: #ef392b;
     font-size: 12px;
 }
+.icheckbox-blue > label{
+	    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    /* padding-left: 25px; */
+    padding-right: 15px;
+    padding-top: 5px;
+}
+.sqcheckbox{
+    width: 16px;
+    height: 16px;
+    background-color: red;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+}
 </style>
 
 </head>
@@ -64,6 +81,19 @@ label.error {
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label ">权限授权：</label>
+								<div class="col-sm-8">
+									<div class="icheckbox-blue">
+										<label th:each="m : ${tsysRoleList}">
+											<input class="sqcheckbox" name="roles"  th:value="${m.id}"  type="checkbox"><b th:text="${m.name}"></b>
+										</label>
+										
+										
+									</div>
+									
+								</div>
+							</div>
+							<div class="form-group">
 								<div class="form-control-static col-sm-offset-9">
 									<button type="submit" class="btn btn-primary">提交</button>
 									<button onclick="$.modal.close()" class="btn btn-danger" type="button">关闭</button>
@@ -88,10 +118,11 @@ label.error {
 
 
 <!-- 弹窗 -->
-<script th:src="@{{path}static/admin/assets/js/layer/layer.js(path=${rootPath})}" type="text/javascript"></script>
+<script  th:src="@{{path}static/admin/assets/js/layer/layer.js(path=${rootPath})}" type="text/javascript"></script>
 <!-- 遮罩层 -->
-<script th:src="@{{path}static/admin/assets/js/blockUI/jquery.blockUI.js(path=${rootPath})}" type="text/javascript"></script>
-
+<script  th:src="@{{path}static/admin/assets/js/blockUI/jquery.blockUI.js(path=${rootPath})}" type="text/javascript"></script>
+<!-- jqueryForm序列化 -->
+<script  th:src="@{{path}static/js/jqueryFormSerializeJson.js(path=${rootPath})}" type="text/javascript"></script>
 
 <script type="text/javascript">
 $("#form-user-add").validate({
@@ -173,38 +204,30 @@ $("#form-user-add").validate({
 	}
 });
 
+
+/**
+ * 获取复选框的所有值
+ */
+function checkBoxList(){
+	return $("input:checkbox[name='roles']:checked").map(function(index,elem) {
+		return $(elem).val()}
+	).get().join(',');	
+
+}
+/**
+ * 用户添加方法
+ */
 function add() {
-	var userName = $("input[name='username']").val();
+	/*var userName = $("input[name='username']").val();
 	var password = $("input[name='password']").val();
-	/*
-	var userId = $("input[name='userId']").val();
-	var deptId = $("input[name='deptId']").val();
-	var loginName = $("input[name='loginName']").val();
+	var roles=checkBoxList();*/
 	
-	var email = $("input[name='email']").val();
-	var phonenumber = $("input[name='phonenumber']").val();
-	var sex = $("#sex option:selected").val();
-	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
-	var roleIds = $.form.selectCheckeds("role");
-	var postIds = $.form.selectSelects("post");*/
+	var dataFormJson=$("#form-user-add").serialize();
 	$.ajax({
 		cache : true,
 		type : "POST",
 		url : rootPath + "/UserController/add",
-		data : {
-			"username": userName,
-			"password": password
-			/*"userId": userId,
-			"deptId": deptId,
-			"loginName": loginName,
-			
-			"email": email,
-			"phonenumber": phonenumber,
-			"sex": sex,
-			"status": status,
-			"roleIds": roleIds,
-			"postIds": postIds*/
-		},
+		data : dataFormJson,
 		async : false,
 		error : function(request) {
 			$.modal.alertError("系统错误");

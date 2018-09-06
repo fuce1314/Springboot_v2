@@ -1,16 +1,25 @@
 package com.fc.test.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
+import com.fc.test.mapper.auto.TSysRoleUserMapper;
+import com.fc.test.mapper.auto.TsysRoleMapper;
 import com.fc.test.mapper.auto.TsysUserMapper;
+import com.fc.test.model.auto.TSysRoleUser;
+import com.fc.test.model.auto.TSysRoleUserExample;
+import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.auto.TsysUserExample;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.util.MD5Util;
 import com.fc.test.util.SnowflakeIdWorker;
+import com.fc.test.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -25,6 +34,8 @@ import com.github.pagehelper.PageInfo;
 public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	@Autowired
 	private TsysUserMapper tsysUserMapper;
+	@Autowired
+	private TSysRoleUserMapper tSysRoleUserMapper;
 	
 	/**
 	 * 分页查询
@@ -53,17 +64,37 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 		example.createCriteria().andIdIn(lista);
 		return tsysUserMapper.deleteByExample(example);
 	}
-
-
 	
+	/**
+	 * 添加用户
+	 */
 	@Override
 	public int insertSelective(TsysUser record) {
-		record.setId(SnowflakeIdWorker.getUUID());
+		return tsysUserMapper.insertSelective(record);
+	}
+	
+	/**
+	 * 添加用户跟角色信息
+	 * @param record
+	 * @param roles
+	 * @return
+	 */
+	@Transactional
+	public int insertUserRoles(TsysUser record,List<String> roles) {
+		String userid=SnowflakeIdWorker.getUUID();
+		record.setId(userid);
+		if(StringUtils.isNotEmpty(roles)){
+			 for (String rolesid : roles) {
+				 TSysRoleUser roleUser=new TSysRoleUser(SnowflakeIdWorker.getUUID(), userid,rolesid);
+				 tSysRoleUserMapper.insertSelective(roleUser);
+			}
+		}
+		
 		//密码加密
 		record.setPassword(MD5Util.encode(record.getPassword()));
 		return tsysUserMapper.insertSelective(record);
 	}
-
+	
 	@Override
 	public TsysUser selectByPrimaryKey(String id) {
 		

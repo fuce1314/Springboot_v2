@@ -39,6 +39,15 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 	        PageInfo<TsysRole> pageInfo = new PageInfo<TsysRole>(list);
 	        return  pageInfo;
 	 }
+	 
+	 /**
+	  * 查询全部角色集合
+	  * @return
+	  */
+	 public List<TsysRole> queryList(){
+		 TsysRoleExample tsysRoleExample=new TsysRoleExample();
+		 return tsysRoleMapper.selectByExample(tsysRoleExample);
+	 }
 
 	
 	@Override

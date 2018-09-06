@@ -34,4 +34,17 @@ public class TSysRoleUser implements Serializable {
     public void setSysRoleId(String sysRoleId) {
         this.sysRoleId = sysRoleId == null ? null : sysRoleId.trim();
     }
+
+	public TSysRoleUser() {
+		super();
+	}
+
+	public TSysRoleUser(String id, String sysUserId, String sysRoleId) {
+		super();
+		this.id = id;
+		this.sysUserId = sysUserId;
+		this.sysRoleId = sysRoleId;
+	}
+    
+    
 }

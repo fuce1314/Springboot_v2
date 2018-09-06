@@ -1,5 +1,7 @@
 package com.fc.test.controller.admin;
 
+import java.util.List;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,15 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.github.pagehelper.PageInfo;
+
 import io.swagger.annotations.Api;
 
 @Controller
@@ -49,8 +54,11 @@ public class UserController extends BaseController{
      * 新增用户
      */
     @GetMapping("/add")
-    public String add()
+    public String add(ModelMap modelMap)
     {
+    	//添加角色列表
+		List<TsysRole> tsysRoleList=sysRoleService.queryList();
+		modelMap.put("tsysRoleList",tsysRoleList);
         return prefix + "/add";
     }
 	
@@ -58,8 +66,8 @@ public class UserController extends BaseController{
 	@PostMapping("add")
 	@RequiresPermissions("system:user:add")
 	@ResponseBody
-	public AjaxResult add(TsysUser user){
-		int b=sysUserService.insertSelective(user);
+	public AjaxResult add(TsysUser user,Model model,@RequestParam(value="roles", required = false)List<String> roles){
+		int b=sysUserService.insertUserRoles(user,roles);
 		if(b>0){
 			return success();
 		}else{

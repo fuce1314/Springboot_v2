@@ -35,7 +35,8 @@ public class MD5Util {
 			if (val < 16) {
 				hexValue.append("0");
 			}
-			hexValue.append(String.format("%02X",val));
+ 
+			hexValue.append(Integer.toHexString(val));
 		}
 		return hexValue.toString();
 	}
