@@ -13,7 +13,7 @@ import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysPremissionExample;
 import com.fc.test.model.custom.Tablepar;
-import com.fc.test.model.custom.ThreeModelVo;
+import com.fc.test.model.custom.PremissionThreeModelVo;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -166,34 +166,34 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	
 
 	/**
-	 * 查询树的权限
+	 * 查询权限树
 	 * @return
 	 */
-	public ThreeModelVo queryThreePrem(){
+	public PremissionThreeModelVo queryThreePrem(){
 		//查询出首页
 		TsysPremission homeList=queryPid("0",0).get(0);
 		//赋值首页信息
-		ThreeModelVo homeTmv=new ThreeModelVo();
+		PremissionThreeModelVo homeTmv=new PremissionThreeModelVo();
 		homeTmv.setTsysPremission(homeList);
 		//查询出所有的菜单栏管理分类
 		List<TsysPremission> menuGlList=queryPid(homeList.getId(),0);
-		List<ThreeModelVo> menulanGlVos=new ArrayList<ThreeModelVo>(); 
+		List<PremissionThreeModelVo> menulanGlVos=new ArrayList<PremissionThreeModelVo>(); 
 		for (TsysPremission tsysPremission_menuGl : menuGlList) {//菜单栏管理
-			ThreeModelVo menulanGlVo=new ThreeModelVo();
+			PremissionThreeModelVo menulanGlVo=new PremissionThreeModelVo();
 			
 			
-			List<ThreeModelVo> menuVos=new ArrayList<ThreeModelVo>();
+			List<PremissionThreeModelVo> menuVos=new ArrayList<PremissionThreeModelVo>();
 			//查出所有的菜单栏
 			List<TsysPremission> menuList=queryPid(tsysPremission_menuGl.getId(),1);
 			
 			for (TsysPremission tsysPremission_menu : menuList) {//菜单栏
-				ThreeModelVo menuVo=new ThreeModelVo();
+				PremissionThreeModelVo menuVo=new PremissionThreeModelVo();
 				
-				List<ThreeModelVo> buttonsVos=new ArrayList<ThreeModelVo>();
+				List<PremissionThreeModelVo> buttonsVos=new ArrayList<PremissionThreeModelVo>();
 				//查询所有的按钮
 				List<TsysPremission> buttonList=queryPid(tsysPremission_menu.getId(),2);
 				for (TsysPremission tsysPremission_button : buttonList) {//按钮
-					ThreeModelVo buttonVo=new ThreeModelVo();
+					PremissionThreeModelVo buttonVo=new PremissionThreeModelVo();
 
 					//按钮赋值
 					buttonVo.setTsysPremission(tsysPremission_button);
