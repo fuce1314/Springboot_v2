@@ -204,16 +204,6 @@ $("#form-user-add").validate({
 	}
 });
 
-
-/**
- * 获取复选框的所有值
- */
-function checkBoxList(){
-	return $("input:checkbox[name='roles']:checked").map(function(index,elem) {
-		return $(elem).val()}
-	).get().join(',');	
-
-}
 /**
  * 用户添加方法
  */

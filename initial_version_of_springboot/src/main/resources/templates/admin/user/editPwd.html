@@ -57,18 +57,15 @@ label.error {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label ">权限授权：</label>
+								<label class="col-sm-3 control-label ">登录密码：</label>
 								<div class="col-sm-8">
-									<div class="icheckbox-blue">
-										<label th:each="m : ${roleVos}">
-											
-											<input class="sqcheckbox" name="roles"  th:value="${m.id}"  type="checkbox" th:checked="${m.ischeck}">
-											<b th:text="${m.name}"></b>
-										</label>
-										
-										
-									</div>
-									
+									<input class="form-control" type="password" id="password" name="password" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label ">确认密码：</label>
+								<div class="col-sm-8">
+									<input class="form-control" type="password" id="confirm"  name="confirm" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -103,7 +100,31 @@ label.error {
 
 <script type="text/javascript">
 $("#form-user-edit").validate({
-	
+	rules:{
+		password:{
+			required:true,
+			minlength: 5,
+			maxlength: 20
+		},
+		confirm:{
+			required:true,
+			minlength: 5,
+			maxlength: 20,
+			equalTo:"#password"
+		}
+		
+	},
+	messages: {
+		 password: {
+             required: "请输入新密码",
+             minlength: "密码不能小于6个字符",
+             maxlength: "密码不能大于20个字符"
+         },
+         confirm: {
+             required: "请再次输入新密码",
+             equalTo: "两次密码输入不一致"
+         }
+    },
 	submitHandler:function(form){
 		edit();
 	}
@@ -112,21 +133,10 @@ $("#form-user-edit").validate({
 
 function edit() {
 	var dataFormJson=$("#form-user-edit").serialize();
-	/*
-	var userId = $("input[name='userId']").val();
-	var deptId = $("input[name='deptId']").val();
-	var loginName = $("input[name='loginName']").val();
-	
-	var email = $("input[name='email']").val();
-	var phonenumber = $("input[name='phonenumber']").val();
-	var sex = $("#sex option:selected").val();
-	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
-	var roleIds = $.form.selectCheckeds("role");
-	var postIds = $.form.selectSelects("post");*/
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : rootPath + "/UserController/edit",
+		url : rootPath + "/UserController/editPwd",
 		data : dataFormJson,
 		async : false,
 		error : function(request) {

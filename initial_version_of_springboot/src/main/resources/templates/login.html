@@ -221,6 +221,13 @@
 			$("#loginForm").submit();
 			
 		}
+		//session获取iframe处理
+        $(function () {
+           //判断一下当前是不是做顶层，如果不是，则做一下顶层页面重定向
+            if (window != top) {
+                top.location.href = location.href;
+            }
+        });  
 	</script>
 </body>
 </html>

@@ -24,4 +24,15 @@ public class TsysRole implements Serializable {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+	public TsysRole(String id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public TsysRole() {
+		super();
+	}
+    
 }

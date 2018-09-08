@@ -106,6 +106,10 @@
                                <button onclick="$.operate.batRemove()" type="button" class="btn btn-info">
                                     <span class="entypo-trash"></span>&nbsp;&nbsp;删除
                                </button>
+                               <button onclick="updatePwd()" type="button" class="btn btn-danger">
+                                    <span class="entypo-tools"></span>&nbsp;&nbsp;修改密码
+                               </button>
+                               
                                
                            </div>
                             <!-- 工具条 end-->
@@ -215,8 +219,24 @@ $(function(){
 
 
 <script type="text/javascript">
-
-
+	var editPwdUrl=window.rootPath+"/UserController/editPwd/{id}";
+	function updatePwd(){
+		 var rows = $.common.isEmpty($.table._option.id) ? $.table.selectFirstColumns() : $.table.selectColumns($.table._option.id);
+         if (rows.length == 0) {
+             $.modal.alertWarning("请至少选择一条记录");
+             return
+         }else if(rows.length>1){
+        	 $.modal.alertWarning("请选择一条记录");
+        	 return
+         }
+         
+        
+         var url = editPwdUrl.replace("{id}", rows.join());
+         var data = {
+             "id":rows.join()
+         };
+		 $.modal.open("修改密码", url);
+	}
 
 </script>
 

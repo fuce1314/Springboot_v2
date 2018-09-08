@@ -17,6 +17,7 @@ import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.auto.TsysUser;
+import com.fc.test.model.custom.RoleVo;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
@@ -115,9 +116,12 @@ public class UserController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
-	@GetMapping("/edit/{roleId}")
-    public String edit(@PathVariable("roleId") String id, ModelMap mmap)
+	@GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
+		//查询所有角色
+		List<RoleVo> roleVos=sysUserService.getUserIsRole(id);
+		mmap.put("roleVos",roleVos);
         mmap.put("TsysUser", sysUserService.selectByPrimaryKey(id));
 
         return prefix + "/edit";
@@ -129,9 +133,34 @@ public class UserController extends BaseController{
     @RequiresPermissions("system:user:edit")
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(TsysUser tsysUser)
+    public AjaxResult editSave(TsysUser tsysUser,@RequestParam(value="roles", required = false)List<String> roles)
     {
-        return toAjax(sysUserService.updateByPrimaryKeySelective(tsysUser));
+        return toAjax(sysUserService.updateUserRoles(tsysUser,roles));
+    }
+
+    
+    
+    /**
+	 * 修改用户密码
+	 * @param id
+	 * @param mmap
+	 * @return
+	 */
+	@GetMapping("/editPwd/{id}")
+    public String editPwd(@PathVariable("id") String id, ModelMap mmap)
+    {
+        mmap.put("TsysUser", sysUserService.selectByPrimaryKey(id));
+        return prefix + "/editPwd";
+    }
+	/**
+     * 修改保存用户
+     */
+    @RequiresPermissions("system:user:editPwd")
+    @PostMapping("/editPwd")
+    @ResponseBody
+    public AjaxResult editPwdSave(TsysUser tsysUser)
+    {
+        return toAjax(sysUserService.updateUserPassword(tsysUser));
     }
 
 	

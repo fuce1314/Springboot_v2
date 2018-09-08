@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
 import com.fc.test.mapper.auto.TsysRoleMapper;
+import com.fc.test.mapper.custom.RoleDao;
 import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.auto.TsysRoleExample;
 import com.fc.test.model.custom.Tablepar;
@@ -19,7 +20,8 @@ import com.github.pagehelper.PageInfo;
 public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 	@Autowired
 	private TsysRoleMapper tsysRoleMapper;//角色mapper
-	
+	@Autowired
+	private RoleDao roleDao;//自定义角色dao
 	
 	/**
 	 * 分页查询
@@ -123,6 +125,16 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 		example.createCriteria().andNameEqualTo(tsysRole.getName());
 		List<TsysRole> list=tsysRoleMapper.selectByExample(example);
 		return list.size();
+	}
+	
+	
+	/**
+	 * 根据用户id查询角色
+	 * @param userid
+	 * @return
+	 */
+	public List<TsysRole> queryUserRole(String userid){
+		return roleDao.queryUserRole(userid);
 	}
 	
 }
