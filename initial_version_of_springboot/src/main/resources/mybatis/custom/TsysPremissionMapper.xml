@@ -7,9 +7,13 @@
     <result column="descripion" jdbcType="VARCHAR" property="descripion" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="perms" jdbcType="VARCHAR" property="perms" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
   </resultMap>
    <sql id="Base_Column_List">
-    id, `name`, descripion, url, pid
+     id, `name`, descripion, url, pid, perms, type, icon, order_num
   </sql>
    <select id="findAll"  resultType="com.fc.test.model.auto.TsysPremission">
 

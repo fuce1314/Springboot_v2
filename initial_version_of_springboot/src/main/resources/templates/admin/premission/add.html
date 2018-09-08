@@ -9,6 +9,8 @@
 <link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
 <!-- bootstrap-table表单样式 -->
 <link th:href="@{{path}static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css(path=${rootPath})}" rel="stylesheet"/>
+<!-- treeview -->
+<link th:href="@{{path}static/admin/assets/js/bootstrap/bootstrap-treeview/css/bootstrap-treeview.css(path=${rootPath})}" rel="stylesheet"/>
 
 <style type="text/css">
 .content-wrap {
@@ -64,6 +66,15 @@ label.error {
 									<input class="form-control" type="text" id="name" name="name"/>
 								</div>
 							</div>
+							
+							<div  v-if="menu.type == 1 || menu.type == 2" class="form-group">
+								<label class="col-sm-3 control-label ">父级：</label>
+								<div class="col-sm-8">
+									<input class="form-control" type="text" id="pid" name="pid"/>
+								</div>
+							</div>
+							
+							
 							<div  v-if="menu.type == 1 || menu.type == 2" class="form-group">
 								<label class="col-sm-3 control-label ">权限URL：</label>
 								<div class="col-sm-8">
@@ -117,8 +128,8 @@ label.error {
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js(path=${rootPath})}" type="text/javascript"></script>
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js(path=${rootPath})}" type="text/javascript"></script>
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/base_list.js(path=${rootPath})}" type="text/javascript"></script>
-
-
+<!--bootstarp threeView -->
+<script th:src="@{{path}static/admin/assets/js/bootstrap/bootstrap-treeview/js/bootstrap-treeview.js(path=${rootPath})}" type="text/javascript"></script>
 <!-- 弹窗 -->
 <script th:src="@{{path}static/admin/assets/js/layer/layer.js(path=${rootPath})}" type="text/javascript"></script>
 <!-- 遮罩层 -->
@@ -127,7 +138,7 @@ label.error {
 
 <script type="text/javascript">
 $(function(){
-
+	//初始化vue
 	var vm = new Vue({
 		el:"#fcapp",
 	 	data: {
@@ -137,6 +148,7 @@ $(function(){
 		}
 		
 	});
+	//验证方法
 	$("#form-add").validate({
 		rules:{
 			name:{
@@ -205,6 +217,7 @@ $(function(){
 	
 })
 
+//添加方法
 function add() {
 	var premissionName = $("input[name='name']").val();
 	var premissionUrl = $("input[name='url']").val();
@@ -235,6 +248,36 @@ function add() {
 		}
 	});
 }
+
+
+
+//Ajax加载树
+function loadthreeViewData(loadurl){
+	var threeViewData;
+	$.ajax({
+		url:"",
+		type:"get",
+		data:"",
+		error : function(request) {
+			$.modal.alertError("系统错误");
+		},
+		success:function(data){
+			threeViewData=	data;	
+		}
+	})
+	return threeViewData;
+}
+
+function loadthreeView(){
+	$('#tree').treeview({data: getTree()});  
+	
+}
+
+
+
+
+
+
 
 </script>
 

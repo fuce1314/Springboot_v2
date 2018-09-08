@@ -1,5 +1,6 @@
 package com.fc.test.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,18 +9,25 @@ import org.springframework.stereotype.Service;
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
 import com.fc.test.mapper.auto.TsysPremissionMapper;
+import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysPremissionExample;
 import com.fc.test.model.custom.Tablepar;
+import com.fc.test.model.custom.ThreeModelVo;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 @Service
 public class SysPremissionService implements BaseService<TsysPremission, TsysPremissionExample>{
-	@Autowired
-	private TsysPremissionMapper tsysPremissionMapper;//角色mapper
 	
+	//权限mapper
+	@Autowired
+	private TsysPremissionMapper tsysPremissionMapper;
+	
+	//权限自定义dao
+	@Autowired
+	private PermissionDao permissionDao;
 	
 	/**
 	 * 分页查询
@@ -142,5 +150,75 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		example.createCriteria().andPermsEqualTo(tsysPremission.getPerms());
 		List<TsysPremission> list=tsysPremissionMapper.selectByExample(example);
 		return list.size();
+	}
+	
+	
+	/**
+	 * 根据父id 以及类型查询权限子集
+	 * @param pid
+	 * @return
+	 */
+	public List<TsysPremission> queryPid(String pid,int type){
+		TsysPremissionExample example=new TsysPremissionExample();
+		example.createCriteria().andPidEqualTo(pid).andTypeEqualTo(type);
+		return tsysPremissionMapper.selectByExample(example);
+	}
+	
+
+	/**
+	 * 查询树的权限
+	 * @return
+	 */
+	public ThreeModelVo queryThreePrem(){
+		//查询出首页
+		TsysPremission homeList=queryPid("0",0).get(0);
+		//赋值首页信息
+		ThreeModelVo homeTmv=new ThreeModelVo();
+		homeTmv.setTsysPremission(homeList);
+		//查询出所有的菜单栏管理分类
+		List<TsysPremission> menuGlList=queryPid(homeList.getId(),0);
+		List<ThreeModelVo> menulanGlVos=new ArrayList<ThreeModelVo>(); 
+		for (TsysPremission tsysPremission_menuGl : menuGlList) {//菜单栏管理
+			ThreeModelVo menulanGlVo=new ThreeModelVo();
+			
+			
+			List<ThreeModelVo> menuVos=new ArrayList<ThreeModelVo>();
+			//查出所有的菜单栏
+			List<TsysPremission> menuList=queryPid(tsysPremission_menuGl.getId(),1);
+			
+			for (TsysPremission tsysPremission_menu : menuList) {//菜单栏
+				ThreeModelVo menuVo=new ThreeModelVo();
+				
+				List<ThreeModelVo> buttonsVos=new ArrayList<ThreeModelVo>();
+				//查询所有的按钮
+				List<TsysPremission> buttonList=queryPid(tsysPremission_menu.getId(),2);
+				for (TsysPremission tsysPremission_button : buttonList) {//按钮
+					ThreeModelVo buttonVo=new ThreeModelVo();
+
+					//按钮赋值
+					buttonVo.setTsysPremission(tsysPremission_button);
+					buttonVo.setChildList(null);
+					//按钮添加子集
+					buttonsVos.add(buttonVo);
+				}
+				menuVo.setChildList(buttonsVos);
+				//菜单栏添加子集
+				menuVos.add(menuVo);
+				//菜单栏赋值
+				menuVo.setTsysPremission(tsysPremission_menu);
+				
+			}
+			//菜单栏管理添加子集
+			menulanGlVo.setChildList(menuVos);
+			//赋值菜单栏
+			menulanGlVo.setTsysPremission(tsysPremission_menuGl);
+			
+			//菜单栏管理赋值
+			menulanGlVos.add(menulanGlVo);
+		}
+		//首页填充菜单栏分类
+		homeTmv.setChildList(menulanGlVos);
+		return homeTmv;
+		
 	}
 }
