@@ -322,7 +322,7 @@
                 }, 50)
             },
             reload: function() {
-                parent.location.reload()
+                //parent.location.reload()
             }
         },
         common: {

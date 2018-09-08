@@ -12,6 +12,7 @@ import com.fc.test.mapper.auto.TsysPremissionMapper;
 import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysPremissionExample;
+import com.fc.test.model.custom.BootstrapThree;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.PremissionThreeModelVo;
 import com.fc.test.util.SnowflakeIdWorker;
@@ -219,6 +220,44 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		//首页填充菜单栏分类
 		homeTmv.setChildList(menulanGlVos);
 		return homeTmv;
-		
 	}
+	
+	/**
+	 * 获取转换成bootstarp的权限数据
+	 * @return
+	 */
+	public BootstrapThree getbooBootstrapThreePerm(){
+		PremissionThreeModelVo modelVo= queryThreePrem();
+		TsysPremission home= modelVo.getTsysPremission();
+		List<PremissionThreeModelVo> three_mengls= modelVo.getChildList();
+		List<BootstrapThree> bootstrapThree_mengls=new  ArrayList<BootstrapThree>();
+		for (PremissionThreeModelVo menglx : three_mengls) {
+			TsysPremission mengl= menglx.getTsysPremission();
+			List<BootstrapThree> bootstrapThree_mens=new  ArrayList<BootstrapThree>();
+			
+			List<PremissionThreeModelVo> three_mens=menglx.getChildList();
+			for (PremissionThreeModelVo buttonx : three_mens) {
+				TsysPremission button=  buttonx.getTsysPremission();
+				List<PremissionThreeModelVo> three_buttons=buttonx.getChildList();
+				List<BootstrapThree> bootstrapThree_buttons=new  ArrayList<BootstrapThree>();
+				
+				for (PremissionThreeModelVo lasts : three_buttons) {
+					TsysPremission last= lasts.getTsysPremission();
+					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),null);
+					bootstrapThree_buttons.add(three_button);
+				}
+				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(), bootstrapThree_buttons);
+				bootstrapThree_mens.add(bootstrapThree_button);
+			}
+			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(), bootstrapThree_mens);
+			bootstrapThree_mengls.add(bootstrapThree_mengl);
+		}
+		
+		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), bootstrapThree_mengls);
+		
+		return bootstrapThree;
+	}
+	
+	
+	
 }

@@ -105,6 +105,14 @@ public class BaseController
     {
         return AjaxResult.error(code, message);
     }
+    
+    /**
+     * 返回object数据
+     */
+    public AjaxResult retobject(int code, Object  data)
+    {
+        return AjaxResult.successData(code, data);
+    }
 
     /**
      * 页面跳转

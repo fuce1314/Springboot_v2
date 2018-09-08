@@ -48,7 +48,7 @@ label.error {
 				</div>
 				<div class="body-nest" id="element">
 					<div class="panel-body">
-						<form  class="form-horizontal m" id="form-user-edit" th:object="${TsysUser}">
+						<form  class="form-horizontal m" id="form-edit" th:object="${TsysUser}">
 							<input id="id" name="id" type="hidden" th:field="*{id}"/>
 							<div class="form-group">
 								<label class="col-sm-3 control-label ">登录名称：</label>
@@ -102,7 +102,7 @@ label.error {
 
 
 <script type="text/javascript">
-$("#form-user-edit").validate({
+$("#form-edit").validate({
 	
 	submitHandler:function(form){
 		edit();
@@ -111,18 +111,7 @@ $("#form-user-edit").validate({
 
 
 function edit() {
-	var dataFormJson=$("#form-user-edit").serialize();
-	/*
-	var userId = $("input[name='userId']").val();
-	var deptId = $("input[name='deptId']").val();
-	var loginName = $("input[name='loginName']").val();
-	
-	var email = $("input[name='email']").val();
-	var phonenumber = $("input[name='phonenumber']").val();
-	var sex = $("#sex option:selected").val();
-	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
-	var roleIds = $.form.selectCheckeds("role");
-	var postIds = $.form.selectSelects("post");*/
+	var dataFormJson=$("#form-edit").serialize();
 	$.ajax({
 		cache : true,
 		type : "POST",

@@ -34,4 +34,17 @@ public class TsysPermissionRole implements Serializable {
     public void setPermissionId(String permissionId) {
         this.permissionId = permissionId == null ? null : permissionId.trim();
     }
+
+	public TsysPermissionRole(String id, String roleId, String permissionId) {
+		super();
+		this.id = id;
+		this.roleId = roleId;
+		this.permissionId = permissionId;
+	}
+
+	public TsysPermissionRole() {
+		super();
+	}
+    
+    
 }

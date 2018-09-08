@@ -76,8 +76,8 @@ public class RoleController extends BaseController{
 	@PostMapping("add")
 	@RequiresPermissions("system:user:add")
 	@ResponseBody
-	public AjaxResult add(TsysRole role){
-		int b=sysRoleService.insertSelective(role);
+	public AjaxResult add(TsysRole role,String prem){
+		int b=sysRoleService.insertRoleandPrem(role,prem);
 		if(b>0){
 			return success();
 		}else{

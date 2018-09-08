@@ -22,6 +22,7 @@ import com.fc.test.mapper.custom.TsysUserDao;
 import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.auto.TsysUser;
+import com.fc.test.util.StringUtils;
 import com.google.gson.Gson;
 
 /**
@@ -107,8 +108,9 @@ public class MyShiroRealm extends AuthorizingRealm {
 			List<TsysPremission> premissions=permissionDao.queryRoleId(rolid);
 			for(TsysPremission p:premissions){
 				System.out.println("角色下面的权限:"+gson.toJson(p));
-				authorizationInfo.addStringPermission(p.getPerms());
-				
+				if(StringUtils.isNotEmpty(p.getPerms())){
+					authorizationInfo.addStringPermission(p.getPerms());
+				}
 				
 			}
 		}

@@ -59,40 +59,53 @@ label.error {
 								</div>
 							</div>
 							<div class="form-group">
+								<input class="form-control" type="hidden" id="checkname" name="checkname" th:value="*{name}"/>
 								<label class="col-sm-3 control-label ">权限名称：</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="text" id="name" name="name" th:field="*{name}"/>
+									<input class="form-control" type="text" id="name" name="name" th:value="*{name}"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<!-- 验证用 -->
+								<input class="form-control" type="hidden" id="checkname" name="checkname" th:value="*{name}"/>
+								<label class="col-sm-3 control-label ">父级菜单：</label>
+								<div class="col-sm-8">
+									<input class="form-control" type="text" id="pid" name="pid" th:value="*{pid}"/>
 								</div>
 							</div>
 							<div  v-if="menu.type == 1 || menu.type == 2" class="form-group">
+								<!-- 验证用 -->
+								<input class="form-control" type="hidden" id="checkurl" th:value="*{url}"/>
 								<label class="col-sm-3 control-label ">权限URL：</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="text" id="url" name="url" th:field="*{url}"/>
+									<input class="form-control" type="text" id="url" name="url" th:value="*{url}"/>
 								</div>
 							</div>
 							<div v-if="menu.type == 1 || menu.type == 2" class="form-group">
+								<!-- 验证用 -->
+								<input class="form-control" type="hidden" id="checkurl" th:value="*{url}"/>
 								<label class="col-sm-3 control-label ">权限关键字：</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="text" id="perms" name="perms" th:field="*{perms}" placeholder="多个用逗号分隔，如：user:list,user:create"/>
+									<input class="form-control" type="text" id="perms" name="perms" th:value="*{perms}" placeholder="多个用逗号分隔，如：user:list,user:create"/>
 								</div>
 							</div>
 							<div v-if="menu.type != 2" class="form-group">
 								<label class="col-sm-3 control-label ">排序：</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="number" id="orderNum" name="orderNum" th:field="*{orderNum}"/>
+									<input class="form-control" type="number" id="orderNum" name="orderNum" th:value="*{orderNum}"/>
 								</div>
 							</div>
 							<div v-if="menu.type != 2" class="form-group">
 								<label class="col-sm-3 control-label ">图标：</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="text" id="icon" name="icon" th:field="*{icon}"/>
-									<code style="margin-top: 4px; display: block;">获取图标：http://fontawesome.io/icons/</code>
+									<input class="form-control" type="text" id="icon" name="icon" th:value="*{icon}"/>
+									<code style="margin-top: 4px; display: block;">获取图标：https://fontawesome.com/v4.7.0/icons/</code>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label ">权限描述：</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="text" id="descripion" name="descripion" th:field="*{descripion}"/>
+									<input class="form-control" type="text" id="descripion" name="descripion" th:value="*{descripion}"/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -148,13 +161,19 @@ $(function(){
 	                type: "post",
 	                dataType: "json",
 	                dataFilter: function(data, type) {
-	                    if (data == "0")
-	                    	return true;
-	                    else 
-	                    	return false;
+	                	if($("#checkname").val()==$("#name").val())
+	                		return true;
+	                	else{
+	                		if (data == "0")
+		                    	return true;
+		                    else 
+		                    	return false;
+	                	}
+	                    
 	                }
 	            }
-			},url:{
+			},
+			url:{
 				required:true,
 				minlength: 2,
 				maxlength: 100,
@@ -163,13 +182,18 @@ $(function(){
 	                type: "post",
 	                dataType: "json",
 	                dataFilter: function(data, type) {
-	                    if (data == "0")
-	                    	return true;
-	                    else 
-	                    	return false;
+	                	if($("#checkurl").val()==$("#url").val())
+	                		return true;
+	                	else{
+	                		if (data == "0")
+		                    	return true;
+		                    else 
+		                    	return false;
+	                	}
 	                }
 	            }
-			},perms:{
+			},
+			perms:{
 				required:true,
 				minlength: 2,
 				maxlength: 100,
@@ -178,10 +202,14 @@ $(function(){
 	                type: "post",
 	                dataType: "json",
 	                dataFilter: function(data, type) {
-	                    if (data == "0")
-	                    	return true;
-	                    else 
-	                    	return false;
+	                	if($("#perms").val()==$("#perms").val())
+	                		return true;
+	                	else{
+	                		if (data == "0")
+		                    	return true;
+		                    else 
+		                    	return false;
+	                	}
 	                }
 	            }
 			}
@@ -207,28 +235,12 @@ $(function(){
 
 
 function edit() {
-	var id = $("input[name='id']").val();
-	var premissionName = $("input[name='name']").val();
-	var premissionUrl = $("input[name='url']").val();
-	var premissionPerms = $("input[name='perms']").val();
-	var premissionDescripion = $("input[name='descripion']").val();
-	var type=$('input:radio[name=type]:checked').val();
-	var orderNum = $("input[name='orderNum']").val();
-	var icon = $("input[name='icon']").val();
+	var dataFormJson=$("#form-edit").serialize();
 	$.ajax({
 		cache : true,
 		type : "POST",
 		url : rootPath + "/PremissionController/edit",
-		data : {
-			"id": id,
-			"name": premissionName,
-			"url": premissionUrl,
-			"perms": premissionPerms,
-			"descripion": premissionDescripion,
-			"type":type,
-			"orderNum":orderNum,
-			"icon":icon
-		},
+		data :dataFormJson,
 		async : false,
 		error : function(request) {
 			$.modal.alertError("系统错误");

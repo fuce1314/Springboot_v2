@@ -67,7 +67,7 @@ label.error {
 				</div>
 				<div class="body-nest" id="element">
 					<div class="panel-body">
-						<form  class="form-horizontal m" id="form-user-add">
+						<form  class="form-horizontal m" id="form-add">
 							<div class="form-group">
 								<label class="col-sm-3 control-label ">登录名称：</label>
 								<div class="col-sm-8">
@@ -208,11 +208,7 @@ $("#form-user-add").validate({
  * 用户添加方法
  */
 function add() {
-	/*var userName = $("input[name='username']").val();
-	var password = $("input[name='password']").val();
-	var roles=checkBoxList();*/
-	
-	var dataFormJson=$("#form-user-add").serialize();
+	var dataFormJson=$("#form-add").serialize();
 	$.ajax({
 		cache : true,
 		type : "POST",

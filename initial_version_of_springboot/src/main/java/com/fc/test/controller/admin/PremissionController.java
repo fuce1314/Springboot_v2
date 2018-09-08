@@ -173,4 +173,17 @@ public class PremissionController  extends BaseController{
     {
         return toAjax(sysPremissionService.updateByPrimaryKey(TsysPremission));
     }
+    
+    /**
+     * 获取转换成bootstarp的权限数据
+     * @return
+     */
+    @GetMapping("/getThreePerm")
+    @ResponseBody
+    public AjaxResult getbooBootstrapThreePerm(){
+    	
+    	return retobject(200,sysPremissionService.getbooBootstrapThreePerm());
+    }
+    
+    
 }
