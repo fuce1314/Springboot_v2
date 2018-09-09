@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
-<configuration scan="true" scanPeriod="60 seconds" debug="false">
+<configuration scan="true" scanPeriod="60 seconds" debug="false"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.padual.com/java/logback.xsd"
+>
 	
 	
 	<property name="log.pattern" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n" />
