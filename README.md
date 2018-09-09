@@ -93,6 +93,7 @@ layer.js|弹窗组件||
 jquery.blockUI.js|遮蔽层组件||
 bootstrap-table-export.js|前台导出组件||
 
+### jar版本
 
 | 名称       | 版本          | 备注 |
 |------------|---------------|------|
