@@ -14,7 +14,11 @@ import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+
+import com.fc.test.common.exception.GlobalExceptionResolver;
 import com.fc.test.shiro.service.MyShiroRealm;
+
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 
 
@@ -37,7 +41,7 @@ public class ShiroConfig {
 		//首页
 		shiroFilterFactoryBean.setSuccessUrl("/index");
 		//错误页面，认证不通过跳转
-		shiroFilterFactoryBean.setUnauthorizedUrl("/error");
+		shiroFilterFactoryBean.setUnauthorizedUrl("/error/403");
 		//页面权限控制
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(ShiroFilterMapFactory.shiroFilterMap());
 
@@ -100,6 +104,15 @@ public class ShiroConfig {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;
+    }
+    
+    /**
+     * 注册全局异常处理
+     * @return
+     */
+    @Bean(name = "exceptionHandler")
+    public HandlerExceptionResolver handlerExceptionResolver(){
+        return new GlobalExceptionResolver();
     }
 
 }

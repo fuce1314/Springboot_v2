@@ -10,6 +10,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,7 +105,39 @@ public class HomeController extends BaseController{
         subject.logout();
         return "redirect:/login";
 	}
-
 	
 	
+	
+	
+	/****页面测试****/
+	@GetMapping("Out404")
+	public String Out404(HttpServletRequest request, HttpServletResponse response){
+		
+        return "redirect:/error/404";
+	}
+	
+	@GetMapping("Out403")
+	public String Out403(HttpServletRequest request, HttpServletResponse response){
+		
+        return "redirect:/error/403";
+	}
+	@GetMapping("Out500")
+	public String Out500(HttpServletRequest request, HttpServletResponse response){
+		
+        return "redirect:/error/500";
+	}
+	
+	/**
+	 * 权限测试跳转页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@GetMapping("Outqx")
+	@RequiresPermissions("system:user:asd")
+	public String Outqx(HttpServletRequest request, HttpServletResponse response){
+		
+        return "redirect:/error/500";
+	}
+	/****页面测试EDN****/
 }
