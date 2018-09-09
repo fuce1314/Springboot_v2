@@ -14,6 +14,7 @@ Springboot
 │  ├─base Base继承通用类
 │  ├─conf springBoot所有配置
 │  ├─domain 前台返回包
+│  ├─exception 异常处理包
 │  ├─interceptor 拦截器
 │  ├─domain 前台返回包
 │  ├─quartz Spring定时器
