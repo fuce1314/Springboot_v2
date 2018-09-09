@@ -112,24 +112,44 @@ bootstrap-table-export.js|前台导出组件||
 | commons-io|2.5         |      |
 | commons-fileupload|1.3.3         |      |
 | spring-boot-devtools|2.0.0.RELEASE         |      |
-| hutoo| 4.1.10        |      |
+| hutool| 4.1.10        |      |
 
 
+### 开发环境
+- JDK8.0
+- mysql5.5.40 OR msql 8.0
+- eclipse
 
-语言环境如下： java8.0+tomcat8+mysql7或者8 【语法未用8.0语法】
-该系统整合：
-Srping
-1. Swagger2.0--版本2.7.0
-2. thymeleaf--版本 2.0.0
-3. mybatis2-generator.xml
-4. 多个数据库环境 【非主从】
-5. 一个整理好的后台模版 --【非h+】
-6. 自定义拦截 --【方便配置全局变量】
-7. 自定义定时器 --【Spring定时器我感觉已经够用】
-8. pagehelper分页插件 --版本4.1.4
-9. 权限shiro -- 1.4.0
+### 资源下载
+- JDK7 http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html
+- Maven http://maven.apache.org/download.cgi
+
+### 编译流程
+- maven编译安装pom.xml文件即可
+
+### 登陆地址
+- http://localhost:8081   默认帐号密码: admin/admin
+- swagger  http://localhost:8081/swagger-ui.html
+
+### 启动类
+- SpringbootSwagger2Application 启动类
 
 
+### 数据库模型
+![数据库模型](https://images.gitee.com/uploads/images/2018/0909/202241_60aac716_123301.png "O4JB4SR0LS5%5UX$ZGE2}57.png")
 
-![界面样式](https://images.gitee.com/uploads/images/2018/0822/003000_175616d0_123301.png "{{H[HML}(`V33A47(U)ZTF5.png")
+### 界面风格
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/202603_b48d6be4_123301.jpeg "QQ截图20180909202536.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/202956_a0ce0317_123301.jpeg "QQ截图20180909202627.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203002_b64f157c_123301.jpeg "QQ截图20180909202655.jpg")
+![空白页面](https://images.gitee.com/uploads/images/2018/0822/003000_175616d0_123301.png "{{H[HML}(`V33A47(U)ZTF5.png")
+
+###后台代码注释风格
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203106_52eca8e3_123301.jpeg "QQ截图20180909202815.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203112_278db2f4_123301.jpeg "QQ截图20180909202830.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203118_39d8b7cd_123301.jpeg "QQ截图20180909202838.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203125_a362822a_123301.jpeg "QQ截图20180909202852.jpg")
+
+
+### 前端代码注释风格
 ![HTML代码页面](https://images.gitee.com/uploads/images/2018/0822/004608_c55d62a4_123301.jpeg "未命名拼图 (1).jpg")
