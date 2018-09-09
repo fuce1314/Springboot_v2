@@ -11,7 +11,7 @@ Srping
 8. pagehelper分页插件 --版本4.1.4
 9. 权限shiro -- 1.4.0
 
-`
+```
 Springboot
 ├─doc  项目SQL语句以及文档
 │
@@ -67,7 +67,7 @@ Springboot
 │  └─mybatis-generator.xml mybates自动生成 xml、dao、model
 │  
 └─pom.xml   maven.xml
-`
+```
 
 
 ![界面样式](https://images.gitee.com/uploads/images/2018/0822/003000_175616d0_123301.png "{{H[HML}(`V33A47(U)ZTF5.png")
