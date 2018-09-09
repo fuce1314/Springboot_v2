@@ -229,11 +229,6 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @return
 	 */
 	public BootstrapThree getbooBootstrapThreePerm(){
-		Map<String, Object> map = new HashMap<String, Object>();
-		//设置选中
-		map.put("checked", true);
-		//设置展开
-		map.put("expanded", false);
 		PremissionThreeModelVo modelVo= queryThreePrem();
 		TsysPremission home= modelVo.getTsysPremission();
 		List<PremissionThreeModelVo> three_mengls= modelVo.getChildList();
@@ -250,17 +245,17 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 				
 				for (PremissionThreeModelVo lasts : three_buttons) {
 					TsysPremission last= lasts.getTsysPremission();
-					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),null,map);
+					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),null);
 					bootstrapThree_buttons.add(three_button);
 				}
-				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(), bootstrapThree_buttons,map);
+				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(), bootstrapThree_buttons);
 				bootstrapThree_mens.add(bootstrapThree_button);
 			}
-			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(), bootstrapThree_mens,map);
+			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(), bootstrapThree_mens);
 			bootstrapThree_mengls.add(bootstrapThree_mengl);
 		}
 		
-		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), bootstrapThree_mengls,map);
+		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), bootstrapThree_mengls);
 		
 		return bootstrapThree;
 	}
@@ -306,7 +301,6 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		BootstrapThree sysPremissions = getbooBootstrapThreePerm();
 		if (ifpermissions(myTsysPremissions, sysPremissions)) {
 			sysPremissions.setState(map);
-
 		}
 		List<BootstrapThree> menugl = sysPremissions.getNodes();
 		for (BootstrapThree menuglbootstrapThree : menugl) {

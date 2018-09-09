@@ -48,7 +48,7 @@ label.error {
 				</div>
 				<div class="body-nest" id="element">
 					<div class="panel-body">
-						<form  class="form-horizontal m" id="form-user-edit" th:object="${TsysUser}">
+						<form  class="form-horizontal m" id="form-edit" th:object="${TsysUser}">
 							<input id="id" name="id" type="hidden" th:field="*{id}"/>
 							<div class="form-group">
 								<label class="col-sm-3 control-label ">登录名称：</label>
@@ -99,7 +99,7 @@ label.error {
 
 
 <script type="text/javascript">
-$("#form-user-edit").validate({
+$("#form-edit").validate({
 	rules:{
 		password:{
 			required:true,
@@ -132,7 +132,7 @@ $("#form-user-edit").validate({
 
 
 function edit() {
-	var dataFormJson=$("#form-user-edit").serialize();
+	var dataFormJson=$("#form-edit").serialize();
 	$.ajax({
 		cache : true,
 		type : "POST",
