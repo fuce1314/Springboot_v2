@@ -1,7 +1,9 @@
 package com.fc.test.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -167,7 +169,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	
 
 	/**
-	 * 查询权限树
+	 * 获取权限树
 	 * @return
 	 */
 	public PremissionThreeModelVo queryThreePrem(){
@@ -227,6 +229,9 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @return
 	 */
 	public BootstrapThree getbooBootstrapThreePerm(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("checked", false);
+		map.put("expanded", false);
 		PremissionThreeModelVo modelVo= queryThreePrem();
 		TsysPremission home= modelVo.getTsysPremission();
 		List<PremissionThreeModelVo> three_mengls= modelVo.getChildList();
@@ -243,21 +248,85 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 				
 				for (PremissionThreeModelVo lasts : three_buttons) {
 					TsysPremission last= lasts.getTsysPremission();
-					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),null);
+					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),null,map);
 					bootstrapThree_buttons.add(three_button);
 				}
-				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(), bootstrapThree_buttons);
+				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(), bootstrapThree_buttons,map);
 				bootstrapThree_mens.add(bootstrapThree_button);
 			}
-			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(), bootstrapThree_mens);
+			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(), bootstrapThree_mens,map);
 			bootstrapThree_mengls.add(bootstrapThree_mengl);
 		}
 		
-		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), bootstrapThree_mengls);
+		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), bootstrapThree_mengls,map);
 		
 		return bootstrapThree;
 	}
 	
+	
+	/**
+	 * 获取所有权限
+	 * @return
+	 */
+	public List<TsysPremission> getall(){
+		return  tsysPremissionMapper.selectByExample(new TsysPremissionExample());
+	}
+	
+	
+	/**
+	 * 判断权限是否有权限
+	 * @param myTsysPremissions
+	 * @param sysPremission
+	 */
+	public Boolean ifpermissions(List<TsysPremission>  myTsysPremissions,BootstrapThree sysPremission){
+		for (TsysPremission mytsysPremission : myTsysPremissions) {
+			if(sysPremission.getId().equals(mytsysPremission.getId())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	/**
+	 * 获取角色已有的Bootstarp权限
+	 * @return
+	 */
+	public BootstrapThree getCheckPrem(String roleid) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("checked", true);
+		map.put("expanded", false);
+		// 获取角色的权限
+		List<TsysPremission> myTsysPremissions = permissionDao.queryRoleId(roleid);
+		// 获取所有的权限
+		BootstrapThree sysPremissions = getbooBootstrapThreePerm();
+		if (ifpermissions(myTsysPremissions, sysPremissions)) {
+			sysPremissions.setState(map);
+
+		}
+		List<BootstrapThree> menugl = sysPremissions.getNodes();
+		for (BootstrapThree menuglbootstrapThree : menugl) {
+			if (ifpermissions(myTsysPremissions, menuglbootstrapThree)) {// 菜单栏管理设置
+				menuglbootstrapThree.setState(map);
+			}
+			List<BootstrapThree> menu = menuglbootstrapThree.getNodes();
+			for (BootstrapThree menubootstrapThree : menu) {
+				if (ifpermissions(myTsysPremissions, menubootstrapThree)) {// 菜单栏设置
+					menubootstrapThree.setState(map);
+				}
+
+				List<BootstrapThree> buttons = menubootstrapThree.getNodes();
+				for (BootstrapThree button : buttons) {
+					if (ifpermissions(myTsysPremissions, button)) {// 按钮设置
+						button.setState(map);
+					}
+				}
+			}
+
+		}
+		return sysPremissions;
+
+	}
 	
 	
 }

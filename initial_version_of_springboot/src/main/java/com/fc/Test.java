@@ -1,13 +1,16 @@
 package com.fc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.custom.BootstrapThree;
 import com.fc.test.model.custom.PremissionThreeModelVo;
@@ -20,6 +23,8 @@ import com.google.gson.Gson;
 public class Test {
 	@Autowired
 	private SysPremissionService sysPremissionService;
+	@Autowired
+	private PermissionDao permissionDao;
 	
 	//@org.junit.Test
 	public void test(){
@@ -29,7 +34,7 @@ public class Test {
 		System.out.println(gson.toJson(modelVo));
 		System.out.println();
 	}
-	@org.junit.Test
+	//@org.junit.Test
 	public void test2(){
 		
 		PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
@@ -69,8 +74,68 @@ public class Test {
 		
 	}
 	
+	
+	/**
+	 * 判断权限是否有权限
+	 * @param myTsysPremissions
+	 * @param sysPremission
+	 */
+	public Boolean ifpermissions(List<TsysPremission>  myTsysPremissions,BootstrapThree sysPremission){
+		for (TsysPremission mytsysPremission : myTsysPremissions) {
+			if(sysPremission.getId().equals(mytsysPremission.getId())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	@org.junit.Test
+	public void test3(){
+	 Map<String,Object> map=new HashMap<String, Object>();
+	 map.put("checked", true);
+		//获取自己的权限
+		List<TsysPremission>  myTsysPremissions= permissionDao.findByAdminUserId("1");
+		//获取所有的权限
+		BootstrapThree  sysPremissions= sysPremissionService.getbooBootstrapThreePerm();
+		if(ifpermissions(myTsysPremissions, sysPremissions)){
+			sysPremissions.setState(map);
+			
+		}
+		List<BootstrapThree>  menugl= sysPremissions.getNodes();
+		for (BootstrapThree menuglbootstrapThree : menugl) {
+			if(ifpermissions(myTsysPremissions, menuglbootstrapThree)){//菜单栏管理设置
+				menuglbootstrapThree.setState(map);
+			}
+			List<BootstrapThree> menu=menuglbootstrapThree.getNodes();
+			for (BootstrapThree menubootstrapThree : menu) {
+				if(ifpermissions(myTsysPremissions, menubootstrapThree)){//菜单栏设置
+					menubootstrapThree.setState(map);
+				}
+				
+				List<BootstrapThree> buttons=menubootstrapThree.getNodes();
+				for (BootstrapThree button : buttons) {
+					if(ifpermissions(myTsysPremissions, button)){//按钮设置
+						button.setState(map);
+					}
+				}
+			}
+			
+		}
+		
+		
+		System.out.println(new Gson().toJson(sysPremissions));
+		
+		
+		
+		
+	}
 	public static void main(String[] args) {
-		Test test=new Test();
-		test.test2();
+		///Test test=new Test();
+		//test.test2();
+		Map<String,Object> list=new HashMap<String,Object>();
+		list.put("checked",false);
+		list.put("checked1",false);
+		System.out.println(new Gson().toJson(list));
 	}
 }

@@ -5,10 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import cn.hutool.core.util.RandomUtil;
-import cn.hutool.crypto.SecureUtil;
-
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
 import com.fc.test.mapper.auto.TsysPermissionRoleMapper;
@@ -65,6 +62,9 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 	 }
 
 	
+	 /**
+	  * 
+	  */	
 	@Override
 	@Transactional
 	public int deleteByPrimaryKey(String ids) {
@@ -95,7 +95,7 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 	 * @return
 	 */
 	@Transactional
-	public int insertRoleandPrem(TsysRole record,String prem) {
+	public int insertRoleAndPrem(TsysRole record,String prem) {
 		//添加雪花主键id
 		String roleid=SnowflakeIdWorker.getUUID();
 		record.setId(roleid);
@@ -119,6 +119,28 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 	public int updateByPrimaryKeySelective(TsysRole record) {
 		return tsysRoleMapper.updateByPrimaryKeySelective(record);
 	}
+	
+	/**
+	 * 修改用户角色 以及下面绑定的权限
+	 * @param record
+	 * @return
+	 */
+	@Transactional
+	public int updateRoleAndPrem(TsysRole record,String prem) {
+		//先删除角色下面的所有权限
+		TsysPermissionRoleExample permissionRoleExample=new TsysPermissionRoleExample();
+		permissionRoleExample.createCriteria().andRoleIdEqualTo(record.getId());
+		tsysPermissionRoleMapper.deleteByExample(permissionRoleExample);
+		//添加权限关联
+		List<String> prems=Convert.toListStrArray(prem);
+		for (String pre : prems) {
+			TsysPermissionRole permissionRole=new TsysPermissionRole(RandomUtil.randomUUID(), record.getId(), pre);
+			tsysPermissionRoleMapper.insertSelective(permissionRole);
+		}
+		
+		return tsysRoleMapper.updateByPrimaryKeySelective(record);
+	}
+	
 
 	
 	@Override

@@ -175,7 +175,7 @@ public class PremissionController  extends BaseController{
     }
     
     /**
-     * 获取转换成bootstarp的权限数据
+     * 获取所有的转换成bootstarp的权限数据
      * @return
      */
     @GetMapping("/getThreePerm")
@@ -184,6 +184,20 @@ public class PremissionController  extends BaseController{
     	
     	return retobject(200,sysPremissionService.getbooBootstrapThreePerm());
     }
+    
+    
+    /**
+     * 根据角色id获取bootstarp 所有打勾权限
+     * @param roleId
+     * @return
+     */
+    @PostMapping("/getCheckPrem")
+    @ResponseBody
+    public AjaxResult getCheckPrem(String roleId){
+    	
+    	return retobject(200,sysPremissionService.getCheckPrem(roleId));
+    }
+    
     
     
 }

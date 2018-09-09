@@ -1,6 +1,7 @@
 package com.fc.test.model.custom;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 前台bootstrap需要的树
@@ -12,6 +13,7 @@ public class BootstrapThree {
 	private String icon;//图标
 	private String data;//数据
 	private String id;
+	private Map<String,Object> state;//选中参数
 	private List<BootstrapThree> nodes;//子元素
 	
 	public String getText() {
@@ -47,6 +49,34 @@ public class BootstrapThree {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public Map<String, Object> getState() {
+		return state;
+	}
+	public void setState(Map<String, Object> state) {
+		this.state = state;
+	}
+
+	/**
+	 * 这个初始化new为可以设置默认选中
+	 * @param text
+	 * @param icon
+	 * @param data
+	 * @param id
+	 * @param nodes
+	 * @param state  传入{"checked":true} 
+	 */
+	public BootstrapThree(String text, String icon, String data, String id,
+			 List<BootstrapThree> nodes,Map<String, Object> state) {
+		super();
+		this.text = text;
+		this.icon = icon;
+		this.data = data;
+		this.id = id;
+		this.state = state;
+		this.nodes = nodes;
+	}
+	
+	
 	public BootstrapThree(String text, String icon, String data, String id,
 			List<BootstrapThree> nodes) {
 		super();
@@ -56,6 +86,5 @@ public class BootstrapThree {
 		this.id = id;
 		this.nodes = nodes;
 	}
-	
 	
 }

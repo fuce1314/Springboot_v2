@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import com.fc.test.model.auto.Test;
-import com.google.gson.Gson;
 
 /**
  * 自定义定时器
@@ -24,11 +22,9 @@ public class Myquartz {
 	
     @Scheduled(cron = "* * * * 2 *")
     public void timer(){
-    	Test test=new Test();
-    	test.setId(1L);
+    	
     	//test=testService.queryId(test);
-    	Gson gson=new Gson();
-    	System.out.println(gson.toJson(test));
+    	//Gson gson=new Gson();
         //获取当前时间
         LocalDateTime localDateTime =LocalDateTime.now();
         System.out.println("当前时间为:" + localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));

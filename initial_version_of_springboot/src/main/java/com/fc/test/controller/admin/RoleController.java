@@ -77,7 +77,7 @@ public class RoleController extends BaseController{
 	@RequiresPermissions("system:user:add")
 	@ResponseBody
 	public AjaxResult add(TsysRole role,String prem){
-		int b=sysRoleService.insertRoleandPrem(role,prem);
+		int b=sysRoleService.insertRoleAndPrem(role,prem);
 		if(b>0){
 			return success();
 		}else{
@@ -129,7 +129,6 @@ public class RoleController extends BaseController{
     public String edit(@PathVariable("roleId") String id, ModelMap mmap)
     {
         mmap.put("TsysRole", sysRoleService.selectByPrimaryKey(id));
-
         return prefix + "/edit";
     }
 	
@@ -139,8 +138,8 @@ public class RoleController extends BaseController{
     @RequiresPermissions("system:user:edit")
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(TsysRole tsysRole)
+    public AjaxResult editSave(TsysRole tsysRole,String prem)
     {
-        return toAjax(sysRoleService.updateByPrimaryKeySelective(tsysRole));
+        return toAjax(sysRoleService.updateRoleAndPrem(tsysRole,prem));
     }
 }
