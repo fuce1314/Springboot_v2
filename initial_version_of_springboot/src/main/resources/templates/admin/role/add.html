@@ -243,8 +243,8 @@ function setParentNodeCheck(node) {
             $("#tree").treeview("checkNode", parentNode.nodeId);
             setParentNodeCheck(parentNode);    
         }else {   //如果子节点未全部被选 父未全选
-            $('#tree').treeview('uncheckNode', parentNode.nodeId); 
-            setParentNodeCheck(parentNode);        
+           // $('#tree').treeview('uncheckNode', parentNode.nodeId); 
+           // setParentNodeCheck(parentNode);        
         }   
     }  
 }
