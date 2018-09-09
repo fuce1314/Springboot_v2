@@ -122,7 +122,7 @@ bootstrap-treeview|树结构组件||
 - eclipse
 
 ### 资源下载
-- JDK7 http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html
+- JDK8 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 - Maven http://maven.apache.org/download.cgi
 
 ### 编译流程
