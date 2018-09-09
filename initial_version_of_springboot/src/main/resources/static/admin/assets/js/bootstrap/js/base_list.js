@@ -123,7 +123,12 @@
                     data: data,
                     success: function(result) {
                         $.operate.ajaxSuccess(result)
-                    }
+                    },
+                	error:function(jqXHR, textStatus, errorThrown){
+                		$.modal.alertError(textStatus);
+                		$.modal.closeLoading();
+                		
+                	}
                 };
                 $.ajax(config)
             },
