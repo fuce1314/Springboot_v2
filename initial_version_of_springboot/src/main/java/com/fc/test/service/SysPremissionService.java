@@ -230,7 +230,9 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 */
 	public BootstrapThree getbooBootstrapThreePerm(){
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("checked", false);
+		//设置选中
+		map.put("checked", true);
+		//设置展开
 		map.put("expanded", false);
 		PremissionThreeModelVo modelVo= queryThreePrem();
 		TsysPremission home= modelVo.getTsysPremission();
@@ -294,7 +296,9 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 */
 	public BootstrapThree getCheckPrem(String roleid) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		//设置选中
 		map.put("checked", true);
+		//设置展开
 		map.put("expanded", false);
 		// 获取角色的权限
 		List<TsysPremission> myTsysPremissions = permissionDao.queryRoleId(roleid);
