@@ -1,6 +1,6 @@
 /*
  * jQuery UI Multilevel accordionze v.1
- * 
+ * jQuery多级目录手风琴菜单
  * Copyright (c) 2011 Pieter Pareit
  *
  * http://www.scriptbreaker.com

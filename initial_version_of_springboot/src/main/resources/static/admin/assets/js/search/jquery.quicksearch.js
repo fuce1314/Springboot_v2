@@ -1,3 +1,10 @@
+/**
+ * 一个jQuery插件，用于快速搜索表，列表等
+ * @param $
+ * @param window
+ * @param document
+ * @param undefined
+ */
 (function($, window, document, undefined) {
 	$.fn.quicksearch = function (target, opt) {
 		

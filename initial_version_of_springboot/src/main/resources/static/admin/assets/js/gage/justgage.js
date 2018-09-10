@@ -1,4 +1,5 @@
 /**
+ * raphael 强大的矢量图形库+ justgage 仪表盘
  * JustGage - this is work-in-progress, unreleased, unofficial code, so it might not work top-notch :)
  * Check http://www.justgage.com for official releases
  * Licensed under MIT.

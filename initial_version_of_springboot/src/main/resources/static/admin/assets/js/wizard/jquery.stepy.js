@@ -1,7 +1,7 @@
 /*!
  * jQuery Stepy - A Wizard Plugin
  * --------------------------------------------------------------
- *
+ *jquery向导插件stepy
  * jQuery Stepy is a plugin that generates a customizable wizard.
  *
  * Licensed under The MIT License

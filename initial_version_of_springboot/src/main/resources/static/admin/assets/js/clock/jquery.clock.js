@@ -1,7 +1,7 @@
 /* Copyright (c) 2009 José Joaquín Núñez (josejnv@gmail.com) http://joaquinnunez.cl/blog/
  * Licensed under GPL (http://www.opensource.org/licenses/gpl-2.0.php)
  * Use only for non-commercial usage.
- *
+ *jQuery时间插件jquery.clock.js
  * Version : 0.1
  *
  * Requires: jQuery 1.2+

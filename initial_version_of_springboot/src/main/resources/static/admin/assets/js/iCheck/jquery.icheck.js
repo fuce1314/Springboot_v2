@@ -1,4 +1,5 @@
 /*!
+ * jquery插件icheck api使用(美化checkbox和radio样式)
  * iCheck v0.9.1, http://git.io/uhUPMA
  * =================================
  * Powerful jQuery plugin for checkboxes and radio buttons customization

@@ -2,7 +2,7 @@
 /*jshint browser:true */
 /*!
 * FitVids 1.1
-*
+*FitVids.js是一个轻量级的jQuery响应式视频插件，他可以实现流体视频的嵌入。FitVids.js应用了内在的比例算法，在你的响应网页上实现视频的流体宽度
 * Copyright 2013, Chris Coyier - http://css-tricks.com + Dave Rupert - http://daverupert.com
 * Credit to Thierry Koblentz - http://www.alistapart.com/articles/creating-intrinsic-ratios-for-video/
 * Released under the WTFPL license - http://sam.zoy.org/wtfpl/

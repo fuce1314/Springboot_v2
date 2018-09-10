@@ -1,6 +1,6 @@
 /*!
  * Timepicker Component for Twitter Bootstrap
- *
+ *Bootstrap 时间控件
  * Copyright 2013 Joris de Wit
  *
  * Contributors https://github.com/jdewit/bootstrap-timepicker/graphs/contributors

@@ -2,7 +2,7 @@
 
 /**
  * Require the given path.
- *
+ * 上传插件dropzone.js
  * @param {String} path
  * @return {Object} exports
  * @api public

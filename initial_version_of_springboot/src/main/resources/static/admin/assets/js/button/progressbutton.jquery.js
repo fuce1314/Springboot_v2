@@ -1,7 +1,7 @@
 /*
 * jQuery Progress Button 1.0.0
 * https://github.com/Desertsnowman/jQuery-Progress-Buttons
-*
+*提交按钮 ProgressButtonStyles 是一系列平滑的，3D 效果的进度按钮样式，带有 3D 效果的进度按钮指示器
 * Copyright 2012, David Cramer
 * http://digilab.co.za
 *

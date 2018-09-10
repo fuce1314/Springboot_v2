@@ -1,4 +1,5 @@
 /*
+ * Masked Input是一个字符输入格式化的jQuery插件。它可让你轻松的实现对各种数据的输入进行格式限制,如日期、电话等
 	Masked Input plugin for jQuery
 	Copyright (c) 2007-2013 Josh Bush (digitalbush.com)
 	Licensed under the MIT license (http://digitalbush.com/projects/masked-input-plugin/#license)

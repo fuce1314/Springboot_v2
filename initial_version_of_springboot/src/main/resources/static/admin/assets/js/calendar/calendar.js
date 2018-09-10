@@ -1,6 +1,6 @@
 /**
  * Bootstrap based calendar full view.
- *
+ *jQuery日历插件编写
  * https://github.com/Serhioromano/bootstrap-calendar
  *
  * User: Sergey Romanov <serg4172@mail.ru>

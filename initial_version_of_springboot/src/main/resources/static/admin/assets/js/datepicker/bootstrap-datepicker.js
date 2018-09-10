@@ -1,6 +1,7 @@
 /* =========================================================
  * bootstrap-datepicker.js 
  * http://www.eyecon.ro/bootstrap-datepicker
+ * Bootstrap-datepicker也是一款非常好用的选择日期插件
  * =========================================================
  * Copyright 2012 Stefan Petre
  *

@@ -1,4 +1,5 @@
 /*! nanoScrollerJS - v0.7.2
+* jqeury div滚动条美化插件nanoscroller.js
 * http://jamesflorentino.github.com/nanoScrollerJS/
 * Copyright (c) 2013 James Florentino; Licensed MIT */
 

@@ -2,7 +2,7 @@
  * stacktable.js
  * Author & copyright (c) 2012: John Polacek
  * Dual MIT & GPL license
- *
+ *一个Jquery的上传控件 
  * Page: http://johnpolacek.github.com/stacktable.js
  * Repo: https://github.com/johnpolacek/stacktable.js/
  *

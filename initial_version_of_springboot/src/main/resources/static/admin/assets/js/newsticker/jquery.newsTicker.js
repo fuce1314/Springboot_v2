@@ -36,6 +36,7 @@
 
 
 ==============================================================================================================
+    jQuery news ticker是一个非常方便的jQuery插件，能够快速让你生成这样的一个新闻行情效果。 
     JQuery Advanced News Ticker 1.0.11 (20/02/14)
     created by risq
     website (docs & demos) : http://risq.github.io/jquery-advanced-news-ticker/

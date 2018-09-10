@@ -1,4 +1,5 @@
 /*!
+ * jQuery的Google地图插件 GMAP3
  *  GMAP3 Plugin for JQuery
  *  Version   : 5.1.1
  *  Date      : 2013-05-25

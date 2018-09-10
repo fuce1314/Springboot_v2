@@ -1,5 +1,5 @@
 /*
-
+jQuery悬停文字提示框插件jquery.tooltipster.js
 Tooltipster 2.1.4 | 6/1/13
 A rockin' custom tooltip jQuery plugin
 
