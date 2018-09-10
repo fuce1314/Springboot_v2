@@ -10,31 +10,9 @@
 <!-- bootstrap-table表单样式 -->
 <link th:href="@{{path}static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css(path=${rootPath})}" rel="stylesheet"/>
 
-<style type="text/css">
-
-body {
-	 color: #9ea7b3;
-    font-family: "Open Sans", Arial, sans-serif!important;
-    font-size: 13px!important;
-    line-height: 20px;
-    overflow-x: hidden!important;
-    min-height: 100%;
-    z-index: -2;
-    margin: 0px !important;
-    background-image: none;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-label.error {
-    position: absolute;
-    right: 18px;
-    top: 5px;
-    color: #ef392b;
-    font-size: 12px;
-}
-</style>
+<!-- 用户界面自定义css -->
+<link th:href="@{{path}static/admin/user/css/user-deit.css(path=${rootPath})}" rel="stylesheet"/>
+<style type="text/css"></style>
 
 </head>
 
@@ -99,36 +77,9 @@ label.error {
 <script th:src="@{{path}static/admin/assets/js/layer/layer.js(path=${rootPath})}" type="text/javascript"></script>
 <!-- 遮罩层 -->
 <script th:src="@{{path}static/admin/assets/js/blockUI/jquery.blockUI.js(path=${rootPath})}" type="text/javascript"></script>
+<!-- 自定义user js -->
+<script  th:src="@{{path}static/admin/user/js/user-edit.js(path=${rootPath})}" type="text/javascript"></script>
 
-
-<script type="text/javascript">
-$("#form-edit").validate({
-	
-	submitHandler:function(form){
-		edit();
-	}
-});
-
-
-function edit() {
-	var dataFormJson=$("#form-edit").serialize();
-	$.ajax({
-		cache : true,
-		type : "POST",
-		url : rootPath + "/UserController/edit",
-		data : dataFormJson,
-		async : false,
-		error : function(request) {
-			$.modal.alertError("系统错误");
-		},
-		success : function(data) {
-			$.operate.saveSuccess(data);
-		}
-	});
-}
-
-
-</script>
 
 
 </body>

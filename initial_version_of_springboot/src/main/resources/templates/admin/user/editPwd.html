@@ -9,32 +9,9 @@
 <link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
 <!-- bootstrap-table表单样式 -->
 <link th:href="@{{path}static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css(path=${rootPath})}" rel="stylesheet"/>
-
-<style type="text/css">
-
-body {
-	 color: #9ea7b3;
-    font-family: "Open Sans", Arial, sans-serif!important;
-    font-size: 13px!important;
-    line-height: 20px;
-    overflow-x: hidden!important;
-    min-height: 100%;
-    z-index: -2;
-    margin: 0px !important;
-    background-image: none;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-label.error {
-    position: absolute;
-    right: 18px;
-    top: 5px;
-    color: #ef392b;
-    font-size: 12px;
-}
-</style>
+<!-- 用户界面自定义css -->
+<link th:href="@{{path}static/admin/user/css/user-deitPwd.css(path=${rootPath})}" rel="stylesheet"/>
+<style type="text/css"></style>
 
 </head>
 
@@ -97,59 +74,8 @@ label.error {
 <!-- 遮罩层 -->
 <script th:src="@{{path}static/admin/assets/js/blockUI/jquery.blockUI.js(path=${rootPath})}" type="text/javascript"></script>
 
-
-<script type="text/javascript">
-$("#form-edit").validate({
-	rules:{
-		password:{
-			required:true,
-			minlength: 5,
-			maxlength: 20
-		},
-		confirm:{
-			required:true,
-			minlength: 5,
-			maxlength: 20,
-			equalTo:"#password"
-		}
-		
-	},
-	messages: {
-		 password: {
-             required: "请输入新密码",
-             minlength: "密码不能小于6个字符",
-             maxlength: "密码不能大于20个字符"
-         },
-         confirm: {
-             required: "请再次输入新密码",
-             equalTo: "两次密码输入不一致"
-         }
-    },
-	submitHandler:function(form){
-		edit();
-	}
-});
-
-
-function edit() {
-	var dataFormJson=$("#form-edit").serialize();
-	$.ajax({
-		cache : true,
-		type : "POST",
-		url : rootPath + "/UserController/editPwd",
-		data : dataFormJson,
-		async : false,
-		error : function(request) {
-			$.modal.alertError("系统错误");
-		},
-		success : function(data) {
-			$.operate.saveSuccess(data);
-		}
-	});
-}
-
-
-</script>
+<!-- 自定义user js -->
+<script  th:src="@{{path}static/admin/user/js/user-editPwd.js(path=${rootPath})}" type="text/javascript"></script>
 
 
 </body>

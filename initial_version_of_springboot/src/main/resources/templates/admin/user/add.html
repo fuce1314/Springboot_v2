@@ -9,52 +9,9 @@
 <link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
 <!-- bootstrap-table表单样式 -->
 <link th:href="@{{path}static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css(path=${rootPath})}" rel="stylesheet"/>
-
-<style type="text/css">
-.content-wrap {
-     padding: 0px;
-}
-body {
-	 color: #9ea7b3;
-    font-family: "Open Sans", Arial, sans-serif!important;
-    font-size: 13px!important;
-    line-height: 20px;
-    overflow-x: hidden!important;
-    min-height: 100%;
-    z-index: -2;
-    margin: 0px !important;
-    background: url() no-repeat top center fixed;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-label.error {
-    position: absolute;
-    right: 18px;
-    top: 5px;
-    color: #ef392b;
-    font-size: 12px;
-}
-.icheckbox-blue > label{
-	    display: inline-block;
-    box-sizing: border-box;
-    cursor: pointer;
-    position: relative;
-    /* padding-left: 25px; */
-    padding-right: 15px;
-    padding-top: 5px;
-}
-.sqcheckbox{
-    width: 16px;
-    height: 16px;
-    background-color: red;
-    display: inline-block;
-    position: relative;
-    top: 3px;
-}
-</style>
-
+<!-- 用户界面自定义css -->
+<link th:href="@{{path}static/admin/user/css/user-add.css(path=${rootPath})}" rel="stylesheet"/>
+<style type="text/css"></style>
 </head>
 
 <body>
@@ -123,109 +80,9 @@ label.error {
 <script  th:src="@{{path}static/admin/assets/js/blockUI/jquery.blockUI.js(path=${rootPath})}" type="text/javascript"></script>
 <!-- jqueryForm序列化 -->
 <script  th:src="@{{path}static/js/jqueryFormSerializeJson.js(path=${rootPath})}" type="text/javascript"></script>
+<!-- 自定义user js -->
+<script  th:src="@{{path}static/admin/user/js/user-add.js(path=${rootPath})}" type="text/javascript"></script>
 
-<script type="text/javascript">
-$("#form-add").validate({
-	rules:{
-		username:{
-			required:true,
-			minlength: 2,
-			maxlength: 20,
-			remote: {
-                url: rootPath + "/UserController/checkLoginNameUnique",
-                type: "post",
-                dataType: "json",
-                dataFilter: function(data, type) {
-                    if (data == "0")
-                    	return true;
-                    else 
-                    	return false;
-                }
-            }
-		},
-		deptName:{
-			required:true,
-		},
-		password:{
-			required:true,
-			minlength: 5,
-			maxlength: 20
-		},
-		email:{
-			required:true,
-            email:true,
-            remote: {
-                url:rootPath + "/UserController/checkEmailUnique",
-                type: "post",
-                dataType: "json",
-                data: {
-                    name: function () {
-                        return $.trim($("#email").val());
-                    }
-                },
-                dataFilter: function (data, type) {
-                    if (data == "0") return true;
-                    else return false;
-                }
-            }
-		},
-		phonenumber:{
-			required:true,
-			isPhone:true,
-            remote: {
-                url: rootPath + "system/user/checkPhoneUnique",
-                type: "post",
-                dataType: "json",
-                data: {
-                    name: function () {
-                        return $.trim($("#phonenumber").val());
-                    }
-                },
-                dataFilter: function (data, type) {
-                    if (data == "0") return true;
-                    else return false;
-                }
-            }
-		},
-	},
-	messages: {
-        "username": {
-            remote: "用户已经存在"
-        },
-		"email": {
-            remote: "Email已经存在"
-        },
-		"phonenumber":{
-        	remote: "手机号码已经存在"
-		}
-    },
-	submitHandler:function(form){
-		add();
-	}
-});
-
-/**
- * 用户添加方法
- */
-function add() {
-	var dataFormJson=$("#form-add").serialize();
-	$.ajax({
-		cache : true,
-		type : "POST",
-		url : rootPath + "/UserController/add",
-		data : dataFormJson,
-		async : false,
-		error : function(request) {
-			$.modal.alertError("系统错误");
-		},
-		success : function(data) {
-			$.operate.saveSuccess(data);
-		}
-	});
-}
-
-
-</script>
 
 
 </body>

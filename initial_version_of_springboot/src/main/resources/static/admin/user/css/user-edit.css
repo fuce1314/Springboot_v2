@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+body {
+	 color: #9ea7b3;
+    font-family: "Open Sans", Arial, sans-serif!important;
+    font-size: 13px!important;
+    line-height: 20px;
+    overflow-x: hidden!important;
+    min-height: 100%;
+    z-index: -2;
+    margin: 0px !important;
+    background-image: none;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+label.error {
+    position: absolute;
+    right: 18px;
+    top: 5px;
+    color: #ef392b;
+    font-size: 12px;
+}
