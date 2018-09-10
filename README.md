@@ -133,8 +133,8 @@ bootstrap-treeview|树结构组件||
 3. 修改application-dev.yml 里面自己数据库版本对应的jdbc链接
 4. 正常启动run SpringbootSwagger2Application.java
 
-### 编译流程
-- maven编译安装pom.xml文件即可
+### 打包发布编译流程
+- maven编译安装pom.xml文件即可打包成war
 
 ### 登陆地址
 - http://localhost:8081   默认帐号密码: admin/admin
