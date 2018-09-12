@@ -86,7 +86,7 @@
 								style="height:16px; padding-top:4px;" />
 						</div>
 						<div style="float: left;">
-							<i><img style="height:22px;" id="codeImg" alt="点击更换" title="点击更换" src="" /></i>
+							<i><img style="height:22px;" id="codeImg" alt="点击更换" title="点击更换" src="captcha/captchaImage?type=math" /></i>
 						</div>
 						
 						<span class="pull-right" style="padding-right:3%;"><a href="javascript:changepage(1);" class="btn btn-success">注册</a></span>
@@ -216,6 +216,11 @@
 	<script type="text/javascript" src="static/login/keypad/js/framework.js"></script>
 	<!-- 软键盘控件end -->
 	<script type="text/javascript">
+		
+		$('#codeImg').click(function() {
+			var url ="captcha/captchaImage?type=math&s=" + Math.random();
+			$("#codeImg").attr("src", url);
+		});
 	
 		function severCheck(){
 			$("#loginForm").submit();
