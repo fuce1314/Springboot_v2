@@ -70,7 +70,7 @@ Springboot
 ###技术选项
 技术|名称|官网|备注
 ---|---|---|---
-springboot|springboot框架 || 
+springboot|springboot框架 ||
 Apache Shiro|权限框架||
 MyBatis Generator|代码生成||
 PageHelper|MyBatis物理分页插件||
