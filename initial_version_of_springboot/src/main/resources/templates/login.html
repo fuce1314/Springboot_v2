@@ -214,11 +214,16 @@
 	<!-- 软键盘控件start -->
 	<script type="text/javascript" src="static/login/keypad/js/form/keypad.js"></script>
 	<script type="text/javascript" src="static/login/keypad/js/framework.js"></script>
+	<!-- 弹窗 -->
+	<script th:src="@{{path}static/admin/assets/js/layer/layer.js(path=${rootPath})}" type="text/javascript"></script>
+	
 	<!-- 软键盘控件end -->
 	<script type="text/javascript">
 		var message="[[${message}]]";
 		if(""!=message){
-			alert(message);
+			 layer.msg(message, {
+	                time: 3000
+	            })
 		}
 		$('#codeImg').click(function() {
 			var url ="captcha/captchaImage?type=math&s=" + Math.random();
