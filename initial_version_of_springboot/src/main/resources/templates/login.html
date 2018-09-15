@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta content="text/html;charset=UTF-8"/>
 <title>登录页面</title>
@@ -216,7 +216,10 @@
 	<script type="text/javascript" src="static/login/keypad/js/framework.js"></script>
 	<!-- 软键盘控件end -->
 	<script type="text/javascript">
-		
+		var message="[[${message}]]";
+		if(""!=message){
+			alert(message);
+		}
 		$('#codeImg').click(function() {
 			var url ="captcha/captchaImage?type=math&s=" + Math.random();
 			$("#codeImg").attr("src", url);
@@ -224,7 +227,6 @@
 	
 		function severCheck(){
 			$("#loginForm").submit();
-			
 		}
 		//session获取iframe处理
         $(function () {

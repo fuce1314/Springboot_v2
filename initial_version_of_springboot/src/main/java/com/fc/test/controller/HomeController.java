@@ -24,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fc.test.common.base.BaseController;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.TitleVo;
+import com.fc.test.util.StringUtils;
+import com.google.code.kaptcha.Constants;
 
 @Controller
 public class HomeController extends BaseController{
@@ -53,41 +55,58 @@ public class HomeController extends BaseController{
         return "login";
     }
 	
+	/**
+	 * 用户登陆验证
+	 * @param user
+	 * @param rcode
+	 * @param redirectAttributes
+	 * @param rememberMe
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@PostMapping("login")
-	public ModelAndView login(TsysUser user,RedirectAttributes redirectAttributes,boolean rememberMe,Model model) {
-		ModelAndView view =new ModelAndView();
-		 String userName = user.getUsername();
-		 Subject currentUser = SecurityUtils.getSubject();
-		 if(!currentUser.isAuthenticated()) {
-			 UsernamePasswordToken token =new UsernamePasswordToken(userName,user.getPassword());
-			 try {
-				 if(rememberMe) {
-					 token.setRememberMe(true);
-				 }
-				 currentUser.login(token);
-				 
-				 setTitle(model, new TitleVo("欢迎页面", "首页", true,"欢迎进入", true, false));
-					
-				 view.setViewName("redirect:admin/index");
-			 }catch (UnknownAccountException uae) {
-		            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
-		            redirectAttributes.addFlashAttribute("message", "未知账户");
-		        } catch (IncorrectCredentialsException ice) {
-		            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
-		            redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
-		        } catch (LockedAccountException lae) {
-		            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,账户已锁定");
-		            redirectAttributes.addFlashAttribute("message", "账户已锁定");
-		        } catch (ExcessiveAttemptsException eae) {
-		            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误次数过多");
-		            redirectAttributes.addFlashAttribute("message", "用户名或密码错误次数过多");
-		        } catch (AuthenticationException ae) {
-		            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
-		            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,堆栈轨迹如下");
-		            ae.printStackTrace();
-		            redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
-		        }
+	public ModelAndView login(TsysUser user,String code,RedirectAttributes redirectAttributes,boolean rememberMe,Model model,HttpServletRequest request) {
+		 ModelAndView view =new ModelAndView();
+		 String scode = (String)request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+		 //判断验证码
+		 if(StringUtils.isNotEmpty(code)&&scode.equals(code)){
+			 String userName = user.getUsername();
+			 Subject currentUser = SecurityUtils.getSubject();
+			 if(!currentUser.isAuthenticated()) {
+				 UsernamePasswordToken token =new UsernamePasswordToken(userName,user.getPassword());
+				 try {
+					 if(rememberMe) {
+						 token.setRememberMe(true);
+					 }
+					 currentUser.login(token);
+					 
+					 setTitle(model, new TitleVo("欢迎页面", "首页", true,"欢迎进入", true, false));
+						
+					 view.setViewName("redirect:admin/index");
+				 }catch (UnknownAccountException uae) {
+			            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
+			            redirectAttributes.addFlashAttribute("message", "未知账户");
+			        } catch (IncorrectCredentialsException ice) {
+			            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
+			            redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
+			        } catch (LockedAccountException lae) {
+			            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,账户已锁定");
+			            redirectAttributes.addFlashAttribute("message", "账户已锁定");
+			        } catch (ExcessiveAttemptsException eae) {
+			            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误次数过多");
+			            redirectAttributes.addFlashAttribute("message", "用户名或密码错误次数过多");
+			        } catch (AuthenticationException ae) {
+			            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
+			            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,堆栈轨迹如下");
+			            ae.printStackTrace();
+			            redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
+			        }
+			 }
+		 }else{
+			 redirectAttributes.addFlashAttribute("message", "验证码不正确");
 		 }
+		
 		 view.setViewName("redirect:/login");
 		 return view;
 		 

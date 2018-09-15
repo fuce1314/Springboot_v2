@@ -82,24 +82,22 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.11</version>
         </dependency> -->
-
-	
-		
+		<!-- shiro权限 -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
 			<version>1.4.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<!-- shiro权限支持thymeleaf -->
+		<dependency>
 		    <groupId>com.github.theborakompanioni</groupId>
 		    <artifactId>thymeleaf-extras-shiro</artifactId>
 		    <version>2.0.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-		
 		
 		  <!-- thymeleaf模版  -->
     	<dependency>
