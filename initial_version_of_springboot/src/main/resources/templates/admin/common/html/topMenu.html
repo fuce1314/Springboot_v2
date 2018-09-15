@@ -3,7 +3,7 @@
 <nav th:fragment="topMenu(isribbon)">
 	<!-- 彩带 -->
 	<div th:if="${isribbon eq true}" id="awwwards" class="right black">
-		<a href="http://www.awwwards.com/best-websites/apricot-navigation-admin-dashboard-template" target="_blank">best websites of the world</a>
+		<a href="#" target="_blank">best websites of the world</a>
 	</div>
 	<!-- END彩带 -->
 	<!-- 预加载器 -->
@@ -24,7 +24,7 @@
 	
 	
 	            <div id="logo-mobile" class="visible-xs">
-	               <h1>Apricot<span>v1.34</span></h1>
+	               <h1>Springboot<span>v2</span></h1>
 	            </div>
 	
 	        </div>
@@ -45,8 +45,6 @@
 	                        <li class="divider"></li>
 	                        <li>
 	                            <a href="#">
-	                            
-						<span th:text="${rootPath}"></span>
 	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/women/1.jpg(path=${rootPath})} ">Jeniffer <b>3 Min Ago</b>
 	                            </a>
 	                        </li>

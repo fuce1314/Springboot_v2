@@ -71,7 +71,8 @@ body {
     font-weight: 200;
     letter-spacing: -1px;
     text-decoration: inherit;
-    text-transform: uppercase;
+    /**首字母大写**/
+    text-transform:capitalize;
     color: #fff;
 }
 #logo h1 span, #logo-mobile h1 span {
