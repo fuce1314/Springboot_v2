@@ -100,7 +100,7 @@ bootstrap-treeview|树结构组件||
 | 名称       | 版本          | 备注 |
 |------------|---------------|------|
 | springBoot | 2.0.0.RELEASE |      |
-| mybatis    | 1.3.2         |      |
+| mybatis-spring 1.3.2 | 1.3.2         |      |
 | swagger2   | 2.7.0         |      |
 | swagger-ui | 2.7.0         |      |
 | gson       | 2.8.2         |      |
