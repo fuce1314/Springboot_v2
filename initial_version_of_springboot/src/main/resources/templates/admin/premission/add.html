@@ -9,6 +9,8 @@
 <link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
 <!-- bootstrap-table表单样式 -->
 <link th:href="@{{path}static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css(path=${rootPath})}" rel="stylesheet"/>
+<!-- treeview -->
+<link th:href="@{{path}static/admin/assets/js/bootstrap/bootstrap-treeview/css/bootstrap-treeview.css(path=${rootPath})}" rel="stylesheet"/>
 
 <style type="text/css">
 .content-wrap {
@@ -66,9 +68,10 @@ label.error {
 							</div>
 							
 							<div  v-if="menu.type == 1 || menu.type == 2" class="form-group">
-								<label class="col-sm-3 control-label ">父级：</label>
+								<label class="col-sm-3 control-label ">上级菜单：</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="text" id="pid" name="pid"/>
+									<input class="form-control" type="hidden" id="pid" name="pid"/>
+									<input class="form-control" readonly="true" type="text" id="pidName" onclick="selectMenuTree()" />
 								</div>
 							</div>
 							
@@ -130,6 +133,8 @@ label.error {
 <script th:src="@{{path}static/admin/assets/js/layer/layer.js(path=${rootPath})}" type="text/javascript"></script>
 <!-- 遮罩层 -->
 <script th:src="@{{path}static/admin/assets/js/blockUI/jquery.blockUI.js(path=${rootPath})}" type="text/javascript"></script>
+<!--bootstarp threeView -->
+<script th:src="@{{path}static/admin/assets/js/bootstrap/bootstrap-treeview/js/bootstrap-treeview.js(path=${rootPath})}" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -232,29 +237,17 @@ function add() {
 }
 
 
-
-//Ajax加载树
-function loadthreeViewData(loadurl){
-	var threeViewData;
-	$.ajax({
-		url:"",
-		type:"get",
-		data:"",
-		error : function(request) {
-			$.modal.alertError("系统错误");
-		},
-		success:function(data){
-			threeViewData=	data;	
-		}
-	})
-	return threeViewData;
+/*菜单管理-修改-选择菜单树*/
+function selectMenuTree() {
+	//var menuId = $("#pid").val();
+	//if(menuId > 0) {
+		var url =  rootPath+ "/PremissionController/three";
+		$.modal.open("选择菜单", url, '380', '380');
+	//}
+	//else {
+	//	$.modal.alertError("主菜单不能选择");
+	//}
 }
-
-function loadthreeView(){
-	$('#tree').treeview({data: getTree()});  
-	
-}
-
 
 
 

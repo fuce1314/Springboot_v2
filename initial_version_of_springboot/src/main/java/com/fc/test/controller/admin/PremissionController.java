@@ -157,9 +157,13 @@ public class PremissionController  extends BaseController{
 	 */
 	@GetMapping("/edit/{roleId}")
     public String edit(@PathVariable("roleId") String id, ModelMap mmap)
-    {
-        mmap.put("TsysPremission", sysPremissionService.selectByPrimaryKey(id));
-
+    {	
+		//获取自己的权限信息
+		TsysPremission mytsysPremission=sysPremissionService.selectByPrimaryKey(id);
+		//获取父权限信息
+		TsysPremission pattsysPremission=sysPremissionService.selectByPrimaryKey(mytsysPremission.getPid());
+        mmap.put("TsysPremission", mytsysPremission);
+        mmap.put("pattsysPremission", pattsysPremission);
         return prefix + "/edit";
     }
 	
@@ -198,6 +202,17 @@ public class PremissionController  extends BaseController{
     	return retobject(200,sysPremissionService.getCheckPrem(roleId));
     }
     
+    
+    @GetMapping("three")
+    public String Three(){
+    	 return prefix + "/three";
+    }
+    
+    @PostMapping("three/{pid}")
+    @ResponseBody
+    public AjaxResult Three(@PathVariable("pid") String pid){
+    	return retobject(200,sysPremissionService.getbooBootstrapThreePerm());
+    }
     
     
 }
