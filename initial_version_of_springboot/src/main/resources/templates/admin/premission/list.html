@@ -151,7 +151,7 @@
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js(path=${rootPath})}" type="text/javascript"></script>
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js(path=${rootPath})}" type="text/javascript"></script>
 <script th:src="@{{path}static/admin/assets/js/bootstrap/js/base_list.js(path=${rootPath})}" type="text/javascript"></script>
-<!-- 导出 -->
+<!-- jquery-export 表格导出插件 -->
 <script th:src="@{{path}static/admin/assets/js/bootstrap/extensions/export/bootstrap-table-export.js(path=${rootPath})}" type="text/javascript"></script>
 <script th:src="@{{path}static/admin/assets/js/bootstrap/extensions/export/tableExport.js(path=${rootPath})}" type="text/javascript"></script>
 
@@ -162,9 +162,9 @@
 
 
 <script type="text/javascript">
-<!-- jquery-export 表格导出插件 -->
 
-<!-- 导出 -->
+
+<!-- 列表参数 -->
 var dataUrl=window.rootPath+"/PremissionController/list";
 var removeUrl=window.rootPath+"/PremissionController/remove";
 var createUrl=window.rootPath+"/PremissionController/add";
@@ -238,6 +238,7 @@ var exportUrl=window.rootPath+"/PremissionController/export";
 		]
   };
 $(function(){
+	//加载列表
 	var oTab=$.table.oTableInit(options);
 	oTab.Init();
 })
