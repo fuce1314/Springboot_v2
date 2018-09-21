@@ -172,7 +172,6 @@ bootstrap-treeview|树结构组件||
 
 
 
-
 ### 后期功能
 
 功能|描述
@@ -186,6 +185,11 @@ bootstrap-treeview|树结构组件||
  404页面|完成
  权限错误页面|完成
 
+### 情况说明
+- 如果您喜欢Springboot_v2，可以clone下来使用，您的star将是本人前进的动力，如果您有技术疑问，可以加群交流。
+- 如果Springboot_v2对您有一点帮助，您可以点个star，就是对作者最大的支持了。
+- Springboot_v2脚手架会一直更新下去。
+ 
 ### 开发者联系
 - QQ：87766867 
 - QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=e295bf39ca256cb33d0dee437bc2824159582f049a8b4b1f07287fc5d3fb2409"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="java技术_开源交流群" title="java技术_开源交流群"></a>、<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>
