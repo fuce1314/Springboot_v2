@@ -192,7 +192,7 @@ public class PremissionController  extends BaseController{
     
     /**
      * 根据角色id获取bootstarp 所有打勾权限
-     * @param roleId
+     * @param roleId 角色id集合
      * @return
      */
     @PostMapping("/getCheckPrem")
@@ -203,11 +203,20 @@ public class PremissionController  extends BaseController{
     }
     
     
+    /**
+     * 跳转到菜单树页面
+     * @return
+     */
     @GetMapping("three")
     public String Three(){
     	 return prefix + "/three";
     }
     
+    /**
+     * 获取菜单树
+     * @param pid 父id【没用到】
+     * @return
+     */
     @PostMapping("three/{pid}")
     @ResponseBody
     public AjaxResult Three(@PathVariable("pid") String pid){
