@@ -1,17 +1,22 @@
 package com.fc.test.controller.admin;
 
+import io.swagger.annotations.Api;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.fc.test.common.base.BaseController;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
@@ -22,6 +27,7 @@ import com.google.code.kaptcha.Producer;
  * @author fc
  */
 @Controller
+@Api(value = "验证码")
 @RequestMapping("/captcha")
 public class CaptchaController extends BaseController
 {
