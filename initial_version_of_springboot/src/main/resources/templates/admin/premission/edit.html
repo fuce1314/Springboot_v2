@@ -151,6 +151,7 @@ $(function(){
 		
 	});
 	
+	//表单验证
 	$("#form-edit").validate({
 		rules:{
 			name:{
@@ -234,7 +235,7 @@ $(function(){
 	
 })
 
-
+//提交修改方法
 function edit() {
 	var dataFormJson=$("#form-edit").serialize();
 	$.ajax({
