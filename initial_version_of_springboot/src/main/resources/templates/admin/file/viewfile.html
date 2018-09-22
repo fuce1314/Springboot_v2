@@ -49,7 +49,7 @@ label.error {
 						<form  class="form-horizontal m" id="form-view" >
 							<div class="form-group" th:each="sysdata : ${tsysDatas}">
 								<div class="col-sm-8">
-									<img th:src="${sysdata.filePath}">
+									<img th:src="'../viewImg/'+${sysdata.id}">
 								</div>
 							</div>
 						</form>

@@ -6,10 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * 文件处理工具类
- * 
- * @author ruoyi
+ * @author fuce 
+ * @date: 2018年9月22日 下午10:33:31
  */
 public class FileUtils
 {
@@ -87,5 +90,28 @@ public class FileUtils
         }
         return flag;
     }
-
+    
+    /**
+     * 读取图片地址 输出到页面
+     * @param request
+     * @param response
+     * @param fileurl
+     * @throws IOException 
+     */
+    public static void readIMGTohtml(HttpServletRequest request, HttpServletResponse response,String fileurl) throws IOException{
+    	//读取本地图片输入流
+    			FileInputStream inputStream = new FileInputStream(fileurl);
+    			int i = inputStream.available();
+    			//byte数组用于存放图片字节数据
+    			byte[] buff = new byte[i];
+    			inputStream.read(buff);
+    			//记得关闭输入流
+    			inputStream.close();
+    			//设置发送到客户端的响应内容类型
+    			response.setContentType("image/*");
+    			OutputStream out = response.getOutputStream();
+    			out.write(buff);
+    			//关闭响应输出流
+    			out.close();
+    }
 }

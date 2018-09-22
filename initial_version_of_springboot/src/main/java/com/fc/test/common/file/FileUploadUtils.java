@@ -12,8 +12,8 @@ import com.fc.test.common.exception.file.FileNameLengthLimitExceededException;
 
 /**
  * 文件上传工具类
- * 
- * @author ruoyi
+ * @author fuce 
+ * @date: 2018年9月22日 下午10:33:23
  */
 public class FileUploadUtils
 {

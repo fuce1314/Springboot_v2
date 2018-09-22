@@ -1,5 +1,10 @@
 package com.fc.test.controller.admin;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import io.swagger.annotations.Api;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -16,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.common.file.FileUtils;
+import com.fc.test.model.auto.TsysDatas;
 import com.fc.test.model.auto.TsysFile;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
@@ -176,5 +183,16 @@ public class FileController extends BaseController{
     	mmap.put("tsysDatas",sysFileDatasService.queryfileID(id));
         return prefix + "/viewfile";
     }
+    
+    @GetMapping("/viewImg/{id}")
+    public void viewIMG(@PathVariable("id") String id,HttpServletRequest request,HttpServletResponse response){
+    	TsysDatas datas= sysDatasService.selectByPrimaryKey(id);
+    	try {
+			FileUtils.readIMGTohtml(request, response, datas.getFilePath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
     
 }
