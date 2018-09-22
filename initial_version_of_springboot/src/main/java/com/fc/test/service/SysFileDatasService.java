@@ -95,7 +95,6 @@ public class SysFileDatasService implements BaseService<TsysFileData, TsysFileDa
 			list.add(tsysDatasMapper.selectByPrimaryKey(tsysFileData.getDataId()));
 		}
 		return list;
-		
 	}
 
 }
