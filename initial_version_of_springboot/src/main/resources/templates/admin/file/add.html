@@ -136,6 +136,7 @@ var myDropzone = new Dropzone("#dropz", {
            });
            this.on("removedfile",function(file){//删除文件触发结果
               //console.log(file);
+        	   $("#dataId").val("");	
            });
        }
 });
