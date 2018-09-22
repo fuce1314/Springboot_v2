@@ -134,11 +134,11 @@
             },
             add: function(id) {
                 var url = $.common.isEmpty(id) ? $.table._option.createUrl : $.table._option.createUrl.replace("{id}", id);
-                $.modal.open("添加" + $.table._option.modalName, url)
+                $.modal.open("添加" + $.table._option.modalName, url);
             },
             edit: function(id) {
                 var url = $.table._option.updateUrl.replace("{id}", id);
-                $.modal.open("修改" + $.table._option.modalName, url)
+                $.modal.open("修改" + $.table._option.modalName, url);
             },
 			remove:function(id){
 				$.modal.confirm("确定删除该条" +$.table._option.modalName+ "信息吗？", function() {
@@ -146,7 +146,7 @@
                     var data = {
                         "ids": id
                     };
-                    $.operate.submit(url, "post", "json", data)
+                    $.operate.submit(url, "post", "json", data);
                 })
 			},
 			batRemove: function() {
@@ -160,25 +160,25 @@
                     var data = {
                         "ids": rows.join()
                     };
-                    $.operate.submit(url, "post", "json", data)
+                    $.operate.submit(url, "post", "json", data);
                 })
             },
 			ajaxSuccess: function(result) {
                 if (result.code == web_status.SUCCESS) {
                     $.modal.msgSuccess(result.msg);
-                    $.table.refresh()
+                    $.table.refresh();
                 } else {
-                    $.modal.alertError(result.msg)
+                    $.modal.alertError(result.msg);
                 }
-                $.modal.closeLoading()
+                $.modal.closeLoading();
             },
             saveSuccess: function(result) {
                 if (result.code == web_status.SUCCESS) {
                     $.modal.msgReload("保存成功,正在刷新数据请稍后……", modal_status.SUCCESS)
                 } else {
-                    $.modal.alertError(result.msg)
+                    $.modal.alertError(result.msg);
                 }
-                $.modal.closeLoading()
+                $.modal.closeLoading();
             }
             //其他方法END
 		},
@@ -186,15 +186,15 @@
             icon: function(type) {
                 var icon = "";
                 if (type == modal_status.WARNING) {
-                    icon = 0
+                    icon = 0;
                 } else {
                     if (type == modal_status.SUCCESS) {
-                        icon = 1
+                        icon = 1;
                     } else {
                         if (type == modal_status.FAIL) {
-                            icon = 2
+                            icon = 2;
                         } else {
-                            icon = 3
+                            icon = 3;
                         }
                     }
                 }
@@ -208,7 +208,7 @@
                         shift: 5
                     })
                 } else {
-                    layer.msg(content)
+                    layer.msg(content);
                 }
             },
             msgError: function(content) {
@@ -234,21 +234,21 @@
                     time: 500,
                     shade: [0.1, "#8F8F8F"]
                 }, function() {
-                    $.modal.reload()
+                    $.modal.reload();
                 })
             },
             alertError: function(content) {
-                $.modal.alert(content, modal_status.FAIL)
+                $.modal.alert(content, modal_status.FAIL);
             },
             alertSuccess: function(content) {
-                $.modal.alert(content, modal_status.SUCCESS)
+                $.modal.alert(content, modal_status.SUCCESS);
             },
             alertWarning: function(content) {
-                $.modal.alert(content, modal_status.WARNING)
+                $.modal.alert(content, modal_status.WARNING);
             },
             close: function() {
                 var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index)
+                parent.layer.close(index);
             },
             confirm: function(content, callBack) {
                 layer.confirm(content, {
@@ -258,25 +258,25 @@
                     btnclass: ["btn btn-primary", "btn btn-danger"],
                 }, function(index) {
                     layer.close(index);
-                    callBack(true)
+                    callBack(true);
                 })
             },
             open: function(title, url, width, height) {
                 if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
                     width = "auto";
-                    height = "auto"
+                    height = "auto";
                 }
                 if ($.common.isEmpty(title)) {
-                    title = false
+                    title = false;
                 }
                 if ($.common.isEmpty(url)) {
-                    url = "404.html"
+                    url = "404.html";
                 }
                 if ($.common.isEmpty(width)) {
-                    width = 800
+                    width = 800;
                 }
                 if ($.common.isEmpty(height)) {
-                    height = ($(window).height() - 50)
+                    height = ($(window).height() - 50);
                 }
                 layer.open({
                     type: 2,

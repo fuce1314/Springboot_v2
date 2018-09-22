@@ -23,12 +23,15 @@ spring :
     multipart:
       max-request-size: 100MB
       maxFileSize : 10MB
-  mvc :   #静态文件
+  mvc:   #静态文件
     static-path-pattern : /static/**
   thymeleaf:
     model: HTML5
     prefix: classpath:/templates/
     suffix: .html
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
 mybatis :
   mapperLocations : classpath*:mybatis/*/*.xml
   executor-type : reuse

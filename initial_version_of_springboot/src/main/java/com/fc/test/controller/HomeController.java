@@ -1,5 +1,7 @@
 package com.fc.test.controller;
 
+import io.swagger.annotations.ApiOperation;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,6 +41,7 @@ public class HomeController extends BaseController{
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value="请求到登陆界面",notes="请求到登陆界面")
 	@GetMapping("/login")
     public String login(HttpServletRequest request,Model model) {
         try {
