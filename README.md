@@ -53,7 +53,7 @@ Springboot
 │  │   ├─auto自动生成的Mapper.xml文件夹
 │  │   └─custom 手写Mapper.xml文件夹
 │  │
-│  ├─static 静态文件存放文件夹
+│  ├─static 静态文件存放文件夹[后台模版就放在此文件夹下面。所有的模版页面都在下面]
 │  ├─templates 前台HTML存放文件夹
 │  ├─application-dev.yml 开发环境配置
 │  ├─application-prod.yml 生产环境配置
@@ -196,6 +196,10 @@ bootstrap-treeview|树结构组件||
 - QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=e295bf39ca256cb33d0dee437bc2824159582f049a8b4b1f07287fc5d3fb2409"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="java技术_开源交流群" title="java技术_开源交流群"></a>、<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>
 
 有任何问题可以提出
+
+
+### Github
+- https://github.com/fuce1314/Springboot_v2
 
 
 
