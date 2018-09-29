@@ -18,8 +18,7 @@ import com.google.gson.Gson;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringbootSwagger2Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-
-public class Test {
+public class SpringbootTest {
 	@Autowired
 	private SysPremissionService sysPremissionService;
 	@Autowired
@@ -89,7 +88,7 @@ public class Test {
 	}
 	
 	
-	@org.junit.Test
+	//@org.junit.Test
 	public void test3(){
 	 Map<String,Object> map=new HashMap<String, Object>();
 	 map.put("checked", true);
