@@ -66,6 +66,10 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	public int insertSelective(TsysPremission record) {
 		//添加雪花主键id
 		record.setId(SnowflakeIdWorker.getUUID());
+		//判断为目录的时候添加父id为0
+		if(record!=null&&record.getType()==0){
+			record.setPid("0");
+		}
 		return tsysPremissionMapper.insertSelective(record);
 	}
 
