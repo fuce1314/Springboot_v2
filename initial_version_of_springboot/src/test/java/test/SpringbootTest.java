@@ -16,15 +16,14 @@ import com.fc.test.model.custom.PremissionThreeModelVo;
 import com.fc.test.service.SysPremissionService;
 import com.google.gson.Gson;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = SpringbootSwagger2Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = SpringbootSwagger2Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SpringbootTest {
 	@Autowired
 	private SysPremissionService sysPremissionService;
 	@Autowired
 	private PermissionDao permissionDao;
 	
-	//@org.junit.Test
 	public void test(){
 		PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
 		Gson gson=new Gson();
@@ -32,7 +31,7 @@ public class SpringbootTest {
 		System.out.println(gson.toJson(modelVo));
 		System.out.println();
 	}
-	//@org.junit.Test
+	
 	public void test2(){
 		
 		PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
@@ -88,7 +87,6 @@ public class SpringbootTest {
 	}
 	
 	
-	//@org.junit.Test
 	public void test3(){
 	 Map<String,Object> map=new HashMap<String, Object>();
 	 map.put("checked", true);
@@ -128,12 +126,6 @@ public class SpringbootTest {
 		
 		
 	}
-	public static void main(String[] args) {
-		///Test test=new Test();
-		//test.test2();
-		Map<String,Object> list=new HashMap<String,Object>();
-		list.put("checked",false);
-		list.put("checked1",false);
-		System.out.println(new Gson().toJson(list));
-	}
+	
+
 }
