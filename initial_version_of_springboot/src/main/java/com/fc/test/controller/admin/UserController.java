@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.common.log.Log;
 import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.RoleVo;
@@ -42,6 +43,8 @@ public class UserController extends BaseController{
         return prefix + "/list";
     }
 	
+	
+	@Log(title = "用户集合查询", action = "111")
 	@PostMapping("list")
 	@RequiresPermissions("system:user:list")
 	@ResponseBody

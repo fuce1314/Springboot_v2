@@ -2,6 +2,8 @@ package com.fc.test.model.auto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class TsysFile {
     private String id;
 
@@ -16,7 +18,8 @@ public class TsysFile {
     private String updateUserId;
 
     private String updateUserName;
-
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date updateTime;
 
     public String getId() {

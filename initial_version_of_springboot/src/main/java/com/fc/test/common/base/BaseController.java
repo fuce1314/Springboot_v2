@@ -15,6 +15,7 @@ import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysDatasService;
 import com.fc.test.service.SysFileDatasService;
 import com.fc.test.service.SysFileService;
+import com.fc.test.service.SysOperLogService;
 import com.fc.test.service.SysPremissionService;
 import com.fc.test.service.SysRoleService;
 import com.fc.test.service.SysUserService;
@@ -53,6 +54,10 @@ public class BaseController
 	//文件存储管理表
 	@Autowired
 	public SysFileDatasService sysFileDatasService;
+	
+	//日志操作
+	@Autowired
+	public SysOperLogService sysOperLogService;
 	
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
