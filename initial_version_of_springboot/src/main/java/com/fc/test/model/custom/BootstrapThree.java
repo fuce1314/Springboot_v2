@@ -12,7 +12,8 @@ public class BootstrapThree {
 	private String text;//文字
 	private String icon;//图标
 	private String data;//数据
-	private String id;
+	private String id;//id
+	private String url;//url
 	private Map<String,Object> state;//选中参数
 	private List<BootstrapThree> nodes;//子元素
 	
@@ -66,24 +67,32 @@ public class BootstrapThree {
 	 * @param state  传入{"checked":true} 
 	 */
 	public BootstrapThree(String text, String icon, String data, String id,
-			 List<BootstrapThree> nodes,Map<String, Object> state) {
+			 List<BootstrapThree> nodes,String url,Map<String, Object> state) {
 		super();
 		this.text = text;
 		this.icon = icon;
 		this.data = data;
 		this.id = id;
+		this.url=url;
 		this.state = state;
 		this.nodes = nodes;
 	}
 	
 	
-	public BootstrapThree(String text, String icon, String data, String id,
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public BootstrapThree(String text, String icon, String data, String id,String url,
 			List<BootstrapThree> nodes) {
 		super();
 		this.text = text;
 		this.icon = icon;
 		this.data = data;
 		this.id = id;
+		this.url=url;
 		this.nodes = nodes;
 	}
 	

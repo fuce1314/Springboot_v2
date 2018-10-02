@@ -68,7 +68,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		record.setId(SnowflakeIdWorker.getUUID());
 		//判断为目录的时候添加父id为0
 		if(record!=null&&record.getType()==0){
-			record.setPid("0");
+			record.setPid("1");
 		}
 		return tsysPremissionMapper.insertSelective(record);
 	}
@@ -249,17 +249,17 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 				
 				for (PremissionThreeModelVo lasts : three_buttons) {
 					TsysPremission last= lasts.getTsysPremission();
-					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),null);
+					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),last.getUrl(),null);
 					bootstrapThree_buttons.add(three_button);
 				}
-				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(), bootstrapThree_buttons);
+				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(),button.getUrl(),bootstrapThree_buttons);
 				bootstrapThree_mens.add(bootstrapThree_button);
 			}
-			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(), bootstrapThree_mens);
+			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(),mengl.getUrl() ,bootstrapThree_mens);
 			bootstrapThree_mengls.add(bootstrapThree_mengl);
 		}
 		
-		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), bootstrapThree_mengls);
+		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), home.getUrl(),bootstrapThree_mengls);
 		
 		return bootstrapThree;
 	}
