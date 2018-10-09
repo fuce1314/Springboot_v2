@@ -34,7 +34,7 @@ public class SpringbootTest {
 	
 	public void test2(){
 		
-		PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
+		/*PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
 		TsysPremission home= modelVo.getTsysPremission();
 		List<PremissionThreeModelVo> three_mengls= modelVo.getChildList();
 		List<BootstrapThree> bootstrapThree_mengls=new  ArrayList<BootstrapThree>();
@@ -62,10 +62,10 @@ public class SpringbootTest {
 		
 		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), bootstrapThree_mengls);
 		
+		*/
 		
 		
-		
-		System.out.println(new Gson().toJson(bootstrapThree));
+		/*System.out.println(new Gson().toJson(bootstrapThree));*/
 		
 		
 		
