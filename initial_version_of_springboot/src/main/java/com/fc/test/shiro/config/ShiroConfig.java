@@ -32,7 +32,11 @@ import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 @Configuration
 public class ShiroConfig {
 
-//	这是shiro的大管家，相当于mybatis里的SqlSessionFactoryBean
+	/**
+	 * 这是shiro的大管家，相当于mybatis里的SqlSessionFactoryBean
+	 * @param securityManager
+	 * @return
+	 */
 	@Bean
 	public ShiroFilterFactoryBean shiroFilterFactoryBean(org.apache.shiro.mgt.SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -48,7 +52,14 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		return shiroFilterFactoryBean;
 	}
-//  web应用管理配置
+	
+	/**
+	 * web应用管理配置
+	 * @param shiroRealm
+	 * @param cacheManager
+	 * @param manager
+	 * @return
+	 */
 	@Bean
 	public DefaultWebSecurityManager securityManager(Realm shiroRealm,CacheManager cacheManager,RememberMeManager manager) {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -57,7 +68,11 @@ public class ShiroConfig {
 		securityManager.setRealm(shiroRealm);
 		return securityManager;
 	}
-//  加密算法
+	
+	/**
+	 * 加密算法
+	 * @return
+	 */
 	@Bean
 	public HashedCredentialsMatcher hashedCredentialsMatcher() {
 		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -65,7 +80,11 @@ public class ShiroConfig {
 		hashedCredentialsMatcher.setHashIterations(1);//加密次数
 		return hashedCredentialsMatcher;
 	}
-//	记住我的配置
+	
+	/**
+	 * 记住我的配置
+	 * @return
+	 */
 	@Bean
 	public RememberMeManager rememberMeManager() {
 		Cookie cookie = new SimpleCookie("rememberMe");
@@ -75,27 +94,39 @@ public class ShiroConfig {
 		manager.setCookie(cookie);
 		return manager;
 	}
-//  缓存配置
+	/**
+	 * 缓存配置
+	 * @return
+	 */
 	@Bean
 	public CacheManager cacheManager() {
 		MemoryConstrainedCacheManager cacheManager=new MemoryConstrainedCacheManager();//使用内存缓存
 		return cacheManager;
 	}
-//	配置realm，用于认证和授权
+	
+	/**
+	 * 配置realm，用于认证和授权
+	 * @param hashedCredentialsMatcher
+	 * @return
+	 */
 	@Bean
 	public AuthorizingRealm shiroRealm(HashedCredentialsMatcher hashedCredentialsMatcher) {
 		MyShiroRealm shiroRealm = new MyShiroRealm();
-//		校验密码用到的算法
+		//校验密码用到的算法
 		shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
 		return shiroRealm;
 	}
-//	启用shiro方言，这样能在页面上使用shiro标签
+	
+	/**
+	 * 启用shiro方言，这样能在页面上使用shiro标签
+	 * @return
+	 */
 	@Bean
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();
     }
 	
-/**
+	/**
      * 启用shiro注解
      *加入注解的使用，不加入这个注解不生效
      */
