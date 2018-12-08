@@ -201,7 +201,7 @@ bootstrap-treeview|树结构组件||
 有任何问题可以提出
 
 ### 注意事项
-- 所有的model字段解释都在mysql数据库里面，请具体查看mysql的字段注解
+- 所有的model字段解释都在mysql的字段注释里面，请具体查看mysql的字段注解
 
 
 
