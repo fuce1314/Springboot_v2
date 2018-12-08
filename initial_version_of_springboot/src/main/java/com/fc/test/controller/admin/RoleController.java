@@ -35,7 +35,7 @@ public class RoleController extends BaseController{
 	private String prefix = "admin/role";
 	
 	@GetMapping("view")
-	@RequiresPermissions("system:user:view")
+	@RequiresPermissions("system:role:view")
     public String view(Model model)
     {	
 		
