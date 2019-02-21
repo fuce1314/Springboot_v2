@@ -63,6 +63,9 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         
+        <table tableName="t_sys_user" domainObjectName="TsysUser" enableCountByExample="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
         <!-- 配置需要生成的表 
         <table tableName="t_sys_user" domainObjectName="TsysUser" enableCountByExample="true">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
