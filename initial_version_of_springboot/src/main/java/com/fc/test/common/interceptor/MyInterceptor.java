@@ -25,6 +25,7 @@ public class MyInterceptor  implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 		String url2=request.getScheme()+"://"+ request.getServerName();
+		//设置前端的全局 地址，如果前端网页错乱请修改这儿
 		request.setAttribute("rootPath", url2+":"+request.getServerPort()+"/"+request.getContextPath());
 		//System.out.println("xxxxxxxxx==="+"http://localhost:8081/");
 		//System.out.println(">>>MyInterceptor1>>>>>>>在请求处理之前进行调用（Controller方法调用之前）");
