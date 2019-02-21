@@ -206,6 +206,7 @@ bootstrap-treeview|树结构组件||
 
 
 ### Github
+- 所有的github代码 以码云更新为准
 - https://github.com/fuce1314/Springboot_v2
 
 
@@ -213,3 +214,6 @@ bootstrap-treeview|树结构组件||
 
 ### bug 列表
  1、 目前发现权限添加的时候好像父级id我还没写好。。。等中秋一起撸完，你们先star 下，中秋后在下【20180922 1:30 已修改】
+
+### wiki
+ 1、 eclipse项目导入篇 https://gitee.com/bdj/SpringBoot_v2/wikis/springboot_v2%20%E5%AF%BC%E5%85%A5eclipse?sort_id=779742
