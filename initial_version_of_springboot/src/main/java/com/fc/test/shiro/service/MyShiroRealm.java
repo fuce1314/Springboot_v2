@@ -14,8 +14,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.fc.test.mapper.auto.TsysUserMapper;
 import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.mapper.custom.RoleDao;
 import com.fc.test.mapper.custom.TsysUserDao;
@@ -36,8 +34,7 @@ import com.google.gson.Gson;
 @Service
 public class MyShiroRealm extends AuthorizingRealm {
 	
-	@Autowired
-	private TsysUserMapper tsysUserMapper;
+	
 	
 	@Autowired
 	private TsysUserDao tsysUserDao;
