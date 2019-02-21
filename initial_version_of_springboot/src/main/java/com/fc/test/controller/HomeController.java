@@ -91,6 +91,7 @@ public class HomeController extends BaseController{
 					 setTitle(model, new TitleVo("欢迎页面", "首页", true,"欢迎进入", true, false));
 						
 					 view.setViewName("redirect:admin/index");
+					 return view;
 				 }catch (UnknownAccountException uae) {
 			            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
 			            redirectAttributes.addFlashAttribute("message", "未知账户");
