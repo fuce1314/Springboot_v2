@@ -57,14 +57,14 @@ public class CaptchaController extends BaseController
             String capStr = null;
             String code = null;
             BufferedImage bi = null;
-            if ("math".equals(type))
+            if ("math".equals(type))//验证码为算数 8*9 类型
             {
                 String capText = captchaProducerMath.createText();
                 capStr = capText.substring(0, capText.lastIndexOf("@"));
                 code = capText.substring(capText.lastIndexOf("@") + 1);
                 bi = captchaProducerMath.createImage(capStr);
             }
-            else if ("char".equals(type))
+            else if ("char".equals(type))//验证码为 abcd类型
             {
                 capStr = code = captchaProducer.createText();
                 bi = captchaProducer.createImage(capStr);
