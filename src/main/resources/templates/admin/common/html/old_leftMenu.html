@@ -1,0 +1,239 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div  th:fragment="leftMenu">
+	<!-- 左边菜单 -->
+	<div id="skin-select">
+		<!-- PC端 LOGO -->
+	    <div id="logo">
+	     <h1>SpringBoot<span>v2</span></h1>
+	    </div>
+	<!--END PC端 LOGO -->
+	
+	<!--点击隐藏左边菜单栏按钮 -->
+	    <a id="toggle">
+	        <span class="entypo-menu"></span>
+	    </a>
+	    <!--END点击隐藏左边菜单栏按钮 -->
+	    <!-- PC端搜索按钮 -->
+	    <div class="dark">
+	        <form action="#">
+	            <span>
+					<input type="text" name="search" value="" class="search rounded id_search" placeholder="菜单搜索" autofocus />
+	            </span>
+	        </form>
+	    </div>
+	<!-- 手机端搜索按钮  有bug-->
+	    <div class="search-hover">
+	        <form id="demo-2">
+	            <input type="search" placeholder="Search4 Menu..." class="id_search">
+	        </form>
+	    </div>
+	
+	
+	
+	<!-- 左侧菜单栏 -->
+	    <div class="skin-part">
+	        <div id="tree-wrap">
+	            <div class="side-bar">
+	                <ul class="topnav menu-left-nest">
+	                    <li>
+	                        <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
+	
+	                            <span class="widget-menu"></span>
+	                            <i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>
+	
+	                        </a>
+	                    </li>
+	
+	                    <li>
+	                        <a class="tooltip-tip ajax-load" href="#" title="Blog App">
+	                            <i class="icon-document-edit"></i>
+	                            <span>Blog App</span>
+	
+	                        </a>
+	                        <ul>
+	                            <li>
+	                                <a class="tooltip-tip2 ajax-load" href="blog-list.html" title="Blog List"><i class="entypo-doc-text"></i><span>Blog List</span></a>
+	                            </li>
+	                            <li>
+	                                <a class="tooltip-tip2 ajax-load" href="blog-detail.html" title="Blog Detail"><i class="entypo-newspaper"></i><span>Blog Details</span></a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                    <li>
+	                        <a class="tooltip-tip ajax-load" href="social.html" title="Social">
+	                            <i class="icon-feed"></i>
+	                            <span>Social</span>
+	
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a class="tooltip-tip ajax-load" href="media.html" title="Media">
+	                            <i class="icon-camera"></i>
+	                            <span>Media</span>
+	
+	                        </a>
+	                    </li>
+	                </ul>
+	
+	                <ul class="topnav menu-left-nest">
+	                    <li>
+	                        <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
+	
+	                            <span class="design-kit"></span>
+	                            <i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>
+	
+	                        </a>
+	                    </li>
+	
+	                    <li>
+	                        <a class="tooltip-tip ajax-load" href="index-2.html" title="Dashboard">
+	                            <i class="icon-window"></i>
+	                            <span>Dashboard</span>
+	
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a class="tooltip-tip ajax-load" href="mail.html" title="Mail">
+	                            <i class="icon-mail"></i>
+	                            <span>mail</span>
+	                            <div class="noft-blue">289</div>
+	                        </a>
+	                    </li>
+	
+	                    <li>
+	                        <a class="tooltip-tip ajax-load" href="icon.html" title="Icons">
+	                            <i class="icon-preview"></i>
+	                            <span>Icons</span>
+	                            <div class="noft-blue" style="display: inline-block; float: none;">New</div>
+	                        </a>
+	                    </li>
+	
+	                    <li>
+	                        <a class="tooltip-tip" href="#" title="Extra Pages">
+	                            <i class="icon-document-new"></i>
+	                            <span>Extra Page</span>
+	                        </a>
+	                        <ul>
+	                            <li>
+	                                <a class="tooltip-tip2 ajax-load" href="blank_page.html" title="Blank Page"><i class="icon-media-record"></i><span>Blank Page</span></a>
+	                            </li>
+	                             <li>
+	                                <a class="tooltip-tip2 ajax-load" href="profile.html" title="Profile Page"><i class="icon-user"></i><span>Profile Page</span></a>
+	                            </li>
+	                            <li>
+	                                <a class="tooltip-tip2 ajax-load" href="invoice.html" title="Invoice"><i class="entypo-newspaper"></i><span>Invoice</span></a>
+	                            </li>
+	                            <li>
+	                                <a class="tooltip-tip2 ajax-load" href="pricing_table.html" title="Pricing Table"><i class="fontawesome-money"></i><span>Pricing Table</span></a>
+	                            </li>
+	                            <li>
+	                                <a class="tooltip-tip2 ajax-load" href="time-line.html" title="Time Line"><i class="entypo-clock"></i><span>Time Line</span></a>
+	                            </li>
+	                            <li>
+	                                <a class="tooltip-tip2" href="404.html" title="404 Error Page"><i class="icon-thumbs-down"></i><span>404 Error Page</span></a>
+	       						</li>
+	                            <li>
+	                                <a class="tooltip-tip2" href="500.html" title="500 Error Page"><i class="icon-thumbs-down"></i><span>500 Error Page</span></a>
+	                            </li>
+	                            <li>
+	                                <a class="tooltip-tip2" href="lock-screen.html" title="Lock Screen"><i class="icon-lock"></i><span>Lock Screen</span></a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	
+	                    <li>
+	                        <a class="tooltip-tip " href="login.html" title="login">
+	                            <i class="icon-download"></i>
+	                            <span>Login</span>
+	                        </a>
+	                    </li>
+	
+	                </ul>
+					
+					<!-- 系统设置 -->
+	                <ul id="menu-showhide" class="topnav menu-left-nest">
+	                    <li>
+	                        <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
+	                            <span class="component"></span>
+	                            <i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>
+	                        </a>
+	                    </li>
+	
+	                    <li>
+	                        <a class="tooltip-tip" th:href="@{${rootPath}+'UserController/view'}" title="用户管理">
+	                            <i class="icon icon-user"></i>
+								<span>用户管理</span>
+	                 		</a>
+	                    </li>
+	                    <li>
+	                        <a class="tooltip-tip" th:href="@{${rootPath}+'RoleController/view'}" title="角色管理">
+	                            <i class="icon icon-user-group"></i>
+								<span>角色管理</span>
+	                 		</a>
+	                    </li>
+	                    <li>
+	                        <a class="tooltip-tip" th:href="@{${rootPath}+'PremissionController/view'}" title="权限管理">
+	                            <i class="fa fa-key"></i>
+								<span>权限管理</span>
+	                 		</a>
+	                    </li>
+	                    <li>
+	                        <a class="tooltip-tip" th:href="@{${rootPath}+'FileController/view'}" title="文件管理">
+	                            <i class="fa fa-file-image-o"></i>
+								<span>文件管理</span>
+	                 		</a>
+	                    </li>
+	                    <li>
+	                        <a class="tooltip-tip" th:href="@{${rootPath}+'LogController/view'}" title="文件管理">
+	                            <i class="fa fa-bitbucket"></i>
+								<span>日志管理</span>
+	                 		</a>
+	                    </li>
+	                </ul>
+					<!-- 结束系统设置 -->
+	
+	                <div class="side-dash">
+	                    <h3>
+	                        <span>设备</span>
+	                    </h3>
+	                    <ul class="side-dashh-list">
+	                        <li>Avg. Traffic
+	                            <span>25k<i style="color:#44BBC1;" class="fa fa-arrow-circle-up"></i>
+	                            </span>
+	                        </li>
+	                        <li>Visitors
+	                            <span>80%<i style="color:#AB6DB0;" class="fa fa-arrow-circle-down"></i>
+	                            </span>
+	                        </li>
+	                        <li>Convertion Rate
+	                            <span>13m<i style="color:#19A1F9;" class="fa fa-arrow-circle-up"></i>
+	                            </span>
+	                        </li>
+	                    </ul>
+	                    <h3>
+	                        <span>交通</span>
+	                    </h3>
+	                    <ul class="side-bar-list">
+	                        <li>Avg. Traffic
+	                            <div class="linebar">5,20,30</div>
+	                        </li>
+	                        <li>Visitors
+	                            <div class="linebar2">9,7,8,9,5,9,6,8,7</div>
+	                        </li>
+	                        <li>Convertion Rate
+	                            <div class="linebar3">5,7,8,9,3,5,3,8,5</div>
+	                        </li>
+	                    </ul>
+	                    <h3>
+	                        <span>游客</span>
+	                    </h3>
+	                    <div id="g1" style="height:180px" class="gauge"></div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- 左侧菜单栏 -->
+	</div>
+	<!-- 结束左边菜单栏 -->
+
+</div>

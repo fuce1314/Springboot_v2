@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+.content-wrap {
+     padding: 0px;
+}
+body {
+	 color: #9ea7b3;
+    font-family: "Open Sans", Arial, sans-serif!important;
+    font-size: 13px!important;
+    line-height: 20px;
+    overflow-x: hidden!important;
+    min-height: 100%;
+    z-index: -2;
+    margin: 0px !important;
+    background: url() no-repeat top center fixed;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+label.error {
+    position: absolute;
+    right: 18px;
+    top: 5px;
+    color: #ef392b;
+    font-size: 12px;
+}
+.icheckbox-blue > label{
+	    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    /* padding-left: 25px; */
+    padding-right: 15px;
+    padding-top: 5px;
+}
+.sqcheckbox{
+    width: 16px;
+    height: 16px;
+    background-color: red;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+}
