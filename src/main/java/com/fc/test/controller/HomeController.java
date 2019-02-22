@@ -86,12 +86,12 @@ public class HomeController extends BaseController{
 					 if(rememberMe) {
 						 token.setRememberMe(true);
 					 }
+					 //存入用户
 					 currentUser.login(token);
 					 
-					 setTitle(model, new TitleVo("欢迎页面", "首页", true,"欢迎进入", true, false));
+					 //setTitle(model, new TitleVo("欢迎页面", "首页", true,"欢迎进入", true, false));
 						
-					 view.setViewName("redirect:admin/index");
-					 return view;
+					 
 				 }catch (UnknownAccountException uae) {
 			            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
 			            redirectAttributes.addFlashAttribute("message", "未知账户");
@@ -115,6 +115,7 @@ public class HomeController extends BaseController{
 			 redirectAttributes.addFlashAttribute("message", "验证码不正确");
 		 }
 		
+		 //跳转到 get请求的登陆方法
 		 view.setViewName("redirect:/login");
 		 return view;
 		 
