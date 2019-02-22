@@ -2,7 +2,7 @@
 spring :
   datasource :
       driverClassName : com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
       username: root
       password: root
       hikari:
