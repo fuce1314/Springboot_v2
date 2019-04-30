@@ -158,7 +158,6 @@ public class BaseController
 		//小控件
 		model.addAttribute("isControl",titleVo.isControl());
 		model.addAttribute("isribbon", titleVo.isIsribbon());
-		System.out.println("x");
     }
 
    

@@ -35,7 +35,17 @@ public class HomeController extends BaseController{
 	private static Logger logger=LoggerFactory.getLogger(HomeController.class);
 	
 
+	@ApiOperation(value="首页",notes="首页")
+	@GetMapping("/index")
+	public String index() {
+		return "admin/index";
+	}
 	
+	@ApiOperation(value="局部刷新区域",notes="局部刷新区域")
+	@GetMapping("/main")
+	public String main() {
+		return "admin/main";
+	}
 	
 	/**
 	 * 请求到登陆界面
@@ -114,9 +124,10 @@ public class HomeController extends BaseController{
 		 }else{
 			 redirectAttributes.addFlashAttribute("message", "验证码不正确");
 		 }
-		
+		 BootstrapThree bootstrapThree=sysPremissionService.getbooBootstrapThreePerm();
+     	 request.getSession().setAttribute("bootstrapThree", bootstrapThree);
 		 //跳转到 get请求的登陆方法
-		 view.setViewName("redirect:/login");
+		 view.setViewName("admin/index");
 		 return view;
 		 
 	}

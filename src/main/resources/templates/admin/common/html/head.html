@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Le styles -->
-    <link rel="stylesheet" type="text/css" th:href="@{{path}static/admin/assets/css/style.css(path=${rootPath})}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/admin/assets/css/style.css}">
     <!-- Ladda for Bootstrap 3按钮加载进度插件 -->
-    <link rel="stylesheet" type="text/css" th:href="@{{path}static/admin/assets/css/loader-style.css(path=${rootPath})}">
-    <link rel="stylesheet" type="text/css" th:href="@{{path}static/admin/assets/css/bootstrap.css(path=${rootPath})}">
-    <link rel="stylesheet" type="text/css" th:href="@{{path}static/admin/assets/js/progress-bar/number-pb.css(path=${rootPath})}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/admin/assets/css/loader-style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/admin/assets/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/admin/assets/js/progress-bar/number-pb.css}">
 	
   
 
@@ -23,7 +23,7 @@
         <![endif]-->
     <!-- Fav and touch icons -->
     <link rel="shortcut icon" th:href="${rootPath}">
-	<link rel="icon" th:href="${rootPath}+'static/admin/images/favicon.ico'" type="image/x-icon">
+	<link rel="icon" th:href="@{/static/admin/images/favicon.ico}" type="image/x-icon">
 	<th:block th:replace="${titles}" />
 	<!-- 替换新的links-->
     <th:block th:replace="${links}" />

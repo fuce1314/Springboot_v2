@@ -11,8 +11,9 @@ fuce:
 #tomcat config
 server :
   port : 8080
-  #项目名字
-  #context-path=/opermanager
+  ##项目名字配置
+  #servlet : 
+  #  context-path : /demo
   tomcat :
     max-threads : 128
     min-spare-threads : 5

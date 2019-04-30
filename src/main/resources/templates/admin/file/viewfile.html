@@ -5,7 +5,7 @@
 <title th:text=${title}></title>
 <!-- 这儿引用单独的css link -->
 <!-- Ladda for Bootstrap 3按钮加载进度插件 -->
-<link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
+<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
 
 <style type="text/css">
 .content-wrap {
@@ -63,10 +63,10 @@ label.error {
 <!-- 通用js -->
 <div th:include="admin/common/html/js :: onload_js"></div>
 <!-- 弹窗 -->
-<script th:src="@{{path}static/admin/assets/js/layer/layer.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
 <!-- 遮罩层 -->
-<script th:src="@{{path}static/admin/assets/js/blockUI/jquery.blockUI.js(path=${rootPath})}" type="text/javascript"></script>
-<script th:src="@{{path}static/admin/assets/js/bootstrap/js/base_list.js(path=${rootPath})}" type="text/javascript"></script>
+<script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
+<script th:src="@{/static/admin/assets/js/bootstrap/js/base_list.js}" type="text/javascript"></script>
 
 
 <script type="text/javascript">

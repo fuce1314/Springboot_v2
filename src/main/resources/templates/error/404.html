@@ -5,8 +5,8 @@
 
 <title th:text=${title}></title>
 <!-- 这儿引用单独的css link -->
-<link rel="stylesheet" th:href="@{{path}static/admin/assets/js/button/ladda/ladda.min.css(path=${rootPath})}">
-<link rel="stylesheet" th:href="@{{path}static/admin/assets/css/extra-pages.css(path=${rootPath})}">
+<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
+<link rel="stylesheet" th:href="@{/static/admin/assets/css/extra-pages.css}">
 <style type="text/css">
 /**
 *这里写单独的css样式
@@ -69,7 +69,16 @@
    
 </div>
     
+<script type="text/javascript">
+$(function () {
+    //判断一下当前是不是做顶层，如果不是，则做一下顶层页面重定向
+     if (window != top) {
+         top.location.href = location.href;
+     }
+ });  
 
+
+</script>
 </body>
 
 
