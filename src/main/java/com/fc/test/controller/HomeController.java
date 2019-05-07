@@ -87,7 +87,7 @@ public class HomeController extends BaseController{
 		 ModelAndView view =new ModelAndView();
 		 String scode = (String)request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 		 //判断验证码
-		 if(StringUtils.isNotEmpty(code)&&scode.equals(code)){
+		 if(StringUtils.isNotEmpty(scode)&&StringUtils.isNotEmpty(code)&&scode.equals(code)){
 			 String userName = user.getUsername();
 			 Subject currentUser = SecurityUtils.getSubject();
 			 if(!currentUser.isAuthenticated()) {
