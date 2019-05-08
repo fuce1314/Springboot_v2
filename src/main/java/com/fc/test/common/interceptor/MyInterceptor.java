@@ -24,7 +24,7 @@ public class MyInterceptor  implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-		String url2=request.getScheme()+"://"+ request.getServerName();
+		//String url2=request.getScheme()+"://"+ request.getServerName();
 		//设置前端的全局 地址，如果前端网页错乱请修改这儿
 		request.setAttribute("rootPath", request.getContextPath());
 		//System.out.println("xxxxxxxxx==="+"http://localhost:8081/");
