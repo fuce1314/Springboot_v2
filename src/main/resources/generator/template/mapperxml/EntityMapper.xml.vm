@@ -201,7 +201,7 @@
     where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.dataType}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="www.sxy.com.model.TTsts" >
+  <update id="updateByPrimaryKey" parameterType="${package}.${moduleName}.auto.${className}" >
     update ${tableName}
     set 
      #set( $lag = 0)

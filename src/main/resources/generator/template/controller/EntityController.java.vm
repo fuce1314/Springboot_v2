@@ -1,4 +1,4 @@
-package ${package}.controller.admin;
+package ${package}.controller.${controller};
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageInfo;
 import ${package}.common.base.BaseController;
 import ${package}.common.domain.AjaxResult;
-import ${package}.common.log.Log;
-import ${package}.${moduleName}.auto.YbZm;
+import ${package}.${moduleName}.auto.${className};
 import ${package}.${moduleName}.custom.TableSplitResult;
 import ${package}.${moduleName}.custom.Tablepar;
 import ${package}.${moduleName}.custom.TitleVo;
-import ${package}.service.YbZmService;
+import ${package}.service.${className}Service;
 import io.swagger.annotations.Api;
 
 @Controller
@@ -31,7 +30,7 @@ public class ${className}Controller extends BaseController{
 	private ${className}Service ${classname}Service;
 	
 	@GetMapping("view")
-	@RequiresPermissions("ywzspt:${classname}:view")
+	@RequiresPermissions("gen:${classname}:view")
     public String view(Model model)
     {	
 		String str="${comments}";
@@ -40,7 +39,6 @@ public class ${className}Controller extends BaseController{
     }
 	
 	
-	@Log(title = "集合查询", action = "111")
 	@PostMapping("list")
 	@RequiresPermissions("gen:${classname}:list")
 	@ResponseBody

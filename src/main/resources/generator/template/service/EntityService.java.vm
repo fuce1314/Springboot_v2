@@ -36,7 +36,7 @@ public class ${className}Service implements BaseService<${className}, ${classNam
 	        ${className}Example testExample=new ${className}Example();
 	        testExample.setOrderByClause("id ASC");
 	        if(name!=null&&!"".equals(name)){
-	        	testExample.createCriteria().andNameLike("%"+name+"%");
+	        	testExample.createCriteria().and${fuzzyQuery}Like("%"+name+"%");
 	        }
 
 	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
@@ -63,7 +63,7 @@ public class ${className}Service implements BaseService<${className}, ${classNam
 
 	
 	@Override
-	public int updateByPrimaryKeySelective(YbZm record) {
+	public int updateByPrimaryKeySelective(${className} record) {
 		return ${classname}Mapper.updateByPrimaryKeySelective(record);
 	}
 #end	
@@ -127,7 +127,7 @@ public class ${className}Service implements BaseService<${className}, ${classNam
 	 */
 	public int checkNameUnique(${className} ${classname}){
 		${className}Example example=new ${className}Example();
-		example.createCriteria().andNameEqualTo(${classname}.getName());
+		example.createCriteria().and${fuzzyQuery}EqualTo(${classname}.get${fuzzyQuery}());
 		List<${className}> list=${classname}Mapper.selectByExample(example);
 		return list.size();
 	}
