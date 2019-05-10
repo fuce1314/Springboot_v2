@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
+import com.fc.test.shiro.util.ShiroUtils;
 import com.github.pagehelper.PageInfo;
+
 
 /**
  * 角色Controller
@@ -140,6 +141,11 @@ public class RoleController extends BaseController{
     @ResponseBody
     public AjaxResult editSave(TsysRole tsysRole,String prem)
     {
-        return toAjax(sysRoleService.updateRoleAndPrem(tsysRole,prem));
+    	int i=sysRoleService.updateRoleAndPrem(tsysRole,prem);
+    	if(i>0) {
+    		ShiroUtils.clearCachedAuthorizationInfo();
+    	}
+		
+        return toAjax(i);
     }
 }

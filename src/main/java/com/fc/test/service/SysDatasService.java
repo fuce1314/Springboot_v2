@@ -35,7 +35,7 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
 	 */
 	 public PageInfo<TsysDatas> list(Tablepar tablepar,String searchTxt){
 	        TsysDatasExample testExample=new TsysDatasExample();
-	        testExample.setOrderByClause("id+0 ASC");
+	        testExample.setOrderByClause("id+0 desc");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andIdLike("%"+searchTxt+"%");
 	        }

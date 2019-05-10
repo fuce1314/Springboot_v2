@@ -50,7 +50,9 @@ public class GenUtils {
         templates.add("generator/template/model/EntityExample.java.vm");
         templates.add("generator/template/mapperxml/EntityMapper.xml.vm");
         templates.add("generator/template/service/EntityService.java.vm");
+        templates.add("generator/template/mapper/EntityMapper.java.vm");
         templates.add("generator/template/controller/EntityController.java.vm");
+        templates.add("generator/template/sql/menu.sql.vm");
         return templates;
     }
 
@@ -133,11 +135,14 @@ public class GenUtils {
         map.put("columnsStr",columnsStr);
         map.put("hasBigDecimal", hasBigDecimal);
         map.put("mainPath", mainPath);
-        map.put("package", config.getString("package" ));
-        map.put("moduleName", config.getString("moduleName" ));
-        map.put("author", config.getString("author" ));
-        map.put("email", config.getString("email" ));
+        map.put("package", config.getString("package"));
+        map.put("moduleName", config.getString("moduleName"));
+        map.put("controller", config.getString("controller"));
+        map.put("author", config.getString("author"));
+        map.put("email", config.getString("email"));
         map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
+        map.put("SnowflakeIdWorker", SnowflakeIdWorker.class);
+        map.put("fuzzyQuery", config.getString("fuzzyQuery"));
         VelocityContext context = new VelocityContext(map);
 
         //获取模板列表
@@ -150,7 +155,7 @@ public class GenUtils {
 
             try {
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ))));
+                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller"))));
                 IOUtils.write(sw.toString(), zip, "UTF-8" );
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();
@@ -198,7 +203,7 @@ public class GenUtils {
     /**
      * 获取文件名
      */
-    public static String getFileName(String template, String className, String packageName, String moduleName) {
+    public static String getFileName(String template, String className, String packageName, String moduleName,String controller) {
         String packagePath = "main" + File.separator + "java" + File.separator;
         if (StringUtils.isNotBlank(packageName)) {
             packagePath += packageName.replace(".", File.separator) + File.separator;
@@ -208,11 +213,11 @@ public class GenUtils {
             return packagePath+moduleName +File.separator+ "auto" + File.separator + className + ".java";
         }
         if(template.contains("EntityExample.java.vm")) {//modelExample
-        	 return packagePath+File.separator+"mapper" +File.separator+ "auto" + File.separator + className + "Example.java";
+        	return packagePath+moduleName +File.separator+ "auto" + File.separator + className + "Example.java";
         }
         
         if (template.contains("EntityMapper.java.vm")) {//dao or  mapper
-            return packagePath + "mapper" + File.separator + className + "Mapper.java";
+            return packagePath + "mapper" + File.separator + "auto" + File.separator + className + "Mapper.java";
         }
         if (template.contains("EntityMapper.xml.vm")) {//dao or  mapper
             return "mybatis" + File.separator+"auto"+ File.separator + className + "Mapper.xml";
@@ -222,8 +227,12 @@ public class GenUtils {
             return packagePath + "service" + File.separator + className + "Service.java";
         }
         if(template.contains("EntityController.java.vm")) {
-        	 return packagePath + "controller" + File.separator + className + "Controller.java";
+        	 return packagePath + "controller" + File.separator + controller + File.separator + className + "Controller.java";
         }
+        if(template.contains("menu.sql.vm")) {
+       	 return "menu.sql";
+       }
+       
 
 //        if (template.contains("ServiceImpl.java.vm" )) {
 //            return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";

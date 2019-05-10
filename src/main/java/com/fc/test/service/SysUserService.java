@@ -60,7 +60,7 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	 */
 	 public PageInfo<TsysUser> list(Tablepar tablepar,String username){
 	        TsysUserExample testExample=new TsysUserExample();
-	        testExample.setOrderByClause("id ASC");
+	        testExample.setOrderByClause("id+0 desc");
 	        if(username!=null&&!"".equals(username)){
 	        	testExample.createCriteria().andUsernameLike("%"+username+"%");
 	        }

@@ -41,7 +41,7 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 	 */
 	 public PageInfo<TsysRole> list(Tablepar tablepar,String searchTxt){
 	        TsysRoleExample testExample=new TsysRoleExample();
-	        testExample.setOrderByClause("id ASC");
+	        testExample.setOrderByClause("id+0 desc");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
 	        }
