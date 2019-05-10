@@ -46,12 +46,11 @@ public class GenUtils {
         templates.add("generator/template/add-or-update.vue.vm");
 */
         
-       // templates.add("generator/template/model/Entity.java.vm");
-       // templates.add("generator/template/model/EntityExample.java.vm");
-        
-       // templates.add("generator/template/mapperxml/EntityMapper.xml.vm");
-       // templates.add("generator/template/service/EntityService.java.vm");
-          templates.add("generator/template/service/EntityController.java.vm");
+        templates.add("generator/template/model/Entity.java.vm");
+        templates.add("generator/template/model/EntityExample.java.vm");
+        templates.add("generator/template/mapperxml/EntityMapper.xml.vm");
+        templates.add("generator/template/service/EntityService.java.vm");
+        templates.add("generator/template/controller/EntityController.java.vm");
         return templates;
     }
 
@@ -209,7 +208,7 @@ public class GenUtils {
             return packagePath+moduleName +File.separator+ "auto" + File.separator + className + ".java";
         }
         if(template.contains("EntityExample.java.vm")) {//modelExample
-        	 return packagePath+File.separator+"mapper" + "auto" + File.separator + className + "Example.java";
+        	 return packagePath+File.separator+"mapper" +File.separator+ "auto" + File.separator + className + "Example.java";
         }
         
         if (template.contains("EntityMapper.java.vm")) {//dao or  mapper
