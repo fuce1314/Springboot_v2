@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fc.test.mapper.auto.GeneratorMapper">
+	<resultMap id="BaseResultMap" type="com.fc.test.model.custom.TsysTables" >
+	    <result column="table_name" property="tableName" jdbcType="VARCHAR" />
+	    <result column="engine" property="engine" jdbcType="VARCHAR" />
+	    <result column="table_comment" property="tableComment" jdbcType="VARCHAR" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  	</resultMap>
+	<select id="queryList" resultMap="BaseResultMap" parameterType="String">
+		select table_name , engine, table_comment , create_time  from information_schema.tables
+		where table_schema = (select database())
+		<if test="_parameter != null and _parameter.trim() != ''">
+			and table_name like concat('%', #{tableName}, '%')
+		</if>
+		order by create_time desc
+	</select>
+
+	<select id="queryTable" resultMap="BaseResultMap" parameterType="String">
+		select table_name , engine, table_comment , create_time from information_schema.tables
+			where table_schema = (select database()) and table_name = #{tableName}
+	</select>
+
+	<select id="queryColumns" resultType="map" parameterType="String">
+		select column_name columnName, data_type dataType, column_comment columnComment, column_key columnKey, extra from information_schema.columns
+ 			where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
+	</select>
+</mapper>
