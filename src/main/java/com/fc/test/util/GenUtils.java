@@ -46,13 +46,13 @@ public class GenUtils {
         templates.add("generator/template/add-or-update.vue.vm");
 */
         
-//        templates.add("generator/template/model/Entity.java.vm");
-//        templates.add("generator/template/model/EntityExample.java.vm");
-//        templates.add("generator/template/mapperxml/EntityMapper.xml.vm");
-//        templates.add("generator/template/service/EntityService.java.vm");
-//        templates.add("generator/template/mapper/EntityMapper.java.vm");
-//        templates.add("generator/template/controller/EntityController.java.vm");
-//        templates.add("generator/template/sql/menu.sql.vm");
+        templates.add("generator/template/model/Entity.java.vm");
+        templates.add("generator/template/model/EntityExample.java.vm");
+        templates.add("generator/template/mapperxml/EntityMapper.xml.vm");
+        templates.add("generator/template/service/EntityService.java.vm");
+        templates.add("generator/template/mapper/EntityMapper.java.vm");
+        templates.add("generator/template/controller/EntityController.java.vm");
+        templates.add("generator/template/sql/menu.sql.vm");
         templates.add("generator/template/html/list.html.vm");
         
         return templates;
