@@ -62,8 +62,8 @@
                                 <div class="form_left">
                                     <form role="form" class="form-inline">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2" class="sr-only">角色名字</label>
-                                            <input type="text" name="searchTxt" placeholder="角色名字"class="form-control">
+                                            <label for="exampleInputEmail2" class="sr-only">搜索名字</label>
+                                            <input type="text" name="searchTxt" placeholder="搜索名字"class="form-control">
                                         </div>
                                         <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
                                     </form>
@@ -155,11 +155,11 @@
 <!-- jquery-export 表格导出插件 -->
 
 <!-- 导出 -->
-var dataUrl=window.rootPath+"/YbZmController/list";
-var removeUrl=window.rootPath+"/YbZmController/remove";
-var createUrl=window.rootPath+"/YbZmController/add";
-var updateUrl=window.rootPath+"/YbZmController/edit/{id}";
-var exportUrl=window.rootPath+"/YbZmController/export";
+var dataUrl=window.rootPath+"/${className}Controller/list";
+var removeUrl=window.rootPath+"/${className}Controller/remove";
+var createUrl=window.rootPath+"/${className}Controller/add";
+var updateUrl=window.rootPath+"/${className}Controller/edit/{id}";
+var exportUrl=window.rootPath+"/${className}Controller/export";
   var options = {
 		dataUrl: dataUrl,
         createUrl: createUrl,
@@ -167,23 +167,24 @@ var exportUrl=window.rootPath+"/YbZmController/export";
         removeUrl:removeUrl,
         exportUrl: exportUrl,
         sortName: "roleSort",
-        modalName: "照明",
+        modalName: "${comments}",
         search: false,
 	   dataColumns: [
 			{
 			    checkbox: true
-			},                   
-			{
-			    field: 'id',
-			    title: '序号'
 			},
+#foreach ($column in $columns)                
 			{
-			    field: 'name',
-			    title: '名称'
+			    field: '${column.attrname}',
+			    title: '${column.comments}'
 			},
-			{
-			    field: 'state',
-			    title: '照明状态',
+#end
+
+/*	
+参照修改注释
+		{
+			    field: 'xxstate',
+			    title: 'xx状态',
 		    	formatter: function (value, row, index) {
 			        var actions = [];
 			        if(value==0){
@@ -193,22 +194,8 @@ var exportUrl=window.rootPath+"/YbZmController/export";
 			        }
 			      	return actions.join('');			    
 				 }
-			},
-			{
-			    field: 'type',
-			    title: '故障状态',
-		    	formatter: function (value, row, index) {
-			        var actions = [];
-			        if(value==0){
-			        	 actions.push('<span class="label label-danger">故障</span>');
-			        }else if(value==1){
-			        	 actions.push('<span class="label label-primary">正常</span>');
-			        }else if(value==2){
-			        	 actions.push('<span class="label label-warning">未关闭</span>');
-			        }
-			      	return actions.join('');			    
-				 }
-			},
+			}
+*/
 			{
 			    title: '操作',
 			    formatter: function (value, row, index) {
@@ -227,15 +214,6 @@ $(function(){
 	oTab.Init();
 })
 </script>
-
-
-<script type="text/javascript">
-
-
-
-</script>
-
-
 
 </body>
 

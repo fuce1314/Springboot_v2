@@ -46,13 +46,15 @@ public class GenUtils {
         templates.add("generator/template/add-or-update.vue.vm");
 */
         
-        templates.add("generator/template/model/Entity.java.vm");
-        templates.add("generator/template/model/EntityExample.java.vm");
-        templates.add("generator/template/mapperxml/EntityMapper.xml.vm");
-        templates.add("generator/template/service/EntityService.java.vm");
-        templates.add("generator/template/mapper/EntityMapper.java.vm");
-        templates.add("generator/template/controller/EntityController.java.vm");
-        templates.add("generator/template/sql/menu.sql.vm");
+//        templates.add("generator/template/model/Entity.java.vm");
+//        templates.add("generator/template/model/EntityExample.java.vm");
+//        templates.add("generator/template/mapperxml/EntityMapper.xml.vm");
+//        templates.add("generator/template/service/EntityService.java.vm");
+//        templates.add("generator/template/mapper/EntityMapper.java.vm");
+//        templates.add("generator/template/controller/EntityController.java.vm");
+//        templates.add("generator/template/sql/menu.sql.vm");
+        templates.add("generator/template/html/list.html.vm");
+        
         return templates;
     }
 
@@ -121,7 +123,7 @@ public class GenUtils {
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader" );
         Velocity.init(prop);
         String mainPath = config.getString("mainPath" );
-        mainPath = StringUtils.isBlank(mainPath) ? "io.renren" : mainPath;
+        mainPath = StringUtils.isBlank(mainPath) ? "com.fc.test" : mainPath;
         //封装模板数据
         Map<String, Object> map = new HashMap<>();
         map.put("tableName", tableEntity.getTableName());
@@ -155,7 +157,7 @@ public class GenUtils {
 
             try {
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller"))));
+                zip.putNextEntry(new ZipEntry(getFileName(template,tableEntity.getClassname() ,tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller"))));
                 IOUtils.write(sw.toString(), zip, "UTF-8" );
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();
@@ -203,7 +205,7 @@ public class GenUtils {
     /**
      * 获取文件名
      */
-    public static String getFileName(String template, String className, String packageName, String moduleName,String controller) {
+    public static String getFileName(String template,String classname,String className, String packageName, String moduleName,String controller) {
         String packagePath = "main" + File.separator + "java" + File.separator;
         if (StringUtils.isNotBlank(packageName)) {
             packagePath += packageName.replace(".", File.separator) + File.separator;
@@ -230,9 +232,17 @@ public class GenUtils {
         	 return packagePath + "controller" + File.separator + controller + File.separator + className + "Controller.java";
         }
         if(template.contains("menu.sql.vm")) {
-       	 return "menu.sql";
-       }
-       
+       	 	 return "menu.sql";
+        }
+        if(template.contains("list.html.vm")) {
+        	 return "html"+File.separator + classname+File.separator +"/list.html";
+        }
+        if(template.contains("add.html.vm")) {
+       	 	 return "html"+File.separator + classname+File.separator +"/add.html";
+        }
+        if(template.contains("edit.html.vm")) {
+       	 	return "html"+File.separator + classname+File.separator +"/edit.html";
+        }
 
 //        if (template.contains("ServiceImpl.java.vm" )) {
 //            return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
