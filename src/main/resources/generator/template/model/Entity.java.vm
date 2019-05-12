@@ -39,7 +39,7 @@ public class ${className} implements Serializable {
 			
 	#else
 
-		public ${column.attrType} get{$column.attrName} () {
+		public ${column.attrType} get${column.attrName} () {
 	        return ${column.attrname};
 	    }
 	

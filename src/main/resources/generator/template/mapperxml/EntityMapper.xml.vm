@@ -86,7 +86,7 @@
     select 
     <include refid="Base_Column_List" />
     from ${tableName}
-    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="${pk.attrType}" >
@@ -192,13 +192,14 @@
     update ${tableName}
     <set >
     #foreach ($column in $columns)
+      #if(${pk.attrname} != ${column.attrname})
       <if test="${column.attrname} != null" >
         ${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}},
       </if>
-     
+      #end
     #end
     </set>
-    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="${package}.${moduleName}.auto.${className}" >
@@ -206,14 +207,14 @@
     set 
      #set( $lag = 0)
     #foreach ($column in $columns)
-    	
+    	#if(${pk.attrname} != ${column.attrname})
     	 #if(($lag+1)>=(${columns.size()}))	
 			${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}},
 		 #else
 			${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}}
 		 #end
 		 #set( $lag = $lag + 1 )
-    	
+    	#end
     #end
     where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
   </update>
