@@ -19,35 +19,35 @@ public class ${className} implements Serializable {
 	/**
 	 * $column.comments
 	 */
-	#if($column.attrType == "Date")
+	#if(${column.attrType} == "Date")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	#end
-	private $column.attrType $column.attrname;
+	private ${column.attrType} ${column.attrname};
 	#end
 
 	
 	#foreach ($column in $columns)
 	#if($column.attrType == "String")
 	
-		public $column.attrType get$column.attrName () {
+		public $column.attrType get${column.attrName}() {
 	        return $column.attrname;
 	    }
 	
-	    public void set$column.attrName ($column.attrType $column.attrname) {
-	        this.$column.attrname = $column.attrname == null ? null : $column.attrname .trim();
+	    public void set${column.attrName}(${column.attrType} ${column.attrname}){
+	        this.${column.attrname} = ${column.attrname} == null ? null : ${column.attrname}.trim();
 	    }
 			
 	#else
 
-		public $column.attrType get$column.attrName () {
-	        return $column.attrname;
+		public ${column.attrType} get{$column.attrName} () {
+	        return ${column.attrname};
 	    }
 	
-	    public void set$column.attrName ($column.attrType $column.attrname) {
-	        this.$column.attrname = $column.attrname;
+	    public void set${column.attrName} (${column.attrType} ${column.attrname}) {
+	        this.${column.attrname} = ${column.attrname};
 	    }
 	 
 	#end  
-		#end
+	#end
 	
 }

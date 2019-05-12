@@ -54,7 +54,7 @@ public class GenUtils {
         templates.add("generator/template/controller/EntityController.java.vm");
         templates.add("generator/template/sql/menu.sql.vm");
         templates.add("generator/template/html/list.html.vm");
-        
+        templates.add("generator/template/html/add.html.vm");
         return templates;
     }
 
