@@ -3,7 +3,7 @@
 <mapper namespace="${package}.mapper.auto.${className}Mapper">
   <resultMap id="BaseResultMap" type="${package}.${moduleName}.auto.${className}" >
 #foreach($column in $columns)
-    <result column="${column.columnName}" property="${column.attrname}" jdbcType="${column.dataType}" />
+    <result column="${column.columnName}" property="${column.attrname}" jdbcType="${column.mappdataType}" />
 #end
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -86,12 +86,12 @@
     select 
     <include refid="Base_Column_List" />
     from ${tableName}
-    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.dataType}
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="${pk.attrType}" >
     delete from ${tableName}
-    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.dataType}}
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
   </delete>
 #end
 
@@ -118,9 +118,9 @@
 	#set( $lag = 0)
   	#foreach ($column in $columns)
   	 #if(($lag+1)>=(${columns.size()}))	
-   	  #{${column.attrname},jdbcType=${column.dataType}}
+   	  #{${column.attrname},jdbcType=${column.mappdataType}}
      #else
-     	#{${column.attrname},jdbcType=${column.dataType}},
+     	#{${column.attrname},jdbcType=${column.mappdataType}},
      #end
      #set( $lag = $lag + 1 )
   	#end
@@ -141,7 +141,7 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
     #foreach ($column in $columns)
       <if test="${column.attrname} != null" >
-        #{${column.attrname},jdbcType=${column.dataType}},
+        #{${column.attrname},jdbcType=${column.mappdataType}},
       </if>
     #end
     </trim>
@@ -159,7 +159,7 @@
     <set >
     #foreach ($column in $columns)
       <if test="record.${column.attrname} != null" >
-        ${column.columnName} = #{record.${column.attrname},jdbcType=${column.dataType}},
+        ${column.columnName} = #{record.${column.attrname},jdbcType=${column.mappdataType}},
       </if>
     #end
      
@@ -176,9 +176,9 @@
     #set( $lag = 0)
     #foreach ($column in $columns)
     	 #if(($lag+1)>=(${columns.size()}))
-    	 ${column.columnName} = #{record.${column.attrname},jdbcType=${column.dataType}}
+    	 ${column.columnName} = #{record.${column.attrname},jdbcType=${column.mappdataType}}
     	 #else
-    	 ${column.columnName} = #{record.${column.attrname},jdbcType=${column.dataType}},
+    	 ${column.columnName} = #{record.${column.attrname},jdbcType=${column.mappdataType}},
     	 #end
       
     #end
@@ -193,12 +193,12 @@
     <set >
     #foreach ($column in $columns)
       <if test="${column.attrname} != null" >
-        ${column.columnName} = #{${column.attrname},jdbcType=${column.dataType}},
+        ${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}},
       </if>
      
     #end
     </set>
-    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.dataType}
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="${package}.${moduleName}.auto.${className}" >
@@ -208,14 +208,14 @@
     #foreach ($column in $columns)
     	
     	 #if(($lag+1)>=(${columns.size()}))	
-			${column.columnName} = #{${column.attrname},jdbcType=${column.dataType}},
+			${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}},
 		 #else
-			${column.columnName} = #{${column.attrname},jdbcType=${column.dataType}}
+			${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}}
 		 #end
 		 #set( $lag = $lag + 1 )
     	
     #end
-    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.dataType}}
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
   </update>
    #end
 </mapper>
