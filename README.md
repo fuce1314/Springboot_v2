@@ -227,3 +227,6 @@ springbootv2大更新功能[20190501]
 springbootv2大更新功能[20190507]
 - marst 为iframe加载方式的局部刷新框架
 - 添加新的分支为不局部刷新，需要的可以自行切换分支下载
+
+springbootv2大更新功能[20190512]
+- marst更新自动生成代码[有bug mapper.xml里面的varchar字段是小写 跟日期字段是datatime 字段 需要修改即可用]
