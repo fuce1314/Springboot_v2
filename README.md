@@ -169,7 +169,9 @@ bootstrap-treeview|树结构组件||
 ![HTML代码页面](https://images.gitee.com/uploads/images/2018/0822/004608_c55d62a4_123301.jpeg "未命名拼图 (1).jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203322_6dc467c2_123301.jpeg "QQ截图20180909203303.jpg")
 
-
+### 代码自动生成功能
+![自动生成代码](https://images.gitee.com/uploads/images/2019/0514/003054_e99cdee7_123301.png "自动生成页面.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0514/003215_127c9010_123301.png "代码自动生成文件.png")
 
 
 
