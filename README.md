@@ -194,7 +194,11 @@ bootstrap-treeview|树结构组件||
 - Springboot_v2脚手架会一直更新下去。
 - 需要进项目一起开发的请进群私聊我，让我们一起维护这个开发项目
 - 很多人反应说404，那是因为其他页面根本没做，因为权限脚手架只在系统设置里面。我留着其他链接，是方便你们根据需求自行添加页面
- 
+
+### 感谢开源软件列表
+1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
+
+
 ### 开发者联系
 - QQ：87766867 
 - QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>  进群备注springbootv2
