@@ -4,19 +4,19 @@
   $(function() {
       $("#button-bg").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg5.jpg')no-repeat center center fixed"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg5.jpg')repeat"
           });
       });
       $("#button-bg2").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg2.jpg')no-repeat center center fixed"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg2.jpg')repeat"
           });
       });
 
 
       $("#button-bg3").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg.jpg')no-repeat center center fixed"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg.jpg')repeat"
           });
 
 
@@ -44,28 +44,28 @@
       });
       $("#button-bg8").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg8.jpg')no-repeat center center fixed"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg8.jpg')repeat"
           });
       });
       $("#button-bg9").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg9.jpg')no-repeat center center fixed"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg9.jpg')repeat"
           });
       });
 
       $("#button-bg10").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg10.jpg')no-repeat center center fixed"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg10.jpg')repeat"
           });
       });
       $("#button-bg11").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg11.jpg')no-repeat center center fixed"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg11.jpg')repeat"
           });
       });
       $("#button-bg12").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg12.jpg')no-repeat center center fixed"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg12.jpg')repeat"
           });
       });
 
