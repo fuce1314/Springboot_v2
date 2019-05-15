@@ -25,11 +25,11 @@ public class SpringbootTest {
 	private PermissionDao permissionDao;
 	
 	public void test(){
-		PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
+		/*PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
 		Gson gson=new Gson();
 		System.out.println();
 		System.out.println(gson.toJson(modelVo));
-		System.out.println();
+		System.out.println();*/
 	}
 	
 	public void test2(){

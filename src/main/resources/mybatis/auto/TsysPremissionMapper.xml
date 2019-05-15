@@ -11,6 +11,7 @@
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="childcount" jdbcType="INTEGER" property="childCount"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, descripion, url, pid, perms, type, icon, order_num
+    id, name, descripion, url, pid, perms, type, icon, order_num, order_num,(select count(1) from t_sys_premission where pid=a.id) childcount
   </sql>
   <select id="selectByExample" parameterType="com.fc.test.model.auto.TsysPremissionExample" resultMap="BaseResultMap">
     select
@@ -79,7 +80,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_sys_premission
+    from t_sys_premission a
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,7 +91,7 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_sys_premission
+    from t_sys_premission a
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

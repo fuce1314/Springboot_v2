@@ -18,6 +18,8 @@ public class TsysPremission {
     private String icon;
 
     private Integer orderNum;
+    
+    private Integer childCount;
 
     public String getId() {
         return id;
@@ -108,6 +110,14 @@ public class TsysPremission {
 
 	public TsysPremission() {
 		super();
+	}
+
+	public Integer getChildCount() {
+		return childCount;
+	}
+
+	public void setChildCount(Integer childCount) {
+		this.childCount = childCount;
 	}
     
     

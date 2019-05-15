@@ -16,7 +16,6 @@ import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysPremissionExample;
 import com.fc.test.model.custom.BootstrapThree;
 import com.fc.test.model.custom.Tablepar;
-import com.fc.test.model.custom.PremissionThreeModelVo;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -40,7 +39,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 */
 	 public PageInfo<TsysPremission> list(Tablepar tablepar,String searchTxt){
 	        TsysPremissionExample testExample=new TsysPremissionExample();
-	        testExample.setOrderByClause("id+0 desc");
+	        testExample.setOrderByClause("id+0 ASC");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
 	        }
@@ -171,106 +170,52 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		return tsysPremissionMapper.selectByExample(example);
 	}
 	
-
-	/**
-	 * 获取权限树
-	 * @return
-	 */
-	public PremissionThreeModelVo queryThreePrem(){
-		//查询出首页
-		TsysPremission homeList=queryPid("0",0).get(0);
-		//赋值首页信息
-		PremissionThreeModelVo homeTmv=new PremissionThreeModelVo();
-		homeTmv.setTsysPremission(homeList);
-		//查询出所有的菜单栏管理分类
-		List<TsysPremission> menuGlList=queryPid(homeList.getId(),0);
-		List<PremissionThreeModelVo> menulanGlVos=new ArrayList<PremissionThreeModelVo>(); 
-		for (TsysPremission tsysPremission_menuGl : menuGlList) {//菜单栏管理
-			PremissionThreeModelVo menulanGlVo=new PremissionThreeModelVo();
-			
-			
-			List<PremissionThreeModelVo> menuVos=new ArrayList<PremissionThreeModelVo>();
-			//查出所有的菜单栏
-			List<TsysPremission> menuList=queryPid(tsysPremission_menuGl.getId(),1);
-			
-			for (TsysPremission tsysPremission_menu : menuList) {//菜单栏
-				PremissionThreeModelVo menuVo=new PremissionThreeModelVo();
-				
-				List<PremissionThreeModelVo> buttonsVos=new ArrayList<PremissionThreeModelVo>();
-				//查询所有的按钮
-				List<TsysPremission> buttonList=queryPid(tsysPremission_menu.getId(),2);
-				for (TsysPremission tsysPremission_button : buttonList) {//按钮
-					PremissionThreeModelVo buttonVo=new PremissionThreeModelVo();
-
-					//按钮赋值
-					buttonVo.setTsysPremission(tsysPremission_button);
-					buttonVo.setChildList(null);
-					//按钮添加子集
-					buttonsVos.add(buttonVo);
-				}
-				menuVo.setChildList(buttonsVos);
-				//菜单栏添加子集
-				menuVos.add(menuVo);
-				//菜单栏赋值
-				menuVo.setTsysPremission(tsysPremission_menu);
-				
-			}
-			//菜单栏管理添加子集
-			menulanGlVo.setChildList(menuVos);
-			//赋值菜单栏
-			menulanGlVo.setTsysPremission(tsysPremission_menuGl);
-			
-			//菜单栏管理赋值
-			menulanGlVos.add(menulanGlVo);
-		}
-		//首页填充菜单栏分类
-		homeTmv.setChildList(menulanGlVos);
-		return homeTmv;
-	}
-	
 	/**
 	 * 获取转换成bootstarp的权限数据
 	 * @return
 	 */
 	public BootstrapThree getbooBootstrapThreePerm(){
-		PremissionThreeModelVo modelVo= queryThreePrem();
-		TsysPremission home= modelVo.getTsysPremission();
-		List<PremissionThreeModelVo> three_mengls= modelVo.getChildList();
-		List<BootstrapThree> bootstrapThree_mengls=new  ArrayList<BootstrapThree>();
-		for (PremissionThreeModelVo menglx : three_mengls) {
-			TsysPremission mengl= menglx.getTsysPremission();
-			List<BootstrapThree> bootstrapThree_mens=new  ArrayList<BootstrapThree>();
-			
-			List<PremissionThreeModelVo> three_mens=menglx.getChildList();
-			for (PremissionThreeModelVo buttonx : three_mens) {
-				TsysPremission button=  buttonx.getTsysPremission();
-				List<PremissionThreeModelVo> three_buttons=buttonx.getChildList();
-				List<BootstrapThree> bootstrapThree_buttons=new  ArrayList<BootstrapThree>();
-				
-				for (PremissionThreeModelVo lasts : three_buttons) {
-					TsysPremission last= lasts.getTsysPremission();
-					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),last.getUrl(),null);
-					bootstrapThree_buttons.add(three_button);
-				}
-				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(),button.getUrl(),bootstrapThree_buttons);
-				bootstrapThree_mens.add(bootstrapThree_button);
-			}
-			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(),mengl.getUrl() ,bootstrapThree_mens);
-			bootstrapThree_mengls.add(bootstrapThree_mengl);
+		List<BootstrapThree> treeList = new ArrayList<BootstrapThree>();
+		List<TsysPremission> menuList =  getall();
+		treeList = getbooBootstrapThreePerm(menuList,"0");
+		if(treeList!=null&&treeList.size()==1) {
+			return treeList.get(0);
 		}
-		
-		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), home.getUrl(),bootstrapThree_mengls);
-		
-		return bootstrapThree;
+		return new BootstrapThree("菜单", "fa fa-home", "", "-1","###",treeList);
 	}
 	
+	
+	
+	/**
+	 * 获取树
+	 * @param menuList
+	 * @param parentId
+	 * @return
+	 */
+	private static List<BootstrapThree> getbooBootstrapThreePerm(List<TsysPremission> menuList,String parentId){
+		List<BootstrapThree> treeList = new ArrayList<>();
+		List<BootstrapThree> childList = null;
+		for(TsysPremission p : menuList) {
+			p.setPid(p.getPid()==null||p.getPid().trim().equals("")?"0":p.getPid());
+			if(p.getPid().toString().trim().equals(parentId)) {
+				if(p.getChildCount()!=null&&p.getChildCount()>0) {
+					childList = getbooBootstrapThreePerm(menuList, String.valueOf(p.getId()));
+				}
+				BootstrapThree bootstrapTree = new BootstrapThree(p.getName(), p.getIcon(), "", String.valueOf(p.getId()), p.getUrl(),childList);
+				treeList.add(bootstrapTree);
+				childList = null;
+			}
+		}
+		return treeList.size() >0 ? treeList : null;
+	}
 	
 	/**
 	 * 获取所有权限
 	 * @return
 	 */
 	public List<TsysPremission> getall(){
-		return  tsysPremissionMapper.selectByExample(new TsysPremissionExample());
+		TsysPremissionExample example = new TsysPremissionExample();
+		return  tsysPremissionMapper.selectByExample(example);
 	}
 	
 	
@@ -303,31 +248,33 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		List<TsysPremission> myTsysPremissions = permissionDao.queryRoleId(roleid);
 		// 获取所有的权限
 		BootstrapThree sysPremissions = getbooBootstrapThreePerm();
-		if (ifpermissions(myTsysPremissions, sysPremissions)) {
-			sysPremissions.setState(map);
-		}
-		List<BootstrapThree> menugl = sysPremissions.getNodes();
-		for (BootstrapThree menuglbootstrapThree : menugl) {
-			if (ifpermissions(myTsysPremissions, menuglbootstrapThree)) {// 菜单栏管理设置
-				menuglbootstrapThree.setState(map);
-			}
-			List<BootstrapThree> menu = menuglbootstrapThree.getNodes();
-			for (BootstrapThree menubootstrapThree : menu) {
-				if (ifpermissions(myTsysPremissions, menubootstrapThree)) {// 菜单栏设置
-					menubootstrapThree.setState(map);
-				}
-
-				List<BootstrapThree> buttons = menubootstrapThree.getNodes();
-				for (BootstrapThree button : buttons) {
-					if (ifpermissions(myTsysPremissions, button)) {// 按钮设置
-						button.setState(map);
-					}
-				}
-			}
-
-		}
+		iterationCheckPre(sysPremissions, myTsysPremissions, map);
 		return sysPremissions;
 
+	}
+	
+	/**
+	 * 循环迭代获取所有权限
+	 * @param pboostrapTree
+	 * @param myTsysPremissions
+	 * @param map
+	 */
+	public void iterationCheckPre(BootstrapThree pboostrapTree,List<TsysPremission> myTsysPremissions,Map<String, Object> map) {
+		if(null!=pboostrapTree) {
+			if (ifpermissions(myTsysPremissions, pboostrapTree)) {
+				pboostrapTree.setState(map);
+			}
+			List<BootstrapThree> bootstrapTreeList = pboostrapTree.getNodes();
+			if(null!=bootstrapTreeList&&!bootstrapTreeList.isEmpty()) {
+				for(BootstrapThree bootstrapTree : bootstrapTreeList) {
+					if (ifpermissions(myTsysPremissions, bootstrapTree)) {// 菜单栏设置
+						bootstrapTree.setState(map);
+					}
+					//检查子节点
+					iterationCheckPre(bootstrapTree, myTsysPremissions, map);
+				}
+			}
+		}
 	}
 	
 	
