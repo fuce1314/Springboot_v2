@@ -220,7 +220,7 @@ bootstrap-treeview|树结构组件||
  1、 目前发现权限添加的时候好像父级id我还没写好。。。等中秋一起撸完，你们先star 下，中秋后在下【20180922 1:30 已修改】
 
 ### wiki
--https://gitee.com/bdj/SpringBoot_v2/wikis
+- https://gitee.com/bdj/SpringBoot_v2/wikis
 
 
 
@@ -228,6 +228,8 @@ bootstrap-treeview|树结构组件||
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
 
 
+### 项目视频列表
+- 自动生成代码视频：https://url.cn/58DDn5Y
 
 ### 更新日志
 springbootv2大更新功能[20190501]
