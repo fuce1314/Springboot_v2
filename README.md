@@ -150,7 +150,7 @@ bootstrap-treeview|树结构组件||
 
 
 ### 数据库模型
-![数据库模型](https://images.gitee.com/uploads/images/2018/0909/202241_60aac716_123301.png "O4JB4SR0LS5%5UX$ZGE2}57.png")
+![数据库模型](https://images.gitee.com/uploads/images/2018/0909/202241_60aac716_123301.png "数据库模型.png")
 
 ### 界面风格
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/202603_b48d6be4_123301.jpeg "QQ截图20180909202536.jpg")
