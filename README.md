@@ -142,8 +142,8 @@ bootstrap-treeview|树结构组件||
 - maven编译安装pom.xml文件即可打包成war
 
 ### 登陆地址
-- http://localhost:8081   默认帐号密码: admin/admin
-- swagger  http://localhost:8081/swagger-ui.html
+- http://localhost:8080   默认帐号密码: admin/admin
+- swagger  http://localhost:8080/swagger-ui.html
 
 ### 启动类
 - SpringbootSwagger2Application 启动类
