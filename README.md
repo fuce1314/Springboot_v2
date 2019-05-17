@@ -50,6 +50,16 @@ Springboot
 │
 ├─resources 配置文件夹
 │  ├─ehcache shiro权限缓存配置
+│  ├─generator 自动生成模板以及配置目录
+│  │   ├─template 模板文件假
+│  │   │   ├─controller anction模板
+│  │   │   ├─html html页面模板
+│  │   │   ├─mapper dao模板
+│  │   │   ├─mapperxml daoxml模板
+│  │   │   ├─model 实体模板
+│  │   │   ├─service service模板
+│  │   │   └─sql sql模板
+│  │   └─generator.properties 自动生成配置文件
 │  ├─mybatis mybatis Mapper.xml生成文件夹
 │  │   ├─auto自动生成的Mapper.xml文件夹
 │  │   └─custom 手写Mapper.xml文件夹
