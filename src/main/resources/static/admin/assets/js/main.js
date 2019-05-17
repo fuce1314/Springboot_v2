@@ -280,7 +280,7 @@ head.js(rootPath+"/static/admin/assets/js/clock/jquery.clock.js", function() {
 
     //clock
     $('#digital-clock').clock({
-        offset: '+5',
+        offset: '+8',
         type: 'digital'
     });
 
