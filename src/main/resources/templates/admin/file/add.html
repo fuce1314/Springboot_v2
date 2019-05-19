@@ -102,7 +102,7 @@ label.error {
 $(function(){
 	Dropzone.autoDiscover = false;//防止报"Dropzone already attached."的错误
 	var myDropzone = new Dropzone("#dropz", {
-	       url: "/FileController/upload",//文件提交地址
+	       url: rootPath + "/FileController/upload",//文件提交地址
 	       method:"post",  //也可用put
 	       paramName:"file", //默认为file
 	       maxFiles:1,//一次性上传的文件数量上限
