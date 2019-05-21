@@ -1,0 +1,44 @@
+package ${package}.mapper.auto;
+
+import ${package}.${moduleName}.auto.${className};
+import ${package}.${moduleName}.auto.${className}Example;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Mapper {
+    long countByExample(${className}Example example);
+
+    int deleteByExample(${className}Example example);
+	#if(${pklag} == true)
+	
+    int deleteByPrimaryKey(String id);
+	#end
+	
+    int insert(${className} record);
+
+    int insertSelective(${className} record);
+
+    List<${className}> selectByExample(${className}Example example);
+	#if(${pklag} == true)
+	
+    ${className} selectByPrimaryKey(String id);
+	#end
+	
+    int updateByExampleSelective(@Param("record") ${className} record, @Param("example") ${className}Example example);
+
+    int updateByExample(@Param("record") ${className} record, @Param("example") ${className}Example example); 
+	#if(${pklag} == true)
+	
+    int updateByPrimaryKeySelective(${className} record);
+
+    int updateByPrimaryKey(${className} record);
+  	#end
+  	
+}

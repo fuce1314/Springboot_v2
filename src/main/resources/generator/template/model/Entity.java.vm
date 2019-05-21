@@ -1,0 +1,53 @@
+package ${package}.${moduleName}.auto;
+
+import java.io.Serializable;
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public class ${className} implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	#foreach ($column in $columns)
+	
+	/**
+	 * $column.comments
+	 */
+	#if(${column.attrType} == "Date")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+	#end
+	private ${column.attrType} ${column.attrname};
+	#end
+
+	
+	#foreach ($column in $columns)
+	#if($column.attrType == "String")
+	
+		public $column.attrType get${column.attrName}() {
+	        return $column.attrname;
+	    }
+	
+	    public void set${column.attrName}(${column.attrType} ${column.attrname}){
+	        this.${column.attrname} = ${column.attrname} == null ? null : ${column.attrname}.trim();
+	    }
+			
+	#else
+
+		public ${column.attrType} get${column.attrName} () {
+	        return ${column.attrname};
+	    }
+	
+	    public void set${column.attrName} (${column.attrType} ${column.attrname}) {
+	        this.${column.attrname} = ${column.attrname};
+	    }
+	 
+	#end  
+	#end
+	
+}

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fc.test.mapper.auto.TsysOperLogMapper" >
+  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysOperLog" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="oper_name" property="operName" jdbcType="VARCHAR" />
+    <result column="oper_url" property="operUrl" jdbcType="VARCHAR" />
+    <result column="oper_param" property="operParam" jdbcType="VARCHAR" />
+    <result column="error_msg" property="errorMsg" jdbcType="VARCHAR" />
+    <result column="oper_time" property="operTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, method, oper_name, oper_url, oper_param, error_msg, oper_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.test.model.auto.TsysOperLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sys_oper_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_oper_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_sys_oper_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TsysOperLogExample" >
+    delete from t_sys_oper_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fc.test.model.auto.TsysOperLog" >
+    insert into t_sys_oper_log (id, title, method, 
+      oper_name, oper_url, oper_param, 
+      error_msg, oper_time)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{operName,jdbcType=VARCHAR}, #{operUrl,jdbcType=VARCHAR}, #{operParam,jdbcType=VARCHAR}, 
+      #{errorMsg,jdbcType=VARCHAR}, #{operTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysOperLog" >
+    insert into t_sys_oper_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="operName != null" >
+        oper_name,
+      </if>
+      <if test="operUrl != null" >
+        oper_url,
+      </if>
+      <if test="operParam != null" >
+        oper_param,
+      </if>
+      <if test="errorMsg != null" >
+        error_msg,
+      </if>
+      <if test="operTime != null" >
+        oper_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="operName != null" >
+        #{operName,jdbcType=VARCHAR},
+      </if>
+      <if test="operUrl != null" >
+        #{operUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="operParam != null" >
+        #{operParam,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null" >
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null" >
+        #{operTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fc.test.model.auto.TsysOperLogExample" resultType="java.lang.Integer" >
+    select count(*) from t_sys_oper_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_sys_oper_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.method != null" >
+        method = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operName != null" >
+        oper_name = #{record.operName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operUrl != null" >
+        oper_url = #{record.operUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operParam != null" >
+        oper_param = #{record.operParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorMsg != null" >
+        error_msg = #{record.errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operTime != null" >
+        oper_time = #{record.operTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_sys_oper_log
+    set id = #{record.id,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      method = #{record.method,jdbcType=VARCHAR},
+      oper_name = #{record.operName,jdbcType=VARCHAR},
+      oper_url = #{record.operUrl,jdbcType=VARCHAR},
+      oper_param = #{record.operParam,jdbcType=VARCHAR},
+      error_msg = #{record.errorMsg,jdbcType=VARCHAR},
+      oper_time = #{record.operTime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TsysOperLog" >
+    update t_sys_oper_log
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="operName != null" >
+        oper_name = #{operName,jdbcType=VARCHAR},
+      </if>
+      <if test="operUrl != null" >
+        oper_url = #{operUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="operParam != null" >
+        oper_param = #{operParam,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null" >
+        error_msg = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null" >
+        oper_time = #{operTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TsysOperLog" >
+    update t_sys_oper_log
+    set title = #{title,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      oper_name = #{operName,jdbcType=VARCHAR},
+      oper_url = #{operUrl,jdbcType=VARCHAR},
+      oper_param = #{operParam,jdbcType=VARCHAR},
+      error_msg = #{errorMsg,jdbcType=VARCHAR},
+      oper_time = #{operTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

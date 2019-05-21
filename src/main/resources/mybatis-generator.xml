@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!--
+    context:生成一组对象的环境
+    id:必选，上下文id，用于在生成错误时提示
+    defaultModelType:指定生成对象的样式
+        1，conditional：类似hierarchical；
+        2，flat：所有内容（主键，blob）等全部生成在一个对象中；
+        3，hierarchical：主键生成一个XXKey对象(key class)，Blob等单独生成一个对象，其他简单属性在一个对象中(record class)
+    targetRuntime:
+        1，MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample；
+        2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；
+    introspectedColumnImpl：类全限定名，用于扩展MBG
+    
+    
+    eclispe 运行mybatis-generator.xml  
+3.运行方法：在eclipse 中，选择pom.xml文件，击右键先择Run AS——>Maven Build… ——>在Goals框中输入：mybatis-generator:generate
+    
+-->
+
+    <context id="oracle" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!-- 序列化model-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <!-- 阻止生成自动注释 -->
+        <!-- 当suppressAllComments配置为true是，既生成代码时，不需要mybatis注解时。重重复运mybatis-generator:generate时，xml中会在原来生成的内容基础上，再重新又生成了一边。而不是覆盖原来的。有谁知道怎么解决这个问题吗。配置为false是每次生成是会覆盖的。 -->
+        <commentGenerator>
+            <property name="javaFileEncoding" value="UTF-8"/>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+            <!-- 格式化java代码 -->
+            <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+            <!-- 格式化XML代码 -->
+            <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        </commentGenerator>
+        <!-- 数据库链接地址账号密码 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://127.0.0.1:3306/test"
+                userId="root"
+                password="root">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成Model类存放位置 -->
+        <javaModelGenerator targetPackage="com.fc.test.model.auto" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件存放位置 -->
+        <sqlMapGenerator targetPackage="mybatis.auto" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成Dao类存放位置 -->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件的代码
+            type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+            type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.fc.test.mapper.auto" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        
+        <table tableName="t_sys_user" domainObjectName="TsysUser" enableCountByExample="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <!-- 配置需要生成的表 
+        <table tableName="t_sys_user" domainObjectName="TsysUser" enableCountByExample="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+         <table tableName="t_sys_role" domainObjectName="TsysRole" enableCountByExample="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_sys_premission" domainObjectName="TsysPremission" enableCountByExample="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+         <table tableName="t_sys_role_user" domainObjectName="TSysRoleUser" enableCountByExample="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_sys_permission_role" domainObjectName="TsysPermissionRole" enableCountByExample="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>-->
+        
+        
+    </context>
+</generatorConfiguration>

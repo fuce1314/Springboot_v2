@@ -1,0 +1,10 @@
+#set( $id = $!{SnowflakeIdWorker.getUUID()} )
+#set( $id1 = $!{SnowflakeIdWorker.getUUID()}+"1" )
+#set( $id2 = $!{SnowflakeIdWorker.getUUID()}+"2" )
+#set( $id3 = $!{SnowflakeIdWorker.getUUID()}+"3" )
+#set( $id4 = $!{SnowflakeIdWorker.getUUID()}+"4" )
+INSERT INTO `t_sys_premission` VALUES ('${id}', '${comments}管理', '${comments}展示', '/${className}Controller/view', 'pid自己填写', 'gen:${classname}:view', 1, 'fa fa-quora', NULL);
+INSERT INTO `t_sys_premission` VALUES ('${id1}', '${comments}集合', '${comments}集合', '/${className}Controller/list', '${id}', 'gen:${classname}:list', 2, '', NULL);
+INSERT INTO `t_sys_premission` VALUES ('${id2}', '${comments}添加', '${comments}添加', '/${className}Controller/add', '${id}', 'gen:${classname}:add', 2, 'entypo-plus-squared', NULL);
+INSERT INTO `t_sys_premission` VALUES ('${id3}', '${comments}删除', '${comments}删除', '/${className}Controller/remove', '${id}', 'gen:${classname}:remove', 2, 'entypo-trash', NULL);
+INSERT INTO `t_sys_premission` VALUES ('${id4}', '${comments}修改', '${comments}修改', '/${className}Controller/edit', '${id}', 'gen:${classname}:edit', 2, 'fa fa-wrench', NULL);

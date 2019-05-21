@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div  th:fragment="leftMenu">
+	<!-- 左边菜单 -->
+	<div id="skin-select">
+		<!-- PC端 LOGO -->
+	    <div id="logo">
+	     <h1>用户管理<span>v1</span></h1>
+	    </div>
+	<!--END PC端 LOGO -->
+	
+	<!--点击隐藏左边菜单栏按钮 -->
+	    <a id="toggle">
+	        <span class="entypo-menu"></span>
+	    </a>
+	    <!--END点击隐藏左边菜单栏按钮 -->
+	    <!-- PC端搜索按钮 -->
+	    <div class="dark">
+	        <form action="#">
+	            <span>
+					<input type="text" name="search" value="" class="search rounded id_search" placeholder="菜单搜索" autofocus />
+	            </span>
+	        </form>
+	    </div>
+	<!-- 手机端搜索按钮  有bug-->
+	    <div class="search-hover">
+	        <form id="demo-2">
+	            <input type="search" placeholder="Search4 Menu..." class="id_search">
+	        </form>
+	    </div>
+	
+	
+	
+	<!-- 左侧菜单栏 -->
+	    <div class="skin-part">
+	        <div id="tree-wrap">
+	            <div class="side-bar" th:each="muen,muenStat:${session.bootstrapThree.nodes}">
+	                <ul class="topnav menu-left-nest">
+	                    <li>
+	                        <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
+	
+	                            <span  th:text="${muen.text}"></span>
+	                            <i data-toggle="tooltip" th:classappend="${muen.icon}" class="pull-right config-wrap"></i>
+	
+	                        </a>
+	                    </li>
+	                    <th:bolck th:if=${muen.nodes!=null}>
+	                    <li th:each="caidan,caidanStat:${muen.nodes}">
+	                        <a class="tooltip-tip" th:href="@{${caidan.url}}" target="mainFrame" th:title="${caidan.text}">
+	                            <i th:classappend="${caidan.icon}" class=""></i>
+								<span th:text="${caidan.text}">用户管理</span>
+	                 		</a>
+	                    </li>
+	                    </th:bolck>
+	                    
+	
+						
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- 左侧菜单栏 -->
+	</div>
+	<!-- 结束左边菜单栏 -->
+
+</div>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
+
+<title th:text=${title}></title>
+<!-- 这儿引用单独的css link -->
+<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
+<link rel="stylesheet" th:href="@{/static/admin/assets/css/extra-pages.css}">
+<style type="text/css">
+/**
+*这里写单独的css样式
+*/
+ body {
+        overflow:hidden!important;
+        padding-top: 120px;
+    }
+</style>
+
+</head>
+
+<body>
+
+
+
+<div id="awwwards" class="right black">
+	<a href="#" target="_blank">best websites of the world</a>
+</div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+
+    <div class="logo-error">
+        <h1>Springboot_v2
+            <span>v1.0</span>
+        </h1>
+    </div>
+
+    <!-- Main content -->
+    <section class="page-error">
+
+        <div class="error-page">
+            <h2 class="headline text-info">404</h2>
+            <div class="error-content">
+                <h3><i class="fa fa-warning text-yellow"></i> 哎呀！找不到网页。</h3>
+                <p>
+                   	 我们找不到您要查找的页面。同时，您可以 <a class="error-link" href='/login'>返回首页</a> 或尝试使用搜索表单
+                </p>
+                <form class='search-form'>
+                    <input type="text" name="search" class='form-control' placeholder="Search" />
+                </form>
+            </div>
+            <!-- /.error-content -->
+        </div>
+        <!-- /.error-page -->
+
+    </section>
+
+
+
+
+
+   <!-- END 右侧隐藏滑块内容-->
+
+<!-- 通用js -->
+<div th:include="admin/common/html/js :: onload_js">
+   
+</div>
+    
+<script type="text/javascript">
+$(function () {
+    //判断一下当前是不是做顶层，如果不是，则做一下顶层页面重定向
+     if (window != top) {
+         top.location.href = location.href;
+     }
+ });  
+
+
+</script>
+</body>
+
+
+</html>

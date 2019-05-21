@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head th:replace="admin/common/html/tableHead :: tableHead(~{::title},~{::link},~{::style})">
+
+<title th:text=${title}></title>
+<!-- 这儿引用单独的css link -->
+<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
+<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
+<!-- bootstrap-table表单样式 -->
+<link th:href="@{/static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
+
+<!-- 用户界面自定义css -->
+<link th:href="@{/static/admin/user/css/user-add.css}" rel="stylesheet"/>
+<style type="text/css"></style>
+
+</head>
+
+<body>
+
+<div class="content-wrap">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="nest" id="elementClose">
+				<div class="">
+				</div>
+				<div class="body-nest" id="element">
+					<div class="panel-body">
+						<form  class="form-horizontal m" id="form-edit" th:object="${TsysUser}">
+							<input id="id" name="id" type="hidden" th:field="*{id}"/>
+							<div class="form-group">
+								<label class="col-sm-3 control-label ">登录名称：</label>
+								<div class="col-sm-8">
+									<input class="form-control" disabled="disabled" type="text" id="username" name="username" th:value="*{username}"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label ">权限授权：</label>
+								<div class="col-sm-8">
+									<div class="icheckbox-blue">
+										<label th:each="m : ${roleVos}">
+											
+											<input class="sqcheckbox" name="roles"  th:value="${m.id}"  type="checkbox" th:checked="${m.ischeck}">
+											<b th:text="${m.name}"></b>
+										</label>
+										
+										
+									</div>
+									
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="form-control-static col-sm-offset-9">
+									<button type="submit" class="btn btn-primary">提交</button>
+									<button onclick="$.modal.close()" class="btn btn-danger" type="button">关闭</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 通用js -->
+<div th:include="admin/common/html/js :: onload_js">
+   
+</div>
+<!-- bootstarp 表格 -->
+<script th:src="@{/static/admin/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js}" type="text/javascript"></script>
+<script th:src="@{/static/admin/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}" type="text/javascript"></script>
+<script th:src="@{/static/admin/assets/js/bootstrap/js/base_list.js}" type="text/javascript"></script>
+
+
+<!-- 弹窗 -->
+<script th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
+<!-- 遮罩层 -->
+<script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
+<!-- 自定义user js -->
+<script  th:src="@{/static/admin/user/js/user-edit.js}" type="text/javascript"></script>
+
+
+
+</body>
+
+
+</html>

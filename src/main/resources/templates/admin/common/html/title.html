@@ -1,0 +1,82 @@
+ <html xmlns:th="http://www.thymeleaf.org">
+ <div th:fragment="title(title,parenttitle,isMsg,msgHTML)">
+  <div class="row">
+    <div id="paper-top">
+    	<!-- 标题 -->
+        <div class="col-lg-3">
+            <h2 class="tittle-content-header">
+                <i class="icon-window"></i> 
+                <span th:text="${title}"></span>
+            </h2>
+
+        </div>
+
+		<!-- 欢迎div -->
+		
+        <div class="col-lg-7" th:if="${isMsg eq true}">
+            <div class="devider-vertical visible-lg"></div>
+            <div class="tittle-middle-header">
+
+                <div class="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <span class="tittle-alert entypo-info-circled"></span>
+                    <span th:utext="${msgHTML}"></span>
+                </div>
+            </div>
+        </div>
+         <div class="col-lg-7" th:if="${isMsg eq false}">
+           <div class="devider-vertical visible-lg"></div>
+        </div>
+        <!-- END欢迎div -->
+        
+        <!-- 小控件 -->
+        <div class="col-lg-2" th:if="${isControl eq true}">
+            <div class="devider-vertical visible-lg"></div>
+            <div class="btn-group btn-wigdet pull-right visible-lg">
+                <div class="btn">
+                    Widget</div>
+                <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                    <li>
+                        <a href="#">
+                            <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="entypo-heart margin-iconic"></span>Favorite</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="entypo-cog margin-iconic"></span>Setting</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- END小控件 -->
+    </div>
+</div>
+ 
+ <!-- 标题-->
+ <ul id="breadcrumb">
+     <li>
+         <span class="entypo-home"></span>
+     </li>
+     <li><i class="fa fa-lg fa-angle-right"></i>
+     </li>
+     <li><a href="#" title="Sample page 1" th:text="${parenttitle}">父级标题</a>
+     </li>
+     <li><i class="fa fa-lg fa-angle-right"></i>
+     </li>
+     <li><a href="#"  title="Sample page 1" th:text="${title}" >标题</a>
+     </li>
+     <li class="pull-right">
+         <div class="input-group input-widget">
+
+             <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+         </div>
+     </li>
+ </ul>
+ </div>

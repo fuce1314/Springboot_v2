@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${package}.mapper.auto.${className}Mapper">
+  <resultMap id="BaseResultMap" type="${package}.${moduleName}.auto.${className}" >
+#foreach($column in $columns)
+    <result column="${column.columnName}" property="${column.attrname}" jdbcType="${column.mappdataType}" />
+#end
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+<sql id="Base_Column_List" >
+	${columnsStr}
+</sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="${package}.${moduleName}.auto.${className}Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tableName}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+#if(${pklag} == true)
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="${pk.attrType}" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tableName}
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="${pk.attrType}" >
+    delete from ${tableName}
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
+  </delete>
+#end
+
+  <delete id="deleteByExample" parameterType="${package}.${moduleName}.auto.${className}Example" >
+    delete from ${tableName}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="${package}.${moduleName}.auto.${className}" >
+    insert into ${tableName} (
+    #set( $lag = 0)
+  	#foreach ($column in $columns)
+  	 #if(($lag+1)>=(${columns.size()}))	
+   	  ${column.columnName}
+     #else
+      ${column.columnName},
+     #end
+     #set( $lag  = $lag + 1 )
+  	#end
+    )
+    values (
+	#set( $lag = 0)
+  	#foreach ($column in $columns)
+  	 #if(($lag+1)>=(${columns.size()}))	
+   	  #{${column.attrname},jdbcType=${column.mappdataType}}
+     #else
+     	#{${column.attrname},jdbcType=${column.mappdataType}},
+     #end
+     #set( $lag = $lag + 1 )
+  	#end
+    )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="${package}.${moduleName}.auto.${className}" >
+    insert into ${tableName}
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      #foreach ($column in $columns)
+    
+      <if test="${column.attrname} != null" >
+        ${column.columnName},
+      </if>
+      
+     #end
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    #foreach ($column in $columns)
+      <if test="${column.attrname} != null" >
+        #{${column.attrname},jdbcType=${column.mappdataType}},
+      </if>
+    #end
+    </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="${package}.${moduleName}.auto.${className}Example" resultType="${pk.attrType}" >
+    select count(*) from ${tableName}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${tableName}
+    <set >
+    #foreach ($column in $columns)
+      <if test="record.${column.attrname} != null" >
+        ${column.columnName} = #{record.${column.attrname},jdbcType=${column.mappdataType}},
+      </if>
+    #end
+     
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  <update id="updateByExample" parameterType="map" >
+    update ${tableName}
+    set
+    #set( $lag = 0)
+    #foreach ($column in $columns)
+    	 #if(($lag+1)>=(${columns.size()}))
+    	 ${column.columnName} = #{record.${column.attrname},jdbcType=${column.mappdataType}}
+    	 #else
+    	 ${column.columnName} = #{record.${column.attrname},jdbcType=${column.mappdataType}},
+    	 #end
+      
+    #end
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  #if(${pklag} == true)
+  <update id="updateByPrimaryKeySelective" parameterType="${package}.${moduleName}.auto.${className}" >
+    update ${tableName}
+    <set >
+    #foreach ($column in $columns)
+      #if(${pk.attrname} != ${column.attrname})
+      <if test="${column.attrname} != null" >
+        ${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}},
+      </if>
+      #end
+    #end
+    </set>
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="${package}.${moduleName}.auto.${className}" >
+    update ${tableName}
+    set 
+     #set( $lag = 0)
+    #foreach ($column in $columns)
+    	#if(${pk.attrname} != ${column.attrname})
+    	 #if(($lag+1)>=(${columns.size()}))	
+			${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}},
+		 #else
+			${column.columnName} = #{${column.attrname},jdbcType=${column.mappdataType}}
+		 #end
+		 #set( $lag = $lag + 1 )
+    	#end
+    #end
+    where ${pk.columnName} = #{${pk.attrname},jdbcType=${pk.mappdataType}}
+  </update>
+   #end
+</mapper>

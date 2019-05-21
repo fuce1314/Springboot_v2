@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
+<title>空白页</title>
+<!-- 这儿引用单独的css link -->
+<link rel="stylesheet" th:href="@{static/admin/assets/js/button/ladda/ladda.min.css}">
+<style type="text/css">
+/**
+*这里写单独的css样式
+*/
+</style>
+
+</head>
+
+<body>
+
+<!-- 顶部通用-->
+<div th:replace="admin/common/html/topMenu :: topMenu">
+</div>
+<!-- 结束顶部通用 -->
+   
+<!-- 左边菜单栏通用 -->
+<div th:replace="admin/common/html/leftMenu :: leftMenu">
+</div>
+<!-- 结束左边菜单栏通用 -->
+
+
+
+
+<!-- ###############################代码编写出############################### -->
+
+<!-- 右边内容 -->
+<div class="wrap-fluid">
+    <div class="container-fluid paper-wrap bevel tlbr">
+        <!-- 内容 -->
+        <!--标题 通用-->
+        <div th:replace="admin/common/html/title :: title('通用页面',true,'Welcome back,&nbsp;<strong>Dave mattew!</strong>&nbsp;&nbsp;Your last sig in at Yesterday, 16:54 PM',true)">
+        </div>
+        <!-- 结束标题 通用-->
+        <div class="content-wrap">
+            <!-- 结束内容 -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- 空白页开始-->
+                    <div class="nest" id="Blank_PageClose">
+                        <div class="title-alt">
+                            <h6>Blank Page</h6>
+                            <div class="titleClose">
+                                <a class="gone" href="#Blank_PageClose">
+                                    <span class="entypo-cancel"></span>
+                                </a>
+                            </div>
+                            <div class="titleToggle">
+                                <a class="nav-toggle-alt" href="#Blank_Page_Content">
+                                    <span class="entypo-up-open"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="body-nest" id="Blank_Page_Content">
+                            Content Goes Here
+                        </div>
+                    </div>
+                </div>
+                <!-- 空白页结束 -->
+            </div>
+            <!-- 结束内容 -->
+            <!-- 页脚 通用-->
+            <div th:replace="admin/common/html/footer :: footer">
+            </div>
+            <!-- 结束页脚通用 -->
+        </div>
+    </div>
+</div>
+<!-- 结束右边内容 -->
+<!-- ###############################代码编写出############################### -->
+
+
+
+
+
+
+
+<!-- 右侧隐藏滑块内容 -->
+<div th:include="admin/common/html/rightHide :: rightHide">
+    
+</div>
+   <!-- END 右侧隐藏滑块内容-->
+
+<!-- 通用js -->
+<div th:include="admin/common/html/js :: onload_js">
+   
+</div>
+    
+
+
+
+</body>
+
+
+</html>

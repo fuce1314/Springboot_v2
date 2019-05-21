@@ -1,0 +1,136 @@
+package ${package}.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import ${package}.common.base.BaseService;
+import ${package}.common.support.Convert;
+import ${package}.mapper.auto.${className}Mapper;
+import ${package}.model.auto.${className};
+import ${package}.model.auto.${className}Example;
+import ${package}.model.custom.Tablepar;
+import ${package}.util.SnowflakeIdWorker;
+
+/**
+ * ${comments}Service
+* @Title: ${className}Service.java 
+* @Package ${package}.service 
+* @author ${author}
+* @email ${email}
+* @date ${datetime}  
+ */
+@Service
+public class ${className}Service implements BaseService<${className}, ${className}Example>{
+	@Autowired
+	private ${className}Mapper ${classname}Mapper;
+	
+	/**
+	 * 分页查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	 public PageInfo<${className}> list(Tablepar tablepar,String name){
+	        ${className}Example testExample=new ${className}Example();
+	        testExample.setOrderByClause("id ASC");
+	        if(name!=null&&!"".equals(name)){
+	        	testExample.createCriteria().and${fuzzyQuery}Like("%"+name+"%");
+	        }
+
+	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
+	        List<${className}> list= ${classname}Mapper.selectByExample(testExample);
+	        PageInfo<${className}> pageInfo = new PageInfo<${className}>(list);
+	        return  pageInfo;
+	 }
+
+#if(${pklag} == true)	
+	@Override
+	public int deleteByPrimaryKey(String ids) {
+		List<String> lista=Convert.toListStrArray(ids);
+		${className}Example example=new ${className}Example();
+		example.createCriteria().andIdIn(lista);
+		return ${classname}Mapper.deleteByExample(example);
+	}
+	
+	
+	@Override
+	public ${className} selectByPrimaryKey(String id) {
+		
+		return ${classname}Mapper.selectByPrimaryKey(id);
+	}
+
+	
+	@Override
+	public int updateByPrimaryKeySelective(${className} record) {
+		return ${classname}Mapper.updateByPrimaryKeySelective(record);
+	}
+#end	
+	
+	/**
+	 * 添加
+	 */
+	@Override
+	public int insertSelective(${className} record) {
+		//添加雪花主键id
+		record.setId(SnowflakeIdWorker.getUUID());
+		return ${classname}Mapper.insertSelective(record);
+	}
+	
+	
+
+	
+
+	
+	
+	
+
+	
+	@Override
+	public int updateByExampleSelective(${className} record, ${className}Example example) {
+		
+		return ${classname}Mapper.updateByExampleSelective(record, example);
+	}
+
+	
+	@Override
+	public int updateByExample(${className} record, ${className}Example example) {
+		
+		return ${classname}Mapper.updateByExample(record, example);
+	}
+
+	@Override
+	public List<${className}> selectByExample(${className}Example example) {
+		
+		return ${classname}Mapper.selectByExample(example);
+	}
+
+	
+	@Override
+	public long countByExample(${className}Example example) {
+		
+		return ${classname}Mapper.countByExample(example);
+	}
+
+	
+	@Override
+	public int deleteByExample(${className}Example example) {
+		
+		return ${classname}Mapper.deleteByExample(example);
+	}
+	
+	/**
+	 * 检查name
+	 * @param ${className}
+	 * @return
+	 */
+	public int checkNameUnique(${className} ${classname}){
+		${className}Example example=new ${className}Example();
+		example.createCriteria().and${fuzzyQuery}EqualTo(${classname}.get${fuzzyQuery}());
+		List<${className}> list=${classname}Mapper.selectByExample(example);
+		return list.size();
+	}
+
+
+}

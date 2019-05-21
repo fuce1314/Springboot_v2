@@ -1,0 +1,10 @@
+#线上数据库环境
+spring :
+  datasource :
+      driverClassName : com.mysql.jdbc.Driver
+      url : jdbc:mysql://192.168.1.28:13306/redisTest2?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+      username : root
+      password : jxzx123
+      hikari:
+        maxLifetime: 1765000
+        maximumPoolSize: 15

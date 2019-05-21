@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
 
 该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
@@ -19,6 +20,9 @@
 该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
 
 该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
+=======
+
+>>>>>>> refs/remotes/origin/master
 ### 前言
   SpringBoot_v2项目是努力打造springboot框架的极致细腻的脚手架。包括一套漂亮的前台。无其他杂七杂八的功能，原生纯净。
   该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2 
@@ -73,11 +77,21 @@ Springboot
 │
 ├─resources 配置文件夹
 │  ├─ehcache shiro权限缓存配置
+│  ├─generator 自动生成模板以及配置目录
+│  │   ├─template 模板文件假
+│  │   │   ├─controller anction模板
+│  │   │   ├─html html页面模板
+│  │   │   ├─mapper dao模板
+│  │   │   ├─mapperxml daoxml模板
+│  │   │   ├─model 实体模板
+│  │   │   ├─service service模板
+│  │   │   └─sql sql模板
+│  │   └─generator.properties 自动生成配置文件
 │  ├─mybatis mybatis Mapper.xml生成文件夹
 │  │   ├─auto自动生成的Mapper.xml文件夹
 │  │   └─custom 手写Mapper.xml文件夹
 │  │
-│  ├─static 静态文件存放文件夹
+│  ├─static 静态文件存放文件夹[后台模版就放在此文件夹下面。所有的模版页面都在下面]
 │  ├─templates 前台HTML存放文件夹
 │  ├─application-dev.yml 开发环境配置
 │  ├─application-prod.yml 生产环境配置
@@ -165,15 +179,15 @@ bootstrap-treeview|树结构组件||
 - maven编译安装pom.xml文件即可打包成war
 
 ### 登陆地址
-- http://localhost:8081   默认帐号密码: admin/admin
-- swagger  http://localhost:8081/swagger-ui.html
+- http://localhost:8080   默认帐号密码: admin/admin
+- swagger  http://localhost:8080/swagger-ui.html
 
 ### 启动类
 - SpringbootSwagger2Application 启动类
 
 
 ### 数据库模型
-![数据库模型](https://images.gitee.com/uploads/images/2018/0909/202241_60aac716_123301.png "O4JB4SR0LS5%5UX$ZGE2}57.png")
+![数据库模型](https://images.gitee.com/uploads/images/2018/0909/202241_60aac716_123301.png "数据库模型.png")
 
 ### 界面风格
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/202603_b48d6be4_123301.jpeg "QQ截图20180909202536.jpg")
@@ -192,7 +206,9 @@ bootstrap-treeview|树结构组件||
 ![HTML代码页面](https://images.gitee.com/uploads/images/2018/0822/004608_c55d62a4_123301.jpeg "未命名拼图 (1).jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203322_6dc467c2_123301.jpeg "QQ截图20180909203303.jpg")
 
-
+### 代码自动生成功能
+![自动生成代码](https://images.gitee.com/uploads/images/2019/0514/003054_e99cdee7_123301.png "自动生成页面.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0514/003215_127c9010_123301.png "代码自动生成文件.png")
 
 
 
@@ -214,15 +230,61 @@ bootstrap-treeview|树结构组件||
 - 如果Springboot_v2对您有一点帮助，您可以点个star，就是对作者最大的支持了。
 - Springboot_v2脚手架会一直更新下去。
 - 需要进项目一起开发的请进群私聊我，让我们一起维护这个开发项目
- 
+- 很多人反应说404，那是因为其他页面根本没做，因为权限脚手架只在系统设置里面。我留着其他链接，是方便你们根据需求自行添加页面
+
+### 感谢开源软件列表
+1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
+
+
 ### 开发者联系
 - QQ：87766867 
+<<<<<<< HEAD
 - QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>
+=======
+- QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>  进群备注springbootv2
+>>>>>>> refs/remotes/origin/master
 
 有任何问题可以提出
 
+### 注意事项
+- 所有的model字段解释都在mysql的字段注释里面，请具体查看mysql的字段注解
+
+
+
+### Github
+- 所有的github代码 以码云更新为准
+- https://github.com/fuce1314/Springboot_v2
 
 
 
 ### bug 列表
  1、 目前发现权限添加的时候好像父级id我还没写好。。。等中秋一起撸完，你们先star 下，中秋后在下【20180922 1:30 已修改】
+<<<<<<< HEAD
+=======
+
+### wiki
+- https://gitee.com/bdj/SpringBoot_v2/wikis
+
+
+
+### Java公众号推荐:
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
+
+
+### 项目视频列表
+- 自动生成代码视频：https://url.cn/58DDn5Y
+
+### 更新日志
+springbootv2大更新功能[20190501]
+- 修改左右局部刷新
+- 更新war发布到tomcat发布错误
+- 修改拦截器bug
+- 更新全新数据库
+
+springbootv2大更新功能[20190507]
+- marst 为iframe加载方式的局部刷新框架
+- 添加新的分支为不局部刷新，需要的可以自行切换分支下载
+
+springbootv2大更新功能[20190512]
+- marst更新自动生成代码[有bug mapper.xml里面的varchar字段是小写 跟日期字段是datatime 字段 需要修改即可用]
+>>>>>>> refs/remotes/origin/master

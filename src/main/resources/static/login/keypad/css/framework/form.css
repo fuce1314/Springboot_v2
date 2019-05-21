@@ -1,0 +1,124 @@
+
+
+/*软键盘*/
+.keypad {
+    background-color: #fff;
+    background-image: url(../../images/formEle/keypad.gif) !important;
+    background-repeat: no-repeat !important;
+    background-position: 98% 50% !important;
+    height: 20px;
+	line-height: 20px;
+    width: 120px;
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px;
+    /*font-size: 12px;*/
+    color: #369;
+}
+button.keypad-trigger {
+    width: 25px;
+    padding: 0;
+}
+
+img.keypad-trigger {
+    margin: 2px;
+    vertical-align: middle;
+}#keypad-div {
+    display: none;
+    z-index: 9999999999999999;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #888;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}.keypad-keyentry {
+    display: none;
+}.keypad-inline {
+    background-color: #f4f4f4;
+    border: 1px solid #888;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}.keypad-disabled {
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    opacity: .5;
+    filter: alpha( opacity = 50);
+}.keypad-rtl {
+    direction: rtl;
+}.keypad-prompt {
+    clear: both;
+    width: 100%;
+    text-align: center;
+}.keypad-row {
+    clear: both;
+    float: left;
+    width: 100%;
+}.keypad-space {
+    float: left;
+    margin: 2px;
+    width: 24px;
+} * html .keypad-space {
+    margin: 0;
+    width: 28px;
+}.keypad-half-space {
+    float: left;
+    margin: 1px;
+    width: 12px;
+} * html .keypad-half-space {
+    margin: 0;
+    width: 14px;
+}.keypad-key {
+    float: left;
+	border:solid 1px #9db0bc;
+    margin: 2px;
+    padding: 0;
+    width: 32px;
+	height:25px;
+    background-color: #f4f4f4;
+    text-align: center;
+	background-image: url(../../images/formEle/keyBg.jpg);
+	background-repeat: repeat-x;
+    cursor: pointer;
+}.keypad-key-down{
+	background-image: url(../../images/formEle/keyBg3.jpg)!important;
+	color:black!important;
+}.keypad-key-hover{
+	background-image: url(../../images/formEle/keyBg3.jpg)!important;
+	color:black!important;
+	border-color:#af923f!important;
+}
+.keypad-spacebar {
+    width: 164px;
+}.keypad-enter {
+    width: 52px;
+}.keypad-clear, .keypad-back, .keypad-close, .keypad-shift {
+    width: 52px;
+    color: #fff;
+    font-weight: normal;
+	border:solid 1px #dc6b00!important;
+	background-image: url(../../images/formEle/keyBg2.jpg);
+	background-repeat: repeat-x;
+}.keypad-clear {
+}.keypad-back {
+}.keypad-close {
+}.keypad-shift {
+}.keypad-cover {
+    display: none;
+    display: block;
+    position: absolute;
+    z-index: -1;
+    filter: mask();
+	top:-4px;
+	left:-4px;
+	width:125px;
+	height: 200px;
+}
+
+

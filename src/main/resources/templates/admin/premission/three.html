@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head th:replace="admin/common/html/tableHead :: head(~{::title},~{::link},~{::style})">
+<title th:text=${title}></title>
+<!-- 这儿引用单独的css link -->
+<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
+<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
+<!-- treeview -->
+<link th:href="@{/static/admin/assets/js/bootstrap/bootstrap-treeview/css/bootstrap-treeview.css}" rel="stylesheet"/>
+
+<style type="text/css">
+.content-wrap {
+     padding: 0px;
+}
+body {
+	 color: #9ea7b3;
+    font-family: "Open Sans", Arial, sans-serif!important;
+    font-size: 13px!important;
+    line-height: 20px;
+    overflow-x: hidden!important;
+    min-height: 100%;
+    z-index: -2;
+    margin: 0px !important;
+    background: url() no-repeat top center fixed;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+label.error {
+    position: absolute;
+    right: 18px;
+    top: 5px;
+    color: #ef392b;
+    font-size: 12px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="fcapp" class="content-wrap">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="nest" id="elementClose">
+				<div class="">
+				</div>
+				<div class="body-nest" id="element">
+					<div class="panel-body">
+						<form  class="form-horizontal m" id="form-add">
+							<div class="form-group">
+								<div class="col-sm-8">
+									<div id="tree"></div> 
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="form-control-static col-sm-offset-9">
+									<button type="submit" class="btn btn-primary">提交</button>
+									<button onclick="$.modal.close()" class="btn btn-danger" type="button">关闭</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 通用js -->
+<div th:include="admin/common/html/js :: onload_js"></div>
+<!-- 弹窗 -->
+<script th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
+<!-- 遮罩层 -->
+<script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
+<!--bootstarp threeView -->
+<script th:src="@{/static/admin/assets/js/bootstrap/bootstrap-treeview/js/bootstrap-treeview.js}" type="text/javascript"></script>
+<script th:src="@{/static/admin/assets/js/bootstrap/js/base_list.js}" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+//添加方法
+function add() {
+	var dataFormJson=$("#form-add").serialize();
+	$.ajax({
+		cache : true,
+		type : "POST",
+		url : rootPath + "/PremissionController/add",
+		data :dataFormJson,
+		async : false,
+		error : function(request) {
+			$.modal.alertError("系统错误");
+		},
+		success : function(data) {
+			$.operate.saveSuccess(data);
+		}
+	});
+}
+
+
+/***权限配置***/
+
+function getTree() {
+	var tree = [];
+	$.ajax({
+		url: rootPath + "/PremissionController/three/0",
+		type:"post",
+		async : false,
+		cache : true,
+		error : function(request) {
+			$.modal.alertError("系统错误");
+		},
+		success : function(data) {
+			if(!$.common.isEmpty(data)&&data.key==200){
+				tree.push(data.data);
+			}
+		}
+		
+		
+	})
+    return tree;
+}
+
+
+//赋值给父菜单
+function loadObj(data){
+	var treeId = data.id;
+	var treeName = data.text;
+	
+	if(treeId != "1") {
+		parent.$("#pid").val(treeId);
+		parent.$("#pidName").val(treeName);
+		var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+		parent.layer.close(index);
+	}
+	else {
+		$.modal.alertError("主菜单不能选择");
+	}
+	
+	
+
+}
+
+
+
+$(function() {
+	
+	$('#tree').treeview({
+		levels : 3,////设置初始化展开几级菜单 默认为2
+		//showCheckbox : 1,//这里之所以写1，是因为我引得js源码里定义1为true  checkbox
+		//multiSelect : 1,//这里之所以写1，是因为我引得js源码里定义1为true  多选
+		data : getTree(),
+		color : "#000000",//设置字体加载颜色
+		backColor : "#FFFFFF",//设置背景颜色
+		selectedColor : "#428bca",//设置选中的字体颜色
+		 highlightSelected:true,     //是否选中高亮显示
+		 onhoverColor: "#FF00FF",    //鼠标滑过的颜色
+		 showBorder:true,//是否显示边框
+		onNodeSelected : function(event, data) {//选中节点
+			// 事件代码...
+			console.log(data.id);
+			loadObj(data);
+		},
+		onNodeChecked : function(event, node) { //选中节点 
+			
+		},
+		nodeSelected (event, node){
+		},
+		nodeChecked (event, node){//一个节点被checkedc
+		},
+		onNodeUnchecked : function(event, node) { //取消选中节点  
+		}
+
+	});
+
+})
+
+
+
+
+
+</script>
+
+
+</body>
+
+
+</html>
