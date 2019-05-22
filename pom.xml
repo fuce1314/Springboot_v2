@@ -76,11 +76,13 @@
 			<version>5.1.40</version>
 		</dependency> 
 
-		<!-- mysql驱动8.0 
-		<dependency> 
-			<groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+		<!-- mysql驱动8.0
+		 <dependency> 
+		 	<groupId>mysql</groupId> 
+		 	<artifactId>mysql-connector-java</artifactId> 
 			<version>8.0.11</version>
-		 </dependency> -->
+		 </dependency>
+		 -->
 		<!-- shiro权限 -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
