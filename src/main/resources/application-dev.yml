@@ -8,14 +8,14 @@ spring :
       hikari:
         maxLifetime: 1765000
         maximumPoolSize: 15
-#      druid连接池配置
+	  #druid连接池配置
       druid:
         #引用上面的JDBC配置
         url: ${spring.datasource.url}
         username: ${spring.datasource.username}
         password: ${spring.datasource.password}
         driver-class-name: ${spring.datasource.driverClassName}
-       # 配置初始化连接数大小
+       #配置初始化连接数大小
         initial-size: 10
         # 最大连接数
         max-active: 50
