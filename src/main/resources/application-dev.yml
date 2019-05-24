@@ -36,8 +36,9 @@ spring :
         stat-view-servlet:
           enabled: true
           url-pattern: /druid/*
-          login-username: admin
-          login-password: admin
+          #可以增加访问账号密码【去掉注释就可以】
+          #login-username: admin
+          #login-password: admin
         filter:
           stat:
             log-slow-sql: true
