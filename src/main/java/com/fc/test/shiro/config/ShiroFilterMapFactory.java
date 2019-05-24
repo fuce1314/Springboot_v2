@@ -44,6 +44,8 @@ user:例如/admins/user/**=user没有参数表示必须存在用户，当登入�
 		filterChainDefinitionMap.put("/logout", "logout");
 		//放验证码
 		filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
+		// 释放 druid 监控画面
+		filterChainDefinitionMap.put("/druid/**", "anon");
 		//对所有页面进行认证
 		filterChainDefinitionMap.put("/**","authc");
 		return filterChainDefinitionMap;

@@ -8,7 +8,44 @@ spring :
       hikari:
         maxLifetime: 1765000
         maximumPoolSize: 15
-
+#      druid连接池配置
+      druid:
+        #引用上面的JDBC配置
+        url: ${spring.datasource.url}
+        username: ${spring.datasource.username}
+        password: ${spring.datasource.password}
+        driver-class-name: ${spring.datasource.driverClassName}
+       # 配置初始化连接数大小
+        initial-size: 10
+        # 最大连接数
+        max-active: 50
+        #最小连接数
+        min-idle: 10
+      #获取连接等待超时时间
+        max-wait: 5000
+        pool-prepared-statements: true #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+        max-pool-prepared-statement-per-connection-size: 20
+        validation-query: SELECT 1 FROM DUAL
+        validation-query-timeout: 20000
+        test-on-borrow: false #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+        test-on-return: false #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+        test-while-idle: true #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+        time-between-eviction-runs-millis: 60000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+        min-evictable-idle-time-millis: 300000  #一个连接在池中最小生存的时间，单位是毫秒
+        # StatViewServlet配置。（因为暴露的监控信息比较敏感，支持密码加密和访问ip限定）
+        stat-view-servlet:
+          enabled: true
+          url-pattern: /druid/*
+          login-username: admin
+          login-password: admin
+        filter:
+          stat:
+            log-slow-sql: true
+            slow-sql-millis: 1000
+            merge-sql: true
+          wall:
+            config:
+              multi-statement-allow: true
 #mysql 8.0
 #spring :
 #  datasource :
@@ -19,3 +56,37 @@ spring :
 #      hikari:
 #        maxLifetime: 1765000
 #        maximumPoolSize: 15
+#       连接池配置
+#      druid:
+#        引用上面的JDBC配置
+#        url: ${spring.datasource.url}
+#        username: ${spring.datasource.username}
+#        password: ${spring.datasource.password}
+#        driver-class-name: ${spring.datasource.driverClassName}
+#        initial-size: 10
+#        max-active: 50
+#        min-idle: 10
+#        max-wait: 5000
+#        pool-prepared-statements: true #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+#        max-pool-prepared-statement-per-connection-size: 20
+#        validation-query: SELECT 1 FROM DUAL
+#        validation-query-timeout: 20000
+#        test-on-borrow: false #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+#        test-on-return: false #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+#        test-while-idle: true #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+#        time-between-eviction-runs-millis: 60000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#        min-evictable-idle-time-millis: 300000  #一个连接在池中最小生存的时间，单位是毫秒
+#        # StatViewServlet配置。（因为暴露的监控信息比较敏感，支持密码加密和访问ip限定）
+#        stat-view-servlet:
+#          enabled: true
+#          url-pattern: /druid/*
+#          login-username: admin
+#          login-password: admin
+#        filter:
+#          stat:
+#            log-slow-sql: true
+#            slow-sql-millis: 1000
+#            merge-sql: true
+#          wall:
+#            config:
+#              multi-statement-allow: true
