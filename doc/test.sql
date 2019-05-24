@@ -10,27 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-05-22 14:29:03
+Date: 2019-05-25 00:41:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for t_ceys
--- ----------------------------
-DROP TABLE IF EXISTS `t_ceys`;
-CREATE TABLE `t_ceys` (
-  `id` varchar(255) NOT NULL COMMENT '主键',
-  `name` varchar(255) DEFAULT NULL COMMENT '名称',
-  `test1` int(11) DEFAULT NULL COMMENT '测试一',
-  `test2` datetime DEFAULT NULL COMMENT '测试二',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='测试验收';
-
--- ----------------------------
--- Records of t_ceys
--- ----------------------------
-INSERT INTO `t_ceys` VALUES ('577673122853945344', '1阿瑟东', '1', '2019-05-14 01:00:00');
 
 -- ----------------------------
 -- Table structure for t_sys_datas
@@ -219,6 +202,12 @@ INSERT INTO `t_sys_oper_log` VALUES ('578215933424697344', '用户集合查询',
 INSERT INTO `t_sys_oper_log` VALUES ('578295115655675904', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-15');
 INSERT INTO `t_sys_oper_log` VALUES ('578334014285283328', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-15');
 INSERT INTO `t_sys_oper_log` VALUES ('578334057562112000', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-15');
+INSERT INTO `t_sys_oper_log` VALUES ('581539999485263872', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-24');
+INSERT INTO `t_sys_oper_log` VALUES ('581641202755960832', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-25');
+INSERT INTO `t_sys_oper_log` VALUES ('581642561861451776', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-25');
+INSERT INTO `t_sys_oper_log` VALUES ('581642571026006016', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-25');
+INSERT INTO `t_sys_oper_log` VALUES ('581642590676320256', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-25');
+INSERT INTO `t_sys_oper_log` VALUES ('581642605851312128', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-25');
 
 -- ----------------------------
 -- Table structure for t_sys_permission_role
@@ -356,6 +345,7 @@ INSERT INTO `t_sys_premission` VALUES ('5', '用户集合', '用户集合', '/Us
 INSERT INTO `t_sys_premission` VALUES ('575851658483859456', '代码生成', '代码生成', null, '1', null, '0', 'fa fa-ra', '3');
 INSERT INTO `t_sys_premission` VALUES ('575852089792528384', '代码管理', '代码生成', '/generatorController/view', '575851658483859456', 'system:generator:view', '1', 'fa fa-bug', '1');
 INSERT INTO `t_sys_premission` VALUES ('575853607149109248', '代码集合', '代码集合', '/generatorController/list', '575852089792528384', 'system:generator:list', '2', null, null);
+INSERT INTO `t_sys_premission` VALUES ('581541547099553792', 'druid监控', '/druid/', '/druid/', '496782496638173184', 'user:list', '1', 'fa fa-line-chart', null);
 INSERT INTO `t_sys_premission` VALUES ('6', '用户添加', '用户添加', '/UserController/add', '4', 'system:user:add', '2', 'entypo-plus-squared', null);
 INSERT INTO `t_sys_premission` VALUES ('7', '用户删除', '用户删除', '/UserController/remove', '4', 'system:user:remove', '2', 'entypo-trash', null);
 INSERT INTO `t_sys_premission` VALUES ('8', '用户修改', '用户修改', '/UserController/edit', '4', 'system:user:edit', '2', 'fa fa-wrench', null);
@@ -416,71 +406,3 @@ CREATE TABLE `t_sys_user` (
 -- ----------------------------
 INSERT INTO `t_sys_user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 INSERT INTO `t_sys_user` VALUES ('488294747442511872', 'fuce', 'e10adc3949ba59abbe56e057f20f883e');
-
--- ----------------------------
--- Table structure for t_tsts
--- ----------------------------
-DROP TABLE IF EXISTS `t_tsts`;
-CREATE TABLE `t_tsts` (
-  `id` varchar(255) NOT NULL COMMENT '主键',
-  `test_a` int(11) DEFAULT NULL COMMENT 'test4',
-  `test_b` bigint(20) DEFAULT NULL COMMENT 'test6',
-  `test_c` double DEFAULT NULL COMMENT 'test9',
-  `test11` float DEFAULT NULL COMMENT 'test11',
-  `test13` decimal(10,0) DEFAULT NULL COMMENT 'test13',
-  `test18` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT 'test18',
-  `test19` datetime DEFAULT NULL COMMENT 'test19',
-  `test29` text COMMENT 'test29',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='自动生成测试';
-
--- ----------------------------
--- Records of t_tsts
--- ----------------------------
-INSERT INTO `t_tsts` VALUES ('577272523196989440', '3', '3', '3', '3', '3', '2019-06-01 22:00:00', '2019-05-13 10:00:00', '3');
-
--- ----------------------------
--- Table structure for t_tsts_copy
--- ----------------------------
-DROP TABLE IF EXISTS `t_tsts_copy`;
-CREATE TABLE `t_tsts_copy` (
-  `id` varchar(255) NOT NULL COMMENT '主键',
-  `test_a` tinyint(4) DEFAULT NULL COMMENT '备注1',
-  `test_b` smallint(6) DEFAULT NULL COMMENT '备注2',
-  `test_c` mediumint(9) DEFAULT NULL COMMENT '备注3',
-  `test_d` int(11) DEFAULT NULL,
-  `test_e` int(11) DEFAULT NULL,
-  `test_f` bigint(20) DEFAULT NULL,
-  `test7` bit(1) DEFAULT NULL,
-  `test8` double DEFAULT NULL,
-  `test9` double DEFAULT NULL,
-  `test11` float DEFAULT NULL,
-  `test12` decimal(10,0) DEFAULT NULL,
-  `test13` decimal(10,0) DEFAULT NULL,
-  `test14` char(255) DEFAULT NULL,
-  `test15` varchar(255) DEFAULT NULL,
-  `test16` date DEFAULT NULL,
-  `test17` year(4) DEFAULT NULL,
-  `test18` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `test19` datetime DEFAULT NULL,
-  `test20` tinyblob,
-  `test21` blob,
-  `test22` mediumblob,
-  `test23` longblob,
-  `test24` tinytext,
-  `test25` blob,
-  `test26` mediumblob,
-  `test27` longblob,
-  `test28` tinytext,
-  `test29` text,
-  `test30` mediumtext,
-  `test31` longtext,
-  `test32` enum('') DEFAULT NULL,
-  `test33` set('') DEFAULT NULL,
-  `test34` binary(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='自动生成测试';
-
--- ----------------------------
--- Records of t_tsts_copy
--- ----------------------------
