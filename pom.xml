@@ -73,7 +73,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.40</version>
+			<version>5.1.40</version><!--$NO-MVN-MAN-VER$-->
 		</dependency> 
 
 		<!-- mysql驱动8.0

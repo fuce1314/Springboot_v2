@@ -1,33 +1,6 @@
-<<<<<<< HEAD
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
 
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-
-该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2
-=======
-
->>>>>>> refs/remotes/origin/master
 ### 前言
   SpringBoot_v2项目是努力打造springboot框架的极致细腻的脚手架。包括一套漂亮的前台。无其他杂七杂八的功能，原生纯净。
-  该项目在码云最新地址：https://gitee.com/bdj/SpringBoot_v2 
-  
-  该github为老版本、老版本、老版本
 
 ### 项目介绍
   基于springboot的一款纯净脚手架。努力打造完美注释跟文档。方便快速二次开发。
@@ -232,17 +205,9 @@ bootstrap-treeview|树结构组件||
 - 需要进项目一起开发的请进群私聊我，让我们一起维护这个开发项目
 - 很多人反应说404，那是因为其他页面根本没做，因为权限脚手架只在系统设置里面。我留着其他链接，是方便你们根据需求自行添加页面
 
-### 感谢开源软件列表
-1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
-
-
 ### 开发者联系
 - QQ：87766867 
-<<<<<<< HEAD
-- QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>
-=======
 - QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>  进群备注springbootv2
->>>>>>> refs/remotes/origin/master
 
 有任何问题可以提出
 
@@ -256,35 +221,26 @@ bootstrap-treeview|树结构组件||
 - https://github.com/fuce1314/Springboot_v2
 
 
-
 ### bug 列表
  1、 目前发现权限添加的时候好像父级id我还没写好。。。等中秋一起撸完，你们先star 下，中秋后在下【20180922 1:30 已修改】
-<<<<<<< HEAD
-=======
 
 ### wiki
 - https://gitee.com/bdj/SpringBoot_v2/wikis
 
-
-
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
-
 
 ### 项目视频列表
 - 自动生成代码视频：https://url.cn/58DDn5Y
 
 ### 更新日志
 springbootv2大更新功能[20190501]
-- 修改左右局部刷新
-- 更新war发布到tomcat发布错误
-- 修改拦截器bug
-- 更新全新数据库
+- https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970
 
-springbootv2大更新功能[20190507]
-- marst 为iframe加载方式的局部刷新框架
-- 添加新的分支为不局部刷新，需要的可以自行切换分支下载
+### 感谢开源软件列表
+1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
 
-springbootv2大更新功能[20190512]
-- marst更新自动生成代码[有bug mapper.xml里面的varchar字段是小写 跟日期字段是datatime 字段 需要修改即可用]
->>>>>>> refs/remotes/origin/master
+
+### 感谢参与人员列表
+- 霜花似雪  lhf2013 (lhf20132175@163.com)
+- 
