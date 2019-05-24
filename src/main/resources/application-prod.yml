@@ -8,12 +8,13 @@ spring :
       hikari:
         maxLifetime: 1765000
         maximumPoolSize: 15
+      # druid连接池配置
       druid:
         #JDBC配置
-        url: jdbc:mysql://192.168.1.28:13306/redisTest2?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
-        username: root
-        password: root
-        driver-class-name: com.mysql.jdbc.Driver
+        url: ${spring.datasource.url}
+        username: ${spring.datasource.username}
+        password: ${spring.datasource.password}
+        driver-class-name: ${spring.datasource.driverClassName}
         #连接池配置
         initial-size: 10
         max-active: 50

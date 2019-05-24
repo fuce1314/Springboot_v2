@@ -8,16 +8,20 @@ spring :
       hikari:
         maxLifetime: 1765000
         maximumPoolSize: 15
+#      druid连接池配置
       druid:
-        #JDBC配置
-        url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
-        username: root
-        password: root
-        driver-class-name: com.mysql.jdbc.Driver
-        #连接池配置
+        #引用上面的JDBC配置
+        url: ${spring.datasource.url}
+        username: ${spring.datasource.username}
+        password: ${spring.datasource.password}
+        driver-class-name: ${spring.datasource.driverClassName}
+       # 配置初始化连接数大小
         initial-size: 10
+        # 最大连接数
         max-active: 50
+        #最小连接数
         min-idle: 10
+      #获取连接等待超时时间
         max-wait: 5000
         pool-prepared-statements: true #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
         max-pool-prepared-statement-per-connection-size: 20
@@ -52,13 +56,13 @@ spring :
 #      hikari:
 #        maxLifetime: 1765000
 #        maximumPoolSize: 15
+#       连接池配置
 #      druid:
-#        #JDBC配置
-#        url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
-#        username: root
-#        password: root
-#        driver-class-name: com.mysql.jdbc.Driver
-#        #连接池配置
+#        引用上面的JDBC配置
+#        url: ${spring.datasource.url}
+#        username: ${spring.datasource.username}
+#        password: ${spring.datasource.password}
+#        driver-class-name: ${spring.datasource.driverClassName}
 #        initial-size: 10
 #        max-active: 50
 #        min-idle: 10
