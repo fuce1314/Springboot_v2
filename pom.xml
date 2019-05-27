@@ -182,13 +182,15 @@
 
 	<build>
 		<plugins>
+			<!-- JUnit -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 	 			<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
-				</plugin>
+			</plugin>
+			<!-- generator -->
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -208,6 +210,11 @@
 						<version>${mysql.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<!-- jar运行 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
