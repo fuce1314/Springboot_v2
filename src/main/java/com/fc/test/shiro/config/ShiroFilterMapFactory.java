@@ -46,6 +46,10 @@ user:例如/admins/user/**=user没有参数表示必须存在用户，当登入�
 		filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
 		// 释放 druid 监控画面
 		filterChainDefinitionMap.put("/druid/**", "anon");
+		//释放websocket请求
+		filterChainDefinitionMap.put("/websocket", "anon");
+		
+		//
 		//对所有页面进行认证
 		filterChainDefinitionMap.put("/**","authc");
 		return filterChainDefinitionMap;
