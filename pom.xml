@@ -164,7 +164,11 @@
 		    <artifactId>velocity</artifactId>
 		    <version>1.7</version>
 		</dependency>
-		
+		<!-- websocket -->
+		 <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
