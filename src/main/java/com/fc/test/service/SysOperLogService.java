@@ -28,7 +28,7 @@ public class SysOperLogService implements BaseService<TsysOperLog, TsysOperLogEx
 	 */
 	 public PageInfo<TsysOperLog> list(Tablepar tablepar,String searchTxt){
 	        TsysOperLogExample testExample=new TsysOperLogExample();
-	        testExample.setOrderByClause("id+0 desc");
+	        testExample.setOrderByClause("id+0 DESC");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andTitleLike("%"+searchTxt+"%");
 	        }
