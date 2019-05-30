@@ -143,6 +143,7 @@ public class RoleController extends BaseController{
     {
     	int i=sysRoleService.updateRoleAndPrem(tsysRole,prem);
     	if(i>0) {
+    		//大于0刷新权限
     		ShiroUtils.clearCachedAuthorizationInfo();
     	}
 		
