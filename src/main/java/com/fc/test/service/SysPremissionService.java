@@ -39,7 +39,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 */
 	 public PageInfo<TsysPremission> list(Tablepar tablepar,String searchTxt){
 	        TsysPremissionExample testExample=new TsysPremissionExample();
-	        testExample.setOrderByClause("id+0 ASC");
+	        testExample.setOrderByClause("id+0 DESC");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
 	        }

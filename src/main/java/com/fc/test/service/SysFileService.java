@@ -39,7 +39,7 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 	 */
 	 public PageInfo<TsysFile> list(Tablepar tablepar,String searchTxt){
 	        TsysFileExample testExample=new TsysFileExample();
-	        testExample.setOrderByClause("id+0 desc");
+	        testExample.setOrderByClause("id+0 DESC");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andFileNameLike("%"+searchTxt+"%");
 	        }
