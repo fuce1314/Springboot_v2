@@ -208,12 +208,10 @@ bootstrap-treeview|树结构组件||
 ### 开发者联系
 - QQ：87766867 
 - QQ群：881799237 
-<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>  进群备注springbootv2
+<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="https://images.gitee.com/uploads/images/2019/0530/203513_ac6773bf_123301.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>  进群备注springbootv2
 
 有任何问题可以提出
 
-### 大神技术群推荐里面有个大神群主！
-- 点击链接加入群聊【我萌的征途是架构狮！】：https://jq.qq.com/?_wv=1027&k=5WQdYq4
 
 ### 注意事项
 - 所有的model字段解释都在mysql的字段注释里面，请具体查看mysql的字段注解
@@ -233,6 +231,9 @@ bootstrap-treeview|树结构组件||
 
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
+
+### 大神QQ群推荐:
+- ![输入图片说明](https://images.gitee.com/uploads/images/2019/0530/203517_7ec233e5_123301.png "我萌的征途是架构狮！群聊二维码.png")
 
 ### 项目视频列表
 - 自动生成代码视频：https://url.cn/58DDn5Y
