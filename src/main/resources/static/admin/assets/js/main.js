@@ -40,16 +40,16 @@ head.js(rootPath+"/static/admin/assets/js/custom/scriptbreaker-multiple-accordio
 
 ////Right Sliding menu
 
-head.js(rootPath+"/static/admin/assets/js/slidebars/slidebars.min.js", rootPath+"/static/admin/assets/js/jquery-easing/jquery.easing.min.js", function() {
-
-    $(document).ready(function() {
-        var mySlidebars = new $.slidebars();
-
-        $('.toggle-left').on('click', function() {
-            mySlidebars.toggle('right');
-        });
-    });
-});
+//head.js(rootPath+"/static/admin/assets/js/slidebars/slidebars.min.js", rootPath+"/static/admin/assets/js/jquery-easing/jquery.easing.min.js", function() {
+//
+//    $(document).ready(function() {
+//        var mySlidebars = new $.slidebars();
+//
+//        $('.toggle-left').on('click', function() {
+//            mySlidebars.toggle('right');
+//        });
+//    });
+//});
 
 //-------------------------------------------------------------
 
