@@ -14,6 +14,6 @@ public class SpringbootWebInitializer  extends SpringBootServletInitializer{
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application)
     {
-        return application.sources(SpringbootSwagger2Application.class);
+        return application.sources(SpringbootStart.class);
     }
 }
