@@ -8,11 +8,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.fc.SpringbootSwagger2Application;
+import com.fc.SpringbootStart;
 import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.model.auto.TsysPremission;
-import com.fc.test.model.custom.BootstrapThree;
-import com.fc.test.model.custom.PremissionThreeModelVo;
+import com.fc.test.model.custom.BootstrapTree;
+import com.fc.test.model.custom.PremissionTreeModelVo;
 import com.fc.test.service.SysPremissionService;
 import com.google.gson.Gson;
 
@@ -25,7 +25,7 @@ public class SpringbootTest {
 	private PermissionDao permissionDao;
 	
 	public void test(){
-		/*PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
+		/*PremissionTreeModelVo modelVo= sysPremissionService.queryTreePrem();
 		Gson gson=new Gson();
 		System.out.println();
 		System.out.println(gson.toJson(modelVo));
@@ -34,38 +34,38 @@ public class SpringbootTest {
 	
 	public void test2(){
 		
-		/*PremissionThreeModelVo modelVo= sysPremissionService.queryThreePrem();
+		/*PremissionTreeModelVo modelVo= sysPremissionService.queryTreePrem();
 		TsysPremission home= modelVo.getTsysPremission();
-		List<PremissionThreeModelVo> three_mengls= modelVo.getChildList();
-		List<BootstrapThree> bootstrapThree_mengls=new  ArrayList<BootstrapThree>();
-		for (PremissionThreeModelVo menglx : three_mengls) {
+		List<PremissionTreeModelVo> tree_mengls= modelVo.getChildList();
+		List<BootstrapTree> bootstrapTree_mengls=new  ArrayList<BootstrapTree>();
+		for (PremissionTreeModelVo menglx : tree_mengls) {
 			TsysPremission mengl= menglx.getTsysPremission();
-			List<BootstrapThree> bootstrapThree_mens=new  ArrayList<BootstrapThree>();
+			List<BootstrapTree> bootstrapTree_mens=new  ArrayList<BootstrapTree>();
 			
-			List<PremissionThreeModelVo> three_mens=menglx.getChildList();
-			for (PremissionThreeModelVo buttonx : three_mens) {
+			List<PremissionTreeModelVo> tree_mens=menglx.getChildList();
+			for (PremissionTreeModelVo buttonx : tree_mens) {
 				TsysPremission button=  buttonx.getTsysPremission();
-				List<PremissionThreeModelVo> three_buttons=buttonx.getChildList();
-				List<BootstrapThree> bootstrapThree_buttons=new  ArrayList<BootstrapThree>();
+				List<PremissionTreeModelVo> tree_buttons=buttonx.getChildList();
+				List<BootstrapTree> bootstrapTree_buttons=new  ArrayList<BootstrapTree>();
 				
-				for (PremissionThreeModelVo lasts : three_buttons) {
+				for (PremissionTreeModelVo lasts : tree_buttons) {
 					TsysPremission last= lasts.getTsysPremission();
-					BootstrapThree three_button=new BootstrapThree(last.getName(), last.getIcon(),"",last.getId(),null);
-					bootstrapThree_buttons.add(three_button);
+					BootstrapTree tree_button=new BootstrapTree(last.getName(), last.getIcon(),"",last.getId(),null);
+					bootstrapTree_buttons.add(tree_button);
 				}
-				BootstrapThree bootstrapThree_button=new BootstrapThree(button.getName(), button.getIcon(),"",button.getId(), bootstrapThree_buttons);
-				bootstrapThree_mens.add(bootstrapThree_button);
+				BootstrapTree bootstrapTree_button=new BootstrapTree(button.getName(), button.getIcon(),"",button.getId(), bootstrapTree_buttons);
+				bootstrapTree_mens.add(bootstrapTree_button);
 			}
-			BootstrapThree bootstrapThree_mengl=new BootstrapThree(mengl.getName(), mengl.getIcon(),"",mengl.getId(), bootstrapThree_mens);
-			bootstrapThree_mengls.add(bootstrapThree_mengl);
+			BootstrapTree bootstrapTree_mengl=new BootstrapTree(mengl.getName(), mengl.getIcon(),"",mengl.getId(), bootstrapTree_mens);
+			bootstrapTree_mengls.add(bootstrapTree_mengl);
 		}
 		
-		BootstrapThree bootstrapThree=new BootstrapThree(home.getName(), home.getIcon(),"",home.getId(), bootstrapThree_mengls);
+		BootstrapTree bootstrapTree=new BootstrapTree(home.getName(), home.getIcon(),"",home.getId(), bootstrapTree_mengls);
 		
 		*/
 		
 		
-		/*System.out.println(new Gson().toJson(bootstrapThree));*/
+		/*System.out.println(new Gson().toJson(bootstrapTree));*/
 		
 		
 		
@@ -77,7 +77,7 @@ public class SpringbootTest {
 	 * @param myTsysPremissions
 	 * @param sysPremission
 	 */
-	public Boolean ifpermissions(List<TsysPremission>  myTsysPremissions,BootstrapThree sysPremission){
+	public Boolean ifpermissions(List<TsysPremission>  myTsysPremissions,BootstrapTree sysPremission){
 		for (TsysPremission mytsysPremission : myTsysPremissions) {
 			if(sysPremission.getId().equals(mytsysPremission.getId())){
 				return true;
@@ -93,24 +93,24 @@ public class SpringbootTest {
 		//获取自己的权限
 		List<TsysPremission>  myTsysPremissions= permissionDao.findByAdminUserId("1");
 		//获取所有的权限
-		BootstrapThree  sysPremissions= sysPremissionService.getbooBootstrapThreePerm();
+		BootstrapTree  sysPremissions= sysPremissionService.getbooBootstrapTreePerm();
 		if(ifpermissions(myTsysPremissions, sysPremissions)){
 			sysPremissions.setState(map);
 			
 		}
-		List<BootstrapThree>  menugl= sysPremissions.getNodes();
-		for (BootstrapThree menuglbootstrapThree : menugl) {
-			if(ifpermissions(myTsysPremissions, menuglbootstrapThree)){//菜单栏管理设置
-				menuglbootstrapThree.setState(map);
+		List<BootstrapTree>  menugl= sysPremissions.getNodes();
+		for (BootstrapTree menuglbootstrapTree : menugl) {
+			if(ifpermissions(myTsysPremissions, menuglbootstrapTree)){//菜单栏管理设置
+				menuglbootstrapTree.setState(map);
 			}
-			List<BootstrapThree> menu=menuglbootstrapThree.getNodes();
-			for (BootstrapThree menubootstrapThree : menu) {
-				if(ifpermissions(myTsysPremissions, menubootstrapThree)){//菜单栏设置
-					menubootstrapThree.setState(map);
+			List<BootstrapTree> menu=menuglbootstrapTree.getNodes();
+			for (BootstrapTree menubootstrapTree : menu) {
+				if(ifpermissions(myTsysPremissions, menubootstrapTree)){//菜单栏设置
+					menubootstrapTree.setState(map);
 				}
 				
-				List<BootstrapThree> buttons=menubootstrapThree.getNodes();
-				for (BootstrapThree button : buttons) {
+				List<BootstrapTree> buttons=menubootstrapTree.getNodes();
+				for (BootstrapTree button : buttons) {
 					if(ifpermissions(myTsysPremissions, button)){//按钮设置
 						button.setState(map);
 					}

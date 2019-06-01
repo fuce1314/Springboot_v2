@@ -185,6 +185,19 @@ var exportUrl=window.rootPath+"/PremissionController/export";
 			    title: '权限URL'
 			},
 			{
+			    field: 'isBlank',
+			    title: '是否跳转',
+			    formatter: function (value, row, index) {
+			        var actions = [];
+			        if(value==0){
+			        	 actions.push('<span class="label label-primary">否</span>');
+			        }else if(value==1){
+			        	 actions.push('<span class="label label-danger">是</span>');
+			        }
+			      	return actions.join('');			    
+				 }
+			},
+			{
 			    field: 'perms',
 			    title: '权限关键字'
 			},

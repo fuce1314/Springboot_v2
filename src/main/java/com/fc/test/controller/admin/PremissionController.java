@@ -182,11 +182,11 @@ public class PremissionController  extends BaseController{
      * 获取所有的转换成bootstarp的权限数据
      * @return
      */
-    @GetMapping("/getThreePerm")
+    @GetMapping("/getTreePerm")
     @ResponseBody
-    public AjaxResult getbooBootstrapThreePerm(){
+    public AjaxResult getbooBootstrapTreePerm(){
     	
-    	return retobject(200,sysPremissionService.getbooBootstrapThreePerm());
+    	return retobject(200,sysPremissionService.getbooBootstrapTreePerm());
     }
     
     
@@ -207,9 +207,9 @@ public class PremissionController  extends BaseController{
      * 跳转到菜单树页面
      * @return
      */
-    @GetMapping("three")
-    public String Three(){
-    	 return prefix + "/three";
+    @GetMapping("tree")
+    public String Tree(){
+    	 return prefix + "/tree";
     }
     
     /**
@@ -217,10 +217,10 @@ public class PremissionController  extends BaseController{
      * @param pid 父id【没用到】
      * @return
      */
-    @PostMapping("three/{pid}")
+    @PostMapping("tree/{pid}")
     @ResponseBody
-    public AjaxResult Three(@PathVariable("pid") String pid){
-    	return retobject(200,sysPremissionService.getbooBootstrapThreePerm());
+    public AjaxResult Tree(@PathVariable("pid") String pid){
+    	return retobject(200,sysPremissionService.getbooBootstrapTreePerm());
     }
     
     

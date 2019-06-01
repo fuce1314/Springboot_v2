@@ -14,7 +14,7 @@ import com.fc.test.mapper.auto.TsysPremissionMapper;
 import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysPremissionExample;
-import com.fc.test.model.custom.BootstrapThree;
+import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
@@ -69,6 +69,10 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		if(record!=null&&record.getType()==0){
 			record.setPid("1");
 		}
+		//默认设置不跳转
+		if(record.getIsBlank()==null) {
+			record.setIsBlank(0);
+		}
 		return tsysPremissionMapper.insertSelective(record);
 	}
 
@@ -81,24 +85,38 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	
 	@Override
 	public int updateByPrimaryKeySelective(TsysPremission record) {
+		//默认设置不跳转
+		if(record.getIsBlank()==null) {
+			record.setIsBlank(0);
+		}
 		return tsysPremissionMapper.updateByPrimaryKeySelective(record);
 	}
 	
 	public int updateByPrimaryKey(TsysPremission record) {
+		//默认设置不跳转
+		if(record.getIsBlank()==null) {
+			record.setIsBlank(0);
+		}
 		return tsysPremissionMapper.updateByPrimaryKey(record);
 	}
 
 	
 	@Override
 	public int updateByExampleSelective(TsysPremission record, TsysPremissionExample example) {
-		
+		//默认设置不跳转
+		if(record.getIsBlank()==null) {
+			record.setIsBlank(0);
+		}
 		return tsysPremissionMapper.updateByExampleSelective(record, example);
 	}
 
 	
 	@Override
 	public int updateByExample(TsysPremission record, TsysPremissionExample example) {
-		
+		//默认设置不跳转
+		if(record.getIsBlank()==null) {
+			record.setIsBlank(0);
+		}
 		return tsysPremissionMapper.updateByExample(record, example);
 	}
 
@@ -174,14 +192,14 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * 获取转换成bootstarp的权限数据
 	 * @return
 	 */
-	public BootstrapThree getbooBootstrapThreePerm(){
-		List<BootstrapThree> treeList = new ArrayList<BootstrapThree>();
+	public BootstrapTree getbooBootstrapTreePerm(){
+		List<BootstrapTree> treeList = new ArrayList<BootstrapTree>();
 		List<TsysPremission> menuList =  getall();
-		treeList = getbooBootstrapThreePerm(menuList,"0");
+		treeList = getbooBootstrapTreePerm(menuList,"0");
 		if(treeList!=null&&treeList.size()==1) {
 			return treeList.get(0);
 		}
-		return new BootstrapThree("菜单", "fa fa-home", "", "-1","###",treeList);
+		return new BootstrapTree("菜单", "fa fa-home", "", "-1","###",treeList);
 	}
 	
 	
@@ -192,16 +210,16 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param parentId
 	 * @return
 	 */
-	private static List<BootstrapThree> getbooBootstrapThreePerm(List<TsysPremission> menuList,String parentId){
-		List<BootstrapThree> treeList = new ArrayList<>();
-		List<BootstrapThree> childList = null;
+	private static List<BootstrapTree> getbooBootstrapTreePerm(List<TsysPremission> menuList,String parentId){
+		List<BootstrapTree> treeList = new ArrayList<>();
+		List<BootstrapTree> childList = null;
 		for(TsysPremission p : menuList) {
 			p.setPid(p.getPid()==null||p.getPid().trim().equals("")?"0":p.getPid());
 			if(p.getPid().toString().trim().equals(parentId)) {
 				if(p.getChildCount()!=null&&p.getChildCount()>0) {
-					childList = getbooBootstrapThreePerm(menuList, String.valueOf(p.getId()));
+					childList = getbooBootstrapTreePerm(menuList, String.valueOf(p.getId()));
 				}
-				BootstrapThree bootstrapTree = new BootstrapThree(p.getName(), p.getIcon(), "", String.valueOf(p.getId()), p.getUrl(),childList);
+				BootstrapTree bootstrapTree = new BootstrapTree(p.getName(), p.getIcon(), "", String.valueOf(p.getId()), p.getUrl(),childList);
 				treeList.add(bootstrapTree);
 				childList = null;
 			}
@@ -224,7 +242,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param myTsysPremissions
 	 * @param sysPremission
 	 */
-	public Boolean ifpermissions(List<TsysPremission>  myTsysPremissions,BootstrapThree sysPremission){
+	public Boolean ifpermissions(List<TsysPremission>  myTsysPremissions,BootstrapTree sysPremission){
 		for (TsysPremission mytsysPremission : myTsysPremissions) {
 			if(sysPremission.getId().equals(mytsysPremission.getId())){
 				return true;
@@ -238,7 +256,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * 获取角色已有的Bootstarp权限
 	 * @return
 	 */
-	public BootstrapThree getCheckPrem(String roleid) {
+	public BootstrapTree getCheckPrem(String roleid) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		//设置选中
 		map.put("checked", true);
@@ -247,7 +265,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		// 获取角色的权限
 		List<TsysPremission> myTsysPremissions = permissionDao.queryRoleId(roleid);
 		// 获取所有的权限
-		BootstrapThree sysPremissions = getbooBootstrapThreePerm();
+		BootstrapTree sysPremissions = getbooBootstrapTreePerm();
 		iterationCheckPre(sysPremissions, myTsysPremissions, map);
 		return sysPremissions;
 
@@ -259,14 +277,14 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param myTsysPremissions
 	 * @param map
 	 */
-	public void iterationCheckPre(BootstrapThree pboostrapTree,List<TsysPremission> myTsysPremissions,Map<String, Object> map) {
+	public void iterationCheckPre(BootstrapTree pboostrapTree,List<TsysPremission> myTsysPremissions,Map<String, Object> map) {
 		if(null!=pboostrapTree) {
 			if (ifpermissions(myTsysPremissions, pboostrapTree)) {
 				pboostrapTree.setState(map);
 			}
-			List<BootstrapThree> bootstrapTreeList = pboostrapTree.getNodes();
+			List<BootstrapTree> bootstrapTreeList = pboostrapTree.getNodes();
 			if(null!=bootstrapTreeList&&!bootstrapTreeList.isEmpty()) {
-				for(BootstrapThree bootstrapTree : bootstrapTreeList) {
+				for(BootstrapTree bootstrapTree : bootstrapTreeList) {
 					if (ifpermissions(myTsysPremissions, bootstrapTree)) {// 菜单栏设置
 						bootstrapTree.setState(map);
 					}

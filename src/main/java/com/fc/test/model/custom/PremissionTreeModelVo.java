@@ -9,10 +9,10 @@ import com.fc.test.model.auto.TsysPremission;
  * @author fuce 
  * @date: 2018年9月8日 下午6:40:29
  */
-public class PremissionThreeModelVo{
+public class PremissionTreeModelVo{
 	private TsysPremission tsysPremission;
 	
-	List<PremissionThreeModelVo> childList;//子类
+	List<PremissionTreeModelVo> childList;//子类
 
 	public TsysPremission getTsysPremission() {
 		return tsysPremission;
@@ -22,22 +22,22 @@ public class PremissionThreeModelVo{
 		this.tsysPremission = tsysPremission;
 	}
 
-	public List<PremissionThreeModelVo> getChildList() {
+	public List<PremissionTreeModelVo> getChildList() {
 		return childList;
 	}
 
-	public void setChildList(List<PremissionThreeModelVo> childList) {
+	public void setChildList(List<PremissionTreeModelVo> childList) {
 		this.childList = childList;
 	}
 
-	public PremissionThreeModelVo(TsysPremission tsysPremission,
-			List<PremissionThreeModelVo> childList) {
+	public PremissionTreeModelVo(TsysPremission tsysPremission,
+			List<PremissionTreeModelVo> childList) {
 		super();
 		this.tsysPremission = tsysPremission;
 		this.childList = childList;
 	}
 
-	public PremissionThreeModelVo() {
+	public PremissionTreeModelVo() {
 		super();
 	}
 	

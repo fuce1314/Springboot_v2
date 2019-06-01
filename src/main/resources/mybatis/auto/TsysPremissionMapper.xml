@@ -2,16 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fc.test.mapper.auto.TsysPremissionMapper">
   <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysPremission">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="descripion" jdbcType="VARCHAR" property="descripion" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="pid" jdbcType="VARCHAR" property="pid" />
-    <result column="perms" jdbcType="VARCHAR" property="perms" />
-    <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="icon" jdbcType="VARCHAR" property="icon" />
-    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
-    <result column="childcount" jdbcType="INTEGER" property="childCount"/>
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="descripion" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_blank" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="perms" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="childcount" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, descripion, url, pid, perms, type, icon, order_num, order_num,(select count(1) from t_sys_premission where pid=a.id) childcount
+    id, name, descripion, url, is_blank, pid, perms, type, icon, order_num,(select count(1) from t_sys_premission where pid=a.id) childcount
   </sql>
   <select id="selectByExample" parameterType="com.fc.test.model.auto.TsysPremissionExample" resultMap="BaseResultMap">
     select
@@ -106,11 +109,13 @@
   </delete>
   <insert id="insert" parameterType="com.fc.test.model.auto.TsysPremission">
     insert into t_sys_premission (id, name, descripion, 
-      url, pid, perms, type, 
-      icon, order_num)
+      url, is_blank, pid, 
+      perms, type, icon, 
+      order_num)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{descripion,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{perms,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{icon,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER})
+      #{url,jdbcType=VARCHAR}, #{isBlank,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, 
+      #{perms,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysPremission">
     insert into t_sys_premission
@@ -126,6 +131,9 @@
       </if>
       <if test="url != null">
         url,
+      </if>
+      <if test="isBlank != null">
+        is_blank,
       </if>
       <if test="pid != null">
         pid,
@@ -156,6 +164,9 @@
       <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
+      <if test="isBlank != null">
+        #{isBlank,jdbcType=INTEGER},
+      </if>
       <if test="pid != null">
         #{pid,jdbcType=VARCHAR},
       </if>
@@ -174,7 +185,7 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.fc.test.model.auto.TsysPremissionExample" resultType="java.lang.Long">
-    select count(*) from t_sys_premission
+    select count(*) from t_sys_premission a
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -193,6 +204,9 @@
       </if>
       <if test="record.url != null">
         url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBlank != null">
+        is_blank = #{record.isBlank,jdbcType=INTEGER},
       </if>
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=VARCHAR},
@@ -220,6 +234,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       descripion = #{record.descripion,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
+      is_blank = #{record.isBlank,jdbcType=INTEGER},
       pid = #{record.pid,jdbcType=VARCHAR},
       perms = #{record.perms,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=INTEGER},
@@ -240,6 +255,9 @@
       </if>
       <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlank != null">
+        is_blank = #{isBlank,jdbcType=INTEGER},
       </if>
       <if test="pid != null">
         pid = #{pid,jdbcType=VARCHAR},
@@ -264,6 +282,7 @@
     set name = #{name,jdbcType=VARCHAR},
       descripion = #{descripion,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
+      is_blank = #{isBlank,jdbcType=INTEGER},
       pid = #{pid,jdbcType=VARCHAR},
       perms = #{perms,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
