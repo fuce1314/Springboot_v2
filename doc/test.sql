@@ -10,10 +10,26 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-05-31 01:47:56
+Date: 2019-06-02 04:05:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for tttt
+-- ----------------------------
+DROP TABLE IF EXISTS `tttt`;
+CREATE TABLE `tttt` (
+  `id` int(11) DEFAULT NULL,
+  `asd` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tttt
+-- ----------------------------
+INSERT INTO `tttt` VALUES ('1', '2');
+INSERT INTO `tttt` VALUES ('2', '4');
+INSERT INTO `tttt` VALUES ('3', '5');
 
 -- ----------------------------
 -- Table structure for t_sys_datas
@@ -253,6 +269,11 @@ INSERT INTO `t_sys_oper_log` VALUES ('583827516024684544', '用户集合查询',
 INSERT INTO `t_sys_oper_log` VALUES ('583831701122187264', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-31');
 INSERT INTO `t_sys_oper_log` VALUES ('583831713088536576', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-31');
 INSERT INTO `t_sys_oper_log` VALUES ('583831719505821696', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-05-31');
+INSERT INTO `t_sys_oper_log` VALUES ('584559387373207552', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
+INSERT INTO `t_sys_oper_log` VALUES ('584559437671301120', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
+INSERT INTO `t_sys_oper_log` VALUES ('584560960216236032', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
+INSERT INTO `t_sys_oper_log` VALUES ('584592684212027392', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
+INSERT INTO `t_sys_oper_log` VALUES ('584592815695069184', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
 
 -- ----------------------------
 -- Table structure for t_sys_permission_role
@@ -349,6 +370,7 @@ CREATE TABLE `t_sys_premission` (
   `name` varchar(255) DEFAULT NULL COMMENT '权限名称',
   `descripion` varchar(255) DEFAULT NULL COMMENT '权限描述',
   `url` varchar(255) DEFAULT NULL COMMENT '授权链接',
+  `is_blank` int(255) DEFAULT '0' COMMENT '是否跳转 0 不跳转 1跳转',
   `pid` varchar(255) DEFAULT NULL COMMENT '父节点id',
   `perms` varchar(255) DEFAULT NULL COMMENT '权限标识',
   `type` int(11) DEFAULT NULL COMMENT '类型   0：目录   1：菜单   2：按钮',
@@ -360,37 +382,37 @@ CREATE TABLE `t_sys_premission` (
 -- ----------------------------
 -- Records of t_sys_premission
 -- ----------------------------
-INSERT INTO `t_sys_premission` VALUES ('1', '首页', '首页', null, '0', null, '0', 'fa fa-home', '1');
-INSERT INTO `t_sys_premission` VALUES ('10', '角色集合', '角色集合', '/RoleController/list', '9', 'system:role:list', '2', '', null);
-INSERT INTO `t_sys_premission` VALUES ('11', '角色添加', '角色添加', '/RoleController/add', '9', 'system:role:add', '2', 'entypo-plus-squared', null);
-INSERT INTO `t_sys_premission` VALUES ('12', '角色删除', '角色删除', '/RoleController/remove', '9', 'system:role:remove', '2', 'entypo-trash', null);
-INSERT INTO `t_sys_premission` VALUES ('13', '角色修改', '角色修改', '/RoleController/edit', '9', 'system:role:edit', '2', 'fa fa-wrench', null);
-INSERT INTO `t_sys_premission` VALUES ('14', '权限展示', '权限展示', '/PremissionController/view', '496782496638173184', 'system:premission:view', '1', 'fa fa-key', null);
-INSERT INTO `t_sys_premission` VALUES ('15', '权限集合', '权限集合', '/PremissionController/list', '14', 'system:premission:list', '2', '', null);
-INSERT INTO `t_sys_premission` VALUES ('16', '权限添加', '权限添加', '/PremissionController/add', '14', 'system:premission:add', '2', 'entypo-plus-squared', null);
-INSERT INTO `t_sys_premission` VALUES ('17', '权限删除', '权限删除', '/PremissionController/remove', '14', 'system:premission:remove', '2', 'entypo-trash', null);
-INSERT INTO `t_sys_premission` VALUES ('18', '权限修改', '权限修改', '/PremissionController/edit', '14', 'system:premission:edit', '2', 'fa fa-wrench', null);
-INSERT INTO `t_sys_premission` VALUES ('19', '文件展示', '文件展示', '/FileController/view', '496782496638173184', 'system:file:view', '1', 'fa fa-file-image-o', null);
-INSERT INTO `t_sys_premission` VALUES ('20', '文件添加', '文件添加', '/FileController/add', '19', 'system:file:add', '2', 'entypo-plus-squared', null);
-INSERT INTO `t_sys_premission` VALUES ('21', '文件删除', '文件删除', '/FileController/remove', '19', 'system:file:remove', '2', 'entypo-trash', null);
-INSERT INTO `t_sys_premission` VALUES ('22', '文件修改', '文件修改', '/FileController/edit', '19', 'system:file:edit', '2', 'fa fa-wrench', null);
-INSERT INTO `t_sys_premission` VALUES ('23', '文件集合', '文件集合', '/FileController/list', '19', 'system:file:list', '2', '', null);
-INSERT INTO `t_sys_premission` VALUES ('4', '用户管理', '用户展示', '/UserController/view', '496782496638173184', 'system:user:view', '1', 'icon icon-user', '1');
-INSERT INTO `t_sys_premission` VALUES ('486690002869157888', '用户密码修改', '用户密码修改', '/UserController/editPwd', '4', 'system:user:editPwd', '2', 'entypo-tools', '3');
-INSERT INTO `t_sys_premission` VALUES ('496126970468237312', '日志展示', '日志管理', '/LogController/view', '496124944220946432', 'system:log:view', '1', 'fa-bitbucket', null);
-INSERT INTO `t_sys_premission` VALUES ('496127240363311104', '日志删除', '日志删除', '/LogController/remove', '496126970468237312', 'system:log:remove', '2', 'entypo-trash', null);
-INSERT INTO `t_sys_premission` VALUES ('496127794879660032', '日志集合', '日志集合', '/LogController/list', '496126970468237312', 'system:log:list', '2', null, null);
-INSERT INTO `t_sys_premission` VALUES ('496782496638173184', '系统设置', '系统设置', null, '1', null, '0', 'fa fa-gear', '3');
-INSERT INTO `t_sys_premission` VALUES ('5', '用户集合', '用户集合', '/UserController/list', '4', 'system:user:list', '2', '', null);
-INSERT INTO `t_sys_premission` VALUES ('575851658483859456', '代码生成', '代码生成', null, '1', null, '0', 'fa fa-ra', '3');
-INSERT INTO `t_sys_premission` VALUES ('575852089792528384', '代码管理', '代码生成', '/generatorController/view', '575851658483859456', 'system:generator:view', '1', 'fa fa-bug', '1');
-INSERT INTO `t_sys_premission` VALUES ('575853607149109248', '代码集合', '代码集合', '/generatorController/list', '575852089792528384', 'system:generator:list', '2', null, null);
-INSERT INTO `t_sys_premission` VALUES ('581541547099553792', 'druid监控', '/druid/', '/druid/', '496782496638173184', 'user:list', '1', 'fa fa-line-chart', null);
-INSERT INTO `t_sys_premission` VALUES ('583063272123531264', 'API文档', 'API文档', '/SwaggerController/view', '496782496638173184', 'system:swagger:view', '1', 'fa fa-font', '1');
-INSERT INTO `t_sys_premission` VALUES ('6', '用户添加', '用户添加', '/UserController/add', '4', 'system:user:add', '2', 'entypo-plus-squared', null);
-INSERT INTO `t_sys_premission` VALUES ('7', '用户删除', '用户删除', '/UserController/remove', '4', 'system:user:remove', '2', 'entypo-trash', null);
-INSERT INTO `t_sys_premission` VALUES ('8', '用户修改', '用户修改', '/UserController/edit', '4', 'system:user:edit', '2', 'fa fa-wrench', null);
-INSERT INTO `t_sys_premission` VALUES ('9', '角色管理', '角色展示', '/RoleController/view', '496782496638173184', 'system:role:view', '1', 'fa fa-group', null);
+INSERT INTO `t_sys_premission` VALUES ('1', '首页', '首页', null, '0', '0', null, '0', 'fa fa-home', '1');
+INSERT INTO `t_sys_premission` VALUES ('10', '角色集合', '角色集合', '/RoleController/list', '0', '9', 'system:role:list', '2', '', null);
+INSERT INTO `t_sys_premission` VALUES ('11', '角色添加', '角色添加', '/RoleController/add', '0', '9', 'system:role:add', '2', 'entypo-plus-squared', null);
+INSERT INTO `t_sys_premission` VALUES ('12', '角色删除', '角色删除', '/RoleController/remove', '0', '9', 'system:role:remove', '2', 'entypo-trash', null);
+INSERT INTO `t_sys_premission` VALUES ('13', '角色修改', '角色修改', '/RoleController/edit', '0', '9', 'system:role:edit', '2', 'fa fa-wrench', null);
+INSERT INTO `t_sys_premission` VALUES ('14', '权限展示', '权限展示', '/PremissionController/view', '0', '496782496638173184', 'system:premission:view', '1', 'fa fa-key', null);
+INSERT INTO `t_sys_premission` VALUES ('15', '权限集合', '权限集合', '/PremissionController/list', '0', '14', 'system:premission:list', '2', '', null);
+INSERT INTO `t_sys_premission` VALUES ('16', '权限添加', '权限添加', '/PremissionController/add', '0', '14', 'system:premission:add', '2', 'entypo-plus-squared', null);
+INSERT INTO `t_sys_premission` VALUES ('17', '权限删除', '权限删除', '/PremissionController/remove', '0', '14', 'system:premission:remove', '2', 'entypo-trash', null);
+INSERT INTO `t_sys_premission` VALUES ('18', '权限修改', '权限修改', '/PremissionController/edit', '0', '14', 'system:premission:edit', '2', 'fa fa-wrench', null);
+INSERT INTO `t_sys_premission` VALUES ('19', '文件展示', '文件展示', '/FileController/view', '0', '496782496638173184', 'system:file:view', '1', 'fa fa-file-image-o', null);
+INSERT INTO `t_sys_premission` VALUES ('20', '文件添加', '文件添加', '/FileController/add', '0', '19', 'system:file:add', '2', 'entypo-plus-squared', null);
+INSERT INTO `t_sys_premission` VALUES ('21', '文件删除', '文件删除', '/FileController/remove', '0', '19', 'system:file:remove', '2', 'entypo-trash', null);
+INSERT INTO `t_sys_premission` VALUES ('22', '文件修改', '文件修改', '/FileController/edit', '0', '19', 'system:file:edit', '2', 'fa fa-wrench', null);
+INSERT INTO `t_sys_premission` VALUES ('23', '文件集合', '文件集合', '/FileController/list', '0', '19', 'system:file:list', '2', '', null);
+INSERT INTO `t_sys_premission` VALUES ('4', '用户管理', '用户展示', '/UserController/view', '0', '496782496638173184', 'system:user:view', '1', 'icon icon-user', '1');
+INSERT INTO `t_sys_premission` VALUES ('486690002869157888', '用户密码修改', '用户密码修改', '/UserController/editPwd', '0', '4', 'system:user:editPwd', '2', 'entypo-tools', '3');
+INSERT INTO `t_sys_premission` VALUES ('496126970468237312', '日志展示', '日志管理', '/LogController/view', '0', '496124944220946432', 'system:log:view', '1', 'fa-bitbucket', null);
+INSERT INTO `t_sys_premission` VALUES ('496127240363311104', '日志删除', '日志删除', '/LogController/remove', '0', '496126970468237312', 'system:log:remove', '2', 'entypo-trash', null);
+INSERT INTO `t_sys_premission` VALUES ('496127794879660032', '日志集合', '日志集合', '/LogController/list', '0', '496126970468237312', 'system:log:list', '2', null, null);
+INSERT INTO `t_sys_premission` VALUES ('496782496638173184', '系统设置', '系统设置', null, '0', '1', null, '0', 'fa fa-gear', '3');
+INSERT INTO `t_sys_premission` VALUES ('5', '用户集合', '用户集合', '/UserController/list', '0', '4', 'system:user:list', '2', '', null);
+INSERT INTO `t_sys_premission` VALUES ('575851658483859456', '代码生成', '代码生成', null, '0', '1', null, '0', 'fa fa-ra', '3');
+INSERT INTO `t_sys_premission` VALUES ('575852089792528384', '代码管理', '代码生成', '/generatorController/view', '0', '575851658483859456', 'system:generator:view', '1', 'fa fa-bug', '1');
+INSERT INTO `t_sys_premission` VALUES ('575853607149109248', '代码集合', '代码集合', '/generatorController/list', '0', '575852089792528384', 'system:generator:list', '2', null, null);
+INSERT INTO `t_sys_premission` VALUES ('581541547099553792', 'druid监控', '/druid/', '/druid/', '0', '496782496638173184', 'user:list', '1', 'fa fa-line-chart', null);
+INSERT INTO `t_sys_premission` VALUES ('583063272123531264', 'API文档', 'API文档', '/SwaggerController/view', '1', '496782496638173184', 'system:swagger:view', '1', 'fa fa-font', '1');
+INSERT INTO `t_sys_premission` VALUES ('6', '用户添加', '用户添加', '/UserController/add', '0', '4', 'system:user:add', '2', 'entypo-plus-squared', null);
+INSERT INTO `t_sys_premission` VALUES ('7', '用户删除', '用户删除', '/UserController/remove', '0', '4', 'system:user:remove', '2', 'entypo-trash', null);
+INSERT INTO `t_sys_premission` VALUES ('8', '用户修改', '用户修改', '/UserController/edit', '0', '4', 'system:user:edit', '2', 'fa fa-wrench', null);
+INSERT INTO `t_sys_premission` VALUES ('9', '角色管理', '角色展示', '/RoleController/view', '0', '496782496638173184', 'system:role:view', '1', 'fa fa-group', null);
 
 -- ----------------------------
 -- Table structure for t_sys_role
