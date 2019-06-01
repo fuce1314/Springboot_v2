@@ -199,7 +199,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		if(treeList!=null&&treeList.size()==1) {
 			return treeList.get(0);
 		}
-		return new BootstrapTree("菜单", "fa fa-home", "", "-1","###",treeList);
+		return new BootstrapTree("菜单", "fa fa-home", "", "-1","###",0,treeList);
 	}
 	
 	
@@ -219,7 +219,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 				if(p.getChildCount()!=null&&p.getChildCount()>0) {
 					childList = getbooBootstrapTreePerm(menuList, String.valueOf(p.getId()));
 				}
-				BootstrapTree bootstrapTree = new BootstrapTree(p.getName(), p.getIcon(), "", String.valueOf(p.getId()), p.getUrl(),childList);
+				BootstrapTree bootstrapTree = new BootstrapTree(p.getName(), p.getIcon(), "", String.valueOf(p.getId()), p.getUrl(),p.getIsBlank(),childList);
 				treeList.add(bootstrapTree);
 				childList = null;
 			}

@@ -14,6 +14,7 @@ public class BootstrapTree {
 	private String data;//数据
 	private String id;//id
 	private String url;//url
+	private Integer isBlank;//是否跳转
 	private Map<String,Object> state;//选中参数
 	private List<BootstrapTree> nodes;//子元素
 	
@@ -67,13 +68,14 @@ public class BootstrapTree {
 	 * @param state  传入{"checked":true} 
 	 */
 	public BootstrapTree(String text, String icon, String data, String id,
-			 List<BootstrapTree> nodes,String url,Map<String, Object> state) {
+			 List<BootstrapTree> nodes,String url,Integer isBlank,Map<String, Object> state) {
 		super();
 		this.text = text;
 		this.icon = icon;
 		this.data = data;
 		this.id = id;
 		this.url=url;
+		this.isBlank=isBlank;
 		this.state = state;
 		this.nodes = nodes;
 	}
@@ -85,7 +87,7 @@ public class BootstrapTree {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public BootstrapTree(String text, String icon, String data, String id,String url,
+	public BootstrapTree(String text, String icon, String data, String id,String url,Integer isBlank,
 			List<BootstrapTree> nodes) {
 		super();
 		this.text = text;
@@ -93,7 +95,14 @@ public class BootstrapTree {
 		this.data = data;
 		this.id = id;
 		this.url=url;
+		this.isBlank=isBlank;
 		this.nodes = nodes;
+	}
+	public Integer getIsBlank() {
+		return isBlank;
+	}
+	public void setIsBlank(Integer isBlank) {
+		this.isBlank = isBlank;
 	}
 	
 }

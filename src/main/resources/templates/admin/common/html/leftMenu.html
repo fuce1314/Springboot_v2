@@ -45,7 +45,11 @@
 	                    </li>
 	                    <th:bolck th:if=${muen.nodes!=null}>
 	                    <li th:each="caidan,caidanStat:${muen.nodes}">
-	                 		<a   class="tooltip-tip" th:href="@{${caidan.url}}" target="mainFrame" th:title="${caidan.text}">
+	                 		<a th:if="${caidan.isBlank==0}"  class="tooltip-tip" th:href="@{${caidan.url}}" target="mainFrame" th:title="${caidan.text}">
+	                            <i th:classappend="${caidan.icon}" class=""></i>
+								<span th:text="${caidan.text}">用户管理</span>
+	                 		</a>
+	                 		<a th:if="${caidan.isBlank==1}"  class="tooltip-tip" th:href="@{${caidan.url}}" target="_blank" th:title="${caidan.text}">
 	                            <i th:classappend="${caidan.icon}" class=""></i>
 								<span th:text="${caidan.text}">用户管理</span>
 	                 		</a>
