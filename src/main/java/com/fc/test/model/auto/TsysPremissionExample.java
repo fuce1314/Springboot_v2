@@ -384,6 +384,66 @@ public class TsysPremissionExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsBlankIsNull() {
+            addCriterion("is_blank is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankIsNotNull() {
+            addCriterion("is_blank is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankEqualTo(Integer value) {
+            addCriterion("is_blank =", value, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankNotEqualTo(Integer value) {
+            addCriterion("is_blank <>", value, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankGreaterThan(Integer value) {
+            addCriterion("is_blank >", value, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_blank >=", value, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankLessThan(Integer value) {
+            addCriterion("is_blank <", value, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankLessThanOrEqualTo(Integer value) {
+            addCriterion("is_blank <=", value, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankIn(List<Integer> values) {
+            addCriterion("is_blank in", values, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankNotIn(List<Integer> values) {
+            addCriterion("is_blank not in", values, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankBetween(Integer value1, Integer value2) {
+            addCriterion("is_blank between", value1, value2, "isBlank");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlankNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_blank not between", value1, value2, "isBlank");
+            return (Criteria) this;
+        }
+
         public Criteria andPidIsNull() {
             addCriterion("pid is null");
             return (Criteria) this;

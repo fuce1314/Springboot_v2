@@ -94,6 +94,15 @@ label.error {
 									<input class="form-control" type="text" id="url" name="url" th:value="*{url}"/>
 								</div>
 							</div>
+							<div  v-if="menu.type == 1" class="form-group">
+								<label class="col-sm-3 control-label ">是否跳转：</label>
+								<div class="col-sm-8">
+									 <select class="form-control" id="isBlank" name="isBlank"  >
+	                                    <option value="0" th:selected="${TsysPremission.isBlank ==0}">否</option>
+	                                    <option value="1" th:selected="${TsysPremission.isBlank ==1}">是</option>
+	                                </select>
+								</div>
+							</div>
 							<div v-if="menu.type == 1 || menu.type == 2" class="form-group">
 								<!-- 验证用 -->
 								<input class="form-control" type="hidden" id="checkurl" th:value="*{url}"/>
@@ -275,7 +284,7 @@ function edit() {
 
 /*菜单管理-修改-选择菜单树*/
 function selectMenuTree() {
-	var url =  rootPath+ "/PremissionController/three";
+	var url =  rootPath+ "/PremissionController/tree";
 	$.modal.open("选择菜单", url, '380', '380');
 }
 

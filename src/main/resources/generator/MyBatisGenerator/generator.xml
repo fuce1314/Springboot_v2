@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 数据库驱动包位置 -->
+	<classPathEntry location="mysqldriver.jar" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		  <!--覆盖生成XML文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        <!-- 序列化model-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<commentGenerator>
+			<property name="javaFileEncoding" value="UTF-8"/>
+            <property name="suppressDate" value="true"/>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 格式化java代码 -->
+            <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+            <!-- 格式化XML代码 -->
+            <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/test" 
+			userId="root"
+			password="root">
+			<!-- 针对mysql数据库 -->
+			<property name="useInformationSchema" value="true"></property>
+			
+		</jdbcConnection>
+			
+			<!--
+			<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.1.28:13306/datav" userId="root"
+			password="jxzx123"></jdbcConnection>
+			-->
+			
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.fc.test.model.auto"
+			targetProject="D:\Users\Administrator\git\SpringBoot_v2\src\main\java">
+			 <!-- 是否对model添加 构造函数 -->
+            <property name="constructorBased" value="true"/>
+			<!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 生成的映射文件包名和位置 -->
+		<sqlMapGenerator targetPackage="mybatis.auto"
+			targetProject="D:\Users\Administrator\git\SpringBoot_v2\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.fc.test.mapper.auto"
+			targetProject="D:\Users\Administrator\git\SpringBoot_v2\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+		
+		
+		
+		
+		
+		
+		<table tableName='t_sys_premission' domainObjectName='TsysPremission'/>
+
+
+	</context>
+
+</generatorConfiguration>

@@ -1,6 +1,8 @@
 package com.fc.test.model.auto;
 
-public class TsysPremission {
+import java.io.Serializable;
+
+public class TsysPremission implements Serializable {
     private String id;
 
     private String name;
@@ -8,6 +10,8 @@ public class TsysPremission {
     private String descripion;
 
     private String url;
+
+    private Integer isBlank;
 
     private String pid;
 
@@ -20,6 +24,26 @@ public class TsysPremission {
     private Integer orderNum;
     
     private Integer childCount;
+    
+    private static final long serialVersionUID = 1L;
+
+    public TsysPremission(String id, String name, String descripion, String url, Integer isBlank, String pid, String perms, Integer type, String icon, Integer orderNum,Integer childCount) {
+        this.id = id;
+        this.name = name;
+        this.descripion = descripion;
+        this.url = url;
+        this.isBlank = isBlank;
+        this.pid = pid;
+        this.perms = perms;
+        this.type = type;
+        this.icon = icon;
+        this.orderNum = orderNum;
+        this.childCount = childCount;
+    }
+
+    public TsysPremission() {
+        super();
+    }
 
     public String getId() {
         return id;
@@ -51,6 +75,14 @@ public class TsysPremission {
 
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
+    }
+
+    public Integer getIsBlank() {
+        return isBlank;
+    }
+
+    public void setIsBlank(Integer isBlank) {
+        this.isBlank = isBlank;
     }
 
     public String getPid() {
@@ -92,33 +124,12 @@ public class TsysPremission {
     public void setOrderNum(Integer orderNum) {
         this.orderNum = orderNum;
     }
-
-	public TsysPremission(String id, String name, String descripion,
-			String url, String pid, String perms, Integer type, String icon,
-			Integer orderNum) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.descripion = descripion;
-		this.url = url;
-		this.pid = pid;
-		this.perms = perms;
-		this.type = type;
-		this.icon = icon;
-		this.orderNum = orderNum;
-	}
-
-	public TsysPremission() {
-		super();
-	}
-
-	public Integer getChildCount() {
+    
+    public Integer getChildCount() {
 		return childCount;
 	}
 
 	public void setChildCount(Integer childCount) {
 		this.childCount = childCount;
 	}
-    
-    
 }

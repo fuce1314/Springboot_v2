@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fc.test.common.base.BaseController;
 import com.fc.test.model.auto.TsysUser;
-import com.fc.test.model.custom.BootstrapThree;
+import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.util.StringUtils;
 import com.google.code.kaptcha.Constants;
@@ -59,8 +59,8 @@ public class HomeController extends BaseController{
             if ((null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) || SecurityUtils.getSubject().isRemembered()) {
             	setTitle(model, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
             	//获取菜单栏
-            	BootstrapThree bootstrapThree=sysPremissionService.getbooBootstrapThreePerm();
-            	request.getSession().setAttribute("bootstrapThree", bootstrapThree);
+            	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm();
+            	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
             	return "admin/index";
             } else {
             	System.out.println("--进行登录验证..验证开始");
@@ -124,8 +124,8 @@ public class HomeController extends BaseController{
 		 }else{
 			 redirectAttributes.addFlashAttribute("message", "验证码不正确");
 		 }
-		 BootstrapThree bootstrapThree=sysPremissionService.getbooBootstrapThreePerm();
-     	 request.getSession().setAttribute("bootstrapThree", bootstrapThree);
+		 BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm();
+     	 request.getSession().setAttribute("bootstrapTree", bootstrapTree);
 		 //跳转到 get请求的登陆方法
 		 view.setViewName("admin/index");
 		 return view;

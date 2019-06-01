@@ -23,6 +23,9 @@
 -->
 
     <context id="oracle" targetRuntime="MyBatis3" defaultModelType="flat">
+     	<!--覆盖生成XML文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        
         <!-- 序列化model-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
         <!-- 阻止生成自动注释 -->
@@ -30,7 +33,7 @@
         <commentGenerator>
             <property name="javaFileEncoding" value="UTF-8"/>
             <property name="suppressDate" value="true"/>
-            <property name="suppressAllComments" value="true"/>
+            <property name="suppressAllComments" value="false"/>
             <!-- 格式化java代码 -->
             <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
             <!-- 格式化XML代码 -->
@@ -62,10 +65,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.fc.test.mapper.auto" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        
-        <table tableName="t_sys_user" domainObjectName="TsysUser" enableCountByExample="true">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
+       
         <!-- 配置需要生成的表 
         <table tableName="t_sys_user" domainObjectName="TsysUser" enableCountByExample="true">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
@@ -83,6 +83,6 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>-->
         
-        
+        <table tableName='t_sys_premission' domainObjectName='TsysPremission'/>
     </context>
 </generatorConfiguration>

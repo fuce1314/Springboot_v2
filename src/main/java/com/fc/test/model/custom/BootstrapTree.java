@@ -8,14 +8,15 @@ import java.util.Map;
  * @author fuce 
  * @date: 2018年9月8日 下午10:47:07
  */
-public class BootstrapThree {
+public class BootstrapTree {
 	private String text;//文字
 	private String icon;//图标
 	private String data;//数据
 	private String id;//id
 	private String url;//url
+	private Integer isBlank;//是否跳转
 	private Map<String,Object> state;//选中参数
-	private List<BootstrapThree> nodes;//子元素
+	private List<BootstrapTree> nodes;//子元素
 	
 	public String getText() {
 		return text;
@@ -35,13 +36,13 @@ public class BootstrapThree {
 	public void setData(String data) {
 		this.data = data;
 	}
-	public List<BootstrapThree> getNodes() {
+	public List<BootstrapTree> getNodes() {
 		return nodes;
 	}
-	public void setNodes(List<BootstrapThree> nodes) {
+	public void setNodes(List<BootstrapTree> nodes) {
 		this.nodes = nodes;
 	}
-	public BootstrapThree() {
+	public BootstrapTree() {
 		super();
 	}
 	public String getId() {
@@ -66,14 +67,15 @@ public class BootstrapThree {
 	 * @param nodes
 	 * @param state  传入{"checked":true} 
 	 */
-	public BootstrapThree(String text, String icon, String data, String id,
-			 List<BootstrapThree> nodes,String url,Map<String, Object> state) {
+	public BootstrapTree(String text, String icon, String data, String id,
+			 List<BootstrapTree> nodes,String url,Integer isBlank,Map<String, Object> state) {
 		super();
 		this.text = text;
 		this.icon = icon;
 		this.data = data;
 		this.id = id;
 		this.url=url;
+		this.isBlank=isBlank;
 		this.state = state;
 		this.nodes = nodes;
 	}
@@ -85,15 +87,22 @@ public class BootstrapThree {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public BootstrapThree(String text, String icon, String data, String id,String url,
-			List<BootstrapThree> nodes) {
+	public BootstrapTree(String text, String icon, String data, String id,String url,Integer isBlank,
+			List<BootstrapTree> nodes) {
 		super();
 		this.text = text;
 		this.icon = icon;
 		this.data = data;
 		this.id = id;
 		this.url=url;
+		this.isBlank=isBlank;
 		this.nodes = nodes;
+	}
+	public Integer getIsBlank() {
+		return isBlank;
+	}
+	public void setIsBlank(Integer isBlank) {
+		this.isBlank = isBlank;
 	}
 	
 }

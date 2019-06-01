@@ -12,11 +12,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan(value = "com.fc.test.mapper")
-public class SpringbootSwagger2Application {
+public class SpringbootStart {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(SpringbootSwagger2Application.class, args);
+        SpringApplication.run(SpringbootStart.class, args);
         System.out.println("=================================");
         System.out.println("=============启动成功===============");
         System.out.println("=================================");
