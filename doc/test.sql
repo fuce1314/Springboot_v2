@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-06-02 04:05:01
+Date: 2019-06-02 04:13:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -274,6 +274,7 @@ INSERT INTO `t_sys_oper_log` VALUES ('584559437671301120', '用户集合查询',
 INSERT INTO `t_sys_oper_log` VALUES ('584560960216236032', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
 INSERT INTO `t_sys_oper_log` VALUES ('584592684212027392', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
 INSERT INTO `t_sys_oper_log` VALUES ('584592815695069184', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
+INSERT INTO `t_sys_oper_log` VALUES ('584595278275805184', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-02');
 
 -- ----------------------------
 -- Table structure for t_sys_permission_role
@@ -408,7 +409,7 @@ INSERT INTO `t_sys_premission` VALUES ('575851658483859456', '代码生成', '�
 INSERT INTO `t_sys_premission` VALUES ('575852089792528384', '代码管理', '代码生成', '/generatorController/view', '0', '575851658483859456', 'system:generator:view', '1', 'fa fa-bug', '1');
 INSERT INTO `t_sys_premission` VALUES ('575853607149109248', '代码集合', '代码集合', '/generatorController/list', '0', '575852089792528384', 'system:generator:list', '2', null, null);
 INSERT INTO `t_sys_premission` VALUES ('581541547099553792', 'druid监控', '/druid/', '/druid/', '0', '496782496638173184', 'user:list', '1', 'fa fa-line-chart', null);
-INSERT INTO `t_sys_premission` VALUES ('583063272123531264', 'API文档', 'API文档', '/SwaggerController/view', '1', '496782496638173184', 'system:swagger:view', '1', 'fa fa-font', '1');
+INSERT INTO `t_sys_premission` VALUES ('583063272123531264', 'API文档', 'API文档', '/swagger-ui.html', '1', '496782496638173184', '--', '1', 'fa fa-font', '1');
 INSERT INTO `t_sys_premission` VALUES ('6', '用户添加', '用户添加', '/UserController/add', '0', '4', 'system:user:add', '2', 'entypo-plus-squared', null);
 INSERT INTO `t_sys_premission` VALUES ('7', '用户删除', '用户删除', '/UserController/remove', '0', '4', 'system:user:remove', '2', 'entypo-trash', null);
 INSERT INTO `t_sys_premission` VALUES ('8', '用户修改', '用户修改', '/UserController/edit', '0', '4', 'system:user:edit', '2', 'fa fa-wrench', null);
