@@ -37,7 +37,8 @@ public class RemoveDruidAdConfig {
      * @return org.springframework.boot.web.servlet.FilterRegistrationBean
      * @throws
      */
-    @Bean
+    @SuppressWarnings("rawtypes")
+	@Bean
     public FilterRegistrationBean removeDruidAdFilterRegistrationBean(DruidStatProperties properties) {
         // 获取web监控页面的参数
         DruidStatProperties.StatViewServlet config = properties.getStatViewServlet();

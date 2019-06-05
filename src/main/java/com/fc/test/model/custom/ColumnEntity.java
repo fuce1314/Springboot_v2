@@ -24,7 +24,8 @@ public class ColumnEntity {
     //auto_increment
     private String extra;
     //mapper映射类型
-    private String mappdataType = getMappdataType();
+    @SuppressWarnings("unused")
+	private String mappdataType = getMappdataType();
     
     
 	public String getColumnName() {
