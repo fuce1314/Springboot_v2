@@ -86,7 +86,7 @@
 								style="height:16px; padding-top:4px;" />
 						</div>
 						<div style="float: left;">
-							<i><img style="height:22px;" id="codeImg" alt="点击更换" title="点击更换" src="captcha/captchaImage?type=math" /></i>
+							<i><img style="height:26px;" id="codeImg" alt="点击更换" title="点击更换" src="captcha/captchaImage?type=char" /></i>
 						</div>
 						
 						<span class="pull-right" style="padding-right:3%;"><a href="javascript:changepage(1);" class="btn btn-success">注册</a></span>
@@ -167,7 +167,7 @@
 								style="height:16px; padding-top:4px;" />
 						</div>
 						<div style="float: left;">
-							<i><img style="height:22px;" id="zcodeImg" alt="点击更换" title="点击更换" src="" /></i>
+							<i><img style="height:26px;" id="zcodeImg" alt="点击更换" title="点击更换" src="" /></i>
 						</div>
 						<span class="pull-right" style="padding-right:3%;"><a href="javascript:changepage(2);" class="btn btn-success">取消</a></span>
 						<span class="pull-right"><a onclick="register();" class="flip-link btn btn-info" id="to-recover">提交</a></span>
@@ -226,7 +226,7 @@
 	            })
 		}
 		$('#codeImg').click(function() {
-			var url ="captcha/captchaImage?type=math&s=" + Math.random();
+			var url ="captcha/captchaImage?type=char&s=" + Math.random();
 			$("#codeImg").attr("src", url);
 		});
 	
