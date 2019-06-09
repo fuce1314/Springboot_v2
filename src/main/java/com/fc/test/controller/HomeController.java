@@ -27,6 +27,7 @@ import com.fc.test.common.base.BaseController;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.TitleVo;
+import com.fc.test.shiro.util.ShiroUtils;
 import com.fc.test.util.StringUtils;
 import com.google.code.kaptcha.Constants;
 
@@ -61,6 +62,7 @@ public class HomeController extends BaseController{
             	//获取菜单栏
             	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm();
             	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
+            	request.getSession().setAttribute("sessionUserName",ShiroUtils.getLoginName() );
             	return "admin/index";
             } else {
             	System.out.println("--进行登录验证..验证开始");
@@ -126,6 +128,7 @@ public class HomeController extends BaseController{
 		 }
 		 BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm();
      	 request.getSession().setAttribute("bootstrapTree", bootstrapTree);
+     	 request.getSession().setAttribute("sessionUserName",ShiroUtils.getLoginName() );
 		 //跳转到 get请求的登陆方法
 		 view.setViewName("admin/index");
 		 return view;
