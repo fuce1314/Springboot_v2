@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-06-09 04:23:49
+Date: 2019-06-09 21:57:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -277,6 +277,19 @@ INSERT INTO `t_sys_oper_log` VALUES ('587083579423457280', '用户集合查询',
 INSERT INTO `t_sys_oper_log` VALUES ('587086907150696448', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
 INSERT INTO `t_sys_oper_log` VALUES ('587107354512719872', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
 INSERT INTO `t_sys_oper_log` VALUES ('587134110997151744', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587386077048733696', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587386148117020672', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587390017240825856', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587390258719490048', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587390265283575808', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587390277564497920', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587390279829422080', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587390336532217856', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587390377162440704', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587391955558727680', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587395304353955840', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587398986516660224', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
+INSERT INTO `t_sys_oper_log` VALUES ('587399841152237568', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-09');
 
 -- ----------------------------
 -- Table structure for t_sys_permission_role
@@ -412,7 +425,7 @@ INSERT INTO `t_sys_premission` VALUES ('575852089792528384', '代码管理', '�
 INSERT INTO `t_sys_premission` VALUES ('575853607149109248', '代码集合', '代码集合', '/generatorController/list', '0', '575852089792528384', 'system:generator:list', '2', null, null);
 INSERT INTO `t_sys_premission` VALUES ('581541547099553792', 'druid监控', '/druid/', '/druid/', '0', '496782496638173184', 'user:list', '1', 'fa fa-line-chart', null);
 INSERT INTO `t_sys_premission` VALUES ('583063272123531264', 'API文档', 'API文档', '/swagger-ui.html', '1', '496782496638173184', '--', '1', 'fa fa-font', '1');
-INSERT INTO `t_sys_premission` VALUES ('586003694080753664', '表单构建', '表单构建', '/ToolController/view', '0', '496782496638173184', 'system:tool:view', '1', 'fa fa-etsy', null);
+INSERT INTO `t_sys_premission` VALUES ('586003694080753664', '表单构建', '表单构建', '/ToolController/view', '0', '496782496638173184', 'system:tool:view', '1', 'fa fa-list-alt', null);
 INSERT INTO `t_sys_premission` VALUES ('6', '用户添加', '用户添加', '/UserController/add', '0', '4', 'system:user:add', '2', 'entypo-plus-squared', null);
 INSERT INTO `t_sys_premission` VALUES ('7', '用户删除', '用户删除', '/UserController/remove', '0', '4', 'system:user:remove', '2', 'entypo-trash', null);
 INSERT INTO `t_sys_premission` VALUES ('8', '用户修改', '用户修改', '/UserController/edit', '0', '4', 'system:user:edit', '2', 'fa fa-wrench', null);
