@@ -1,5 +1,6 @@
 package com.fc.test.common.support;
 
+import java.security.SecureRandom;
 import java.util.Random;
 import com.google.code.kaptcha.text.impl.DefaultTextCreator;
 
@@ -17,7 +18,7 @@ public class KaptchaTextCreator extends DefaultTextCreator
     public String getText()
     {
         Integer result = 0;
-        Random random = new Random();
+        Random random = new SecureRandom();
         int x = random.nextInt(10);
         int y = random.nextInt(10);
         StringBuilder suChinese = new StringBuilder();
