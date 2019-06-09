@@ -184,6 +184,7 @@ bootstrap-switch|开关按钮||
 2. 确认自己的mysql版本 进行修改jar  在pom.xml 73-84行
 3. 修改application-dev.yml 里面自己数据库版本对应的jdbc链接
 4. 正常启动run SpringbootSwagger2Application.java
+- wiki地址:https://gitee.com/bdj/SpringBoot_v2/wikis
 
 ### 打包发布编译流程
 - maven编译安装pom.xml文件即可打包成war
@@ -193,17 +194,20 @@ bootstrap-switch|开关按钮||
 - swagger  http://localhost:8080/swagger-ui.html
 
 ### 启动类
-- SpringbootSwagger2Application 启动类
+- SpringbootStart 启动类
 
 
 ### 数据库模型
-![数据库模型](https://images.gitee.com/uploads/images/2018/0909/202241_60aac716_123301.png "数据库模型.png")
+
+![数据库模型](https://images.gitee.com/uploads/images/2019/0609/205522_e2a0d11f_123301.png "数据库模型.png")
 
 ### 界面风格
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/202603_b48d6be4_123301.jpeg "QQ截图20180909202536.jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/202956_a0ce0317_123301.jpeg "QQ截图20180909202627.jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203002_b64f157c_123301.jpeg "QQ截图20180909202655.jpg")
-![空白页面](https://images.gitee.com/uploads/images/2018/0822/003000_175616d0_123301.png "{{H[HML}(`V33A47(U)ZTF5.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0609/205706_85c50605_123301.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0609/205934_912fd2b4_123301.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0609/210034_105ea5fc_123301.png "屏幕截图.png")
+![表单构建](https://images.gitee.com/uploads/images/2019/0609/210132_cb9da27b_123301.png "屏幕截图.png")
+![swagger2](https://images.gitee.com/uploads/images/2019/0609/210335_d3efad8c_123301.png "屏幕截图.png")
+![空白页面](https://images.gitee.com/uploads/images/2019/0609/210649_a934ea28_123301.png "屏幕截图.png")
 
 ### 后台代码注释风格
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203106_52eca8e3_123301.jpeg "QQ截图20180909202815.jpg")
