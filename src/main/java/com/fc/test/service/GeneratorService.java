@@ -9,7 +9,6 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fc.test.mapper.auto.GeneratorMapper;
-import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TsysTables;
 import com.fc.test.util.GenUtils;

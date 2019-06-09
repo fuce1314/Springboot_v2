@@ -3,7 +3,7 @@
   SpringBoot_v2项目是努力打造springboot框架的极致细腻的脚手架。包括一套漂亮的前台。无其他杂七杂八的功能，原生纯净。
 
 ### 项目介绍
-  基于springboot的一款纯净脚手架。努力打造完美注释跟文档。方便快速二次开发。
+  基于springboot的一款纯净脚手架。努力打造一款免费开源、注释全、文档全适合新手学习、方便快速二次开发的框架。
 
 ### 组织架构
 
@@ -15,14 +15,18 @@ Springboot
 │  ├─base Base继承通用类
 │  ├─conf springBoot所有配置
 │  ├─domain 前台返回包
+│  ├─druid druid连接池
 │  ├─exception 异常处理包
+│  ├─file 文件上传
 │  ├─interceptor 拦截器
+│  ├─log 日志记录AOP
 │  ├─domain 前台返回包
 │  ├─quartz Spring定时器
 │  └─support 工具包
 │
 ├─controller 请求访问模块
 │  ├─admin 模版后台请求包
+│  ├─websocket websoket消息请求
 │  └─HomeController.java 首页访问类
 │
 ├─Mapper Dao模块
@@ -51,6 +55,13 @@ Springboot
 ├─resources 配置文件夹
 │  ├─ehcache shiro权限缓存配置
 │  ├─generator 自动生成模板以及配置目录
+│  │   ├─MyBatisGenerator mybates半自动生成工具
+│  │   │   ├─1.bat 执行批处理
+│  │   │   ├─generator.xml generator配置文件
+│  │   │   ├─mybatis-generator-core-1.3.2.jar generator1.3.2版本
+│  │   │   ├─mybatis-generator-core-1.3.7.jar generator1.3.7版本【默认】
+│  │   │   └─mysqldriver.jar mysql驱动【该驱动为8.0一下的版本不支持8.0自行替换】
+│  │   │
 │  │   ├─template 模板文件假
 │  │   │   ├─controller anction模板
 │  │   │   ├─html html页面模板
@@ -59,13 +70,26 @@ Springboot
 │  │   │   ├─model 实体模板
 │  │   │   ├─service service模板
 │  │   │   └─sql sql模板
+│  │   │
 │  │   └─generator.properties 自动生成配置文件
+│  │
 │  ├─mybatis mybatis Mapper.xml生成文件夹
 │  │   ├─auto自动生成的Mapper.xml文件夹
 │  │   └─custom 手写Mapper.xml文件夹
 │  │
 │  ├─static 静态文件存放文件夹[后台模版就放在此文件夹下面。所有的模版页面都在下面]
+│  │   ├─admin 后台目录存放
+│  │   │  ├─assets js、css存放路径
+│  │   │  ├─assets js、css存放路径
+│  │   │  └─bootstarp 后台模板存放路径
+│  │   ├─js js存放
+│  │   └─login 登录页面js、css、image
+│  │
 │  ├─templates 前台HTML存放文件夹
+│  │   ├─admin 动态后台html模板
+│  │   ├─error 错误页面html模板
+│  │   └─login.html 登录html页面
+│  │
 │  ├─application-dev.yml 开发环境配置
 │  ├─application-prod.yml 生产环境配置
 │  ├─application.yml springboot配置
@@ -91,6 +115,13 @@ Thymeleaf|模板引擎||
 Log4J|日志组件||
 Swagger2|接口测试框架||
 Maven|项目构建管理||
+Websocket|websocket消息通知||
+velocity|模板引擎||
+kaptcha|google验证码||
+devtools|热部署||
+GSON|谷歌json||
+druid|阿里连接池||
+
 
 
 
@@ -109,6 +140,10 @@ layer.js|弹窗组件||
 jquery.blockUI.js|遮蔽层组件||
 bootstrap-table-export.js|前台导出组件||
 bootstrap-treeview|树结构组件||
+bootstrap-colorpicker|颜色组件||
+dropzone|文件上传||
+bootstrap-wysihtml5|富文本||
+bootstrap-switch|开关按钮||
 
 ### jar版本
 
@@ -130,7 +165,9 @@ bootstrap-treeview|树结构组件||
 | commons-fileupload|1.3.3         |      |
 | spring-boot-devtools|2.0.0.RELEASE         |      |
 | hutool| 4.1.10        |      |
-
+| druid| 1.1.10        |      |
+| kaptcha| 2.3.2        |      |
+| velocity| 1.7        |      |
 
 ### 开发环境
 - JDK8.0
@@ -147,6 +184,7 @@ bootstrap-treeview|树结构组件||
 2. 确认自己的mysql版本 进行修改jar  在pom.xml 73-84行
 3. 修改application-dev.yml 里面自己数据库版本对应的jdbc链接
 4. 正常启动run SpringbootSwagger2Application.java
+- wiki地址:https://gitee.com/bdj/SpringBoot_v2/wikis
 
 ### 打包发布编译流程
 - maven编译安装pom.xml文件即可打包成war
@@ -156,17 +194,20 @@ bootstrap-treeview|树结构组件||
 - swagger  http://localhost:8080/swagger-ui.html
 
 ### 启动类
-- SpringbootSwagger2Application 启动类
+- SpringbootStart 启动类
 
 
 ### 数据库模型
-![数据库模型](https://images.gitee.com/uploads/images/2018/0909/202241_60aac716_123301.png "数据库模型.png")
+
+![数据库模型](https://images.gitee.com/uploads/images/2019/0609/205522_e2a0d11f_123301.png "数据库模型.png")
 
 ### 界面风格
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/202603_b48d6be4_123301.jpeg "QQ截图20180909202536.jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/202956_a0ce0317_123301.jpeg "QQ截图20180909202627.jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203002_b64f157c_123301.jpeg "QQ截图20180909202655.jpg")
-![空白页面](https://images.gitee.com/uploads/images/2018/0822/003000_175616d0_123301.png "{{H[HML}(`V33A47(U)ZTF5.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0609/205706_85c50605_123301.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0609/205934_912fd2b4_123301.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0609/210034_105ea5fc_123301.png "屏幕截图.png")
+![表单构建](https://images.gitee.com/uploads/images/2019/0609/210132_cb9da27b_123301.png "屏幕截图.png")
+![swagger2](https://images.gitee.com/uploads/images/2019/0609/210335_d3efad8c_123301.png "屏幕截图.png")
+![空白页面](https://images.gitee.com/uploads/images/2019/0609/210649_a934ea28_123301.png "屏幕截图.png")
 
 ### 后台代码注释风格
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203106_52eca8e3_123301.jpeg "QQ截图20180909202815.jpg")
