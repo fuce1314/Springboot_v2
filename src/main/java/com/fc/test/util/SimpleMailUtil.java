@@ -25,8 +25,8 @@ import com.fc.test.model.custom.email.MailSenderInfo;
 import com.fc.test.model.custom.email.MyAuthenticator;
 
 /**
+ * 简单邮件发送通用类
  * @ClassName: SimpleMailSender
- * @Description: TODO(邮件发送方法)
  * @author fuce
  * @date 2019-06-09 23:57
  **/
