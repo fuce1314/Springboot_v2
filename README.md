@@ -15,14 +15,18 @@ Springboot
 │  ├─base Base继承通用类
 │  ├─conf springBoot所有配置
 │  ├─domain 前台返回包
+│  ├─druid druid连接池
 │  ├─exception 异常处理包
+│  ├─file 文件上传
 │  ├─interceptor 拦截器
+│  ├─log 日志记录AOP
 │  ├─domain 前台返回包
 │  ├─quartz Spring定时器
 │  └─support 工具包
 │
 ├─controller 请求访问模块
 │  ├─admin 模版后台请求包
+│  ├─websocket websoket消息请求
 │  └─HomeController.java 首页访问类
 │
 ├─Mapper Dao模块
@@ -51,6 +55,13 @@ Springboot
 ├─resources 配置文件夹
 │  ├─ehcache shiro权限缓存配置
 │  ├─generator 自动生成模板以及配置目录
+│  │   ├─MyBatisGenerator mybates半自动生成工具
+│  │   │   ├─1.bat 执行批处理
+│  │   │   ├─generator.xml generator配置文件
+│  │   │   ├─mybatis-generator-core-1.3.2.jar generator1.3.2版本
+│  │   │   ├─mybatis-generator-core-1.3.7.jar generator1.3.7版本【默认】
+│  │   │   └─mysqldriver.jar mysql驱动【该驱动为8.0一下的版本不支持8.0自行替换】
+│  │   │
 │  │   ├─template 模板文件假
 │  │   │   ├─controller anction模板
 │  │   │   ├─html html页面模板
@@ -59,13 +70,26 @@ Springboot
 │  │   │   ├─model 实体模板
 │  │   │   ├─service service模板
 │  │   │   └─sql sql模板
+│  │   │
 │  │   └─generator.properties 自动生成配置文件
+│  │
 │  ├─mybatis mybatis Mapper.xml生成文件夹
 │  │   ├─auto自动生成的Mapper.xml文件夹
 │  │   └─custom 手写Mapper.xml文件夹
 │  │
 │  ├─static 静态文件存放文件夹[后台模版就放在此文件夹下面。所有的模版页面都在下面]
+│  │   ├─admin 后台目录存放
+│  │   │  ├─assets js、css存放路径
+│  │   │  ├─assets js、css存放路径
+│  │   │  └─bootstarp 后台模板存放路径
+│  │   ├─js js存放
+│  │   └─login 登录页面js、css、image
+│  │
 │  ├─templates 前台HTML存放文件夹
+│  │   ├─admin 动态后台html模板
+│  │   ├─error 错误页面html模板
+│  │   └─login.html 登录html页面
+│  │
 │  ├─application-dev.yml 开发环境配置
 │  ├─application-prod.yml 生产环境配置
 │  ├─application.yml springboot配置
