@@ -140,6 +140,10 @@ layer.js|弹窗组件||
 jquery.blockUI.js|遮蔽层组件||
 bootstrap-table-export.js|前台导出组件||
 bootstrap-treeview|树结构组件||
+bootstrap-colorpicker|颜色组件||
+dropzone|文件上传||
+bootstrap-wysihtml5|富文本||
+bootstrap-switch|开关按钮||
 
 ### jar版本
 
@@ -161,7 +165,9 @@ bootstrap-treeview|树结构组件||
 | commons-fileupload|1.3.3         |      |
 | spring-boot-devtools|2.0.0.RELEASE         |      |
 | hutool| 4.1.10        |      |
-
+| druid| 1.1.10        |      |
+| kaptcha| 2.3.2        |      |
+| velocity| 1.7        |      |
 
 ### 开发环境
 - JDK8.0
