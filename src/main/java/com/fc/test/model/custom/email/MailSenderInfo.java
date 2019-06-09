@@ -10,7 +10,13 @@ import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 import com.sun.mail.util.MailSSLSocketFactory;
-
+/**
+ * 邮件model
+ * @ClassName: MailSenderInfo
+ * @author fuce
+ * @date 2019-06-10 01:06
+ * @version V1.0
+ */
 public class MailSenderInfo {
 	// 发送邮件的服务器的IP和端口
 	private String mailServerHost;
