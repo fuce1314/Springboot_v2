@@ -170,7 +170,7 @@
 	                <!-- 头像设置 -->
 	                <li>
 	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-	                        <img alt="" class="admin-pic img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/10.jpg(path=${rootPath})}">Hi, Dave Mattew <b class="caret"></b>
+	                        <img alt="" class="admin-pic img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/10.jpg(path=${rootPath})}"><span th:text="${'Hi,'+session.sessionUserName}"></span><b class="caret"></b>
 	                    </a>
 	                    <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
 	                        <li>
@@ -196,7 +196,7 @@
 	                <!-- 背景设置 -->
 	                <li>
 	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-	                        <span class="icon-gear"></span>&#160;&#160;Setting</a>
+	                        <span class="icon-gear"></span>&#160;&#160;设置</a>
 	                    <ul role="menu" class="dropdown-setting dropdown-menu">
 	
 	                        <li class="theme-bg">
