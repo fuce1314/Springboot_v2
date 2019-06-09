@@ -115,6 +115,13 @@ Thymeleaf|模板引擎||
 Log4J|日志组件||
 Swagger2|接口测试框架||
 Maven|项目构建管理||
+Websocket|websocket消息通知||
+velocity|模板引擎||
+kaptcha|google验证码||
+devtools|热部署||
+GSON|谷歌json||
+druid|阿里连接池||
+
 
 
 
