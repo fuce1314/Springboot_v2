@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
       xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
-<head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
+<head th:replace="admin/common/html/Head:: Head(~{::title},~{::link},~{::style})">
 
 <title th:text=${title}></title>
 <!-- 这儿引用单独的css link -->
@@ -14,24 +14,16 @@
 /**
 *这里写单独的css样式
 */
-.select-list ul li{
-	list-style-type: none;
-	float: left;
-}
+
 </style>
 
 </head>
 
 <body>
-
-
-
-
 <!-- ###############################代码编写出############################### -->
-
 <!-- 右边内容 -->
 <div class="wrap-fluid">
-    <div class="container-fluid paper-wrap bevel tlbr">
+ <div class="container-fluid paper-wrap bevel tlbr">
         <!-- 内容 -->
         <!--标题 通用-->
         <div th:replace="admin/common/html/title :: title(${title},${parenttitle},${isMsg},${msgHTML})">
@@ -111,10 +103,6 @@
                 <!-- 空白页结束 -->
             </div>
             <!-- 结束内容 -->
-            <!-- 页脚 通用-->
-            <div th:replace="admin/common/html/footer :: footer">
-            </div>
-            <!-- 结束页脚通用 -->
         </div>
     </div>
 </div>
