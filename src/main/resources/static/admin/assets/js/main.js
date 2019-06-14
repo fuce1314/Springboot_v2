@@ -11,7 +11,7 @@ head.js(rootPath+"/static/admin/assets/js/clock/date.js");
 
 //新闻标签
 head.js(rootPath+"/static/admin/assets/js/newsticker/jquery.newsTicker.js", function() {
-
+	//天气预报
     var nt_title = $('#nt-title').newsTicker({
         row_height: 18,
         max_rows: 1,
@@ -28,7 +28,6 @@ head.js(rootPath+"/static/admin/assets/js/newsticker/jquery.newsTicker.js", func
 ////滑动菜单
 
 head.js(rootPath+"/static/admin/assets/js/custom/scriptbreaker-multiple-accordion-1.js", function() {
-
     $(".topnav").accordionze({
         accordionze: true,
         speed: 500,
