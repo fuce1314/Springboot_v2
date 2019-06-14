@@ -126,11 +126,16 @@ public class HomeController extends BaseController{
 		 }else{
 			 redirectAttributes.addFlashAttribute("message", "验证码不正确");
 		 }
-		 BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm();
-     	 request.getSession().setAttribute("bootstrapTree", bootstrapTree);
-     	 request.getSession().setAttribute("sessionUserName",ShiroUtils.getLoginName() );
-		 //跳转到 get请求的登陆方法
-		 view.setViewName("admin/index");
+		
+     	 if(StringUtils.isNotNull(ShiroUtils.getUser())) {
+     		 BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm();
+         	 request.getSession().setAttribute("bootstrapTree", bootstrapTree);
+         	 request.getSession().setAttribute("sessionUserName",ShiroUtils.getLoginName() );
+         	 //跳转到 get请求的登陆方法
+    		 view.setViewName("admin/index");
+     	 }
+     	
+		
 		 return view;
 		 
 	}

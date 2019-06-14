@@ -43,7 +43,7 @@ body {
     font-weight: 200;
     letter-spacing: -1px;
     text-decoration: inherit;
-    text-transform: uppercase;
+    
 }
 #logo-login h1 span {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
