@@ -13,3 +13,5 @@
 *.iws
 *.lic
 rebel.xml
+/.factorypath
+/.springBeans

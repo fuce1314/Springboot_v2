@@ -1,4 +1,4 @@
-//Sliding Effect Control
+//滑动效应控制
 
 head.js(rootPath+"/static/admin/assets/js/skin-select/jquery.cookie.js");
 head.js(rootPath+"/static/admin/assets/js/skin-select/skin-select.js");
@@ -9,9 +9,9 @@ head.js(rootPath+"/static/admin/assets/js/clock/date.js");
 //Bootstrap
 //head.js("assets/js/bootstrap.js");
 
-//NEWS STICKER
+//新闻标签
 head.js(rootPath+"/static/admin/assets/js/newsticker/jquery.newsTicker.js", function() {
-
+	//天气预报
     var nt_title = $('#nt-title').newsTicker({
         row_height: 18,
         max_rows: 1,
@@ -25,10 +25,9 @@ head.js(rootPath+"/static/admin/assets/js/newsticker/jquery.newsTicker.js", func
 //------------------------------------------------------------- 
 
 
-////Acordion and Sliding menu
+////滑动菜单
 
 head.js(rootPath+"/static/admin/assets/js/custom/scriptbreaker-multiple-accordion-1.js", function() {
-
     $(".topnav").accordionze({
         accordionze: true,
         speed: 500,
@@ -38,7 +37,7 @@ head.js(rootPath+"/static/admin/assets/js/custom/scriptbreaker-multiple-accordio
 
 });
 
-////Right Sliding menu
+////R右滑动菜单
 
 head.js(rootPath+"/static/admin/assets/js/slidebars/slidebars.min.js", rootPath+"/static/admin/assets/js/jquery-easing/jquery.easing.min.js", function() {
 
@@ -53,7 +52,7 @@ head.js(rootPath+"/static/admin/assets/js/slidebars/slidebars.min.js", rootPath+
 
 //-------------------------------------------------------------
 
-//SEARCH MENU
+//搜索菜单
 head.js(rootPath+"/static/admin/assets/js/search/jquery.quicksearch.js", function() {
 
     $('input.id_search').quicksearch('#menu-showhide li, .menu-left-nest li');
@@ -65,7 +64,7 @@ head.js(rootPath+"/static/admin/assets/js/search/jquery.quicksearch.js", functio
 
 
 
-//EASY PIE CHART
+//简易饼图
 head.js(rootPath+"/static/admin/assets/js/gage/jquery.easypiechart.min.js", function() {
 
     $(function() {
@@ -116,7 +115,7 @@ head.js(rootPath+"/static/admin/assets/js/gage/jquery.easypiechart.min.js", func
 });
 //-------------------------------------------------------------
 
-//TOOL TIP
+//工具提示
 
 head.js(rootPath+"/static/admin/assets/js/tip/jquery.tooltipster.js", function() {
 
@@ -171,7 +170,7 @@ head.js(rootPath+"/static/admin/assets/js/tip/jquery.tooltipster.js", function()
 });
 //------------------------------------------------------------- 
 
-//NICE SCROLL
+//漂亮的卷轴
 
 head.js(rootPath+"/static/admin/assets/js/nano/jquery.nanoscroller.js", function() {
 
@@ -194,7 +193,7 @@ head.js(rootPath+"/static/admin/assets/js/nano/jquery.nanoscroller.js", function
 
 
 //------------------------------------------------------------- 
-//PAGE LOADER
+//页面加载程序
 head.js(rootPath+"/static/admin/assets/js/pace/pace.js", function() {
 
     paceOptions = {
@@ -210,7 +209,7 @@ head.js(rootPath+"/static/admin/assets/js/pace/pace.js", function() {
 
 //------------------------------------------------------------- 
 
-//SPARKLINE CHART
+//迷你 CHART
 head.js(rootPath+"/static/admin/assets/js/chart/jquery.sparkline.js", function() {
 
     $(function() {
@@ -275,7 +274,7 @@ head.js(rootPath+"/static/admin/assets/js/chart/jquery.sparkline.js", function()
 
 //------------------------------------------------------------- 
 
-//DIGITAL CLOCK
+//数字时钟
 head.js(rootPath+"/static/admin/assets/js/clock/jquery.clock.js", function() {
 
     //clock

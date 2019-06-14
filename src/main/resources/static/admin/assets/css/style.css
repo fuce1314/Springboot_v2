@@ -19,7 +19,7 @@ body {
     min-height: 100%;
     z-index: -2;
     margin: 0px !important;
-    background: url('../img/bg.jpg') no-repeat top center fixed;
+  	background: url(../img/bg.jpg) repeat;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -2674,7 +2674,7 @@ b#speed {
     background: #f5f5f5;
     background: -moz-linear-gradient(45deg, #f5f5f5 30px, #f5f5f5 30px), -moz-linear-gradient(135deg, transparent 30px, #f5f5f5 30px), -moz-linear-gradient(225deg, #f5f5f5 30px, #f5f5f5 30px), -moz-linear-gradient(315deg, transparent 30px, #f5f5f5 30px);
     background: -o-linear-gradient(45deg, #f5f5f5 30px, #f5f5f5 30px), -o-linear-gradient(135deg, transparent 30px, #f5f5f5 30px), -o-linear-gradient(225deg, #f5f5f5 30px, #f5f5f5 30px), -o-linear-gradient(315deg, transparent 30px, #f5f5f5 30px);
-    background: -webkit-linear-gradient(45deg, #f5f5f5 30px, #f5f5f5 30px), -webkit-linear-gradient(135deg, transparent 30px, #f5f5f5 30px), -webkit-linear-gradient(225deg, #f5f5f5 30px, #f5f5f5 30px), -webkit-linear-gradient(315deg, transparent 30px, #f5f5f5 30px);
+    background: -webkit-linear-gradient(45deg, #f5f5f5 30px, #f5f5f5 30px), -webkit-linear-gradient(0deg, transparent 30px, #f5f5f5 30px), -webkit-linear-gradient(225deg, #f5f5f5 30px, #f5f5f5 30px), -webkit-linear-gradient(315deg, transparent 30px, #f5f5f5 30px);
 }
 .bevel.all, .bevel.trbl, .bevel.tlbr, .bevel.tr {
     background-position: bottom left, bottom right, top right, top left;
@@ -2770,13 +2770,16 @@ b#speed {
     width: 100%;
 }
 #footer {
-    background: none repeat scroll 0 0 #f8f8f8;
-    border-top: 1px solid #DDDDDD;
-    bottom: 0;
+       bottom: 0px;
     height: 50px;
-    left: 0;
-    position: absolute;
+    left: 0px;
+    /* position: absolute; */
     width: 100%;
+    background: none 0px 0px repeat scroll rgb(248, 248, 248);
+    border-top: 1px solid rgb(221, 221, 221);
+    /* right: auto; */
+    /* left: 0px; */
+    /* left: 0px; */
 }
 #footer ul {
     float: right;
