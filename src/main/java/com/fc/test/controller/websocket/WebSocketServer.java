@@ -13,7 +13,6 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.stereotype.Component;
 
-@Component
 @ServerEndpoint("/websocket")
 public class WebSocketServer {
 
