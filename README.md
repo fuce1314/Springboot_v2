@@ -202,6 +202,7 @@ bootstrap-switch|开关按钮||
 ![数据库模型](https://images.gitee.com/uploads/images/2019/0609/205522_e2a0d11f_123301.png "数据库模型.png")
 
 ### 界面风格
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0617/214247_d40363b4_123301.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0610/014324_6bede04c_123301.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0610/014415_dfb5b40c_123301.png "屏幕截图.png")
 ![修改角色](https://images.gitee.com/uploads/images/2019/0610/014506_a73fae96_123301.png "屏幕截图.png")
