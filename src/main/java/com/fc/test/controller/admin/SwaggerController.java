@@ -23,8 +23,8 @@ public class SwaggerController  extends BaseController{
 	@RequiresPermissions("system:swagger:view")
     public String view(Model model)
     {	
-		
-		setTitle(model, new TitleVo("API文档", "swagger", false,"欢迎进入swagger页面", false, false));
+		String str="API文档";
+		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         return prefix + "/list";
     }
 

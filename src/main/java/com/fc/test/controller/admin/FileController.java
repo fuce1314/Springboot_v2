@@ -46,8 +46,8 @@ public class FileController extends BaseController{
 	@RequiresPermissions("system:file:view")
     public String view(Model model)
     {	
-		
-		setTitle(model, new TitleVo("上传图片列表", "图片管理", false,"欢迎进入图片页面", false, false));
+		String str="上传图片";
+		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         return prefix + "/list";
     }
 	
