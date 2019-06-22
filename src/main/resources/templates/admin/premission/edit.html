@@ -95,11 +95,11 @@ label.error {
 								</div>
 							</div>
 							<div  v-if="menu.type == 1" class="form-group">
-								<label class="col-sm-3 control-label ">是否跳转：</label>
+								<label class="col-sm-3 control-label ">打开方式：</label>
 								<div class="col-sm-8">
 									 <select class="form-control" id="isBlank" name="isBlank"  >
-	                                    <option value="0" th:selected="${TsysPremission.isBlank ==0}">否</option>
-	                                    <option value="1" th:selected="${TsysPremission.isBlank ==1}">是</option>
+	                                    <option value="0" th:selected="${TsysPremission.isBlank ==0}">签页</option>
+	                                    <option value="1" th:selected="${TsysPremission.isBlank ==1}">新窗口</option>
 	                                </select>
 								</div>
 							</div>
