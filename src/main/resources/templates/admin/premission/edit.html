@@ -205,17 +205,18 @@ $(function(){
 			},
 			url:{
 				required:true,
-				minlength: 2,
+				minlength: 1,
 				maxlength: 100,
 				remote: {
 	                url: rootPath + "/PremissionController/checkURLUnique",
 	                type: "post",
 	                dataType: "json",
 	                dataFilter: function(data, type) {
+	                	var u=$("#url").val();
 	                	if($("#checkurl").val()==$("#url").val())
 	                		return true;
 	                	else{
-	                		if (data == "0")
+	                		if (data == "0" || u== "#")
 		                    	return true;
 		                    else 
 		                    	return false;
@@ -225,17 +226,18 @@ $(function(){
 			},
 			perms:{
 				required:true,
-				minlength: 2,
+				minlength: 1,
 				maxlength: 100,
 				remote: {
 	                url: rootPath + "/PremissionController/checkPermsUnique",
 	                type: "post",
 	                dataType: "json",
 	                dataFilter: function(data, type) {
+	                	var u=$("#url").val();
 	                	if($("#perms").val()==$("#perms").val())
 	                		return true;
 	                	else{
-	                		if (data == "0")
+	                		if (data == "0" || u== "#")
 		                    	return true;
 		                    else 
 		                    	return false;

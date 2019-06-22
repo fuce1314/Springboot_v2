@@ -1,6 +1,9 @@
 package com.fc.test.controller.admin;
 
 import io.swagger.annotations.Api;
+
+import java.util.List;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +59,18 @@ public class PremissionController  extends BaseController{
 		TableSplitResult<TsysPremission> result=new TableSplitResult<TsysPremission>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}
-	
+	/**
+	 * 权限列表
+	 * @param tablepar
+	 * @param searchTxt 搜索字符
+	 * @return
+	 */
+	@PostMapping("list2")
+	@ResponseBody
+	public Object list2(Tablepar tablepar,String searchTxt){
+		List<TsysPremission> page=sysPremissionService.list2(searchTxt) ; 
+		return  page;
+	}
 	/**
      * 新增权限
      */

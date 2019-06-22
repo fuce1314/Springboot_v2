@@ -49,6 +49,16 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	        PageInfo<TsysPremission> pageInfo = new PageInfo<TsysPremission>(list);
 	        return  pageInfo;
 	 }
+	 
+	 public List<TsysPremission> list2(String searchTxt){
+	        TsysPremissionExample testExample=new TsysPremissionExample();
+	        testExample.setOrderByClause("id+0 asc");
+	        if(searchTxt!=null&&!"".equals(searchTxt)){
+	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
+	        }
+	        List<TsysPremission> list= tsysPremissionMapper.selectByExample(testExample);
+	        return  list;
+	 }
 
 	
 	@Override
@@ -233,6 +243,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 */
 	public List<TsysPremission> getall(){
 		TsysPremissionExample example = new TsysPremissionExample();
+		example.setOrderByClause("order_num asc");
 		return  tsysPremissionMapper.selectByExample(example);
 	}
 	
