@@ -243,6 +243,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 */
 	public List<TsysPremission> getall(){
 		TsysPremissionExample example = new TsysPremissionExample();
+		example.setOrderByClause("order_num asc");
 		return  tsysPremissionMapper.selectByExample(example);
 	}
 	
