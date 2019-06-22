@@ -67,8 +67,17 @@
 <script th:src="@{/static/js/treegrid/bootstrap-table-treegrid.js}"></script>
 <script th:src="@{/static/js/treegrid/jquery.treegrid.js}"></script>
 <script th:src="@{/static/admin/assets/js/bootstrap/js/base_list2.js}" type="text/javascript"></script>
+</div>
 
-	
+
+
+<div th:fragment="onload_js_service" >
+<script type="text/javascript">
+	window.rootPath="[[${rootPath}]]";
+</script>
+<script th:src="@{/static/js/treegrid/jquery.min.js}"></script>
+<!-- 数字时钟 -->
+<script th:src="@{/static/admin/assets/js/clock/jquery.clock.js}"></script>
+
 
 </div>
-   

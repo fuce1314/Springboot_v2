@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
+
+<title th:text=${title}></title>
+<!-- 这儿引用单独的css link -->
+<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
+<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
+<!-- bootstrap-table表单样式 -->
+<link th:href="@{/static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
+
+<style type="text/css">
+/**
+*这里写单独的css样式
+*/
+
+
+</style>
+
+</head>
+
+<body id="listbody">
+<!-- ###############################代码编写处############################### -->
+<!-- 右边内容 -->
+<div class="wrap-fluid">
+    <div class="container-fluid paper-wrap bevel tlbr">
+        <!-- 内容 -->
+        <!--标题 通用-->
+        <div th:replace="admin/common/html/title :: title(${title},${parenttitle},${isMsg},${msgHTML})">
+        </div>
+        <!-- 结束标题 通用-->
+        <div class="content-wrap">
+            <!-- 结束内容 -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- 空白页开始-->
+                    
+                    <div class="col-lg-3">
+                        <div class="profit">
+                            <div class="headline">
+                                <h3>
+                                    <span><i class="maki-aboveground-rail"></i>&#160;&#160;运行时长</span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#revenueClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <div  style="font-size: 40px;" th:text="${service.runTime}"></div>
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 25%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <span>启动时间</span>&#160;&#160;<th:bock th:text="${service.startTime}"></th:bock>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3">
+                        <div class="revenue" id="revenueClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span><i class="maki-aboveground-rail"></i>&#160;&#160;Java版本</span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#revenueClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <div  style="font-size: 45px;" th:text="${service.javaInfo.Version}"></div>
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 25%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                 <span>供应商</span>&#160;&#160;<th:bock th:text="${service.javaInfo.Vendor}"></th:bock></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="order" id="revenueClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span><i class="maki-aboveground-rail"></i>&#160;&#160;服务器信息</span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#revenueClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <div  style="font-size: 45px;" th:text="${service.osInfo.Name}"></div>
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 25%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                 <span>架构</span>&#160;&#160;<th:bock th:text="${service.osInfo.Arch}"></th:bock></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="order" id="revenueClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span><i class="maki-aboveground-rail"></i>&#160;&#160;IP地址</span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#revenueClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <div  style="font-size: 45px;" th:text="${service.hostInfo.Address}"></div>
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 25%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                 <span>服务器名称</span>&#160;&#160;<th:bock th:text="${service.hostInfo.Name}"></th:bock></div>
+                        </div>
+                    </div>
+                    <!-- 空白页结束 -->
+                </div>
+                
+            </div>
+            
+             <div class="row">
+              <div class="col-sm-12">
+                    <div class="col-lg-8">
+                        <div id="siteClose" class="nest">
+                            <div class="title-alt">
+                                <h6>
+                                    <span class="fontawesome-truck"></span>&nbsp;JDK信息</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#siteClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#site">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="site" class="body-nest" style="min-height:296px;">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h4>Java Runtime Name</h4>
+                                                </td>
+                                                <td>
+                                                    <h4 th:text="${service.javaRuntimeInfo.Name}">-</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>Java Home Dir</h4>
+                                                </td>
+                                                <td>
+                                                    <h4 th:text="${service.javaRuntimeInfo.HomeDir}">-</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>Java Class Version</h4>
+                                                </td>
+                                                <td>
+                                                    <h4 th:text="${service.javaRuntimeInfo.ClassVersion}">-</h4>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td>
+                                                    <h4>项目路径</h4>
+                                                </td>
+                                                <td>
+                                                    <h4 th:text="${service.userInfo.CurrentDir}">-</h4>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div id="RealTimeClose" class="nest">
+                            <div class="title-alt">
+                                <h6>
+                                    <span class="fontawesome-resize-horizontal"></span>&nbsp;内存信息</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#RealTimeClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#RealTime">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div  class="body-nest">
+                                <ul class="direction">
+                                    <li>
+                                        <span class="direction-icon maki-fuel" style="background:#FF6B6B"></span>
+                                        <h3>
+                                            <span>Max Memory</span>
+                                        </h3>
+                                        <p>&nbsp;</p>
+                                       <p><th:bock th:text="${service.maxMemory}"></th:bock></p>
+                                    </li>
+                                    <li class="divider"></li>
+                                    
+                                    <li>
+                                        <span class="direction-icon maki-fuel" style="background:#FF6B6B"></span>
+                                        <h3>
+                                            <span>Total Memory</span>
+                                        </h3>
+                                        <p>&nbsp;</p>
+                                       <p><th:bock th:text="${service.totalMemory}"></th:bock></p>
+                                    </li>
+                                   <li class="divider"></li>
+                                   
+                                   <li>
+                                        <span class="direction-icon maki-fuel" style="background:#FF6B6B"></span>
+                                        <h3>
+                                            <span>Free Memory</span>
+                                        </h3>
+                                        <p>&nbsp;</p>
+                                       <p><th:bock th:text="${service.freeMemory}"></th:bock></p>
+                                    </li>
+                                   <li class="divider"></li>
+                                   
+                                   <li>
+                                        <span class="direction-icon maki-fuel" style="background:#FF6B6B"></span>
+                                        <h3>
+                                            <span>Usable Memory</span>
+                                        </h3>
+                                        <p>&nbsp;</p>
+                                       <p><th:bock th:text="${service.usableMemory}"></th:bock></p>
+                                    </li>
+                                   <li class="divider"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                </div>
+               
+            
+            
+            
+            
+            
+            <!-- 结束内容 -->
+        </div>
+    </div>
+</div>
+<!-- 结束右边内容 -->
+<!-- ###############################代码编写处############################### -->
+<!-- 通用js -->
+<div th:include="admin/common/html/js :: onload_js">
+   
+</div>
+
+
+
+
+</body>
+
+
+</html>
