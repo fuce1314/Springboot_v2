@@ -39,8 +39,8 @@ public class RoleController extends BaseController{
 	@RequiresPermissions("system:role:view")
     public String view(Model model)
     {	
-		
-		setTitle(model, new TitleVo("角色列表", "角色管理", false,"欢迎进入角色页面", false, false));
+		String str="角色";
+		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         return prefix + "/list";
     }
 	

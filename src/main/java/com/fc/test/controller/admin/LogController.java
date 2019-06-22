@@ -35,8 +35,9 @@ public class LogController extends BaseController{
 	@RequiresPermissions("system:log:view")
     public String view(Model model)
     {	
+		String str="操作日志";
+		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
 		
-		setTitle(model, new TitleVo("操作日志列表", "日志管理", false,"欢迎进入日志页面", false, false));
         return prefix + "/list";
     }
 	

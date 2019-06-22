@@ -40,8 +40,8 @@ public class PremissionController  extends BaseController{
 	@RequiresPermissions("system:premission:view")
     public String view(Model model)
     {	
-		
-		setTitle(model, new TitleVo("权限列表", "权限管理", false,"欢迎进入权限页面", false, false));
+		String str="权限";
+		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         return prefix + "/list";
     }
 	
