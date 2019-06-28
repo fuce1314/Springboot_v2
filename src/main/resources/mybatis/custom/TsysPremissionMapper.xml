@@ -11,23 +11,24 @@
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="childcount" jdbcType="INTEGER" property="childCount"/>
   </resultMap>
    <sql id="Base_Column_List">
      id, `name`, descripion, url, pid, perms, type, icon, order_num
   </sql>
    <select id="findAll"  resultType="com.fc.test.model.auto.TsysPremission">
 
-	  select  * from t_sys_premission
+	  select  *,(select count(1) from t_sys_premission where pid=a.id) childcount from t_sys_premission a
 	</select>
 
 <select id="findByAdminUserId" parameterType="String" resultType="com.fc.test.model.auto.TsysPremission">
-           select p.*
+           select p.*,(select count(1) from t_sys_premission where pid=p.id) childcount
         from t_sys_user u
         LEFT JOIN t_sys_role_user sru on u.id= sru.Sys_User_id
         LEFT JOIN t_sys_role r on sru.Sys_Role_id=r.id
         LEFT JOIN t_sys_permission_role spr on spr.role_id=r.id
         LEFT JOIN t_sys_premission p on p.id =spr.permission_id
-        where u.id=#{userId}
+        where u.id=#{userId} ORDER BY p.order_num ASC
  </select>
  
  <select id="queryRoleId"  parameterType="String" resultType="com.fc.test.model.auto.TsysPremission">

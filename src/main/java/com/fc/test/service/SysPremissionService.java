@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,9 @@ import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysPremissionExample;
 import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.Tablepar;
+import com.fc.test.shiro.util.ShiroUtils;
 import com.fc.test.util.SnowflakeIdWorker;
+import com.fc.test.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -202,14 +205,14 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * 获取转换成bootstarp的权限数据
 	 * @return
 	 */
-	public BootstrapTree getbooBootstrapTreePerm(){
+	public BootstrapTree getbooBootstrapTreePerm(String userid){
 		List<BootstrapTree> treeList = new ArrayList<BootstrapTree>();
-		List<TsysPremission> menuList =  getall();
+		List<TsysPremission> menuList =  getall(userid);
 		treeList = getbooBootstrapTreePerm(menuList,"0");
 		if(treeList!=null&&treeList.size()==1) {
 			return treeList.get(0);
 		}
-		return new BootstrapTree("菜单", "fa fa-home", "", "-1","###",0,treeList);
+		return new BootstrapTree("菜单", "fa fa-home", "", "-1","###",0,treeList,"");
 	}
 	
 	
@@ -229,7 +232,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 				if(p.getChildCount()!=null&&p.getChildCount()>0) {
 					childList = getbooBootstrapTreePerm(menuList, String.valueOf(p.getId()));
 				}
-				BootstrapTree bootstrapTree = new BootstrapTree(p.getName(), p.getIcon(), "", String.valueOf(p.getId()), p.getUrl(),p.getIsBlank(),childList);
+				BootstrapTree bootstrapTree = new BootstrapTree(p.getName(), p.getIcon(), "", String.valueOf(p.getId()), p.getUrl(),p.getIsBlank(),childList,p.getPerms());
 				treeList.add(bootstrapTree);
 				childList = null;
 			}
@@ -238,14 +241,20 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	}
 	
 	/**
-	 * 获取所有权限
+	 * 根据用户id获取用户角色如果用户为null 获取所有权限
 	 * @return
 	 */
-	public List<TsysPremission> getall(){
-		TsysPremissionExample example = new TsysPremissionExample();
-		example.setOrderByClause("order_num asc");
-		return  tsysPremissionMapper.selectByExample(example);
+	public List<TsysPremission> getall(String userid){
+		if(StringUtils.isEmpty(userid)) {
+			TsysPremissionExample example = new TsysPremissionExample();
+			example.setOrderByClause("order_num asc");
+			return  tsysPremissionMapper.selectByExample(example);
+		}
+		return  permissionDao.findByAdminUserId(userid);
 	}
+	
+	
+	
 	
 	
 	/**
@@ -276,7 +285,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		// 获取角色的权限
 		List<TsysPremission> myTsysPremissions = permissionDao.queryRoleId(roleid);
 		// 获取所有的权限
-		BootstrapTree sysPremissions = getbooBootstrapTreePerm();
+		BootstrapTree sysPremissions = getbooBootstrapTreePerm(null);
 		iterationCheckPre(sysPremissions, myTsysPremissions, map);
 		return sysPremissions;
 
