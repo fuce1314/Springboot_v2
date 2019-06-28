@@ -60,7 +60,7 @@ public class HomeController extends BaseController{
             if ((null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) || SecurityUtils.getSubject().isRemembered()) {
             	setTitle(model, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
             	//获取菜单栏
-            	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm();
+            	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
             	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
             	request.getSession().setAttribute("sessionUserName",ShiroUtils.getLoginName() );
             	return "admin/index";
@@ -128,7 +128,7 @@ public class HomeController extends BaseController{
 		 }
 		
      	 if(StringUtils.isNotNull(ShiroUtils.getUser())) {
-     		 BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm();
+     		 BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
          	 request.getSession().setAttribute("bootstrapTree", bootstrapTree);
          	 request.getSession().setAttribute("sessionUserName",ShiroUtils.getLoginName() );
          	 //跳转到 get请求的登陆方法

@@ -200,7 +200,7 @@ public class PremissionController  extends BaseController{
     @ResponseBody
     public AjaxResult getbooBootstrapTreePerm(){
     	
-    	return retobject(200,sysPremissionService.getbooBootstrapTreePerm());
+    	return retobject(200,sysPremissionService.getbooBootstrapTreePerm(null));
     }
     
     
@@ -234,7 +234,7 @@ public class PremissionController  extends BaseController{
     @PostMapping("tree/{pid}")
     @ResponseBody
     public AjaxResult Tree(@PathVariable("pid") String pid){
-    	return retobject(200,sysPremissionService.getbooBootstrapTreePerm());
+    	return retobject(200,sysPremissionService.getbooBootstrapTreePerm(null));
     }
     
     

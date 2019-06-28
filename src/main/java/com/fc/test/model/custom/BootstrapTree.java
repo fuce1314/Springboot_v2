@@ -17,7 +17,7 @@ public class BootstrapTree {
 	private Integer isBlank;//是否跳转
 	private Map<String,Object> state;//选中参数
 	private List<BootstrapTree> nodes;//子元素
-	
+	private String permKey;//权限key
 	public String getText() {
 		return text;
 	}
@@ -88,7 +88,7 @@ public class BootstrapTree {
 		this.url = url;
 	}
 	public BootstrapTree(String text, String icon, String data, String id,String url,Integer isBlank,
-			List<BootstrapTree> nodes) {
+			List<BootstrapTree> nodes,String permKey) {
 		super();
 		this.text = text;
 		this.icon = icon;
@@ -97,12 +97,19 @@ public class BootstrapTree {
 		this.url=url;
 		this.isBlank=isBlank;
 		this.nodes = nodes;
+		this.permKey=permKey;
 	}
 	public Integer getIsBlank() {
 		return isBlank;
 	}
 	public void setIsBlank(Integer isBlank) {
 		this.isBlank = isBlank;
+	}
+	public String getPermKey() {
+		return permKey;
+	}
+	public void setPermKey(String permKey) {
+		this.permKey = permKey;
 	}
 	
 }
