@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
 import com.fc.test.mapper.auto.TsysPremissionMapper;
@@ -17,7 +14,6 @@ import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysPremissionExample;
 import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.Tablepar;
-import com.fc.test.shiro.util.ShiroUtils;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.fc.test.util.StringUtils;
 import com.github.pagehelper.PageHelper;
