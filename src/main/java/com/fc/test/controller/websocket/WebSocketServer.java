@@ -11,8 +11,6 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import org.springframework.stereotype.Component;
-
 @ServerEndpoint("/websocket")
 public class WebSocketServer {
 
