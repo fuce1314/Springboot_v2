@@ -22,6 +22,7 @@ import javax.mail.internet.MimeMultipart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fc.test.common.conf.V2Config;
 import com.fc.test.model.auto.TSysEmail;
 import com.fc.test.model.custom.email.MailSenderInfo;
 import com.fc.test.model.custom.email.MyAuthenticator;
@@ -136,12 +137,12 @@ public class SimpleEmailUtil {
 	public static void sendEmail(TSysEmail tSysEmail) throws Exception {
 		// 这个类主要是设置邮件
 		MailSenderInfo mailInfo = new MailSenderInfo();
-		mailInfo.setMailServerHost("smtp.sina.com");
-		mailInfo.setMailServerPort("465");
+		mailInfo.setMailServerHost(V2Config.getEmail_smtp());
+		mailInfo.setMailServerPort(V2Config.getEmail_port());
 		mailInfo.setValidate(true);
 		mailInfo.setSsl(true);
-		mailInfo.setUserName("q123456@sina.com");
-		mailInfo.setPassword("f12345");// 您的邮箱密码
+		mailInfo.setUserName(V2Config.getEmail_account());
+		mailInfo.setPassword(V2Config.getEmail_password());// 您的邮箱密码
 		mailInfo.setFromAddress(mailInfo.getUserName());//发件人地址
 		mailInfo.setToAddress(tSysEmail.getReceiversEmail());//收件人地址
 		mailInfo.setSubject(tSysEmail.getTitle());
