@@ -2,22 +2,15 @@ package com.fc.test.service;
 
 import java.io.IOException;
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fc.test.common.conf.V2Config;
-import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.common.file.FileUploadUtils;
 import com.fc.test.mapper.auto.TsysDatasMapper;
 import com.fc.test.mapper.auto.TsysFileDataMapper;
 import com.fc.test.mapper.auto.TsysFileMapper;
-import com.fc.test.mapper.custom.TsysDatasDao;
 import com.fc.test.model.auto.TsysDatas;
 import com.fc.test.model.auto.TsysFile;
 import com.fc.test.model.auto.TsysFileData;
@@ -33,8 +26,6 @@ import com.fc.test.util.SnowflakeIdWorker;
  */
 @Service
 public class UeditorService {
-	@Autowired
-	private SysDatasService sysDatasService;
 	@Autowired
 	private TsysFileDataMapper tsysFileDataMapper;
 	
