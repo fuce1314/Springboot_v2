@@ -12,6 +12,15 @@ fuce:
   isstatic: Y
   #开启存放静态文件夹后目录
   isroot_dir: static/images_upload/
+  #邮件功能
+  #邮箱发送smtp
+  email_smtp: smtp.sina.com
+  #邮箱发送端口
+  email_port: 465
+  #发送邮箱登录账号
+  email_account: q111111@sina.com
+  #发送邮箱登录密码
+  email_password: f111111
 #tomcat config
 server :
   port : 8080

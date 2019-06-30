@@ -24,6 +24,14 @@ public class V2Config
     private static String isstatic;
     /** 开启存放静态文件夹后目录 **/
     private static String isroot_dir;
+    /** 邮箱发送smtp */
+    private static String email_smtp;
+    /** 发送邮箱端口 */
+    private static String email_port;
+    /** 发送邮箱登录账号 */
+    private static String email_account;
+    /** 发送邮箱登录密码 */
+    private static String email_password;
     public String getName()
     {
         return name;
@@ -80,4 +88,36 @@ public class V2Config
 		V2Config.isroot_dir = isroot_dir;
 	}
 
+	public static String getEmail_smtp() {
+		return email_smtp;
+	}
+
+	public static void setEmail_smtp(String email_smtp) {
+		V2Config.email_smtp = email_smtp;
+	}
+
+	public static String getEmail_port() {
+		return email_port;
+	}
+
+	public static void setEmail_port(String email_port) {
+		V2Config.email_port = email_port;
+	}
+
+	public static String getEmail_account() {
+		return email_account;
+	}
+
+	public static void setEmail_account(String email_account) {
+		V2Config.email_account = email_account;
+	}
+
+	public static String getEmail_password() {
+		return email_password;
+	}
+
+	public static void setEmail_password(String email_password) {
+		V2Config.email_password = email_password;
+	}
+	
 }
