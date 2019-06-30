@@ -48,7 +48,10 @@ label.error {
 					<div class="panel-body">
 						<form  class="form-horizontal m" id="form-view" >
 							<div class="form-group" th:each="sysdata : ${tsysDatas}">
-								<div class="col-sm-8">
+								<div class="col-sm-8" th:if="${is_static=='Y'}">
+									<img th:src="@{'/'+${sysdata.filePath}}">
+								</div>
+								<div class="col-sm-8" th:if="${is_static=='N'}">
 									<img th:src="'../viewImg/'+${sysdata.id}">
 								</div>
 							</div>
@@ -60,17 +63,7 @@ label.error {
 	</div>
 </div>
 
-<!-- 通用js -->
-<div th:include="admin/common/html/js :: onload_js"></div>
-<!-- 弹窗 -->
-<script th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
-<!-- 遮罩层 -->
-<script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
-<script th:src="@{/static/admin/assets/js/bootstrap/js/base_list.js}" type="text/javascript"></script>
 
-
-<script type="text/javascript">
-</script>
 
 </body>
 

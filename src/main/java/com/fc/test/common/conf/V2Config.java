@@ -20,7 +20,10 @@ public class V2Config
     private String copyrightYear;
     /** 上传路径 */
     private static String profile;
-
+    /** 是否开启 上传static **/
+    private static String isstatic;
+    /** 开启存放静态文件夹后目录 **/
+    private static String isroot_dir;
     public String getName()
     {
         return name;
@@ -60,5 +63,21 @@ public class V2Config
     {
     	V2Config.profile = profile;
     }
+
+	public static String getIsstatic() {
+		return isstatic;
+	}
+
+	public static void setIsstatic(String isstatic) {
+		V2Config.isstatic = isstatic;
+	}
+
+	public static String getIsroot_dir() {
+		return isroot_dir;
+	}
+
+	public static void setIsroot_dir(String isroot_dir) {
+		V2Config.isroot_dir = isroot_dir;
+	}
 
 }
