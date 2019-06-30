@@ -190,6 +190,26 @@
 		</dependency>
 		
 		
+	<!--百度UEditor依赖的jar包 -->
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20180813</version>
+	</dependency>
+	<dependency>
+	    <groupId>commons-codec</groupId>
+	    <artifactId>commons-codec</artifactId>
+	    <version>1.9</version>
+	</dependency>
+	<dependency> 
+		 <groupId>ueditor</groupId>  
+		 <artifactId>1.4.3</artifactId>  
+		<version>1.8</version>  
+		<scope>system</scope>  
+		<systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>  
+	</dependency>	
+		
+		
 	</dependencies>
 
 

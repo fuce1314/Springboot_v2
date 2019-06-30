@@ -21,6 +21,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fc.test.model.auto.TSysEmail;
 import com.fc.test.model.custom.email.MailSenderInfo;
 import com.fc.test.model.custom.email.MyAuthenticator;
 
@@ -30,9 +32,9 @@ import com.fc.test.model.custom.email.MyAuthenticator;
  * @author fuce
  * @date 2019-06-09 23:57
  **/
-public class SimpleMailUtil {
+public class SimpleEmailUtil {
 
-	private static Logger logger = LoggerFactory.getLogger(SimpleMailUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(SimpleEmailUtil.class);
 
 	/**
 	 * 以文本格式发送邮件
@@ -86,7 +88,7 @@ public class SimpleMailUtil {
 			authenticator = new MyAuthenticator(mailInfo.getUserName(), mailInfo.getPassword());
 		}
 		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
-		Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
+		Session sendMailSession = Session.getInstance(pro, authenticator);
 		// 根据session创建一个邮件消息
 		Message mailMessage = new MimeMessage(sendMailSession);
 		// 创建邮件发送者地址
@@ -129,6 +131,33 @@ public class SimpleMailUtil {
 		// 发送邮件
 		Transport.send(mailMessage);
 		return true;
+	}
+	
+	public static void sendEmail(TSysEmail tSysEmail) throws Exception {
+		// 这个类主要是设置邮件
+		MailSenderInfo mailInfo = new MailSenderInfo();
+		mailInfo.setMailServerHost("smtp.sina.com");
+		mailInfo.setMailServerPort("465");
+		mailInfo.setValidate(true);
+		mailInfo.setSsl(true);
+		mailInfo.setUserName("q123456@sina.com");
+		mailInfo.setPassword("f12345");// 您的邮箱密码
+		mailInfo.setFromAddress(mailInfo.getUserName());//发件人地址
+		mailInfo.setToAddress(tSysEmail.getReceiversEmail());//收件人地址
+		mailInfo.setSubject(tSysEmail.getTitle());
+		mailInfo.setContent(tSysEmail.getContent());
+		// 这个类主要来发送邮件
+		SimpleEmailUtil sms = new SimpleEmailUtil();
+		// sms.sendTextMail(mailInfo);//发送文体格式
+		 // 附件
+//        String fileName1 = "C:\\Users\\Administrator\\Desktop\\周报.txt";
+//        File file1 = new File(fileName1);
+//        String fileName2 = "C:\\Users\\Administrator\\Desktop\\111.rp";
+//        File file2 = new File(fileName2);
+//        List<File> fileList = new ArrayList<File>();
+//        fileList.add(file1);
+//        fileList.add(file2);
+		sms.sendHtmlMail(mailInfo,null);// 发送html格式
 	}
 
 
@@ -199,7 +228,7 @@ public class SimpleMailUtil {
 				+ "<div><img src=\"/images/faq/%7BAFD872AB-6069-488B-B7BC-C538124E7F3E%7D.tmp\"></div>\r\n"
 				+ "  </div>\r\n" + "</div>");
 		// 这个类主要来发送邮件
-		SimpleMailUtil sms = new SimpleMailUtil();
+		SimpleEmailUtil sms = new SimpleEmailUtil();
 		// sms.sendTextMail(mailInfo);//发送文体格式
 		sms.sendHtmlMail(mailInfo,null);// 发送html格式
 	}
@@ -222,7 +251,7 @@ public class SimpleMailUtil {
 				+ "  <div><font color=\"#555555\">&nbsp;</font> \r\n" + "<div>如果您的电子邮件客户端支持SSL，可以在设置中选择使用SSL。</div>\r\n"
 				+ "<div>&nbsp;</div>\r\n" + "</div>");
 		// 这个类主要来发送邮件
-		SimpleMailUtil sms = new SimpleMailUtil();
+		SimpleEmailUtil sms = new SimpleEmailUtil();
 		// sms.sendTextMail(mailInfo);//发送文体格式
 		 // 附件
         String fileName1 = "C:\\Users\\Administrator\\Desktop\\周报.txt";

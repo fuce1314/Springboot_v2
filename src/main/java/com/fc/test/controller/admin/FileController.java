@@ -1,13 +1,9 @@
 package com.fc.test.controller.admin;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import io.swagger.annotations.Api;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.common.file.FileUtils;
-import com.fc.test.common.support.Convert;
 import com.fc.test.model.auto.TsysDatas;
 import com.fc.test.model.auto.TsysFile;
 import com.fc.test.model.custom.TableSplitResult;

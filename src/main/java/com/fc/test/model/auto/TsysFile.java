@@ -85,4 +85,23 @@ public class TsysFile {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public TsysFile() {
+		super();
+	}
+
+	public TsysFile(String id, String fileName, String createUserId, String createUserName, Date createTime,
+			String updateUserId, String updateUserName, Date updateTime) {
+		super();
+		this.id = id;
+		this.fileName = fileName;
+		this.createUserId = createUserId;
+		this.createUserName = createUserName;
+		this.createTime = createTime;
+		this.updateUserId = updateUserId;
+		this.updateUserName = updateUserName;
+		this.updateTime = updateTime;
+	}
+    
+    
 }
