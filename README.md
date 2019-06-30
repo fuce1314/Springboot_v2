@@ -144,6 +144,7 @@ bootstrap-colorpicker|颜色组件||
 dropzone|文件上传||
 bootstrap-wysihtml5|富文本||
 bootstrap-switch|开关按钮||
+UEditor|百度富文本||
 
 ### jar版本
 
@@ -180,7 +181,7 @@ bootstrap-switch|开关按钮||
 
 
 ### 部署流程
-1. 导入doc文件夹里面的test.sql到数据库
+1. 导入doc文件夹里面的springbootv2.sql到数据库
 2. 确认自己的mysql版本 进行修改jar  在pom.xml 73-84行
 3. 修改application-dev.yml 里面自己数据库版本对应的jdbc链接
 4. 正常启动run SpringbootSwagger2Application.java
@@ -198,8 +199,7 @@ bootstrap-switch|开关按钮||
 
 
 ### 数据库模型
-
-![数据库模型](https://images.gitee.com/uploads/images/2019/0609/205522_e2a0d11f_123301.png "数据库模型.png")
+![数据库模型](https://images.gitee.com/uploads/images/2019/0701/001953_dd7a387e_123301.png "数据库模型.png")
 
 ### 界面风格
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0617/214247_d40363b4_123301.png "屏幕截图.png")
