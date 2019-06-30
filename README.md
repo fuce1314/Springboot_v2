@@ -144,6 +144,7 @@ bootstrap-colorpicker|颜色组件||
 dropzone|文件上传||
 bootstrap-wysihtml5|富文本||
 bootstrap-switch|开关按钮||
+UEditor|百度富文本||
 
 ### jar版本
 
@@ -180,7 +181,7 @@ bootstrap-switch|开关按钮||
 
 
 ### 部署流程
-1. 导入doc文件夹里面的test.sql到数据库
+1. 导入doc文件夹里面的springbootv2.sql到数据库
 2. 确认自己的mysql版本 进行修改jar  在pom.xml 73-84行
 3. 修改application-dev.yml 里面自己数据库版本对应的jdbc链接
 4. 正常启动run SpringbootSwagger2Application.java
@@ -198,33 +199,31 @@ bootstrap-switch|开关按钮||
 
 
 ### 数据库模型
-
-![数据库模型](https://images.gitee.com/uploads/images/2019/0609/205522_e2a0d11f_123301.png "数据库模型.png")
+![数据库模型](https://images.gitee.com/uploads/images/2019/0701/001953_dd7a387e_123301.png "数据库模型.png")
 
 ### 界面风格
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0617/214247_d40363b4_123301.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0610/014324_6bede04c_123301.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0610/014415_dfb5b40c_123301.png "屏幕截图.png")
-![修改角色](https://images.gitee.com/uploads/images/2019/0610/014506_a73fae96_123301.png "屏幕截图.png")
-![表单构建](https://images.gitee.com/uploads/images/2019/0610/014618_33e1edf9_123301.png "屏幕截图.png")
-
-![swagger2](https://images.gitee.com/uploads/images/2019/0609/210335_d3efad8c_123301.png "屏幕截图.png")
-![空白页面](https://images.gitee.com/uploads/images/2019/0609/210649_a934ea28_123301.png "屏幕截图.png")
-
+![登录界面](https://images.gitee.com/uploads/images/2019/0617/214247_d40363b4_123301.png "登录界面.png")
+![权限界面](https://images.gitee.com/uploads/images/2019/0701/002825_84195403_123301.png "权限列表.png")
+![权限添加](https://images.gitee.com/uploads/images/2019/0701/002939_3514f4b9_123301.png "权限添加.png")
+![修改角色](https://images.gitee.com/uploads/images/2019/0701/003259_7c28607d_123301.png "屏幕截图.png")
+![表单构建](https://images.gitee.com/uploads/images/2019/0610/014618_33e1edf9_123301.png "表单构建.png")
+![邮件发送功能](https://images.gitee.com/uploads/images/2019/0701/003722_d73d40a5_123301.png "邮件发送功能.png")
+![首页](https://images.gitee.com/uploads/images/2019/0609/210649_a934ea28_123301.png "首页.png")
+![swagger2](https://images.gitee.com/uploads/images/2019/0609/210335_d3efad8c_123301.png "swagger2.png")
 ### 后台代码注释风格
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203106_52eca8e3_123301.jpeg "QQ截图20180909202815.jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203112_278db2f4_123301.jpeg "QQ截图20180909202830.jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203118_39d8b7cd_123301.jpeg "QQ截图20180909202838.jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203125_a362822a_123301.jpeg "QQ截图20180909202852.jpg")
+![后台代码](https://images.gitee.com/uploads/images/2018/0909/203106_52eca8e3_123301.jpeg "1.jpg")
+![后台代码](https://images.gitee.com/uploads/images/2018/0909/203112_278db2f4_123301.jpeg "2.jpg")
+![后台代码](https://images.gitee.com/uploads/images/2018/0909/203118_39d8b7cd_123301.jpeg "3.jpg")
+![后台代码](https://images.gitee.com/uploads/images/2018/0909/203125_a362822a_123301.jpeg "4.jpg")
 
 
 ### 前端代码注释风格
-![HTML代码页面](https://images.gitee.com/uploads/images/2018/0822/004608_c55d62a4_123301.jpeg "未命名拼图 (1).jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0909/203322_6dc467c2_123301.jpeg "QQ截图20180909203303.jpg")
+![HTML代码页面](https://images.gitee.com/uploads/images/2018/0822/004608_c55d62a4_123301.jpeg "HTML代码页面.jpg")
+![js引入](https://images.gitee.com/uploads/images/2018/0909/203322_6dc467c2_123301.jpeg "js引入.jpg")
 
 ### 代码自动生成功能
 ![自动生成代码](https://images.gitee.com/uploads/images/2019/0514/003054_e99cdee7_123301.png "自动生成页面.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0514/003215_127c9010_123301.png "代码自动生成文件.png")
+![代码生成](https://images.gitee.com/uploads/images/2019/0514/003215_127c9010_123301.png "代码自动生成文件.png")
 
 
 
