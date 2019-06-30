@@ -5,10 +5,13 @@ import java.io.IOException;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.tomcat.util.http.fileupload.FileUploadBase.FileSizeLimitExceededException;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.exception.file.FileNameLengthLimitExceededException;
+
+import net.bytebuddy.asm.Advice.This;
 
 /**
  * 文件上传工具类
@@ -27,12 +30,18 @@ public class FileUploadUtils
      * 默认上传的地址
      */
     private static String defaultBaseDir = V2Config.getProfile();
+    
+    /**
+     * 是否上传到static
+     */
+    private static String isstatic=V2Config.getIsstatic();
+    
+
 
     /**
      * 默认的文件名最大长度
      */
     public static final int DEFAULT_FILE_NAME_LENGTH = 200;
-
     /**
      * 默认文件类型jpg
      */
@@ -50,7 +59,24 @@ public class FileUploadUtils
         return defaultBaseDir;
     }
 
-    /**
+    public static String getIsstatic() {
+		return isstatic;
+	}
+
+	public static void setIsstatic(String isstatic) {
+		FileUploadUtils.isstatic = isstatic;
+	}
+	
+	/**
+	 * 静态文件上传后存放的目录
+	 */
+	public static String getRoot_dir() {
+		String url=ClassUtils.getDefaultClassLoader().getResource("").getPath()+V2Config.getIsroot_dir();
+		return url;
+	}
+
+
+	/**
      * 以默认配置进行文件上传
      *
      * @param file 上传的文件
@@ -61,7 +87,12 @@ public class FileUploadUtils
     {
         try
         {
-            return upload(getDefaultBaseDir(), file, FileUploadUtils.IMAGE_JPG_EXTENSION);
+        	if("Y".equals(getIsstatic())) {//获取根目录
+        		
+        		 return upload(getRoot_dir(), file, FileUploadUtils.IMAGE_JPG_EXTENSION);
+        	}else {//自定义目录
+        		 return upload(getDefaultBaseDir(), file, FileUploadUtils.IMAGE_JPG_EXTENSION);
+        	}
         }
         catch (Exception e)
         {
@@ -104,7 +135,7 @@ public class FileUploadUtils
     public static final String upload(String baseDir, MultipartFile file, String extension)
             throws FileSizeLimitExceededException, IOException, FileNameLengthLimitExceededException
     {
-
+    	
         int fileNamelength = file.getOriginalFilename().length();
         if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH)
         {

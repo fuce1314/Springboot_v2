@@ -136,7 +136,13 @@ $(function(){
 	              
 	           });
 	           this.on("removedfile",function(file){//删除文件触发结果
-	              //console.log(file);
+	               $.ajax({
+	            	   url:window.rootPath+"/FileController/del_file",
+	            	   type:"post",
+	            	   data:{"ids":$("#dataId").val()},
+	            	   success:function(data){
+	            	   }
+	               })
 	        	   $("#dataId").val("");	
 	           });
 	       }

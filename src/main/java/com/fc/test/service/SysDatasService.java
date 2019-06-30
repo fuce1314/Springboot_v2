@@ -26,7 +26,6 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
 	@Autowired
 	private TsysDatasMapper tsysDatasMapper;
 	
-	
 	/**
 	 * 分页查询
 	 * @param pageNum
@@ -54,6 +53,11 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
 		return tsysDatasMapper.deleteByExample(example);
 	}
 	
+	
+	
+	
+	
+	
 	/**
 	 * 文件上传文件存储到文件表
 	 * @param record
@@ -65,7 +69,13 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
 		//文件上传获取文件名字
         String files = FileUploadUtils.upload(file);
         //补充完整url地址 
-        String filesURL=V2Config.getProfile()+files;
+        String filesURL="";
+        if ("Y".equals(V2Config.getIsstatic())) {
+        	filesURL=V2Config.getIsroot_dir()+files;
+		}else {
+			filesURL=V2Config.getProfile()+files;
+		}
+        
         
 		TsysDatas record=new TsysDatas();
 		//添加雪花主键id

@@ -8,6 +8,10 @@ fuce:
   copyrightYear: 2018
   #头像上传路径
   profile: D:/profile/
+  #地址是否放入项目static目录，如果未Y 放入static。 profile配置失效
+  isstatic: Y
+  #开启存放静态文件夹后目录
+  isroot_dir: static/images_upload/
 #tomcat config
 server :
   port : 8080

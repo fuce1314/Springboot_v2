@@ -71,7 +71,7 @@ public class RemoveDruidAdConfig {
             public void destroy() {
             }
         };
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<Filter>();
         registrationBean.setFilter(filter);
         registrationBean.addUrlPatterns(commonJsPattern);
         return registrationBean;

@@ -1,12 +1,9 @@
 package com.fc.test.controller.admin;
 
 import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import io.swagger.annotations.Api;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fc.test.common.base.BaseController;
+import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.common.file.FileUtils;
 import com.fc.test.model.auto.TsysDatas;
@@ -136,6 +133,24 @@ public class FileController extends BaseController{
 		}
 	}
 	
+	
+	/**
+	 * 删除本地文件
+	 * @param ids
+	 * @return
+	 */
+	@PostMapping("del_file")
+	@ResponseBody
+	public AjaxResult del_file(String ids){
+		int b=sysFileService.deleteBydataFile(ids);
+		if(b>0){
+			return success();
+		}else{
+			return error();
+		}
+	}
+	
+	
 	/**
 	 * 检查文件名字
 	 * @param tsysFile
@@ -177,13 +192,24 @@ public class FileController extends BaseController{
         return toAjax(sysFileService.updateByPrimaryKey(tsysFile,dataId));
     }
     
-    
+    /**
+     * 展示文件跳转页面
+     */
     @GetMapping("/viewfile/{id}")
     public String viewfile(@PathVariable("id") String id,ModelMap mmap){
+    	if("Y".equals(V2Config.getIsstatic())) {//为静态目录存放的时候
+    		mmap.put("is_static","Y");
+    	}else {//为自定义存放目录的时候
+    		mmap.put("is_static","N");
+    	}
     	mmap.put("tsysDatas",sysFileDatasService.queryfileID(id));
         return prefix + "/viewfile";
     }
     
+    /**
+     * 此功能为application.yml 下面的isstatic为N 时候需要的
+     * 逻辑为：根据数据库文件存放地址，读取图片流放入到<ima src>里面展示
+     */
     @GetMapping("/viewImg/{id}")
     public void viewIMG(@PathVariable("id") String id,HttpServletRequest request,HttpServletResponse response){
     	TsysDatas datas= sysDatasService.selectByPrimaryKey(id);
