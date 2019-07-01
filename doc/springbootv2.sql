@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost_3306
 Source Server Version : 50725
 Source Host           : localhost:3306
-Source Database       : springbootv2
+Source Database       : springbootv3
 
 Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-06-30 20:51:22
+Date: 2019-07-01 10:43:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,29 +28,29 @@ CREATE TABLE `t_sys_datas` (
 -- ----------------------------
 -- Records of t_sys_datas
 -- ----------------------------
+INSERT INTO `t_sys_datas` VALUES ('595007521958133760', 'static/images_upload/b1a3ce4c7a30db570b6a9248aa89c250.jpg');
 
 -- ----------------------------
 -- Table structure for t_sys_email
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_email`;
 CREATE TABLE `t_sys_email` (
-  `id` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '主键',
-  `receivers_email` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '接收人电子邮件',
-  `title` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮件标题',
-  `content` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '内容',
-  `send_user_id` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '发送人id',
-  `send_user_name` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '发送人账号',
+  `id` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '主键',
+  `receivers_email` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '接收人电子邮件',
+  `title` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '邮件标题',
+  `content` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '内容',
+  `send_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '发送人id',
+  `send_user_name` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '发送人账号',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='电子邮件';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='电子邮件';
 
 -- ----------------------------
 -- Records of t_sys_email
 -- ----------------------------
-INSERT INTO `t_sys_email` VALUES ('594975125275672576', '87766867@qq.com', 'hhhhh', '<p>hhhhhhhhh</p>', '1', 'admin', '2019-06-30 19:38:44');
-INSERT INTO `t_sys_email` VALUES ('594976803437674496', '87766867@qq.com', 'ffff', '<p>ccccccccccccccccccc</p>', '1', 'admin', '2019-06-30 19:45:24');
-INSERT INTO `t_sys_email` VALUES ('594976935868628992', '87766867@qq.com', 'ffff', '<p>ccccccccccccccccccc</p>', '1', 'admin', '2019-06-30 19:45:56');
-INSERT INTO `t_sys_email` VALUES ('594977087920537600', '87766867@qq.com', 'ffff', '<p>ccccccccccccccccccc</p>', '1', 'admin', '2019-06-30 19:46:32');
+INSERT INTO `t_sys_email` VALUES ('595001021625794560', '87766867@qq.com', 'springbootv2测试邮件', '<p>测试测测测</p>', '1', 'admin', '2019-06-30 21:21:38');
+INSERT INTO `t_sys_email` VALUES ('595005420867682304', '87766867@qq.com', '带带带', '<p>顶顶顶顶顶顶顶顶顶顶顶顶顶</p>', '1', 'admin', '2019-06-30 21:39:07');
+INSERT INTO `t_sys_email` VALUES ('595007558129811456', '87766867@qq.com', '呱呱呱呱呱呱', '<p><img src=\"http://localhost:8080/static/images_upload/b1a3ce4c7a30db570b6a9248aa89c250.jpg\" title=\"ssss\" alt=\"\"/></p>', '1', 'admin', '2019-06-30 21:47:37');
 
 -- ----------------------------
 -- Table structure for t_sys_file
@@ -72,6 +72,7 @@ CREATE TABLE `t_sys_file` (
 -- Records of t_sys_file
 -- ----------------------------
 INSERT INTO `t_sys_file` VALUES ('594974831133327360', '百度富文本上传', '1', 'admin', '2019-06-30 19:37:34', null, null, null);
+INSERT INTO `t_sys_file` VALUES ('595007522008465408', '百度富文本上传', '1', 'admin', '2019-06-30 21:47:28', null, null, null);
 
 -- ----------------------------
 -- Table structure for t_sys_file_data
@@ -87,6 +88,7 @@ CREATE TABLE `t_sys_file_data` (
 -- ----------------------------
 -- Records of t_sys_file_data
 -- ----------------------------
+INSERT INTO `t_sys_file_data` VALUES ('595007522008465408', '595007521958133760', '595007522008465408');
 
 -- ----------------------------
 -- Table structure for t_sys_oper_log
@@ -107,6 +109,20 @@ CREATE TABLE `t_sys_oper_log` (
 -- ----------------------------
 -- Records of t_sys_oper_log
 -- ----------------------------
+INSERT INTO `t_sys_oper_log` VALUES ('595006721877868544', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-30');
+INSERT INTO `t_sys_oper_log` VALUES ('595007464991096832', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-30');
+INSERT INTO `t_sys_oper_log` VALUES ('595007483563474944', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-30');
+INSERT INTO `t_sys_oper_log` VALUES ('595007490660237312', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-30');
+INSERT INTO `t_sys_oper_log` VALUES ('595040139214848000', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-06-30');
+INSERT INTO `t_sys_oper_log` VALUES ('595040974183333888', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
+INSERT INTO `t_sys_oper_log` VALUES ('595041715522371584', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
+INSERT INTO `t_sys_oper_log` VALUES ('595042140849963008', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
+INSERT INTO `t_sys_oper_log` VALUES ('595042463626821632', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
+INSERT INTO `t_sys_oper_log` VALUES ('595042483801423872', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
+INSERT INTO `t_sys_oper_log` VALUES ('595042914216706048', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
+INSERT INTO `t_sys_oper_log` VALUES ('595046005259370496', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
+INSERT INTO `t_sys_oper_log` VALUES ('595054071166009344', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
+INSERT INTO `t_sys_oper_log` VALUES ('595054971544666112', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-01');
 
 -- ----------------------------
 -- Table structure for t_sys_permission_role
