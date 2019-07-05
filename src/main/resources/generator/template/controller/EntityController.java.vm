@@ -25,7 +25,7 @@ import io.swagger.annotations.Api;
 @Api(value = "${comments}")
 public class ${className}Controller extends BaseController{
 	
-	private String prefix = "admin/${classname}";
+	private String prefix = "${controller_permission_key}/${classname}";
 	@Autowired
 	private ${className}Service ${classname}Service;
 	

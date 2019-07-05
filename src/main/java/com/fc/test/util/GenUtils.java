@@ -56,6 +56,7 @@ public class GenUtils {
         templates.add("generator/template/html/list.html.vm");
         templates.add("generator/template/html/add.html.vm");
         templates.add("generator/template/html/edit.html.vm");
+        templates.add("generator/template/说明.txt.vm");
         return templates;
     }
 
@@ -236,13 +237,16 @@ public class GenUtils {
        	 	 return "menu.sql";
         }
         if(template.contains("list.html.vm")) {
-        	 return "html"+File.separator + classname+File.separator +"/list.html";
+        	 return "templates"+File.separator + controller+File.separator + classname+File.separator +"list.html";
         }
         if(template.contains("add.html.vm")) {
-       	 	 return "html"+File.separator + classname+File.separator +"/add.html";
+       	 	 return "templates"+File.separator + controller+File.separator + classname+File.separator +"add.html";
         }
         if(template.contains("edit.html.vm")) {
-       	 	return "html"+File.separator + classname+File.separator +"/edit.html";
+       	 	return  "templates"+File.separator + controller+File.separator + classname+File.separator +"edit.html";
+        }
+        if(template.contains("说明.txt.vm")) {
+       	 	return  "说明.txt";
         }
 
 //        if (template.contains("ServiceImpl.java.vm" )) {
