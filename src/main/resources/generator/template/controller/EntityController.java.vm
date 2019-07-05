@@ -1,4 +1,4 @@
-package ${package}.controller.${controller};
+package ${package}.controller.${controller_permission_key};
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

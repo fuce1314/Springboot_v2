@@ -18,9 +18,9 @@ fuce:
   #邮箱发送端口
   email_port: 465
   #发送邮箱登录账号
-  email_account: q111111@sina.com
+  email_account: q115889198@sina.com
   #发送邮箱登录密码
-  email_password: f111111
+  email_password: f115889198
 #tomcat config
 server :
   port : 8080
