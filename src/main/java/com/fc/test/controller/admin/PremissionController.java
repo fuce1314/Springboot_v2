@@ -108,9 +108,13 @@ public class PremissionController  extends BaseController{
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysPremissionService.deleteByPrimaryKey(ids);
-		if(b>0){
+		if(b==1){
 			return success();
-		}else{
+		}else if(b==-1){
+			return error("该权限有子权限，请先删除子权限");
+		}else if(b==-2){
+			return error("该权限绑定了角色，请解除角色绑定");
+		}else {
 			return error();
 		}
 	}
