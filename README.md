@@ -271,6 +271,11 @@ UEditor|百度富文本||
 ### wiki
 - https://gitee.com/bdj/SpringBoot_v2/wikis
 
+### AgileBPM GVP项目
+专注于解决企业工作流实施难的问题
+https://gitee.com/agile-bpm
+
+
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
 

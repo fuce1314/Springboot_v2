@@ -56,6 +56,7 @@ public class GenUtils {
         templates.add("generator/template/html/list.html.vm");
         templates.add("generator/template/html/add.html.vm");
         templates.add("generator/template/html/edit.html.vm");
+        templates.add("generator/template/说明.txt.vm");
         return templates;
     }
 
@@ -140,7 +141,7 @@ public class GenUtils {
         map.put("mainPath", mainPath);
         map.put("package", config.getString("package"));
         map.put("moduleName", config.getString("moduleName"));
-        map.put("controller", config.getString("controller"));
+        map.put("controller_permission_key", config.getString("controller_permission_key"));
         map.put("author", config.getString("author"));
         map.put("email", config.getString("email"));
         map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
@@ -158,7 +159,7 @@ public class GenUtils {
 
             try {
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template,tableEntity.getClassname() ,tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller"))));
+                zip.putNextEntry(new ZipEntry(getFileName(template,tableEntity.getClassname() ,tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller_permission_key"))));
                 IOUtils.write(sw.toString(), zip, "UTF-8" );
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();
@@ -236,13 +237,16 @@ public class GenUtils {
        	 	 return "menu.sql";
         }
         if(template.contains("list.html.vm")) {
-        	 return "html"+File.separator + classname+File.separator +"/list.html";
+        	 return "templates"+File.separator + controller+File.separator + classname+File.separator +"list.html";
         }
         if(template.contains("add.html.vm")) {
-       	 	 return "html"+File.separator + classname+File.separator +"/add.html";
+       	 	 return "templates"+File.separator + controller+File.separator + classname+File.separator +"add.html";
         }
         if(template.contains("edit.html.vm")) {
-       	 	return "html"+File.separator + classname+File.separator +"/edit.html";
+       	 	return  "templates"+File.separator + controller+File.separator + classname+File.separator +"edit.html";
+        }
+        if(template.contains("说明.txt.vm")) {
+       	 	return  "说明.txt";
         }
 
 //        if (template.contains("ServiceImpl.java.vm" )) {

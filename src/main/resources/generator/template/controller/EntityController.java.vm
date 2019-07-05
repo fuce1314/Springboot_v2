@@ -1,4 +1,4 @@
-package ${package}.controller.${controller};
+package ${package}.controller.${controller_permission_key};
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import io.swagger.annotations.Api;
 @Api(value = "${comments}")
 public class ${className}Controller extends BaseController{
 	
-	private String prefix = "admin/${classname}";
+	private String prefix = "${controller_permission_key}/${classname}";
 	@Autowired
 	private ${className}Service ${classname}Service;
 	
