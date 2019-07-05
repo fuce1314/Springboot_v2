@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
+import com.fc.test.mapper.auto.TsysPermissionRoleMapper;
 import com.fc.test.mapper.auto.TsysPremissionMapper;
 import com.fc.test.mapper.custom.PermissionDao;
+import com.fc.test.model.auto.TsysPermissionRole;
+import com.fc.test.model.auto.TsysPermissionRoleExample;
 import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysPremissionExample;
 import com.fc.test.model.custom.BootstrapTree;
@@ -29,6 +32,9 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	//权限自定义dao
 	@Autowired
 	private PermissionDao permissionDao;
+	//权限角色关联表
+	@Autowired
+	private TsysPermissionRoleMapper permissionRoleMapper;
 	
 	/**
 	 * 分页查询
@@ -62,10 +68,39 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	
 	@Override
 	public int deleteByPrimaryKey(String ids) {
+		//转成集合
 		List<String> lista=Convert.toListStrArray(ids);
+		
+		
+		//判断角色是否删除去除
+		TsysPermissionRoleExample permissionRoleExample=new TsysPermissionRoleExample();
+		permissionRoleExample.createCriteria().andPermissionIdIn(lista);
+		List<TsysPermissionRole> tsysPermissionRoles=permissionRoleMapper.selectByExample(permissionRoleExample);
+		if(tsysPermissionRoles.size()>0) {//有角色外键
+			return -2;
+		}
+		
+		//判断是否有子集
 		TsysPremissionExample example=new TsysPremissionExample();
 		example.createCriteria().andIdIn(lista);
-		return tsysPremissionMapper.deleteByExample(example);
+		List<TsysPremission> tsysPremissions= tsysPremissionMapper.selectByExample(example);
+		boolean lag=false;
+		for (TsysPremission tsysPremission : tsysPremissions) {
+			if(tsysPremission.getChildCount()>0) {
+				lag=true;
+			}
+		}
+		if(lag) {//有子集 无法删除
+			return -1;
+		}else {//删除操作
+			int i=tsysPremissionMapper.deleteByExample(example);
+			if(i>0) {//删除成功
+				return 1;
+			}else {//删除失败
+				return 0;
+			}
+			
+		}
 	}
 
 
