@@ -48,8 +48,8 @@ public class UserController extends BaseController{
 	@PostMapping("list")
 	@RequiresPermissions("system:user:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String username){
-		PageInfo<TsysUser> page=sysUserService.list(tablepar,username) ; 
+	public Object list(Tablepar tablepar,String searchTxt){
+		PageInfo<TsysUser> page=sysUserService.list(tablepar,searchTxt) ; 
 		TableSplitResult<TsysUser> result=new TableSplitResult<TsysUser>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

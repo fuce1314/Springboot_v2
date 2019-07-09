@@ -68,6 +68,7 @@
 				 var search = {};
 				 search.pageSize= params.pageSize;
 				 search.pageNum=params.pageNumber;
+				 search.searchTxt=params.searchText;
 				 return search;
 				 
 			},
@@ -89,7 +90,7 @@
 						};*/
 						search.pageSize= params.pageSize;
 						search.pageNum=params.pageNumber;
-						
+						search.searchText=params.searchText;
 					 return search;
 				 }
 				 $("#dataTable").bootstrapTable("refresh", params)
