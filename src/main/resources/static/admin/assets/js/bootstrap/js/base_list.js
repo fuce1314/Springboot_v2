@@ -73,7 +73,6 @@
 				 
 			},
 			search:function(my){//查询条件
-				debugger;
 				var form=$(my).parents("form");
 				var search = {};
 				 $.each(form.serializeArray(), function(i, field) {
