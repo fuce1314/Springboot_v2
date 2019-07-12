@@ -230,11 +230,12 @@ UEditor|百度富文本||
 ![js引入](https://images.gitee.com/uploads/images/2018/0909/203322_6dc467c2_123301.jpeg "js引入.jpg")
 
 ### 代码自动生成功能
-![自动生成代码](https://images.gitee.com/uploads/images/2019/0514/003054_e99cdee7_123301.png "自动生成页面.png")
-![代码生成](https://images.gitee.com/uploads/images/2019/0514/003215_127c9010_123301.png "代码自动生成文件.png")
+![自动生成代码](https://images.gitee.com/uploads/images/2019/0713/023737_c2124922_123301.png "自动生成页面.png")
 
-
-
+###### 不覆盖生成文件需要手动录入
+![代码生成](https://images.gitee.com/uploads/images/2019/0713/023329_f4ae8843_123301.png "代码自动生成文件.png")
+###### 覆盖生成文件，只需要执行sql
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0713/023556_c804cfa0_123301.png "屏幕截图.png")
 ### 后期功能
 
 功能|描述
