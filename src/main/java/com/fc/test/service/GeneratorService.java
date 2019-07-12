@@ -9,6 +9,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fc.test.mapper.auto.GeneratorMapper;
+import com.fc.test.model.custom.GenVo;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TsysTables;
 import com.fc.test.util.GenUtils;
@@ -49,7 +50,7 @@ public class GeneratorService {
 	  * @param tableName
 	  * @return
 	  */
-	public byte[] generatorCode(String[] tableNames){
+	public byte[] generatorCode(String[] tableNames,GenVo genVo){
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		ZipOutputStream zip = new ZipOutputStream(outputStream);
 
@@ -59,7 +60,7 @@ public class GeneratorService {
 			//查询列信息
 			List<Map<String, String>> columns =generatorMapper.queryColumns(tableName);
 			//生成代码
-			GenUtils.generatorCode(table, columns, zip);
+			GenUtils.generatorCode(table, columns, zip,genVo);
 		}
 		IOUtils.closeQuietly(zip);
 		return outputStream.toByteArray();

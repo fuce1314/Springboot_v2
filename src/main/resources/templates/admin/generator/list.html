@@ -10,14 +10,14 @@
 <!-- bootstrap-table表单样式 -->
 <link th:href="@{/static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
 
+<!-- jquery向导插件stepy -->
+<link th:href="@{/static/admin/assets/js/wizard/css/jquery.steps.css}" rel="stylesheet"/>
+
 <style type="text/css">
 /**
 *这里写单独的css样式
 */
-.select-list ul li{
-	list-style-type: none;
-	float: left;
-}
+
 </style>
 
 </head>
@@ -43,34 +43,168 @@
                 <div class="col-sm-12">
                 <!-- 搜索条件 -->
                 
-                	 <div class="nest" id="inlineClose">
-                            <div class="title-alt">
-                                <h6>搜索条件</h6>
-                                <div class="titleClose">
-                                    <a class="gone" href="#inlineClose">
-                                        <span class="entypo-cancel"></span>
-                                    </a>
-                                </div>
-                                <div class="titleToggle">
-                                    <a class="nav-toggle-alt" href="#search_div" >
-                                        <span class="entypo-down-open"></span>
-                                    </a>
-                                </div>
+               	 <div class="nest">
+                        <div class="title-alt">
+                            <h6>搜索条件</h6>
+                            <div class="titleClose">
+                                <a class="gone" href="#inlineClose">
+                                    <span class="entypo-cancel"></span>
+                                </a>
                             </div>
-
-                            <div class="body-nest" id="search_div" style="display: none">
-                                <div class="form_left">
-                                    <form role="form" class="form-inline">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail2" class="sr-only">角色名字</label>
-                                            <input type="text" name="searchTxt" placeholder="角色名字"class="form-control">
-                                        </div>
-                                        <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
-                                    </form>
-                                </div>
+                            <div class="titleToggle">
+                                <a class="nav-toggle-alt" href="#search_div" >
+                                    <span class="entypo-down-open"></span>
+                                </a>
                             </div>
                         </div>
+
+                        <div class="body-nest" id="search_div" style="">
+                            <div class="form_left">
+                                <form role="form" class="form-inline">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail2" class="sr-only">角色名字</label>
+                                        <input type="text" name="searchTxt" placeholder="角色名字"class="form-control">
+                                    </div>
+                                    <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 	<!-- END搜索条件 -->
+                	
+                	<!-- 自动代码生成填写 -->
+                
+					<div class="nest">
+					    <div class="nest" id="basicClose">
+					        <div class="title-alt">
+					            <h6>自动生成</h6>
+					            <div class="titleClose">
+					                <a class="gone" href="#basicClose">
+					                    <span class="entypo-cancel"></span>
+					                </a>
+					            </div>
+					            <div class="titleToggle">
+					                <a class="nav-toggle-alt" href="#basic">
+					                    <span class="entypo-up-open"></span>
+					                </a>
+					            </div>
+					
+					        </div>
+					
+					        <div class="body-nest" id="basic">
+								<form  class="form-horizontal m" id="form-add1">
+					            <div id="wizard">
+					                <h2>第一步</h2>
+					                <section>
+					                		<div class="form-group">
+												<div class="col-md-6">
+												    <div class="form-group ui-sortable-helper">
+												        <label class="col-sm-4 control-label " for="-NaN">包名：
+												        	<i class="fa fa-question-circle-o tooltips" data-toggle="tooltip" data-placement="top" title="package {包名}.model.auto;"></i>
+												        </label>
+												        <div class="col-sm-8">
+												            <input placeholder="请输入包名" value="com.fc.test" class="form-control" type="text" id="packageName" name="packageName">
+												        </div>
+												    </div>
+												</div>
+												<div class="col-md-6">
+												    <div class="form-group">
+												        <label class="col-sm-4 control-label ">实体包名：
+												        	<i class="fa fa-question-circle-o tooltips" data-toggle="tooltip" data-placement="top" title="package xxx.{实体包名}.auto;"></i>
+												        </label>
+												        <div class="col-sm-8">
+												            <input placeholder="请输入实体包名" value="model" class="form-control" type="text" id="moduleName" name="moduleName">
+												        </div>
+												    </div>
+												</div>
+											</div>
+											<div class="form-group">
+						                		
+												<div class="col-md-6">
+												    <div class="form-group ui-sortable-helper">
+												        <label class="col-sm-4 control-label ">controller权限关键字：
+												        	<i class="fa fa-question-circle-o tooltips" data-toggle="tooltip" data-placement="top" title="@RequiresPermissions(&#34;{权限关键字}:xxx:view&#34;)"></i>
+												        </label>
+												        <div class="col-sm-8">
+												            <input placeholder="请输入权限关键字" value="gen" class="form-control" type="text" id="controllerPermissionKey" name="controllerPermissionKey">
+												        </div>
+												    </div>
+												</div>
+												<div class="col-md-6">
+												    <div class="form-group">
+												        <label class="col-sm-4 control-label ">模糊查询字段：
+												        	<i class="fa fa-question-circle-o tooltips" data-toggle="tooltip" data-placement="top" title="testExample.createCriteria().andFile{模糊查询关键字}Like(&#34;%&#34;+searchTxt+&#34;%&#34;);"></i>
+												        </label>
+												        <div class="col-sm-8">
+												            <input placeholder="请输入模糊查询字段" value="SysUser" class="form-control" type="text" id="fuzzyQuery" name="fuzzyQuery">
+												        </div>
+												    </div>
+												</div>
+											</div>
+					                </section>
+					                <h2>第二步</h2>
+					                <section>
+											<div class="form-group">
+												<div class="col-md-6">
+												    <div class="form-group ui-sortable-helper">
+												        <label class="col-sm-4 control-label ">作者：
+												        	<i class="fa fa-question-circle-o tooltips" data-toggle="tooltip" data-placement="top" title="注释中的 @author"></i>
+												        </label>
+												        <div class="col-sm-8">
+												            <input placeholder="请输入作者" value="fuce" class="form-control" type="text" id="author" name="author">
+												        </div>
+												    </div>
+												</div>
+												<div class="col-md-6">
+												    <div class="form-group">
+												        <label class="col-sm-4 control-label ">电子邮件：
+												        	<i class="fa fa-question-circle-o tooltips" data-toggle="tooltip" data-placement="top" title="注释中的@email"></i>
+												        </label>
+												        <div class="col-sm-8">
+												            <input placeholder="请输入电子邮件" value="87766867@qq.com" class="form-control" type="text" id="email" name="email">
+												        </div>
+												    </div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-md-6">
+												    <div class="form-group ui-sortable-helper">
+												        <label class="col-sm-4 control-label ">表前缀：
+												        	<i class="fa fa-question-circle-o tooltips" data-toggle="tooltip" data-placement="top" title="数据库{表前缀}_test"></i>
+												        </label>
+												        <div class="col-sm-8">
+												            <input placeholder="请输入表前缀" value="t_" class="form-control" type="text" id="tablePrefix" name="tablePrefix">
+												        </div>
+												    </div>
+												    <div class="form-group ui-sortable-helper">
+												        <label class="col-sm-4 control-label ">下载or覆盖：
+												        	<i class="fa fa-question-circle-o tooltips" data-toggle="tooltip" data-placement="top" title="覆盖代表直接覆盖，成功后需要刷新项目"></i>
+												        </label>
+												        <div class="col-sm-8">
+														    
+															 <div class="checkbox checkbox-success">
+										                        <input id="checkbox3" name="isdown" class="styled" type="checkbox">
+										                        <label for="checkbox3">
+										                          	 覆盖
+										                        </label>
+										                     </div>
+															 
+														</div>
+												    </div>
+												</div>
+											</div>
+					                </section>
+					            </div>
+								</form>
+					        </div>
+					    </div>
+					</div>
+                
+                
+               	 
+                	<!-- END自动代码生成填写 -->
+                	
+                	
                     <!-- 空白页开始-->
                     <div class="nest" id="Blank_PageClose">
                         <div class="title-alt">
@@ -142,8 +276,10 @@
 <script th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
 <!-- 遮罩层 -->
 <script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
-<!-- 右边高度控制 -->
-<script type="text/javascript" th:src="@{/static/admin/assets/js/right_hight.js}"></script>
+<!-- jquery向导插件stepy -->
+<script type="text/javascript" th:src="@{/static/admin/assets/js/wizard/build/jquery.steps.js}"></script>
+<!-- 提示插件  -->
+<script type="text/javascript" th:src="@{/static/admin/assets/js/tip/jquery.tooltipster.js}"></script>
 
 <script type="text/javascript">
 <!-- jquery-export 表格导出插件 -->
@@ -198,13 +334,89 @@ function batCreate() {
            var data =rows.join();
           // $.operate.submit(createUrl, "post", "json", data);
            
-           location.href = createUrl+"?tables=" + data;
+           location.href = createUrl+"?tables=" + data+"&"+$("#form-add1").serialize();
        })
 }
   
 $(function(){
+	//提示插件初始化
+	 $('.tooltips').tooltip();
+	//列表
 	var oTab=$.table.oTableInit(options);
 	oTab.Init();
+	
+	//向导初始化
+	 $("#wizard").steps({
+         headerTag: "h2",
+         bodyTag: "section",// 指定步骤内容对应的HTML标签
+         transitionEffect: "slideLeft",// 步骤切换动画
+       	 forceMoveForward: false, // 防止跳转到下一步
+       	 labels: {
+            finish: "完成", //修改按钮得文本
+            next: "下一步", //下一步按钮的文本
+            previous: "上一步", //上一步按钮的文本
+            loading: "Loading ..."
+         },
+         onStepChanging: function (event, currentIndex, newIndex) {// 下一步切换时的监听
+             var result = false;
+             if (currentIndex == 0) {//第一步操作
+            	 var lag=true;
+            	 $("#wizard-p-0 input").each(function(){
+            		 
+            		 if(""==$(this).val()){
+            			 $.modal.alertWarning($(this).attr("placeholder"));
+            			 lag=false;
+            		 }
+            	 })
+            	 if(lag){
+            		 result=true;
+            	 }
+             }
+             if (currentIndex == 1) {//第二步操作
+	           	 var lag=true;
+	           	 $("#wizard-p-1 input").each(function(){
+	           		 
+	           		 if(""==$(this).val()){
+	           			 $.modal.alertWarning($(this).attr("placeholder"));
+	           			 lag=false;
+	           		 }
+	           	 })
+	           	 if(lag){
+	           		 result=true;
+	           	 }
+            }
+             
+             return result;
+         },
+       	 onStepChanged: function (event, currentIndex, priorIndex) {// 下一步切换完成得监听
+         	
+         },
+         onCanceled: function (event) {// 取消按钮得监听
+       	 },
+       	 onFinishing: function (event, currentIndex) {// 完成时得监听
+       		//batCreate();
+       		var result = false;
+       		if (currentIndex == 1) {//第二步操作
+	           	 var lag=true;
+	           	 $("#wizard-p-1 input").each(function(){
+	           		 
+	           		 if(""==$(this).val()){
+	           			 $.modal.alertWarning($(this).attr("placeholder"));
+	           			 lag=false;
+	           		 }
+	           	 })
+	           	 if(lag){
+	           		 result=true;
+	           	 }
+            }
+       		return result;
+         },
+         onFinished: function (event, currentIndex) {// 完成后的监听
+		   batCreate();
+       }
+       	 
+     });
+	
 })
 
 
