@@ -187,7 +187,7 @@ public class SnowflakeIdWorker {
         SnowflakeIdWorker idWorker = new SnowflakeIdWorker(31, 31);
         for (int i = 0; i < 100000000; i++) {
             long id = idWorker.nextId();
-            //System.out.println(id);
+            System.out.println(id);
         }
     	long endTime = System.currentTimeMillis();
     	System.out.println("运行时间:" + (endTime - startTime) + "ms");
