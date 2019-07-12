@@ -8,6 +8,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 
 import com.fc.test.model.custom.ColumnEntity;
+import com.fc.test.model.custom.GenVo;
 import com.fc.test.model.custom.TableEntity;
 import com.fc.test.model.custom.TsysTables;
 
@@ -15,8 +16,11 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.util.*;
 import java.util.zip.ZipEntry;
@@ -30,6 +34,8 @@ import java.util.zip.ZipOutputStream;
  * @date 2016年12月19日 下午11:40:24
  */
 public class GenUtils {
+	
+	private static String targetPath = System.getProperty("user.dir");
 
     public static List<String> getTemplates(){
         List<String> templates = new ArrayList<String>();
@@ -63,7 +69,7 @@ public class GenUtils {
     /**
      * 生成代码
      */
-    public static void generatorCode(TsysTables table, List<Map<String, String>> columns, ZipOutputStream zip) {
+    public static void generatorCode(TsysTables table, List<Map<String, String>> columns, ZipOutputStream zip,GenVo genVo) {
         //配置信息
         Configuration config = getConfig();
         boolean hasBigDecimal = false;
@@ -152,17 +158,52 @@ public class GenUtils {
         //获取模板列表
         List<String> templates = getTemplates();
         for (String template : templates) {
-            //渲染模板
-            StringWriter sw = new StringWriter();
-            Template tpl = Velocity.getTemplate(template, "UTF-8" );
-            tpl.merge(context, sw);
+            
 
             try {
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template,tableEntity.getClassname() ,tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller_permission_key"))));
-                IOUtils.write(sw.toString(), zip, "UTF-8" );
-                IOUtils.closeQuietly(sw);
-                zip.closeEntry();
+            	if(com.fc.test.util.StringUtils.isNotNull(genVo.getIsdown())) {
+            		
+            		String filepath=getCoverFileName(template,tableEntity.getClassname() ,tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller_permission_key"));
+            		if(com.fc.test.util.StringUtils.isNotNull(filepath)) {
+            			Template tpl = Velocity.getTemplate(template, "UTF-8" );
+            			File file = new File(filepath);
+                		if (!file.getParentFile().exists())
+                            file.getParentFile().mkdirs();
+                        if (!file.exists())
+                            file.createNewFile();
+                        FileOutputStream outStream = new FileOutputStream(file);
+                        OutputStreamWriter writer = new OutputStreamWriter(outStream,"UTF-8");
+                        BufferedWriter sw = new BufferedWriter(writer);
+                        tpl.merge(context, sw);
+                        sw.flush();
+                        sw.close();
+                        outStream.close();
+                        System.out.println("成功生成Java文件:"+filepath);
+            		}else {//把sql文件单独处理
+            			if(template.contains("menu.sql.vm")) {
+            				 StringWriter sw = new StringWriter();
+                             Template tpl = Velocity.getTemplate(template, "UTF-8" );
+                             tpl.merge(context, sw);
+                     		 zip.putNextEntry(new ZipEntry(getFileName(template,tableEntity.getClassname() ,tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller_permission_key"))));
+                             IOUtils.write(sw.toString(), zip, "UTF-8" );
+                             IOUtils.closeQuietly(sw);
+                             zip.closeEntry();
+            			}
+            		}
+            		
+            	}else {
+            		//渲染模板
+                    StringWriter sw = new StringWriter();
+                    Template tpl = Velocity.getTemplate(template, "UTF-8" );
+                    tpl.merge(context, sw);
+            		
+            		zip.putNextEntry(new ZipEntry(getFileName(template,tableEntity.getClassname() ,tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller_permission_key"))));
+                    IOUtils.write(sw.toString(), zip, "UTF-8" );
+                    IOUtils.closeQuietly(sw);
+                    zip.closeEntry();
+            	}
+            	
             } catch (IOException e) {
                 try {
 					throw new Exception("渲染模板失败，表名：" + tableEntity.getTableName()+"\n"+e.getMessage());
@@ -248,33 +289,49 @@ public class GenUtils {
         if(template.contains("说明.txt.vm")) {
        	 	return  "说明.txt";
         }
-
-//        if (template.contains("ServiceImpl.java.vm" )) {
-//            return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
-//        }
-//
-//        if (template.contains("Controller.java.vm" )) {
-//            return packagePath + "controller" + File.separator + className + "Controller.java";
-//        }
-//
-//        if (template.contains("Dao.xml.vm" )) {
-//            return "main" + File.separator + "resources" + File.separator + "mapper" + File.separator + moduleName + File.separator + className + "Dao.xml";
-//        }
-//
-//        if (template.contains("menu.sql.vm" )) {
-//            return className.toLowerCase() + "_menu.sql";
-//        }
-//
-//        if (template.contains("index.vue.vm" )) {
-//            return "main" + File.separator + "resources" + File.separator + "src" + File.separator + "views" + File.separator + "modules" +
-//                    File.separator + moduleName + File.separator + className.toLowerCase() + ".vue";
-//        }
-//
-//        if (template.contains("add-or-update.vue.vm" )) {
-//            return "main" + File.separator + "resources" + File.separator + "src" + File.separator + "views" + File.separator + "modules" +
-//                    File.separator + moduleName + File.separator + className.toLowerCase() + "-add-or-update.vue";
-//        }
-
         return null;
     }
+    
+    /**
+     * 获取覆盖路径
+     */
+    public static String getCoverFileName(String template,String classname,String className, String packageName, String moduleName,String controller) {
+        String packagePath =targetPath+File.separator+"src"+File.separator + "main" + File.separator + "java" + File.separator;
+        String resourcesPath=targetPath+File.separator+"src"+File.separator + "main" + File.separator+"resources"+ File.separator;;
+        if (StringUtils.isNotBlank(packageName)) {
+            packagePath += packageName.replace(".", File.separator) + File.separator;
+        }
+
+        if (template.contains("Entity.java.vm")) {//model
+            return packagePath+moduleName +File.separator+ "auto" + File.separator + className + ".java";
+        }
+        if(template.contains("EntityExample.java.vm")) {//modelExample
+        	return packagePath+moduleName +File.separator+ "auto" + File.separator + className + "Example.java";
+        }
+        
+        if (template.contains("EntityMapper.java.vm")) {//dao or  mapper
+            return packagePath + "mapper" + File.separator + "auto" + File.separator + className + "Mapper.java";
+        }
+        if (template.contains("EntityMapper.xml.vm")) {//dao or  mapper
+            return resourcesPath+"mybatis" + File.separator+"auto"+ File.separator + className + "Mapper.xml";
+        }
+        
+        if (template.contains("EntityService.java.vm")) {
+            return packagePath + "service" + File.separator + className + "Service.java";
+        }
+        if(template.contains("EntityController.java.vm")) {
+        	 return packagePath + "controller" + File.separator + controller + File.separator + className + "Controller.java";
+        }
+        if(template.contains("list.html.vm")) {
+        	 return resourcesPath+"templates"+File.separator + controller+File.separator + classname+File.separator +"list.html";
+        }
+        if(template.contains("add.html.vm")) {
+       	 	 return resourcesPath+"templates"+File.separator + controller+File.separator + classname+File.separator +"add.html";
+        }
+        if(template.contains("edit.html.vm")) {
+       	 	return  resourcesPath+"templates"+File.separator + controller+File.separator + classname+File.separator +"edit.html";
+        }
+        return null;
+    }
+    
 }

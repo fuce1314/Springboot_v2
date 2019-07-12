@@ -96,10 +96,6 @@ public class SnowflakeIdWorker {
                 raf.write(result);
             }
             this.reboot = result;
-            
-            
-            System.out.println(result);
-            
             raf.close();
         } catch (IOException e) {
             e.printStackTrace();

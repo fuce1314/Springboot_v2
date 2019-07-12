@@ -1,5 +1,5 @@
 /*! 
- * jQuery Steps v1.0.6 - 04/27/2014
+ * jQuery Steps v1.1.0 - 09/04/2014
  * Copyright (c) 2014 Rafael Staib (http://www.jquery-steps.com)
  * Licensed under MIT http://www.opensource.org/licenses/MIT
  */
@@ -510,9 +510,10 @@ function goToStep(wizard, options, state, index)
         refreshStepNavigation(wizard, options, state, oldIndex);
         refreshPagination(wizard, options, state);
         loadAsyncContent(wizard, options, state);
-        startTransitionEffect(wizard, options, state, index, oldIndex);
-
-        wizard.triggerHandler("stepChanged", [index, oldIndex]);
+        startTransitionEffect(wizard, options, state, index, oldIndex, function()
+        {
+            wizard.triggerHandler("stepChanged", [index, oldIndex]);
+        });
     }
     else
     {
@@ -564,6 +565,8 @@ function initialize(options)
         {
             getStepAnchor(wizard, opts.startIndex).focus();
         }
+
+        wizard.triggerHandler("init", [opts.startIndex]);
     });
 }
 
@@ -698,7 +701,8 @@ function loadAsyncContent(wizard, options, state)
 {
     if (state.stepCount > 0)
     {
-        var currentStep = getStep(wizard, state.currentIndex);
+        var currentIndex = state.currentIndex,
+            currentStep = getStep(wizard, currentIndex);
 
         if (!options.enableContentCache || !currentStep.contentLoaded)
         {
@@ -711,12 +715,13 @@ function loadAsyncContent(wizard, options, state)
                     break;
 
                 case contentMode.async:
-                    var currentStepContent = getStepPanel(wizard, state.currentIndex)._aria("busy", "true")
+                    var currentStepContent = getStepPanel(wizard, currentIndex)._aria("busy", "true")
                         .empty().append(renderTemplate(options.loadingTemplate, { text: options.labels.loading }));
 
                     $.ajax({ url: currentStep.contentUrl, cache: false }).done(function (data)
                     {
                         currentStepContent.empty().html(data)._aria("busy", "false").data("loaded", "1");
+                        wizard.triggerHandler("contentLoaded", [currentIndex]);
                     });
                     break;
             }
@@ -832,7 +837,7 @@ function refreshPagination(wizard, options, state)
         }
         else
         {
-            finish._showAria(options.enableFinishButton && state.stepCount >= (state.currentIndex + 1));
+            finish._showAria(options.enableFinishButton && state.stepCount === (state.currentIndex + 1));
             next._showAria(state.stepCount === 0 || state.stepCount > (state.currentIndex + 1)).
                 _enableAria(state.stepCount > (state.currentIndex + 1) || !options.enableFinishButton);
         }
@@ -904,8 +909,10 @@ function registerEvents(wizard, options)
     var eventNamespace = getEventNamespace(wizard);
 
     wizard.bind("canceled" + eventNamespace, options.onCanceled);
+    wizard.bind("contentLoaded" + eventNamespace, options.onContentLoaded);
     wizard.bind("finishing" + eventNamespace, options.onFinishing);
     wizard.bind("finished" + eventNamespace, options.onFinished);
+    wizard.bind("init" + eventNamespace, options.onInit);
     wizard.bind("stepChanging" + eventNamespace, options.onStepChanging);
     wizard.bind("stepChanged" + eventNamespace, options.onStepChanged);
 
@@ -1184,7 +1191,7 @@ function saveCurrentStateToCookie(wizard, options, state)
     }
 }
 
-function startTransitionEffect(wizard, options, state, index, oldIndex)
+function startTransitionEffect(wizard, options, state, index, oldIndex, doneCallback)
 {
     var stepContents = wizard.find(".content > .body"),
         effect = getValidEnumValue(transitionEffect, options.transitionEffect),
@@ -1210,10 +1217,10 @@ function startTransitionEffect(wizard, options, state, index, oldIndex)
                     state.transitionElement[show](effectSpeed, function ()
                     {
                         $(this)._showAria();
-                    });
+                    }).promise().done(doneCallback);
                     state.transitionElement = null;
                 }
-            }).promise();
+            });
             break;
 
         case transitionEffect.slideLeft:
@@ -1221,15 +1228,15 @@ function startTransitionEffect(wizard, options, state, index, oldIndex)
                 posFadeOut = (index > oldIndex) ? -(outerWidth) : outerWidth,
                 posFadeIn = (index > oldIndex) ? outerWidth : -(outerWidth);
 
-            currentStep.animate({ left: posFadeOut }, effectSpeed, 
-                function () { $(this)._showAria(false); }).promise();
-            newStep.css("left", posFadeIn + "px")._showAria()
-                .animate({ left: 0 }, effectSpeed).promise();
+            $.when(currentStep.animate({ left: posFadeOut }, effectSpeed, 
+                    function () { $(this)._showAria(false); }),
+                newStep.css("left", posFadeIn + "px")._showAria()
+                    .animate({ left: 0 }, effectSpeed)).done(doneCallback);
             break;
 
         default:
-            currentStep._showAria(false);
-            newStep._showAria();
+            $.when(currentStep._showAria(false), newStep._showAria())
+                .done(doneCallback);
             break;
     }
 }
@@ -1784,10 +1791,10 @@ var defaults = $.fn.steps.defaults = {
      *
      * @property enableCancelButton
      * @type Boolean
-     * @default true
+     * @default false
      * @for defaults
      **/
-    enableCancelButton: true,
+    enableCancelButton: false,
 
     /**
      * Shows the finish button if enabled.
@@ -1930,6 +1937,26 @@ var defaults = $.fn.steps.defaults = {
      * @for defaults
      **/
     onFinished: function (event, currentIndex) { },
+
+    /**
+     * Fires after async content is loaded. 
+     *
+     * @property onContentLoaded
+     * @type Event
+     * @default function (event, index) { }
+     * @for defaults
+     **/
+    onContentLoaded: function (event, currentIndex) { },
+
+    /**
+     * Fires when the wizard is initialized. 
+     *
+     * @property onInit
+     * @type Event
+     * @default function (event) { }
+     * @for defaults
+     **/
+    onInit: function (event, currentIndex) { },
 
     /**
      * Contains all labels. 

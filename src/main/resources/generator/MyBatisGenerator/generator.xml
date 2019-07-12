@@ -19,7 +19,7 @@
             <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 		</commentGenerator>
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/test" 
+			connectionURL="jdbc:mysql://localhost:3306/springbootv2" 
 			userId="root"
 			password="root">
 			<!-- 针对mysql数据库 -->
@@ -62,7 +62,7 @@
 		
 		
 		
-		<table tableName='t_sys_premission' domainObjectName='TsysPremission'/>
+		<table tableName='t_sys_email' domainObjectName='TSysEmail'/>
 
 
 	</context>

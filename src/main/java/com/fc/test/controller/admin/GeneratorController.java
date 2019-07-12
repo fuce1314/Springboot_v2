@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fc.test.common.base.BaseController;
+import com.fc.test.model.custom.GenVo;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
@@ -63,9 +64,9 @@ public class GeneratorController extends BaseController{
 	 * 生成代码
 	 */
 	@GetMapping("/code")
-	public void code(String tables, HttpServletResponse response) throws IOException{
-		byte[] data = generatorService.generatorCode(tables.split(","));
-		
+	public void code(String tables,GenVo genVo, HttpServletResponse response) throws IOException{
+		System.out.println(genVo);
+		byte[] data = generatorService.generatorCode(tables.split(","),genVo);
 		response.reset();  
         response.setHeader("Content-Disposition", "attachment; filename=\"SpringBootV2.zip\"");  
         response.addHeader("Content-Length", "" + data.length);  
