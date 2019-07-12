@@ -38,7 +38,7 @@ public class ${className}Controller extends BaseController{
         return prefix + "/list";
     }
 	
-	
+	//@Log(title = "${comments}集合查询", action = "111")
 	@PostMapping("list")
 	@RequiresPermissions("gen:${classname}:list")
 	@ResponseBody
@@ -51,13 +51,14 @@ public class ${className}Controller extends BaseController{
 	/**
      * 新增
      */
+
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
-	
+	//@Log(title = "${comments}新增", action = "111")
 	@PostMapping("add")
 	@RequiresPermissions("gen:${classname}:add")
 	@ResponseBody
@@ -75,6 +76,7 @@ public class ${className}Controller extends BaseController{
 	 * @param ids
 	 * @return
 	 */
+	//@Log(title = "${comments}删除", action = "111")
 	@PostMapping("remove")
 	@RequiresPermissions("gen:${classname}:remove")
 	@ResponseBody
@@ -121,6 +123,7 @@ public class ${className}Controller extends BaseController{
 	/**
      * 修改保存
      */
+    //@Log(title = "${comments}修改", action = "111")
     @RequiresPermissions("gen:${classname}:edit")
     @PostMapping("/edit")
     @ResponseBody
