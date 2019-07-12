@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-07-13 02:19:16
+Date: 2019-07-13 02:23:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -126,55 +126,50 @@ CREATE TABLE `t_sys_permission_role` (
 -- ----------------------------
 -- Records of t_sys_permission_role
 -- ----------------------------
-INSERT INTO `t_sys_permission_role` VALUES ('0de15885-983b-493f-9b2a-0b50163300a5', '488243256161730560', '5946910264304599042');
-INSERT INTO `t_sys_permission_role` VALUES ('0de7c0da-9870-4ee0-b94f-386aa2b32599', '488243256161730560', '4');
-INSERT INTO `t_sys_permission_role` VALUES ('11973cdd-8918-474b-ab9f-222270310f8b', '488243256161730560', '589559475422101504');
-INSERT INTO `t_sys_permission_role` VALUES ('1de02c62-2870-4c5d-b26c-fbe9eaa7fbe8', '488243256161730560', '496126970468237312');
-INSERT INTO `t_sys_permission_role` VALUES ('25a3d23a-1181-4381-af7f-cc7afdc06d4b', '488243256161730560', '592167738407911424');
-INSERT INTO `t_sys_permission_role` VALUES ('295e68d0-ebef-42c0-9453-442a86a628ea', '488243256161730560', '592067570522128384');
-INSERT INTO `t_sys_permission_role` VALUES ('2c4efd0b-bc7f-4ba9-94a3-fa0a30846f6f', '488243256161730560', '575852089792528384');
-INSERT INTO `t_sys_permission_role` VALUES ('357bfe4e-2bf1-48a2-8dbc-2dd7f77a635f', '488243256161730560', '581541547099553792');
-INSERT INTO `t_sys_permission_role` VALUES ('36c9d272-b8a1-4bb7-a81b-f78068292f3e', '488243256161730560', '583063272123531264');
-INSERT INTO `t_sys_permission_role` VALUES ('47053c3e-880c-43b0-a0c4-1b641135dd41', '488243256161730560', '21');
-INSERT INTO `t_sys_permission_role` VALUES ('487b0f0c-3abc-4114-a38d-4d746330309b', '488243256161730560', '12');
-INSERT INTO `t_sys_permission_role` VALUES ('4b1576ae-166a-4815-bdc4-91a34d8eff1d', '488243256161730560', '10');
-INSERT INTO `t_sys_permission_role` VALUES ('504d0783-bd4b-4554-be79-4ae47dcfa45f', '488243256161730560', '16');
-INSERT INTO `t_sys_permission_role` VALUES ('51d85368-7517-450a-b652-b9705fbea385', '488243256161730560', '599413796565417984');
-INSERT INTO `t_sys_permission_role` VALUES ('5c200efe-d384-4a3d-a824-032d130ebe2b', '488243256161730560', '6');
-INSERT INTO `t_sys_permission_role` VALUES ('60c7e035-28ed-4f2b-a05a-e544c5ad3d94', '488243256161730560', '594691026430459904');
-INSERT INTO `t_sys_permission_role` VALUES ('61dbb3f2-4cc6-43d1-9567-b6ee52a90ee0', '488243256161730560', '5994137965654179842');
-INSERT INTO `t_sys_permission_role` VALUES ('61ff3439-15d7-430c-97bd-49639cd200b3', '488243256161730560', '586003694080753664');
-INSERT INTO `t_sys_permission_role` VALUES ('659b8c8e-9a9f-4157-9126-880e6613520b', '488243256161730560', '20');
-INSERT INTO `t_sys_permission_role` VALUES ('68b22aaa-6cc1-4d04-b850-d71a6cb7b88e', '488243256161730560', '496127794879660032');
-INSERT INTO `t_sys_permission_role` VALUES ('6b902038-ed82-4933-af5c-a2ad1b401722', '488243256161730560', '589559916704825344');
-INSERT INTO `t_sys_permission_role` VALUES ('6c573669-70b8-413f-8304-b393a8b640dc', '488243256161730560', '8');
-INSERT INTO `t_sys_permission_role` VALUES ('717820ce-eae4-44e0-8a85-0f42e253d365', '488243256161730560', '587453033487532032');
-INSERT INTO `t_sys_permission_role` VALUES ('73c6778c-5d87-4b8c-8e79-0e9bcb4201dd', '488243256161730560', '486690002869157888');
-INSERT INTO `t_sys_permission_role` VALUES ('7ac89db5-a859-4a8d-bc74-3f9b30a82684', '488243256161730560', '5994137965863895043');
-INSERT INTO `t_sys_permission_role` VALUES ('7b32c323-92c4-4691-ace0-b60b45839d28', '488243256161730560', '13');
-INSERT INTO `t_sys_permission_role` VALUES ('7c8e2f62-715b-45e6-bc36-889623a97832', '488243256161730560', '575853607149109248');
-INSERT INTO `t_sys_permission_role` VALUES ('80c68508-3bef-4589-a2d1-859b1517f588', '488243256161730560', '17');
-INSERT INTO `t_sys_permission_role` VALUES ('81824a81-32eb-4d0c-8e9b-59f8a964ba61', '488243256161730560', '15');
-INSERT INTO `t_sys_permission_role` VALUES ('82578b6f-c1e5-41c3-b602-8a081644df9f', '488243256161730560', '11');
-INSERT INTO `t_sys_permission_role` VALUES ('93ffe610-c5f7-4c3b-aed2-9fc1c30b7a64', '488243256161730560', '5994137965863895044');
-INSERT INTO `t_sys_permission_role` VALUES ('96671d6f-70c0-4675-89c5-beff326be26f', '488243256161730560', '592059865673760768');
-INSERT INTO `t_sys_permission_role` VALUES ('a25e8620-7c2c-4f33-b5ec-2a77fc00bec6', '488243256161730560', '19');
-INSERT INTO `t_sys_permission_role` VALUES ('a7db9fda-7ded-4baa-b671-df5226e445ab', '488243256161730560', '18');
-INSERT INTO `t_sys_permission_role` VALUES ('b5a7da5d-2da9-444d-8395-63704caa5e05', '488243256161730560', '496782496638173184');
-INSERT INTO `t_sys_permission_role` VALUES ('be33d14c-40a6-4746-af36-8cdbd009f5d5', '488243256161730560', '5946910264304599044');
-INSERT INTO `t_sys_permission_role` VALUES ('bfd71b32-0050-4fdb-be1b-f83ccf136e92', '488243256161730560', '575851658483859456');
-INSERT INTO `t_sys_permission_role` VALUES ('c354abfd-34a4-4e52-9384-8b6f8b783fd7', '488243256161730560', '5');
-INSERT INTO `t_sys_permission_role` VALUES ('c5e1fca0-99c7-471c-a414-e96a1d8f4d82', '488243256161730560', '23');
-INSERT INTO `t_sys_permission_role` VALUES ('ccdab6fb-20c3-489a-8b2c-4f4e0547c7e1', '488243256161730560', '589559748521623552');
-INSERT INTO `t_sys_permission_role` VALUES ('d2244ad7-45fc-4fa0-8468-f560b38017a2', '488243256161730560', '5946910264304599041');
-INSERT INTO `t_sys_permission_role` VALUES ('d3aa1605-aafa-479c-b14b-c401db630cae', '488243256161730560', '14');
-INSERT INTO `t_sys_permission_role` VALUES ('db9733f8-0fa8-4c15-97ae-36a3c543a6c1', '488243256161730560', '496127240363311104');
-INSERT INTO `t_sys_permission_role` VALUES ('dedb947e-44ce-4c04-8599-c86411605095', '488243256161730560', '5994137965654179841');
-INSERT INTO `t_sys_permission_role` VALUES ('e5e41c40-8ae8-462c-b02f-61b99dd5ffb1', '488243256161730560', '1');
-INSERT INTO `t_sys_permission_role` VALUES ('eef5ae12-fde6-4a7a-b745-3d55ddd750a0', '488243256161730560', '22');
-INSERT INTO `t_sys_permission_role` VALUES ('f5bf5780-fa8b-4e11-973e-55f09d95e21a', '488243256161730560', '5946910264304599043');
-INSERT INTO `t_sys_permission_role` VALUES ('fd374a8c-c155-4766-b062-53993e101c7c', '488243256161730560', '7');
-INSERT INTO `t_sys_permission_role` VALUES ('ffc67221-b248-4a66-a8d4-d11d64d11d0f', '488243256161730560', '9');
+INSERT INTO `t_sys_permission_role` VALUES ('02f20ad4-f431-4987-a4e4-afbdf88e275a', '488243256161730560', '14');
+INSERT INTO `t_sys_permission_role` VALUES ('05b69de4-a87c-46e9-9f2e-5279ee195617', '488243256161730560', '581541547099553792');
+INSERT INTO `t_sys_permission_role` VALUES ('217b663d-882a-4630-8573-defbe310f059', '488243256161730560', '575851658483859456');
+INSERT INTO `t_sys_permission_role` VALUES ('23695599-2f82-4e61-9e3a-9c7c16d900a9', '488243256161730560', '1');
+INSERT INTO `t_sys_permission_role` VALUES ('267ff131-193b-4573-b9e9-99a7f020a756', '488243256161730560', '592059865673760768');
+INSERT INTO `t_sys_permission_role` VALUES ('28a4ef9d-aeaf-473b-9488-aae9c686039e', '488243256161730560', '15');
+INSERT INTO `t_sys_permission_role` VALUES ('2d95504b-e4a7-4e9a-a233-5b8af25e84b1', '488243256161730560', '6');
+INSERT INTO `t_sys_permission_role` VALUES ('2eacf9b5-cb4d-4b6b-b7f5-a7677a4fe93f', '488243256161730560', '7');
+INSERT INTO `t_sys_permission_role` VALUES ('32e16c1b-0c7a-4766-bccc-87bd6bfa6582', '488243256161730560', '5946910264304599042');
+INSERT INTO `t_sys_permission_role` VALUES ('33cce301-2e9a-499d-a8a8-d7e8c9fa682d', '488243256161730560', '9');
+INSERT INTO `t_sys_permission_role` VALUES ('3f5688a7-20c0-421f-b7c7-64b5b01c0173', '488243256161730560', '496127240363311104');
+INSERT INTO `t_sys_permission_role` VALUES ('5032acf1-94b8-4ce6-b5d9-1fd752583029', '488243256161730560', '5');
+INSERT INTO `t_sys_permission_role` VALUES ('5fd59052-9b1d-4488-92e5-1d164ddd4d27', '488243256161730560', '589559916704825344');
+INSERT INTO `t_sys_permission_role` VALUES ('687d2fb9-1054-4edf-a30e-cc1de740adc4', '488243256161730560', '589559748521623552');
+INSERT INTO `t_sys_permission_role` VALUES ('70f59c44-5b32-4d9d-97b6-55d84eb85037', '488243256161730560', '13');
+INSERT INTO `t_sys_permission_role` VALUES ('72374352-33a1-442f-8c5e-80b5a87f7247', '488243256161730560', '19');
+INSERT INTO `t_sys_permission_role` VALUES ('72e0506f-e073-4d57-8e61-8f229b8d3256', '488243256161730560', '8');
+INSERT INTO `t_sys_permission_role` VALUES ('74d5ba07-87f5-4646-905e-2a90d970a019', '488243256161730560', '5946910264304599044');
+INSERT INTO `t_sys_permission_role` VALUES ('75e96af7-6177-4696-8534-e448a8c687d5', '488243256161730560', '17');
+INSERT INTO `t_sys_permission_role` VALUES ('81715326-ce73-4d21-9097-c8c02582f03d', '488243256161730560', '21');
+INSERT INTO `t_sys_permission_role` VALUES ('81dd2b00-1838-408e-8788-f8d2a93798b2', '488243256161730560', '594691026430459904');
+INSERT INTO `t_sys_permission_role` VALUES ('856bef65-6a99-48d4-89ae-a37165646036', '488243256161730560', '16');
+INSERT INTO `t_sys_permission_role` VALUES ('8698c986-deda-4483-a478-7a163e51c1db', '488243256161730560', '592167738407911424');
+INSERT INTO `t_sys_permission_role` VALUES ('8b92dda7-d08f-410e-8907-34465bae4ae2', '488243256161730560', '575853607149109248');
+INSERT INTO `t_sys_permission_role` VALUES ('8c9e597d-4940-45db-a873-d190f9fa95d8', '488243256161730560', '592067570522128384');
+INSERT INTO `t_sys_permission_role` VALUES ('96a67305-71ac-4efe-902f-76ad27cf0c51', '488243256161730560', '22');
+INSERT INTO `t_sys_permission_role` VALUES ('9a97d793-4c31-4f88-803e-997952d22229', '488243256161730560', '496126970468237312');
+INSERT INTO `t_sys_permission_role` VALUES ('9dac7881-bbae-4428-a7b9-9c06e2f18cac', '488243256161730560', '23');
+INSERT INTO `t_sys_permission_role` VALUES ('a3f08835-7ff6-46f6-a283-6650cdaf6479', '488243256161730560', '496782496638173184');
+INSERT INTO `t_sys_permission_role` VALUES ('a87643d0-b97f-42d6-8501-fc47d9083e5c', '488243256161730560', '587453033487532032');
+INSERT INTO `t_sys_permission_role` VALUES ('a9cd0330-50b9-47a9-95aa-18a5a309059d', '488243256161730560', '10');
+INSERT INTO `t_sys_permission_role` VALUES ('ac02cac4-9c32-4427-8efd-bb4fd87f2905', '488243256161730560', '18');
+INSERT INTO `t_sys_permission_role` VALUES ('ae6b8957-8b5a-4be2-bd50-f3f18d0a3d07', '488243256161730560', '583063272123531264');
+INSERT INTO `t_sys_permission_role` VALUES ('b884732e-5692-468d-9204-e054172a6986', '488243256161730560', '589559475422101504');
+INSERT INTO `t_sys_permission_role` VALUES ('c655a123-5acc-4dcb-951a-69a6c2b78931', '488243256161730560', '5946910264304599043');
+INSERT INTO `t_sys_permission_role` VALUES ('c7270bcf-08c3-4b5a-8d98-fbdbf829e885', '488243256161730560', '20');
+INSERT INTO `t_sys_permission_role` VALUES ('cd4ceedb-ed6b-49f8-a6b6-b7f82b2c945d', '488243256161730560', '5946910264304599041');
+INSERT INTO `t_sys_permission_role` VALUES ('d2bc2fff-68c7-4988-9a3f-c06a02437856', '488243256161730560', '486690002869157888');
+INSERT INTO `t_sys_permission_role` VALUES ('db798a29-604e-4221-932b-5bf03964b44d', '488243256161730560', '575852089792528384');
+INSERT INTO `t_sys_permission_role` VALUES ('dd450426-6ff6-470b-8dcd-bd425cacf866', '488243256161730560', '11');
+INSERT INTO `t_sys_permission_role` VALUES ('e2d512c2-66b0-451a-a533-03c73e887b7a', '488243256161730560', '4');
+INSERT INTO `t_sys_permission_role` VALUES ('ece70b73-25c2-458a-9dde-6e750629f69a', '488243256161730560', '496127794879660032');
+INSERT INTO `t_sys_permission_role` VALUES ('fac897db-81ee-4f08-ae51-7f516b513376', '488243256161730560', '586003694080753664');
+INSERT INTO `t_sys_permission_role` VALUES ('fea08bcd-1dc7-47b8-8205-6fe4796f1d0e', '488243256161730560', '12');
 
 -- ----------------------------
 -- Table structure for t_sys_premission
@@ -237,11 +232,6 @@ INSERT INTO `t_sys_premission` VALUES ('5946910264304599041', '电子邮件集�
 INSERT INTO `t_sys_premission` VALUES ('5946910264304599042', '电子邮件添加', '电子邮件添加', '/EmailController/add', '0', '594691026430459904', 'system:email:add', '2', 'entypo-plus-squared', null);
 INSERT INTO `t_sys_premission` VALUES ('5946910264304599043', '电子邮件删除', '电子邮件删除', '/EmailController/remove', '0', '594691026430459904', 'system:email:remove', '2', 'entypo-trash', null);
 INSERT INTO `t_sys_premission` VALUES ('5946910264304599044', '电子邮件修改', '电子邮件修改', '/EmailController/edit', '0', '594691026430459904', 'system:email:edit', '2', 'fa fa-wrench', null);
-INSERT INTO `t_sys_premission` VALUES ('599413796565417984', '自动生成测试表管理', '自动生成测试表展示', '/TTestController/view', '0', '575851658483859456', 'gen:tTest:view', '1', 'fa fa-quora', null);
-INSERT INTO `t_sys_premission` VALUES ('5994137965654179841', '自动生成测试表集合', '自动生成测试表集合', '/TTestController/list', '0', '599413796565417984', 'gen:tTest:list', '2', '', null);
-INSERT INTO `t_sys_premission` VALUES ('5994137965654179842', '自动生成测试表添加', '自动生成测试表添加', '/TTestController/add', '0', '599413796565417984', 'gen:tTest:add', '2', 'entypo-plus-squared', null);
-INSERT INTO `t_sys_premission` VALUES ('5994137965863895043', '自动生成测试表删除', '自动生成测试表删除', '/TTestController/remove', '0', '599413796565417984', 'gen:tTest:remove', '2', 'entypo-trash', null);
-INSERT INTO `t_sys_premission` VALUES ('5994137965863895044', '自动生成测试表修改', '自动生成测试表修改', '/TTestController/edit', '0', '599413796565417984', 'gen:tTest:edit', '2', 'fa fa-wrench', null);
 INSERT INTO `t_sys_premission` VALUES ('6', '用户添加', '用户添加', '/UserController/add', '0', '4', 'system:user:add', '2', 'entypo-plus-squared', null);
 INSERT INTO `t_sys_premission` VALUES ('7', '用户删除', '用户删除', '/UserController/remove', '0', '4', 'system:user:remove', '2', 'entypo-trash', null);
 INSERT INTO `t_sys_premission` VALUES ('8', '用户修改', '用户修改', '/UserController/edit', '0', '4', 'system:user:edit', '2', 'fa fa-wrench', null);
