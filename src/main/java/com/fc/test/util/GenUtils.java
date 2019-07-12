@@ -163,7 +163,6 @@ public class GenUtils {
             try {
                 //添加到zip
             	if(com.fc.test.util.StringUtils.isNotNull(genVo.getIsdown())) {
-            		
             		String filepath=getCoverFileName(template,tableEntity.getClassname() ,tableEntity.getClassName(), config.getString("package" ), config.getString("moduleName" ),config.getString("controller_permission_key"));
             		if(com.fc.test.util.StringUtils.isNotNull(filepath)) {
             			Template tpl = Velocity.getTemplate(template, "UTF-8" );
