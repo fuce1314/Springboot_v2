@@ -180,7 +180,7 @@ public class GenUtils {
                         outStream.close();
                         System.out.println("成功生成Java文件:"+filepath);
             		}else {//把sql文件单独处理
-            			if(template.contains("menu.sql.vm")) {
+            			if(template.contains("menu.sql.vm")||template.contains("说明.txt.vm")) {
             				 StringWriter sw = new StringWriter();
                              Template tpl = Velocity.getTemplate(template, "UTF-8" );
                              tpl.merge(context, sw);
