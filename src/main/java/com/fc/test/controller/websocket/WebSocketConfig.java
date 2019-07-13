@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
- * 开启websocket的支持
+* 开启websocket的支持
+* 该模块打包war 需要删除，且tomcat>=8.0
 * @Title: WebSocketConfig.java 
 * @Package cn.com.jetshine.ywzspt.controller.websocket 
 * @Description: TODO(用一句话描述该文件做什么) 

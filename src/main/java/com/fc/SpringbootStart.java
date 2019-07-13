@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 项目启动方法
- * @author Administrator
+ * @author fuce
  *
  */
 @SpringBootApplication

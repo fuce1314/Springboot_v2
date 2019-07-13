@@ -145,14 +145,14 @@ public class GenUtils {
         map.put("columnsStr",columnsStr);
         map.put("hasBigDecimal", hasBigDecimal);
         map.put("mainPath", mainPath);
-        map.put("package", config.getString("package"));
-        map.put("moduleName", config.getString("moduleName"));
-        map.put("controller_permission_key", config.getString("controller_permission_key"));
-        map.put("author", config.getString("author"));
-        map.put("email", config.getString("email"));
+        map.put("package", genVo.getPackageName());
+        map.put("moduleName",genVo.getModuleName());
+        map.put("controller_permission_key", genVo.getControllerPermissionKey());
+        map.put("author", genVo.getAuthor());
+        map.put("email", genVo.getEmail());
         map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
         map.put("SnowflakeIdWorker", SnowflakeIdWorker.class);
-        map.put("fuzzyQuery", config.getString("fuzzyQuery"));
+        map.put("fuzzyQuery", genVo.getFuzzyQuery());
         VelocityContext context = new VelocityContext(map);
 
         //获取模板列表
