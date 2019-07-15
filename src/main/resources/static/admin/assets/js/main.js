@@ -31,8 +31,8 @@ head.js(rootPath+"/static/admin/assets/js/custom/scriptbreaker-multiple-accordio
     $(".topnav").accordionze({
         accordionze: true,
         speed: 500,
-        closedSign: '<img src="'+rootPath+'static/admin/assets/img/plus.png">',
-        openedSign: '<img src="'+rootPath+'static/admin/assets/img/minus.png">'
+        closedSign: '<img src="'+rootPath+'/static/admin/assets/img/plus.png">',
+        openedSign: '<img src="'+rootPath+'/static/admin/assets/img/minus.png">'
     });
 
 });
