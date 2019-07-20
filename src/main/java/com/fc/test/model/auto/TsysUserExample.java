@@ -313,6 +313,76 @@ public class TsysUserExample {
             addCriterion("password not between", value1, value2, "password");
             return (Criteria) this;
         }
+
+        public Criteria andNicknameIsNull() {
+            addCriterion("nickname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameIsNotNull() {
+            addCriterion("nickname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameEqualTo(String value) {
+            addCriterion("nickname =", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameNotEqualTo(String value) {
+            addCriterion("nickname <>", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameGreaterThan(String value) {
+            addCriterion("nickname >", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameGreaterThanOrEqualTo(String value) {
+            addCriterion("nickname >=", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameLessThan(String value) {
+            addCriterion("nickname <", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameLessThanOrEqualTo(String value) {
+            addCriterion("nickname <=", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameLike(String value) {
+            addCriterion("nickname like", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameNotLike(String value) {
+            addCriterion("nickname not like", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameIn(List<String> values) {
+            addCriterion("nickname in", values, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameNotIn(List<String> values) {
+            addCriterion("nickname not in", values, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameBetween(String value1, String value2) {
+            addCriterion("nickname between", value1, value2, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameNotBetween(String value1, String value2) {
+            addCriterion("nickname not between", value1, value2, "nickname");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

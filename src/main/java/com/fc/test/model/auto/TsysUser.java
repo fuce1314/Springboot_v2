@@ -9,7 +9,20 @@ public class TsysUser implements Serializable {
 
     private String password;
 
+    private String nickname;
+
     private static final long serialVersionUID = 1L;
+
+    public TsysUser(String id, String username, String password, String nickname) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+    }
+
+    public TsysUser() {
+        super();
+    }
 
     public String getId() {
         return id;
@@ -33,5 +46,13 @@ public class TsysUser implements Serializable {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
     }
 }
