@@ -3,6 +3,7 @@
  * 
  * @Author fc
  */
+window.isexpandAll=false;
 (function($) {
 	$.extend({
 		table:{
@@ -29,7 +30,7 @@
 			            pageSize: 10,            //每页的记录行数（*）
 			            pageList: [10, 25, 50, 100],    //可供选择的每页的行数（*）
 			            strictSearch: true,
-			            clickToSelect: true,        //是否启用点击选中行
+			            clickToSelect: false,        //是否启用点击选中行
 			           // height: 460,            //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 			            uniqueId: "id",           //每一行的唯一标识，一般为主键列
 			            queryParamsType: "",//参数类型  为null 后台用pageHelp  默认为limit
@@ -204,8 +205,17 @@
                     $.modal.alertError(result.msg);
                 }
                 $.modal.closeLoading();
-            }
+            },
             //其他方法END
+            expandAll: function(){
+            	if(window.isexpandAll==false){
+            		$('#dataTable').treegrid('expandAll');
+            		window.isexpandAll=true;
+            	}else{
+            		$('#dataTable').treegrid('collapseAll');
+            		window.isexpandAll=false;
+            	}
+            }
 		},
 		modal: {//模态弹窗
             icon: function(type) {
