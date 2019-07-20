@@ -23,7 +23,6 @@
         
         onCheckRoot: function (row, data) {
             var that = this;
-            window.fc=row;
             // 此处原本是判断当前行row中的parentIdField的值是否为空值来判断
             // 是否是顶级节点。不满足我的设计要求。
             // 因为我在设计时，顶级节点(即目录)菜单的父节点值为0。
