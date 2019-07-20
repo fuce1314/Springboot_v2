@@ -11,6 +11,8 @@
 <link th:href="@{/static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
 <!-- 用户界面自定义css -->
 <link th:href="@{/static/admin/user/css/user-add.css}" rel="stylesheet"/>
+<!-- checkbox css-->
+<link href="/static/admin/assets/css/Checkboxes/awesome-bootstrap-checkbox.css" rel="stylesheet"/>
 <style type="text/css"></style>
 </head>
 
@@ -38,14 +40,18 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label ">昵称：</label>
+								<div class="col-sm-8">
+									<input class="form-control" type="text" id="nickname" name="nickname"/>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label ">权限授权：</label>
 								<div class="col-sm-8">
-									<div class="icheckbox-blue">
-										<label th:each="m : ${tsysRoleList}">
-											<input class="sqcheckbox" name="roles"  th:value="${m.id}"  type="checkbox"><b th:text="${m.name}"></b>
-										</label>
-										
-										
+									
+									<div th:each="m : ${tsysRoleList}" class="checkbox checkbox-primary">
+										<input th:id="${m.id}" class="sqcheckbox" name="roles"  th:value="${m.id}"  type="checkbox">
+										<label th:for="${m.id}" th:text="${m.name}"></label>
 									</div>
 									
 								</div>

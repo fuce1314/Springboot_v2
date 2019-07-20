@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TsysUserMapper {
-    int countByExample(TsysUserExample example);
+    long countByExample(TsysUserExample example);
 
     int deleteByExample(TsysUserExample example);
 

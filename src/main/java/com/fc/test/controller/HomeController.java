@@ -62,7 +62,7 @@ public class HomeController extends BaseController{
             	//获取菜单栏
             	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
             	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
-            	request.getSession().setAttribute("sessionUserName",ShiroUtils.getLoginName() );
+            	request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname() );
             	return "admin/index";
             } else {
             	System.out.println("--进行登录验证..验证开始");
@@ -130,7 +130,7 @@ public class HomeController extends BaseController{
      	 if(StringUtils.isNotNull(ShiroUtils.getUser())) {
      		 BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
          	 request.getSession().setAttribute("bootstrapTree", bootstrapTree);
-         	 request.getSession().setAttribute("sessionUserName",ShiroUtils.getLoginName() );
+         	 request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname());
          	 //跳转到 get请求的登陆方法
     		 view.setViewName("admin/index");
      	 }
