@@ -64,8 +64,8 @@ public class MyShiroRealm extends AuthorizingRealm {
 		
 		TsysUser userInfo = tsysUserDao.queryUserName(username);
 		
-		System.out.println(userInfo);
-		System.out.println("----->>userInfo=" + userInfo.getUsername() + "---"+ userInfo.getPassword());
+//		System.out.println(userInfo);
+//		System.out.println("----->>userInfo=" + userInfo.getUsername() + "---"+ userInfo.getPassword());
 		if (userInfo == null)
 			return null;
 		else{
@@ -84,7 +84,7 @@ public class MyShiroRealm extends AuthorizingRealm {
      */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
+		//System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
 		if(principals == null){  
 	       throw new AuthorizationException("principals should not be null");  
 	    }
@@ -98,12 +98,12 @@ public class MyShiroRealm extends AuthorizingRealm {
 		
 		
 		for(TsysRole userrole:tsysRoles){
-			System.out.println("角色名字:"+gson.toJson(userrole));
+			//System.out.println("角色名字:"+gson.toJson(userrole));
 			String rolid=userrole.getId();//角色id
 			authorizationInfo.addRole(userrole.getName());//添加角色名字
 			List<TsysPremission> premissions=permissionDao.queryRoleId(rolid);
 			for(TsysPremission p:premissions){
-				System.out.println("角色下面的权限:"+gson.toJson(p));
+				//System.out.println("角色下面的权限:"+gson.toJson(p));
 				if(StringUtils.isNotEmpty(p.getPerms())){
 					authorizationInfo.addStringPermission(p.getPerms());
 				}
