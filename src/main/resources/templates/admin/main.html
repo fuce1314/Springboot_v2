@@ -30,7 +30,7 @@
                     <!-- 空白页开始-->
                     <div class="nest" id="Blank_PageClose">
                         <div class="title-alt">
-                            <h6>Blank Page</h6>
+                            <h6>首页</h6>
                             <div class="titleClose">
                                 <a class="gone" href="#Blank_PageClose">
                                     <span class="entypo-cancel"></span>
@@ -43,7 +43,132 @@
                             </div>
                         </div>
                         <div class="body-nest" id="Blank_Page_Content">
-                            Content Goes Here
+
+
+ <p>先看文档，不懂在群里@我。本群进入后如果退出会有黑名单，永不在服务。浪费我时间，切用切珍惜！ </p>
+ <p>脚手架需要java基础，maven基础，springboot基础 </p>
+ <p>请使用前先看 <b style="font-size:18px;color: red;">文档库</b>：再看  <b style="font-size:18px;color: red;">组织架构</b>，方便自己理解，很浅显了，不是很难，小白专用了。 </p>
+ <p>自动生成代码有个bug列表 </p>
+ <p>1、主键必须字符串 </p>
+ <p>2、不根据规则来生成的一律出错不管 </p>
+ <p>3、最好用mybatis-generator.xml 来生成model、dao【半自动】 </p>
+ <p>4、在用自动生成 controller.java\service.java\html模板\sql【全自动】 </p>
+ <p>欢迎fork后提交Pull Requests 审核通过进入开发小组进入v2的荣誉殿堂。</p>
+ 
+ <p>生成顺序先全自动，在半自动。永远不会错 </p>
+
+<h4>文档库：https://gitee.com/bdj/SpringBoot_v2/wikis/</h4>
+<h4>更新日志: https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970</h4>
+
+<div>
+<h3>
+<a id="前言" class="anchor" href="#%E5%89%8D%E8%A8%80"></a>前言</h3>
+<p>SpringBoot_v2项目是努力打造springboot框架的极致细腻的脚手架。包括一套漂亮的前台。无其他杂七杂八的功能，原生纯净。</p>
+<h3>
+<a id="项目介绍" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"></a>项目介绍</h3>
+<p>基于springboot的一款纯净脚手架。努力打造一款免费开源、注释全、文档全适合新手学习、方便快速二次开发的框架。</p>
+<h5>
+<a id="1-没有基础版没有vip版本没有付费群没有收费二维码" class="anchor" href="#1-%E6%B2%A1%E6%9C%89%E5%9F%BA%E7%A1%80%E7%89%88%E6%B2%A1%E6%9C%89vip%E7%89%88%E6%9C%AC%E6%B2%A1%E6%9C%89%E4%BB%98%E8%B4%B9%E7%BE%A4%E6%B2%A1%E6%9C%89%E6%94%B6%E8%B4%B9%E4%BA%8C%E7%BB%B4%E7%A0%81"></a>1. 没有基础版、没有vip版本、没有付费群、没有收费二维码</h5>
+<h5>
+<a id="2-遵循开源真谛一切免费才是真开源" class="anchor" href="#2-%E9%81%B5%E5%BE%AA%E5%BC%80%E6%BA%90%E7%9C%9F%E8%B0%9B%E4%B8%80%E5%88%87%E5%85%8D%E8%B4%B9%E6%89%8D%E6%98%AF%E7%9C%9F%E5%BC%80%E6%BA%90"></a>2. 遵循开源真谛，一切免费才是真开源</h5>
+<h5>
+<a id="3-不求回报你使用快乐就是这个项目最大的快乐" class="anchor" href="#3-%E4%B8%8D%E6%B1%82%E5%9B%9E%E6%8A%A5%E4%BD%A0%E4%BD%BF%E7%94%A8%E5%BF%AB%E4%B9%90%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B8%AA%E9%A1%B9%E7%9B%AE%E6%9C%80%E5%A4%A7%E7%9A%84%E5%BF%AB%E4%B9%90"></a>3. 不求回报，你使用快乐就是这个项目最大的快乐！</h5>
+<h3>
+<a id="组织架构" class="anchor" href="#%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84"></a>组织架构</h3>
+<div class="white"><div class="highlight"><pre><span id="LC1" class="line">Springboot</span>
+<span id="LC2" class="line">├─doc  项目SQL语句以及文档</span>
+<span id="LC3" class="line">│</span>
+<span id="LC4" class="line">├─common 公共模块</span>
+<span id="LC5" class="line">│  ├─base Base继承通用类</span>
+<span id="LC6" class="line">│  ├─conf springBoot所有配置</span>
+<span id="LC7" class="line">│  ├─domain 前台返回包</span>
+<span id="LC8" class="line">│  ├─druid druid连接池</span>
+<span id="LC9" class="line">│  ├─exception 异常处理包</span>
+<span id="LC10" class="line">│  ├─file 文件上传</span>
+<span id="LC11" class="line">│  ├─interceptor 拦截器</span>
+<span id="LC12" class="line">│  ├─log 日志记录AOP</span>
+<span id="LC13" class="line">│  ├─domain 前台返回包</span>
+<span id="LC14" class="line">│  ├─quartz Spring定时器</span>
+<span id="LC15" class="line">│  └─support 工具包</span>
+<span id="LC16" class="line">│</span>
+<span id="LC17" class="line">├─controller 请求访问模块</span>
+<span id="LC18" class="line">│  ├─admin 模版后台请求包</span>
+<span id="LC19" class="line">│  ├─websocket websoket消息请求</span>
+<span id="LC20" class="line">│  └─HomeController.java 首页访问类</span>
+<span id="LC21" class="line">│</span>
+<span id="LC22" class="line">├─Mapper Dao模块</span>
+<span id="LC23" class="line">│  ├─auto mybatis-generator.xml自动生成Dao</span>
+<span id="LC24" class="line">│  └─custom 自定义Dao</span>
+<span id="LC25" class="line">│</span>
+<span id="LC26" class="line">├─Model 实体类模块</span>
+<span id="LC27" class="line">│  ├─auto mybatis-generator.xml自动生成实体包</span>
+<span id="LC28" class="line">│  └─custom 自定义实体</span>
+<span id="LC29" class="line">│</span>
+<span id="LC30" class="line">├─Service 服务层模块[没写抽象模块，因为我觉得没什么用，可能我能力不足]</span>
+<span id="LC31" class="line">│</span>
+<span id="LC32" class="line">├─shiro 权限模块</span>
+<span id="LC33" class="line">│  ├─config shiro配置</span>
+<span id="LC34" class="line">│  ├─service shiro服务层</span>
+<span id="LC35" class="line">│  └─util shiro通用方法</span>
+<span id="LC36" class="line">│</span>
+<span id="LC37" class="line">├─util 工具模块</span>
+<span id="LC38" class="line">│</span>
+<span id="LC39" class="line">├─SpringbootSwagger2Application 启动类</span>
+<span id="LC40" class="line">│ </span>
+<span id="LC41" class="line">├─SpringbootWebInitializer tomcat启动类</span>
+<span id="LC42" class="line">│</span>
+<span id="LC43" class="line">├─test 测试类</span>
+<span id="LC44" class="line">│</span>
+<span id="LC45" class="line">├─resources 配置文件夹</span>
+<span id="LC46" class="line">│  ├─ehcache shiro权限缓存配置</span>
+<span id="LC47" class="line">│  ├─generator 自动生成模板以及配置目录</span>
+<span id="LC48" class="line">│  │   ├─MyBatisGenerator mybates半自动生成工具</span>
+<span id="LC49" class="line">│  │   │   ├─1.bat 执行批处理</span>
+<span id="LC50" class="line">│  │   │   ├─generator.xml generator配置文件</span>
+<span id="LC51" class="line">│  │   │   ├─mybatis-generator-core-1.3.2.jar generator1.3.2版本</span>
+<span id="LC52" class="line">│  │   │   ├─mybatis-generator-core-1.3.7.jar generator1.3.7版本【默认】</span>
+<span id="LC53" class="line">│  │   │   └─mysqldriver.jar mysql驱动【该驱动为8.0一下的版本不支持8.0自行替换】</span>
+<span id="LC54" class="line">│  │   │</span>
+<span id="LC55" class="line">│  │   ├─template 模板文件假</span>
+<span id="LC56" class="line">│  │   │   ├─controller anction模板</span>
+<span id="LC57" class="line">│  │   │   ├─html html页面模板</span>
+<span id="LC58" class="line">│  │   │   ├─mapper dao模板</span>
+<span id="LC59" class="line">│  │   │   ├─mapperxml daoxml模板</span>
+<span id="LC60" class="line">│  │   │   ├─model 实体模板</span>
+<span id="LC61" class="line">│  │   │   ├─service service模板</span>
+<span id="LC62" class="line">│  │   │   └─sql sql模板</span>
+<span id="LC63" class="line">│  │   │</span>
+<span id="LC64" class="line">│  │   └─generator.properties 自动生成配置文件</span>
+<span id="LC65" class="line">│  │</span>
+<span id="LC66" class="line">│  ├─mybatis mybatis Mapper.xml生成文件夹</span>
+<span id="LC67" class="line">│  │   ├─auto自动生成的Mapper.xml文件夹</span>
+<span id="LC68" class="line">│  │   └─custom 手写Mapper.xml文件夹</span>
+<span id="LC69" class="line">│  │</span>
+<span id="LC70" class="line">│  ├─static 静态文件存放文件夹[后台模版就放在此文件夹下面。所有的模版页面都在下面]</span>
+<span id="LC71" class="line">│  │   ├─admin 后台目录存放</span>
+<span id="LC72" class="line">│  │   │  ├─assets js、css存放路径</span>
+<span id="LC73" class="line">│  │   │  ├─assets js、css存放路径</span>
+<span id="LC74" class="line">│  │   │  └─bootstarp 后台模板存放路径</span>
+<span id="LC75" class="line">│  │   ├─js js存放</span>
+<span id="LC76" class="line">│  │   └─login 登录页面js、css、image</span>
+<span id="LC77" class="line">│  │</span>
+<span id="LC78" class="line">│  ├─templates 前台HTML存放文件夹</span>
+<span id="LC79" class="line">│  │   ├─admin 动态后台html模板</span>
+<span id="LC80" class="line">│  │   ├─error 错误页面html模板</span>
+<span id="LC81" class="line">│  │   └─login.html 登录html页面</span>
+<span id="LC82" class="line">│  │</span>
+<span id="LC83" class="line">│  ├─application-dev.yml 开发环境配置</span>
+<span id="LC84" class="line">│  ├─application-prod.yml 生产环境配置</span>
+<span id="LC85" class="line">│  ├─application.yml springboot配置</span>
+<span id="LC86" class="line">│  ├─banner1.txt springboot 启动动画</span>
+<span id="LC87" class="line">│  ├─logback.xml log4j配置文件</span>
+<span id="LC88" class="line">│  └─mybatis-generator.xml mybates自动生成 xml、dao、model</span>
+<span id="LC89" class="line">│  </span>
+<span id="LC90" class="line">└─pom.xml   maven.xml</span>
+<span id="LC91" class="line"></span>
+<span id="LC92" class="line"></span></pre></div></div>                        	
+ </div>                       	
+
                         </div>
                     </div>
                 </div>
