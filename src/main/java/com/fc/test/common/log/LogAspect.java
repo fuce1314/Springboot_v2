@@ -117,9 +117,9 @@ public class LogAspect
             // 处理设置注解上的参数
             getControllerMethodDescription(controllerLog, operLog);
             // 保存数据库
-            System.out.println("-----------------");
-            System.out.println(new Gson().toJson(operLog));
-            System.out.println("-----------------");
+            //System.out.println("-----------------");
+            //System.out.println(new Gson().toJson(operLog));
+            //System.out.println("-----------------");
             operLogService.insertSelective(operLog);
         }
         catch (Exception exp)
