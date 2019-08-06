@@ -115,72 +115,72 @@ public class ${className}Example {
 		#foreach ($column in $columns)
 		
         public Criteria and${column.attrName}IsNull() {
-            addCriterion("$column.attrname is null");
+            addCriterion("$column.columnName is null");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}IsNotNull() {
-            addCriterion("$column.attrname is not null");
+            addCriterion("$column.columnName is not null");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}EqualTo(${column.attrType} value) {
-            addCriterion("$column.attrname =", value, "${column.attrname}");
+            addCriterion("$column.columnName =", value, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}NotEqualTo(${column.attrType} value) {
-            addCriterion("$column.attrname <>", value, "${column.attrname}");
+            addCriterion("$column.columnName <>", value, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}GreaterThan(${column.attrType} value) {
-            addCriterion("$column.attrname >", value, "${column.attrname}");
+            addCriterion("$column.columnName >", value, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}GreaterThanOrEqualTo(${column.attrType} value) {
-            addCriterion("$column.attrname >=", value, "${column.attrname}");
+            addCriterion("$column.columnName >=", value, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}LessThan(${column.attrType} value) {
-            addCriterion("$column.attrname <", value, "${column.attrname}");
+            addCriterion("$column.columnName <", value, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}LessThanOrEqualTo(${column.attrType} value) {
-            addCriterion("$column.attrname <=", value, "${column.attrname}");
+            addCriterion("$column.columnName <=", value, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}Like(${column.attrType} value) {
-            addCriterion("$column.attrname like", value, "${column.attrname}");
+            addCriterion("$column.columnName like", value, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}NotLike(${column.attrType} value) {
-            addCriterion("$column.attrname not like", value, "${column.attrname}");
+            addCriterion("$column.columnName not like", value, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}In(List<${column.attrType}> values) {
-            addCriterion("$column.attrname in", values, "${column.attrname}");
+            addCriterion("$column.columnName in", values, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}NotIn(List<${column.attrType}> values) {
-            addCriterion("$column.attrname not in", values, "${column.attrname}");
+            addCriterion("$column.columnName not in", values, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}Between(${column.attrType} value1, ${column.attrType} value2) {
-            addCriterion("$column.attrname between", value1, value2, "${column.attrname}");
+            addCriterion("$column.columnName between", value1, value2, "${column.attrname}");
             return (Criteria) this;
         }
 
         public Criteria and${column.attrName}NotBetween(${column.attrType} value1, ${column.attrType} value2) {
-            addCriterion("$column.attrname not between", value1, value2, "${column.attrname}");
+            addCriterion("$column.columnName not between", value1, value2, "${column.attrname}");
             return (Criteria) this;
         }
         
