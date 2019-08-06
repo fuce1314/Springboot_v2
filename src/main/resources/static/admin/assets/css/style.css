@@ -1719,7 +1719,7 @@ ul.topnav h4 {
 #breadcrumb a {
     height:30px;
     display:block;
-    background-image:url('');
+    /* background-image:url(''); */
     background-repeat:no-repeat;
     background-position:right;
     padding-right: 0;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
       xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
-<head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
+<head th:replace="admin/common/html/head :: head_Normal(~{::title},~{::link},~{::style})">
 
 <title th:text=${title}></title>
 <!-- 这儿引用单独的css link -->
@@ -339,8 +339,7 @@ function batCreate() {
 }
   
 $(function(){
-	//提示插件初始化
-	 $('.tooltips').tooltip();
+	
 	//列表
 	var oTab=$.table.oTableInit(options);
 	oTab.Init();
@@ -416,7 +415,8 @@ $(function(){
        }
        	 
      });
-	
+	//提示插件初始化
+	 $('.tooltips').tooltip();
 })
 
 
