@@ -12,7 +12,7 @@ public class TsysFile {
     private String createUserId;
 
     private String createUserName;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date createTime;
 
     private String updateUserId;

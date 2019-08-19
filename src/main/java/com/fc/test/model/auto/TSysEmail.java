@@ -3,6 +3,8 @@ package com.fc.test.model.auto;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class TSysEmail implements Serializable {
     private String id;
 
@@ -15,7 +17,7 @@ public class TSysEmail implements Serializable {
     private String sendUserId;
 
     private String sendUserName;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date createTime;
 
     private static final long serialVersionUID = 1L;
