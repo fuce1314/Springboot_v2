@@ -1,6 +1,7 @@
 package com.fc.test.common.domain;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
 * @ClassName: AjaxResult
@@ -80,12 +81,13 @@ public class AjaxResult extends HashMap<String, Object>
         return AjaxResult.success("操作成功");
     }
     
-    public static AjaxResult successData(int key, Object value){
+    public static AjaxResult successData(int code, Object value){
     	 AjaxResult json = new AjaxResult();
-    	 json.put("key", key);
+    	 json.put("code", code);
          json.put("data", value);
          return json;
     }
+   
     
     /**
      * 返回成功消息

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fc.test.model.custom.TsysTables;
+import com.fc.test.model.custom.autocode.BeanColumn;
 
 /**
  * 数据库接口
@@ -34,4 +35,11 @@ public interface GeneratorMapper {
 	  * @return
 	  */
 	 List<Map<String, String>> queryColumns(String tableName);
+	 /**
+	  * 查询表详情
+	  * @param tableName
+	  * @return
+	  */
+	 List<BeanColumn> queryColumns2(String tableName);
+	 List<Map<String, String>> queryColumns3(String tableName);
 }

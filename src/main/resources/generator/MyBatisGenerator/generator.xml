@@ -62,7 +62,7 @@
 		
 		
 		
-		<table tableName='t_sys_email' domainObjectName='TSysEmail'/>
+		<table tableName='t_sys_user' domainObjectName='TsysUser'/>
 
 
 	</context>

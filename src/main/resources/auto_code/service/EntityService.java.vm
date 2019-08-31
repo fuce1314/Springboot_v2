@@ -1,0 +1,139 @@
+package ${globalConfig.parentPack}.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import ${globalConfig.parentPack}.common.base.BaseService;
+import ${globalConfig.parentPack}.common.support.Convert;
+import ${globalConfig.parentPack}.mapper.auto.${TsysTables.tableModel}Mapper;
+import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel};
+import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel}Example;
+import ${globalConfig.parentPack}.model.custom.Tablepar;
+import ${globalConfig.parentPack}.util.SnowflakeIdWorker;
+
+/**
+ * ${TsysTables.tableModel}Service
+ * @Title: ${TsysTables.tableModel}Service.java 
+ * @Package ${globalConfig.parentPack}.service 
+ * @author ${globalConfig.author}_自动生成
+ * @email ${globalConfig.email}
+ * @date ${datetime}  
+ **/
+@Service
+public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables.tableModel}, ${TsysTables.tableModel}Example>{
+	@Autowired
+	private ${TsysTables.tableModel}Mapper ${TsysTables.tableModel_a}Mapper;
+	
+   #set( $pklag = false)
+   #set( $pkfield = '' )
+   #set ( $pk_column_name = '' )
+   #foreach ($column in $beanColumns)
+	   #if(${column.column_key} == 'PRI')
+	   	#set( $pklag = true )
+	   	#set( $pkfield = $column.beanName_A )
+	   	#set( $pk_column_name=$column.column_name)
+	   #end
+   #end
+	
+	/**
+	 * 分页查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	 public PageInfo<${TsysTables.tableModel}> list(Tablepar tablepar,String name){
+	        ${TsysTables.tableModel}Example testExample=new ${TsysTables.tableModel}Example();
+	        testExample.setOrderByClause("${pk_column_name} ASC");
+	        if(name!=null&&!"".equals(name)){
+	        	testExample.createCriteria().and${conditionQueryField}Like("%"+name+"%");
+	        }
+
+	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
+	        List<${TsysTables.tableModel}> list= ${TsysTables.tableModel_a}Mapper.selectByExample(testExample);
+	        PageInfo<${TsysTables.tableModel}> pageInfo = new PageInfo<${TsysTables.tableModel}>(list);
+	        return  pageInfo;
+	 }
+#if(${pklag} == true)
+
+	@Override
+	public int deleteByPrimaryKey(String ids) {
+		List<String> lista=Convert.toListStrArray(ids);
+		${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
+		example.createCriteria().and${pkfield}In(lista);
+		return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+	}
+	
+	
+	@Override
+	public ${TsysTables.tableModel} selectByPrimaryKey(String id) {
+		
+		return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id);
+	}
+
+	
+	@Override
+	public int updateByPrimaryKeySelective(${TsysTables.tableModel} record) {
+		return ${TsysTables.tableModel_a}Mapper.updateByPrimaryKeySelective(record);
+	}
+#end	
+	
+	/**
+	 * 添加
+	 */
+	@Override
+	public int insertSelective(${TsysTables.tableModel} record) {
+		//添加雪花主键id
+		record.set${pkfield}(SnowflakeIdWorker.getUUID());
+		return ${TsysTables.tableModel_a}Mapper.insertSelective(record);
+	}
+	
+	
+	@Override
+	public int updateByExampleSelective(${TsysTables.tableModel} record, ${TsysTables.tableModel}Example example) {
+		
+		return ${TsysTables.tableModel_a}Mapper.updateByExampleSelective(record, example);
+	}
+
+	
+	@Override
+	public int updateByExample(${TsysTables.tableModel} record, ${TsysTables.tableModel}Example example) {
+		
+		return ${TsysTables.tableModel_a}Mapper.updateByExample(record, example);
+	}
+
+	@Override
+	public List<${TsysTables.tableModel}> selectByExample(${TsysTables.tableModel}Example example) {
+		
+		return ${TsysTables.tableModel_a}Mapper.selectByExample(example);
+	}
+
+	
+	@Override
+	public long countByExample(${TsysTables.tableModel}Example example) {
+		
+		return ${TsysTables.tableModel_a}Mapper.countByExample(example);
+	}
+
+	
+	@Override
+	public int deleteByExample(${TsysTables.tableModel}Example example) {
+		
+		return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+	}
+	
+	/**
+	 * 检查name
+	 * @param ${TsysTables.tableModel_a}
+	 * @return
+	 */
+	public int checkNameUnique(${TsysTables.tableModel} ${TsysTables.tableModel_a}){
+		${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
+		example.createCriteria().and${conditionQueryField}EqualTo(${TsysTables.tableModel_a}.get${conditionQueryField}());
+		List<${TsysTables.tableModel}> list=${TsysTables.tableModel_a}Mapper.selectByExample(example);
+		return list.size();
+	}
+
+
+}

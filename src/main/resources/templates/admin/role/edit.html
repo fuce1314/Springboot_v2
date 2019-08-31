@@ -173,7 +173,7 @@ function getTree() {
 			$.modal.alertError("系统错误");
 		},
 		success : function(data) {
-			if(!$.common.isEmpty(data)&&data.key==200){
+			if(!$.common.isEmpty(data)&&data.code==200){
 				tree.push(data.data);
 			}
 		}

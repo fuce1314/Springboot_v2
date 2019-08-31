@@ -3,6 +3,7 @@ package com.fc.test.util;
 import java.util.Collection;
 import java.util.Map;
 
+import org.apache.commons.lang.WordUtils;
 import org.apache.commons.lang.text.StrBuilder;
 
 import com.fc.test.common.support.StrFormatter;
@@ -262,7 +263,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
     }
 
     /**
-     * 驼峰首字符小写
+     * 驼峰首字符小写 NameVc>>nameVc
      */
     public static String uncapitalize(String str)
     {
@@ -273,9 +274,10 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         }
         return new StrBuilder(strLen).append(Character.toLowerCase(str.charAt(0))).append(str.substring(1)).toString();
     }
+    
 
     /**
-     * 下划线转驼峰命名
+     * 下划线转驼峰命名 nameVc>>name_vc
      */
     public static String toUnderScoreCase(String s)
     {
@@ -336,7 +338,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         }
         return false;
     }
-
+    
     /**
      * 将下划线大写方式命名的字符串转换为驼峰式。如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。 例如：HELLO_WORLD->HelloWorld
      * 
@@ -371,5 +373,66 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
             result.append(camel.substring(1).toLowerCase());
         }
         return result.toString();
+    }
+    /**
+     * 首字母大写
+     *
+     * @param name
+     * @return
+     */
+    public static String firstUpperCase(String name) {
+        name = name.substring(0, 1).toUpperCase() + name.substring(1);
+        return name;
+    }
+    /**
+     * 首字母小写
+     *
+     * @param name
+     * @return
+     */
+    public static String firstLowerCase(String name) {
+        name = name.substring(0, 1).toLowerCase() + name.substring(1);
+        return name;
+
+    }
+    
+    /**
+     * 将下划线转化为大写
+     *
+     * @param name
+     * @param firstCase 首字母是否大写 true:大写 false;小写
+     * @return
+     */
+    public static String upperCase_(String name, boolean firstCase) {
+        if(isEmpty(name)){
+            return "";
+        }
+        String[] s = name.split("_");
+        StringBuffer stringBuffer = new StringBuffer();
+        for (String s1 : s) {
+            stringBuffer.append(s1.substring(0, 1).toUpperCase() + s1.substring(1));
+        }
+        if(!firstCase){
+            return firstLowerCase(stringBuffer.toString());
+        }
+        return stringBuffer.toString();
+    }
+
+    
+
+    /**
+     * 列名转换成Java属性名
+     */
+    public static String columnToJava(String columnName) {
+        return WordUtils.capitalizeFully(columnName, new char[]{'_'}).replace("_", "" );
+    }
+    /**
+     * 表名转换成Java类名
+     */
+    public static String tableToJava(String tableName, String tablePrefix) {
+        if (StringUtils.isNotBlank(tablePrefix)) {
+            tableName = tableName.replaceFirst(tablePrefix, "" );
+        }
+        return columnToJava(tableName);
     }
 }

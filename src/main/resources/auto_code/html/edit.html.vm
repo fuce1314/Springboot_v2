@@ -17,6 +17,16 @@
 </head>
 
 <body>
+   #set( $pklag = false)
+   #set( $pkfield = '' )
+   #set ( $pk_column_name = '' )
+   #foreach ($column in $beanColumns)
+	   #if(${column.column_key} == 'PRI')
+	   	#set( $pklag = true )
+	   	#set( $pkfield = $column.beanName_A )
+	   	#set( $pk_column_name=$column.column_name)
+	   #end
+   #end
 
 <div class="content-wrap">
 	<div class="row">
@@ -26,33 +36,27 @@
 				</div>
 				<div class="body-nest" id="element">
 					<div class="panel-body">
-						<form  class="form-horizontal m" id="form-edit" th:object="${YbZm}">
-							<input id="id" name="id" type="hidden" th:field="*{id}"/>
-							<div class="form-group">
-								<label class="col-sm-3 control-label ">照明名称：</label>
-								<div class="col-sm-8">
-									<input class="form-control" type="text" id="name" name="name" th:value="*{name}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label ">照明状态：</label>
-								<div class="col-sm-8">
-									<select class="form-control" id="state" name="state">
-										<option value="0">关闭</option>
-										<option value="1">开启</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label ">故障状态：</label>
-								<div class="col-sm-8">
-									<select class="form-control" id="type" name="type">
-										<option value="0">故障</option>
-										<option value="1">正常</option>
-										<option value="2">未关闭</option>
-									</select>
-								</div>
-							</div>
+						<form  class="form-horizontal m" id="form-edit" th:object="${${TsysTables.tableModel}}">
+							<input id="id" name="id" type="hidden" th:field="*{${pk_column_name}}"/>
+#foreach ($column in $beanColumns)
+	#if(${column.column_key} != 'PRI')
+		#if(${column.attrType} == 'Date')
+									<div class="form-group">
+										<label class="col-sm-3 control-label ">${column.column_comment}：</label>
+										<div class="col-sm-8">
+											<input class="form-control MyDate" type="text" id="${column.beanName}" name="${column.beanName}" th:value="*{#dates.format(${column.beanName},'yyyy-MM-dd HH:mm:ss')}"/>
+										</div>
+									</div>
+		#else
+									<div class="form-group">
+										<label class="col-sm-3 control-label ">${column.column_comment}：</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" id="${column.beanName}" name="${column.beanName}" th:value="*{${column.beanName}}"/>
+										</div>
+									</div>
+		#end
+	#end
+#end
 							<div class="form-group">
 								<div class="form-control-static col-sm-offset-9">
 									<button type="submit" class="btn btn-primary">提交</button>
@@ -82,6 +86,19 @@
 <!-- 遮罩层 -->
 <script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
 <script type="text/javascript">
+$(function(){
+	 $(".MyDate").datetimepicker({
+		 	format: "yyyy-mm-dd hh:00:00",
+	        startDate: new Date(),
+	        autoclose: true,
+	        todayBtn: true,
+	        language: 'zh-CN',
+	        initialDate:new Date(),
+	        minView: 1      
+	    });
+	
+})
+
 
 $("#form-edit").validate({
 	submitHandler : function(form) {
@@ -94,7 +111,7 @@ function edit() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : rootPath + "/YbZmController/edit",
+		url : rootPath + "/${TsysTables.tableModel}Controller/edit",
 		data : dataFormJson,
 		async : false,
 		error : function(request) {
