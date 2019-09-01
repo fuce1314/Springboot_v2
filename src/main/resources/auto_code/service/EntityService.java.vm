@@ -14,7 +14,7 @@ import ${globalConfig.parentPack}.model.custom.Tablepar;
 import ${globalConfig.parentPack}.util.SnowflakeIdWorker;
 
 /**
- * ${TsysTables.tableModel}Service
+ * ${TsysTables.tableComment} ${TsysTables.tableModel}Service
  * @Title: ${TsysTables.tableModel}Service.java 
  * @Package ${globalConfig.parentPack}.service 
  * @author ${globalConfig.author}_自动生成
