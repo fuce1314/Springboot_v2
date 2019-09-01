@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-09-01 17:23:03
+Date: 2019-09-01 17:26:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -107,62 +107,6 @@ CREATE TABLE `t_sys_oper_log` (
 -- ----------------------------
 -- Records of t_sys_oper_log
 -- ----------------------------
-INSERT INTO `t_sys_oper_log` VALUES ('605544888372559872', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-29');
-INSERT INTO `t_sys_oper_log` VALUES ('605548429812170752', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-29');
-INSERT INTO `t_sys_oper_log` VALUES ('605564257169309696', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-07-30');
-INSERT INTO `t_sys_oper_log` VALUES ('607885077136801792', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-05');
-INSERT INTO `t_sys_oper_log` VALUES ('607885478481362944', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-05');
-INSERT INTO `t_sys_oper_log` VALUES ('607894176637386752', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-05');
-INSERT INTO `t_sys_oper_log` VALUES ('607894181171429376', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-05');
-INSERT INTO `t_sys_oper_log` VALUES ('608473029248286720', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-07');
-INSERT INTO `t_sys_oper_log` VALUES ('608473792510951424', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-07');
-INSERT INTO `t_sys_oper_log` VALUES ('608817243362426880', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-08');
-INSERT INTO `t_sys_oper_log` VALUES ('608817349293768704', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-08');
-INSERT INTO `t_sys_oper_log` VALUES ('612107873593327616', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-17');
-INSERT INTO `t_sys_oper_log` VALUES ('612107938412101632', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-17');
-INSERT INTO `t_sys_oper_log` VALUES ('612107953113137152', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-17');
-INSERT INTO `t_sys_oper_log` VALUES ('613148152622481408', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-19');
-INSERT INTO `t_sys_oper_log` VALUES ('613148164186177536', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-19');
-INSERT INTO `t_sys_oper_log` VALUES ('613148169231925248', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-19');
-INSERT INTO `t_sys_oper_log` VALUES ('613148183987486720', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-19');
-INSERT INTO `t_sys_oper_log` VALUES ('613151957791539200', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-19');
-INSERT INTO `t_sys_oper_log` VALUES ('613152185387057152', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-19');
-INSERT INTO `t_sys_oper_log` VALUES ('613152505391480832', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-19');
-INSERT INTO `t_sys_oper_log` VALUES ('616065367919296512', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-28');
-INSERT INTO `t_sys_oper_log` VALUES ('616066059677466624', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-28');
-INSERT INTO `t_sys_oper_log` VALUES ('616066103071735808', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-28');
-INSERT INTO `t_sys_oper_log` VALUES ('616074313530867712', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-28');
-INSERT INTO `t_sys_oper_log` VALUES ('617380223402377216', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-31');
-INSERT INTO `t_sys_oper_log` VALUES ('617465932767297536', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-08-31');
-INSERT INTO `t_sys_oper_log` VALUES ('617520987595866112', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617526441680044032', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617526474060070912', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617526560424984576', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617527069873537024', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617527149733085184', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617527543972495360', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617527606354378752', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617538059327504384', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617538116529422336', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617538136708218880', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617538192802840576', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617539132268216320', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617552645611061248', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617552658386911232', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617557394565627904', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617558317081821184', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617561862065618944', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617563283729154048', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617563332148199424', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617563605046394880', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617563826350456832', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617748268612321280', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617749083620114432', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617749610248536064', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617750211451682816', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617756725910437888', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617763210195369984', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
-INSERT INTO `t_sys_oper_log` VALUES ('617767171203792896', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-01');
 
 -- ----------------------------
 -- Table structure for t_sys_permission_role
