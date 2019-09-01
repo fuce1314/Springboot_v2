@@ -1,5 +1,12 @@
 package com.fc.test.model.custom;
 
+/**
+ * 通用sql
+* @ClassName: SQLAdapter
+* @author fuce
+* @date 2019-09-02 01:10
+*
+ */
 public class SQLAdapter {
 	private String sql;
 

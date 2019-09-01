@@ -7,6 +7,7 @@ import org.apache.commons.lang.WordUtils;
 
 public class AutoCodeConfig {
 	
+	/**自动生成配置文件**/
 	private static GlobalConfig globalConfig;
 	
 	private static Configuration configuration;

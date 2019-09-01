@@ -1,5 +1,11 @@
 package com.fc.test.model.custom;
-
+/**
+ * 百度编辑器
+* @ClassName: Ueditor
+* @author fuce
+* @date 2019-09-02 01:09
+*
+ */
 public class Ueditor {
 	private String state;
 	private String url;
@@ -48,7 +54,6 @@ public class Ueditor {
 
 	public Ueditor() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	

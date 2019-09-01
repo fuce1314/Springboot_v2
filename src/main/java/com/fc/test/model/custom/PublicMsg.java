@@ -1,5 +1,12 @@
 package com.fc.test.model.custom;
 
+/**
+ * 百度编辑器
+* @ClassName: PublicMsg
+* @author fuce
+* @date 2019-09-02 01:11
+*
+ */
 public class PublicMsg {
 	 public final static String UEDITOR_CONFIG = "{" +
 	            "    \"imageActionName\": \"uploadimage\"," +

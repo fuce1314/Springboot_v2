@@ -60,7 +60,7 @@ private ${column.attrType} ${column.beanName};
 		#set( $lag  = $lag + 1 )
 	#end
 
-	public Test($lagstr) {
+	public ${TsysTables.tableModel}($lagstr) {
 	
 	#foreach ($column in $beanColumns)
 	this.${column.beanName} = ${column.beanName};
