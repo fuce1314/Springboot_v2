@@ -7,7 +7,6 @@ import com.fc.test.util.StringUtils;
 /**
  * 自动生成配置文件
 * @ClassName: GlobalConfig
-* @Description: TODO(这里用一句话描述这个类的作用)
 * @author fuce
 * @date 2019-08-13 02:03
 *
@@ -22,11 +21,11 @@ public class GlobalConfig {
 /*            表关系配置
     private RelationConfig relationConfig;*/
     /**
-     * 生成代码的父包 如父包是com.zengtengpeng.test  controller将在com.zengtengpeng.test.controller下 bean 将在com.zengtengpeng.test.bean下 ,service,dao同理
+     * 生成代码的父包 如父包是com.fc.test  controller将在com.fc.test.controller下 bean 将在com.fc.test.bean下 ,service,dao同理
      */
     private String parentPack;
     /**
-     * 生成代码的项目路径
+     * 生成代码的项目路径 D:\Users\Administrator\git\SpringBoot_v2
      */
     private String parentPath;
 

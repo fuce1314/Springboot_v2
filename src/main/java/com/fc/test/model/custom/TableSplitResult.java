@@ -2,7 +2,7 @@ package com.fc.test.model.custom;
 
 import java.io.Serializable;
 import java.util.List;
-
+//未知
 public class TableSplitResult<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;

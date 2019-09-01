@@ -1,7 +1,7 @@
 package com.fc.test.model.custom;
 
 /**
- * Created by yangyibo on 17/1/17.
+ * 未知
  */
 
     public class Msg {

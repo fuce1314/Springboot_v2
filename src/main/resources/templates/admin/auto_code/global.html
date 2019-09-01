@@ -60,6 +60,15 @@
                             <div class="body-nest" id="element">
 
                                 <div class="panel-body">
+                                
+	                                <div class="body-nest" id="alert">
+		                                <div class="alert alert-info">
+		                                    <button data-dismiss="alert" class="close" type="button">×</button>
+		                                    <span class="entypo-info-circled"></span>
+		                                    <strong>说明!</strong>&nbsp;&nbsp; 全局参数配置(建议配置在配置文件中.在页面配置,当项目重启将重置参数)
+		                                </div>
+	                            	</div>
+                             		
                                     <form id="form-add" class="form-horizontal bucket-form" th:object="${autoConfig}">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">根路径</label>
@@ -72,7 +81,7 @@
                                             <label class="col-sm-3 control-label">代码父包</label>
                                             <div class="col-sm-6">
                                                 <input type="text" name="parentPack" class="form-control" th:value="*{parentPack}">
-                                                 <span class="help-block">如父包是com.zengtengpeng.test.控制器将在com.zengtengpeng.test.controller包下</span>
+                                                 <span class="help-block">如父包是com.fc.test.控制器将在com.fc.test.controller包下</span>
                                             </div>
                                         </div>
                                         <div class="form-group">

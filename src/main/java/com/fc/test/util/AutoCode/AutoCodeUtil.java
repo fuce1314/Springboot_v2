@@ -27,11 +27,16 @@ import cn.hutool.core.date.DateTime;
  * 自动生成
  */
 public class AutoCodeUtil {
+	
+	/**生成文件路径**/
+	private static String targetPath = getTargetPath();
+	
+	
+	public static String getTargetPath() {
+		return AutoCodeConfig.getGlobalConfig().getParentPath();
+	}
 
-	private static String targetPath = System.getProperty("user.dir");
-	
-	
-	  public static List<String> getTemplates(){
+	public static List<String> getTemplates(){
 	        List<String> templates = new ArrayList<String>();
 
 	        

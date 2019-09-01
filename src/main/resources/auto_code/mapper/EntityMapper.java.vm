@@ -6,10 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * ${comments}
+ * ${TsysTables.tableModel}Mapper
  * 
- * @author ${author}
- * @email ${email}
+ * @author ${globalConfig.author}_自动生成
+ * @email ${globalConfig.email}
  * @date ${datetime}
  */
 public interface ${TsysTables.tableModel}Mapper {
