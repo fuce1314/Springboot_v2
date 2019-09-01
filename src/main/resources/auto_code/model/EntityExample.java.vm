@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * ${TsysTables.tableModel}Example
+ * ${TsysTables.tableComment} ${TsysTables.tableModel}Example
  * @author ${globalConfig.author}_自动生成
  * @email ${globalConfig.email}
  * @date ${datetime}

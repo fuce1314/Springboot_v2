@@ -3,7 +3,7 @@ package ${globalConfig.parentPack}.model.auto;
 import java.io.Serializable;
 ${JavaClassPackages}
 /**
- * ${TsysTables.tableModel} 
+ * ${TsysTables.tableComment} ${TsysTables.tableModel} 
  * @author ${globalConfig.author}_自动生成
  * @email ${globalConfig.email}
  * @date ${datetime}
