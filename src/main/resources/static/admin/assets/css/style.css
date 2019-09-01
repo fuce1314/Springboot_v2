@@ -451,7 +451,7 @@ input:-webkit-autofill, textarea:-webkit-autofill {
     box-shadow: none !important;
     color: #C7D5E0 !important;
     font-size: 13px !important;
-    height: 31px !important;
+  /*   height: 31px !important; */
 }
 .form-update {
     background-color: #FFFFFF;

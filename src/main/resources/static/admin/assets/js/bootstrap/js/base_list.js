@@ -328,7 +328,7 @@
                 }, 50)
             },
             reload: function() {
-                parent.location.reload()
+                window.location.reload();
             }
         },
         common: {

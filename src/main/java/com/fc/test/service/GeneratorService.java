@@ -12,9 +12,13 @@ import com.fc.test.mapper.auto.GeneratorMapper;
 import com.fc.test.model.custom.GenVo;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TsysTables;
+import com.fc.test.model.custom.autocode.BeanColumn;
 import com.fc.test.util.GenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONUtil;
 
 
 /**
@@ -43,6 +47,15 @@ public class GeneratorService {
 		    return pageInfo;
 	 }
 	 
+
+	 /**
+	  * 查询具体某表信息
+	  * @param tableName
+	  * @return
+	  */
+	 public List<TsysTables> queryList(String tableName){
+		return generatorMapper.queryList(tableName);
+	 }
 	 
 	 
 	 /**
@@ -66,6 +79,14 @@ public class GeneratorService {
 		return outputStream.toByteArray();
 	 }
 	
-	
+	/**
+	  * 查询表详情
+	  * @param tableName
+	  * @return
+	  */
+	public List<BeanColumn> queryColumns2(String tableName){
+		System.out.println("ssssssss"+JSONUtil.toJsonPrettyStr(generatorMapper.queryColumns3(tableName)));
+		return generatorMapper.queryColumns2(tableName);
+	 }
 	
 }
