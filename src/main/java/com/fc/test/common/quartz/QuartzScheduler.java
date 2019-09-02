@@ -1,9 +1,9 @@
-package com.fc.test.quartz;
+package com.fc.test.common.quartz;
 
-import com.fc.test.quartz.job.TestQuartzJob;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import com.fc.test.common.quartz.job.TestQuartzJob;
 
 import java.util.Date;
 

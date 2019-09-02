@@ -1,4 +1,4 @@
-package com.fc.test.quartz;
+package com.fc.test.common.quartz;
 
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;

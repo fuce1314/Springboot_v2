@@ -1,7 +1,8 @@
 package com.fc.test.common.listener;
 
-import com.fc.test.quartz.QuartzScheduler;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fc.test.common.quartz.QuartzScheduler;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
