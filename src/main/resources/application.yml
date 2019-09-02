@@ -18,12 +18,12 @@ fuce:
   #邮箱发送端口
   email_port: 465
   #发送邮箱登录账号
-  email_account: 111@sina.com
+  email_account: 1@sina.com
   #发送邮箱登录密码
-  email_password: 1111
+  email_password: 1
 #tomcat config
 server :
-  port : 8080
+  port : 8081
   ##项目名字配置
   #servlet : 
   #  context-path : /demo
@@ -57,7 +57,7 @@ spring :
 mybatis :
   mapperLocations : classpath*:mybatis/*/*.xml
   executor-type : reuse
-  type-aliases-package : com.*.model
+  typeAliasesPackage : com.*.model
   configuration :
     map-underscore-to-camel-case : true
 #pagehelper分页插件
