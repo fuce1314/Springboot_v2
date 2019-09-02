@@ -39,17 +39,19 @@ public class AutoCodeUtil {
 	public static List<String> getTemplates(){
 	        List<String> templates = new ArrayList<String>();
 
-	        
+	        //java代码模板
 	        templates.add("auto_code/model/Entity.java.vm");
 	        templates.add("auto_code/model/EntityExample.java.vm");
 	        templates.add("auto_code/mapperxml/EntityMapper.xml.vm");
 	        templates.add("auto_code/service/EntityService.java.vm");
 	        templates.add("auto_code/mapper/EntityMapper.java.vm");
 	        templates.add("auto_code/controller/EntityController.java.vm");
-	        templates.add("auto_code/sql/menu.sql.vm");
+	        //前端模板
 	        templates.add("auto_code/html/list.html.vm");
 	        templates.add("auto_code/html/add.html.vm");
 	        templates.add("auto_code/html/edit.html.vm");
+	        //sql模板
+	        templates.add("auto_code/sql/menu.sql.vm");
 //	        templates.add("auto_code/说明.txt.vm");
 	        return templates;
 	    }
@@ -88,12 +90,17 @@ public class AutoCodeUtil {
         for (String template : templates) {
         	try {
         		if(template.contains("menu.sql.vm")) {
-        			if(sqlcheck==1) {
+        			if(sqlcheck==1) {//执行sql
         				Template tpl = Velocity.getTemplate(template, "UTF-8" );
             			StringWriter sw = new StringWriter(); 
             			tpl.merge(context, sw);
             			System.out.println(sw);
             			executeSQL(sysUtilService, sw.toString());
+        			}else {//只输出
+        				Template tpl = Velocity.getTemplate(template, "UTF-8" );
+            			StringWriter sw = new StringWriter(); 
+            			tpl.merge(context, sw);
+            			System.out.println(sw);
         			}
         			
         		}else {
