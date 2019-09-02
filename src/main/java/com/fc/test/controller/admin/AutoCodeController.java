@@ -1,11 +1,7 @@
 package com.fc.test.controller.admin;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,24 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
-import com.fc.test.mapper.custom.SysUtilDao;
 import com.fc.test.model.auto.TsysPremission;
-import com.fc.test.model.auto.TsysPremissionExample;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.model.custom.TsysTables;
 import com.fc.test.model.custom.autocode.AutoCodeConfig;
 import com.fc.test.model.custom.autocode.BeanColumn;
 import com.fc.test.model.custom.autocode.GlobalConfig;
-import com.fc.test.model.custom.autocode.TableConfig;
 import com.fc.test.service.GeneratorService;
 import com.fc.test.service.SysPremissionService;
 import com.fc.test.service.SysUtilService;
 import com.fc.test.util.AutoCode.AutoCodeUtil;
-
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 
@@ -96,7 +86,6 @@ public class AutoCodeController  extends BaseController{
 	
 	/**
 	 * 根据表名查询表信息
-	 * TODO(请说明这个方法的作用).
 	 * @param tableName
 	 * @return
 	 * @author fuce
@@ -121,7 +110,6 @@ public class AutoCodeController  extends BaseController{
 	
 	/**
 	 * 根据表查询表字段详情
-	 * TODO(请说明这个方法的作用).
 	 * @param tableName
 	 * @return
 	 * @author fuce
