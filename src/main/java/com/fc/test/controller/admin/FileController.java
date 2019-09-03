@@ -41,7 +41,7 @@ public class FileController extends BaseController{
 	
 	@GetMapping("view")
 	@RequiresPermissions("system:file:view")
-    public String view(Model model)
+    public String view(ModelMap model)
     {	
 		String str="上传图片";
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));

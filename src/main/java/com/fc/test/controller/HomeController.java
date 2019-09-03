@@ -17,7 +17,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,7 +44,8 @@ public class HomeController extends BaseController{
 	
 	@ApiOperation(value="局部刷新区域",notes="局部刷新区域")
 	@GetMapping("/main")
-	public String main() {
+	public String main(ModelMap map) {
+		setTitle(map, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
 		return "admin/main";
 	}
 	
@@ -55,15 +56,15 @@ public class HomeController extends BaseController{
 	 */
 	@ApiOperation(value="请求到登陆界面",notes="请求到登陆界面")
 	@GetMapping("/login")
-    public String login(HttpServletRequest request,Model model) {
+    public String login(HttpServletRequest request) {
         try {
             if ((null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) || SecurityUtils.getSubject().isRemembered()) {
-            	setTitle(model, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
+            	
             	//获取菜单栏
             	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
             	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
             	request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname() );
-            	return "admin/index";
+            	return "redirect:/index";
             } else {
             	System.out.println("--进行登录验证..验证开始");
                 return "login";
@@ -85,7 +86,7 @@ public class HomeController extends BaseController{
 	 * @return
 	 */
 	@PostMapping("login")
-	public ModelAndView login(TsysUser user,String code,RedirectAttributes redirectAttributes,boolean rememberMe,Model model,HttpServletRequest request) {
+	public ModelAndView login(TsysUser user,String code,RedirectAttributes redirectAttributes,boolean rememberMe,HttpServletRequest request) {
 		 ModelAndView view =new ModelAndView();
 		 String scode = (String)request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 		 //判断验证码
@@ -100,10 +101,6 @@ public class HomeController extends BaseController{
 					 }
 					 //存入用户
 					 currentUser.login(token);
-					 
-					 //setTitle(model, new TitleVo("欢迎页面", "首页", true,"欢迎进入", true, false));
-						
-					 
 				 }catch (UnknownAccountException uae) {
 			            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
 			            redirectAttributes.addFlashAttribute("message", "未知账户");
@@ -132,7 +129,7 @@ public class HomeController extends BaseController{
          	 request.getSession().setAttribute("bootstrapTree", bootstrapTree);
          	 request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname());
          	 //跳转到 get请求的登陆方法
-    		 view.setViewName("admin/index");
+    		 view.setViewName("redirect:/index");
      	 }
      	
 		

@@ -53,7 +53,7 @@ public class AutoCodeController  extends BaseController{
 	 */
 	@GetMapping("one")
 	@RequiresPermissions("system:autocode:one")
-    public String one(Model model)
+    public String one(ModelMap model)
     {	
 		String str="单表代码生成";
 		setTitle(model, new TitleVo("生成", str+"管理", true,"欢迎进入"+str+"页面", true, false));
@@ -74,10 +74,10 @@ public class AutoCodeController  extends BaseController{
 	 */
 	@GetMapping("global")
 	@RequiresPermissions("system:autocode:global")
-    public String global(Model model,ModelMap modelMap)
+    public String global(ModelMap modelMap)
     {	
 		String str="全局配置";
-		setTitle(model, new TitleVo("配置", str+"管理", true,"欢迎进入"+str+"页面", true, false));
+		setTitle(modelMap, new TitleVo("配置", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         
 		modelMap.put("autoConfig", AutoCodeConfig.getGlobalConfig());
 		System.out.println(JSONUtil.toJsonStr(AutoCodeConfig.getGlobalConfig()));

@@ -37,7 +37,7 @@ public class RoleController extends BaseController{
 	
 	@GetMapping("view")
 	@RequiresPermissions("system:role:view")
-    public String view(Model model)
+    public String view(ModelMap model)
     {	
 		String str="角色";
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));

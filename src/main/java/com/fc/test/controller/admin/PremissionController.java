@@ -38,7 +38,7 @@ public class PremissionController  extends BaseController{
 	
 	@GetMapping("view")
 	@RequiresPermissions("system:premission:view")
-    public String view(Model model)
+    public String view(ModelMap model)
     {	
 		String str="权限";
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));

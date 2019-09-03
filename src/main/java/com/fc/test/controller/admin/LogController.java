@@ -5,7 +5,7 @@ import io.swagger.annotations.Api;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +33,7 @@ public class LogController extends BaseController{
 	
 	@GetMapping("view")
 	@RequiresPermissions("system:log:view")
-    public String view(Model model)
+    public String view(ModelMap model)
     {	
 		String str="操作日志";
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
