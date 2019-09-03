@@ -2,8 +2,6 @@ package com.fc.test.model.custom.autocode;
 
 import com.fc.test.util.StringUtils;
 
-import cn.hutool.core.util.StrUtil;
-
 /**
  * 实体列
  */
