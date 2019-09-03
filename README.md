@@ -280,23 +280,12 @@ UEditor|百度富文本||
 ### wiki
 - https://gitee.com/bdj/SpringBoot_v2/wikis
 
-### AgileBPM GVP项目
-专注于解决企业工作流实施难的问题
-https://gitee.com/agile-bpm
-
-
-### Java公众号推荐:
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
-
 ### 项目视频列表
 - 自动生成代码视频：https://url.cn/58DDn5Y
 
 ### 更新日志
 springbootv2大更新功能[20190501]
 - https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970
-
-### 感谢开源软件列表
-1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
 
 
 ### 参与开源作者
@@ -311,6 +300,21 @@ springbootv2大更新功能[20190501]
 | JanHezz    |                     | 引入了quartz框架       | 个人博客推荐：www.luckyhe.com |
 
 
+
+
+
+
+### AgileBPM GVP项目
+专注于解决企业工作流实施难的问题
+https://gitee.com/agile-bpm
+
+
+### Java公众号推荐:
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
+
+
+### 感谢开源软件列表
+1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
 
 
 
