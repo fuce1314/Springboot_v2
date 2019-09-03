@@ -129,7 +129,7 @@ kaptcha|google验证码||
 devtools|热部署||
 GSON|谷歌json||
 druid|阿里连接池||
-
+quartz|定时框架||
 
 
 
@@ -280,6 +280,30 @@ UEditor|百度富文本||
 ### wiki
 - https://gitee.com/bdj/SpringBoot_v2/wikis
 
+### 项目视频列表
+- 自动生成代码视频：https://url.cn/58DDn5Y
+
+### 更新日志
+springbootv2大更新功能[20190501]
+- https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970
+
+
+### 参与开源作者
+
+![荣誉殿堂](https://images.gitee.com/uploads/images/2019/0903/224111_37b4d05e_123301.png "荣誉殿堂.png")
+
+| 名字       | 邮箱                | 贡献功能               | 其他                          |
+| ---------- | ------------------- | ---------------------- | ----------------------------- |
+| 霜花似雪   | lhf20132175@163.com | 忘了                   |                               |
+| modelc     |                     | 框架结构整理           |                               |
+| ok克里斯汀 |                     | 增加 druid 连接池 注释 |                               |
+| JanHezz    |                     | 引入了quartz框架       | 个人博客推荐：www.luckyhe.com |
+
+
+
+
+
+
 ### AgileBPM GVP项目
 专注于解决企业工作流实施难的问题
 https://gitee.com/agile-bpm
@@ -288,22 +312,11 @@ https://gitee.com/agile-bpm
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
 
-### 大神QQ群推荐:
-- ![输入图片说明](https://images.gitee.com/uploads/images/2019/0530/203517_7ec233e5_123301.png "我萌的征途是架构狮！群聊二维码.png")
-
-### 项目视频列表
-- 自动生成代码视频：https://url.cn/58DDn5Y
-
-### 更新日志
-springbootv2大更新功能[20190501]
-- https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970
 
 ### 感谢开源软件列表
 1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
 
 
-### 感谢参与人员列表
-- 霜花似雪  lhf2013 (lhf20132175@163.com)
-- ok克里斯汀 okkristen
-- lhf20132175@163.com
+
+
 
