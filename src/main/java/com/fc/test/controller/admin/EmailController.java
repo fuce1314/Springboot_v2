@@ -43,7 +43,7 @@ public class EmailController extends BaseController{
 	
 	@GetMapping("view")
 	@RequiresPermissions("system:email:view")
-    public String view(Model model)
+    public String view(ModelMap model)
     {	
 		String str="邮件";
 		setTitle(model, new TitleVo("发送", str+"管理", true,"欢迎进入"+str+"页面", true, false));

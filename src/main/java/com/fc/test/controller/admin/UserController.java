@@ -36,7 +36,7 @@ public class UserController extends BaseController{
 	
 	@GetMapping("view")
 	@RequiresPermissions("system:user:view")
-    public String view(Model model)
+    public String view(ModelMap model)
     {	
 		String str="用户";
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));

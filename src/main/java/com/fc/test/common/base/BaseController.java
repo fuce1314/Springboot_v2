@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
@@ -147,17 +148,17 @@ public class BaseController
      * 设置标题通用方法
      * @param model
      */
-    public void setTitle(Model model,TitleVo titleVo){
+    public void setTitle(ModelMap map,TitleVo titleVo){
     	//标题
-		model.addAttribute("title",titleVo.getTitle());
-		model.addAttribute("parenttitle",titleVo.getParenttitle());
+    	map.put("title",titleVo.getTitle());
+    	map.put("parenttitle",titleVo.getParenttitle());
 		//是否打开欢迎语
-		model.addAttribute("isMsg",titleVo.isMsg());
+    	map.put("isMsg",titleVo.isMsg());
 		//欢迎语
-		model.addAttribute("msgHTML",titleVo.getMsgHtml());
+    	map.put("msgHTML",titleVo.getMsgHtml());
 		//小控件
-		model.addAttribute("isControl",titleVo.isControl());
-		model.addAttribute("isribbon", titleVo.isIsribbon());
+    	map.put("isControl",titleVo.isControl());
+		map.put("isribbon", titleVo.isIsribbon());
     }
 
    
