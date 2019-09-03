@@ -23,7 +23,7 @@ fuce:
   email_password: 1
 #tomcat config
 server :
-  port : 8081
+  port : 8080
   ##项目名字配置
   #servlet : 
   #  context-path : /demo
