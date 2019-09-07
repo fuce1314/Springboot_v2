@@ -28,6 +28,7 @@
 #foreach ($column in $beanColumns)
 	#if(${column.column_key} != 'PRI')
 		#if(${column.attrType} == 'Date')
+
 									<div class="form-group">
 										<label class="col-sm-3 control-label ">${column.column_comment}：</label>
 										<div class="col-sm-8">
@@ -35,12 +36,14 @@
 										</div>
 									</div>
 		#else
+		
 									<div class="form-group">
 										<label class="col-sm-3 control-label ">${column.column_comment}：</label>
 										<div class="col-sm-8">
 											<input class="form-control" type="text" id="${column.beanName}" name="${column.beanName}"/>
 										</div>
 									</div>
+									
 		#end
 	#end
 #end
