@@ -169,7 +169,6 @@ var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
 			    checkbox: true
 			},
 #foreach ($column in $beanColumns)
-           
 			{
 			    field: '${column.beanName}',
 			    title: '${column.column_comment}',
