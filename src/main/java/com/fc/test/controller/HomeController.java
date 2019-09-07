@@ -35,10 +35,13 @@ import com.google.code.kaptcha.Constants;
 public class HomeController extends BaseController{
 	private static Logger logger=LoggerFactory.getLogger(HomeController.class);
 	
-
 	@ApiOperation(value="首页",notes="首页")
 	@GetMapping("/index")
-	public String index() {
+	public String index(HttpServletRequest request) {
+    	//获取菜单栏
+    	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
+    	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
+    	request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname());
 		return "admin/index";
 	}
 	
@@ -56,14 +59,10 @@ public class HomeController extends BaseController{
 	 */
 	@ApiOperation(value="请求到登陆界面",notes="请求到登陆界面")
 	@GetMapping("/login")
-    public String login(HttpServletRequest request) {
+    public String login() {
         try {
             if ((null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) || SecurityUtils.getSubject().isRemembered()) {
-            	
-            	//获取菜单栏
-            	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
-            	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
-            	request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname() );
+
             	return "redirect:/index";
             } else {
             	System.out.println("--进行登录验证..验证开始");
@@ -125,9 +124,6 @@ public class HomeController extends BaseController{
 		 }
 		
      	 if(StringUtils.isNotNull(ShiroUtils.getUser())) {
-     		 BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
-         	 request.getSession().setAttribute("bootstrapTree", bootstrapTree);
-         	 request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname());
          	 //跳转到 get请求的登陆方法
     		 view.setViewName("redirect:/index");
      	 }
