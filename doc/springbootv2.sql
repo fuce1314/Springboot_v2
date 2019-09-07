@@ -10,23 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-09-04 00:46:19
+Date: 2019-09-08 05:33:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for t_sys_blog
--- ----------------------------
-DROP TABLE IF EXISTS `t_sys_blog`;
-CREATE TABLE `t_sys_blog` (
-  `id` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客表';
-
--- ----------------------------
--- Records of t_sys_blog
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_sys_datas
@@ -41,89 +28,6 @@ CREATE TABLE `t_sys_datas` (
 -- ----------------------------
 -- Records of t_sys_datas
 -- ----------------------------
-
--- ----------------------------
--- Table structure for t_sys_dict_data
--- ----------------------------
-DROP TABLE IF EXISTS `t_sys_dict_data`;
-CREATE TABLE `t_sys_dict_data` (
-  `dict_code` varchar(20) NOT NULL COMMENT '字典编码',
-  `dict_sort` int(4) DEFAULT '0' COMMENT '字典排序',
-  `dict_label` varchar(100) DEFAULT '' COMMENT '字典标签',
-  `dict_value` varchar(100) DEFAULT '' COMMENT '字典键值',
-  `dict_type` varchar(100) DEFAULT '' COMMENT '字典类型',
-  `css_class` varchar(100) DEFAULT NULL COMMENT '样式属性（其他样式扩展）',
-  `list_class` varchar(100) DEFAULT NULL COMMENT '表格回显样式',
-  `is_default` char(1) DEFAULT 'N' COMMENT '是否默认（Y是 N否）',
-  `status` char(1) DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`dict_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='字典数据表';
-
--- ----------------------------
--- Records of t_sys_dict_data
--- ----------------------------
-INSERT INTO `t_sys_dict_data` VALUES ('1', '1', '男', '0', 'sys_user_sex', '', '', 'Y', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '性别男');
-INSERT INTO `t_sys_dict_data` VALUES ('10', '1', '是', 'Y', 'sys_yes_no', '', 'primary', 'Y', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '系统默认是');
-INSERT INTO `t_sys_dict_data` VALUES ('11', '2', '否', 'N', 'sys_yes_no', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '系统默认否');
-INSERT INTO `t_sys_dict_data` VALUES ('12', '1', '通知', '1', 'sys_notice_type', '', 'warning', 'Y', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '通知');
-INSERT INTO `t_sys_dict_data` VALUES ('13', '2', '公告', '2', 'sys_notice_type', '', 'success', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '公告');
-INSERT INTO `t_sys_dict_data` VALUES ('14', '1', '正常', '0', 'sys_notice_status', '', 'primary', 'Y', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '正常状态');
-INSERT INTO `t_sys_dict_data` VALUES ('15', '2', '关闭', '1', 'sys_notice_status', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '关闭状态');
-INSERT INTO `t_sys_dict_data` VALUES ('16', '1', '新增', '1', 'sys_oper_type', '', 'info', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '新增操作');
-INSERT INTO `t_sys_dict_data` VALUES ('17', '2', '修改', '2', 'sys_oper_type', '', 'info', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '修改操作');
-INSERT INTO `t_sys_dict_data` VALUES ('18', '3', '删除', '3', 'sys_oper_type', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '删除操作');
-INSERT INTO `t_sys_dict_data` VALUES ('19', '4', '授权', '4', 'sys_oper_type', '', 'primary', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '授权操作');
-INSERT INTO `t_sys_dict_data` VALUES ('2', '2', '女', '1', 'sys_user_sex', '', '', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '性别女');
-INSERT INTO `t_sys_dict_data` VALUES ('20', '5', '导出', '5', 'sys_oper_type', '', 'warning', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '导出操作');
-INSERT INTO `t_sys_dict_data` VALUES ('21', '6', '导入', '6', 'sys_oper_type', '', 'warning', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '导入操作');
-INSERT INTO `t_sys_dict_data` VALUES ('22', '7', '强退', '7', 'sys_oper_type', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '强退操作');
-INSERT INTO `t_sys_dict_data` VALUES ('23', '8', '生成代码', '8', 'sys_oper_type', '', 'warning', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '生成操作');
-INSERT INTO `t_sys_dict_data` VALUES ('24', '9', '清空数据', '9', 'sys_oper_type', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '清空操作');
-INSERT INTO `t_sys_dict_data` VALUES ('25', '1', '成功', '0', 'sys_common_status', '', 'primary', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '正常状态');
-INSERT INTO `t_sys_dict_data` VALUES ('26', '2', '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '停用状态');
-INSERT INTO `t_sys_dict_data` VALUES ('3', '3', '未知', '2', 'sys_user_sex', '', '', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '性别未知');
-INSERT INTO `t_sys_dict_data` VALUES ('4', '1', '显示', '0', 'sys_show_hide', '', 'primary', 'Y', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '显示菜单');
-INSERT INTO `t_sys_dict_data` VALUES ('5', '2', '隐藏', '1', 'sys_show_hide', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '隐藏菜单');
-INSERT INTO `t_sys_dict_data` VALUES ('6', '1', '正常', '0', 'sys_normal_disable', '', 'primary', 'Y', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '正常状态');
-INSERT INTO `t_sys_dict_data` VALUES ('7', '2', '停用', '1', 'sys_normal_disable', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '停用状态');
-INSERT INTO `t_sys_dict_data` VALUES ('8', '1', '正常', '0', 'sys_job_status', '', 'primary', 'Y', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '正常状态');
-INSERT INTO `t_sys_dict_data` VALUES ('9', '2', '暂停', '1', 'sys_job_status', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '停用状态');
-
--- ----------------------------
--- Table structure for t_sys_dict_type
--- ----------------------------
-DROP TABLE IF EXISTS `t_sys_dict_type`;
-CREATE TABLE `t_sys_dict_type` (
-  `dict_id` varchar(20) NOT NULL COMMENT '字典主键',
-  `dict_name` varchar(100) DEFAULT '' COMMENT '字典名称',
-  `dict_type` varchar(100) DEFAULT '' COMMENT '字典类型',
-  `status` char(1) DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`dict_id`),
-  UNIQUE KEY `dict_type` (`dict_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='字典类型表';
-
--- ----------------------------
--- Records of t_sys_dict_type
--- ----------------------------
-INSERT INTO `t_sys_dict_type` VALUES ('1', '用户性别', 'sys_user_sex', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '用户性别列表');
-INSERT INTO `t_sys_dict_type` VALUES ('2', '菜单状态', 'sys_show_hide', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '菜单状态列表');
-INSERT INTO `t_sys_dict_type` VALUES ('3', '系统开关', 'sys_normal_disable', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '系统开关列表');
-INSERT INTO `t_sys_dict_type` VALUES ('4', '任务状态', 'sys_job_status', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '任务状态列表');
-INSERT INTO `t_sys_dict_type` VALUES ('5', '系统是否', 'sys_yes_no', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '系统是否列表');
-INSERT INTO `t_sys_dict_type` VALUES ('6', '通知类型', 'sys_notice_type', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '通知类型列表');
-INSERT INTO `t_sys_dict_type` VALUES ('7', '通知状态', 'sys_notice_status', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '通知状态列表');
-INSERT INTO `t_sys_dict_type` VALUES ('8', '操作类型', 'sys_oper_type', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '操作类型列表');
-INSERT INTO `t_sys_dict_type` VALUES ('9', '系统状态', 'sys_common_status', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '登录状态列表');
 
 -- ----------------------------
 -- Table structure for t_sys_email
@@ -144,10 +48,6 @@ CREATE TABLE `t_sys_email` (
 -- Records of t_sys_email
 -- ----------------------------
 INSERT INTO `t_sys_email` VALUES ('595001021625794560', '87766867@qq.com', 'springbootv2测试邮件', 0x3C703EE6B58BE8AF95E6B58BE6B58BE6B58B3C2F703E, '1', 'admin', '2019-06-30 21:21:38');
-INSERT INTO `t_sys_email` VALUES ('595005420867682304', '87766867@qq.com', '带带带', 0x3C703EE9A1B6E9A1B6E9A1B6E9A1B6E9A1B6E9A1B6E9A1B6E9A1B6E9A1B6E9A1B6E9A1B6E9A1B6E9A1B63C2F703E, '1', 'admin', '2019-06-30 21:39:07');
-INSERT INTO `t_sys_email` VALUES ('595007558129811456', '87766867@qq.com', '呱呱呱呱呱呱', 0x3C703E3C696D67207372633D22687474703A2F2F6C6F63616C686F73743A383038302F7374617469632F696D616765735F75706C6F61642F62316133636534633761333064623537306236613932343861613839633235302E6A706722207469746C653D22737373732220616C743D22222F3E3C2F703E, '1', 'admin', '2019-06-30 21:47:37');
-INSERT INTO `t_sys_email` VALUES ('596902572028067840', '87766867@qq.com', '鲜花视频', 0x3C703EE6B0B4E6B0B4E6B0B4E6B0B4E6B0B4E6B0B4E6B0B4E6B0B4E6B0B4E6B0B43C696D67207372633D22687474703A2F2F696D672E62616964752E636F6D2F68692F6A78322F6A5F303030322E676966222F3E3C2F703E, '1', 'admin', '2019-07-06 03:17:43');
-INSERT INTO `t_sys_email` VALUES ('601948054601334784', '87766867@qq.com', '嘻嘻嘻嘻嘻嘻嘻', 0x3C683120636C6173733D2275655F7422207374796C653D22626F726465722D626F74746F6D2D636F6C6F723A236363636363633B626F726465722D626F74746F6D2D77696474683A3270783B626F726465722D626F74746F6D2D7374796C653A736F6C69643B70616464696E673A3070782034707820307078203070783B746578742D616C69676E3A63656E7465723B6D617267696E3A3070782030707820323070783B223E3C7370616E207374796C653D22636F6C6F723A236330353034643B223E5BE994AEE585A5E69687E6A1A3E6A087E9A2985D3C2F7370616E3E3C2F68313E3C70207374796C653D22746578742D616C69676E3A63656E7465723B223E3C7374726F6E6720636C6173733D2275655F74223E5BE994AEE585A5E69687E6A1A3E589AFE6A087E9A2985D3C2F7374726F6E673E3C2F703E3C68333E3C7370616E20636C6173733D2275655F7422207374796C653D22666F6E742D66616D696C793AE5B9BCE59C86223E5BE6A087E9A29820315D3C2F7370616E3E3C2F68333E3C7020636C6173733D2275655F7422207374796C653D22746578742D696E64656E743A32656D3B223EE5AFB9E4BA8EE2809CE68F92E585A5E2809DE98089E9A1B9E58DA1E4B88AE79A84E5BA93EFBC8CE59CA8E8AEBEE8AEA1E697B6E983BDE58585E58886E88083E89991E4BA86E585B6E4B8ADE79A84E9A1B9E4B88EE69687E6A1A3E695B4E4BD93E5A496E8A782E79A84E58D8FE8B083E680A7E3808220E682A8E58FAFE4BBA5E4BDBFE794A8E8BF99E4BA9BE5BA93E69DA5E68F92E585A5E8A1A8E6A0BCE38081E9A1B5E79C89E38081E9A1B5E8849AE38081E58897E8A1A8E38081E5B081E99DA2E4BBA5E58F8AE585B6E4BB96E69687E6A1A3E69E84E5BBBAE59FBAE59D97E3808220E682A8E5889BE5BBBAE79A84E59BBEE78987E38081E59BBEE8A1A8E68896E585B3E7B3BBE59BBEE4B99FE5B086E4B88EE5BD93E5898DE79A84E69687E6A1A3E5A496E8A782E58D8FE8B083E4B880E887B4E380823C2F703E3C68333E3C7370616E20636C6173733D2275655F7422207374796C653D22666F6E742D66616D696C793AE5B9BCE59C86223E5BE6A087E9A29820325D3C2F7370616E3E3C2F68333E3C7020636C6173733D2275655F7422207374796C653D22746578742D696E64656E743A32656D3B223EE59CA8E2809CE5BC80E5A78BE2809DE98089E9A1B9E58DA1E4B88AEFBC8CE9809AE8BF87E4BB8EE5BFABE9809FE6A0B7E5BC8FE5BA93E4B8ADE4B8BAE68980E98089E69687E69CACE98089E68BA9E4B880E7A78DE5A496E8A782EFBC8CE682A8E58FAFE4BBA5E696B9E4BEBFE59CB0E69BB4E694B9E69687E6A1A3E4B8ADE68980E98089E69687E69CACE79A84E6A0BCE5BC8FE3808220E682A8E8BF98E58FAFE4BBA5E4BDBFE794A8E2809CE5BC80E5A78BE2809DE98089E9A1B9E58DA1E4B88AE79A84E585B6E4BB96E68EA7E4BBB6E69DA5E79BB4E68EA5E8AEBEE7BDAEE69687E69CACE6A0BCE5BC8FE38082E5A4A7E5A49AE695B0E68EA7E4BBB6E983BDE58581E8AEB8E682A8E98089E68BA9E698AFE4BDBFE794A8E5BD93E5898DE4B8BBE9A298E5A496E8A782EFBC8CE8BF98E698AFE4BDBFE794A8E69F90E7A78DE79BB4E68EA5E68C87E5AE9AE79A84E6A0BCE5BC8FE380823C2F703E3C68333E3C7370616E20636C6173733D2275655F7422207374796C653D22666F6E742D66616D696C793AE5B9BCE59C86223E5BE6A087E9A29820335D3C2F7370616E3E3C2F68333E3C7020636C6173733D2275655F74223EE5AFB9E4BA8EE2809CE68F92E585A5E2809DE98089E9A1B9E58DA1E4B88AE79A84E5BA93EFBC8CE59CA8E8AEBEE8AEA1E697B6E983BDE58585E58886E88083E89991E4BA86E585B6E4B8ADE79A84E9A1B9E4B88EE69687E6A1A3E695B4E4BD93E5A496E8A782E79A84E58D8FE8B083E680A7E3808220E682A8E58FAFE4BBA5E4BDBFE794A8E8BF99E4BA9BE5BA93E69DA5E68F92E585A5E8A1A8E6A0BCE38081E9A1B5E79C89E38081E9A1B5E8849AE38081E58897E8A1A8E38081E5B081E99DA2E4BBA5E58F8AE585B6E4BB96E69687E6A1A3E69E84E5BBBAE59FBAE59D97E3808220E682A8E5889BE5BBBAE79A84E59BBEE78987E38081E59BBEE8A1A8E68896E585B3E7B3BBE59BBEE4B99FE5B086E4B88EE5BD93E5898DE79A84E69687E6A1A3E5A496E8A782E58D8FE8B083E4B880E887B4E380823C2F703E3C7020636C6173733D2275655F74223E3C62722F3E3C2F703E3C703E3C62722F3E3C2F703E, '1', 'admin', '2019-07-20 01:26:40');
 
 -- ----------------------------
 -- Table structure for t_sys_file
@@ -185,6 +85,47 @@ CREATE TABLE `t_sys_file_data` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for t_sys_notice
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_notice`;
+CREATE TABLE `t_sys_notice` (
+  `id` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '主键',
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '内容',
+  `type` int(5) DEFAULT NULL COMMENT '类型',
+  `create_id` varchar(255) DEFAULT NULL COMMENT '创建人id',
+  `create_username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '创建人name',
+  `create_time` datetime DEFAULT NULL COMMENT '发信时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='公告';
+
+-- ----------------------------
+-- Records of t_sys_notice
+-- ----------------------------
+INSERT INTO `t_sys_notice` VALUES ('330381411007729664', '测试公告', '<p>啊啊啊<img src=\"http://img.baidu.com/hi/jx2/j_0002.gif\"/><img src=\"http://img.baidu.com/hi/jx2/j_0024.gif\"/></p>', '1', '1', 'admin', '2019-09-08 02:24:37');
+INSERT INTO `t_sys_notice` VALUES ('330381806358630400', '鲜花视频', '<p>哈哈哈哈<img src=\"http://img.baidu.com/hi/jx2/j_0024.gif\"/></p>', '2', '1', 'admin', '2019-09-08 02:26:11');
+
+-- ----------------------------
+-- Table structure for t_sys_notice_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_notice_user`;
+CREATE TABLE `t_sys_notice_user` (
+  `id` varchar(255) NOT NULL COMMENT '主键',
+  `notice_id` varchar(255) DEFAULT NULL COMMENT '公告id',
+  `user_id` varchar(255) DEFAULT NULL COMMENT '用户id',
+  `state` int(2) DEFAULT NULL COMMENT '0未阅读 1 阅读',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='公告_用户外键';
+
+-- ----------------------------
+-- Records of t_sys_notice_user
+-- ----------------------------
+INSERT INTO `t_sys_notice_user` VALUES ('330381411037089792', '330381411007729664', '1', '0');
+INSERT INTO `t_sys_notice_user` VALUES ('330381411045478400', '330381411007729664', '488294747442511872', '0');
+INSERT INTO `t_sys_notice_user` VALUES ('330381806375407616', '330381806358630400', '1', '1');
+INSERT INTO `t_sys_notice_user` VALUES ('330381806379601920', '330381806358630400', '488294747442511872', '0');
+
+-- ----------------------------
 -- Table structure for t_sys_oper_log
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_oper_log`;
@@ -203,7 +144,25 @@ CREATE TABLE `t_sys_oper_log` (
 -- ----------------------------
 -- Records of t_sys_oper_log
 -- ----------------------------
-INSERT INTO `t_sys_oper_log` VALUES ('618604421323948032', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-04');
+INSERT INTO `t_sys_oper_log` VALUES ('330354032776450048', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330354146496614400', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330354156692967424', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330360035551088640', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330361419683991552', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330367219060051968', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330371546252185600', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330374174566649856', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330374973413789696', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330375100396343296', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330381246280634368', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330381253301899264', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330381258360229888', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330425316000534528', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330425353644412928', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330426690058719232', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330426706567499776', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330426889661452288', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
+INSERT INTO `t_sys_oper_log` VALUES ('330427621760438272', '用户集合查询', 'com.fc.test.controller.admin.UserController.list()', 'admin', '/UserController/list', '{\"pageSize\":[\"10\"],\"pageNum\":[\"1\"]}', null, '2019-09-08');
 
 -- ----------------------------
 -- Table structure for t_sys_permission_role
@@ -219,56 +178,60 @@ CREATE TABLE `t_sys_permission_role` (
 -- ----------------------------
 -- Records of t_sys_permission_role
 -- ----------------------------
-INSERT INTO `t_sys_permission_role` VALUES ('0cedc4b6-1d3c-4f5d-8ed7-de189e87fbd1', '488243256161730560', '11');
-INSERT INTO `t_sys_permission_role` VALUES ('0e99b733-d8f6-4c82-ba2b-de347cd1b99d', '488243256161730560', '16');
-INSERT INTO `t_sys_permission_role` VALUES ('0ec542bc-beb5-45cb-ac0c-782d64a57f27', '488243256161730560', '5946910264304599043');
-INSERT INTO `t_sys_permission_role` VALUES ('15100c12-5bcd-40ca-be79-2a3eb81be5e2', '488243256161730560', '610635485890478080');
-INSERT INTO `t_sys_permission_role` VALUES ('161fddcf-59a6-4fa9-9dad-166f85ba9369', '488243256161730560', '13');
-INSERT INTO `t_sys_permission_role` VALUES ('1b6a4a1f-ba16-427b-ae41-7f16c8d853ca', '488243256161730560', '592167738407911424');
-INSERT INTO `t_sys_permission_role` VALUES ('1bddd6d5-463b-4f73-a381-a4fd6e9a4a49', '488243256161730560', '10');
-INSERT INTO `t_sys_permission_role` VALUES ('1c91234c-ff71-410c-99dd-5a67922a26a4', '488243256161730560', '589559475422101504');
-INSERT INTO `t_sys_permission_role` VALUES ('2a0df54c-bbb5-427e-8246-abec8fae0d99', '488243256161730560', '8');
-INSERT INTO `t_sys_permission_role` VALUES ('2bcfdfba-db69-40a9-94f1-b7e43711ee11', '488243256161730560', '1');
-INSERT INTO `t_sys_permission_role` VALUES ('2be1509c-08a7-42a4-a84f-50f611c1d2c1', '488243256161730560', '23');
-INSERT INTO `t_sys_permission_role` VALUES ('2d568e67-1b97-451d-b7e1-38e48d715497', '488243256161730560', '587453033487532032');
-INSERT INTO `t_sys_permission_role` VALUES ('35d3bc34-3736-4a12-a4d5-0557e308f8f0', '488243256161730560', '589559748521623552');
-INSERT INTO `t_sys_permission_role` VALUES ('35ea2af3-6062-43c3-a3b6-1015c41dd053', '488243256161730560', '594691026430459904');
-INSERT INTO `t_sys_permission_role` VALUES ('38b8e78c-e792-4aef-8750-0eb7ef19cb8d', '488243256161730560', '496782496638173184');
-INSERT INTO `t_sys_permission_role` VALUES ('3b1a8394-b0b6-4e63-83b2-4b6fda8a52de', '488243256161730560', '496127240363311104');
-INSERT INTO `t_sys_permission_role` VALUES ('3e9a83ce-de5b-46cc-ad64-5b4faff621d4', '488243256161730560', '575853607149109248');
-INSERT INTO `t_sys_permission_role` VALUES ('3f25558c-b89e-41b5-ac22-ac15bbe4ca17', '488243256161730560', '5946910264304599041');
-INSERT INTO `t_sys_permission_role` VALUES ('450392f2-a422-44a5-a9e5-cc66e1dd7eb3', '488243256161730560', '14');
-INSERT INTO `t_sys_permission_role` VALUES ('455af242-e4d5-4744-bc1a-33ea3bb12655', '488243256161730560', '6');
-INSERT INTO `t_sys_permission_role` VALUES ('4a64102e-a866-4db1-9978-969c26920a29', '488243256161730560', '610983815791247360');
-INSERT INTO `t_sys_permission_role` VALUES ('4c4bb1b2-6da6-4a00-8a64-a994095e80eb', '488243256161730560', '617766548966211584');
-INSERT INTO `t_sys_permission_role` VALUES ('51dea531-a5ce-4236-8c57-ab48bdb08971', '488243256161730560', '617883141264113664');
-INSERT INTO `t_sys_permission_role` VALUES ('5d16cd6f-6fe7-4e19-8fdf-e181bda1c2ab', '488243256161730560', '17');
-INSERT INTO `t_sys_permission_role` VALUES ('639853d3-746d-4071-9020-d991ea866859', '488243256161730560', '15');
-INSERT INTO `t_sys_permission_role` VALUES ('819aca54-ecfe-463e-899b-f68c53d5df61', '488243256161730560', '617751079701970944');
-INSERT INTO `t_sys_permission_role` VALUES ('9c3b3034-057b-4900-9f27-34228e8d7ef4', '488243256161730560', '19');
-INSERT INTO `t_sys_permission_role` VALUES ('9f315453-9da9-41ed-9acf-145dd011e9cd', '488243256161730560', '4');
-INSERT INTO `t_sys_permission_role` VALUES ('a266f95b-2821-40ad-b273-9f400e80e2d1', '488243256161730560', '21');
-INSERT INTO `t_sys_permission_role` VALUES ('a3eac8a2-f9ae-4044-9375-9dd1780190cb', '488243256161730560', '592059865673760768');
-INSERT INTO `t_sys_permission_role` VALUES ('ae9bb045-28a2-4267-aca5-c0dc032fe0f0', '488243256161730560', '12');
-INSERT INTO `t_sys_permission_role` VALUES ('b16dd9e8-9ed4-4cb7-98d4-23dc1ffd1abc', '488243256161730560', '592067570522128384');
-INSERT INTO `t_sys_permission_role` VALUES ('b4c918fd-6627-4c5e-8fe5-f3f704b94031', '488243256161730560', '496126970468237312');
-INSERT INTO `t_sys_permission_role` VALUES ('b696186f-83c2-4b47-8b60-79eeaf830475', '488243256161730560', '610635950447394816');
-INSERT INTO `t_sys_permission_role` VALUES ('bdc0f849-0ce5-4fe3-bc5e-4e77bad68cf5', '488243256161730560', '22');
-INSERT INTO `t_sys_permission_role` VALUES ('c0777b28-0403-4ee1-9078-b9965beb41ba', '488243256161730560', '18');
-INSERT INTO `t_sys_permission_role` VALUES ('c7a7a234-b964-4ac6-8076-dfde7d1e59c2', '488243256161730560', '7');
-INSERT INTO `t_sys_permission_role` VALUES ('d091bd21-653b-4874-8c4a-7f70e56c8cfa', '488243256161730560', '5946910264304599044');
-INSERT INTO `t_sys_permission_role` VALUES ('d1ec785c-9c1c-4873-a5ce-ce2755022c5d', '488243256161730560', '581541547099553792');
-INSERT INTO `t_sys_permission_role` VALUES ('d269274d-855d-4c81-a327-2d2699822235', '488243256161730560', '575851658483859456');
-INSERT INTO `t_sys_permission_role` VALUES ('da5c0cd2-eda8-4361-9d00-970e7bf7ce4b', '488243256161730560', '9');
-INSERT INTO `t_sys_permission_role` VALUES ('db121cc8-7676-4d75-91a9-d40ff6e2f544', '488243256161730560', '589559916704825344');
-INSERT INTO `t_sys_permission_role` VALUES ('dc7e4c91-2f5d-46ed-a380-ee5e93928a39', '488243256161730560', '586003694080753664');
-INSERT INTO `t_sys_permission_role` VALUES ('e059107a-3465-4b03-9bad-0cb0df37eba1', '488243256161730560', '575852089792528384');
-INSERT INTO `t_sys_permission_role` VALUES ('f0a0d2a0-503c-4bd1-906a-0f110d822f99', '488243256161730560', '583063272123531264');
-INSERT INTO `t_sys_permission_role` VALUES ('f2574045-ea86-44b2-8bd8-0d7d7178d09d', '488243256161730560', '20');
-INSERT INTO `t_sys_permission_role` VALUES ('faa60c34-2bd8-4689-a02b-cab12de58986', '488243256161730560', '486690002869157888');
-INSERT INTO `t_sys_permission_role` VALUES ('fc1d6e38-b7f1-4cd6-82c5-135604dddbd6', '488243256161730560', '5946910264304599042');
-INSERT INTO `t_sys_permission_role` VALUES ('fc294b2d-8e9a-462c-9806-5cf30374cc66', '488243256161730560', '496127794879660032');
-INSERT INTO `t_sys_permission_role` VALUES ('fef24412-6e9d-49e7-91bc-9c9231789646', '488243256161730560', '5');
+INSERT INTO `t_sys_permission_role` VALUES ('017d82f2-24c6-4ef6-8b3e-888df8e0bb1b', '488243256161730560', '617751079701970944');
+INSERT INTO `t_sys_permission_role` VALUES ('094aeaf1-460e-4c6f-acff-cc29b11bf213', '488243256161730560', '11');
+INSERT INTO `t_sys_permission_role` VALUES ('1540c3b1-648c-463e-95e1-1c84bafc243c', '488243256161730560', '583063272123531264');
+INSERT INTO `t_sys_permission_role` VALUES ('18b5d8cf-90f8-4d36-ad8e-fe7b26f355dd', '488243256161730560', '13');
+INSERT INTO `t_sys_permission_role` VALUES ('19329928-7999-4a1c-b497-348084c31686', '488243256161730560', '9');
+INSERT INTO `t_sys_permission_role` VALUES ('1e58ad5d-881e-42a5-a84b-999808879ac5', '488243256161730560', '15');
+INSERT INTO `t_sys_permission_role` VALUES ('2c7e198a-b2dc-4f06-97a9-28575ee58ad0', '488243256161730560', '4');
+INSERT INTO `t_sys_permission_role` VALUES ('2f045069-57c7-4a24-9226-00267407a556', '488243256161730560', '496127794879660032');
+INSERT INTO `t_sys_permission_role` VALUES ('2fa72f52-8dc8-4f2c-9aab-9d74206e76f5', '488243256161730560', '22');
+INSERT INTO `t_sys_permission_role` VALUES ('39241a05-e45f-4b43-98b3-4746e446424d', '488243256161730560', '19');
+INSERT INTO `t_sys_permission_role` VALUES ('3d9802c3-80c1-4c17-9c1e-0aa7c4eb3243', '488243256161730560', '1');
+INSERT INTO `t_sys_permission_role` VALUES ('3e836fa5-0e72-43d9-a696-9b8acfc6512d', '488243256161730560', '575851658483859456');
+INSERT INTO `t_sys_permission_role` VALUES ('40c6f7bb-78c4-497f-8cf0-1106e731ba2a', '488243256161730560', '3303650266428252204');
+INSERT INTO `t_sys_permission_role` VALUES ('43beeffe-a4be-45af-bfc3-81326c9141fb', '488243256161730560', '589559748521623552');
+INSERT INTO `t_sys_permission_role` VALUES ('4eaf8a04-87f2-45e6-9657-a6696de7cf2d', '488243256161730560', '575853607149109248');
+INSERT INTO `t_sys_permission_role` VALUES ('5017f8b1-72a7-4b71-827c-05942f6ddb17', '488243256161730560', '610635950447394816');
+INSERT INTO `t_sys_permission_role` VALUES ('531c03ba-23fa-4f98-8706-106239c4372b', '488243256161730560', '5946910264304599041');
+INSERT INTO `t_sys_permission_role` VALUES ('554a40ce-d5e9-4b3b-a8d9-d5f31f3baed1', '488243256161730560', '610983815791247360');
+INSERT INTO `t_sys_permission_role` VALUES ('57558de1-1492-426f-a9c3-7b86d618580e', '488243256161730560', '594691026430459904');
+INSERT INTO `t_sys_permission_role` VALUES ('585230bc-4707-4b9e-a0b4-e2f30b183134', '488243256161730560', '5');
+INSERT INTO `t_sys_permission_role` VALUES ('585f459f-3cda-4d0b-bf3c-9a921ad2b329', '488243256161730560', '587453033487532032');
+INSERT INTO `t_sys_permission_role` VALUES ('590e1288-1c3a-472f-b819-7f1d91c6efeb', '488243256161730560', '486690002869157888');
+INSERT INTO `t_sys_permission_role` VALUES ('5ab5119b-c22a-48cb-94d3-53c0886c2565', '488243256161730560', '8');
+INSERT INTO `t_sys_permission_role` VALUES ('61fd8071-cf2c-4182-895b-a9cea2927489', '488243256161730560', '592067570522128384');
+INSERT INTO `t_sys_permission_role` VALUES ('672c4ffc-ea1a-43f7-860c-051eb48b4b3c', '488243256161730560', '586003694080753664');
+INSERT INTO `t_sys_permission_role` VALUES ('68683668-31bd-44bd-9de1-c2aba96c97f2', '488243256161730560', '5946910264304599044');
+INSERT INTO `t_sys_permission_role` VALUES ('786cdfe1-de22-4a09-9a9f-eb7017b30c7f', '488243256161730560', '14');
+INSERT INTO `t_sys_permission_role` VALUES ('7a87ad1c-e235-4b84-9c45-e15bd6afdf53', '488243256161730560', '330365026642825216');
+INSERT INTO `t_sys_permission_role` VALUES ('7e20df7a-be78-4391-80fc-0f404c9832f5', '488243256161730560', '16');
+INSERT INTO `t_sys_permission_role` VALUES ('80ab6f82-5195-4cd0-859f-7f8e42131f45', '488243256161730560', '5946910264304599043');
+INSERT INTO `t_sys_permission_role` VALUES ('8676bfff-f249-49d8-be1a-c00e342fd54d', '488243256161730560', '617766548966211584');
+INSERT INTO `t_sys_permission_role` VALUES ('8788e2eb-391e-4ba3-9e9b-ef22495f71fb', '488243256161730560', '575852089792528384');
+INSERT INTO `t_sys_permission_role` VALUES ('95ac3132-3291-4f79-b148-39b316f3c929', '488243256161730560', '589559916704825344');
+INSERT INTO `t_sys_permission_role` VALUES ('962007bb-d494-4470-82ab-367b9ff5d847', '488243256161730560', '496126970468237312');
+INSERT INTO `t_sys_permission_role` VALUES ('9ec87f8a-174d-4c41-a015-f0de5046c239', '488243256161730560', '23');
+INSERT INTO `t_sys_permission_role` VALUES ('a8ec3fe8-4b68-484e-9a4f-d9831965cf9d', '488243256161730560', '17');
+INSERT INTO `t_sys_permission_role` VALUES ('acc2a8e7-b6ce-4c19-9c6b-f2f43ab636db', '488243256161730560', '5946910264304599042');
+INSERT INTO `t_sys_permission_role` VALUES ('b28abdab-81ae-4859-9155-8c61fda1c395', '488243256161730560', '3303650266428252182');
+INSERT INTO `t_sys_permission_role` VALUES ('b520d5cf-a27c-4469-8563-3e0ad707a5f9', '488243256161730560', '3303650266428252193');
+INSERT INTO `t_sys_permission_role` VALUES ('b5787b32-85c3-4fd8-bf08-089e1eff73a9', '488243256161730560', '589559475422101504');
+INSERT INTO `t_sys_permission_role` VALUES ('ba8659ad-df92-470b-ba59-4fab44bd7aac', '488243256161730560', '496127240363311104');
+INSERT INTO `t_sys_permission_role` VALUES ('c3b55831-db79-4153-8d6a-8cc70b7f611b', '488243256161730560', '592059865673760768');
+INSERT INTO `t_sys_permission_role` VALUES ('d1185313-dbb5-4e2e-ae36-d3ef2f53fe1c', '488243256161730560', '496782496638173184');
+INSERT INTO `t_sys_permission_role` VALUES ('d2698e75-8c0a-4d5a-8c5b-83e01651bfcc', '488243256161730560', '20');
+INSERT INTO `t_sys_permission_role` VALUES ('d4ee5b8d-7f2d-45ea-87bd-4c7800437d86', '488243256161730560', '592167738407911424');
+INSERT INTO `t_sys_permission_role` VALUES ('d74f6c9d-370f-4139-b68e-a1d1ef5767be', '488243256161730560', '7');
+INSERT INTO `t_sys_permission_role` VALUES ('d8fd5bba-f851-4775-b5ce-8ee2a8b7c8e6', '488243256161730560', '610635485890478080');
+INSERT INTO `t_sys_permission_role` VALUES ('dd9e4ffb-6dd8-4929-9388-15304e6bf11f', '488243256161730560', '6');
+INSERT INTO `t_sys_permission_role` VALUES ('e11cbe6c-34e8-44af-b57a-f463112fb5a5', '488243256161730560', '12');
+INSERT INTO `t_sys_permission_role` VALUES ('e193f0db-02bf-48fd-9d5b-41d988653403', '488243256161730560', '18');
+INSERT INTO `t_sys_permission_role` VALUES ('e57becfb-15d3-4327-8976-423fe876332a', '488243256161730560', '21');
+INSERT INTO `t_sys_permission_role` VALUES ('ea71a7ad-82c8-444e-b5ba-8567a3e86742', '488243256161730560', '581541547099553792');
+INSERT INTO `t_sys_permission_role` VALUES ('eee72e5a-7637-4084-8ddd-d40bd2aa64ba', '488243256161730560', '10');
+INSERT INTO `t_sys_permission_role` VALUES ('fcace4c8-234b-471d-8027-50527a5275b3', '488243256161730560', '3303650266428252171');
 
 -- ----------------------------
 -- Table structure for t_sys_premission
@@ -306,6 +269,11 @@ INSERT INTO `t_sys_premission` VALUES ('20', '文件添加', '文件添加', '/F
 INSERT INTO `t_sys_premission` VALUES ('21', '文件删除', '文件删除', '/FileController/remove', '0', '19', 'system:file:remove', '2', 'entypo-trash', null);
 INSERT INTO `t_sys_premission` VALUES ('22', '文件修改', '文件修改', '/FileController/edit', '0', '19', 'system:file:edit', '2', 'fa fa-wrench', null);
 INSERT INTO `t_sys_premission` VALUES ('23', '文件集合', '文件集合', '/FileController/list', '0', '19', 'system:file:list', '2', '', null);
+INSERT INTO `t_sys_premission` VALUES ('330365026642825216', '公告管理', '公告展示', '/SysNoticeController/view', '0', '592059865673760768', 'gen:sysNotice:view', '1', 'fa fa-telegram', null);
+INSERT INTO `t_sys_premission` VALUES ('3303650266428252171', '公告集合', '公告集合', '/SysNoticeController/list', '0', '330365026642825216', 'gen:sysNotice:list', '2', '', null);
+INSERT INTO `t_sys_premission` VALUES ('3303650266428252182', '公告添加', '公告添加', '/SysNoticeController/add', '0', '330365026642825216', 'gen:sysNotice:add', '2', 'entypo-plus-squared', null);
+INSERT INTO `t_sys_premission` VALUES ('3303650266428252193', '公告删除', '公告删除', '/SysNoticeController/remove', '0', '330365026642825216', 'gen:sysNotice:remove', '2', 'entypo-trash', null);
+INSERT INTO `t_sys_premission` VALUES ('3303650266428252204', '公告修改', '公告修改', '/SysNoticeController/edit', '0', '330365026642825216', 'gen:sysNotice:edit', '2', 'fa fa-wrench', null);
 INSERT INTO `t_sys_premission` VALUES ('4', '用户管理', '用户展示', '/UserController/view', '0', '592059865673760768', 'system:user:view', '1', 'icon icon-user', '1');
 INSERT INTO `t_sys_premission` VALUES ('486690002869157888', '用户密码修改', '用户密码修改', '/UserController/editPwd', '0', '4', 'system:user:editPwd', '2', 'entypo-tools', '3');
 INSERT INTO `t_sys_premission` VALUES ('496126970468237312', '日志展示', '日志管理', '/LogController/view', '0', '592059865673760768', 'system:log:view', '1', 'fa fa-info', '9');
@@ -337,7 +305,8 @@ INSERT INTO `t_sys_premission` VALUES ('610635950447394816', '全局配置', '',
 INSERT INTO `t_sys_premission` VALUES ('610983815791247360', '单表生成', '', '/autoCodeController/one', '0', '610635485890478080', 'system:autocode:one', '1', 'fa fa-hand-peace-o', null);
 INSERT INTO `t_sys_premission` VALUES ('617751079701970944', '代码生成', '代码生成', null, '0', '1', null, '0', 'fa fa-500px', '4');
 INSERT INTO `t_sys_premission` VALUES ('617766548966211584', '系统工具', '系统工具', '#', '0', '496782496638173184', '#', '1', 'fa fa-th-large', '2');
-INSERT INTO `t_sys_premission` VALUES ('617883141264113664', '代码模块', '代码模块', null, '0', '1', null, '0', 'fa fa-git', '4');
+INSERT INTO `t_sys_premission` VALUES ('619682152732164096', '测试2rr', '111', '-', '0', '619681831523975168', '-', '1', 'fa fa-address-book', '1');
+INSERT INTO `t_sys_premission` VALUES ('619683076179492864', '2222', '', '#', '0', '619681831523975168', '#', '1', 'fa fa-address-book', null);
 INSERT INTO `t_sys_premission` VALUES ('7', '用户删除', '用户删除', '/UserController/remove', '0', '4', 'system:user:remove', '2', 'entypo-trash', null);
 INSERT INTO `t_sys_premission` VALUES ('8', '用户修改', '用户修改', '/UserController/edit', '0', '4', 'system:user:edit', '2', 'fa fa-wrench', null);
 INSERT INTO `t_sys_premission` VALUES ('9', '角色管理', '角色展示', '/RoleController/view', '0', '592059865673760768', 'system:role:view', '1', 'fa fa-group', '2');

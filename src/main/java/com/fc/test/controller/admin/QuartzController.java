@@ -2,8 +2,6 @@ package com.fc.test.controller.admin;
 
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.quartz.QuartzScheduler;
-import com.fc.test.model.custom.TitleVo;
-
 import io.swagger.annotations.Api;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;

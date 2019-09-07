@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.test.mapper.auto.SysNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.SysNotice">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_username" jdbcType="VARCHAR" property="createUsername" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+<sql id="Base_Column_List">
+	  	  	      	id,
+       	  	      	title,
+       	  	      	content,
+       	  	      	type,
+       	  	      	create_id,
+       	  	      	create_username,
+       	  	    	  	create_time
+       	</sql>
+  <select id="selectByExample" parameterType="com.fc.test.model.auto.SysNoticeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sys_notice
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_notice
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_sys_notice
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.SysNoticeExample">
+    delete from t_sys_notice
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="com.fc.test.model.auto.SysNotice">
+    insert into t_sys_notice (
+      	  	       id,
+       	  	       title,
+       	  	       content,
+       	  	       type,
+       	  	       create_id,
+       	  	       create_username,
+       	  	    	  create_time
+       	    )
+    values (
+	  	  	      	#{id,jdbcType=VARCHAR},
+       	  	      	#{title,jdbcType=VARCHAR},
+       	  	      	#{content,jdbcType=VARCHAR},
+       	  	      	#{type,jdbcType=INTEGER},
+       	  	      	#{createId,jdbcType=VARCHAR},
+       	  	      	#{createUsername,jdbcType=VARCHAR},
+       	  	    	  #{createTime,jdbcType=TIMESTAMP}
+       	    )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.fc.test.model.auto.SysNotice">
+    insert into t_sys_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+          
+      <if test="id != null">
+        id,
+      </if>
+      
+         
+      <if test="title != null">
+        title,
+      </if>
+      
+         
+      <if test="content != null">
+        content,
+      </if>
+      
+         
+      <if test="type != null">
+        type,
+      </if>
+      
+         
+      <if test="createId != null">
+        create_id,
+      </if>
+      
+         
+      <if test="createUsername != null">
+        create_username,
+      </if>
+      
+         
+      <if test="createTime != null">
+        create_time,
+      </if>
+      
+         </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+          <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+          <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+          <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+          <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+          <if test="createUsername != null">
+        #{createUsername,jdbcType=VARCHAR},
+      </if>
+          <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="com.fc.test.model.auto.SysNoticeExample" resultType="java.lang.Long">
+    select count(*) from t_sys_notice
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_sys_notice
+    <set>
+          <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+          <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+          <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+          <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+          <if test="record.createId != null">
+        create_id = #{record.createId,jdbcType=VARCHAR},
+      </if>
+          <if test="record.createUsername != null">
+        create_username = #{record.createUsername,jdbcType=VARCHAR},
+      </if>
+          <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+         
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  <update id="updateByExample" parameterType="map">
+    update t_sys_notice
+    set
+            	     	 id = #{record.id,jdbcType=VARCHAR},
+    	         	     	 title = #{record.title,jdbcType=VARCHAR},
+    	         	     	 content = #{record.content,jdbcType=VARCHAR},
+    	         	     	 type = #{record.type,jdbcType=INTEGER},
+    	         	     	 create_id = #{record.createId,jdbcType=VARCHAR},
+    	         	     	 create_username = #{record.createUsername,jdbcType=VARCHAR},
+    	         	     	 create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    	         <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.SysNotice">
+    update t_sys_notice
+    <set>
+                          <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+                      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+                      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+                      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+                      <if test="createUsername != null">
+        create_username = #{createUsername,jdbcType=VARCHAR},
+      </if>
+                      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+              </set>
+    where 
+            id = #{id,jdbcType=VARCHAR}
+                                                          
+  </update>
+
+      	      	   	      	   	      	   	      	   	      	   	      	   	      	
+
+  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.SysNotice">
+    update t_sys_notice
+    set 
+             	        	    	 			title = #{title,jdbcType=VARCHAR},
+		     	        	    	 			content = #{content,jdbcType=VARCHAR},
+		     	        	    	 			type = #{type,jdbcType=INTEGER},
+		     	        	    	 			create_id = #{createId,jdbcType=VARCHAR},
+		     	        	    	 			create_username = #{createUsername,jdbcType=VARCHAR},
+		     	        	    	 			create_time = #{createTime,jdbcType=TIMESTAMP}
+		     	        where 
+            id = #{id,jdbcType=VARCHAR}
+                                                            
+  </update>
+  
+                                       
+</mapper>

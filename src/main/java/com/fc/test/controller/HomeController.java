@@ -2,6 +2,8 @@ package com.fc.test.controller;
 
 import io.swagger.annotations.ApiOperation;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fc.test.common.base.BaseController;
+import com.fc.test.model.auto.SysNotice;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.TitleVo;
@@ -42,6 +45,9 @@ public class HomeController extends BaseController{
     	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
     	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
     	request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname());
+    	//获取公告信息
+    	List<SysNotice>  notices=sysNoticeService.getuserNoticeNotRead(ShiroUtils.getUser(),0);
+    	request.getSession().setAttribute("notices",notices);
 		return "admin/index";
 	}
 	
