@@ -3,7 +3,6 @@ package ${globalConfig.parentPack}.controller.gen;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +30,7 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
 	
 	@GetMapping("view")
 	@RequiresPermissions("gen:${TsysTables.tableModel_a}:view")
-    public String view(Model model)
+    public String view(ModelMap model)
     {	
 		String str="${TsysTables.tableComment}";
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
@@ -62,7 +61,7 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
 	@PostMapping("add")
 	@RequiresPermissions("gen:${TsysTables.tableModel_a}:add")
 	@ResponseBody
-	public AjaxResult add(${TsysTables.tableModel} ${TsysTables.tableModel_a},Model model){
+	public AjaxResult add(${TsysTables.tableModel} ${TsysTables.tableModel_a}){
 		int b=${TsysTables.tableModel_a}Service.insertSelective(${TsysTables.tableModel_a});
 		if(b>0){
 			return success();
