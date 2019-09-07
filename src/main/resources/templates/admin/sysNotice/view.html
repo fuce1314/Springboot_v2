@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head th:replace="admin/common/html/tableHead :: head(~{::title},~{::link},~{::style})">
+
+<title th:text=${title}></title>
+<!-- 这儿引用单独的css link -->
+<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
+<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
+<!-- bootstrap-table表单样式 -->
+<link th:href="@{/static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
+<!-- 用户界面自定义css -->
+<link th:href="@{/static/admin/user/css/user-add.css}" rel="stylesheet"/>
+
+<style type="text/css"></style>
+</head>
+
+<body>
+
+<div class="content-wrap">
+		<div class="col-sm-12">
+			
+			<div class="blog-list-nest">
+                       
+                        <div class="blog-list-content">
+                            <h2 th:text="${notice.title}">标题</h2>
+                             <p> <b th:text="${notice.createTime}">2017-11-11 09:30:00</b> </p>
+                             <hr>
+                             <div class="body-nest">
+                             	 <th:block th:utext="${notice.content}">
+                            		内容
+                           		 </th:block>
+                             </div>
+                             <p class="pull-right">
+                                <span class="label label-default" th:text="${notice.createUsername}"></span>
+                             </p>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+			
+		</div>
+</div>
+
+</body>
+
+
+</html>

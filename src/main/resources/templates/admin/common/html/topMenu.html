@@ -39,31 +39,31 @@
 	                    <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
 	                        <li>
 	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/1.jpg(path=${rootPath})}">Jhon Doe <b>Just Now</b>
+	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/1.jpg}">Jhon Doe <b>Just Now</b>
 	                            </a>
 	                        </li>
 	                        <li class="divider"></li>
 	                        <li>
 	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/women/1.jpg(path=${rootPath})} ">Jeniffer <b>3 Min Ago</b>
+	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/women/1.jpg} ">Jeniffer <b>3 Min Ago</b>
 	                            </a>
 	                        </li>
 	                        <li class="divider"></li>
 	                        <li>
 	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/2.jpg(path=${rootPath})}">Dave <b>2 Hours Ago</b>
+	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/2.jpg}">Dave <b>2 Hours Ago</b>
 	                            </a>
 	                        </li>
 	                        <li class="divider"></li>
 	                        <li>
 	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/3.jpg(path=${rootPath})}"><i>Keanu</i>  <b>1 Day Ago</b>
+	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/3.jpg}"><i>Keanu</i>  <b>1 Day Ago</b>
 	                            </a>
 	                        </li>
 	                        <li class="divider"></li>
 	                        <li>
 	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/4.jpg(path=${rootPath})}"><i>Masashi</i>  <b>2 Mounth Ago</b>
+	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/4.jpg}"><i>Masashi</i>  <b>2 Mounth Ago</b>
 	                            </a>
 	                        </li>
 	                        <li class="divider"></li>
@@ -76,40 +76,19 @@
 	                <!-- 右边警告图标通知栏 -->
 	                <li>
 	
-	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green">5</div></a>
+	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green" th:text="${session.notices.size()}">5</div></a>
 	                    <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
+	                        <th:block th:each="notice : ${session.notices}">
+								<li>
+									<!-- <a th:href="@{/SysNoticeController/viewinfo/}+${notice.id}"  target="mainFrame"> -->
+		                            <a th:href="@{/SysNoticeController/viewUser}"  target="mainFrame">
+		                                <span style="background:#DF2135" class="noft-icon fontawesome-comments-alt"></span><i th:text="${notice.title}">From Station</i> <b>查看</b>
+		                            </a>
+	                        	</li>
+	                        	<li class="divider"></li>
+							</th:block>
 	                        <li>
-	                            <a href="#">
-	                                <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>From Station</i>  <b>01B</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Departing at</i>  <b>9:00 AM</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Delay for</i>  <b>09 Min</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <span style="background:#86C440" class="noft-icon maki-airport"></span><i>Take of</i>  <b>08:30 AM</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Take of</i>  <b>08:30 AM</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <div>See All Notification</div>
+	                           <a th:href="@{/SysNoticeController/viewUser}" target="mainFrame"> <div>查看所有公告</div></a>
 	                        </li>
 	                    </ul>
 	                </li>
@@ -170,7 +149,7 @@
 	                <!-- 头像设置 -->
 	                <li>
 	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-	                        <img alt="" class="admin-pic img-circle" th:src="@{{path}/static/admin/portraits/thumb/men/10.jpg(path=${rootPath})}"><span th:text="${'Hi,'+session.sessionUserName}"></span><b class="caret"></b>
+	                        <img alt="" class="admin-pic img-circle" th:src="@{/static/admin/portraits/thumb/men/10.jpg}"><span th:text="${'Hi,'+session.sessionUserName}"></span><b class="caret"></b>
 	                    </a>
 	                    <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
 	                        <li>
@@ -187,7 +166,7 @@
 	                        </li>
 	                        <li class="divider"></li>
 	                        <li>
-	                 				<a th:href="@{{path}/Loginout(path=${rootPath})}">
+	                 				<a th:href="@{/Loginout}">
 	                                <span class="entypo-basket"></span>&#160;&#160; 退出</a>
 	                        </li>
 	                    </ul>

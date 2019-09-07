@@ -55,8 +55,8 @@
                                 <div class="form_left">
                                     <form role="form" class="form-inline">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2" class="sr-only">搜索名字</label>
-                                            <input type="text" name="searchTxt" placeholder="搜索名字"class="form-control">
+                                            <label for="exampleInputEmail2" class="sr-only">搜索标题</label>
+                                            <input type="text" name="searchTxt" placeholder="搜索标题"class="form-control">
                                         </div>
                                         <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
                                     </form>
@@ -138,23 +138,13 @@
 
 <script type="text/javascript">
 
-   #set( $pklag = false)
-   #set( $pkfield = '' )
-   #set ( $pk_column_name = '' )
-   #foreach ($column in $beanColumns)
-	   #if(${column.column_key} == 'PRI')
-	   	#set( $pklag = true )
-	   	#set( $pkfield = $column.beanName_A )
-	   	#set( $pk_column_name=$column.column_name)
-	   #end
-   #end
-
+      	   	      	      	      	      	      	      	      
 <!-- 导出 -->
-var dataUrl=window.rootPath+"/${TsysTables.tableModel}Controller/list";
-var removeUrl=window.rootPath+"/${TsysTables.tableModel}Controller/remove";
-var createUrl=window.rootPath+"/${TsysTables.tableModel}Controller/add";
-var updateUrl=window.rootPath+"/${TsysTables.tableModel}Controller/edit/{id}";
-var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
+var dataUrl=window.rootPath+"/SysNoticeController/list";
+var removeUrl=window.rootPath+"/SysNoticeController/remove";
+var createUrl=window.rootPath+"/SysNoticeController/add";
+var updateUrl=window.rootPath+"/SysNoticeController/edit/{id}";
+var exportUrl=window.rootPath+"/SysNoticeController/export";
   var options = {
 		dataUrl: dataUrl,
         createUrl: createUrl,
@@ -162,22 +152,79 @@ var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
         removeUrl:removeUrl,
         exportUrl: exportUrl,
         sortName: "roleSort",
-        modalName: "${TsysTables.tableComment}",
+        modalName: "公告",
         search: false,
 	   dataColumns: [
 			{
 			    checkbox: true
 			},
-#foreach ($column in $beanColumns)
 			{
-			    field: '${column.beanName}',
-			    title: '${column.column_comment}',
+			    field: 'id',
+			    title: '主键',
+			    visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'title',
+			    title: '标题',
 			    //visible: false, //隐藏
 			    //searchable: false,//搜索
 			    //sortable:false,//设置true为允许列可以排序
 			    //order: asc //排序顺序
 			},
-#end
+			{
+			    field: 'content',
+			    title: '内容',
+			    formatter: function (value, row, index) {
+			        var actions = [];
+			        var len=value.length;
+			        if(len>10){
+			        	 actions.push(value.substring(0,8)+"...");
+			        }else{
+			        	 actions.push(value);
+			        }
+			      	return actions.join('');			    
+				 }
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'type',
+			    title: '类型',
+			    formatter: function (value, row, index) {
+			        var actions = [];
+			        if(value==1){
+			        	 actions.push('<span class="label label-primary">一般</span>');
+			        }else if(value==2){
+			        	 actions.push('<span class="label label-danger">重要</span>');
+			        }
+			      	return actions.join('');			    
+				 }
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'createUsername',
+			    title: '创建人',
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'createTime',
+			    title: '创建时间',
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
 
 /*	
 参照修改注释
@@ -200,11 +247,8 @@ var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
 			    formatter: function (value, row, index) {
 			        var id = row.id;
 			        var actions = [];
-			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.${pk_column_name} + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.${pk_column_name} + '\')"><i class="fa fa-remove"></i>删除</a>');
+			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
 			        return actions.join('');
-			
-			        //return '<a class="btn btn-xs btn-danger" onclick="delPermission(' + "'" + ${pk_column_name} + "'" + ')"><i class="fa fa-remove"></i>删除</a>';
 			    }
 			}]
   };
@@ -212,6 +256,35 @@ $(function(){
 	var oTab=$.table.oTableInit(options);
 	oTab.Init();
 })
+
+$.modal.open=function(title, url, width, height) {
+    if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+        width = "auto";
+        height = "auto";
+    }
+    if ($.common.isEmpty(title)) {
+        title = false;
+    }
+    if ($.common.isEmpty(url)) {
+        url = "404.html";
+    }
+    if ($.common.isEmpty(width)) {
+        width = 800;
+    }
+    if ($.common.isEmpty(height)) {
+        height = ($(window).height() - 50);
+    }
+    var perContent =layer.open({
+        type: 2,
+        area: ['100%', '100%'],
+        fix: false,
+        maxmin: true,
+        shade: 0.3,
+        title: title,
+        content: url
+    })
+    layer.full(perContent);
+}
 </script>
 
 </body>
