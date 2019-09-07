@@ -1,10 +1,9 @@
 package com.fc.test.controller.admin;
 
 import io.swagger.annotations.Api;
-
+import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.auto.TsysRole;
+import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
@@ -139,12 +139,15 @@ public class RoleController extends BaseController{
     @RequiresPermissions("system:user:edit")
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(TsysRole tsysRole,String prem)
+    public AjaxResult editSave(TsysRole tsysRole,String prem,HttpServletRequest request)
     {
     	int i=sysRoleService.updateRoleAndPrem(tsysRole,prem);
     	if(i>0) {
     		//大于0刷新权限
     		ShiroUtils.clearCachedAuthorizationInfo();
+    		//获取菜单栏
+        	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
+        	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
     	}
 		
         return toAjax(i);
