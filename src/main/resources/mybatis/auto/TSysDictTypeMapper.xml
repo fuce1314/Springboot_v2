@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.test.mapper.auto.TSysDictTypeMapper">
+  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TSysDictType" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="dict_id" property="dictId" jdbcType="BIGINT" />
+    <result column="dict_name" property="dictName" jdbcType="VARCHAR" />
+    <result column="dict_type" property="dictType" jdbcType="VARCHAR" />
+    <result column="status" property="typeStatus" jdbcType="CHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+<sql id="Base_Column_List" >
+	id,dict_id,dict_name,dict_type,status,create_by,create_time,update_by,update_time,remark
+</sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.test.model.auto.TSysDictTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sys_dict_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_dict_type
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="Long" >
+    delete from t_sys_dict_type
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </delete>
+
+  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TSysDictTypeExample" >
+    delete from t_sys_dict_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="com.fc.test.model.auto.TSysDictType" >
+    insert into t_sys_dict_type (
+      	  	       id,
+       	  	       dict_id,
+       	  	       dict_name,
+       	  	       dict_type,
+       	  	       status,
+       	  	       create_by,
+       	  	       create_time,
+       	  	       update_by,
+       	  	       update_time,
+       	  	    	  remark
+       	    )
+    values (
+	  	  	      	#{id,jdbcType=VARCHAR},
+       	  	      	#{dictId,jdbcType=BIGINT},
+       	  	      	#{dictName,jdbcType=VARCHAR},
+       	  	      	#{dictType,jdbcType=VARCHAR},
+       	  	      	#{typeStatus,jdbcType=CHAR},
+       	  	      	#{createBy,jdbcType=VARCHAR},
+       	  	      	#{createTime,jdbcType=TIMESTAMP},
+       	  	      	#{updateBy,jdbcType=VARCHAR},
+       	  	      	#{updateTime,jdbcType=TIMESTAMP},
+       	  	    	  #{remark,jdbcType=VARCHAR}
+       	    )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TSysDictType" >
+    insert into t_sys_dict_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          
+      <if test="id != null" >
+        id,
+      </if>
+      
+         
+      <if test="dictId != null" >
+        dict_id,
+      </if>
+      
+         
+      <if test="dictName != null" >
+        dict_name,
+      </if>
+      
+         
+      <if test="dictType != null" >
+        dict_type,
+      </if>
+      
+         
+      <if test="typeStatus != null" >
+        status,
+      </if>
+      
+         
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      
+         
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      
+         
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      
+         
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      
+         
+      <if test="remark != null" >
+        remark,
+      </if>
+      
+         </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+          <if test="dictId != null" >
+        #{dictId,jdbcType=BIGINT},
+      </if>
+          <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+          <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+          <if test="typeStatus != null" >
+        #{typeStatus,jdbcType=CHAR},
+      </if>
+          <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+          <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+          <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+          <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+          <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+        </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="com.fc.test.model.auto.TSysDictTypeExample" resultType="Long" >
+    select count(*) from t_sys_dict_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+    <select id="selectByPrimaryDictId" resultType="java.lang.String" parameterType="list">
+      select dict_id from t_sys_dict_type where id in
+      <foreach collection="idsList" item="id" index="index" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+    update t_sys_dict_type
+    <set >
+          <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+          <if test="record.dictId != null" >
+        dict_id = #{record.dictId,jdbcType=BIGINT},
+      </if>
+          <if test="record.dictName != null" >
+        dict_name = #{record.dictName,jdbcType=VARCHAR},
+      </if>
+          <if test="record.dictType != null" >
+        dict_type = #{record.dictType,jdbcType=VARCHAR},
+      </if>
+          <if test="record.typeStatus != null" >
+        status = #{record.typeStatus,jdbcType=CHAR},
+      </if>
+          <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+          <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+          <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+          <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+          <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+         
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  <update id="updateByExample" parameterType="map" >
+    update t_sys_dict_type
+    set
+            	     	 id = #{record.id,jdbcType=VARCHAR},
+    	       
+        	     	 dict_id = #{record.dictId,jdbcType=BIGINT},
+    	       
+        	     	 dict_name = #{record.dictName,jdbcType=VARCHAR},
+    	       
+        	     	 dict_type = #{record.dictType,jdbcType=VARCHAR},
+    	       
+        	     	 status = #{record.typeStatus,jdbcType=CHAR},
+    	       
+        	     	 create_by = #{record.createBy,jdbcType=VARCHAR},
+    	       
+        	     	 create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    	       
+        	     	 update_by = #{record.updateBy,jdbcType=VARCHAR},
+    	       
+        	     	 update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    	       
+        	     	 remark = #{record.remark,jdbcType=VARCHAR},
+    	       
+        <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+    <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TSysDictType" >
+    update t_sys_dict_type
+    <set >
+                <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+                                <if test="dictName != null" >
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+                      <if test="dictType != null" >
+        dict_type = #{dictType,jdbcType=VARCHAR},
+      </if>
+                      <if test="typeStatus != null" >
+        status = #{typeStatus,jdbcType=CHAR},
+      </if>
+                      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+                      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+                      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+                      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+                      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+              </set>
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TSysDictType" >
+    update t_sys_dict_type
+    set 
+             	    	 			id = #{id,jdbcType=VARCHAR}
+		     	        	        	    	 			dict_name = #{dictName,jdbcType=VARCHAR}
+		     	        	    	 			dict_type = #{dictType,jdbcType=VARCHAR}
+		     	        	    	 			status = #{typeStatus,jdbcType=CHAR}
+		     	        	    	 			create_by = #{createBy,jdbcType=VARCHAR}
+		     	        	    	 			create_time = #{createTime,jdbcType=TIMESTAMP}
+		     	        	    	 			update_by = #{updateBy,jdbcType=VARCHAR}
+		     	        	    	 			update_time = #{updateTime,jdbcType=TIMESTAMP}
+		     	        	    	 			remark = #{remark,jdbcType=VARCHAR}
+		     	        where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+   </mapper>
