@@ -88,8 +88,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 		if(principals == null){  
 	       throw new AuthorizationException("principals should not be null");  
 	    }
-		
-		Gson gson=new Gson();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		TsysUser userinfo  = (TsysUser)principals.getPrimaryPrincipal();
 		String uid=userinfo.getId();
