@@ -14,10 +14,6 @@
 /**
 *这里写单独的css样式
 */
-.select-list ul li{
-	list-style-type: none;
-	float: left;
-}
 </style>
 
 </head>
@@ -92,11 +88,11 @@
                                <button onclick="$.operate.batRemove()" type="button" class="btn btn-info">
                                     <span class="entypo-trash"></span>&nbsp;&nbsp;删除
                                </button>
-                                <button onclick="back()" type="button" class="btn btn-info">
-                                    <span class="entypo-trash"></span>&nbsp;&nbsp;返回上一页
+                                <button onclick="back()" type="button" class="btn btn-success">
+                                    <span class="entypo-back"></span>&nbsp;&nbsp;返回上一页
                                 </button>
-                                <button onclick="backType()" type="button" class="btn btn-info">
-                                    <span class="entypo-trash"></span>&nbsp;&nbsp;返回字典类型
+                                <button onclick="backType()" type="button" class="btn btn-default">
+                                    <span class="entypo-reply-all"></span>&nbsp;&nbsp;返回字典类型
                                 </button>
                            </div>
                             <!-- 工具条 end-->
@@ -171,7 +167,7 @@ var typeUrl=window.rootPath+"/DictTypeController/view";
            {
                field: 'id',
                title: '雪花键',
-               visible: false
+               
            },
 			{
 			    field: 'dictCode',
