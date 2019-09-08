@@ -2,6 +2,8 @@ package com.fc.test.controller.admin;
 
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.quartz.QuartzScheduler;
+import com.fc.test.common.quartz.entity.SysJob;
+import com.fc.test.model.custom.TitleVo;
 import io.swagger.annotations.Api;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,18 +29,6 @@ public class QuartzController extends BaseController{
 	private QuartzScheduler scheduler;
 
 
-	/**
-	 * 调用这个方法开启任务调度
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("start")
-	@ResponseBody
-    public String start(Model model)
-    {
-		scheduler.startJob();
-		return "success";
-    }
 
 
 	/**
@@ -48,9 +38,9 @@ public class QuartzController extends BaseController{
 	 */
 	@GetMapping("stop")
 	@ResponseBody
-	public Object stop(Model model,String taskName,String groupName)
+	public Object stop(Model model, SysJob job)
 	{
-	return  scheduler.pauseJob(taskName,groupName);
+	return  scheduler.pauseJob(job);
 
 	}
 
@@ -62,9 +52,9 @@ public class QuartzController extends BaseController{
 	 */
 	@GetMapping("resume")
 	@ResponseBody
-	public Object resume(Model model,String taskName,String groupName)
+	public Object resume(Model model,SysJob job)
 	{
-	return  scheduler.resumeJob(taskName,groupName);
+	return  scheduler.resumeJob(job);
 
 	}
 
@@ -76,15 +66,27 @@ public class QuartzController extends BaseController{
 	 */
 	@GetMapping("update")
 	@ResponseBody
-	public String update(Model model,String taskName,String groupName,String cron)
+	public String update(Model model,SysJob job)
 	{
-		try {
-			scheduler.modifyJob(taskName,groupName,cron);
-		} catch (SchedulerException e) {
-			e.printStackTrace();
-			return "fail";
-		}
+
+		scheduler.modifyJob(job);
+
 		return "success";
 	}
 
+
+	/**
+	 * 删除定时器
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("delete")
+	@ResponseBody
+	public String delete(Model model,SysJob job)
+	{
+
+		scheduler.deleteJob(job);
+
+		return "success";
+	}
 }

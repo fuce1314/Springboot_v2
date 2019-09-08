@@ -1,4 +1,4 @@
-package com.fc.test.controller.admin;
+ package com.fc.test.controller.admin;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,8 @@ public class SysNoticeController extends BaseController{
 	private String prefix = "admin/sysNotice";
 	@Autowired
 	private SysNoticeService sysNoticeService;
+	
+	
 	
 	@GetMapping("view")
 	@RequiresPermissions("gen:sysNotice:view")
@@ -141,8 +143,12 @@ public class SysNoticeController extends BaseController{
     public String viewinfo(@PathVariable("id") String id,ModelMap mmap)
     {
         
+		String str="公告";
+		setTitle(mmap, new TitleVo("详情", str+"列表", true,"欢迎进入"+str+"详情页面", true, false));
 		SysNotice notice= sysNoticeService.selectByPrimaryKey(id);
 		mmap.addAttribute("notice", notice);
+		//把推送给该用户的公告设置为已读
+		sysNoticeService.editUserState(id);
         return prefix + "/view";
     }
 	
