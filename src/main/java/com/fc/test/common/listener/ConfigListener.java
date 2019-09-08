@@ -1,6 +1,6 @@
 package com.fc.test.common.listener;
 
-import com.fc.test.quartz.QuartzScheduler;
+import com.fc.test.common.quartz.QuartzScheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
@@ -19,8 +19,6 @@ import java.util.Map;
 @WebListener
 public class ConfigListener implements ServletContextListener {
 
-    @Autowired
-    private QuartzScheduler scheduler;
     private static Map<String, String> conf = new HashMap<>();
 
     public static Map<String, String> getConf() {
@@ -42,8 +40,6 @@ public class ConfigListener implements ServletContextListener {
         //servletContextPath,默认""
         conf.put("contextPath", sc.getContextPath());
 
-        //开启定时调度
-      //  scheduler.startJob();
     }
 
 }
