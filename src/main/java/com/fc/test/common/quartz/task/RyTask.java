@@ -3,6 +3,7 @@ package com.fc.test.common.quartz.task;
 import org.springframework.stereotype.Component;
 
 /**
+ *测试类
  * @CLASSNAME   RyTask
  * @Description 定时调度具体工作类
  * @Auther Jan  橙寂

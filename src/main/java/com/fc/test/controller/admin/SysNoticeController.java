@@ -141,6 +141,8 @@ public class SysNoticeController extends BaseController{
     public String viewinfo(@PathVariable("id") String id,ModelMap mmap)
     {
         
+		String str="公告";
+		setTitle(mmap, new TitleVo("详情", str+"列表", true,"欢迎进入"+str+"详情页面", true, false));
 		SysNotice notice= sysNoticeService.selectByPrimaryKey(id);
 		mmap.addAttribute("notice", notice);
         return prefix + "/view";

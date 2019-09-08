@@ -81,7 +81,7 @@
 	                        <th:block th:each="notice : ${session.notices}">
 								<li>
 									<!-- <a th:href="@{/SysNoticeController/viewinfo/}+${notice.id}"  target="mainFrame"> -->
-		                            <a th:href="@{/SysNoticeController/viewUser}"  target="mainFrame">
+		                            <a th:href="@{/SysNoticeController/viewinfo/}+${notice.id}"  target="mainFrame">
 		                                <span style="background:#DF2135" class="noft-icon fontawesome-comments-alt"></span><i th:text="${notice.title}">From Station</i> <b>查看</b>
 		                            </a>
 	                        	</li>
