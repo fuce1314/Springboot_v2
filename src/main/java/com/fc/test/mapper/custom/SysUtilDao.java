@@ -1,8 +1,5 @@
 package com.fc.test.mapper.custom;
 
-import java.util.List;
-import java.util.Map;
-
 import com.fc.test.model.custom.SQLAdapter;
 
 /**
