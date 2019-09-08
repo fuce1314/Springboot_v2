@@ -34,6 +34,4 @@ public interface TSysDictTypeMapper {
     int updateByPrimaryKeySelective(TSysDictType record);
 
     int updateByPrimaryKey(TSysDictType record);
-
-    List<String> selectByPrimaryDictId(@Param("idsList") List<String> idsList);
 }

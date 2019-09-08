@@ -5,8 +5,10 @@ import java.util.List;
 
 import com.fc.test.common.support.Convert;
 import com.fc.test.mapper.auto.TSysDictDataMapper;
+import com.fc.test.mapper.auto.TSysDictTypeMapper;
 import com.fc.test.model.auto.TSysDictData;
 import com.fc.test.model.auto.TSysDictDataExample;
+import com.fc.test.model.auto.TSysDictType;
 import com.fc.test.shiro.util.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,8 @@ import com.fc.test.util.SnowflakeIdWorker;
 public class SysDictDataService implements BaseService<TSysDictData, TSysDictDataExample>{
 	@Autowired
 	private TSysDictDataMapper tSysDictDataMapper;
-	
+	@Autowired
+	private TSysDictTypeMapper tSysDictTypeMapper;
 	/**
 	 * 分页查询
 	 * @param pageNum
@@ -37,11 +40,13 @@ public class SysDictDataService implements BaseService<TSysDictData, TSysDictDat
 	 */
 	 public PageInfo<TSysDictData> list(Tablepar tablepar,String name,String dictId){
 	        TSysDictDataExample testExample=new TSysDictDataExample();
-
+		    testExample.setOrderByClause("dict_sort ASC");
 		    if(dictId!=null&&!"".equals(dictId)){
-			   testExample.createCriteria().andDictIdEqualTo(Long.parseLong(dictId));
-		    }
-		     testExample.setOrderByClause("dict_sort ASC");
+		    	TSysDictType dictType= tSysDictTypeMapper.selectByPrimaryKey(dictId);
+		    	if(dictType!=null) {
+		    		 testExample.createCriteria().andDictTypeEqualTo(dictType.getDictType());
+		    	}
+			}
 	        if(name!=null&&!"".equals(name)){
 	        	testExample.createCriteria().andDictValueLike("%"+name+"%");
 	        }
@@ -70,7 +75,7 @@ public class SysDictDataService implements BaseService<TSysDictData, TSysDictDat
 		record.setId(SnowflakeIdWorker.getUUID());
 		record.setCreateTime(new Date());
 		record.setUpdateTime(new Date());
-		record.setCreateBy(ShiroUtils.getUser().getNickname());
+		record.setCreateBy(ShiroUtils.getUser().getUsername());
 		return tSysDictDataMapper.insertSelective(record);
 	}
 
@@ -82,7 +87,7 @@ public class SysDictDataService implements BaseService<TSysDictData, TSysDictDat
 	@Override
 	public int updateByPrimaryKeySelective(TSysDictData record) {
 		record.setUpdateTime(new Date());
-		record.setUpdateBy(ShiroUtils.getUser().getNickname());
+		record.setUpdateBy(ShiroUtils.getUser().getUsername());
 		return tSysDictDataMapper.updateByPrimaryKeySelective(record);
 	}
 
@@ -132,10 +137,15 @@ public class SysDictDataService implements BaseService<TSysDictData, TSysDictDat
 		return list.size();
 	}
 
-
+	/**
+	 * 批量删除
+	 * @param dictIds
+	 * @author fuce
+	 * @Date 2019年9月9日 上午12:40:52
+	 */
 	public void deleteByPrimaryDictIds(List<String> dictIds) {
 		TSysDictDataExample example=new TSysDictDataExample();
-		example.createCriteria().andDictIdIn(dictIds);
+		example.createCriteria().andIdIn(dictIds);
 		tSysDictDataMapper.deleteByExample(example);
 	}
 }

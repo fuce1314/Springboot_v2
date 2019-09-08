@@ -155,7 +155,7 @@ var dictDataUrl=window.rootPath+"/DictDataController/view";
         updateUrl: updateUrl,
         removeUrl:removeUrl,
         exportUrl: exportUrl,
-      dictDataUrl: dictDataUrl,
+        dictDataUrl: dictDataUrl,
         sortName: "roleSort",
         modalName: "字典类型表",
         search: false,
@@ -163,12 +163,8 @@ var dictDataUrl=window.rootPath+"/DictDataController/view";
 			{
 			    checkbox: true
 			},
-           {
-               field: 'id',
-               title: '雪花键'
-           },
 			{
-			    field: 'dictId',
+			    field: 'id',
 			    title: '字典主键'
 			},
 			{
@@ -201,14 +197,6 @@ var dictDataUrl=window.rootPath+"/DictDataController/view";
 			    title: '创建时间'
 			},
 			{
-			    field: 'updateBy',
-			    title: '更新者'
-			},
-			{
-			    field: 'updateTime',
-			    title: '更新时间'
-			},
-			{
 			    field: 'remark',
 			    title: '备注'
 			},
@@ -235,7 +223,7 @@ var dictDataUrl=window.rootPath+"/DictDataController/view";
 			        var id = row.id;
                     var actions = [];
 			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-			        actions.push('<a class="btn btn-info btn-xs"  href="#" onclick="queryList(\'' + row.dictId + '\')"><i class="fa fa-list-ul"></i>查看列表</a> ');
+			        actions.push('<a class="btn btn-info btn-xs"  href="#" onclick="queryList(\'' + row.id + '\')"><i class="fa fa-list-ul"></i>查看列表</a> ');
 			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
 			        return actions.join('');
 			

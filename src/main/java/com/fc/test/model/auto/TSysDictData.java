@@ -16,19 +16,9 @@ public class TSysDictData implements Serializable {
 	
 		
 	/**
-	 * 雪花键
+	 * 字典数据表id
 	 */
 		private String id;
-		
-	/**
-	 * 字典主键
-	 */
-		private Long dictId;
-		
-	/**
-	 * 字典编码
-	 */
-		private String dictCode;
 		
 	/**
 	 * 字典排序
@@ -68,7 +58,7 @@ public class TSysDictData implements Serializable {
 	/**
 	 * 状态（0正常 1停用）
 	 */
-		private String dataStatus;
+		private String status;
 		
 	/**
 	 * 创建者
@@ -105,24 +95,6 @@ public class TSysDictData implements Serializable {
 	
 	    public void setId(String id){
 	        this.id = id == null ? null : id.trim();
-	    }
-			
-			
-		public Long getDictId () {
-	        return dictId;
-	    }
-	
-	    public void setDictId (Long dictId) {
-	        this.dictId = dictId;
-	    }
-	 
-				
-		public String getDictCode() {
-	        return dictCode;
-	    }
-	
-	    public void setDictCode(String dictCode){
-	        this.dictCode = dictCode == null ? null : dictCode.trim();
 	    }
 			
 			
@@ -187,16 +159,14 @@ public class TSysDictData implements Serializable {
 	    public void setIsDefault(String isDefault){
 	        this.isDefault = isDefault == null ? null : isDefault.trim();
 	    }
-			
-				
-		public String getDataStatus() {
-	        return dataStatus;
-	    }
-	
-	    public void setDataStatus(String dataStatus){
-	        this.dataStatus = dataStatus == null ? null : dataStatus.trim();
-	    }
-			
+	    
+	    public String getStatus() {
+			return status;
+		}
+
+		public void setStatus(String status) {
+			this.status = status == null ? null : status.trim();
+		}
 				
 		public String getCreateBy() {
 	        return createBy;

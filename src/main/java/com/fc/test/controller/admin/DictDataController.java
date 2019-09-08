@@ -1,8 +1,9 @@
 package com.fc.test.controller.admin;
 
-
 import com.fc.test.model.auto.TSysDictData;
 import com.fc.test.service.SysDictDataService;
+import com.fc.test.service.SysDictTypeService;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class DictDataController extends BaseController{
 	private String prefix = "admin/dict_data";
 	@Autowired
 	private SysDictDataService tSysDictDataService;
+	@Autowired
+	private SysDictTypeService sysDictTypeService;
 	
 	@GetMapping("view")
 	@RequiresPermissions("system:dictData:view")
@@ -57,7 +60,7 @@ public class DictDataController extends BaseController{
     @GetMapping("/add")
     public String add(ModelMap modelMap,String dictId)
     {
-		modelMap.addAttribute("dictId",dictId);
+		modelMap.addAttribute("dictType",sysDictTypeService.selectByPrimaryKey(dictId).getDictType());
         return prefix + "/add";
     }
 	
@@ -118,8 +121,8 @@ public class DictDataController extends BaseController{
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
-        mmap.put("TSysDictData", tSysDictDataService.selectByPrimaryKey(id));
-
+		TSysDictData sysDictData= tSysDictDataService.selectByPrimaryKey(id);
+        mmap.put("TSysDictData", sysDictData);
         return prefix + "/edit";
     }
 	

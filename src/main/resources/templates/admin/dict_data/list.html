@@ -163,41 +163,23 @@ var typeUrl=window.rootPath+"/DictTypeController/view";
 	   dataColumns: [
 			{
 			    checkbox: true
-			},
-           {
+			}, {
                field: 'id',
-               title: '雪花键',
+               title: '主键',
                
-           },
-			{
-			    field: 'dictCode',
-			    title: '字典编码'
-			},
-			{
+           },{
 			    field: 'dictSort',
 			    title: '字典排序'
-			},
-			{
+			},{
 			    field: 'dictLabel',
 			    title: '字典标签'
-			},
-			{
+			},{
 			    field: 'dictValue',
 			    title: '字典键值'
-			},
-			{
+			},{
 			    field: 'dictType',
 			    title: '字典类型'
-			},
-			{
-			    field: 'cssClass',
-			    title: '样式属性（其他样式扩展）'
-			},
-			{
-			    field: 'listClass',
-			    title: '表格回显样式'
-			},
-			{
+			},{
 			    field: 'isDefault',
 			    title: '是否默认',
                 formatter: function(value, item, index) {
@@ -207,8 +189,7 @@ var typeUrl=window.rootPath+"/DictTypeController/view";
                         return "否";
                     }
                 }
-			},
-			{
+			},{
 			    field: 'dataStatus',
 			    title: '状态',
                 formatter: function(value, item, index) {
@@ -218,24 +199,13 @@ var typeUrl=window.rootPath+"/DictTypeController/view";
                         return "停用";
                     }
                 }
-			},
-			{
+			},{
 			    field: 'createBy',
 			    title: '创建者'
-			},
-			{
+			},{
 			    field: 'createTime',
 			    title: '创建时间'
-			},
-			{
-			    field: 'updateBy',
-			    title: '更新者'
-			},
-			{
-			    field: 'updateTime',
-			    title: '更新时间'
-			},
-			{
+			},{
 			    field: 'remark',
 			    title: '备注'
 			},

@@ -1,16 +1,19 @@
 package com.fc.test.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import com.fc.test.shiro.util.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
+import com.fc.test.mapper.auto.TSysDictDataMapper;
 import com.fc.test.mapper.auto.TSysDictTypeMapper;
+import com.fc.test.model.auto.TSysDictDataExample;
 import com.fc.test.model.auto.TSysDictType;
 import com.fc.test.model.auto.TSysDictTypeExample;
 import com.fc.test.model.custom.Tablepar;
@@ -28,6 +31,8 @@ import com.fc.test.util.SnowflakeIdWorker;
 public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTypeExample>{
 	@Autowired
 	private TSysDictTypeMapper tSysDictTypeMapper;
+	@Autowired
+	private TSysDictDataMapper tSysDictDataMapper;
 	
 	/**
 	 * 分页查询
@@ -37,7 +42,7 @@ public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTyp
 	 */
 	 public PageInfo<TSysDictType> list(Tablepar tablepar,String name){
 	        TSysDictTypeExample testExample=new TSysDictTypeExample();
-	        testExample.setOrderByClause("id ASC");
+	        testExample.setOrderByClause("id+0 desc");
 	        if(name!=null&&!"".equals(name)){
 	        	testExample.createCriteria().andDictNameLike("%"+name+"%");
 	        }
@@ -49,11 +54,25 @@ public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTyp
 	 }
 
 	@Override
+	@Transactional
 	public int deleteByPrimaryKey(String ids) {
+		//查询type数据得data中DictType有哪些
 		List<String> lista=Convert.toListStrArray(ids);
 		TSysDictTypeExample example=new TSysDictTypeExample();
 		example.createCriteria().andIdIn(lista);
-		return tSysDictTypeMapper.deleteByExample(example);
+		List<TSysDictType> dictTypes=tSysDictTypeMapper.selectByExample(example);
+		//在删除type下面得data数据
+		List<String> datatypes=new ArrayList<String>();
+		for (TSysDictType tSysDictType : dictTypes) {
+			
+			datatypes.add(tSysDictType.getDictType());
+		}
+		TSysDictDataExample  dictDataExample=new TSysDictDataExample();
+		dictDataExample.createCriteria().andDictTypeIn(datatypes);
+		tSysDictDataMapper.deleteByExample(dictDataExample);
+		//在删除type数据
+		tSysDictTypeMapper.deleteByExample(example);
+		return 1;
 	}
 	
 	
@@ -67,7 +86,7 @@ public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTyp
 	@Override
 	public int updateByPrimaryKeySelective(TSysDictType record) {
 		record.setUpdateTime(new Date());
-		record.setUpdateBy(ShiroUtils.getUser().getNickname());
+		record.setUpdateBy(ShiroUtils.getUser().getUsername());
 		return tSysDictTypeMapper.updateByPrimaryKeySelective(record);
 	}
 	
@@ -80,18 +99,10 @@ public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTyp
 		record.setId(SnowflakeIdWorker.getUUID());
 		record.setCreateTime(new Date());
 		record.setUpdateTime(new Date());
-		record.setCreateBy(ShiroUtils.getUser().getNickname());
+		record.setCreateBy(ShiroUtils.getUser().getUsername());
 
 		return tSysDictTypeMapper.insertSelective(record);
 	}
-	
-	
-
-	
-
-	
-	
-	
 
 	
 	@Override
@@ -138,13 +149,4 @@ public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTyp
 		List<TSysDictType> list=tSysDictTypeMapper.selectByExample(example);
 		return list.size();
 	}
-
-	/**
-	 * 查询dict_id 集合
-	 * @param idsArray
-	 * @return
-	 */
-    public List<String> selectByIds(List<String> idsList) {
-		return tSysDictTypeMapper.selectByPrimaryDictId(idsList);
-    }
 }

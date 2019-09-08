@@ -1,6 +1,5 @@
 package com.fc.test.controller.admin;
 
-import com.fc.test.service.SysDictDataService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +19,6 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysDictTypeService;
 import io.swagger.annotations.Api;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 @RequestMapping("DictTypeController")
@@ -31,8 +28,6 @@ public class DictTypeController extends BaseController{
 	private String prefix = "admin/dict_type";
 	@Autowired
 	private SysDictTypeService tSysDictTypeService;
-	@Autowired
-	private SysDictDataService sysDictDataService;
 	
 	@GetMapping("view")
 	@RequiresPermissions("system:dictType:view")
@@ -86,11 +81,6 @@ public class DictTypeController extends BaseController{
 	@RequiresPermissions("system:dictType:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
-		List<String> idsList = Arrays.asList(ids.split(","));
-		List<String> dictIds = tSysDictTypeService.selectByIds(idsList);
-		if (dictIds != null && dictIds.size() >0){
-			sysDictDataService.deleteByPrimaryDictIds(dictIds);
-		}
 		int b=tSysDictTypeService.deleteByPrimaryKey(ids);
 		if(b>0){
 			return success();
@@ -141,9 +131,6 @@ public class DictTypeController extends BaseController{
     {
         return toAjax(tSysDictTypeService.updateByPrimaryKeySelective(record));
     }
-
-    
-    
 
 	
 }
