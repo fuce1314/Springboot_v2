@@ -7,13 +7,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
-import com.fc.test.mapper.auto.SysNoticeMapper;
 import com.fc.test.mapper.auto.SysNoticeUserMapper;
-import com.fc.test.model.auto.SysNotice;
-import com.fc.test.model.auto.SysNoticeExample;
 import com.fc.test.model.auto.SysNoticeUser;
 import com.fc.test.model.auto.SysNoticeUserExample;
-import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.util.SnowflakeIdWorker;
 
