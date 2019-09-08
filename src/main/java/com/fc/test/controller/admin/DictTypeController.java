@@ -1,9 +1,6 @@
 package com.fc.test.controller.admin;
 
-import com.fc.test.model.auto.TSysDictDataExample;
 import com.fc.test.service.SysDictDataService;
-import com.sun.corba.se.impl.oa.toa.TOA;
-import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +20,6 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysDictTypeService;
 import io.swagger.annotations.Api;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

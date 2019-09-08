@@ -1,3 +1,4 @@
+
 package com.fc.test.model.auto;
 
 import java.io.Serializable;
