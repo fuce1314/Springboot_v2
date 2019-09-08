@@ -1,7 +1,6 @@
 package com.fc.test.common.domain;
 
 import java.util.HashMap;
-import java.util.List;
 
 /**
 * @ClassName: AjaxResult
