@@ -226,6 +226,23 @@ public class SysNoticeService implements BaseService<SysNotice, SysNoticeExample
 		}
 		return notices;
 	}
-
+	
+	
+	/**
+	 * 根据公告id把当前用户的公告置为以查看
+	 * @param noticeid
+	 * @author fuce
+	 * @Date 2019年9月8日 下午7:14:19
+	 */
+	public void editUserState(String noticeid) {
+		//SysNoticeUser
+		SysNoticeUserExample sysNoticeUserExample=new SysNoticeUserExample();
+		sysNoticeUserExample.createCriteria().andNoticeIdEqualTo(noticeid).andUserIdEqualTo(ShiroUtils.getUserId());
+		List<SysNoticeUser> noticeUsers= sysNoticeUserMapper.selectByExample(sysNoticeUserExample);
+		for (SysNoticeUser sysNoticeUser : noticeUsers) {
+			sysNoticeUser.setState(1);
+			sysNoticeUserMapper.updateByPrimaryKey(sysNoticeUser);
+		}
+	}
 
 }
