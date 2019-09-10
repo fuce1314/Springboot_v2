@@ -312,7 +312,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		//设置选中
 		map.put("checked", true);
 		//设置展开
-		map.put("expanded", false);
+		//map.put("expanded", true);
 		// 获取角色的权限
 		List<TsysPremission> myTsysPremissions = permissionDao.queryRoleId(roleid);
 		// 获取所有的权限

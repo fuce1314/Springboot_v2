@@ -301,19 +301,19 @@ body {
     white-space: nowrap;
     border-radius: .25em;
 }
-.label-success {
+.label-success,.badge-success {
     background-color: #45B6B0!important;
 }
-.label-warning {
+.label-warning,.badge-warning {
     background-color: #FBB44C!important;
 }
-.label-important {
+.label-important,.badge-important {
     background-color: #FF6B6B!important;
 }
-.label-info {
+.label-info,.badge-info {
     background-color: #65C3DF!important;
 }
-.label-inverse {
+.label-inverse,.badge-inverse {
     background-color: #888!important;
 }
 .setting-wrap {
@@ -1562,11 +1562,6 @@ ul.topnav h4 {
     top: -10px!important;
     z-index: 2147483647;
     right: 0;
-}
-.badge {
-    border-radius: 9px 9px 9px 9px;
-    padding-left: 6px!important;
-    padding-right: 6px!important;
 }
 .navbar .brand {
     font-size: 22px !important;
