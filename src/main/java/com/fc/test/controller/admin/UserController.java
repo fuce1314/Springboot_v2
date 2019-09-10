@@ -44,7 +44,7 @@ public class UserController extends BaseController{
     }
 	
 	
-	@Log(title = "用户集合查询", action = "111")
+	
 	@PostMapping("list")
 	@RequiresPermissions("system:user:list")
 	@ResponseBody
@@ -66,7 +66,7 @@ public class UserController extends BaseController{
         return prefix + "/add";
     }
 	
-	
+    @Log(title = "用户新增", action = "111")
 	@PostMapping("add")
 	@RequiresPermissions("system:user:add")
 	@ResponseBody

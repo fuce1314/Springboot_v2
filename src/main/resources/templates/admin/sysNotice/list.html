@@ -136,10 +136,12 @@
 <!-- 遮罩层 -->
 <script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
 
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
 
       	   	      	      	      	      	      	      	      
 <!-- 导出 -->
+
+var types = [[${@dict.getType('sys_notice_type')}]];
 var dataUrl=window.rootPath+"/SysNoticeController/list";
 var removeUrl=window.rootPath+"/SysNoticeController/remove";
 var createUrl=window.rootPath+"/SysNoticeController/add";
@@ -196,13 +198,7 @@ var exportUrl=window.rootPath+"/SysNoticeController/export";
 			    field: 'type',
 			    title: '类型',
 			    formatter: function (value, row, index) {
-			        var actions = [];
-			        if(value==1){
-			        	 actions.push('<span class="label label-primary">一般</span>');
-			        }else if(value==2){
-			        	 actions.push('<span class="label label-danger">重要</span>');
-			        }
-			      	return actions.join('');			    
+			        return $.table.selectDictLabel(types, value);			    
 				 }
 			    //visible: false, //隐藏
 			    //searchable: false,//搜索

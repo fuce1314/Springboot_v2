@@ -110,8 +110,19 @@
                     url: $.table._option.dataUrl,
                     silent: true
                 })
-            }
-            
+            },
+            //回显数据字典
+            selectDictLabel: function(datas, value) {
+            	var actions = [];
+                $.each(datas, function(index, dict) {
+                    if (dict.dictValue == ('' + value)) {
+                    	var listClass = $.common.equals("default", dict.listClass) ? "" : "badge badge-" + dict.listClass;
+                    	actions.push($.common.sprintf("<span class='%s'>%s</span>", listClass, dict.dictLabel));
+                        return false;
+                    }
+                });
+                return actions.join('');
+            },
             //table参数end
 		},
 		operate:{
@@ -331,27 +342,109 @@
                 window.location.reload();
             }
         },
-        common: {
-            isEmpty: function(value) {
+        // 通用方法封装处理
+    	common: {
+    		// 判断字符串是否为空
+            isEmpty: function (value) {
                 if (value == null || this.trim(value) == "") {
-                    return true
+                    return true;
                 }
-                return false
+                return false;
             },
-            visible: function(value) {
+            // 判断一个字符串是否为非空串
+            isNotEmpty: function (value) {
+            	return !$.common.isEmpty(value);
+            },
+            // 空对象转字符串
+            nullToStr: function(value) {
+                if ($.common.isEmpty(value)) {
+                    return "-";
+                }
+                return value;
+            },
+            // 是否显示数据 为空默认为显示
+            visible: function (value) {
                 if ($.common.isEmpty(value) || value == true) {
-                    return true
+                    return true;
                 }
-                return false
+                return false;
             },
-            trim: function(value) {
+            // 空格截取
+            trim: function (value) {
                 if (value == null) {
-                    return ""
+                    return "";
                 }
-                return value.toString().replace(/(^\s*)|(\s*$)|\r|\n/g, "")
+                return value.toString().replace(/(^\s*)|(\s*$)|\r|\n/g, "");
             },
-            random: function(min, max) {
-                return Math.floor((Math.random() * max) + min)
+            // 比较两个字符串（大小写敏感）
+            equals: function (str, that) {
+            	return str == that;
+            },
+            // 比较两个字符串（大小写不敏感）
+            equalsIgnoreCase: function (str, that) {
+            	return String(str).toUpperCase() === String(that).toUpperCase();
+            },
+            // 将字符串按指定字符分割
+            split: function (str, sep, maxLen) {
+            	if ($.common.isEmpty(str)) {
+            	    return null;
+            	}
+            	var value = String(str).split(sep);
+            	return maxLen ? value.slice(0, maxLen - 1) : value;
+            },
+            // 字符串格式化(%s )
+            sprintf: function (str) {
+                var args = arguments, flag = true, i = 1;
+                str = str.replace(/%s/g, function () {
+                    var arg = args[i++];
+                    if (typeof arg === 'undefined') {
+                        flag = false;
+                        return '';
+                    }
+                    return arg;
+                });
+                return flag ? str : '';
+            },
+            // 指定随机数返回
+            random: function (min, max) {
+                return Math.floor((Math.random() * max) + min);
+            },
+            // 判断字符串是否是以start开头
+            startWith: function(value, start) {
+                var reg = new RegExp("^" + start);
+                return reg.test(value)
+            },
+            // 判断字符串是否是以end结尾
+            endWith: function(value, end) {
+                var reg = new RegExp(end + "$");
+                return reg.test(value)
+            },
+            // 数组去重
+            uniqueFn: function(array) {
+                var result = [];
+                var hashObj = {};
+                for (var i = 0; i < array.length; i++) {
+                    if (!hashObj[array[i]]) {
+                        hashObj[array[i]] = true;
+                        result.push(array[i]);
+                    }
+                }
+                return result;
+            },
+            // 数组中的所有元素放入一个字符串
+            join: function(array, separator) {
+            	if ($.common.isEmpty(array)) {
+            	    return null;
+            	}
+                return array.join(separator);
+            },
+            // 获取form下所有的字段并转换为json对象
+            formToJSON: function(formId) {
+            	 var json = {};
+                 $.each($("#" + formId).serializeArray(), function(i, field) {
+                	 json[field.name] = field.value;
+                 });
+            	return json;
             }
         },
         form: {

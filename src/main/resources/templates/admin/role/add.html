@@ -275,8 +275,8 @@ function setChildNodeUncheck(node) {
 
 	$(function() {
 
-		$('#tree').treeview({
-			levels : 1,
+		window.dd=$('#tree').treeview({
+			levels : 2,//设置默认展开级别
 			showCheckbox : 1,//这里之所以写1，是因为我引得js源码里定义1为true
 			multiSelect : 1,//这里之所以写1，是因为我引得js源码里定义1为true
 			data : getTree(),
@@ -310,7 +310,6 @@ function setChildNodeUncheck(node) {
 			}
 
 		});
-
 	})
 </script>
 
