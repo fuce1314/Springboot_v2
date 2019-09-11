@@ -1,6 +1,11 @@
 package com.fc.test.common.quartz.task;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.fc.test.mapper.auto.TsysUserMapper;
+import com.fc.test.model.auto.TsysUser;
+import com.fc.test.model.auto.TsysUserExample;
 
 /**
  *测试类
@@ -11,7 +16,8 @@ import org.springframework.stereotype.Component;
  */
 @Component("ryTask")
 public class RyTask {
-
+	@Autowired
+	private TsysUserMapper tsysUserMapper;
     /**
      * 无参的任务
      */
@@ -28,6 +34,8 @@ public class RyTask {
      */
     public void runTask2(Integer a,Long b,String c,Boolean d,Double e)
     {
+    	List<TsysUser> list=  tsysUserMapper.selectByExample(new TsysUserExample());
+    	System.err.println("用户查询num："+list.size());
         System.out.println("正在执行定时任务，带多个参数的方法"+a+"   "+b+" "+c+"  "+d+" "+e);
 
     }
