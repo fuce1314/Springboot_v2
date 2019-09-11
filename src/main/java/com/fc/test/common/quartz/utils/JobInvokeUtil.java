@@ -1,9 +1,7 @@
 package com.fc.test.common.quartz.utils;
 
-
-
 import com.fc.test.common.quartz.entity.SysJob;
-
+import com.fc.test.common.spring.SpringUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;

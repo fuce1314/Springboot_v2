@@ -30,7 +30,7 @@ public class QuartzScheduler {
     @PostConstruct
     public void init() throws SchedulerException {
         //这一块可以从数据库中查
-        for (int i=1;i<=5;i++)
+        for (int i=1;i<=1;i++)
         {
             SysJob job=new SysJob();
             job.setJobId(new Long(i));
