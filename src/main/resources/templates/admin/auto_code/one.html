@@ -449,7 +449,7 @@ function selecton(data,pid,pidstr){
 			if(parentid==pid){
     			var htmla="<span class=\"label label-important\">"+pidstr+data[i].name+"</span>";
 				selecthtml+="<option value=\""+data[i].id+"\">"+htmla+"</option>";
-				selecthtml+=selecton(data,menuid,pidstr+" ◯  ");
+				selecthtml+=selecton(data,menuid,pidstr+" ⚪ ");
 			}
 		}
 	}
