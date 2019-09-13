@@ -11,7 +11,7 @@ body {
     min-height: 100%;
     z-index: -2;
     margin: 0px !important;
-    background: url() no-repeat top center fixed;
+   	background-image:none!important;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;

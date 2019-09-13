@@ -1,7 +1,9 @@
 package com.fc.test.common.quartz.utils;
 
-import com.fc.test.common.quartz.entity.SysJob;
 import com.fc.test.common.spring.SpringUtils;
+import com.fc.test.model.auto.SysQuartzJob;
+import com.fc.test.util.StringUtils;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
@@ -19,7 +21,7 @@ public class JobInvokeUtil
      *
      * @param sysJob 系统任务
      */
-    public static void invokeMethod(SysJob sysJob) throws Exception
+    public static void invokeMethod(SysQuartzJob sysJob) throws Exception
     {
         String invokeTarget = sysJob.getInvokeTarget();
         String beanName = getBeanName(invokeTarget);

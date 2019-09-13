@@ -1,16 +1,16 @@
 package com.fc.test.common.quartz;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
-import com.fc.test.common.quartz.entity.SysJob;
-import com.fc.test.common.quartz.entity.SysJobLog;
-import com.fc.test.common.quartz.utils.StringUtils;
+import com.fc.test.model.auto.SysQuartzJob;
+import com.fc.test.model.auto.SysQuartzJobLog;
+import com.fc.test.util.StringUtils;
+
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-
 import java.util.Date;
 
 /**
@@ -32,7 +32,7 @@ public abstract class AbstractQuartzJob implements Job {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException
     {
-        SysJob sysJob = new SysJob();
+    	SysQuartzJob sysJob = new SysQuartzJob();
         BeanUtils.copyProperties(context.getMergedJobDataMap().get(ScheduleConstants.TASK_PROPERTIES),sysJob);
         try
         {
@@ -56,7 +56,7 @@ public abstract class AbstractQuartzJob implements Job {
      * @param context 工作执行上下文对象
      * @param sysJob 系统计划任务
      */
-    protected void before(JobExecutionContext context, SysJob sysJob)
+    protected void before(JobExecutionContext context, SysQuartzJob sysJob)
     {
         threadLocal.set(new Date());
     }
@@ -67,12 +67,12 @@ public abstract class AbstractQuartzJob implements Job {
      * @param context 工作执行上下文对象
      * @param sysJob 系统计划任务
      */
-    protected void after(JobExecutionContext context, SysJob sysJob, Exception e)
+    protected void after(JobExecutionContext context, SysQuartzJob sysJob, Exception e)
     {
         Date startTime = threadLocal.get();
         threadLocal.remove();
 
-        final SysJobLog sysJobLog = new SysJobLog();
+        final SysQuartzJobLog sysJobLog = new SysQuartzJobLog();
         sysJobLog.setJobName(sysJob.getJobName());
         sysJobLog.setJobGroup(sysJob.getJobGroup());
         sysJobLog.setInvokeTarget(sysJob.getInvokeTarget());
@@ -101,5 +101,5 @@ public abstract class AbstractQuartzJob implements Job {
      * @param jobExecutionContext
      * @param sysJob
      */
-    protected abstract void doExecute(JobExecutionContext jobExecutionContext, SysJob sysJob) throws Exception;
+    protected abstract void doExecute(JobExecutionContext jobExecutionContext, SysQuartzJob sysJob) throws Exception;
 }
