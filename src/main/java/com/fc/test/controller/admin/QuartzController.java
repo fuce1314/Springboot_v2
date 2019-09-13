@@ -2,7 +2,7 @@ package com.fc.test.controller.admin;
 
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.quartz.QuartzScheduler;
-import com.fc.test.common.quartz.entity.SysJob;
+import com.fc.test.model.auto.SysQuartzJob;
 import com.fc.test.model.custom.TitleVo;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class QuartzController extends BaseController{
 	 */
 	@GetMapping("stop")
 	@ResponseBody
-	public Object stop(Model model, SysJob job)
+	public Object stop(Model model, SysQuartzJob job)
 	{
 	return  scheduler.pauseJob(job);
 
@@ -60,7 +60,7 @@ public class QuartzController extends BaseController{
 	 */
 	@GetMapping("resume")
 	@ResponseBody
-	public Object resume(Model model,SysJob job)
+	public Object resume(Model model,SysQuartzJob job)
 	{
 	return  scheduler.resumeJob(job);
 
@@ -74,7 +74,7 @@ public class QuartzController extends BaseController{
 	 */
 	@GetMapping("update")
 	@ResponseBody
-	public String update(Model model,SysJob job)
+	public String update(Model model,SysQuartzJob job)
 	{
 
 		scheduler.modifyJob(job);
@@ -90,7 +90,7 @@ public class QuartzController extends BaseController{
 	 */
 	@GetMapping("delete")
 	@ResponseBody
-	public String delete(Model model,SysJob job)
+	public String delete(Model model,SysQuartzJob job)
 	{
 
 		scheduler.deleteJob(job);

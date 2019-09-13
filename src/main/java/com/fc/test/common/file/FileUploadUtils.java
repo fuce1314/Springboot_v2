@@ -2,16 +2,12 @@ package com.fc.test.common.file;
 
 import java.io.File;
 import java.io.IOException;
-
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.tomcat.util.http.fileupload.FileUploadBase.FileSizeLimitExceededException;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.exception.file.FileNameLengthLimitExceededException;
-
-import net.bytebuddy.asm.Advice.This;
 
 /**
  * 文件上传工具类

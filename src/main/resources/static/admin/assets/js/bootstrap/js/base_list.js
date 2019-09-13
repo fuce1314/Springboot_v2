@@ -191,6 +191,13 @@
                     $.modal.alertError(result.msg);
                 }
                 $.modal.closeLoading();
+            }, // post请求传输
+            post: function(url, data, callback) {
+            	$.operate.submit(url, "post", "json", data, callback);
+            },
+            // get请求传输
+            get: function(url, callback) {
+            	$.operate.submit(url, "get", "json", "", callback);
             }
             //其他方法END
 		},

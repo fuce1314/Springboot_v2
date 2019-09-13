@@ -1,9 +1,15 @@
 package com.fc.test.common.quartz;
 
-import com.fc.test.common.quartz.entity.SysJob;
 import org.quartz.*;
+import org.quartz.impl.JobDetailImpl;
+import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import com.fc.test.model.auto.SysQuartzJob;
+import com.fc.test.util.StringUtils;
+
+import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -32,17 +38,17 @@ public class QuartzScheduler {
         //这一块可以从数据库中查
         for (int i=1;i<=1;i++)
         {
-            SysJob job=new SysJob();
-            job.setJobId(new Long(i));
-            job.setJobName("测试工作");
-            job.setJobGroup("quartz");
-            job.setCronExpression("0 0/1 * * * ?");
+            SysQuartzJob job=new SysQuartzJob();
+            job.setId("332182389491109888");
+            job.setJobName("v2Task2");
+            job.setJobGroup("SYSTEM");
+            job.setCronExpression("*/6 * * * * ?");
             //并发执行
             job.setConcurrent("0");
             //0启用
-            job.setStatus("0");
+            job.setStatus(1);
             //执行的job类
-            job.setInvokeTarget("ryTask.runTask2(1,2l,'asa',true,2D)");
+            job.setInvokeTarget("v2Task.runTask2(1,2l,'asa',true,2D)");
             try {
                 //防止因为数据问题重复创建
                 if(checkJobExists(job))
@@ -78,27 +84,31 @@ public class QuartzScheduler {
      * @param job
      * @throws SchedulerException
      */
-    private void createSchedule(SysJob job) throws SchedulerException {
+    private void createSchedule(SysQuartzJob job) throws SchedulerException {
         if (!checkJobExists(job)) {
             //获取指定的job工作类
             Class<? extends Job> jobClass = getQuartzJobClass(job);
             // 通过JobBuilder构建JobDetail实例，JobDetail规定只能是实现Job接口的实例
             // JobDetail 是具体Job实例
-            JobDetail jobDetail = JobBuilder.newJob((Class<? extends Job>) jobClass).withIdentity(ScheduleConstants.TASK_PRE+job.getJobId(),job.getJobName()).build();
+            JobDetail jobDetail = JobBuilder.newJob((Class<? extends Job>) jobClass).withIdentity(ScheduleConstants.TASK_CLASS_NAME+job.getId(),job.getJobGroup()).build();
             // 基于表达式构建触发器
-            CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(TEST_CRON);
-            // CronTrigger表达式触发器 继承于Trigger
+            CronScheduleBuilder cronScheduleBuilder =null;
+            if(StringUtils.isNotEmpty(job.getCronExpression())) {
+            	cronScheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCronExpression());
+            }else {
+            	cronScheduleBuilder = CronScheduleBuilder.cronSchedule(TEST_CRON);
+            }
+           
+            // CronTrigger表达式触发器 继承于Trigger  //cronScheduleBuilder.withMisfireHandlingInstructionDoNothing()错过60分钟后不在补偿 拉下的执行次数
             // TriggerBuilder 用于构建触发器实例
-            CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity(ScheduleConstants.TASK_PRE+job.getJobId(),job.getJobName())
-                    .withSchedule(cronScheduleBuilder.withMisfireHandlingInstructionDoNothing()).build();
-
+            CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity(ScheduleConstants.TASK_CLASS_NAME+job.getId(),job.getJobGroup())
+              .withSchedule(cronScheduleBuilder.withMisfireHandlingInstructionDoNothing()).build();
             //放入参数，运行时的方法可以获取
             jobDetail.getJobDataMap().put(ScheduleConstants.TASK_PROPERTIES, job);
-
             scheduler.scheduleJob(jobDetail, cronTrigger);
-
+            
             //如果这个工作的状态为1
-            if (job.getStatus().equals("1"))
+            if (job.getStatus().equals(1))
             {
                 pauseJob(job);
             }
@@ -114,7 +124,7 @@ public class QuartzScheduler {
      * @return
      * @throws SchedulerException
      */
-    public boolean modifyJob(SysJob job) {
+    public boolean modifyJob(SysQuartzJob job) {
 
         try {
             //先删除
@@ -136,11 +146,11 @@ public class QuartzScheduler {
      * @param job
      * @return
      */
-    public boolean resumeJob(SysJob job) {
+    public boolean resumeJob(SysQuartzJob job) {
         boolean bl = false;
         try {
             //JobKey定义了job的名称和组别
-            JobKey jobKey = JobKey.jobKey(ScheduleConstants.TASK_PRE+job.getJobId(), job.getJobGroup());
+            JobKey jobKey = JobKey.jobKey(ScheduleConstants.TASK_CLASS_NAME+job.getId(), job.getJobGroup());
             if (jobKey != null) {
                 //继续任务
                 scheduler.resumeJob(jobKey);
@@ -159,11 +169,11 @@ public class QuartzScheduler {
      * @param job
      * @return
      */
-    public boolean deleteJob(SysJob job) {
+    public boolean deleteJob(SysQuartzJob job) {
         boolean bl = false;
         try {
             //JobKey定义了job的名称和组别
-            JobKey jobKey = JobKey.jobKey(ScheduleConstants.TASK_PRE+job.getJobId(), job.getJobGroup());
+            JobKey jobKey = JobKey.jobKey(ScheduleConstants.TASK_CLASS_NAME+job.getId(), job.getJobGroup());
             if (jobKey != null) {
                 //删除定时任务
                 scheduler.deleteJob(jobKey);
@@ -176,17 +186,35 @@ public class QuartzScheduler {
         }
         return bl;
     }
-
+    
+    /**
+     * 获取jobKey
+     */
+    public  JobKey getJobKey(SysQuartzJob job)
+    {
+        return JobKey.jobKey(ScheduleConstants.TASK_CLASS_NAME + job.getId(),job.getJobGroup());
+    }
+    
+    /**
+     * 立即执行任务
+     */
+    public  void run(SysQuartzJob job) throws SchedulerException
+    {
+        // 参数
+        JobDataMap dataMap = new JobDataMap();
+        dataMap.put(ScheduleConstants.TASK_PROPERTIES, job);
+        scheduler.triggerJob(getJobKey(job), dataMap);
+    }
     /**
      * 暂停任务
      * @param job
      * @return
      */
-    public boolean pauseJob(SysJob job) {
+    public boolean pauseJob(SysQuartzJob job) {
         boolean bl = false;
         try {
             //JobKey定义了job的名称和组别
-            JobKey jobKey = JobKey.jobKey(ScheduleConstants.TASK_PRE+job.getJobId(), job.getJobGroup());
+            JobKey jobKey = JobKey.jobKey(ScheduleConstants.TASK_CLASS_NAME+job.getId(), job.getJobGroup());
             //暂停任务
             if (jobKey != null) {
                 scheduler.pauseJob(jobKey);
@@ -206,8 +234,8 @@ public class QuartzScheduler {
      * @return
      * @throws SchedulerException
      */
-    public boolean checkJobExists(SysJob job) throws SchedulerException {
-        TriggerKey triggerKey = TriggerKey.triggerKey(ScheduleConstants.TASK_PRE+job.getJobId(), job.getJobGroup());
+    public boolean checkJobExists(SysQuartzJob job) throws SchedulerException {
+        TriggerKey triggerKey = TriggerKey.triggerKey(ScheduleConstants.TASK_CLASS_NAME+job.getId(), job.getJobGroup());
         return scheduler.checkExists(triggerKey);
     }
 
@@ -217,9 +245,31 @@ public class QuartzScheduler {
      * @param sysJob
      * @return
      */
-    private static Class<? extends Job> getQuartzJobClass(SysJob sysJob)
+    private static Class<? extends Job> getQuartzJobClass(SysQuartzJob sysJob)
     {
         boolean isConcurrent = "0".equals(sysJob.getConcurrent());
         return isConcurrent ? QuartzJobExecution.class : QuartzDisallowConcurrentExecution.class;
+    }
+    
+    
+    public void getquartzList() throws SchedulerException {
+
+        List<String> triggerGroupNames = scheduler.getTriggerGroupNames();
+        for (String groupName : triggerGroupNames) {
+        	 //组装group的匹配，为了模糊获取所有的triggerKey或者jobKey 
+        	GroupMatcher groupMatcher = GroupMatcher.groupEquals(groupName);
+        	//获取所有的triggerKey
+        	 Set<TriggerKey> triggerKeySet = scheduler.getTriggerKeys(groupMatcher);
+        	 for (TriggerKey triggerKey : triggerKeySet) {
+        		 //通过triggerKey在scheduler中获取trigger对象
+                 CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
+                 //获取trigger拥有的Job
+                 JobKey jobKey =trigger.getJobKey();
+                 JobDetailImpl jobDetail2 = (JobDetailImpl) scheduler.getJobDetail(jobKey);
+                 System.out.println(groupName);
+                 System.out.println(jobDetail2.getName());
+                 System.out.println(trigger.getCronExpression());
+        	 }
+        }
     }
 }

@@ -1,7 +1,8 @@
 package com.fc.test.common.quartz;
 
-import com.fc.test.common.quartz.entity.SysJob;
 import com.fc.test.common.quartz.utils.JobInvokeUtil;
+import com.fc.test.model.auto.SysQuartzJob;
+
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 
@@ -15,7 +16,7 @@ import org.quartz.JobExecutionContext;
 public class QuartzDisallowConcurrentExecution extends AbstractQuartzJob
 {
     @Override
-    protected void doExecute(JobExecutionContext context, SysJob sysJob) throws Exception
+    protected void doExecute(JobExecutionContext context, SysQuartzJob sysJob) throws Exception
     {
         JobInvokeUtil.invokeMethod(sysJob);
     }
