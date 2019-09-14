@@ -90,6 +90,10 @@
                                     <span class="entypo-trash"></span>&nbsp;&nbsp;删除
                                </button>
                                
+                               <button onclick="javascript:jobLog()" type="button" class="btn btn-warning">
+                                    <span class="entypo-list"></span>&nbsp;&nbsp;日志
+                               </button>
+                               
                            </div>
                             <!-- 工具条 end-->
                            <table id="dataTable" class="table-striped footable-res footable metro-blue" data-page-size="6">
@@ -255,6 +259,11 @@ function run(jobId) {
 	$.modal.confirm("确认要立即执行一次任务吗？", function() {
 		$.operate.post(prefix + "/run", { "id": jobId});
     })
+}
+/* 调度日志查询 */
+function jobLog() {
+	var url = window.rootPath + '/SysQuartzJobLogController/view';
+	window.location.href=url;
 }
 </script>
 

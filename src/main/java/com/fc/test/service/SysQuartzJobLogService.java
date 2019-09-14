@@ -35,7 +35,7 @@ public class SysQuartzJobLogService implements BaseService<SysQuartzJobLog, SysQ
 	 */
 	 public PageInfo<SysQuartzJobLog> list(Tablepar tablepar,String name){
 	        SysQuartzJobLogExample testExample=new SysQuartzJobLogExample();
-	        testExample.setOrderByClause("id ASC");
+	        testExample.setOrderByClause("id DESC");
 	        if(name!=null&&!"".equals(name)){
 	        	testExample.createCriteria().andJobNameLike("%"+name+"%");
 	        }

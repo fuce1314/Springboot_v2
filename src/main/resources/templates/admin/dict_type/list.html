@@ -176,16 +176,18 @@ var dictDataUrl=window.rootPath+"/DictDataController/view";
 			    title: '字典类型'
 			},
 			{
-			    field: 'typeStatus',
+			    field: 'status',
 			    title: '状态',
                 align: 'center',
                 formatter: function(value, item, index) {
-			        console.log(item)
-                    if (item.typeStatus == "0"){
-                        return "正常";
-                    }else {
-                        return "停用";
-                    }
+			        var actions = [];
+			        alert(value);
+			        if(value==0){
+			        	 actions.push('<span class="badge badge-info">正常</span>');
+			        }else if(value==1){
+			        	 actions.push('<span class="badge badge-important">停用</span>');
+			        }
+			      	return actions.join('');
                 }
 			},
 			{

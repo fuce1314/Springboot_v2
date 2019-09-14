@@ -48,27 +48,21 @@ public class QuartzJobLogController extends BaseController{
 	}
 	
 	/**
-     * 新增
-     */
+	 * 查看详情
+	 * @param modelMap
+	 * @return
+	 * @author fuce
+	 * @Date 2019年9月14日 下午11:50:42
+	 */
+	 @GetMapping("/detail/{id}")
+     public String detail(@PathVariable("id") String id,ModelMap modelMap)
+     {
+		SysQuartzJobLog log= sysQuartzJobLogService.selectByPrimaryKey(id);
+		modelMap.put("SysQuartzJobLog", log);
+        return prefix + "/detail";
+     }
+	 
 
-    @GetMapping("/add")
-    public String add(ModelMap modelMap)
-    {
-        return prefix + "/add";
-    }
-	
-	//@Log(title = "定时任务调度日志表新增", action = "111")
-	@PostMapping("add")
-	@RequiresPermissions("gen:sysQuartzJobLog:add")
-	@ResponseBody
-	public AjaxResult add(SysQuartzJobLog sysQuartzJobLog){
-		int b=sysQuartzJobLogService.insertSelective(sysQuartzJobLog);
-		if(b>0){
-			return success();
-		}else{
-			return error();
-		}
-	}
 	
 	/**
 	 * 删除用户
@@ -87,50 +81,6 @@ public class QuartzJobLogController extends BaseController{
 			return error();
 		}
 	}
-	
-	/**
-	 * 检查用户
-	 * @param tsysUser
-	 * @return
-	 */
-	@PostMapping("checkNameUnique")
-	@ResponseBody
-	public int checkNameUnique(SysQuartzJobLog sysQuartzJobLog){
-		int b=sysQuartzJobLogService.checkNameUnique(sysQuartzJobLog);
-		if(b>0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	
-	/**
-	 * 修改跳转
-	 * @param id
-	 * @param mmap
-	 * @return
-	 */
-	@GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") String id, ModelMap mmap)
-    {
-        mmap.put("SysQuartzJobLog", sysQuartzJobLogService.selectByPrimaryKey(id));
-
-        return prefix + "/edit";
-    }
-	
-	/**
-     * 修改保存
-     */
-    //@Log(title = "定时任务调度日志表修改", action = "111")
-    @RequiresPermissions("gen:sysQuartzJobLog:edit")
-    @PostMapping("/edit")
-    @ResponseBody
-    public AjaxResult editSave(SysQuartzJobLog record)
-    {
-        return toAjax(sysQuartzJobLogService.updateByPrimaryKeySelective(record));
-    }
-
     
     
 

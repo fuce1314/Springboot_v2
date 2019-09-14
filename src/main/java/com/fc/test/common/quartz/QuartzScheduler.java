@@ -6,6 +6,8 @@ import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import com.fc.test.model.auto.SysQuartzJob;
+import com.fc.test.model.auto.SysQuartzJobExample;
+import com.fc.test.service.SysQuartzJobService;
 import com.fc.test.util.StringUtils;
 
 import java.util.List;
@@ -24,6 +26,8 @@ public class QuartzScheduler {
 
     @Autowired
     private  Scheduler scheduler;
+    @Autowired
+    private SysQuartzJobService sysQuartzJobService; 
 
     //这个东西可以放在配置文件中
     //cron表达式 一分钟执行一次
@@ -35,31 +39,45 @@ public class QuartzScheduler {
      */
     @PostConstruct
     public void init() throws SchedulerException {
-        //这一块可以从数据库中查
-        for (int i=1;i<=1;i++)
-        {
-            SysQuartzJob job=new SysQuartzJob();
-            job.setId("332182389491109888");
-            job.setJobName("v2Task2");
-            job.setJobGroup("SYSTEM");
-            job.setCronExpression("*/6 * * * * ?");
-            //并发执行
-            job.setConcurrent("0");
-            //0启用
-            job.setStatus(1);
-            //执行的job类
-            job.setInvokeTarget("v2Task.runTask2(1,2l,'asa',true,2D)");
-            try {
+    	
+    	List<SysQuartzJob> quartzJobs=sysQuartzJobService.selectByExample(new SysQuartzJobExample());
+    	for (SysQuartzJob job : quartzJobs) {
+    		try {
                 //防止因为数据问题重复创建
                 if(checkJobExists(job))
                 {
                     deleteJob(job);
                 }
-            createSchedule(job);
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-        }
-        }
+                createSchedule(job);
+	        } catch (SchedulerException e) {
+	            e.printStackTrace();
+	        }
+		}
+        //这一块可以从数据库中查
+//        for (int i=1;i<=1;i++)
+//        {
+//            SysQuartzJob job=new SysQuartzJob();
+//            job.setId("332182389491109888");
+//            job.setJobName("v2Task2");
+//            job.setJobGroup("SYSTEM");
+//            job.setCronExpression("*/6 * * * * ?");
+//            //并发执行
+//            job.setConcurrent("0");
+//            //0启用
+//            job.setStatus(1);
+//            //执行的job类
+//            job.setInvokeTarget("v2Task.runTask2(1,2l,'asa',true,2D)");
+//            try {
+//                //防止因为数据问题重复创建
+//                if(checkJobExists(job))
+//                {
+//                    deleteJob(job);
+//                }
+//                createSchedule(job);
+//	        } catch (SchedulerException e) {
+//	            e.printStackTrace();
+//	        }
+//        }
 
         start();
 
@@ -221,9 +239,9 @@ public class QuartzScheduler {
                 bl = true;
             }
         } catch (SchedulerException e) {
-            //  getLog().info("暂停调度任务异常:" + e);
+             System.out.println("暂停调度任务异常:" + e);
         } catch (Exception e) {
-            //  getLog().info("暂停调度任务异常:"+ e);
+        	 System.out.println("暂停调度任务异常:"+ e);
         }
         return bl;
     }

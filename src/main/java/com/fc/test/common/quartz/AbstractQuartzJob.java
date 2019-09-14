@@ -1,8 +1,11 @@
 package com.fc.test.common.quartz;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
+
+import com.fc.test.common.spring.SpringUtils;
 import com.fc.test.model.auto.SysQuartzJob;
 import com.fc.test.model.auto.SysQuartzJobLog;
+import com.fc.test.service.SysQuartzJobLogService;
 import com.fc.test.util.StringUtils;
 
 import org.quartz.Job;
@@ -90,10 +93,8 @@ public abstract class AbstractQuartzJob implements Job {
         {
             sysJobLog.setStatus(ScheduleConstants.SUCCESS_STATUS);
         }
-
         //  这里获取service然后插入库中
-        System.out.println(sysJob.toString());
-       // SpringUtils.getBean(ISysJobLogService.class).addJobLog(sysJobLog);
+        SpringUtils.getBean(SysQuartzJobLogService.class).insertSelective(sysJobLog);
     }
 
     /**
