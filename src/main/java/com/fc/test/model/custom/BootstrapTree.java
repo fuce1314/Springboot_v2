@@ -18,6 +18,7 @@ public class BootstrapTree {
 	private Map<String,Object> state;//选中参数
 	private List<BootstrapTree> nodes;//子元素
 	private String permKey;//权限key
+	private Integer visible;//是否显示
 	public String getText() {
 		return text;
 	}
@@ -58,27 +59,6 @@ public class BootstrapTree {
 		this.state = state;
 	}
 
-	/**
-	 * 这个初始化new为可以设置默认选中
-	 * @param text
-	 * @param icon
-	 * @param data
-	 * @param id
-	 * @param nodes
-	 * @param state  传入{"checked":true} 
-	 */
-	public BootstrapTree(String text, String icon, String data, String id,
-			 List<BootstrapTree> nodes,String url,Integer isBlank,Map<String, Object> state) {
-		super();
-		this.text = text;
-		this.icon = icon;
-		this.data = data;
-		this.id = id;
-		this.url=url;
-		this.isBlank=isBlank;
-		this.state = state;
-		this.nodes = nodes;
-	}
 	
 	
 	public String getUrl() {
@@ -88,7 +68,7 @@ public class BootstrapTree {
 		this.url = url;
 	}
 	public BootstrapTree(String text, String icon, String data, String id,String url,Integer isBlank,
-			List<BootstrapTree> nodes,String permKey) {
+			List<BootstrapTree> nodes,String permKey,Integer visible) {
 		super();
 		this.text = text;
 		this.icon = icon;
@@ -98,6 +78,7 @@ public class BootstrapTree {
 		this.isBlank=isBlank;
 		this.nodes = nodes;
 		this.permKey=permKey;
+		this.visible=visible;
 	}
 	public Integer getIsBlank() {
 		return isBlank;
@@ -110,6 +91,12 @@ public class BootstrapTree {
 	}
 	public void setPermKey(String permKey) {
 		this.permKey = permKey;
+	}
+	public Integer getVisible() {
+		return visible;
+	}
+	public void setVisible(Integer visible) {
+		this.visible = visible;
 	}
 	
 }

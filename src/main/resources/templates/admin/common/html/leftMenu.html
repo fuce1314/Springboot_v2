@@ -35,34 +35,29 @@
 	        <div id="tree-wrap">
 	            <div class="side-bar" th:each="muen,muenStat:${session.bootstrapTree.nodes}">
 	                <ul class="topnav menu-left-nest">
-	                    <li>
+	                    <li th:if="${muen.visible == 0}">
 	                        <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
 	
-	                            <span  th:text="${muen.text}"></span>
+	                            <span   th:text="${muen.text}"></span>
 	                            <i data-toggle="tooltip" th:classappend="${muen.icon}" class="pull-right config-wrap"></i>
 	
 	                        </a>
 	                    </li>
 	                     
-	                  <!-- <th:block th:each="user:${list}"> -->  
-	                    <li th:each="caidan,caidanStat:${muen.nodes}">
-	                    	
+	                    <li th:each="caidan,caidanStat:${muen.nodes}" th:if="${caidan.visible == 0}">
 	                    
-	                 		<a th:if="${caidan.isBlank==0}"  class="tooltip-tip" th:href="@{${caidan.url}}" target="mainFrame" th:title="${caidan.text}">
-	                            <i th:classappend="${caidan.icon}" class=""></i>
-								<span th:text="${caidan.text}">用户管理</span>
-	                 		</a>
-	                 		<a th:if="${caidan.isBlank==1}"  class="tooltip-tip" th:href="@{${caidan.url}}" target="_blank" th:title="${caidan.text}">
-	                            <i th:classappend="${caidan.icon}" class=""></i>
-								<span th:text="${caidan.text}">用户管理</span>
-	                 		</a>
-	                 		
-	                 		
-	                 		<!-- <th:bolck th:if=${caidan.nodes!=null}> -->  
+		                 		<a th:if="${caidan.isBlank==0}"  class="tooltip-tip" th:href="@{${caidan.url}}" target="mainFrame" th:title="${caidan.text}">
+		                            <i th:classappend="${caidan.icon}" class=""></i>
+									<span th:text="${caidan.text}">用户管理</span>
+		                 		</a>
+		                 		<a th:if="${caidan.isBlank==1}"  class="tooltip-tip" th:href="@{${caidan.url}}" target="_blank" th:title="${caidan.text}">
+		                            <i th:classappend="${caidan.icon}" class=""></i>
+									<span th:text="${caidan.text}">用户管理</span>
+		                 		</a>
 	                 		 	<ul>
-		                    		<li th:each="caidan1,caidanStat1:${caidan.nodes}">
+		                    		<li th:each="caidan1,caidanStat1:${caidan.nodes}" th:if="${caidan1.visible == 0}" >
 		                    			
-		                    			<a th:if="${caidan1.isBlank==0}"  class="tooltip-tip" th:href="@{${caidan1.url}}" target="mainFrame" th:title="${caidan1.text}">
+		                    			<a th:if="${caidan1.isBlank==0 && caidan.visible == 0}"  class="tooltip-tip" th:href="@{${caidan1.url}}" target="mainFrame" th:title="${caidan1.text}">
 				                            <i th:classappend="${caidan1.icon}" class=""></i>
 											<span th:text="${caidan1.text}">用户管理</span>
 				                 		</a>
@@ -73,12 +68,7 @@
 		                    			
 		                 		 	</li>
 	                 		 	</ul>
-	                   		<!-- </th:bolck> -->  
-	                 		
-	                 		
-	                 		
 	                    </li>
-	                    <!-- </th:bolck> -->  
 	                    
 	
 						
