@@ -62,7 +62,7 @@
 		
 		
 		
-		<table tableName='t_sys_user' domainObjectName='TsysUser'/>
+		<table tableName='t_sys_premission' domainObjectName='TsysPremission'/>
 
 
 	</context>
