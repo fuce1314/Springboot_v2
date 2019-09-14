@@ -32,13 +32,13 @@ public interface ScheduleConstants
     /**
      * 成功状态
      */
-    public static final Integer SUCCESS_STATUS = 2;
+    public static final Integer SUCCESS_STATUS = 0;
 
 
     /**
      * 任务的关闭的状态
      */
-    public static final Integer STOP_STATUS = 1;
+    public static final Integer STOP_STATUS = 2;
 
     public enum Status
     {

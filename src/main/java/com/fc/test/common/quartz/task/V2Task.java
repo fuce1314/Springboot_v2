@@ -1,12 +1,9 @@
 package com.fc.test.common.quartz.task;
 
 import java.util.Date;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.fc.test.mapper.auto.TsysUserMapper;
-import com.fc.test.model.auto.TsysUser;
-import com.fc.test.model.auto.TsysUserExample;
 
 /**
  *测试类
