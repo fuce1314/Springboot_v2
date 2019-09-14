@@ -23,11 +23,13 @@ public class TsysPremission implements Serializable {
 
     private Integer orderNum;
     
+    private Integer visible;
+    
     private Integer childCount;
     
     private static final long serialVersionUID = 1L;
 
-    public TsysPremission(String id, String name, String descripion, String url, Integer isBlank, String pid, String perms, Integer type, String icon, Integer orderNum,Integer childCount) {
+    public TsysPremission(String id, String name, String descripion, String url, Integer isBlank, String pid, String perms, Integer type, String icon, Integer orderNum,Integer visible,Integer childCount) {
         this.id = id;
         this.name = name;
         this.descripion = descripion;
@@ -38,6 +40,7 @@ public class TsysPremission implements Serializable {
         this.type = type;
         this.icon = icon;
         this.orderNum = orderNum;
+        this.visible=visible;
         this.childCount = childCount;
     }
 
@@ -132,4 +135,13 @@ public class TsysPremission implements Serializable {
 	public void setChildCount(Integer childCount) {
 		this.childCount = childCount;
 	}
+
+	public Integer getVisible() {
+		return visible;
+	}
+
+	public void setVisible(Integer visible) {
+		this.visible = visible;
+	}
+	
 }

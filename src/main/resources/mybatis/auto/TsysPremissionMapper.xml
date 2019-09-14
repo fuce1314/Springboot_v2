@@ -13,6 +13,7 @@
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="order_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="visible" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="childcount" javaType="java.lang.Integer" jdbcType="INTEGER"/>
     </constructor>
   </resultMap>
@@ -75,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, descripion, url, is_blank, pid, perms, type, icon, order_num,(select count(1) from t_sys_premission where pid=a.id) childcount
+    id, name, descripion, url, is_blank, pid, perms, type, icon, order_num, visible, (select count(1) from t_sys_premission where pid=a.id) childcount
   </sql>
   <select id="selectByExample" parameterType="com.fc.test.model.auto.TsysPremissionExample" resultMap="BaseResultMap">
     select
@@ -111,11 +112,11 @@
     insert into t_sys_premission (id, name, descripion, 
       url, is_blank, pid, 
       perms, type, icon, 
-      order_num)
+      order_num, visible)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{descripion,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{isBlank,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, 
       #{perms,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, 
-      #{orderNum,jdbcType=INTEGER})
+      #{orderNum,jdbcType=INTEGER}, #{visible,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysPremission">
     insert into t_sys_premission
@@ -150,6 +151,9 @@
       <if test="orderNum != null">
         order_num,
       </if>
+      <if test="visible != null">
+        visible,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -181,6 +185,9 @@
       </if>
       <if test="orderNum != null">
         #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null">
+        #{visible,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -223,6 +230,9 @@
       <if test="record.orderNum != null">
         order_num = #{record.orderNum,jdbcType=INTEGER},
       </if>
+      <if test="record.visible != null">
+        visible = #{record.visible,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -239,7 +249,8 @@
       perms = #{record.perms,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=INTEGER},
       icon = #{record.icon,jdbcType=VARCHAR},
-      order_num = #{record.orderNum,jdbcType=INTEGER}
+      order_num = #{record.orderNum,jdbcType=INTEGER},
+      visible = #{record.visible,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -274,6 +285,9 @@
       <if test="orderNum != null">
         order_num = #{orderNum,jdbcType=INTEGER},
       </if>
+      <if test="visible != null">
+        visible = #{visible,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -287,7 +301,8 @@
       perms = #{perms,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       icon = #{icon,jdbcType=VARCHAR},
-      order_num = #{orderNum,jdbcType=INTEGER}
+      order_num = #{orderNum,jdbcType=INTEGER},
+      visible = #{visible,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
