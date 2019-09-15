@@ -80,7 +80,7 @@ public class TitleVo {
 			this.msgHtml = "";
 		}
 		
-		this.isControl = isControl;
+		this.isControl = false;
 		this.isribbon = isribbon;
 	}
 	
