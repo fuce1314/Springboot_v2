@@ -72,7 +72,7 @@
      </li>
      <li><a href="#"  title="Sample page 1" th:text="${title}" >标题</a>
      </li>
-     <li class="pull-right">
+     <li class="pull-right" th:if="${isSearch eq true}">
          <div class="input-group input-widget">
 
              <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
