@@ -7,10 +7,8 @@
 <!-- 这儿引用单独的css link -->
 <!-- Ladda for Bootstrap 3按钮加载进度插件 -->
 <link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
-<!-- bootstrap-table表单样式 -->
-<link th:href="@{/static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
-<link rel="stylesheet" th:href="@{/static/js/treegrid/jquery.treegrid.min.css}">
 
+<link rel="stylesheet" th:href="@{/static/js/bootstrap-treetable/bootstrap-treetable.min.css}">
 
 <style type="text/css">
 /**
@@ -82,19 +80,19 @@
                         <div class="body-nest" id="Blank_Page_Content">
                             <!-- 工具条 -->
                             <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
-                            	<button onclick="$.operate.add()" type="button" class="btn btn-primary">
+                            	<button onclick="add()" type="button" class="btn btn-primary">
                                     <span class="entypo-plus-squared"></span>&nbsp;&nbsp;新增
                                 </button>
-                               <button onclick="$.operate.batRemove()" type="button" class="btn btn-info">
+                               <button onclick="batRemove()" type="button" class="btn btn-info">
                                     <span class="entypo-trash"></span>&nbsp;&nbsp;删除
                                </button>
-                               <button onclick="$.operate.expandAll()"  type="button" class="btn btn-success">
+                               <button id="expandAllBtn"  type="button" class="btn btn-success">
                                     <span class="entypo-shuffle"></span>&nbsp;&nbsp;展开/折叠
                                </button>
                                
                            </div>
                             <!-- 工具条 end-->
-                           <table id="dataTable" class="table-striped footable-res footable metro-blue" data-page-size="6">
+                           <table id="demo" class="table-striped footable-res footable metro-blue" data-page-size="6">
                                    
                                     
                            </table>
@@ -128,126 +126,242 @@
 <div th:include="admin/common/html/js :: onload_js_Premiss">
    
 </div>
-
-<script>
-<!-- 列表参数 -->
+<script th:src="@{/static/js/bootstrap-treetable/bootstrap-treetable.min.js}" type="text/javascript"></script>
+	
+<script type="text/javascript">
 var dataUrl=window.rootPath+"/PremissionController/list2";
 var removeUrl=window.rootPath+"/PremissionController/remove";
 var createUrl=window.rootPath+"/PremissionController/add";
 var updateUrl=window.rootPath+"/PremissionController/edit/{id}";
 var exportUrl=window.rootPath+"/PremissionController/export";
-  var options = {
-		dataUrl: dataUrl,
-        createUrl: createUrl,
-        updateUrl: updateUrl,
-        removeUrl:removeUrl,
-        exportUrl: exportUrl,
-        sortName: "id",
-        modalName: "权限",
-        search: false,
-	   dataColumns: [
-			{
-			    checkbox: true
-			},                   
-			{
-			    field: 'id',
-			    title: '序号'
-			},{
-			    field: 'name',
-			    title: '权限名称',
-			    formatter: function (value, row, index) {
-			        var actions = [];
-			        actions.push(value+' <i class="'+row.icon+'"></i>');
-			      	return actions.join('');			    
-				 }
-			},
-			{
-			    field: 'url',
-			    title: '权限URL'
-			},
-			{
-			    field: 'isBlank',
-			    title: '是否跳转',
-			    formatter: function (value, row, index) {
-			        var actions = [];
-			        if(value==0){
-			        	 actions.push('<span class="label label-primary">否</span>');
-			        }else if(value==1){
-			        	 actions.push('<span class="label label-danger">是</span>');
-			        }
-			      	return actions.join('');			    
-				 }
-			},
-			{
-			    field: 'perms',
-			    title: '权限关键字'
-			},
-			{
-				 field: 'type',
-				 title: '菜单类型',
-				 formatter: function (value, row, index) {
-			        var actions = [];
-			        if(value==0){
-			        	 actions.push('<span class="label label-primary">目录</span>');
-			        }else if(value==1){
-			        	 actions.push('<span class="label label-success">菜单</span>');
-			        }else if(value==2){
-			        	 actions.push('<span class="label label-warning">按钮</span>');
-			        }
-			      	return actions.join('');			    
-				 }
-			},
-			{
-				 field: 'visible',
-				 title: '可见',
-				 formatter: function (value, row, index) {
-			        var actions = [];
-			        if(value==0){
-			        	 actions.push('<span class="badge badge-success">显示</span>');
-			        }else if(value==1){
-			        	 actions.push('<span class="badge badge-important">隐藏</span>');
-			        }
-			      	return actions.join('');			    
-				 }
-			},
-			{
-				 field: 'orderNum',
-				 title: '排序'
-			},
-			{
-			    field: 'descripion',
-			    title: '描述'
-			},
-			{
-			    title: '操作',
-			    formatter: function (value, row, index) {
-			        var id = row.id;
-			        var actions = [];
-			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
-			        return actions.join('');			    
-			    }
-			}
-		]
-  };
-  
-
-  
-
+/**
+                    rootIdValue: null,//设置根节点id值----可指定根节点，默认为null,"",0,"0"
+                    id : "id",               // 选取记录返回的值,用于设置父子关系
+                    parentId : "parentId",       // 用于设置父子关系
+                    type: 'get',                   // 请求方式（*）
+                    url: "./data.json",             // 请求后台的URL（*）
+                    ajaxParams : {},               // 请求数据的ajax的data属性
+                    expandColumn : 0,            // 在哪一列上面显示展开按钮
+                    expandAll : false,                // 是否全部展开
+                    expandFirst : true, // 是否默认第一级展开--expandAll为false时生效
+                    toolbar: null,//顶部工具条
+                    height: 0,
+                    expanderExpandedClass : 'glyphicon glyphicon-chevron-down',// 展开的按钮的图标
+                    expanderCollapsedClass : 'glyphicon glyphicon-chevron-right',// 缩起的按钮的图标
+**/
+                var treeTable = $('#demo').bootstrapTreeTable({
+                    toolbar: "#demo-toolbar",//顶部工具条
+                    expandColumn : 2,// 在哪一列上面显示展开按钮
+                    url: dataUrl,// 请求后台的URL（*）
+                    type: 'post',
+                    id : "id",
+                    rootIdValue: '0',
+                    parentId: 'pid',
+                    striped:true,
+                    columns: [
+                    	{
+            			    checkbox: true
+            			},                   
+            			{
+            			    field: 'id',
+            			    width: '150',
+            			    title: '序号'
+            			},{
+            			    field: 'name',
+            			    title: '权限名称',
+            			    width: '230',
+            			    formatter: function (value, row, index) {
+            			        var actions = [];
+            			        actions.push(value+' <i class="'+row.icon+'"></i>');
+            			      	return actions.join('');			    
+            				 }
+            			},
+            			{
+            				field: 'url',
+                            title: '请求地址',
+            			},
+            			{
+            			    field: 'isBlank',
+            			    title: '跳转',
+            			    width: '50',
+            			    formatter: function (value, row, index) {
+            			        var actions = [];
+            			        if(value==0){
+            			        	 actions.push('<span class="label label-primary">否</span>');
+            			        }else if(value==1){
+            			        	 actions.push('<span class="label label-danger">是</span>');
+            			        }
+            			      	return actions.join('');			    
+            				 }
+            			},
+            			{
+            			    field: 'perms',
+            			    title: '权限关键字'
+            			},
+            			{
+            				 field: 'type',
+            				 title: '菜单类型',
+            				 width: '80',
+            				 formatter: function (value, row, index) {
+            			        var actions = [];
+            			        if(value==0){
+            			        	 actions.push('<span class="label label-primary">目录</span>');
+            			        }else if(value==1){
+            			        	 actions.push('<span class="label label-success">菜单</span>');
+            			        }else if(value==2){
+            			        	 actions.push('<span class="label label-warning">按钮</span>');
+            			        }
+            			      	return actions.join('');			    
+            				 }
+            			},
+            			{
+            				 field: 'visible',
+            				 title: '可见',
+            				 width: '80',
+            				 formatter: function (value, row, index) {
+            			        var actions = [];
+            			        if(value==0){
+            			        	 actions.push('<span class="badge badge-success">显示</span>');
+            			        }else if(value==1){
+            			        	 actions.push('<span class="badge badge-important">隐藏</span>');
+            			        }
+            			      	return actions.join('');			    
+            				 }
+            			},
+            			{
+            				 field: 'orderNum',
+            				 width: '50',
+            				 title: '排序'
+            			},
+            			{
+            			    field: 'descripion',
+            			    width: '150',
+            			    title: '描述'
+            			},
+            			{
+            			    title: '操作',
+            			    width: '150',
+            			    formatter: function (value, row, index) {
+            			        var id = row.id;
+            			        var actions = [];
+            			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+            			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+            			        return actions.join('');			    
+            			    }
+            			}
+                    ],
+                    onAll: function(data) {
+                        console.log("onAll");
+                        return false;
+                    },
+                    onLoadSuccess: function(data) {
+                        console.log("onLoadSuccess");
+                        return false;
+                    },
+                    onLoadError: function(status) {
+                        console.log("onLoadError");
+                        return false;
+                    },
+                    onClickCell: function(field, value, row, $element) {
+                        console.log("onClickCell",row);
+                        return false;
+                    },
+                    onDblClickCell: function(field, value, row, $element) {
+                        console.log("onDblClickCell",row);
+                        return false;
+                    },
+                    onClickRow: function(row, $element) {
+                        console.log("onClickRow",row);
+                        return false;
+                    },
+                    onDblClickRow: function(row, $element) {
+                        console.log("onDblClickRow",row);
+                        return false;
+                    }
+                   
+                });
+                $("#selectBtn").click(function(){
+                    var selecteds = $('#demo').bootstrapTreeTable('getSelections');
+                    $.each(selecteds,function(_i,_item){
+                        console.log(_item);
+                    });
+                    alert("看console");
+                })
+               
+                var _expandFlag_all = false;
+                $("#expandAllBtn").click(function(){
+                    if(_expandFlag_all){
+                        $('#demo').bootstrapTreeTable('expandAll');
+                    }else{
+                        $('#demo').bootstrapTreeTable('collapseAll');
+                    }
+                    _expandFlag_all = _expandFlag_all?false:true;
+                })
+                var _showFlag = true;
+                $("#showColumnBtn").click(function(){
+                    if(_showFlag){
+                        $('#demo').bootstrapTreeTable('hideColumn',"orderNum");
+                    }else{
+                        $('#demo').bootstrapTreeTable('showColumn',"orderNum");
+                    }
+                    _showFlag = _showFlag?false:true;
+                })
+                $("#destroyBtn").click(function(){
+                    $('#demo').bootstrapTreeTable('destroy');
+                })
 </script>
-
 
 <script type="text/javascript">
 
-$(function(){
-	//加载列表
-	//加载列表
-	var oTab=$.table.oTableInit(options);
-	oTab.Init();
-})
+function add(){
+	$.modal.open("添加权限", createUrl);
+}
+
+function batRemove(){
+	
+	var rows = $('#demo').bootstrapTreeTable('getSelections');
+    if (rows.length == 0) {
+        $.modal.alertWarning("请至少选择一条记录");
+        return
+    }
+    $.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function() {
+    	var rowid=[];
+    	for ( var i in rows) {
+    		rowid.push(rows[i].id);
+		}
+        var url = removeUrl;
+        var data = {
+            "ids": rowid.join()
+        };
+        $.operate.submit(url, "post", "json", data);
+    })
+}
+
+function edit(id){
+	 var url = updateUrl.replace("{id}", id);
+     $.modal.open("修改权限", url);
+}
+
+function remove(id){
+	
+	$.modal.confirm("确定删除该条权限信息吗？", function() {
+        var url = removeUrl.replace("{id}", id);
+        var data = {
+            "ids": id
+        };
+        $.operate.submit(url, "post", "json", data);
+    })
+}
+
+
+//重写刷新方法
+$.table.refresh=function() {
+	$('#demo').bootstrapTreeTable("refresh",{
+		url:dataUrl,
+		silent:true
+	});
+}
 </script>
-
-
 
 </body>
 
