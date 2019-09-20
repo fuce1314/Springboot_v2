@@ -3,9 +3,9 @@
 #set( $id2 = $!{SnowflakeIdWorker.getUUID()}+"2" )
 #set( $id3 = $!{SnowflakeIdWorker.getUUID()}+"3" )
 #set( $id4 = $!{SnowflakeIdWorker.getUUID()}+"4" )
-INSERT INTO `t_sys_premission` VALUES ('${id}', '${TsysTables.tableComment}管理', '${TsysTables.tableComment}展示', '/${TsysTables.tableModel}Controller/view','0', '${pid}', 'gen:${TsysTables.tableModel_a}:view', 1, 'fa fa-quora', NULL)
-,('${id1}', '${TsysTables.tableComment}集合', '${TsysTables.tableComment}集合', '/${TsysTables.tableModel}Controller/list','0', '${id}', 'gen:${TsysTables.tableModel_a}:list', 2, '', NULL)
-,('${id2}', '${TsysTables.tableComment}添加', '${TsysTables.tableComment}添加', '/${TsysTables.tableModel}Controller/add','0', '${id}', 'gen:${TsysTables.tableModel_a}:add', 2, 'entypo-plus-squared', NULL)
-,('${id3}', '${TsysTables.tableComment}删除', '${TsysTables.tableComment}删除', '/${TsysTables.tableModel}Controller/remove','0', '${id}', 'gen:${TsysTables.tableModel_a}:remove', 2, 'entypo-trash', NULL)
-,('${id4}', '${TsysTables.tableComment}修改', '${TsysTables.tableComment}修改', '/${TsysTables.tableModel}Controller/edit','0', '${id}', 'gen:${TsysTables.tableModel_a}:edit', 2, 'fa fa-wrench', NULL);
+INSERT INTO `t_sys_premission` VALUES ('${id}', '${TsysTables.tableComment}管理', '${TsysTables.tableComment}展示', '/${TsysTables.tableModel}Controller/view','0', '${pid}', 'gen:${TsysTables.tableModel_a}:view', 1, 'fa fa-quora', NULL,0)
+,('${id1}', '${TsysTables.tableComment}集合', '${TsysTables.tableComment}集合', '/${TsysTables.tableModel}Controller/list','0', '${id}', 'gen:${TsysTables.tableModel_a}:list', 2, '', NULL,0)
+,('${id2}', '${TsysTables.tableComment}添加', '${TsysTables.tableComment}添加', '/${TsysTables.tableModel}Controller/add','0', '${id}', 'gen:${TsysTables.tableModel_a}:add', 2, 'entypo-plus-squared', NULL,0)
+,('${id3}', '${TsysTables.tableComment}删除', '${TsysTables.tableComment}删除', '/${TsysTables.tableModel}Controller/remove','0', '${id}', 'gen:${TsysTables.tableModel_a}:remove', 2, 'entypo-trash', NULL,0)
+,('${id4}', '${TsysTables.tableComment}修改', '${TsysTables.tableComment}修改', '/${TsysTables.tableModel}Controller/edit','0', '${id}', 'gen:${TsysTables.tableModel_a}:edit', 2, 'fa fa-wrench', NULL,0);
 
