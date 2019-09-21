@@ -210,11 +210,16 @@ UEditor|百度富文本||
 ![数据库模型](https://images.gitee.com/uploads/images/2019/0701/001953_dd7a387e_123301.png "数据库模型.png")
 
 ### 界面风格
+
 ![登录界面](https://images.gitee.com/uploads/images/2019/0617/214247_d40363b4_123301.png "登录界面.png")
-![权限界面](https://images.gitee.com/uploads/images/2019/0701/002825_84195403_123301.png "权限列表.png")
+![权限界面](https://images.gitee.com/uploads/images/2019/0921/134912_1fcad28d_123301.png "权限列表.png")
 ![权限添加](https://images.gitee.com/uploads/images/2019/0701/002939_3514f4b9_123301.png "权限添加.png")
 ![修改角色](https://images.gitee.com/uploads/images/2019/0701/003259_7c28607d_123301.png "屏幕截图.png")
 ![表单构建](https://images.gitee.com/uploads/images/2019/0610/014618_33e1edf9_123301.png "表单构建.png")
+![代码生成界面](https://images.gitee.com/uploads/images/2019/0921/135051_b8acc5f6_123301.png "代码生成.png")
+![字典表界面](https://images.gitee.com/uploads/images/2019/0921/135710_a09e8233_123301.png "字典表.png")
+![定时器界面](https://images.gitee.com/uploads/images/2019/0921/135755_19c23d8f_123301.png "定时器.png")
+![公告界面](https://images.gitee.com/uploads/images/2019/0921/135843_3bc64939_123301.png "公告界面.png")
 ![邮件发送功能](https://images.gitee.com/uploads/images/2019/0701/003722_d73d40a5_123301.png "邮件发送功能.png")
 ![首页](https://images.gitee.com/uploads/images/2019/0609/210649_a934ea28_123301.png "首页.png")
 ![swagger2](https://images.gitee.com/uploads/images/2019/0609/210335_d3efad8c_123301.png "swagger2.png")
@@ -230,12 +235,10 @@ UEditor|百度富文本||
 ![js引入](https://images.gitee.com/uploads/images/2018/0909/203322_6dc467c2_123301.jpeg "js引入.jpg")
 
 ### 代码自动生成功能
-![自动生成代码](https://images.gitee.com/uploads/images/2019/0713/023737_c2124922_123301.png "自动生成页面.png")
+![代码生成界面](https://images.gitee.com/uploads/images/2019/0921/135051_b8acc5f6_123301.png "代码生成.png")
+全局配置想生成到什么地方就生成到什么地方，自动执行权限sql
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0921/142230_8f3730cc_123301.png "屏幕截图.png")
 
-###### 不覆盖生成文件需要手动录入
-![代码生成](https://images.gitee.com/uploads/images/2019/0713/023329_f4ae8843_123301.png "代码自动生成文件.png")
-###### 覆盖生成文件，只需要执行sql
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0713/023556_c804cfa0_123301.png "屏幕截图.png")
 ### 后期功能
 
 功能|描述
@@ -312,6 +315,8 @@ https://gitee.com/agile-bpm
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
 
+### QQ大神群推荐:
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0921/140036_b5ab7bf7_123301.png "我萌的征途是架构狮！群聊二维码.png")
 
 ### 感谢开源软件列表
 1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
