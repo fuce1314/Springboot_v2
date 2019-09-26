@@ -4,19 +4,31 @@
   $(function() {
       $("#button-bg").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg5.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg5.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
       });
       $("#button-bg2").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg2.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg2.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
       });
 
 
       $("#button-bg3").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
 
 
@@ -24,7 +36,11 @@
 
       $("#button-bg5").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/giftly.png')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/giftly.png') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
 
       });
@@ -38,40 +54,68 @@
 
       $("#button-bg7").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg3.png')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg3.png') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
 
       });
       $("#button-bg8").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg8.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg8.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
       });
       $("#button-bg9").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg9.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg9.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
       });
 
       $("#button-bg10").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg10.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg10.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
       });
       $("#button-bg11").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg11.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg11.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
       });
       $("#button-bg12").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg12.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg12.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
       });
 
       $("#button-bg13").click(function() {
           $("body").css({
-              "background": "url('"+rootPath+"static/admin/assets/img/bg13.jpg')repeat"
+              "background": "url('"+rootPath+"static/admin/assets/img/bg13.jpg') repeat",
+              "moz-background-size": "cover",
+              "-webkit-background-size": "cover",
+              "-o-background-size": "cover",
+              "background-size":"cover"
           });
 
       });
