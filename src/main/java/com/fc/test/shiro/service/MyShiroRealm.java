@@ -21,7 +21,6 @@ import com.fc.test.model.auto.TsysPremission;
 import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.util.StringUtils;
-import com.google.gson.Gson;
 
 /**
  * 身份校验核心类
