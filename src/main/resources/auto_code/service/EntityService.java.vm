@@ -1,6 +1,7 @@
 package ${globalConfig.parentPack}.service;
 
 import java.util.List;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -28,12 +29,14 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	
    #set( $pklag = false)
    #set( $pkfield = '' )
-   #set ( $pk_column_name = '' )
+   #set( $pk_column_name = '' )
+   #set( $pk_attrType = '')
    #foreach ($column in $beanColumns)
 	   #if(${column.column_key} == 'PRI')
 	   	#set( $pklag = true )
 	   	#set( $pkfield = $column.beanName_A )
 	   	#set( $pk_column_name=$column.column_name)
+	   	#set( $pk_attrType=$column.attrType)
 	   #end
    #end
 	
@@ -59,17 +62,36 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 
 	@Override
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
-		${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
-		example.createCriteria().and${pkfield}In(lista);
-		return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+		#if(${pk_attrType} == 'String')
+		
+			List<String> lista=Convert.toListStrArray(ids);
+			${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
+			example.createCriteria().and${pkfield}In(lista);
+			return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+			
+		#else
+			
+			Integer[] integers = Convert.toIntArray(",", ids);
+			List<Integer> stringB = Arrays.asList(integers);
+			${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
+			example.createCriteria().and${pkfield}In(stringB);
+			return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+			
+		#end
+		
 	}
 	
 	
 	@Override
 	public ${TsysTables.tableModel} selectByPrimaryKey(String id) {
+		#if(${pk_attrType} == 'String')
+			return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id);
+		#else
 		
-		return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id);
+			Integer id1 = Integer.valueOf(id);
+			return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id1);
+		#end
+		
 	}
 
 	
@@ -77,6 +99,7 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	public int updateByPrimaryKeySelective(${TsysTables.tableModel} record) {
 		return ${TsysTables.tableModel_a}Mapper.updateByPrimaryKeySelective(record);
 	}
+	
 #end	
 	
 	/**
@@ -84,8 +107,14 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	 */
 	@Override
 	public int insertSelective(${TsysTables.tableModel} record) {
-		//添加雪花主键id
-		record.set${pkfield}(SnowflakeIdWorker.getUUID());
+		#if(${pk_attrType} == 'String')
+			//添加雪花主键id
+			record.set${pkfield}(SnowflakeIdWorker.getUUID());
+			
+		#else
+			record.set${pkfield}(null);
+		#end
+		
 		return ${TsysTables.tableModel_a}Mapper.insertSelective(record);
 	}
 	
