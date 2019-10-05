@@ -346,7 +346,7 @@
                 }, 50)
             },
             reload: function() {
-                window.location.reload();
+            	parent.location.reload()
             }
         },
         // 通用方法封装处理

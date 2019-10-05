@@ -896,11 +896,11 @@ input[type=search] {
     transition: all 0.1s;
 }
 input[type=search]:focus {
-    width: 300px;
+   /* width: 300px; 
     background-color: #252D3B;
     border-color: #66CC75;
     border-radius: 0 4px 4px 0;
-    margin-right: 100px;
+    margin-right: 100px;*/
     /*   -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
   -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
   box-shadow: 0 0 5px rgba(109, 207, 246, .5); */

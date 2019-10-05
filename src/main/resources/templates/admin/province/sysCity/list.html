@@ -136,25 +136,16 @@
 <!-- 遮罩层 -->
 <script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
 
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
 
-   #set( $pklag = false)
-   #set( $pkfield = '' )
-   #set ( $pk_column_name = '' )
-   #foreach ($column in $beanColumns)
-	   #if(${column.column_key} == 'PRI')
-	   	#set( $pklag = true )
-	   	#set( $pkfield = $column.beanName_A )
-	   	#set( $pk_column_name=$column.column_name)
-	   #end
-   #end
-
+      	   	      	      	      	      	      	      	      	      	      	      	      	      
 <!-- 导出 -->
-var dataUrl=window.rootPath+"/${TsysTables.tableModel}Controller/list";
-var removeUrl=window.rootPath+"/${TsysTables.tableModel}Controller/remove";
-var createUrl=window.rootPath+"/${TsysTables.tableModel}Controller/add";
-var updateUrl=window.rootPath+"/${TsysTables.tableModel}Controller/edit/{id}";
-var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
+var types = [[${@dict.getType('sys_province_state')}]];
+var dataUrl=window.rootPath+"/SysCityController/list";
+var removeUrl=window.rootPath+"/SysCityController/remove";
+var createUrl=window.rootPath+"/SysCityController/add";
+var updateUrl=window.rootPath+"/SysCityController/edit/{id}";
+var exportUrl=window.rootPath+"/SysCityController/export";
   var options = {
 		dataUrl: dataUrl,
         createUrl: createUrl,
@@ -162,22 +153,111 @@ var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
         removeUrl:removeUrl,
         exportUrl: exportUrl,
         sortName: "roleSort",
-        modalName: "${TsysTables.tableComment}",
+        modalName: "城市设置",
         search: false,
 	   dataColumns: [
 			{
 			    checkbox: true
 			},
-#foreach ($column in $beanColumns)
 			{
-			    field: '${column.beanName}',
-			    title: '${column.column_comment}'
+			    field: 'id',
+			    title: '自增列'
 			    //visible: false, //隐藏
 			    //searchable: false,//搜索
 			    //sortable:false,//设置true为允许列可以排序
 			    //order: asc //排序顺序
 			},
-#end
+			{
+			    field: 'cityCode',
+			    title: '市代码'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'cityName',
+			    title: '市名称'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'shortName',
+			    title: '简称'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'provinceCode',
+			    title: '省代码'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'lng',
+			    title: '经度'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'lat',
+			    title: '纬度'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'sort',
+			    title: '排序'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'gmtCreate',
+			    title: '创建时间'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'gmtModified',
+			    title: '修改时间'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'memo',
+			    title: '备注'
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
+			{
+			    field: 'dataState',
+			    title: '状态',
+			    formatter: function (value, row, index) {
+			        return $.table.selectDictLabel(types, value);			    
+				 }
+			    //visible: false, //隐藏
+			    //searchable: false,//搜索
+			    //sortable:false,//设置true为允许列可以排序
+			    //order: asc //排序顺序
+			},
 
 /*	
 参照修改注释
@@ -200,8 +280,8 @@ var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
 			    formatter: function (value, row, index) {
 			        var id = row.id;
 			        var actions = [];
-			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.${pk_column_name} + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.${pk_column_name} + '\')"><i class="fa fa-remove"></i>删除</a>');
+			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
 			        return actions.join('');
 			    }
 			}]

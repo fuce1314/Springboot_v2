@@ -13,9 +13,11 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ${TsysTables.tableModel}Mapper {
    #set( $pklag = false)
+   #set( $pk_attrType = '')
    #foreach ($column in $beanColumns)
 	   #if(${column.column_key} != 'PRI')
 	   	#set( $pklag = true )
+	   	#set( $pk_attrType=$column.attrType)
 	   #end
    #end
 
@@ -24,7 +26,7 @@ public interface ${TsysTables.tableModel}Mapper {
     int deleteByExample(${TsysTables.tableModel}Example example);
 	#if(${pklag} == true)
 	
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(${pk_attrType} id);
 	#end
 	
     int insert(${TsysTables.tableModel} record);
@@ -34,7 +36,7 @@ public interface ${TsysTables.tableModel}Mapper {
     List<${TsysTables.tableModel}> selectByExample(${TsysTables.tableModel}Example example);
 	#if(${pklag} == true)
 	
-    ${TsysTables.tableModel} selectByPrimaryKey(String id);
+    ${TsysTables.tableModel} selectByPrimaryKey(${pk_attrType} id);
 	#end
 	
     int updateByExampleSelective(@Param("record") ${TsysTables.tableModel} record, @Param("example") ${TsysTables.tableModel}Example example);
