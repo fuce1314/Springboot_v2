@@ -3,6 +3,8 @@ package com.fc.test.model.auto;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class SysArea implements Serializable {
     private Integer id;
 
@@ -19,9 +21,11 @@ public class SysArea implements Serializable {
     private String lat;
 
     private Integer sort;
-
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date gmtCreate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date gmtModified;
 
     private String memo;
