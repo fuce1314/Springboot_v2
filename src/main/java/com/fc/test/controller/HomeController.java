@@ -1,12 +1,19 @@
 package com.fc.test.controller;
 
-import io.swagger.annotations.ApiOperation;
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fc.test.common.base.BaseController;
+import com.fc.test.model.auto.SysNotice;
+import com.fc.test.model.auto.TsysUser;
+import com.fc.test.model.custom.BootstrapTree;
+import com.fc.test.model.custom.TitleVo;
+import com.fc.test.shiro.util.ShiroUtils;
+import com.fc.test.util.StringUtils;
+import com.google.code.kaptcha.Constants;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -25,15 +32,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fc.test.common.base.BaseController;
-import com.fc.test.model.auto.SysNotice;
-import com.fc.test.model.auto.TsysUser;
-import com.fc.test.model.custom.BootstrapTree;
-import com.fc.test.model.custom.TitleVo;
-import com.fc.test.shiro.util.ShiroUtils;
-import com.fc.test.util.StringUtils;
-import com.google.code.kaptcha.Constants;
-
 @Controller
 public class HomeController extends BaseController{
 	private static Logger logger=LoggerFactory.getLogger(HomeController.class);
@@ -42,7 +40,7 @@ public class HomeController extends BaseController{
 	@GetMapping("/index")
 	public String index(HttpServletRequest request) {
     	//获取菜单栏
-    	BootstrapTree bootstrapTree=sysPremissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
+    	BootstrapTree bootstrapTree= sysPermissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
     	request.getSession().setAttribute("bootstrapTree", bootstrapTree);
     	request.getSession().setAttribute("sessionUserName",ShiroUtils.getUser().getNickname());
     	//获取公告信息

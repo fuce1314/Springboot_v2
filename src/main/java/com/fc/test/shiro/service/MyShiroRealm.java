@@ -2,6 +2,13 @@ package com.fc.test.shiro.service;
 
 import java.util.List;
 
+import com.fc.test.mapper.custom.PermissionDao;
+import com.fc.test.mapper.custom.RoleDao;
+import com.fc.test.mapper.custom.TsysUserDao;
+import com.fc.test.model.auto.TsysPermission;
+import com.fc.test.model.auto.TsysRole;
+import com.fc.test.model.auto.TsysUser;
+import com.fc.test.util.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -14,13 +21,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.fc.test.mapper.custom.PermissionDao;
-import com.fc.test.mapper.custom.RoleDao;
-import com.fc.test.mapper.custom.TsysUserDao;
-import com.fc.test.model.auto.TsysPremission;
-import com.fc.test.model.auto.TsysRole;
-import com.fc.test.model.auto.TsysUser;
-import com.fc.test.util.StringUtils;
 
 /**
  * 身份校验核心类
@@ -98,8 +98,8 @@ public class MyShiroRealm extends AuthorizingRealm {
 			//System.out.println("角色名字:"+gson.toJson(userrole));
 			String rolid=userrole.getId();//角色id
 			authorizationInfo.addRole(userrole.getName());//添加角色名字
-			List<TsysPremission> premissions=permissionDao.queryRoleId(rolid);
-			for(TsysPremission p:premissions){
+			List<TsysPermission> premissions=permissionDao.queryRoleId(rolid);
+			for(TsysPermission p:premissions){
 				//System.out.println("角色下面的权限:"+gson.toJson(p));
 				if(StringUtils.isNotEmpty(p.getPerms())){
 					authorizationInfo.addStringPermission(p.getPerms());

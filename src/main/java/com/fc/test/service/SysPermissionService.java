@@ -4,30 +4,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.Convert;
+import com.fc.test.mapper.auto.TsysPermissionMapper;
 import com.fc.test.mapper.auto.TsysPermissionRoleMapper;
-import com.fc.test.mapper.auto.TsysPremissionMapper;
 import com.fc.test.mapper.custom.PermissionDao;
+import com.fc.test.model.auto.TsysPermission;
+import com.fc.test.model.auto.TsysPermissionExample;
 import com.fc.test.model.auto.TsysPermissionRole;
 import com.fc.test.model.auto.TsysPermissionRoleExample;
-import com.fc.test.model.auto.TsysPremission;
-import com.fc.test.model.auto.TsysPremissionExample;
 import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.fc.test.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
-public class SysPremissionService implements BaseService<TsysPremission, TsysPremissionExample>{
+public class SysPermissionService implements BaseService<TsysPermission, TsysPermissionExample>{
 	
 	//权限mapper
 	@Autowired
-	private TsysPremissionMapper tsysPremissionMapper;
+	private TsysPermissionMapper tsysPermissionMapper;
 	
 	//权限自定义dao
 	@Autowired
@@ -42,26 +43,26 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<TsysPremission> list(Tablepar tablepar,String searchTxt){
-	        TsysPremissionExample testExample=new TsysPremissionExample();
+	 public PageInfo<TsysPermission> list(Tablepar tablepar, String searchTxt){
+	        TsysPermissionExample testExample=new TsysPermissionExample();
 	        testExample.setOrderByClause("id+0 DESC");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
 	        }
 
 	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
-	        List<TsysPremission> list= tsysPremissionMapper.selectByExample(testExample);
-	        PageInfo<TsysPremission> pageInfo = new PageInfo<TsysPremission>(list);
+	        List<TsysPermission> list= tsysPermissionMapper.selectByExample(testExample);
+	        PageInfo<TsysPermission> pageInfo = new PageInfo<TsysPermission>(list);
 	        return  pageInfo;
 	 }
 	 
-	 public List<TsysPremission> list2(String searchTxt){
-	        TsysPremissionExample testExample=new TsysPremissionExample();
+	 public List<TsysPermission> list2(String searchTxt){
+	        TsysPermissionExample testExample=new TsysPermissionExample();
 	        testExample.setOrderByClause("id+0 asc");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
 	        }
-	        List<TsysPremission> list= tsysPremissionMapper.selectByExample(testExample);
+	        List<TsysPermission> list= tsysPermissionMapper.selectByExample(testExample);
 	        return  list;
 	 }
 
@@ -81,19 +82,19 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		}
 		
 		//判断是否有子集
-		TsysPremissionExample example=new TsysPremissionExample();
+		TsysPermissionExample example=new TsysPermissionExample();
 		example.createCriteria().andIdIn(lista);
-		List<TsysPremission> tsysPremissions= tsysPremissionMapper.selectByExample(example);
+		List<TsysPermission> tsysPermissions = tsysPermissionMapper.selectByExample(example);
 		boolean lag=false;
-		for (TsysPremission tsysPremission : tsysPremissions) {
-			if(tsysPremission.getChildCount()>0) {
+		for (TsysPermission tsysPermission : tsysPermissions) {
+			if(tsysPermission.getChildCount()>0) {
 				lag=true;
 			}
 		}
 		if(lag) {//有子集 无法删除
 			return -1;
 		}else {//删除操作
-			int i=tsysPremissionMapper.deleteByExample(example);
+			int i=tsysPermissionMapper.deleteByExample(example);
 			if(i>0) {//删除成功
 				return 1;
 			}else {//删除失败
@@ -106,7 +107,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 
 	
 	@Override
-	public int insertSelective(TsysPremission record) {
+	public int insertSelective(TsysPermission record) {
 		//添加雪花主键id
 		record.setId(SnowflakeIdWorker.getUUID());
 		//判断为目录的时候添加父id为0
@@ -117,71 +118,71 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		if(record.getIsBlank()==null) {
 			record.setIsBlank(0);
 		}
-		return tsysPremissionMapper.insertSelective(record);
+		return tsysPermissionMapper.insertSelective(record);
 	}
 
 	@Override
-	public TsysPremission selectByPrimaryKey(String id) {
+	public TsysPermission selectByPrimaryKey(String id) {
 		
-		return tsysPremissionMapper.selectByPrimaryKey(id);
+		return tsysPermissionMapper.selectByPrimaryKey(id);
 	}
 
 	
 	@Override
-	public int updateByPrimaryKeySelective(TsysPremission record) {
+	public int updateByPrimaryKeySelective(TsysPermission record) {
 		//默认设置不跳转
 		if(record.getIsBlank()==null) {
 			record.setIsBlank(0);
 		}
-		return tsysPremissionMapper.updateByPrimaryKeySelective(record);
+		return tsysPermissionMapper.updateByPrimaryKeySelective(record);
 	}
 	
-	public int updateByPrimaryKey(TsysPremission record) {
+	public int updateByPrimaryKey(TsysPermission record) {
 		//默认设置不跳转
 		if(record.getIsBlank()==null) {
 			record.setIsBlank(0);
 		}
-		return tsysPremissionMapper.updateByPrimaryKey(record);
+		return tsysPermissionMapper.updateByPrimaryKey(record);
 	}
 
 	
 	@Override
-	public int updateByExampleSelective(TsysPremission record, TsysPremissionExample example) {
+	public int updateByExampleSelective(TsysPermission record, TsysPermissionExample example) {
 		//默认设置不跳转
 		if(record.getIsBlank()==null) {
 			record.setIsBlank(0);
 		}
-		return tsysPremissionMapper.updateByExampleSelective(record, example);
+		return tsysPermissionMapper.updateByExampleSelective(record, example);
 	}
 
 	
 	@Override
-	public int updateByExample(TsysPremission record, TsysPremissionExample example) {
+	public int updateByExample(TsysPermission record, TsysPermissionExample example) {
 		//默认设置不跳转
 		if(record.getIsBlank()==null) {
 			record.setIsBlank(0);
 		}
-		return tsysPremissionMapper.updateByExample(record, example);
+		return tsysPermissionMapper.updateByExample(record, example);
 	}
 
 	@Override
-	public List<TsysPremission> selectByExample(TsysPremissionExample example) {
+	public List<TsysPermission> selectByExample(TsysPermissionExample example) {
 		
-		return tsysPremissionMapper.selectByExample(example);
-	}
-
-	
-	@Override
-	public long countByExample(TsysPremissionExample example) {
-		
-		return tsysPremissionMapper.countByExample(example);
+		return tsysPermissionMapper.selectByExample(example);
 	}
 
 	
 	@Override
-	public int deleteByExample(TsysPremissionExample example) {
+	public long countByExample(TsysPermissionExample example) {
 		
-		return tsysPremissionMapper.deleteByExample(example);
+		return tsysPermissionMapper.countByExample(example);
+	}
+
+	
+	@Override
+	public int deleteByExample(TsysPermissionExample example) {
+		
+		return tsysPermissionMapper.deleteByExample(example);
 	}
 	
 	/**
@@ -189,10 +190,10 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param tsysUser
 	 * @return
 	 */
-	public int checkNameUnique(TsysPremission tsysPremission){
-		TsysPremissionExample example=new TsysPremissionExample();
-		example.createCriteria().andNameEqualTo(tsysPremission.getName());
-		List<TsysPremission> list=tsysPremissionMapper.selectByExample(example);
+	public int checkNameUnique(TsysPermission tsysPermission){
+		TsysPermissionExample example=new TsysPermissionExample();
+		example.createCriteria().andNameEqualTo(tsysPermission.getName());
+		List<TsysPermission> list=tsysPermissionMapper.selectByExample(example);
 		return list.size();
 	}
 
@@ -201,10 +202,10 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param tsysUser
 	 * @return
 	 */
-	public int checkURLUnique(TsysPremission tsysPremission){
-		TsysPremissionExample example=new TsysPremissionExample();
-		example.createCriteria().andUrlEqualTo(tsysPremission.getUrl());
-		List<TsysPremission> list=tsysPremissionMapper.selectByExample(example);
+	public int checkURLUnique(TsysPermission tsysPermission){
+		TsysPermissionExample example=new TsysPermissionExample();
+		example.createCriteria().andUrlEqualTo(tsysPermission.getUrl());
+		List<TsysPermission> list=tsysPermissionMapper.selectByExample(example);
 		return list.size();
 	}
 
@@ -213,10 +214,10 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param tsysUser
 	 * @return
 	 */
-	public int checkPermsUnique(TsysPremission tsysPremission){
-		TsysPremissionExample example=new TsysPremissionExample();
-		example.createCriteria().andPermsEqualTo(tsysPremission.getPerms());
-		List<TsysPremission> list=tsysPremissionMapper.selectByExample(example);
+	public int checkPermsUnique(TsysPermission tsysPermission){
+		TsysPermissionExample example=new TsysPermissionExample();
+		example.createCriteria().andPermsEqualTo(tsysPermission.getPerms());
+		List<TsysPermission> list=tsysPermissionMapper.selectByExample(example);
 		return list.size();
 	}
 	
@@ -226,10 +227,10 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param pid
 	 * @return
 	 */
-	public List<TsysPremission> queryPid(String pid,int type){
-		TsysPremissionExample example=new TsysPremissionExample();
+	public List<TsysPermission> queryPid(String pid, int type){
+		TsysPermissionExample example=new TsysPermissionExample();
 		example.createCriteria().andPidEqualTo(pid).andTypeEqualTo(type);
-		return tsysPremissionMapper.selectByExample(example);
+		return tsysPermissionMapper.selectByExample(example);
 	}
 	
 	/**
@@ -238,7 +239,7 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 */
 	public BootstrapTree getbooBootstrapTreePerm(String userid){
 		List<BootstrapTree> treeList = new ArrayList<BootstrapTree>();
-		List<TsysPremission> menuList =  getall(userid);
+		List<TsysPermission> menuList =  getall(userid);
 		treeList = getbooBootstrapTreePerm(menuList,"0");
 		if(treeList!=null&&treeList.size()==1) {
 			return treeList.get(0);
@@ -254,12 +255,12 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @param parentId
 	 * @return
 	 */
-	private static List<BootstrapTree> getbooBootstrapTreePerm(List<TsysPremission> menuList,String parentId){
+	private static List<BootstrapTree> getbooBootstrapTreePerm(List<TsysPermission> menuList, String parentId){
 		List<BootstrapTree> treeList = new ArrayList<>();
 		List<BootstrapTree> childList = null;
-		for(TsysPremission p : menuList) {
+		for(TsysPermission p : menuList) {
 			p.setPid(p.getPid()==null||p.getPid().trim().equals("")?"0":p.getPid());
-			if(p.getPid().toString().trim().equals(parentId)) {
+			if(p.getPid().trim().equals(parentId)) {
 				if(p.getChildCount()!=null&&p.getChildCount()>0) {
 					childList = getbooBootstrapTreePerm(menuList, String.valueOf(p.getId()));
 				}
@@ -275,11 +276,11 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * 根据用户id获取用户角色如果用户为null 获取所有权限
 	 * @return
 	 */
-	public List<TsysPremission> getall(String userid){
+	public List<TsysPermission> getall(String userid){
 		if(StringUtils.isEmpty(userid)) {
-			TsysPremissionExample example = new TsysPremissionExample();
+			TsysPermissionExample example = new TsysPermissionExample();
 			example.setOrderByClause("order_num asc");
-			return  tsysPremissionMapper.selectByExample(example);
+			return  tsysPermissionMapper.selectByExample(example);
 		}
 		return  permissionDao.findByAdminUserId(userid);
 	}
@@ -290,12 +291,12 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	
 	/**
 	 * 判断权限是否有权限
-	 * @param myTsysPremissions
+	 * @param myTsysPermissions
 	 * @param sysPremission
 	 */
-	public Boolean ifpermissions(List<TsysPremission>  myTsysPremissions,BootstrapTree sysPremission){
-		for (TsysPremission mytsysPremission : myTsysPremissions) {
-			if(sysPremission.getId().equals(mytsysPremission.getId())){
+	public Boolean ifpermissions(List<TsysPermission> myTsysPermissions, BootstrapTree sysPremission){
+		for (TsysPermission mytsysPermission : myTsysPermissions) {
+			if(sysPremission.getId().equals(mytsysPermission.getId())){
 				return true;
 			}
 		}
@@ -314,10 +315,10 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 		//设置展开
 		//map.put("expanded", true);
 		// 获取角色的权限
-		List<TsysPremission> myTsysPremissions = permissionDao.queryRoleId(roleid);
+		List<TsysPermission> myTsysPermissions = permissionDao.queryRoleId(roleid);
 		// 获取所有的权限
 		BootstrapTree sysPremissions = getbooBootstrapTreePerm(null);
-		iterationCheckPre(sysPremissions, myTsysPremissions, map);
+		iterationCheckPre(sysPremissions, myTsysPermissions, map);
 		return sysPremissions;
 
 	}
@@ -325,22 +326,22 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	/**
 	 * 循环迭代获取所有权限
 	 * @param pboostrapTree
-	 * @param myTsysPremissions
+	 * @param myTsysPermissions
 	 * @param map
 	 */
-	public void iterationCheckPre(BootstrapTree pboostrapTree,List<TsysPremission> myTsysPremissions,Map<String, Object> map) {
+	public void iterationCheckPre(BootstrapTree pboostrapTree, List<TsysPermission> myTsysPermissions, Map<String, Object> map) {
 		if(null!=pboostrapTree) {
-			if (ifpermissions(myTsysPremissions, pboostrapTree)) {
+			if (ifpermissions(myTsysPermissions, pboostrapTree)) {
 				pboostrapTree.setState(map);
 			}
 			List<BootstrapTree> bootstrapTreeList = pboostrapTree.getNodes();
 			if(null!=bootstrapTreeList&&!bootstrapTreeList.isEmpty()) {
 				for(BootstrapTree bootstrapTree : bootstrapTreeList) {
-					if (ifpermissions(myTsysPremissions, bootstrapTree)) {// 菜单栏设置
+					if (ifpermissions(myTsysPermissions, bootstrapTree)) {// 菜单栏设置
 						bootstrapTree.setState(map);
 					}
 					//检查子节点
-					iterationCheckPre(bootstrapTree, myTsysPremissions, map);
+					iterationCheckPre(bootstrapTree, myTsysPermissions, map);
 				}
 			}
 		}
@@ -354,14 +355,11 @@ public class SysPremissionService implements BaseService<TsysPremission, TsysPre
 	 * @Date 2019年9月1日 上午2:06:31
 	 */
 	public Boolean queryLikePerms(String perms){
-		TsysPremissionExample example=new TsysPremissionExample();
+		TsysPermissionExample example=new TsysPermissionExample();
 		example.createCriteria().andPermsLike("%gen:"+perms+"%");
-		List<TsysPremission> list= tsysPremissionMapper.selectByExample(example);
-		if(list.size()>0) {
-			return true;
-		} 
-		return false;
-	}
+		List<TsysPermission> list= tsysPermissionMapper.selectByExample(example);
+        return list.size() > 0;
+    }
 	
 	
 }

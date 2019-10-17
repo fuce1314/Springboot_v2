@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fc.test.mapper.custom.PermissionDao">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysPremission">
+  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysPermission">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="descripion" jdbcType="VARCHAR" property="descripion" />
@@ -16,12 +16,12 @@
    <sql id="Base_Column_List">
      id, `name`, descripion, url, pid, perms, type, icon, order_num
   </sql>
-   <select id="findAll"  resultType="com.fc.test.model.auto.TsysPremission">
+   <select id="findAll"  resultType="com.fc.test.model.auto.TsysPermission">
 
 	  select  *,(select count(1) from t_sys_premission where pid=a.id) childcount from t_sys_premission a
 	</select>
 
-<select id="findByAdminUserId" parameterType="String" resultType="com.fc.test.model.auto.TsysPremission">
+<select id="findByAdminUserId" parameterType="String" resultType="com.fc.test.model.auto.TsysPermission">
            select p.*,(select count(1) from t_sys_premission where pid=p.id) childcount
         from t_sys_user u
         LEFT JOIN t_sys_role_user sru on u.id= sru.Sys_User_id
@@ -31,7 +31,7 @@
         where u.id=#{userId} ORDER BY p.order_num ASC
  </select>
  
- <select id="queryRoleId"  parameterType="String" resultType="com.fc.test.model.auto.TsysPremission">
+ <select id="queryRoleId"  parameterType="String" resultType="com.fc.test.model.auto.TsysPermission">
  	select p.* from t_sys_premission p
 	left join t_sys_permission_role pr on p.id=pr.permission_id
 	where pr.role_id=#{roleid}

@@ -2,12 +2,7 @@ package com.fc.test.common.base;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysDatasService;
@@ -15,10 +10,16 @@ import com.fc.test.service.SysFileDatasService;
 import com.fc.test.service.SysFileService;
 import com.fc.test.service.SysNoticeService;
 import com.fc.test.service.SysOperLogService;
-import com.fc.test.service.SysPremissionService;
+import com.fc.test.service.SysPermissionService;
 import com.fc.test.service.SysRoleService;
 import com.fc.test.service.SysUserService;
 import com.fc.test.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 /**
  * web层通用数据处理
@@ -40,7 +41,7 @@ public class BaseController
 	
 	//权限
 	@Autowired
-	public SysPremissionService sysPremissionService;
+	public SysPermissionService sysPermissionService;
 	
 	//文件上传
 	@Autowired
