@@ -1,7 +1,23 @@
 package com.fc.test.controller.admin;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONUtil;
+import com.fc.test.common.base.BaseController;
+import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.model.auto.TsysPermission;
+import com.fc.test.model.custom.TitleVo;
+import com.fc.test.model.custom.TsysTables;
+import com.fc.test.model.custom.autocode.AutoCodeConfig;
+import com.fc.test.model.custom.autocode.BeanColumn;
+import com.fc.test.model.custom.autocode.GlobalConfig;
+import com.fc.test.service.GeneratorService;
+import com.fc.test.service.SysPermissionService;
+import com.fc.test.service.SysUtilService;
+import com.fc.test.util.AutoCode.AutoCodeUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,20 +27,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.fc.test.common.base.BaseController;
-import com.fc.test.common.domain.AjaxResult;
-import com.fc.test.model.auto.TsysPremission;
-import com.fc.test.model.custom.TitleVo;
-import com.fc.test.model.custom.TsysTables;
-import com.fc.test.model.custom.autocode.AutoCodeConfig;
-import com.fc.test.model.custom.autocode.BeanColumn;
-import com.fc.test.model.custom.autocode.GlobalConfig;
-import com.fc.test.service.GeneratorService;
-import com.fc.test.service.SysPremissionService;
-import com.fc.test.service.SysUtilService;
-import com.fc.test.util.AutoCode.AutoCodeUtil;
-import cn.hutool.json.JSONArray;
-import cn.hutool.json.JSONUtil;
 
 /**
  *代码自动生成
@@ -42,7 +44,7 @@ public class AutoCodeController  extends BaseController{
 	@Autowired
 	private SysUtilService sysUtilService;
 	@Autowired
-	private SysPremissionService sysPremissionService;
+	private SysPermissionService sysPermissionService;
 	
 	/**
 	 * 代码自动生成展示首页
@@ -58,7 +60,7 @@ public class AutoCodeController  extends BaseController{
 		String str="单表代码生成";
 		setTitle(model, new TitleVo("生成", str+"管理", true,"欢迎进入"+str+"页面", true, false));
 		List<TsysTables> tables=generatorService.queryList(null);
-		List<TsysPremission> premissions=sysPremissionService.list2(null) ; 
+		List<TsysPermission> premissions= sysPermissionService.list2(null) ;
 		model.addAttribute("tables", tables);
 		model.addAttribute("premissions", premissions);
         return prefix + "/one";
@@ -185,7 +187,7 @@ public class AutoCodeController  extends BaseController{
 		List<TsysTables> list= generatorService.queryList(tableName);
 		if(list.size()>0) {
 			TsysTables tables=list.get(0);
-			Boolean boolean1= sysPremissionService.queryLikePerms(tables.getTableModel_a());
+			Boolean boolean1= sysPermissionService.queryLikePerms(tables.getTableModel_a());
 			if(boolean1) {
 				return AjaxResult.error("数据库已有权限");
 			}else {

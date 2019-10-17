@@ -73,7 +73,7 @@
          <table tableName="t_sys_role" domainObjectName="TsysRole" enableCountByExample="true">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
-        <table tableName="t_sys_premission" domainObjectName="TsysPremission" enableCountByExample="true">
+        <table tableName="t_sys_permission" domainObjectName="TsysPermission" enableCountByExample="true">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
          <table tableName="t_sys_role_user" domainObjectName="TSysRoleUser" enableCountByExample="true">
@@ -83,6 +83,6 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>-->
         
-        <table tableName='t_sys_premission' domainObjectName='TsysPremission'/>
+        <table tableName='t_sys_permission' domainObjectName='TsysPermission'/>
     </context>
 </generatorConfiguration>

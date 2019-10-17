@@ -1,7 +1,15 @@
 package com.fc.test.controller.admin;
 
-import io.swagger.annotations.Api;
 import java.util.List;
+
+import com.fc.test.common.base.BaseController;
+import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.model.auto.TsysPermission;
+import com.fc.test.model.custom.TableSplitResult;
+import com.fc.test.model.custom.Tablepar;
+import com.fc.test.model.custom.TitleVo;
+import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,13 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.fc.test.common.base.BaseController;
-import com.fc.test.common.domain.AjaxResult;
-import com.fc.test.model.auto.TsysPremission;
-import com.fc.test.model.custom.TableSplitResult;
-import com.fc.test.model.custom.Tablepar;
-import com.fc.test.model.custom.TitleVo;
-import com.github.pagehelper.PageInfo;
 
 /**
  * 权限Controller
@@ -52,8 +53,8 @@ public class PremissionController  extends BaseController{
 	@RequiresPermissions("system:premission:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<TsysPremission> page=sysPremissionService.list(tablepar,searchTxt) ; 
-		TableSplitResult<TsysPremission> result=new TableSplitResult<TsysPremission>(page.getPageNum(), page.getTotal(), page.getList()); 
+		PageInfo<TsysPermission> page= sysPermissionService.list(tablepar, searchTxt) ;
+		TableSplitResult<TsysPermission> result=new TableSplitResult<TsysPermission>(page.getPageNum(), page.getTotal(), page.getList());
 		return  result;
 	}
 	/**
@@ -65,7 +66,7 @@ public class PremissionController  extends BaseController{
 	@PostMapping("list2")
 	@ResponseBody
 	public Object list2(Tablepar tablepar,String searchTxt){
-		List<TsysPremission> page=sysPremissionService.list2(searchTxt) ; 
+		List<TsysPermission> page= sysPermissionService.list2(searchTxt) ;
 		return  page;
 	}
 	/**
@@ -86,8 +87,8 @@ public class PremissionController  extends BaseController{
 	@PostMapping("add")
 	@RequiresPermissions("system:premission:add")
 	@ResponseBody
-	public AjaxResult add(TsysPremission role){
-		int b=sysPremissionService.insertSelective(role);
+	public AjaxResult add(TsysPermission role){
+		int b= sysPermissionService.insertSelective(role);
 		if(b>0){
 			return success();
 		}else{
@@ -104,7 +105,7 @@ public class PremissionController  extends BaseController{
 	@RequiresPermissions("system:premission:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
-		int b=sysPremissionService.deleteByPrimaryKey(ids);
+		int b= sysPermissionService.deleteByPrimaryKey(ids);
 		if(b==1){
 			return success();
 		}else if(b==-1){
@@ -118,13 +119,13 @@ public class PremissionController  extends BaseController{
 	
 	/**
 	 * 检查权限
-	 * @param TsysPremission
+	 * @param TsysPermission
 	 * @return
 	 */
 	@PostMapping("checkNameUnique")
 	@ResponseBody
-	public int checkNameUnique(TsysPremission TsysPremission){
-		int b=sysPremissionService.checkNameUnique(TsysPremission);
+	public int checkNameUnique(TsysPermission TsysPermission){
+		int b= sysPermissionService.checkNameUnique(TsysPermission);
 		if(b>0){
 			return 1;
 		}else{
@@ -139,8 +140,8 @@ public class PremissionController  extends BaseController{
 	 */
 	@PostMapping("checkURLUnique")
 	@ResponseBody
-	public int checkURLUnique(TsysPremission tsysPremission){
-		int b=sysPremissionService.checkURLUnique(tsysPremission);
+	public int checkURLUnique(TsysPermission tsysPermission){
+		int b= sysPermissionService.checkURLUnique(tsysPermission);
 		if(b>0){
 			return 1;
 		}else{
@@ -155,8 +156,8 @@ public class PremissionController  extends BaseController{
 	 */
 	@PostMapping("checkPermsUnique")
 	@ResponseBody
-	public int checkPermsUnique(TsysPremission tsysPremission){
-		int b=sysPremissionService.checkPermsUnique(tsysPremission);
+	public int checkPermsUnique(TsysPermission tsysPermission){
+		int b= sysPermissionService.checkPermsUnique(tsysPermission);
 		if(b>0){
 			return 1;
 		}else{
@@ -174,11 +175,11 @@ public class PremissionController  extends BaseController{
     public String edit(@PathVariable("roleId") String id, ModelMap mmap)
     {	
 		//获取自己的权限信息
-		TsysPremission mytsysPremission=sysPremissionService.selectByPrimaryKey(id);
+		TsysPermission mytsysPermission = sysPermissionService.selectByPrimaryKey(id);
 		//获取父权限信息
-		TsysPremission pattsysPremission=sysPremissionService.selectByPrimaryKey(mytsysPremission.getPid());
-        mmap.put("TsysPremission", mytsysPremission);
-        mmap.put("pattsysPremission", pattsysPremission);
+		TsysPermission pattsysPermission = sysPermissionService.selectByPrimaryKey(mytsysPermission.getPid());
+        mmap.put("TsysPremission", mytsysPermission);
+        mmap.put("pattsysPremission", pattsysPermission);
         return prefix + "/edit";
     }
 	
@@ -188,9 +189,9 @@ public class PremissionController  extends BaseController{
     @RequiresPermissions("system:premission:edit")
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(TsysPremission TsysPremission)
+    public AjaxResult editSave(TsysPermission TsysPermission)
     {
-        return toAjax(sysPremissionService.updateByPrimaryKey(TsysPremission));
+        return toAjax(sysPermissionService.updateByPrimaryKey(TsysPermission));
     }
     
     /**
@@ -201,7 +202,7 @@ public class PremissionController  extends BaseController{
     @ResponseBody
     public AjaxResult getbooBootstrapTreePerm(){
     	
-    	return retobject(200,sysPremissionService.getbooBootstrapTreePerm(null));
+    	return retobject(200, sysPermissionService.getbooBootstrapTreePerm(null));
     }
     
     
@@ -214,7 +215,7 @@ public class PremissionController  extends BaseController{
     @ResponseBody
     public AjaxResult getCheckPrem(String roleId){
     	
-    	return retobject(200,sysPremissionService.getCheckPrem(roleId));
+    	return retobject(200, sysPermissionService.getCheckPrem(roleId));
     }
     
     
@@ -235,7 +236,7 @@ public class PremissionController  extends BaseController{
     @PostMapping("tree/{pid}")
     @ResponseBody
     public AjaxResult Tree(@PathVariable("pid") String pid){
-    	return retobject(200,sysPremissionService.getbooBootstrapTreePerm(null));
+    	return retobject(200, sysPermissionService.getbooBootstrapTreePerm(null));
     }
     
     
