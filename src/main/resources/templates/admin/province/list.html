@@ -139,7 +139,7 @@ function cityList(){
 	$.ajax({
 		type: 'get',
 		dataType: 'json',
-	    url: "/ProvinceLinkageController/getCity?pid="+$("#province_select").val(),
+	    url: window.rootPath+"/ProvinceLinkageController/getCity?pid="+$("#province_select").val(),
 		success:function(data){
 		  for (var i = 0; i < data.length; i++) {
 			  $("#city_select").append("<option value='"+data[i].cityCode+"'>"+data[i].cityName+"</option>");
@@ -164,7 +164,7 @@ function areaList(){
 	$.ajax({
 		type: 'get',
 		dataType: 'json',
-	    url: "/ProvinceLinkageController/getArea?pid="+$("#city_select").val(),
+	    url: window.rootPath+"/ProvinceLinkageController/getArea?pid="+$("#city_select").val(),
 		success:function(data){
 		  for (var i = 0; i < data.length; i++) {
 			  $("#area_select").append("<option value='"+data[i].areaCode+"'>"+data[i].areaName+"</option>");
@@ -187,7 +187,7 @@ function streetList(){
 	$.ajax({
 		type: 'get',
 		dataType: 'json',
-	    url: "/ProvinceLinkageController/getStreet?pid="+$("#area_select").val(),
+	    url: window.rootPath+"/ProvinceLinkageController/getStreet?pid="+$("#area_select").val(),
 		success:function(data){
 		  for (var i = 0; i < data.length; i++) {
 			  $("#street_select").append("<option value='"+data[i].streetCode+"'>"+data[i].streetName+"</option>");
