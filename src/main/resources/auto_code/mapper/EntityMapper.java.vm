@@ -15,7 +15,7 @@ public interface ${TsysTables.tableModel}Mapper {
    #set( $pklag = false)
    #set( $pk_attrType = '')
    #foreach ($column in $beanColumns)
-	   #if(${column.column_key} != 'PRI')
+	   #if(${column.column_key} == 'PRI')
 	   	#set( $pklag = true )
 	   	#set( $pk_attrType=$column.attrType)
 	   #end

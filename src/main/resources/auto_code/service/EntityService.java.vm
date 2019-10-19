@@ -69,6 +69,14 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 			example.createCriteria().and${pkfield}In(lista);
 			return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
 			
+		#elseif(${pk_attrType} == 'Long')
+		
+			Long[] integers = Convert.toLongArray(",", ids);
+			List<Long> stringB = Arrays.asList(integers);
+			${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
+			example.createCriteria().and${pkfield}In(stringB);
+			return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+		
 		#else
 			
 			Integer[] integers = Convert.toIntArray(",", ids);
@@ -85,7 +93,13 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	@Override
 	public ${TsysTables.tableModel} selectByPrimaryKey(String id) {
 		#if(${pk_attrType} == 'String')
+		
 			return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id);
+		#elseif(${pk_attrType} == 'Long')
+		
+			Long id1 = Long.valueOf(id);
+			return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id1);
+			
 		#else
 		
 			Integer id1 = Integer.valueOf(id);
