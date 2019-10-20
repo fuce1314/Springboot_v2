@@ -39,17 +39,18 @@ user:例如/admins/user/**=user没有参数表示必须存在用户，当登入�
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		//对所有用户认证
 		filterChainDefinitionMap.put("/static/**", "anon");
-		filterChainDefinitionMap.put("/login", "anon");
-		filterChainDefinitionMap.put("/login", "anon");
-		filterChainDefinitionMap.put("/logout", "logout");
+		filterChainDefinitionMap.put("/admin/login", "anon");
+		filterChainDefinitionMap.put("/admin/logout", "logout");
 		//放验证码
 		filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
 		// 释放 druid 监控画面
 		filterChainDefinitionMap.put("/druid/**", "anon");
 		//释放websocket请求
 		filterChainDefinitionMap.put("/websocket", "anon");
-
-		//任务调度暂时放开
+		//前端
+		filterChainDefinitionMap.put("/", "anon");
+		filterChainDefinitionMap.put("/index", "anon");//任务调度暂时放开
+		
 		filterChainDefinitionMap.put("/quartz/**", "anon");
 		
 		//

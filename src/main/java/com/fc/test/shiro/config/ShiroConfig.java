@@ -41,9 +41,9 @@ public class ShiroConfig {
 	public ShiroFilterFactoryBean shiroFilterFactoryBean(org.apache.shiro.mgt.SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		//登录
-		shiroFilterFactoryBean.setLoginUrl("/login");
+		shiroFilterFactoryBean.setLoginUrl("/admin/login");
 		//首页
-		shiroFilterFactoryBean.setSuccessUrl("/index");
+		shiroFilterFactoryBean.setSuccessUrl("/");
 		//错误页面，认证不通过跳转
 		shiroFilterFactoryBean.setUnauthorizedUrl("/error/403");
 		//页面权限控制

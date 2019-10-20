@@ -29,15 +29,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+/**
+ * 后台方法
+* @ClassName: HomeController
+* @author fuce
+* @date 2019-10-21 00:10
+*
+ */
 @Controller
-public class HomeController extends BaseController{
-	private static Logger logger=LoggerFactory.getLogger(HomeController.class);
+@RequestMapping("admin")
+public class AdminController extends BaseController{
+	private static Logger logger=LoggerFactory.getLogger(AdminController.class);
+	
+	private String prefix = "admin";
 	
 	@ApiOperation(value="首页",notes="首页")
-	@GetMapping("/index")
+	@GetMapping("index")
 	public String index(HttpServletRequest request) {
     	//获取菜单栏
     	BootstrapTree bootstrapTree= sysPermissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
@@ -46,14 +56,14 @@ public class HomeController extends BaseController{
     	//获取公告信息
     	List<SysNotice>  notices=sysNoticeService.getuserNoticeNotRead(ShiroUtils.getUser(),0);
     	request.getSession().setAttribute("notices",notices);
-		return "admin/index";
+		return prefix+"/index";
 	}
 	
 	@ApiOperation(value="局部刷新区域",notes="局部刷新区域")
-	@GetMapping("/main")
+	@GetMapping("main")
 	public String main(ModelMap map) {
 		setTitle(map, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
-		return "admin/main";
+		return prefix+"/main";
 	}
 	
 	/**
@@ -62,20 +72,20 @@ public class HomeController extends BaseController{
 	 * @return
 	 */
 	@ApiOperation(value="请求到登陆界面",notes="请求到登陆界面")
-	@GetMapping("/login")
+	@GetMapping("login")
     public String login() {
         try {
             if ((null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) || SecurityUtils.getSubject().isRemembered()) {
 
-            	return "redirect:/index";
+            	return "redirect:/"+prefix+"/index";
             } else {
             	System.out.println("--进行登录验证..验证开始");
-                return "login";
+                return "/login";
             }
         } catch (Exception e) {
         		e.printStackTrace();
         }
-        return "login";
+        return "/login";
     }
 	
 	/**
@@ -129,7 +139,9 @@ public class HomeController extends BaseController{
 		
      	 if(StringUtils.isNotNull(ShiroUtils.getUser())) {
          	 //跳转到 get请求的登陆方法
-    		 view.setViewName("redirect:/index");
+    		 view.setViewName("redirect:/"+prefix+"/index");
+     	 }else {
+     		 view.setViewName("redirect:/"+prefix+"/login");
      	 }
      	
 		
@@ -147,7 +159,7 @@ public class HomeController extends BaseController{
 		Subject subject = SecurityUtils.getSubject();
 		 //注销
         subject.logout();
-        return "redirect:/login";
+        return "redirect:/"+prefix+"/login";
 	}
 	
 	

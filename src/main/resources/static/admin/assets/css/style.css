@@ -2878,7 +2878,7 @@ b#speed {
     #skin-select li span, ul.topnav h4, .noft-blue, .noft-blue-number, .noft-purple-number, .dark, .side-dash, .dropdown-wrap:after, .dropdown-setting:after, .widget-menu-hide, .config-wrap {
         display: none!important;
     }
-    body {
+    #body {
         padding-left:50px!important;
     }
     .tooltip-tip2, .tooltip-tip {

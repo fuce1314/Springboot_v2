@@ -50,7 +50,7 @@ $("#form-add").validate({
 			required:true,
 			isPhone:true,
             remote: {
-                url: rootPath + "system/user/checkPhoneUnique",
+                url: rootPath + "/system/user/checkPhoneUnique",
                 type: "post",
                 dataType: "json",
                 data: {
