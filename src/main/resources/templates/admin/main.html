@@ -5,7 +5,7 @@
 
 <title th:text=${title}></title>
 <!-- 这儿引用单独的css link -->
-<link rel="stylesheet" th:href="@{static/admin/assets/js/button/ladda/ladda.min.css}">
+<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
 <style type="text/css">
 /**
 *这里写单独的css样式
@@ -190,7 +190,7 @@
 <!-- 通用js -->
 <div th:include="admin/common/html/js :: onload_js">
 </div>
-<script type="text/javascript" src="/static/admin/assets/js/toggle_close.js"></script>
+<script type="text/javascript" th:src="@{/static/admin/assets/js/toggle_close.js}"></script>
 <!-- 右边高度控制 -->
 <script type="text/javascript" th:src="@{/static/admin/assets/js/right_hight.js}"></script>
 

@@ -7,11 +7,11 @@
 	<meta name="description" content="SpringBoot_v2,脚手架">
 	<meta name="author" content="QQ87766867">
 	<!--样式 -->
-	<script type="text/javascript" th:src="@{static/admin/assets/js/jquery.min.js}"></script>
-	<!--  <link rel="stylesheet" href="@{static/admin/assets/css/style.css}"> -->
-	<link rel="stylesheet" th:href="@{static/admin/assets/css/loader-style.css}">
-	<link rel="stylesheet" th:href="@{static/admin/assets/css/bootstrap.css}">
-	<link rel="stylesheet" th:href="@{static/admin/assets/css/signin.css}">
+	<script type="text/javascript" th:src="@{/static/admin/assets/js/jquery.min.js}"></script>
+	<!--  <link rel="stylesheet" href="@{/static/admin/assets/css/style.css}"> -->
+	<link rel="stylesheet" th:href="@{/static/admin/assets/css/loader-style.css}">
+	<link rel="stylesheet" th:href="@{/static/admin/assets/css/bootstrap.css}">
+	<link rel="stylesheet" th:href="@{/static/admin/assets/css/signin.css}">
 	<!--icons -->
     <link rel="icon" th:href="@{/static/admin/images/favicon.ico}" type="image/x-icon">
 </head>
@@ -40,7 +40,7 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="account-box">
-					<form role="form" th:action="@{/login}"  method="post" id="loginForm">
+					<form role="form" th:action="@{/admin/login}"  method="post" id="loginForm">
 						<div class="form-group">
 							<a href="#" class="pull-right label-forgot">忘记账号?</a>
 							<label for="inputUsernameEmail">账号</label>
@@ -58,7 +58,7 @@
 									<input class="form-control" name="code" id="code"  placeholder="请输入验证码">
 								</div>
 								 <div class="col-lg-6">
-								 	 <img height="33px"  id="codeImg" alt="点击更换" title="点击更换" th:src="@{captcha/captchaImage?type=char}" />
+								 	 <img height="33px"  id="codeImg" alt="点击更换" title="点击更换" th:src="@{/captcha/captchaImage?type=char}" />
 								 </div>
 								
 							</div>
@@ -114,10 +114,10 @@
 <div id="test1" class="gmap3">
 </div>
 <!--  END OF PAPER WRAP --><!-- MAIN EFFECT -->
-<script type="text/javascript" th:src="@{static/admin/static/assets/js/preloader.js}"></script>
-<script type="text/javascript" th:src="@{static/admin/assets/js/bootstrap.js}"></script>
-<script type="text/javascript" th:src="@{static/admin/assets/js/app.js}"></script>
-<script type="text/javascript" th:src="@{static/admin/assets/js/load.js}"></script>
+<script type="text/javascript" th:src="@{/static/admin/assets/js/preloader.js}"></script>
+<script type="text/javascript" th:src="@{/static/admin/assets/js/bootstrap.js}"></script>
+<script type="text/javascript" th:src="@{/static/admin/assets/js/app.js}"></script>
+<script type="text/javascript" th:src="@{/static/admin/assets/js/load.js}"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WSrX4bCfgcjTfhWNCwvfI1ZnQnfZDxFW"></script>
 <script type="text/javascript">
     $(function() {
@@ -128,7 +128,7 @@
     	
     	//刷新验证码
     	$('#codeImg').click(function() {
-			var url ="captcha/captchaImage?type=char&s=" + Math.random();
+			var url ="/captcha/captchaImage?type=char&s=" + Math.random();
 			$("#codeImg").attr("src", url);
 		});
     	

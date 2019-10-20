@@ -51,6 +51,7 @@ spring :
     model: HTML5
     prefix: classpath:/templates/
     suffix: .html
+    cache: false
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
