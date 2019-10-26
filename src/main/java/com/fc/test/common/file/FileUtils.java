@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FileUtils
 {
 
+    private FileUtils(){}
     /**
      * 输出指定文件的byte数组
      * 
@@ -99,19 +100,15 @@ public class FileUtils
      * @throws IOException 
      */
     public static void readIMGTohtml(HttpServletRequest request, HttpServletResponse response,String fileurl) throws IOException{
-    	//读取本地图片输入流
-    			FileInputStream inputStream = new FileInputStream(fileurl);
-    			int i = inputStream.available();
-    			//byte数组用于存放图片字节数据
-    			byte[] buff = new byte[i];
-    			inputStream.read(buff);
-    			//记得关闭输入流
-    			inputStream.close();
-    			//设置发送到客户端的响应内容类型
-    			response.setContentType("image/*");
-    			OutputStream out = response.getOutputStream();
-    			out.write(buff);
-    			//关闭响应输出流
-    			out.close();
+        //设置发送到客户端的响应内容类型
+        response.setContentType("image/*");
+        //读取本地图片输入流
+        try (FileInputStream inputStream = new FileInputStream(fileurl);OutputStream out = response.getOutputStream()){
+            int i = inputStream.available();
+            //byte数组用于存放图片字节数据
+            byte[] buff = new byte[i];
+            inputStream.read(buff);
+            out.write(buff);
+        }
     }
 }

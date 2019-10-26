@@ -27,6 +27,8 @@ import cn.hutool.core.date.DateTime;
  * 自动生成
  */
 public class AutoCodeUtil {
+
+	private AutoCodeUtil(){}
 	
 	/**生成文件路径**/
 	private static String targetPath = getTargetPath();
@@ -111,14 +113,13 @@ public class AutoCodeUtil {
     		            file.getParentFile().mkdirs();
     		        if (!file.exists())
     		            file.createNewFile();
-    		        FileOutputStream outStream = new FileOutputStream(file);
-    		        OutputStreamWriter writer = new OutputStreamWriter(outStream,"UTF-8");
-    		        BufferedWriter sw = new BufferedWriter(writer);
-    		        tpl.merge(context, sw);
-    		        sw.flush();
-    		        sw.close();
-    		        outStream.close();
-    		        System.out.println("成功生成Java文件:"+filepath);
+					try (FileOutputStream outStream = new FileOutputStream(file);
+						 OutputStreamWriter writer = new OutputStreamWriter(outStream, "UTF-8");
+						 BufferedWriter sw = new BufferedWriter(writer)) {
+						tpl.merge(context, sw);
+						sw.flush();
+						System.out.println("成功生成Java文件:" + filepath);
+					}
         		}
 	        	
         	} catch (IOException e) {
