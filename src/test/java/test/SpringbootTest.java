@@ -29,7 +29,7 @@ public class SpringbootTest {
 	private GeneratorMapper generatorMapper;
 	
 	public void test(){
-		/*PremissionTreeModelVo modelVo= sysPremissionService.queryTreePrem();
+		/*PermissionTreeModelVo modelVo= sysPremissionService.queryTreePrem();
 		Gson gson=new Gson();
 		System.out.println();
 		System.out.println(gson.toJson(modelVo));

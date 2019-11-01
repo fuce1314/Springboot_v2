@@ -26,16 +26,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @Api(value = "权限")
-@RequestMapping("PremissionController")
-public class PremissionController  extends BaseController{
+@RequestMapping("PermissionController")
+public class PermissionController  extends BaseController{
 	
 
 	
 	//跳转页面参数
-	private String prefix = "admin/premission";
+	private String prefix = "admin/permission";
 	
 	@GetMapping("view")
-	@RequiresPermissions("system:premission:view")
+	@RequiresPermissions("system:permission:view")
     public String view(ModelMap model)
     {	
 		String str="权限";
@@ -50,7 +50,7 @@ public class PremissionController  extends BaseController{
 	 * @return
 	 */
 	@PostMapping("list")
-	@RequiresPermissions("system:premission:list")
+	@RequiresPermissions("system:permission:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
 		PageInfo<TsysPermission> page= sysPermissionService.list(tablepar, searchTxt) ;
@@ -85,7 +85,7 @@ public class PremissionController  extends BaseController{
      * @return
      */
 	@PostMapping("add")
-	@RequiresPermissions("system:premission:add")
+	@RequiresPermissions("system:permission:add")
 	@ResponseBody
 	public AjaxResult add(TsysPermission role){
 		int b= sysPermissionService.insertSelective(role);
@@ -102,7 +102,7 @@ public class PremissionController  extends BaseController{
 	 * @return
 	 */
 	@PostMapping("remove")
-	@RequiresPermissions("system:premission:remove")
+	@RequiresPermissions("system:permission:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b= sysPermissionService.deleteByPrimaryKey(ids);
@@ -178,15 +178,15 @@ public class PremissionController  extends BaseController{
 		TsysPermission mytsysPermission = sysPermissionService.selectByPrimaryKey(id);
 		//获取父权限信息
 		TsysPermission pattsysPermission = sysPermissionService.selectByPrimaryKey(mytsysPermission.getPid());
-        mmap.put("TsysPremission", mytsysPermission);
-        mmap.put("pattsysPremission", pattsysPermission);
+        mmap.put("TsysPermission", mytsysPermission);
+        mmap.put("pattsysPermission", pattsysPermission);
         return prefix + "/edit";
     }
 	
 	/**
      * 修改保存权限
      */
-    @RequiresPermissions("system:premission:edit")
+    @RequiresPermissions("system:permission:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(TsysPermission TsysPermission)

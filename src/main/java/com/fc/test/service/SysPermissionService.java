@@ -292,11 +292,11 @@ public class SysPermissionService implements BaseService<TsysPermission, TsysPer
 	/**
 	 * 判断权限是否有权限
 	 * @param myTsysPermissions
-	 * @param sysPremission
+	 * @param sysPermission
 	 */
-	public Boolean ifpermissions(List<TsysPermission> myTsysPermissions, BootstrapTree sysPremission){
+	public Boolean ifpermissions(List<TsysPermission> myTsysPermissions, BootstrapTree sysPermission){
 		for (TsysPermission mytsysPermission : myTsysPermissions) {
-			if(sysPremission.getId().equals(mytsysPermission.getId())){
+			if(sysPermission.getId().equals(mytsysPermission.getId())){
 				return true;
 			}
 		}
@@ -317,9 +317,9 @@ public class SysPermissionService implements BaseService<TsysPermission, TsysPer
 		// 获取角色的权限
 		List<TsysPermission> myTsysPermissions = permissionDao.queryRoleId(roleid);
 		// 获取所有的权限
-		BootstrapTree sysPremissions = getbooBootstrapTreePerm(null);
-		iterationCheckPre(sysPremissions, myTsysPermissions, map);
-		return sysPremissions;
+		BootstrapTree sysPermissions = getbooBootstrapTreePerm(null);
+		iterationCheckPre(sysPermissions, myTsysPermissions, map);
+		return sysPermissions;
 
 	}
 	

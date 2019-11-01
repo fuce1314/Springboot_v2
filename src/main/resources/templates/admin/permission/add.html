@@ -124,7 +124,7 @@ label.error {
 									 -->
 									 <div class="ms-parent" style="width: 100%;">
 				                        <div class="icon-drop animated flipInX" style="display: none;max-height:200px;overflow-y:auto">
-				                            <div data-th-include="admin/premission/icon"></div>
+				                            <div data-th-include="admin/permission/icon"></div>
 				                        </div>
 				                    </div>
 									
@@ -195,7 +195,7 @@ $(function(){
 				minlength: 2,
 				maxlength: 20,
 				remote: {
-	                url: rootPath + "/PremissionController/checkNameUnique",
+	                url: rootPath + "/PermissionController/checkNameUnique",
 	                type: "post",
 	                dataType: "json",
 	                dataFilter: function(data, type) {
@@ -211,7 +211,7 @@ $(function(){
 				minlength: 1,
 				maxlength: 100,
 				remote: {
-	                url: rootPath + "/PremissionController/checkURLUnique",
+	                url: rootPath + "/PermissionController/checkURLUnique",
 	                type: "post",
 	                dataType: "json",
 	                dataFilter: function(data, type) {
@@ -227,7 +227,7 @@ $(function(){
 				minlength: 1,
 				maxlength: 100,
 				remote: {
-	                url: rootPath + "/PremissionController/checkPermsUnique",
+	                url: rootPath + "/PermissionController/checkPermsUnique",
 	                type: "post",
 	                dataType: "json",
 	                dataFilter: function(data, type) {
@@ -265,7 +265,7 @@ function add() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : rootPath + "/PremissionController/add",
+		url : rootPath + "/PermissionController/add",
 		data :dataFormJson,
 		async : false,
 		error : function(request) {
@@ -280,7 +280,7 @@ function add() {
 
 /*菜单管理-修改-选择菜单树*/
 function selectMenuTree() {
-	var url =  rootPath+ "/PremissionController/tree";
+	var url =  rootPath+ "/PermissionController/tree";
 	$.modal.open("选择菜单", url, '380', '380');
 }
 
