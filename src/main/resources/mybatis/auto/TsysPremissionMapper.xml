@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, descripion, url, is_blank, pid, perms, type, icon, order_num, visible, (select count(1) from t_sys_premission where pid=a.id) childcount
+    id, name, descripion, url, is_blank, pid, perms, type, icon, order_num, visible, (select count(1) from t_sys_permission where pid=a.id) childcount
   </sql>
   <select id="selectByExample" parameterType="com.fc.test.model.auto.TsysPermissionExample" resultMap="BaseResultMap">
     select
@@ -84,7 +84,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_sys_premission a
+    from t_sys_permission a
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -95,21 +95,21 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_sys_premission a
+    from t_sys_permission a
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from t_sys_premission
+    delete from t_sys_permission
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TsysPermissionExample">
-    delete from t_sys_premission
+    delete from t_sys_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.fc.test.model.auto.TsysPermission">
-    insert into t_sys_premission (id, name, descripion, 
+    insert into t_sys_permission (id, name, descripion, 
       url, is_blank, pid, 
       perms, type, icon, 
       order_num, visible)
@@ -119,7 +119,7 @@
       #{orderNum,jdbcType=INTEGER}, #{visible,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysPermission">
-    insert into t_sys_premission
+    insert into t_sys_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -192,13 +192,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.fc.test.model.auto.TsysPermissionExample" resultType="java.lang.Long">
-    select count(*) from t_sys_premission a
+    select count(*) from t_sys_permission a
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update t_sys_premission
+    update t_sys_permission
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=VARCHAR},
@@ -239,7 +239,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update t_sys_premission
+    update t_sys_permission
     set id = #{record.id,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       descripion = #{record.descripion,jdbcType=VARCHAR},
@@ -256,7 +256,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TsysPermission">
-    update t_sys_premission
+    update t_sys_permission
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -292,7 +292,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TsysPermission">
-    update t_sys_premission
+    update t_sys_permission
     set name = #{name,jdbcType=VARCHAR},
       descripion = #{descripion,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},

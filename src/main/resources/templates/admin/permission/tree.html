@@ -87,7 +87,7 @@ function add() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : rootPath + "/PremissionController/add",
+		url : rootPath + "/PermissionController/add",
 		data :dataFormJson,
 		async : false,
 		error : function(request) {
@@ -105,7 +105,7 @@ function add() {
 function getTree() {
 	var tree = [];
 	$.ajax({
-		url: rootPath + "/PremissionController/tree/0",
+		url: rootPath + "/PermissionController/tree/0",
 		type:"post",
 		async : false,
 		cache : true,

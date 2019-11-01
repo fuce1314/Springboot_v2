@@ -98,8 +98,8 @@ public class MyShiroRealm extends AuthorizingRealm {
 			//System.out.println("角色名字:"+gson.toJson(userrole));
 			String rolid=userrole.getId();//角色id
 			authorizationInfo.addRole(userrole.getName());//添加角色名字
-			List<TsysPermission> premissions=permissionDao.queryRoleId(rolid);
-			for(TsysPermission p:premissions){
+			List<TsysPermission> permissions=permissionDao.queryRoleId(rolid);
+			for(TsysPermission p:permissions){
 				//System.out.println("角色下面的权限:"+gson.toJson(p));
 				if(StringUtils.isNotEmpty(p.getPerms())){
 					authorizationInfo.addStringPermission(p.getPerms());

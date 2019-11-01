@@ -3,9 +3,9 @@
 #set( $id2 = $!{SnowflakeIdWorker.getUUID()}+"2" )
 #set( $id3 = $!{SnowflakeIdWorker.getUUID()}+"3" )
 #set( $id4 = $!{SnowflakeIdWorker.getUUID()}+"4" )
-INSERT INTO `t_sys_premission` VALUES ('${id}', '${comments}管理', '${comments}展示', '/${className}Controller/view','0', 'pid自己填写', '${controller_permission_key}:${classname}:view', 1, 'fa fa-quora', NULL,0);
-INSERT INTO `t_sys_premission` VALUES ('${id1}', '${comments}集合', '${comments}集合', '/${className}Controller/list','0', '${id}', '${controller_permission_key}:${classname}:list', 2, '', NULL,0);
-INSERT INTO `t_sys_premission` VALUES ('${id2}', '${comments}添加', '${comments}添加', '/${className}Controller/add','0', '${id}', '${controller_permission_key}:${classname}:add', 2, 'entypo-plus-squared', NULL,0);
-INSERT INTO `t_sys_premission` VALUES ('${id3}', '${comments}删除', '${comments}删除', '/${className}Controller/remove','0', '${id}', '${controller_permission_key}:${classname}:remove', 2, 'entypo-trash', NULL,0);
-INSERT INTO `t_sys_premission` VALUES ('${id4}', '${comments}修改', '${comments}修改', '/${className}Controller/edit','0', '${id}', '${controller_permission_key}:${classname}:edit', 2, 'fa fa-wrench', NULL,0);
+INSERT INTO `t_sys_permission` VALUES ('${id}', '${comments}管理', '${comments}展示', '/${className}Controller/view','0', 'pid自己填写', '${controller_permission_key}:${classname}:view', 1, 'fa fa-quora', NULL,0);
+INSERT INTO `t_sys_permission` VALUES ('${id1}', '${comments}集合', '${comments}集合', '/${className}Controller/list','0', '${id}', '${controller_permission_key}:${classname}:list', 2, '', NULL,0);
+INSERT INTO `t_sys_permission` VALUES ('${id2}', '${comments}添加', '${comments}添加', '/${className}Controller/add','0', '${id}', '${controller_permission_key}:${classname}:add', 2, 'entypo-plus-squared', NULL,0);
+INSERT INTO `t_sys_permission` VALUES ('${id3}', '${comments}删除', '${comments}删除', '/${className}Controller/remove','0', '${id}', '${controller_permission_key}:${classname}:remove', 2, 'entypo-trash', NULL,0);
+INSERT INTO `t_sys_permission` VALUES ('${id4}', '${comments}修改', '${comments}修改', '/${className}Controller/edit','0', '${id}', '${controller_permission_key}:${classname}:edit', 2, 'fa fa-wrench', NULL,0);
 

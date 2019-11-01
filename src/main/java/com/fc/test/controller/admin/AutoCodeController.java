@@ -60,9 +60,9 @@ public class AutoCodeController  extends BaseController{
 		String str="单表代码生成";
 		setTitle(model, new TitleVo("生成", str+"管理", true,"欢迎进入"+str+"页面", true, false));
 		List<TsysTables> tables=generatorService.queryList(null);
-		List<TsysPermission> premissions= sysPermissionService.list2(null) ;
+		List<TsysPermission> permissions= sysPermissionService.list2(null) ;
 		model.addAttribute("tables", tables);
-		model.addAttribute("premissions", premissions);
+		model.addAttribute("permissions", permissions);
         return prefix + "/one";
     }
 	

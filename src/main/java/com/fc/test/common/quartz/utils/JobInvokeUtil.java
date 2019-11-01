@@ -31,12 +31,20 @@ public class JobInvokeUtil
         if (!isValidClassName(beanName))
         {
             Object bean = SpringUtils.getBean(beanName);
-            invokeMethod(bean, methodName, methodParams);
+            if (null != bean) {
+                invokeMethod(bean, methodName, methodParams);
+            }else {
+                System.out.println("找不到class["+ beanName +"]");
+            }
         }
         else
         {
             Object bean = Class.forName(beanName).newInstance();
-            invokeMethod(bean, methodName, methodParams);
+            if (null != bean) {
+                invokeMethod(bean, methodName, methodParams);
+            }else {
+                System.out.println("找不到class["+ beanName +"]");
+            }
         }
     }
 

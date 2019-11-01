@@ -34,6 +34,8 @@ import java.util.zip.ZipOutputStream;
  * @date 2016年12月19日 下午11:40:24
  */
 public class GenUtils {
+
+    private GenUtils(){}
 	
 	private static String targetPath = System.getProperty("user.dir");
 
@@ -72,6 +74,9 @@ public class GenUtils {
     public static void generatorCode(TsysTables table, List<Map<String, String>> columns, ZipOutputStream zip,GenVo genVo) {
         //配置信息
         Configuration config = getConfig();
+        if (null == config){
+            throw new RuntimeException("渲染模板失败，表名：" + table.getTableName()+"\n"+"找不到配置文件");
+        }
         boolean hasBigDecimal = false;
         //判断主键
         boolean pklag=false;
@@ -171,14 +176,14 @@ public class GenUtils {
                             file.getParentFile().mkdirs();
                         if (!file.exists())
                             file.createNewFile();
+                        try(
                         FileOutputStream outStream = new FileOutputStream(file);
                         OutputStreamWriter writer = new OutputStreamWriter(outStream,"UTF-8");
-                        BufferedWriter sw = new BufferedWriter(writer);
-                        tpl.merge(context, sw);
-                        sw.flush();
-                        sw.close();
-                        outStream.close();
-                        System.out.println("成功生成Java文件:"+filepath);
+                        BufferedWriter sw = new BufferedWriter(writer)) {
+                            tpl.merge(context, sw);
+                            sw.flush();
+                            System.out.println("成功生成Java文件:" + filepath);
+                        }
             		}else {//把sql文件单独处理
             			if(template.contains("menu.sql.vm")||template.contains("说明.txt.vm")) {
             				 StringWriter sw = new StringWriter();

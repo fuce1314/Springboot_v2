@@ -12,14 +12,17 @@ import com.fc.test.shiro.service.MyShiroRealm;
 import com.fc.test.util.BeanUtils;
 import com.fc.test.util.StringUtils;
 
+import java.util.Optional;
+
 
 /**
  * shiro 工具类
  *	
  * @author fuce
  */
-public class ShiroUtils
-{
+public class ShiroUtils {
+
+    private ShiroUtils(){}
 
     public static Subject getSubjct()
     {
@@ -67,12 +70,20 @@ public class ShiroUtils
 
     public static String getUserId()
     {
-        return getUser().getId().trim();
+        TsysUser tsysUser = getUser();
+        if (tsysUser == null || tsysUser.getId() == null){
+            throw new RuntimeException("用户不存在！");
+        }
+        return tsysUser.getId().trim();
     }
 
     public static String getLoginName()
     {
-        return getUser().getUsername();
+        TsysUser tsysUser = getUser();
+        if (tsysUser == null){
+            throw new RuntimeException("用户不存在！");
+        }
+        return tsysUser.getUsername();
     }
 
     public static String getIp()

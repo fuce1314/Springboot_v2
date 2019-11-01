@@ -14,8 +14,9 @@ import com.fc.test.common.exception.file.FileNameLengthLimitExceededException;
  * @author fuce 
  * @date: 2018年9月22日 下午10:33:23
  */
-public class FileUploadUtils
-{
+public class FileUploadUtils {
+
+    private FileUploadUtils(){}
 
     /**
      * 默认大小 50M

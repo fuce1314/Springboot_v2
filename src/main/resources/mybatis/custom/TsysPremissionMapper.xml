@@ -18,21 +18,21 @@
   </sql>
    <select id="findAll"  resultType="com.fc.test.model.auto.TsysPermission">
 
-	  select  *,(select count(1) from t_sys_premission where pid=a.id) childcount from t_sys_premission a
+	  select  *,(select count(1) from t_sys_permission where pid=a.id) childcount from t_sys_permission a
 	</select>
 
 <select id="findByAdminUserId" parameterType="String" resultType="com.fc.test.model.auto.TsysPermission">
-           select p.*,(select count(1) from t_sys_premission where pid=p.id) childcount
+           select p.*,(select count(1) from t_sys_permission where pid=p.id) childcount
         from t_sys_user u
         LEFT JOIN t_sys_role_user sru on u.id= sru.Sys_User_id
         LEFT JOIN t_sys_role r on sru.Sys_Role_id=r.id
         LEFT JOIN t_sys_permission_role spr on spr.role_id=r.id
-        LEFT JOIN t_sys_premission p on p.id =spr.permission_id
+        LEFT JOIN t_sys_permission p on p.id =spr.permission_id
         where u.id=#{userId} ORDER BY p.order_num ASC
  </select>
  
  <select id="queryRoleId"  parameterType="String" resultType="com.fc.test.model.auto.TsysPermission">
- 	select p.* from t_sys_premission p
+ 	select p.* from t_sys_permission p
 	left join t_sys_permission_role pr on p.id=pr.permission_id
 	where pr.role_id=#{roleid}
  
