@@ -80,12 +80,12 @@ public class AdminController extends BaseController{
             	return "redirect:/"+prefix+"/index";
             } else {
             	System.out.println("--进行登录验证..验证开始");
-                return "/login";
+                return "login";
             }
         } catch (Exception e) {
         		e.printStackTrace();
         }
-        return "/login";
+        return "login";
     }
 	
 	/**
