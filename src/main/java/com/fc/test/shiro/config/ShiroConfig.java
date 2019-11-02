@@ -12,6 +12,7 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -66,9 +67,24 @@ public class ShiroConfig {
 		securityManager.setCacheManager(cacheManager);
 		securityManager.setRememberMeManager(manager);//记住Cookie
 		securityManager.setRealm(shiroRealm);
+		securityManager.setSessionManager(sessionManager());
 		return securityManager;
 	}
-	
+	/**
+	 * session过期控制
+	 * TODO(请说明这个方法的作用).
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月2日 下午12:49:49
+	 */
+	@Bean
+	public  DefaultWebSessionManager sessionManager() {
+		DefaultWebSessionManager defaultWebSessionManager=new DefaultWebSessionManager();
+		// 设置session过期时间3600s
+		Long timeout=60L*1000*60;//毫秒级别
+		defaultWebSessionManager.setGlobalSessionTimeout(timeout);
+		return defaultWebSessionManager;
+	}
 	/**
 	 * 加密算法
 	 * @return
