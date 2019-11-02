@@ -46,6 +46,8 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <appender name="appLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 指定日志文件的名称 -->
         <file>${LOG_HOME}/${appName}.log</file>
+        <!-- 如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。 -->
+　　　　	<append>true</append> 
         <!--
 	       	 当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名
 	        TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。
@@ -82,25 +84,6 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 	
 	
 	
-	
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <!--
-                颜色可选
-                "%black", "%red", "%green","%yellow","%blue", "%magenta","%cyan", "%white", "%gray",
-                "%boldRed","%boldGreen", "%boldYellow", "%boldBlue", "%boldMagenta","%boldCyan", "%boldWhite" and "%highlight" 。
-                例:%red(信息),则 信息 这两个字为红色
-                其它 %p 表示level,%t表示线程名
-            -->
-            <pattern>
-                 %white(%-40.40logger{40}) %boldMagenta(%3.3L) %blue(:) %cyan(%m%n)
-            </pattern>
-        </encoder>
-    </appender>
-
-
-	
-	
 	 
 	<!--
         logger主要用于存放日志对象，也可以定义日志类型、级别
@@ -125,6 +108,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     	要么是定义的logger，要么是root，判断的关键在于找到这个logger，然后判断这个logger的appender和level。
     -->
     
+
 	<!-- dev环境 -->
 	<springProfile name="dev">
 	    <root level="INFO">
@@ -147,6 +131,30 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 
 
 <!-- 
+
+idea好像会报错解决方案
+
+<springProfile name="dev">
+    <root level="INFO">
+		<appender-ref ref="console" />
+    </root>
+</springProfile>
+
+   <springProfile name="prod">
+    <root level="INFO">
+        <appender-ref ref="appLogAppender"/>
+    </root>
+</springProfile>
+
+改为
+<root level="INFO">
+	<appender-ref ref="console" />
+</root>
+或者
+<root level="INFO">
+      <appender-ref ref="appLogAppender"/>
+</root>
+
 
 使用方法：
 
