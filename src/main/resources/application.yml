@@ -45,6 +45,11 @@ spring :
         #shiro 报错修改的地方
     max-connections: 200000
     max-http-post-size: 9000000
+    # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
   mvc:   #静态文件
     static-path-pattern : /static/**
   thymeleaf:

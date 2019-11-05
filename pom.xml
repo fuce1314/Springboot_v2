@@ -228,6 +228,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 	 			<artifactId>maven-surefire-plugin</artifactId>
+	 			<!--忽略测试启动类 -->
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
