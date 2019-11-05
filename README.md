@@ -199,7 +199,8 @@ UEditor|百度富文本||
 - maven编译安装pom.xml文件即可打包成war
 
 ### 登陆地址
-- http://localhost:8080   默认帐号密码: admin/admin
+- 服务器:http://47.99.218.99:8080/springboot_v2/ 该数据库只有查询权限跟新增权限，所以修改以及删除会报错
+- 本地 http://localhost:8080   默认帐号密码: admin/admin
 - swagger  http://localhost:8080/swagger-ui.html
 
 ### 启动类
