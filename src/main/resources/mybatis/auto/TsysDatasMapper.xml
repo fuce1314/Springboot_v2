@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysDatas" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="file_suffix" property="fileSuffix" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, file_path
+    id, file_path, file_suffix
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.test.model.auto.TsysDatasExample" >
     select
@@ -97,8 +98,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fc.test.model.auto.TsysDatas" >
-    insert into t_sys_datas (id, file_path)
-    values (#{id,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR})
+    insert into t_sys_datas (id, file_path, file_suffix)
+    values (#{id,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{fileSuffix,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysDatas" >
     insert into t_sys_datas
@@ -109,6 +110,9 @@
       <if test="filePath != null" >
         file_path,
       </if>
+      <if test="fileSuffix != null" >
+        file_suffix,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -116,6 +120,9 @@
       </if>
       <if test="filePath != null" >
         #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSuffix != null" >
+        #{fileSuffix,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -134,6 +141,9 @@
       <if test="record.filePath != null" >
         file_path = #{record.filePath,jdbcType=VARCHAR},
       </if>
+      <if test="record.fileSuffix != null" >
+        file_suffix = #{record.fileSuffix,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -142,7 +152,8 @@
   <update id="updateByExample" parameterType="map" >
     update t_sys_datas
     set id = #{record.id,jdbcType=VARCHAR},
-      file_path = #{record.filePath,jdbcType=VARCHAR}
+      file_path = #{record.filePath,jdbcType=VARCHAR},
+      file_suffix = #{record.fileSuffix,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -153,12 +164,16 @@
       <if test="filePath != null" >
         file_path = #{filePath,jdbcType=VARCHAR},
       </if>
+      <if test="fileSuffix != null" >
+        file_suffix = #{fileSuffix,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TsysDatas" >
     update t_sys_datas
-    set file_path = #{filePath,jdbcType=VARCHAR}
+    set file_path = #{filePath,jdbcType=VARCHAR},
+    file_suffix = #{fileSuffix,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

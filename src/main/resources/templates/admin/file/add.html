@@ -107,7 +107,7 @@ $(function(){
 	       paramName:"file", //默认为file
 	       maxFiles:1,//一次性上传的文件数量上限
 	       maxFilesize: 2, //文件大小，单位：MB
-	       acceptedFiles: ".jpg,.gif,.png,.jpeg", //上传的类型
+	       acceptedFiles: ".jpg,.gif,.png,.jpeg,.xls", //上传的类型
 	       addRemoveLinks:true,
 	       parallelUploads: 1,//一次上传的文件数量
 	       //previewsContainer:"#preview",//上传图片的预览窗口
@@ -115,7 +115,7 @@ $(function(){
 	       dictMaxFilesExceeded: "您最多只能上传1个文件！",
 	       dictResponseError: '文件上传失败!',
 	       dictInvalidFileType: "文件类型只能是*.jpg,*.gif,*.png,*.jpeg。",
-	       dictFallbackMessage:"浏览器不受支持",
+	       dictFallbackMessage:"浏览器不受支持!",
 	       dictFileTooBig:"文件过大上传文件最大支持.",
 	       dictRemoveLinks: "删除",
 	       dictCancelUpload: "取消",
@@ -127,13 +127,18 @@ $(function(){
 	           this.on("success",function(file,data){
 	               //上传成功触发的事件
 	               if(data!=null&&data!=""){
-	                $("#dataId").val(data.data);	
+	                	if(data.code==200){
+	                		$("#dataId").val(data.data);	
+	                	}else{
+	                		$.modal.alertError("文件为null！");
+	                		 myDropzone.removeFile(file);
+	                	}
 	               }
 	              
 	           });
 	           this.on("error",function (file,data) {
 	               //上传失败触发的事件
-	              
+	        	   $.modal.alertError("上传失败！");
 	           });
 	           this.on("removedfile",function(file){//删除文件触发结果
 	               $.ajax({

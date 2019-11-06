@@ -4,6 +4,8 @@ public class TsysDatas {
     private String id;
 
     private String filePath;
+    
+    private String fileSuffix;
 
     public String getId() {
         return id;
@@ -20,4 +22,13 @@ public class TsysDatas {
     public void setFilePath(String filePath) {
         this.filePath = filePath == null ? null : filePath.trim();
     }
+    
+    public String getFileSuffix() {
+        return fileSuffix;
+    }
+
+    public void setFileSuffix(String fileSuffix) {
+        this.fileSuffix = fileSuffix == null ? null : fileSuffix.trim();
+    }
+    
 }
