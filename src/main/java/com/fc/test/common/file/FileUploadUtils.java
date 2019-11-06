@@ -8,6 +8,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.exception.file.FileNameLengthLimitExceededException;
+import com.fc.test.util.StringUtils;
 
 /**
  * 文件上传工具类
@@ -86,30 +87,10 @@ public class FileUploadUtils {
         {
         	if("Y".equals(getIsstatic())) {//获取根目录
         		
-        		 return upload(getRoot_dir(), file, FileUploadUtils.IMAGE_JPG_EXTENSION);
+        		 return upload(getRoot_dir(), file);
         	}else {//自定义目录
-        		 return upload(getDefaultBaseDir(), file, FileUploadUtils.IMAGE_JPG_EXTENSION);
+        		 return upload(getDefaultBaseDir(), file);
         	}
-        }
-        catch (Exception e)
-        {
-            throw new IOException(e);
-        }
-    }
-
-    /**
-     * 根据文件路径上传
-     *
-     * @param baseDir 相对应用的基目录
-     * @param file 上传的文件
-     * @return 文件名称
-     * @throws IOException
-     */
-    public static final String upload(String baseDir, MultipartFile file) throws IOException
-    {
-        try
-        {
-            return upload(baseDir, file, FileUploadUtils.IMAGE_JPG_EXTENSION);
         }
         catch (Exception e)
         {
@@ -129,24 +110,31 @@ public class FileUploadUtils {
      * @throws FileNameLengthLimitExceededException 文件名太长
      * @throws IOException 比如读写文件出错时
      */
-    public static final String upload(String baseDir, MultipartFile file, String extension)
+    public static final String upload(String baseDir, MultipartFile file)
             throws FileSizeLimitExceededException, IOException, FileNameLengthLimitExceededException
     {
+    	String fileName=file.getOriginalFilename();
+    	// 获得文件后缀名称
+    	String suffixName = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+    	if(StringUtils.isEmpty(suffixName)) {
+    		//如果没有后缀默认后缀
+    		suffixName=FileUploadUtils.IMAGE_JPG_EXTENSION;
+    	}
     	
-        int fileNamelength = file.getOriginalFilename().length();
+        int fileNamelength = fileName.length();
         if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH)
         {
-            throw new FileNameLengthLimitExceededException(file.getOriginalFilename(), fileNamelength,
+            throw new FileNameLengthLimitExceededException(fileName, fileNamelength,
                     FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
         }
 
         assertAllowed(file);
 
-        String fileName = encodingFilename(file.getOriginalFilename(), extension);
+        String new_fileName = encodingFilename(fileName, suffixName);
 
-        File desc = getAbsoluteFile(baseDir, baseDir + fileName);
+        File desc = getAbsoluteFile(baseDir, baseDir + new_fileName);
         file.transferTo(desc);
-        return fileName;
+        return new_fileName;
     }
 
     private static final File getAbsoluteFile(String uploadDir, String filename) throws IOException

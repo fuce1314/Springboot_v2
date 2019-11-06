@@ -23,6 +23,7 @@ import com.fc.test.model.auto.TsysFile;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
+import com.fc.test.util.StringUtils;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -107,12 +108,13 @@ public class FileController extends BaseController{
 	@RequiresPermissions("system:file:add")
 	@ResponseBody
 	public AjaxResult add(TsysFile file,String dataId){
-		int b=sysFileService.insertSelective(file,dataId);
-		if(b>0){
-			return success();
-		}else{
-			return error();
+		if(StringUtils.isNotEmpty(dataId)) {
+			int b=sysFileService.insertSelective(file,dataId);
+			if(b>0){
+				return success();
+			}
 		}
+		return error();
 	}
 	
 	/**

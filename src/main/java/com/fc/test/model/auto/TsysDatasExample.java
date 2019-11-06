@@ -243,6 +243,76 @@ public class TsysDatasExample {
             addCriterion("file_path not between", value1, value2, "filePath");
             return (Criteria) this;
         }
+
+        public Criteria andFileSuffixIsNull() {
+            addCriterion("file_suffix is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixIsNotNull() {
+            addCriterion("file_suffix is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixEqualTo(String value) {
+            addCriterion("file_suffix =", value, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixNotEqualTo(String value) {
+            addCriterion("file_suffix <>", value, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixGreaterThan(String value) {
+            addCriterion("file_suffix >", value, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixGreaterThanOrEqualTo(String value) {
+            addCriterion("file_suffix >=", value, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixLessThan(String value) {
+            addCriterion("file_suffix <", value, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixLessThanOrEqualTo(String value) {
+            addCriterion("file_suffix <=", value, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixLike(String value) {
+            addCriterion("file_suffix like", value, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixNotLike(String value) {
+            addCriterion("file_suffix not like", value, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixIn(List<String> values) {
+            addCriterion("file_suffix in", values, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixNotIn(List<String> values) {
+            addCriterion("file_suffix not in", values, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixBetween(String value1, String value2) {
+            addCriterion("file_suffix between", value1, value2, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileSuffixNotBetween(String value1, String value2) {
+            addCriterion("file_suffix not between", value1, value2, "fileSuffix");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

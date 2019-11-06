@@ -16,6 +16,7 @@ import com.fc.test.model.auto.TsysDatas;
 import com.fc.test.model.auto.TsysDatasExample;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.util.SnowflakeIdWorker;
+import com.fc.test.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -75,12 +76,19 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
 		}else {
 			filesURL=V2Config.getProfile()+files;
 		}
-        
+        String fileName=file.getOriginalFilename();
+    	// 获得文件后缀名称
+    	String suffixName = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+    	if(StringUtils.isEmpty(suffixName)) {
+    		//如果没有后缀默认后缀
+    		suffixName=FileUploadUtils.IMAGE_JPG_EXTENSION;
+    	}
         
 		TsysDatas record=new TsysDatas();
 		//添加雪花主键id
 		record.setId(SnowflakeIdWorker.getUUID());
 		record.setFilePath(filesURL);
+		record.setFileSuffix(suffixName);
 		if(tsysDatasMapper.insertSelective(record)>0)
 		{
 			return record.getId();
