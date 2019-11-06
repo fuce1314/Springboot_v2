@@ -12,7 +12,6 @@ import com.fc.test.mapper.auto.SysStreetMapper;
 import com.fc.test.model.auto.SysStreet;
 import com.fc.test.model.auto.SysStreetExample;
 import com.fc.test.model.custom.Tablepar;
-import com.fc.test.util.SnowflakeIdWorker;
 
 /**
  * 街道设置 SysStreetService
