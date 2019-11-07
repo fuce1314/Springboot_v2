@@ -1,11 +1,25 @@
 package com.fc.test.model.auto;
 
-public class TsysDatas {
+import java.io.Serializable;
+
+public class TsysDatas implements Serializable {
     private String id;
 
     private String filePath;
-    
+
     private String fileSuffix;
+
+    private static final long serialVersionUID = 1L;
+
+    public TsysDatas(String id, String filePath, String fileSuffix) {
+        this.id = id;
+        this.filePath = filePath;
+        this.fileSuffix = fileSuffix;
+    }
+
+    public TsysDatas() {
+        super();
+    }
 
     public String getId() {
         return id;
@@ -22,7 +36,7 @@ public class TsysDatas {
     public void setFilePath(String filePath) {
         this.filePath = filePath == null ? null : filePath.trim();
     }
-    
+
     public String getFileSuffix() {
         return fileSuffix;
     }
@@ -30,5 +44,4 @@ public class TsysDatas {
     public void setFileSuffix(String fileSuffix) {
         this.fileSuffix = fileSuffix == null ? null : fileSuffix.trim();
     }
-    
 }
