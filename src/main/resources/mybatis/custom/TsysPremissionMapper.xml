@@ -22,7 +22,7 @@
 	</select>
 
 <select id="findByAdminUserId" parameterType="String" resultType="com.fc.test.model.auto.TsysPermission">
-           select p.*,(select count(1) from t_sys_permission where pid=p.id) childcount
+           select distinct p.*,(select count(1) from t_sys_permission where pid=p.id) childcount
         from t_sys_user u
         LEFT JOIN t_sys_role_user sru on u.id= sru.Sys_User_id
         LEFT JOIN t_sys_role r on sru.Sys_Role_id=r.id
