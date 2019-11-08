@@ -129,7 +129,13 @@ $(function(){
 	               //上传成功触发的事件
 	               if(data!=null&&data!=""){
 	                $("#dataId").val(data.data);	
-	               }
+	               }else if (data.code==500) {
+	               		$.modal.alertError(data.msg);
+	               		myDropzone.removeFile(file);
+					}else{
+                		$.modal.alertError("文件为上传失败！");
+                		myDropzone.removeFile(file);
+                	}
 	              
 	           });
 	           this.on("error",function (file,data) {

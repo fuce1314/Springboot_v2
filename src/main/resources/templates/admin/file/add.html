@@ -129,9 +129,13 @@ $(function(){
 	               if(data!=null&&data!=""){
 	                	if(data.code==200){
 	                		$("#dataId").val(data.data);	
-	                	}else{
-	                		$.modal.alertError("文件为null！");
-	                		 myDropzone.removeFile(file);
+	                	}else if (data.code==500) {
+	                		$.modal.alertError(data.msg);
+	                		myDropzone.removeFile(file);
+						}
+	                	else{
+	                		$.modal.alertError("文件为上传失败！");
+	                		myDropzone.removeFile(file);
 	                	}
 	               }
 	              
@@ -141,14 +145,18 @@ $(function(){
 	        	   $.modal.alertError("上传失败！");
 	           });
 	           this.on("removedfile",function(file){//删除文件触发结果
-	               $.ajax({
-	            	   url:window.rootPath+"/FileController/del_file",
-	            	   type:"post",
-	            	   data:{"ids":$("#dataId").val()},
-	            	   success:function(data){
-	            	   }
-	               })
-	        	   $("#dataId").val("");	
+	        	   if($("#dataId").val()!=null||$("#dataId").val()!=""){
+	        		   $.ajax({
+		            	   url:window.rootPath+"/FileController/del_file",
+		            	   type:"post",
+		            	   data:{"ids":$("#dataId").val()},
+		            	   success:function(data){
+		            		   $("#dataId").val("");
+		            	   }
+		               })
+	        	   }
+	              
+	        	   
 	           });
 	       }
 	});
@@ -173,11 +181,18 @@ $("#form-add").validate({
                     	return false;
                 }
             }
+		},
+		dataId:{
+			required:true
 		}
+		
 	},
 	messages: {
         "name": {
             remote: "文件名已经存在"
+        },
+        "dataId":{
+        	remote: "请上传文件"
         }
     },
 	submitHandler:function(form){

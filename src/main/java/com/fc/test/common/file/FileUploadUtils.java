@@ -2,8 +2,8 @@ package com.fc.test.common.file;
 
 import java.io.File;
 import java.io.IOException;
+import org.apache.commons.fileupload.FileUploadBase.FileSizeLimitExceededException;
 import org.apache.shiro.crypto.hash.Md5Hash;
-import org.apache.tomcat.util.http.fileupload.FileUploadBase.FileSizeLimitExceededException;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.fc.test.common.conf.V2Config;
@@ -22,7 +22,7 @@ public class FileUploadUtils {
     /**
      * 默认大小 50M
      */
-    public static final long DEFAULT_MAX_SIZE = 52428800;
+    public static final long DEFAULT_MAX_SIZE = 50*1024*1024;
 
     /**
      * 默认上传的地址
@@ -39,7 +39,7 @@ public class FileUploadUtils {
     /**
      * 默认的文件名最大长度
      */
-    public static final int DEFAULT_FILE_NAME_LENGTH = 200;
+    public static final int DEFAULT_FILE_NAME_LENGTH = 100;
     /**
      * 默认文件类型jpg
      */
@@ -174,7 +174,7 @@ public class FileUploadUtils {
         long size = file.getSize();
         if (DEFAULT_MAX_SIZE != -1 && size > DEFAULT_MAX_SIZE)
         {
-            throw new FileSizeLimitExceededException("not allowed upload upload", size, DEFAULT_MAX_SIZE);
+            throw new FileSizeLimitExceededException("超过默认大小", size, DEFAULT_MAX_SIZE);
         }
     }
 

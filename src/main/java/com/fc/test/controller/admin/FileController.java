@@ -114,7 +114,7 @@ public class FileController extends BaseController{
 				return success();
 			}
 		}
-		return error();
+		return error("请上传文件");
 	}
 	
 	/**

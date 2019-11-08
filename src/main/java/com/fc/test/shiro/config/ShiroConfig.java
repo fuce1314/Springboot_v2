@@ -15,11 +15,7 @@ import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerExceptionResolver;
-
-import com.fc.test.common.exception.GlobalExceptionResolver;
 import com.fc.test.shiro.service.MyShiroRealm;
-
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 
 
@@ -72,7 +68,6 @@ public class ShiroConfig {
 	}
 	/**
 	 * session过期控制
-	 * TODO(请说明这个方法的作用).
 	 * @return
 	 * @author fuce
 	 * @Date 2019年11月2日 下午12:49:49
@@ -153,13 +148,5 @@ public class ShiroConfig {
         return advisor;
     }
     
-    /**
-     * 注册全局异常处理
-     * @return
-     */
-    @Bean(name = "exceptionHandler")
-    public HandlerExceptionResolver handlerExceptionResolver(){
-        return new GlobalExceptionResolver();
-    }
 
 }
