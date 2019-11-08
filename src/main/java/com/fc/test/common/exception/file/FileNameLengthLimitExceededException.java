@@ -5,7 +5,7 @@ import org.apache.commons.fileupload.FileUploadException;
 /**
  * 文件名超长 误异常类
  * 
- * @author ruoyi
+ * @author fuce
  */
 public class FileNameLengthLimitExceededException extends FileUploadException
 {
