@@ -460,7 +460,7 @@
                 "pre": 1
             }
         },
-        stylesheets: ["/static/admin/assets/js/textEditor/src/bootstrap-wysihtml5.css"], // (path_to_project/lib/css/bootstrap3-wysiwyg5-color.css)
+        stylesheets: ["../static/admin/assets/js/textEditor/src/bootstrap-wysihtml5.css"], // (path_to_project/lib/css/bootstrap3-wysiwyg5-color.css)
         locale: "en"
     };
 

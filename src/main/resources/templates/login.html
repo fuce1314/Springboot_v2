@@ -119,7 +119,8 @@
 <script type="text/javascript" th:src="@{/static/admin/assets/js/app.js}"></script>
 <script type="text/javascript" th:src="@{/static/admin/assets/js/load.js}"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WSrX4bCfgcjTfhWNCwvfI1ZnQnfZDxFW"></script>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
+	window.rootPath=[[${rootPath}]];
     $(function() {
     	//session获取iframe处理
     	 if (window != top) {
@@ -128,7 +129,7 @@
     	
     	//刷新验证码
     	$('#codeImg').click(function() {
-			var url ="/captcha/captchaImage?type=char&s=" + Math.random();
+			var url =rootPath+"/captcha/captchaImage?type=char&s=" + Math.random();
 			$("#codeImg").attr("src", url);
 		});
     	
