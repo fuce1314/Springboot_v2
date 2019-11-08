@@ -1,9 +1,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <!-- JavaScript -->
 <div  th:fragment="onload_js">	
-	<script type="text/javascript" th:inline="javascript">
-	window.rootPath=[[${rootPath}]];
-	</script>
+	<script type="text/javascript">
+window.rootPath='[[${rootPath}]]';
+</script>
 	<script type="text/javascript" th:src="@{/static/admin/jquery/2.2.3/jquery.js}"></script>
    
     <!--主效果-->
@@ -39,9 +39,9 @@
 
 
 <div th:fragment="onload_js_Premiss" >
-		<script type="text/javascript" th:inline="javascript">
-		window.rootPath=[[${rootPath}]];
-		</script>
+		<script type="text/javascript">
+window.rootPath='[[${rootPath}]]';
+</script>
 	<script type="text/javascript" th:src="@{/static/admin/jquery/2.2.3/jquery.js}"></script>
 	   <!--主效果-->
 	<script type="text/javascript" th:src="@{/static/admin/assets/js/preloader.js}"></script>
@@ -63,8 +63,8 @@
 
 
 <div th:fragment="onload_js_service" >
-<script type="text/javascript" th:inline="javascript">
-window.rootPath=[[${rootPath}]];
+<script type="text/javascript">
+window.rootPath='[[${rootPath}]]';
 </script>
 <script th:src="@{/static/js/treegrid/jquery.min.js}"></script>
 <!-- 数字时钟 -->
