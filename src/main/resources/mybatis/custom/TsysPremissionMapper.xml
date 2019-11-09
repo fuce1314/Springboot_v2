@@ -22,13 +22,11 @@
 	</select>
 
 <select id="findByAdminUserId" parameterType="String" resultType="com.fc.test.model.auto.TsysPermission">
-           select distinct p.*,(select count(1) from t_sys_permission where pid=p.id) childcount
-        from t_sys_user u
-        LEFT JOIN t_sys_role_user sru on u.id= sru.Sys_User_id
-        LEFT JOIN t_sys_role r on sru.Sys_Role_id=r.id
-        LEFT JOIN t_sys_permission_role spr on spr.role_id=r.id
-        LEFT JOIN t_sys_permission p on p.id =spr.permission_id
-        where u.id=#{userId} ORDER BY p.order_num ASC
+        select distinct p.*,(select count(1) from t_sys_permission where pid=p.id) childcount
+        from t_sys_permission_role spr,t_sys_role_user sru,t_sys_permission p
+        where 	spr.role_id = sru.sys_role_id AND spr.permission_id = p.id AND sru.sys_user_id=#{userId} 
+		GROUP BY p.id
+		ORDER BY order_num  is null  ASC,order_num  ASC
  </select>
  
  <select id="queryRoleId"  parameterType="String" resultType="com.fc.test.model.auto.TsysPermission">

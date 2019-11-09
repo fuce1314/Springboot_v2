@@ -45,7 +45,7 @@ public class SysPermissionService implements BaseService<TsysPermission, TsysPer
 	 */
 	 public PageInfo<TsysPermission> list(Tablepar tablepar, String searchTxt){
 	        TsysPermissionExample testExample=new TsysPermissionExample();
-	        testExample.setOrderByClause("id+0 DESC");
+	        testExample.setOrderByClause("order_num  is null  ASC,order_num  ASC");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
 	        }
@@ -58,7 +58,7 @@ public class SysPermissionService implements BaseService<TsysPermission, TsysPer
 	 
 	 public List<TsysPermission> list2(String searchTxt){
 	        TsysPermissionExample testExample=new TsysPermissionExample();
-	        testExample.setOrderByClause("id+0 asc");
+	        testExample.setOrderByClause("order_num  is null  ASC,order_num  ASC");
 	        if(searchTxt!=null&&!"".equals(searchTxt)){
 	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
 	        }
