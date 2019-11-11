@@ -33,13 +33,19 @@ import com.github.pagehelper.PageInfo;
  */
 @Controller
 @Api(value = "文件上传")
-@RequestMapping("FileController")
+@RequestMapping("/FileController")
 public class FileController extends BaseController{
 
 	//跳转页面参数
 	private String prefix = "admin/file";
 	
-	@GetMapping("view")
+	/**
+	 * 分页展示页面
+	 * TODO(请说明这个方法的作用).
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:file:view")
     public String view(ModelMap model)
     {	
@@ -54,7 +60,7 @@ public class FileController extends BaseController{
 	 * @param searchTxt 搜索字符
 	 * @return
 	 */
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("system:file:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -104,7 +110,7 @@ public class FileController extends BaseController{
      * @param file
      * @return
      */
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("system:file:add")
 	@ResponseBody
 	public AjaxResult add(TsysFile file,String dataId){
@@ -122,7 +128,7 @@ public class FileController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("system:file:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -140,7 +146,7 @@ public class FileController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
-	@PostMapping("del_file")
+	@PostMapping("/del_file")
 	@ResponseBody
 	public AjaxResult del_file(String ids){
 		int b=sysFileService.deleteBydataFile(ids);
@@ -157,7 +163,7 @@ public class FileController extends BaseController{
 	 * @param tsysFile
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(TsysFile tsysFile){
 		int b=sysFileService.checkNameUnique(tsysFile);

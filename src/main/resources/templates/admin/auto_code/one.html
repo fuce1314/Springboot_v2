@@ -431,7 +431,6 @@ $(function(){
 			if(data!=""&&data.length>0){
 				var selecthtml="";
 				var html=selecton(data,"0","");
-				console.log(html);
 				$("#menuid").html(html);
 			}
 			
@@ -500,12 +499,7 @@ function divonclick(){
 	  		data :{"tableName":tableName,"conditionQueryField":conditionQueryField,"pid":pid,"sqlcheck":sql,"allColumnss":allColumnss},
 	  		async : false,
 			success:function(data){
-				if(data.code==200){
-					///$("#tableComment").val(data.data[0].tableComment);
-					//$("#tableModel").val(data.data[0].tableModel);
-					$.operate.saveSuccess(data);
-				}
-				
+				$.operate.saveSuccess(data);
 			}
 		});
 		

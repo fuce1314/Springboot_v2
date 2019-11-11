@@ -24,7 +24,7 @@ import com.github.pagehelper.PageInfo;
 
 
 /**
- * 自动生成Controller
+ * 自动生成Controller_目前废弃
 * @Title: GeneratorController.java 
 * @Package com.fc.test.controller.admin 
 * @author fuce  
@@ -32,14 +32,14 @@ import com.github.pagehelper.PageInfo;
 * @version V1.0   
  */
 @Controller
-@RequestMapping("generatorController")
+@RequestMapping("/generatorController")
 public class GeneratorController extends BaseController{
 	@Autowired
 	private GeneratorService generatorService;
 	
 	private String prefix = "admin/generator";
 	
-	@GetMapping("view")
+	@GetMapping("/view")
 	@RequiresPermissions("system:generator:view")
     public String view(ModelMap model)
     {	
@@ -49,7 +49,7 @@ public class GeneratorController extends BaseController{
     }
 	
 	
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("system:generator:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){

@@ -20,7 +20,7 @@ import com.fc.test.service.SysCityService;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("SysCityController")
+@RequestMapping("/SysCityController")
 @Api(value = "城市设置")
 public class SysCityController extends BaseController{
 	
@@ -28,7 +28,13 @@ public class SysCityController extends BaseController{
 	@Autowired
 	private SysCityService sysCityService;
 	
-	@GetMapping("view")
+	/**
+	 * 城市设置展示跳转
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysCity:view")
     public String view(ModelMap model)
     {	
@@ -37,8 +43,14 @@ public class SysCityController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * 城市设置list
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 */
 	//@Log(title = "城市设置集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysCity:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -48,17 +60,22 @@ public class SysCityController extends BaseController{
 	}
 	
 	/**
-     * 新增
-     */
-
+	 * 新增跳转
+	 * @param modelMap
+	 * @return
+	 */
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
-	
+	/**
+	 * 新增保存
+	 * @param sysCity
+	 * @return
+	 */
 	//@Log(title = "城市设置新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("gen:sysCity:add")
 	@ResponseBody
 	public AjaxResult add(SysCity sysCity){
@@ -71,12 +88,12 @@ public class SysCityController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "城市设置删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysCity:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -89,11 +106,11 @@ public class SysCityController extends BaseController{
 	}
 	
 	/**
-	 * 检查用户
+	 * 检查
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysCity sysCity){
 		int b=sysCityService.checkNameUnique(sysCity);

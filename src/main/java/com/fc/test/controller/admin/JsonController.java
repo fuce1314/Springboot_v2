@@ -18,13 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @Api(value = "Json格式化")
-@RequestMapping("Json")
+@RequestMapping("/Json")
 public class JsonController extends BaseController{
 
 	private String prefix = "admin/json";
 
-
-	@GetMapping("view")
+	/**
+	 * json格式化展示页面
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/view")
     public String view(ModelMap model)
     {	
 		String str="json";

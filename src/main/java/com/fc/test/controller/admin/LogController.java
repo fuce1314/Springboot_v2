@@ -25,13 +25,18 @@ import com.github.pagehelper.PageInfo;
  */
 @Controller
 @Api(value = "日志记录")
-@RequestMapping("LogController")
+@RequestMapping("/LogController")
 public class LogController extends BaseController{
 
 	//跳转页面参数
 	private String prefix = "admin/log";
 	
-	@GetMapping("view")
+	/**
+	 * 日志记录展示页面
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:log:view")
     public String view(ModelMap model)
     {	
@@ -47,7 +52,7 @@ public class LogController extends BaseController{
 	 * @param searchTxt 搜索字符
 	 * @return
 	 */
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("system:log:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -62,7 +67,7 @@ public class LogController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("system:log:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){

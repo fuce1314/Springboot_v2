@@ -19,22 +19,27 @@ import io.swagger.annotations.Api;
  */
 @Controller
 @Api(value = "服务器信息")
-@RequestMapping("ServiceController")
+@RequestMapping("/ServiceController")
 public class ServiceController extends BaseController{
 
 	//跳转页面参数
 	private String prefix = "admin/service";
 	
-	@GetMapping("view")
+	/**
+	 * 展示页面
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:04:03
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:service:view")
     public String view(ModelMap model)
     {	
 		
 		String str="服务器";
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
-		
 		model.addAttribute("service", new Service());
-		
         return prefix + "/list";
     }
 }

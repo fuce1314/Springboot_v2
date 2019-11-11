@@ -20,7 +20,7 @@ import com.fc.test.service.SysAreaService;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("SysAreaController")
+@RequestMapping("/SysAreaController")
 @Api(value = "地区设置")
 public class SysAreaController extends BaseController{
 	
@@ -28,7 +28,14 @@ public class SysAreaController extends BaseController{
 	@Autowired
 	private SysAreaService sysAreaService;
 	
-	@GetMapping("view")
+	/**
+	 * 地区页面展示
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:05:04
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysArea:view")
     public String view(ModelMap model)
     {	
@@ -37,8 +44,16 @@ public class SysAreaController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * list集合
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:04:53
+	 */
 	//@Log(title = "地区设置集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysArea:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -48,17 +63,23 @@ public class SysAreaController extends BaseController{
 	}
 	
 	/**
-     * 新增
+     * 新增跳转
      */
-
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
+    /**
+     * 新增保存
+     * @param sysArea
+     * @return
+     * @author fuce
+     * @Date 2019年11月11日 下午4:04:41
+     */
 	//@Log(title = "地区设置新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("gen:sysArea:add")
 	@ResponseBody
 	public AjaxResult add(SysArea sysArea){
@@ -71,12 +92,12 @@ public class SysAreaController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 地区设置删除
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "地区设置删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysArea:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -89,11 +110,11 @@ public class SysAreaController extends BaseController{
 	}
 	
 	/**
-	 * 检查用户
-	 * @param tsysUser
+	 * 检查
+	 * @param SysArea
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysArea sysArea){
 		int b=sysAreaService.checkNameUnique(sysArea);

@@ -20,7 +20,7 @@ import com.fc.test.service.SysQuartzJobLogService;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("SysQuartzJobLogController")
+@RequestMapping("/SysQuartzJobLogController")
 @Api(value = "定时任务调度日志表")
 public class QuartzJobLogController extends BaseController{
 	
@@ -28,7 +28,14 @@ public class QuartzJobLogController extends BaseController{
 	@Autowired
 	private SysQuartzJobLogService sysQuartzJobLogService;
 	
-	@GetMapping("view")
+	/**
+	 * 展示跳转页面
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:01:13
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysQuartzJobLog:view")
     public String view(ModelMap model)
     {	
@@ -37,8 +44,16 @@ public class QuartzJobLogController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * 定时任务调度日志list
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:01:26
+	 */
 	//@Log(title = "定时任务调度日志表集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysQuartzJobLog:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -65,12 +80,12 @@ public class QuartzJobLogController extends BaseController{
 
 	
 	/**
-	 * 删除用户
+	 * 删除
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "定时任务调度日志表删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysQuartzJobLog:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){

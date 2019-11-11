@@ -32,6 +32,11 @@ public class V2Config
     private static String email_account;
     /** 发送邮箱登录密码 */
     private static String email_password;
+    /**
+     * 演示模式
+     */
+    private static String demoEnabled;
+    
     public String getName()
     {
         return name;
@@ -119,5 +124,15 @@ public class V2Config
 	public static void setEmail_password(String email_password) {
 		V2Config.email_password = email_password;
 	}
+
+	public static String getDemoEnabled() {
+		return demoEnabled;
+	}
+
+	public  void setDemoEnabled(String demoEnabled) {
+		V2Config.demoEnabled = demoEnabled;
+	}
+	
+	
 	
 }

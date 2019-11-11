@@ -5,11 +5,10 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>springboot_v2</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>3.1</version>
 	<packaging>war</packaging>
-
 	<name>springboot_v2</name>
-	<description>Demo project for Spring Boot</description>
+	<description>springbootv2系统</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -223,6 +222,8 @@
 
 
 	<build>
+		<!-- 打包不带版本号 -->
+		<!-- <finalName>springboot_v2</finalName> -->
 		<plugins>
 			<!-- JUnit 配置 -->
 			<plugin>

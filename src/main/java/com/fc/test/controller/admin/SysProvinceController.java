@@ -20,15 +20,21 @@ import com.fc.test.service.SysProvinceService;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("SysProvinceController")
+@RequestMapping("/SysProvinceController")
 @Api(value = "省份表")
 public class SysProvinceController extends BaseController{
 	
 	private String prefix = "admin/province/sysProvince";
 	@Autowired
 	private SysProvinceService sysProvinceService;
-	
-	@GetMapping("view")
+	/**
+	 * 展示页面跳转
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:10:48
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysProvince:view")
     public String view(ModelMap model)
     {	
@@ -36,9 +42,16 @@ public class SysProvinceController extends BaseController{
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         return prefix + "/list";
     }
-	
+	/**
+	 *list查询
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:10:39
+	 */
 	//@Log(title = "省份表集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysProvince:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -46,19 +59,28 @@ public class SysProvinceController extends BaseController{
 		TableSplitResult<SysProvince> result=new TableSplitResult<SysProvince>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}
-	
 	/**
-     * 新增
-     */
-
+	 * 新增跳转
+	 * @param modelMap
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:10:20
+	 */
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
-	
+    
+	/**
+	 * 新增保存
+	 * @param sysProvince
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:10:26
+	 */
 	//@Log(title = "省份表新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("gen:sysProvince:add")
 	@ResponseBody
 	public AjaxResult add(SysProvince sysProvince){
@@ -71,12 +93,12 @@ public class SysProvinceController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "省份表删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysProvince:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -89,11 +111,11 @@ public class SysProvinceController extends BaseController{
 	}
 	
 	/**
-	 * 检查用户
+	 * 检查
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysProvince sysProvince){
 		int b=sysProvinceService.checkNameUnique(sysProvince);

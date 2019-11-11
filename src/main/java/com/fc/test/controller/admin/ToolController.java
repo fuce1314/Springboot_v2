@@ -12,13 +12,13 @@ import io.swagger.annotations.Api;
 
 @Controller
 @Api(value = "系统工具类")
-@RequestMapping("ToolController")
+@RequestMapping("/ToolController")
 public class ToolController  extends BaseController{
 
 	//跳转页面参数
 	private String prefix = "admin/tool";
 	
-	@GetMapping("view")
+	@GetMapping("/view")
     public String view(ModelMap model)
     {	
 		

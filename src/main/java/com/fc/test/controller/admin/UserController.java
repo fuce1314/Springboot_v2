@@ -25,14 +25,20 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("UserController")
+@RequestMapping("/UserController")
 @Api(value = "用户数据")
 public class UserController extends BaseController{
 	
 	private String prefix = "admin/user";
 	
-	
-	@GetMapping("view")
+	/**
+	 * 展示跳转页面
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:14:34
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:user:view")
     public String view(ModelMap model)
     {	
@@ -42,8 +48,15 @@ public class UserController extends BaseController{
     }
 	
 	
-	
-	@PostMapping("list")
+	/**
+	 * list集合
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:14:40
+	 */
+	@PostMapping("/list")
 	@RequiresPermissions("system:user:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -51,10 +64,13 @@ public class UserController extends BaseController{
 		TableSplitResult<TsysUser> result=new TableSplitResult<TsysUser>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}
-	
 	/**
-     * 新增用户
-     */
+	 * 新增跳转
+	 * @param modelMap
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:14:51
+	 */
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -63,9 +79,17 @@ public class UserController extends BaseController{
 		modelMap.put("tsysRoleList",tsysRoleList);
         return prefix + "/add";
     }
-	
+	/**
+	 * 新增保存
+	 * @param user
+	 * @param model
+	 * @param roles
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:14:57
+	 */
     @Log(title = "用户新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("system:user:add")
 	@ResponseBody
 	public AjaxResult add(TsysUser user,Model model,@RequestParam(value="roles", required = false)List<String> roles){
@@ -82,7 +106,7 @@ public class UserController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("system:user:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -99,7 +123,7 @@ public class UserController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkLoginNameUnique")
+	@PostMapping("/checkLoginNameUnique")
 	@ResponseBody
 	public int checkLoginNameUnique(TsysUser tsysUser){
 		int b=sysUserService.checkLoginNameUnique(tsysUser);
