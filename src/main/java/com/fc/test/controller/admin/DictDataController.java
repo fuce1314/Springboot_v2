@@ -23,7 +23,7 @@ import com.fc.test.model.custom.TitleVo;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("DictDataController")
+@RequestMapping("/DictDataController")
 @Api(value = "字典数据表")
 public class DictDataController extends BaseController{
 	
@@ -33,7 +33,13 @@ public class DictDataController extends BaseController{
 	@Autowired
 	private SysDictTypeService sysDictTypeService;
 	
-	@GetMapping("view")
+	/**
+	 * 分页list页面
+	 * @param model
+	 * @param dictId
+	 * @return
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:dictData:view")
     public String view(ModelMap model,String dictId)
     {
@@ -43,8 +49,15 @@ public class DictDataController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * 字典数据表集合查询
+	 * @param tablepar
+	 * @param searchTxt
+	 * @param dictId
+	 * @return
+	 */
 	//@Log(title = "字典数据表集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("system:dictData:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt,String dictId){
@@ -54,9 +67,11 @@ public class DictDataController extends BaseController{
 	}
 	
 	/**
-     * 新增
-     */
-
+	 * 新增跳转
+	 * @param modelMap
+	 * @param dictId
+	 * @return
+	 */
     @GetMapping("/add")
     public String add(ModelMap modelMap,String dictId)
     {
@@ -64,6 +79,12 @@ public class DictDataController extends BaseController{
         return prefix + "/add";
     }
 	
+    /**
+     * 新增保存
+     * @param tSysDictData
+     * @param model
+     * @return
+     */
 	//@Log(title = "字典数据表新增", action = "111")
 	@PostMapping("add")
 	@RequiresPermissions("system:dictData:add")
@@ -83,7 +104,7 @@ public class DictDataController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "字典数据表删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("system:dictData:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -100,7 +121,7 @@ public class DictDataController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(TSysDictData tSysDictData){
 		int b=tSysDictDataService.checkNameUnique(tSysDictData);

@@ -3,7 +3,7 @@ fuce:
   #名称
   name: v2
   #版本
-  version: 3.0
+  version: 3.1
   #版权年份
   copyrightYear: 2018
   #头像上传路径
@@ -21,6 +21,8 @@ fuce:
   email_account: 1@sina.com
   #发送邮箱登录密码
   email_password: 1
+  #实例演示开关 启动该模式删除增加修改会弹出演示模式提示框
+  demoEnabled: false
 #tomcat config
 server :
   port : 8080

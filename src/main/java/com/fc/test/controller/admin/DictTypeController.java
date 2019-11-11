@@ -21,7 +21,7 @@ import com.fc.test.service.SysDictTypeService;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("DictTypeController")
+@RequestMapping("/DictTypeController")
 @Api(value = "字典类型表")
 public class DictTypeController extends BaseController{
 	
@@ -29,7 +29,13 @@ public class DictTypeController extends BaseController{
 	@Autowired
 	private SysDictTypeService tSysDictTypeService;
 	
-	@GetMapping("view")
+	/**
+	 * 分页list页面
+	 * @param model
+	 * @param dictId
+	 * @return
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:dictType:view")
     public String view(ModelMap model)
     {	
@@ -38,8 +44,14 @@ public class DictTypeController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * 字典类型表集合查询
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 */
 	//@Log(title = "字典类型表集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("system:dictType:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -49,17 +61,25 @@ public class DictTypeController extends BaseController{
 	}
 	
 	/**
-     * 新增
-     */
-
+	 * 新增跳转
+	 * @param modelMap
+	 * @return
+	 */
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
+    /**
+     * 新增保存
+     * TODO(请说明这个方法的作用).
+     * @param tSysDictType
+     * @param model
+     * @return
+     */
 	//@Log(title = "字典类型表新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("system:dictType:add")
 	@ResponseBody
 	public AjaxResult add(TSysDictType tSysDictType,Model model){
@@ -72,12 +92,12 @@ public class DictTypeController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除字典类型
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "字典类型表删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("system:dictType:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -90,11 +110,11 @@ public class DictTypeController extends BaseController{
 	}
 	
 	/**
-	 * 检查用户
+	 * 检查字典类型名字相同
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(TSysDictType tSysDictType){
 		int b=tSysDictTypeService.checkNameUnique(tSysDictType);

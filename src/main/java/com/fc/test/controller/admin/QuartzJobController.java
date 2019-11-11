@@ -21,7 +21,7 @@ import com.fc.test.service.SysQuartzJobService;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("SysQuartzJobController")
+@RequestMapping("/SysQuartzJobController")
 @Api(value = "定时任务调度表")
 public class QuartzJobController extends BaseController{
 	
@@ -29,7 +29,14 @@ public class QuartzJobController extends BaseController{
 	@Autowired
 	private SysQuartzJobService sysQuartzJobService;
 	
-	@GetMapping("view")
+	/**
+	 * 展示页面
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午3:55:01
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysQuartzJob:view")
     public String view(ModelMap model)
     {	
@@ -37,9 +44,14 @@ public class QuartzJobController extends BaseController{
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         return prefix + "/list";
     }
-	
+	/**
+	 * 定时任务调度list
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 */
 	//@Log(title = "定时任务调度表集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysQuartzJob:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -49,17 +61,25 @@ public class QuartzJobController extends BaseController{
 	}
 	
 	/**
-     * 新增
-     */
-
+	 * 新增跳转页面
+	 * @param modelMap
+	 * @return
+	 */
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
+    /**
+     * 新增保存
+     * @param sysQuartzJob
+     * @return
+     * @author fuce
+     * @Date 2019年11月11日 下午4:00:08
+     */
 	//@Log(title = "定时任务调度表新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("gen:sysQuartzJob:add")
 	@ResponseBody
 	public AjaxResult add(SysQuartzJob sysQuartzJob){
@@ -72,12 +92,12 @@ public class QuartzJobController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "定时任务调度表删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysQuartzJob:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -90,11 +110,11 @@ public class QuartzJobController extends BaseController{
 	}
 	
 	/**
-	 * 检查用户
+	 * 检查
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysQuartzJob sysQuartzJob){
 		int b=sysQuartzJobService.checkNameUnique(sysQuartzJob);

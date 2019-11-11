@@ -40,14 +40,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 *
  */
 @Controller
-@RequestMapping("admin")
+@RequestMapping("/admin")
 public class AdminController extends BaseController{
 	private static Logger logger=LoggerFactory.getLogger(AdminController.class);
 	
 	private String prefix = "admin";
 	
 	@ApiOperation(value="首页",notes="首页")
-	@GetMapping("index")
+	@GetMapping("/index")
 	public String index(HttpServletRequest request) {
     	//获取菜单栏
     	BootstrapTree bootstrapTree= sysPermissionService.getbooBootstrapTreePerm(ShiroUtils.getUserId());
@@ -60,7 +60,7 @@ public class AdminController extends BaseController{
 	}
 	
 	@ApiOperation(value="局部刷新区域",notes="局部刷新区域")
-	@GetMapping("main")
+	@GetMapping("/main")
 	public String main(ModelMap map) {
 		setTitle(map, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
 		return prefix+"/main";
@@ -72,7 +72,7 @@ public class AdminController extends BaseController{
 	 * @return
 	 */
 	@ApiOperation(value="请求到登陆界面",notes="请求到登陆界面")
-	@GetMapping("login")
+	@GetMapping("/login")
     public String login() {
         try {
             if ((null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) || SecurityUtils.getSubject().isRemembered()) {
@@ -98,7 +98,7 @@ public class AdminController extends BaseController{
 	 * @param request
 	 * @return
 	 */
-	@PostMapping("login")
+	@PostMapping("/login")
 	public ModelAndView login(TsysUser user,String code,RedirectAttributes redirectAttributes,boolean rememberMe,HttpServletRequest request) {
 		 ModelAndView view =new ModelAndView();
 		 String scode = (String)request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
@@ -153,7 +153,7 @@ public class AdminController extends BaseController{
 	 * 退出登陆
 	 * @return
 	 */
-	@GetMapping("Loginout")
+	@GetMapping("/Loginout")
 	public String LoginOut(HttpServletRequest request, HttpServletResponse response){
 		//在这里执行退出系统前需要清空的数据
 		Subject subject = SecurityUtils.getSubject();

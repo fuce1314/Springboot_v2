@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
-@Api(value = "任务调度类")
-@RequestMapping("quartz")
+
 /**
  * @Auther: Jan 橙寂
  * @Date: 2019-7-1 11:06
  * @Description:
  * @Version: 1.0
  */
+@Controller
+@Api(value = "任务调度类")
+@RequestMapping("/quartz")
 public class QuartzController extends BaseController{
 
 	private String prefix = "admin/quartz";
@@ -29,8 +30,15 @@ public class QuartzController extends BaseController{
 	@Autowired
 	private QuartzScheduler scheduler;
 
-
-	@GetMapping("view")
+	/**
+	 * 定时页面展示
+	 * TODO(请说明这个方法的作用).
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午3:45:53
+	 */
+	@GetMapping("/view")
     public String view(ModelMap model)
     {	
 		String str="定时器";
@@ -44,12 +52,11 @@ public class QuartzController extends BaseController{
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("stop")
+	@GetMapping("/stop")
 	@ResponseBody
 	public Object stop(Model model, SysQuartzJob job)
 	{
-	return  scheduler.pauseJob(job);
-
+		return  scheduler.pauseJob(job);
 	}
 
 
@@ -58,12 +65,11 @@ public class QuartzController extends BaseController{
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("resume")
+	@GetMapping("/resume")
 	@ResponseBody
 	public Object resume(Model model,SysQuartzJob job)
 	{
-	return  scheduler.resumeJob(job);
-
+		return  scheduler.resumeJob(job);
 	}
 
 
@@ -72,13 +78,12 @@ public class QuartzController extends BaseController{
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("update")
+	@GetMapping("/update")
 	@ResponseBody
 	public String update(Model model,SysQuartzJob job)
 	{
 
 		scheduler.modifyJob(job);
-
 		return "success";
 	}
 
@@ -88,13 +93,12 @@ public class QuartzController extends BaseController{
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("delete")
+	@GetMapping("/delete")
 	@ResponseBody
 	public String delete(Model model,SysQuartzJob job)
 	{
 
 		scheduler.deleteJob(job);
-
 		return "success";
 	}
 }

@@ -40,7 +40,7 @@ public class CaptchaController extends BaseController
     /**
      * 验证码生成
      */
-    @GetMapping(value = "/captchaImage")
+    @GetMapping("/captchaImage")
     public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response)
     {
         ServletOutputStream out = null;

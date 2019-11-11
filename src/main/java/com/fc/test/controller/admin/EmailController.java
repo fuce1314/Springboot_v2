@@ -32,7 +32,7 @@ import io.swagger.annotations.Api;
  */
 @Controller
 @Api(value = "邮件发送Controller")
-@RequestMapping("EmailController")
+@RequestMapping("/EmailController")
 public class EmailController extends BaseController{
 		
 	private String prefix = "admin/email";
@@ -40,8 +40,13 @@ public class EmailController extends BaseController{
 	@Autowired
 	private TSysEmailService tSysEmailService;
 	
-	
-	@GetMapping("view")
+	/**
+	 * 分页展示页面
+	 * @param model
+	 * @param dictId
+	 * @return
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:email:view")
     public String view(ModelMap model)
     {	
@@ -49,11 +54,14 @@ public class EmailController extends BaseController{
 		setTitle(model, new TitleVo("发送", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         return prefix + "/list";
     }
-	
 
-
-	
-	@PostMapping("list")
+	/**
+	 * 分页list页面
+	 * @param model
+	 * @param dictId
+	 * @return
+	 */
+	@PostMapping("/list")
 	@RequiresPermissions("system:email:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -63,7 +71,7 @@ public class EmailController extends BaseController{
 	}
 	
 	/**
-     * 新增
+     * 新增跳转
      */
     @GetMapping("/add")
     public String add(ModelMap modelMap)
@@ -71,8 +79,15 @@ public class EmailController extends BaseController{
         return prefix + "/add";
     }
 	
-	
-	@PostMapping("add")
+	/**
+	 * 新增
+	 * @param tSysEmail
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 * @author fuce
+	 */
+	@PostMapping("/add")
 	@RequiresPermissions("system:email:add")
 	@ResponseBody
 	public AjaxResult add(TSysEmail tSysEmail,Model model) throws Exception{
@@ -86,11 +101,11 @@ public class EmailController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除邮件
 	 * @param ids
 	 * @return
 	 */
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("system:email:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -103,11 +118,11 @@ public class EmailController extends BaseController{
 	}
 	
 	/**
-	 * 检查用户
+	 * 检查邮件同名
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(TSysEmail tSysEmail){
 		int b=tSysEmailService.checkNameUnique(tSysEmail);

@@ -16,13 +16,13 @@ import io.swagger.annotations.Api;
 
 @Controller
 @Api(value = "百度编辑器")
-@RequestMapping("UeditorController")
+@RequestMapping("/UeditorController")
 public class UeditorController  extends BaseController{
 	@Autowired
 	private UeditorService ueditorService;
 	
 	
-	@RequestMapping("ueditor")
+	@RequestMapping("/ueditor")
     @ResponseBody
     public Object ueditor(HttpServletRequest request,String action,MultipartFile upfile) {
 		if("config".equals(action)) {

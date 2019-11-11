@@ -29,14 +29,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @Api(value = "用户角色")
-@RequestMapping("RoleController")
+@RequestMapping("/RoleController")
 public class RoleController extends BaseController{
 	
 	
 	//跳转页面参数
 	private String prefix = "admin/role";
 	
-	@GetMapping("view")
+	/**
+	 * 展示页面
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:01:58
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:role:view")
     public String view(ModelMap model)
     {	
@@ -51,7 +58,7 @@ public class RoleController extends BaseController{
 	 * @param searchTxt 搜索字符
 	 * @return
 	 */
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("system:user:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -75,7 +82,7 @@ public class RoleController extends BaseController{
      * @param role
      * @return
      */
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("system:user:add")
 	@ResponseBody
 	public AjaxResult add(TsysRole role,String prem){
@@ -92,7 +99,7 @@ public class RoleController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("system:user:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -109,7 +116,7 @@ public class RoleController extends BaseController{
 	 * @param TsysRole
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(TsysRole tsysRole){
 		int b=sysRoleService.checkNameUnique(tsysRole);

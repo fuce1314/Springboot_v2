@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @Api(value = "权限")
-@RequestMapping("PermissionController")
+@RequestMapping("/PermissionController")
 public class PermissionController  extends BaseController{
 	
 
@@ -34,7 +34,14 @@ public class PermissionController  extends BaseController{
 	//跳转页面参数
 	private String prefix = "admin/permission";
 	
-	@GetMapping("view")
+	/**
+	 * 权限列表展示
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午3:43:51
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:permission:view")
     public String view(ModelMap model)
     {	
@@ -49,7 +56,7 @@ public class PermissionController  extends BaseController{
 	 * @param searchTxt 搜索字符
 	 * @return
 	 */
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("system:permission:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -63,7 +70,7 @@ public class PermissionController  extends BaseController{
 	 * @param searchTxt 搜索字符
 	 * @return
 	 */
-	@PostMapping("list2")
+	@PostMapping("/list2")
 	@ResponseBody
 	public Object list2(Tablepar tablepar,String searchTxt){
 		List<TsysPermission> page= sysPermissionService.list2(searchTxt) ;
@@ -84,7 +91,7 @@ public class PermissionController  extends BaseController{
      * @param role
      * @return
      */
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("system:permission:add")
 	@ResponseBody
 	public AjaxResult add(TsysPermission role){
@@ -101,7 +108,7 @@ public class PermissionController  extends BaseController{
 	 * @param ids
 	 * @return
 	 */
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("system:permission:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -122,7 +129,7 @@ public class PermissionController  extends BaseController{
 	 * @param TsysPermission
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(TsysPermission TsysPermission){
 		int b= sysPermissionService.checkNameUnique(TsysPermission);
@@ -138,7 +145,7 @@ public class PermissionController  extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkURLUnique")
+	@PostMapping("/checkURLUnique")
 	@ResponseBody
 	public int checkURLUnique(TsysPermission tsysPermission){
 		int b= sysPermissionService.checkURLUnique(tsysPermission);
@@ -154,7 +161,7 @@ public class PermissionController  extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkPermsUnique")
+	@PostMapping("/checkPermsUnique")
 	@ResponseBody
 	public int checkPermsUnique(TsysPermission tsysPermission){
 		int b= sysPermissionService.checkPermsUnique(tsysPermission);
@@ -223,7 +230,7 @@ public class PermissionController  extends BaseController{
      * 跳转到菜单树页面
      * @return
      */
-    @GetMapping("tree")
+    @GetMapping("/tree")
     public String Tree(){
     	 return prefix + "/tree";
     }
@@ -233,7 +240,7 @@ public class PermissionController  extends BaseController{
      * @param pid 父id【没用到】
      * @return
      */
-    @PostMapping("tree/{pid}")
+    @PostMapping("/tree/{pid}")
     @ResponseBody
     public AjaxResult Tree(@PathVariable("pid") String pid){
     	return retobject(200, sysPermissionService.getbooBootstrapTreePerm(null));

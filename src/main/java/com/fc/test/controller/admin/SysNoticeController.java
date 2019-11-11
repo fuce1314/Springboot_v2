@@ -22,7 +22,7 @@ import com.fc.test.shiro.util.ShiroUtils;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("SysNoticeController")
+@RequestMapping("/SysNoticeController")
 @Api(value = "公告")
 public class SysNoticeController extends BaseController{
 	
@@ -31,8 +31,14 @@ public class SysNoticeController extends BaseController{
 	private SysNoticeService sysNoticeService;
 	
 	
-	
-	@GetMapping("view")
+	/**
+	 * 展示页面跳转
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:09:24
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysNotice:view")
     public String view(ModelMap model)
     {	
@@ -40,9 +46,16 @@ public class SysNoticeController extends BaseController{
 		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
         return prefix + "/list";
     }
-	
+	/**
+	 * list页面
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:09:35
+	 */
 	//@Log(title = "公告集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysNotice:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -52,8 +65,14 @@ public class SysNoticeController extends BaseController{
 	}
 	
 	
-	
-	@GetMapping("viewUser")
+	/**
+	 * 对应的用户的展示页面
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:09:42
+	 */
+	@GetMapping("/viewUser")
     public String viewUser(ModelMap model)
     {	
 		String str="公告";
@@ -66,7 +85,7 @@ public class SysNoticeController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
-	@PostMapping("viewUserlist")
+	@PostMapping("/viewUserlist")
 	@ResponseBody
     public Object viewUserlist(Tablepar tablepar,String searchTxt)
     {
@@ -77,17 +96,24 @@ public class SysNoticeController extends BaseController{
     }
 	
 	/**
-     * 新增
-     */
-
+	 * 新增跳转
+	 * @param modelMap
+	 * @return
+	 */
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
-	
+	/**
+	 * 新增保存
+	 * @param sysNotice
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:07:09
+	 */
 	//@Log(title = "公告新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("gen:sysNotice:add")
 	@ResponseBody
 	public AjaxResult add(SysNotice sysNotice){
@@ -100,12 +126,12 @@ public class SysNoticeController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除
 	 * @param ids
 	 * @return
-	 */
+	 **/
 	//@Log(title = "公告删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysNotice:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -118,11 +144,11 @@ public class SysNoticeController extends BaseController{
 	}
 	
 	/**
-	 * 检查用户
+	 * 检查
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysNotice sysNotice){
 		int b=sysNoticeService.checkNameUnique(sysNotice);

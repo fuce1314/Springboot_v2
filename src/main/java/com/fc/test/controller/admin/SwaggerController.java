@@ -11,13 +11,20 @@ import io.swagger.annotations.Api;
 
 @Controller
 @Api(value = "SwaggerController")
-@RequestMapping("SwaggerController")
+@RequestMapping("/SwaggerController")
 public class SwaggerController  extends BaseController{
 
 	//跳转页面参数
 	private String prefix = "admin/swagger";
 	
-	@GetMapping("view")
+	/**
+	 * 展示页面
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月11日 下午4:04:20
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("system:swagger:view")
     public String view(ModelMap model)
     {	

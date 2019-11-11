@@ -31,7 +31,7 @@ import io.swagger.annotations.Api;
 *
  */
 @Controller
-@RequestMapping("ProvinceLinkageController")
+@RequestMapping("/ProvinceLinkageController")
 @Api(value = "省份联动controller")
 public class ProvinceLinkageController  extends BaseController{
 	@Autowired
@@ -47,7 +47,7 @@ public class ProvinceLinkageController  extends BaseController{
 	private String prefix = "admin/province";
 	
 	
-	@GetMapping("view")
+	@GetMapping("/view")
     public String view(ModelMap model)
     {	
 		String str="省份联动";
@@ -55,8 +55,12 @@ public class ProvinceLinkageController  extends BaseController{
 		model.addAttribute("provinceList",sysProvinceService.selectByExample(new SysProvinceExample()));
         return prefix + "/list";
     }
-	//市查询
-	@GetMapping("getCity")
+	/**
+	 * 市查询
+	 * @param pid
+	 * @return
+	 */
+	@GetMapping("/getCity")
 	@ResponseBody
 	public List<SysCity> getCity(String pid){
 		SysCityExample example=new SysCityExample();
@@ -65,8 +69,13 @@ public class ProvinceLinkageController  extends BaseController{
 		
 	}
 	
-	//区查询
-	@GetMapping("getArea")
+	/**
+	 * 区查询
+	 * TODO(请说明这个方法的作用).
+	 * @param pid
+	 * @return
+	 */
+	@GetMapping("/getArea")
 	@ResponseBody
 	public List<SysArea> getArea(String pid){
 		SysAreaExample example=new SysAreaExample();
@@ -75,8 +84,12 @@ public class ProvinceLinkageController  extends BaseController{
 		
 	}
 	
-	//街道查询
-	@GetMapping("getStreet")
+	/**
+	 * 街道查询
+	 * @param pid
+	 * @return
+	 */
+	@GetMapping("/getStreet")
 	@ResponseBody
 	public List<SysStreet> getStreet(String pid){
 		SysStreetExample example=new SysStreetExample();

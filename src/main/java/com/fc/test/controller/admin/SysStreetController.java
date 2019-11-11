@@ -20,7 +20,7 @@ import com.fc.test.service.SysStreetService;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("SysStreetController")
+@RequestMapping("/SysStreetController")
 @Api(value = "街道设置")
 public class SysStreetController extends BaseController{
 	
@@ -28,7 +28,12 @@ public class SysStreetController extends BaseController{
 	@Autowired
 	private SysStreetService sysStreetService;
 	
-	@GetMapping("view")
+	/**
+	 * 展示跳转
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysStreet:view")
     public String view(ModelMap model)
     {	
@@ -37,8 +42,14 @@ public class SysStreetController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * list查询
+	 * @param tablepar
+	 * @param searchTxt
+	 * @return
+	 */
 	//@Log(title = "街道设置集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysStreet:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchTxt){
@@ -48,17 +59,25 @@ public class SysStreetController extends BaseController{
 	}
 	
 	/**
-     * 新增
-     */
-
+	 * 新增跳转
+	 * @param modelMap
+	 * @return
+	 */
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
+    /**
+     * 新增保存
+     * @param sysStreet
+     * @return
+     * @author fuce
+     * @Date 2019年11月11日 下午4:13:37
+     */
 	//@Log(title = "街道设置新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("gen:sysStreet:add")
 	@ResponseBody
 	public AjaxResult add(SysStreet sysStreet){
@@ -71,12 +90,12 @@ public class SysStreetController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "街道设置删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysStreet:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -89,11 +108,11 @@ public class SysStreetController extends BaseController{
 	}
 	
 	/**
-	 * 检查用户
+	 * 检查
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysStreet sysStreet){
 		int b=sysStreetService.checkNameUnique(sysStreet);
@@ -118,10 +137,11 @@ public class SysStreetController extends BaseController{
 
         return prefix + "/edit";
     }
-	
 	/**
-     * 修改保存
-     */
+	 * 修改保存
+	 * @param record
+	 * @return
+	 */
     //@Log(title = "街道设置修改", action = "111")
     @RequiresPermissions("gen:sysStreet:edit")
     @PostMapping("/edit")
