@@ -304,7 +304,7 @@ springbootv2大更新功能[20190501]
 | ok 克里斯汀 |                     | 增加 druid 连接池  |                                        |
 | JanHezz     |                     | 引入了 quartz 框架 | 个人博客推荐：www.luckyhe.com          |
 | 一休        |                     | 添加字典表模块     | 个人码云地址：https://gitee.com/notutu |
-
+| 愿得一人心        |songyaxu@us-forever.com | 修改try流bug     | 个人博客推荐：https://www.songyaxu.com |
 
 
 
