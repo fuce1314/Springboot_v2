@@ -86,10 +86,10 @@ pagehelper:
 oss:
   qiniu:
     #对应存储空间的访问域名
-    domain: q0stnsal9.bkt.clouddn.com
+    domain: q0stnsal9.aaa.bbb.com
     #accessKey密钥
-    accessKey: 5o-rVbYFTb4HbCpU5zVcNNNBj05vVio5TMHI5mhV
+    accessKey: 5o-rVbYF111C
     #secretKey秘钥
-    secretKey: C9TETPDFHDj38dymTDGtM9h-hyk-kcTeU61X84951
+    secretKey: C9TETPDFHDj38d
     #bucket是创建的存储空间名
-    bucket: iiims-img
+    bucket: test-img
