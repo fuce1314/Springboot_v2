@@ -1,8 +1,6 @@
 package com.fc.test.common.exception;
 
-
 import com.fc.test.common.exception.enums.QiNiuErrorEnum;
-import lombok.Data;
 
 /**
  * QiNiuException
@@ -12,9 +10,9 @@ import lombok.Data;
  * @email 571002217@qq.com
  * @description 自定义异常
  */
-@Data
 public class QiNiuException extends RuntimeException{
-    private String msg;
+	private static final long serialVersionUID = 1L;
+	private String msg;
     private int code = 500;
 
     public QiNiuException(){
@@ -38,4 +36,30 @@ public class QiNiuException extends RuntimeException{
        this.msg=exception;
     }
 
+
+	public String getMsg() {
+		return msg;
+	}
+
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+
+	public int getCode() {
+		return code;
+	}
+
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+	public QiNiuException(String msg, int code) {
+		super();
+		this.msg = msg;
+		this.code = code;
+	}
+    
 }

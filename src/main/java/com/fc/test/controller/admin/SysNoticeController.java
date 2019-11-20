@@ -21,9 +21,15 @@ import com.fc.test.shiro.util.ShiroUtils;
 
 import io.swagger.annotations.Api;
 
+/**
+ * 公告Controller
+ * @ClassName: SysNoticeController
+ * @author fuce
+ * @date 2019-11-20 22:31
+ */
+@Api(value = "公告")
 @Controller
 @RequestMapping("/SysNoticeController")
-@Api(value = "公告")
 public class SysNoticeController extends BaseController{
 	
 	private String prefix = "admin/sysNotice";

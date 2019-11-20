@@ -30,8 +30,8 @@ import io.swagger.annotations.Api;
  * @date 2019-06-10 00:39
  * @version V1.0
  */
-@Controller
 @Api(value = "邮件发送Controller")
+@Controller
 @RequestMapping("/EmailController")
 public class EmailController extends BaseController{
 		

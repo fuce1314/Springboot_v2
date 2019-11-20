@@ -24,9 +24,15 @@ import com.github.pagehelper.PageInfo;
 
 import io.swagger.annotations.Api;
 
+/**
+ * 用户Controller
+ * @ClassName: UserController
+ * @author fuce
+ * @date 2019-11-20 22:35
+ */
+@Api(value = "用户数据")
 @Controller
 @RequestMapping("/UserController")
-@Api(value = "用户数据")
 public class UserController extends BaseController{
 	
 	private String prefix = "admin/user";

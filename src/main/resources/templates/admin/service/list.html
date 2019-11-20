@@ -14,8 +14,6 @@
 /**
 *这里写单独的css样式
 */
-
-
 </style>
 
 </head>
@@ -218,7 +216,7 @@
                                     <li>
                                         <span class="direction-icon maki-fuel" style="background:#FF6B6B"></span>
                                         <h3>
-                                            <span>最大内存</span>
+                                            <span>JVM最大内存</span>
                                         </h3>
                                         <p>&nbsp;</p>
                                        <p><th:bock th:text="${service.maxMemory}"></th:bock></p>
@@ -228,7 +226,7 @@
                                     <li>
                                         <span class="direction-icon maki-fuel" style="background:#FF6B6B"></span>
                                         <h3>
-                                            <span>总内存</span>
+                                            <span>JVM已分配内存</span>
                                         </h3>
                                         <p>&nbsp;</p>
                                        <p><th:bock th:text="${service.totalMemory}"></th:bock></p>
@@ -238,7 +236,7 @@
                                    <li>
                                         <span class="direction-icon maki-fuel" style="background:#FF6B6B"></span>
                                         <h3>
-                                            <span>可用内存</span>
+                                            <span>JVM已分配内存中的剩余空间</span>
                                         </h3>
                                         <p>&nbsp;</p>
                                        <p><th:bock th:text="${service.freeMemory}"></th:bock></p>
@@ -248,7 +246,7 @@
                                    <li>
                                         <span class="direction-icon maki-fuel" style="background:#FF6B6B"></span>
                                         <h3>
-                                            <span>剩余内存</span>
+                                            <span>JVM最大可用内存</span>
                                         </h3>
                                         <p>&nbsp;</p>
                                        <p><th:bock th:text="${service.usableMemory}"></th:bock></p>

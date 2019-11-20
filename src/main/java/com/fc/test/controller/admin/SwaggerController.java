@@ -9,8 +9,14 @@ import com.fc.test.common.base.BaseController;
 import com.fc.test.model.custom.TitleVo;
 import io.swagger.annotations.Api;
 
+/**
+ * SwaggerController
+ * @ClassName: SwaggerController
+ * @author fuce
+ * @date 2019-11-20 22:34
+ */
+@Api(value = "Api接口文档")
 @Controller
-@Api(value = "SwaggerController")
 @RequestMapping("/SwaggerController")
 public class SwaggerController  extends BaseController{
 

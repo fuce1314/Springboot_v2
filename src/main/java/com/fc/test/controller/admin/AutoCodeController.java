@@ -1,9 +1,7 @@
 package com.fc.test.controller.admin;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.fc.test.common.base.BaseController;
@@ -29,14 +27,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *代码自动生成
-* @ClassName: AutoCodeController
-* @author fuce
-* @date 2019-08-13 00:34
-*
+ * 代码自动生成
+ * @ClassName: AutoCodeController
+ * @author fuce
+ * @date 2019-08-13 00:34
  */
 @Controller
-@RequestMapping("autoCodeController")
+@RequestMapping("/autoCodeController")
 public class AutoCodeController  extends BaseController{
 	private String prefix = "admin/auto_code";
 	@Autowired
@@ -53,7 +50,7 @@ public class AutoCodeController  extends BaseController{
 	 * @author fuce
 	 * @Date 2019年8月13日 上午12:35:23
 	 */
-	@GetMapping("one")
+	@GetMapping("/one")
 	@RequiresPermissions("system:autocode:one")
     public String one(ModelMap model)
     {	
@@ -74,7 +71,7 @@ public class AutoCodeController  extends BaseController{
 	 * @author fuce
 	 * @Date 2019年8月13日 上午12:34:30
 	 */
-	@GetMapping("global")
+	@GetMapping("/global")
 	@RequiresPermissions("system:autocode:global")
     public String global(ModelMap modelMap)
     {	
@@ -93,7 +90,7 @@ public class AutoCodeController  extends BaseController{
 	 * @author fuce
 	 * @Date 2019年8月15日 上午1:09:36
 	 */
-	@PostMapping("queryTable")
+	@PostMapping("/queryTable")
 	@ResponseBody
 	public AjaxResult queryTable(String tableName) {
 		List<TsysTables> list= generatorService.queryList(tableName);
@@ -117,7 +114,7 @@ public class AutoCodeController  extends BaseController{
 	 * @author fuce
 	 * @Date 2019年8月15日 上午1:10:42
 	 */
-	@PostMapping("queryTableInfo")
+	@PostMapping("/queryTableInfo")
 	@ResponseBody
 	public AjaxResult queryTableInfo(String tableName) {
 		List<BeanColumn> list= generatorService.queryColumns2(tableName);
@@ -138,7 +135,7 @@ public class AutoCodeController  extends BaseController{
 	 * @author fuce
 	 * @Date 2019年8月24日 下午3:25:41
 	 */
-	@PostMapping("addGlobal")
+	@PostMapping("/addGlobal")
 	@ResponseBody
 	public AjaxResult addGlobal(GlobalConfig globalConfig,Model model,HttpServletRequest request) throws Exception{
 		AutoCodeConfig.setGlobalConfig(globalConfig);
@@ -160,10 +157,11 @@ public class AutoCodeController  extends BaseController{
 	 * @author fuce
 	 * @Date 2019年8月31日 上午2:49:18
 	 */
-	@PostMapping("saveOne")
+	@PostMapping("/saveOne")
 	@ResponseBody
 	public AjaxResult saveOne(String allColumnss,String tableName,String conditionQueryField,String pid,int sqlcheck) throws Exception{
-		  JSONArray array= JSONUtil.parseArray(allColumnss);
+		JSONArray array= JSONUtil.parseArray(allColumnss);
+		//遗留可用前端修改传入的字段等信息（未完善）
 		List<BeanColumn> beanColumns2=JSONUtil.toList(array, BeanColumn.class);
 		List<TsysTables> list= generatorService.queryList(tableName);
 		if(list.size()>0) {
@@ -181,7 +179,7 @@ public class AutoCodeController  extends BaseController{
 	 * @author fuce
 	 * @Date 2019年9月1日 上午2:06:31
 	 */
-	@PostMapping("queryLikePerms")
+	@PostMapping("/queryLikePerms")
 	@ResponseBody
 	public AjaxResult queryLikePerms(String tableName){
 		List<TsysTables> list= generatorService.queryList(tableName);

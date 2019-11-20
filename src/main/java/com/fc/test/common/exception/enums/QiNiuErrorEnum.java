@@ -1,14 +1,9 @@
 package com.fc.test.common.exception.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * QiNiuErrorEnum
  * @description error类型枚举类
  */
-@Getter
-@AllArgsConstructor
 public enum QiNiuErrorEnum {
 
     // 系统错误
@@ -29,5 +24,28 @@ public enum QiNiuErrorEnum {
 
     private int code;
     private String msg;
-
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	/**
+	 * TODO
+	 * @param code
+	 * @param msg
+	 * @author fuce
+	 * @Date 2019年11月20日 下午9:28:34
+	 */
+	private QiNiuErrorEnum(int code, String msg) {
+		this.code = code;
+		this.msg = msg;
+	}
+	
 }

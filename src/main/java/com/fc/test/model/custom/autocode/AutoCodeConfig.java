@@ -41,7 +41,7 @@ public class AutoCodeConfig {
      */
     public static  Configuration getConfig() {
         try {
-            return new PropertiesConfiguration("generator/auto_code_config.properties" );
+            return new PropertiesConfiguration("auto_code/auto_code_config.properties" );
         } catch (ConfigurationException e) {
             System.out.println("获取配置文件失败");
         	e.printStackTrace();

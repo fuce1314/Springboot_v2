@@ -1,10 +1,8 @@
 package com.fc.test.controller;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.fc.test.common.base.BaseController;
 import com.fc.test.model.auto.SysNotice;
 import com.fc.test.model.auto.TsysUser;
@@ -32,12 +30,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 /**
  * 后台方法
-* @ClassName: HomeController
-* @author fuce
-* @date 2019-10-21 00:10
-*
+ * @ClassName: HomeController
+ * @author fuce
+ * @date 2019-10-21 00:10
+ *
  */
 @Controller
 @RequestMapping("/admin")
@@ -144,7 +143,6 @@ public class AdminController extends BaseController{
      		 view.setViewName("redirect:/"+prefix+"/login");
      	 }
      	
-		
 		 return view;
 		 
 	}

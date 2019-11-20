@@ -14,8 +14,14 @@ import com.fc.test.model.custom.Ueditor;
 import com.fc.test.service.UeditorService;
 import io.swagger.annotations.Api;
 
-@Controller
+/**
+ * 百度Controller
+ * @ClassName: UeditorController
+ * @author fuce
+ * @date 2019-11-20 22:34
+ */
 @Api(value = "百度编辑器")
+@Controller
 @RequestMapping("/UeditorController")
 public class UeditorController  extends BaseController{
 	@Autowired

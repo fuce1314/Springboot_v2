@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author fuce 
  * @date: 2018年9月2日 下午8:08:21
  */
-@Controller
 @Api(value = "用户角色")
+@Controller
 @RequestMapping("/RoleController")
 public class RoleController extends BaseController{
 	

@@ -145,6 +145,9 @@
 <script th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
 <!-- 遮罩层 -->
 <script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
+<!-- 右边高度控制 -->
+<script type="text/javascript" th:src="@{/static/admin/assets/js/right_hight.js}"></script>
+
 <script type="text/javascript">
 
 function queryId(id){
@@ -190,7 +193,7 @@ var exportUrl=window.rootPath+"/LogController/export";
 			    formatter: function (value, row, index) {
 			        var id = row.id;
 			        var actions = [];
-			        actions.push('<a class="btn btn-info btn-xs"  href="#" onclick="queryId(\'' + row.id + '\')"><i class="fa fa-edit"></i>查看</a> ');
+			        //actions.push('<a class="btn btn-info btn-xs"  href="#" onclick="queryId(\'' + row.id + '\')"><i class="fa fa-edit"></i>查看</a> ');
 			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
 			        return actions.join('');
 			

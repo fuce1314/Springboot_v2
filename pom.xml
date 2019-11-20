@@ -181,25 +181,11 @@
 			<optional>true</optional>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<!-- mail -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
 		    <artifactId>mail</artifactId>
 		    <version>1.4.7</version>
-		</dependency>
-
-		<!-- 七牛云 -->
-		<dependency>
-			<groupId>com.qiniu</groupId>
-			<artifactId>qiniu-java-sdk</artifactId>
-			<version>[7.2.0, 7.2.99]</version>
-		</dependency>
-
-		<!--lombok-->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.6</version>
 		</dependency>
 		
 		<!--百度UEditor依赖的jar包 -->
@@ -220,15 +206,18 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>
 		</dependency>
-
-
 		<!--quartz依赖-->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>2.2.1</version>
 		</dependency>
-		
+		<!-- 七牛云 -->
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>qiniu-java-sdk</artifactId>
+			<version>[7.2.0, 7.2.99]</version>
+		</dependency>
 		
 	</dependencies>
 

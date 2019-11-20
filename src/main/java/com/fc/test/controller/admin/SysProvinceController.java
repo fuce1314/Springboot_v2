@@ -19,9 +19,15 @@ import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysProvinceService;
 import io.swagger.annotations.Api;
 
+/**
+ * 省份Controller
+ * @ClassName: SysProvinceController
+ * @author fuce
+ * @date 2019-11-20 22:32
+ */
+@Api(value = "省份表")
 @Controller
 @RequestMapping("/SysProvinceController")
-@Api(value = "省份表")
 public class SysProvinceController extends BaseController{
 	
 	private String prefix = "admin/province/sysProvince";

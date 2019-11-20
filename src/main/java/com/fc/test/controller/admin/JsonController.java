@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
- * jsonController
-* @ClassName: JsonController
-* @author fuce
-* @date 2019-09-21 17:59
-*
+ * jsonController 
+ * @ClassName: JsonController
+ * @author fuce
+ * @date 2019-09-21 17:59
  */
-@Controller
 @Api(value = "Json格式化")
+@Controller
 @RequestMapping("/Json")
 public class JsonController extends BaseController{
 

@@ -1,6 +1,6 @@
 package com.fc.test.service;
 
-import com.fc.test.util.QiNiuResult;
+import com.fc.test.common.domain.AjaxResult;
 import com.google.gson.Gson;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
@@ -11,14 +11,12 @@ import com.qiniu.util.Auth;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.UUID;
 
 /**
- * @ClassName dell
- * @Description TOOD
- * @Author X
+ * 七牛Service
+ * @Author QQ1057718016
  * @Data 2019/11/13
  * @Version 1.0
  **/
@@ -37,7 +35,7 @@ public class QiNiuCloudService {
     @Value("${oss.qiniu.domain}")
     private String domain;
 
-    public QiNiuResult uploadToQiNiu(MultipartFile uploadFile) throws IOException {
+    public AjaxResult uploadToQiNiu(MultipartFile uploadFile) throws IOException {
 
         //构造一个带指定 Region 对象的配置类
         Configuration cfg = new Configuration(Region.huanan());
@@ -58,9 +56,10 @@ public class QiNiuCloudService {
         // System.out.println(putRet.key);
         //System.out.println(putRet.hash);
         //成功 返回url name
-        QiNiuResult r = QiNiuResult.ok()
+        
+        return  AjaxResult.success()
                 .put("url", domain + "/" + putRet.key)
                 .put("name", putRet.key);
-        return r;
+        
     }
 }

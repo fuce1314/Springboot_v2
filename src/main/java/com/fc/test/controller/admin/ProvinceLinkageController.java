@@ -25,14 +25,13 @@ import io.swagger.annotations.Api;
 
 /**
  * 省份联动controller
-* @ClassName: ProvinceLinkageController
-* @author fuce
-* @date 2019-10-05 11:19
-*
+ * @ClassName: ProvinceLinkageController
+ * @author fuce
+ * @date 2019-10-05 11:19
  */
+@Api(value = "省份联动controller")
 @Controller
 @RequestMapping("/ProvinceLinkageController")
-@Api(value = "省份联动controller")
 public class ProvinceLinkageController  extends BaseController{
 	@Autowired
 	private SysProvinceService sysProvinceService;
