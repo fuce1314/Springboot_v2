@@ -23,8 +23,11 @@ import com.fc.test.service.SysUtilService;
 import com.fc.test.util.SnowflakeIdWorker;
 import cn.hutool.core.date.DateTime;
 
-/*
- * 自动生成
+/**
+ * 自动生成 通用类
+* @ClassName: AutoCodeUtil
+* @author fuce
+* @date 2019-11-20 22:05
  */
 public class AutoCodeUtil {
 
@@ -144,17 +147,17 @@ public class AutoCodeUtil {
             packagePath += packageName.replace(".", File.separator) + File.separator;
         }
 
-        if (template.contains("Entity.java.vm")) {//model
+        if (template.contains("Entity.java.vm")) {//model.java
             return packagePath+moduleName +File.separator+ "auto" + File.separator + className + ".java";
         }
-        if(template.contains("EntityExample.java.vm")) {//modelExample
+        if(template.contains("EntityExample.java.vm")) {//modelExample.java
         	return packagePath+moduleName +File.separator+ "auto" + File.separator + className + "Example.java";
         }
         
-        if (template.contains("EntityMapper.java.vm")) {//dao or  mapper
+        if (template.contains("EntityMapper.java.vm")) {//daomapper.java
             return packagePath + "mapper" + File.separator + "auto" + File.separator + className + "Mapper.java";
         }
-        if (template.contains("EntityMapper.xml.vm")) {//dao or  mapper
+        if (template.contains("EntityMapper.xml.vm")) {//daomapper.xml
             return resourcesPath+"mybatis" + File.separator+"auto"+ File.separator + className + "Mapper.xml";
         }
         
@@ -174,7 +177,6 @@ public class AutoCodeUtil {
         if(template.contains("edit.html.vm")) {
        	 	return  resourcesPath+"templates"+File.separator + controller+File.separator + classname+File.separator +"edit.html";
         }
-        
         return null;
     }
 	
@@ -212,7 +214,6 @@ public class AutoCodeUtil {
     				time=true;
     				buffer.append("import com.fasterxml.jackson.annotation.JsonFormat;\n");
     			}
-    			
 			}
     	}
     	return buffer.toString();

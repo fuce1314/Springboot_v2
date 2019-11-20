@@ -17,8 +17,8 @@ import io.swagger.annotations.Api;
  * @date 2019-06-23 00:55
  * @version V1.0
  */
-@Controller
 @Api(value = "服务器信息")
+@Controller
 @RequestMapping("/ServiceController")
 public class ServiceController extends BaseController{
 

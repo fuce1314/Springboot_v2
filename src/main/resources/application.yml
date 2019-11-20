@@ -3,7 +3,7 @@ fuce:
   #名称
   name: v2
   #版本
-  version: 3.1
+  version: 3.2
   #版权年份
   copyrightYear: 2018
   #头像上传路径
@@ -66,7 +66,7 @@ spring :
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
-mybatis :
+mybatis:
   #配置mapper的扫描，找到所有的mapper.xml映射文件
   mapperLocations : classpath*:mybatis/*/*.xml
   #mybatis提供三种sql执行器，分别是SIMPLE、REUSE、BATCH。
@@ -82,3 +82,14 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+#七牛云配置
+oss:
+  qiniu:
+    #对应存储空间的访问域名
+    domain: q0stnsal9.bkt.clouddn.com
+    #accessKey密钥
+    accessKey: 5o-rVbYFTb4HbCpU5zVcNNNBj05vVio5TMHI5mhV
+    #secretKey秘钥
+    secretKey: C9TETPDFHDj38dymTDGtM9h-hyk-kcTeU61X84951
+    #bucket是创建的存储空间名
+    bucket: iiims-img

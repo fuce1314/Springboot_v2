@@ -20,9 +20,15 @@ import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysQuartzJobService;
 import io.swagger.annotations.Api;
 
+/**
+ * 
+* @ClassName: QuartzJobController
+* @author Jan 橙寂
+* @date 2019-11-20 22:49
+ */
+@Api(value = "定时任务调度表")
 @Controller
 @RequestMapping("/SysQuartzJobController")
-@Api(value = "定时任务调度表")
 public class QuartzJobController extends BaseController{
 	
 	private String prefix = "admin/sysQuartzJob";

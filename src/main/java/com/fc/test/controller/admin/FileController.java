@@ -31,8 +31,8 @@ import com.github.pagehelper.PageInfo;
  * @author fuce 
  * @date: 2018年9月16日 下午4:23:50
  */
-@Controller
 @Api(value = "文件上传")
+@Controller
 @RequestMapping("/FileController")
 public class FileController extends BaseController{
 
@@ -41,9 +41,10 @@ public class FileController extends BaseController{
 	
 	/**
 	 * 分页展示页面
-	 * TODO(请说明这个方法的作用).
 	 * @param model
 	 * @return
+	 * @author fuce
+	 * @Date 2019年11月20日 下午10:18:32
 	 */
 	@GetMapping("/view")
 	@RequiresPermissions("system:file:view")
@@ -70,8 +71,11 @@ public class FileController extends BaseController{
 	}
 	
 	/**
-     * 新增文件
-     */
+	 * 新增文件跳转页面
+	 * @return
+	 * @author fuce
+	 * @Date 2019年11月20日 下午10:19:03
+	 */
     @GetMapping("/add")
     public String add()
     {
@@ -81,7 +85,11 @@ public class FileController extends BaseController{
     
     
     /**
-     * 上传文件
+     * 上传文件文件上传
+     * @param file
+     * @return
+     * @author fuce
+     * @Date 2019年11月20日 下午10:18:49
      */
     @PostMapping("/upload")
     @ResponseBody

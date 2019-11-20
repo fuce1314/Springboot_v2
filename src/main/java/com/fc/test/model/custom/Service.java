@@ -186,20 +186,35 @@ public class Service {
 	}
 	public Service() {
 		super();
+		//取得Java Virtual Machine Specification的信息
 		this.jvmSpecInfo=SystemUtil.getJvmSpecInfo();
+		//取得Java Virtual Machine Implementation的信息
 		this.jvmInfo=SystemUtil.getJvmInfo();
+		//取得Java Specification的信息
 		this.javaSpecInfo=SystemUtil.getJavaSpecInfo();
+		//取得Java Implementation的信息
 		this.javaInfo=SystemUtil.getJavaInfo();
+		//取得当前运行的JRE的信息
 		this.javaRuntimeInfo=SystemUtil.getJavaRuntimeInfo();
+		//取得OS的信息
 		this.osInfo=SystemUtil.getOsInfo();
+		//取得User的信息
 		this.userInfo=SystemUtil.getUserInfo();
+		//取得Runtime的信息
 		this.runtimeInfo=SystemUtil.getRuntimeInfo();
+		//取得Host的信息
 		this.hostInfo=SystemUtil.getHostInfo();
+		//JDK启动时间
 		this.startTime=getStartTime();
+		//JDK运行时间
 		this.runTime=getRunTime();
+		//获得JVM最大内存
 		this.maxMemory = FileUtil.readableFileSize(SystemUtil.getRuntimeInfo().getMaxMemory());
+		//获得JVM已分配内存
 		this.totalMemory = FileUtil.readableFileSize(SystemUtil.getRuntimeInfo().getTotalMemory());
+		//获得JVM已分配内存中的剩余空间
 		this.freeMemory = FileUtil.readableFileSize(SystemUtil.getRuntimeInfo().getFreeMemory());
+		//JVM最大可用内存
 		this.usableMemory = FileUtil.readableFileSize(SystemUtil.getRuntimeInfo().getUsableMemory());
 	}
 

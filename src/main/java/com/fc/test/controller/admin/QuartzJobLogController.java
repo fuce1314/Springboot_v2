@@ -19,9 +19,15 @@ import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysQuartzJobLogService;
 import io.swagger.annotations.Api;
 
+/**
+ * 定时任务日志Controller
+* @ClassName: QuartzJobLogController
+* @author fuce
+* @date 2019-11-20 22:51
+ */
+@Api(value = "定时任务调度日志表")
 @Controller
 @RequestMapping("/SysQuartzJobLogController")
-@Api(value = "定时任务调度日志表")
 public class QuartzJobLogController extends BaseController{
 	
 	private String prefix = "admin/sysQuartzJobLog";
@@ -80,9 +86,11 @@ public class QuartzJobLogController extends BaseController{
 
 	
 	/**
-	 * 删除
-	 * @param ids
+	 * 定时任务日志删除
+	 * @param ids id集合
 	 * @return
+	 * @author fuce
+	 * @Date 2019年11月20日 下午10:51:52
 	 */
 	//@Log(title = "定时任务调度日志表删除", action = "111")
 	@PostMapping("/remove")

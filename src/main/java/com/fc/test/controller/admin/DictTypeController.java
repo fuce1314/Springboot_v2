@@ -20,9 +20,15 @@ import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysDictTypeService;
 import io.swagger.annotations.Api;
 
+/**
+ * 字典类型Controller
+ * @ClassName: DictTypeController
+ * @author fuce
+ * @date 2019-11-20 22:45
+ */
+@Api(value = "字典类型表")
 @Controller
 @RequestMapping("/DictTypeController")
-@Api(value = "字典类型表")
 public class DictTypeController extends BaseController{
 	
 	private String prefix = "admin/dict_type";

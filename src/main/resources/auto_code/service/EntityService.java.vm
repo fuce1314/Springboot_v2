@@ -122,11 +122,14 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	@Override
 	public int insertSelective(${TsysTables.tableModel} record) {
 		#if(${pk_attrType} == 'String')
-			//添加雪花主键id
-			record.set${pkfield}(SnowflakeIdWorker.getUUID());
+		
+		//添加雪花主键id
+		record.set${pkfield}(SnowflakeIdWorker.getUUID());
 			
 		#else
-			record.set${pkfield}(null);
+		
+		record.set${pkfield}(null);
+		
 		#end
 		
 		return ${TsysTables.tableModel_a}Mapper.insertSelective(record);

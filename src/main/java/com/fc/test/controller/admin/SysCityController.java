@@ -19,9 +19,15 @@ import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysCityService;
 import io.swagger.annotations.Api;
 
+/**
+ * 城市Controller
+ * @ClassName: SysCityController
+ * @author fuce
+ * @date 2019-11-20 22:31
+ */
+@Api(value = "城市设置")
 @Controller
 @RequestMapping("/SysCityController")
-@Api(value = "城市设置")
 public class SysCityController extends BaseController{
 	
 	private String prefix = "admin/province/sysCity";

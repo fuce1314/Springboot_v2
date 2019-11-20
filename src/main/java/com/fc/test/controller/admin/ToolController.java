@@ -10,8 +10,14 @@ import com.fc.test.model.custom.TitleVo;
 
 import io.swagger.annotations.Api;
 
+/**
+ * 表单构建Controller
+ * @ClassName: ToolController
+ * @author fuce
+ * @date 2019-11-20 22:32
+ */
+@Api(value = "表单构建工具类")
 @Controller
-@Api(value = "系统工具类")
 @RequestMapping("/ToolController")
 public class ToolController  extends BaseController{
 

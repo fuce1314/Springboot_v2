@@ -19,9 +19,15 @@ import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysAreaService;
 import io.swagger.annotations.Api;
 
+/**
+ * 地区Controller
+ * @ClassName: SysAreaController
+ * @author fuce
+ * @date 2019-11-20 22:34
+ */
+@Api(value = "地区设置")
 @Controller
 @RequestMapping("/SysAreaController")
-@Api(value = "地区设置")
 public class SysAreaController extends BaseController{
 	
 	private String prefix = "admin/province/sysArea";
