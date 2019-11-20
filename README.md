@@ -272,14 +272,9 @@ UEditor|百度富文本||
 - 所有的model字段解释都在mysql的字段注释里面，请具体查看mysql的字段注解
 
 
-
 ### Github
 - 所有的github代码 以码云更新为准
 - https://github.com/fuce1314/Springboot_v2
-
-
-### bug 列表
- 1、 目前发现权限添加的时候好像父级id我还没写好。。。等中秋一起撸完，你们先star 下，中秋后在下【20180922 1:30 已修改】
 
 ### wiki
 - https://gitee.com/bdj/SpringBoot_v2/wikis
@@ -288,7 +283,6 @@ UEditor|百度富文本||
 - 自动生成代码视频：https://url.cn/58DDn5Y
 
 ### 更新日志
-springbootv2大更新功能[20190501]
 - https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970
 
 
@@ -297,14 +291,15 @@ springbootv2大更新功能[20190501]
 ![荣誉殿堂](https://images.gitee.com/uploads/images/2019/0903/224111_37b4d05e_123301.png "荣誉殿堂.png")
 
 
-| 名字        | 邮箱                | 贡献功能           | 其他                                   |
-| ----------- | ------------------- | ------------------ | -------------------------------------- |
-| 霜花似雪    | lhf20132175@163.com | 忘了               |                                        |
-| modelc      |                     | 框架结构整理       |                                        |
-| ok 克里斯汀 |                     | 增加 druid 连接池  |                                        |
-| JanHezz     |                     | 引入了 quartz 框架 | 个人博客推荐：http://www.luckyhe.com    |
-| 一休        |                     | 添加字典表模块     | 个人码云地址：https://gitee.com/notutu            |
-| 愿得一人心        |songyaxu@us-forever.com | 修改try流bug     | 个人博客推荐：https://www.songyaxu.com |
+| 名字        | 联系方式                | 贡献功能           | 其他                                   |
+| ----------- | ----------------------- | ------------------ | -------------------------------------- |
+| 霜花似雪    | lhf20132175@163.com     | 忘了               |                                        |
+| modelc      |                         | 框架结构整理       |                                        |
+| ok 克里斯汀 |                         | 增加 druid 连接池  |                                        |
+| JanHezz     |                         | 引入了 quartz 框架 | 个人博客推荐：http://www.luckyhe.com   |
+| 一休        |                         | 添加字典表模块     | 个人码云地址：https://gitee.com/notutu |
+| 愿得一人心  | songyaxu@us-forever.com | 修改 try 流 bug    | 个人博客推荐：https://www.songyaxu.com |
+| Aini-H      | QQ1057718016            | 七牛云上传         |                                        |
 
 
 
