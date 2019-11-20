@@ -67,7 +67,7 @@
 <sql id="Base_Column_List">
 	#set( $lag = 0)
   	#foreach ($column in $beanColumns)
-  	 #if(($lag+1) >= (${beanColumns.size()}))	
+  	 #if(($lag+1) >= (${beanColumns.size()}))
    	  	${column.column_name}
      #else
      	${column.column_name},
