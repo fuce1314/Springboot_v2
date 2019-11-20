@@ -44,6 +44,7 @@ spring :
           wall:
             config:
               multi-statement-allow: true
+
 #mysql 8.0
 #spring :
 #  datasource :

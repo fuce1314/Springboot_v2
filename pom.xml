@@ -187,7 +187,20 @@
 		    <artifactId>mail</artifactId>
 		    <version>1.4.7</version>
 		</dependency>
-		
+
+		<!-- 七牛云 -->
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>qiniu-java-sdk</artifactId>
+			<version>[7.2.0, 7.2.99]</version>
+		</dependency>
+
+		<!--lombok-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.6</version>
+		</dependency>
 		
 		<!--百度UEditor依赖的jar包 -->
 		<dependency>

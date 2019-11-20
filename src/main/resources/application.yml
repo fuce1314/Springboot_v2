@@ -82,3 +82,14 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+
+# 七牛云配置
+# bucket是创建的存储空间名
+# domain对应存储空间的访问域名
+# accessKey,secretKey秘钥
+oss:
+  qiniu:
+    domain:
+    accessKey:
+    secretKey:
+    bucket:

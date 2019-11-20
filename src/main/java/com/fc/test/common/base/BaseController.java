@@ -5,14 +5,7 @@ import java.util.Date;
 
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.custom.TitleVo;
-import com.fc.test.service.SysDatasService;
-import com.fc.test.service.SysFileDatasService;
-import com.fc.test.service.SysFileService;
-import com.fc.test.service.SysNoticeService;
-import com.fc.test.service.SysOperLogService;
-import com.fc.test.service.SysPermissionService;
-import com.fc.test.service.SysRoleService;
-import com.fc.test.service.SysUserService;
+import com.fc.test.service.*;
 import com.fc.test.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -61,6 +54,10 @@ public class BaseController
 	//公告
 	@Autowired
 	public SysNoticeService sysNoticeService;
+
+	/*文件上传云库*/
+    @Autowired
+    private QiNiuCloudService qiNiuCloudService;
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
      */
