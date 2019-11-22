@@ -5,7 +5,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>springboot_v2</artifactId>
-	<version>3.1</version>
+	<version>3.2</version>
 	<packaging>war</packaging>
 	<name>springboot_v2</name>
 	<description>springbootv2系统</description>
@@ -24,7 +24,8 @@
 		<commons.fileupload.version>1.3.3</commons.fileupload.version>
 		<commons.io.version>2.5</commons.io.version>
 	</properties>
-
+	
+	<!-- https://mvnrepository.com/ 查找jar网站 -->
 	<dependencies>
 		<!-- SpringBoot Web容器 -->
 		<dependency>
@@ -72,7 +73,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.40</version><!--$NO-MVN-MAN-VER$-->
+			<version>5.1.40</version>
 		</dependency> 
 
 		<!-- mysql驱动8.0
