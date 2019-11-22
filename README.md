@@ -180,7 +180,7 @@ UEditor|百度富文本||
 
 ### 开发环境
 - JDK8.0
-- mysql5.5.40 OR msql 8.0
+- mysql5.7以上
 - eclipse
 
 ### 资源下载
