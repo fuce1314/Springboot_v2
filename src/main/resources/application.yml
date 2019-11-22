@@ -23,6 +23,8 @@ fuce:
   email_password: 1
   #实例演示开关 启动该模式删除增加修改会弹出演示模式提示框
   demoEnabled: false
+  #漂亮得拖动验证码 默认false普通验证码、true滚动验证码
+  rollVerification: true
 #tomcat config
 server :
   port : 8080

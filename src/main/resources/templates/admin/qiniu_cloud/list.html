@@ -133,13 +133,11 @@
 <script th:src="@{/static/js/jqueryFormSerializeJson.js}" type="text/javascript"></script>
 <script type="text/javascript" th:src="@{/static/js/beautifyhtml.js}"></script>
 <script type="text/javascript">
-
-
 $(document).ready(function (){
 	  //文件上传
 	  Dropzone.autoDiscover = false;//防止报"Dropzone already attached."的错误
 	  var myDropzone = new Dropzone("#dropz", {
-          url: "/QiNiuCloudController/uploadToQiNiu",//文件提交地址
+          url: rootPath+"/QiNiuCloudController/uploadToQiNiu",//文件提交地址
           method: "post",  //也可用put
           paramName: "file", //默认为file
           maxFiles: 1,//一次性上传的文件数量上限
@@ -168,6 +166,7 @@ $(document).ready(function (){
                   	$("#pic").show();
               	}else if (data.code==500) {
               		$.modal.alertError(data.msg);
+              		myDropzone.removeFile(file);
 				}
               	else{
               		$.modal.alertError("文件为上传失败！");
