@@ -42,7 +42,7 @@ user:例如/admins/user/**=user没有参数表示必须存在用户，当登入�
 		filterChainDefinitionMap.put("/admin/login", "anon");
 		filterChainDefinitionMap.put("/admin/logout", "logout");
 		//放验证码
-		filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
+		filterChainDefinitionMap.put("/captcha/**", "anon");
 		// 释放 druid 监控画面
 		filterChainDefinitionMap.put("/druid/**", "anon");
 		//释放websocket请求

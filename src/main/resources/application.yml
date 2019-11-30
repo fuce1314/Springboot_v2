@@ -3,7 +3,7 @@ fuce:
   #名称
   name: v2
   #版本
-  version: 3.2
+  version: 3.3
   #版权年份
   copyrightYear: 2018
   #头像上传路径
@@ -23,6 +23,8 @@ fuce:
   email_password: 1
   #实例演示开关 启动该模式删除增加修改会弹出演示模式提示框
   demoEnabled: false
+  #漂亮得拖动验证码 默认false普通验证码、true滚动验证码
+  rollVerification: true
 #tomcat config
 server :
   port : 8080

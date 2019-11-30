@@ -32,11 +32,10 @@ public class V2Config
     private static String email_account;
     /** 发送邮箱登录密码 */
     private static String email_password;
-    /**
-     * 演示模式
-     */
+    /** 演示模式 **/
     private static String demoEnabled;
-    
+    /** 滚动验证码 **/
+    private static Boolean rollVerification;
     public String getName()
     {
         return name;
@@ -129,8 +128,16 @@ public class V2Config
 		return demoEnabled;
 	}
 
-	public  void setDemoEnabled(String demoEnabled) {
+	public static void setDemoEnabled(String demoEnabled) {
 		V2Config.demoEnabled = demoEnabled;
+	}
+
+	public static Boolean getRollVerification() {
+		return rollVerification;
+	}
+
+	public  void setRollVerification(Boolean rollVerification) {
+		V2Config.rollVerification = rollVerification;
 	}
 	
 	
