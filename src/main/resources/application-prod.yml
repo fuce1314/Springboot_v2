@@ -3,8 +3,8 @@ spring :
   datasource :
       driverClassName : com.mysql.jdbc.Driver
       url : jdbc:mysql://localhost:3306/springbootv2?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
-      username : root
-      password : root
+      username : root2
+      password : root2
       hikari:
         maxLifetime: 1765000
         maximumPoolSize: 15
