@@ -12,7 +12,7 @@ spring:
         password: root
      #备数据源 #关闭
      slave:
-        enabled: true
+        enabled: false
         url: jdbc:mysql://localhost:3306/springbootv3?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
         username: root
         password: root
