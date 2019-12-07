@@ -3,7 +3,7 @@ fuce:
   #名称
   name: v2
   #版本
-  version: 3.3
+  version: 3.4
   #版权年份
   copyrightYear: 2018
   #头像上传路径
@@ -68,16 +68,16 @@ spring :
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
-mybatis:
-  #配置mapper的扫描，找到所有的mapper.xml映射文件
-  mapperLocations : classpath*:mybatis/*/*.xml
-  #mybatis提供三种sql执行器，分别是SIMPLE、REUSE、BATCH。
-  executor-type : reuse
-  #搜索指定包别名
-  typeAliasesPackage : com.*.model
-  #该配置项就是指将带有下划线的表字段映射为驼峰格式的实体类属性。
-  configuration :
-    map-underscore-to-camel-case : true
+#mybatis:
+#  #配置mapper的扫描，找到所有的mapper.xml映射文件
+#  mapperLocations : classpath*:mybatis/*/*.xml
+#  #mybatis提供三种sql执行器，分别是SIMPLE、REUSE、BATCH。
+#  executor-type : reuse
+#  #搜索指定包别名
+#  typeAliasesPackage : com.*.model
+#  #该配置项就是指将带有下划线的表字段映射为驼峰格式的实体类属性。
+#  configuration :
+#    map-underscore-to-camel-case : true
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql

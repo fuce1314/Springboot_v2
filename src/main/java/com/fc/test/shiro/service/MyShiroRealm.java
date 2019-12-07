@@ -2,6 +2,8 @@ package com.fc.test.shiro.service;
 
 import java.util.List;
 
+import com.fc.test.common.dataSources.DataSourceContextHolder;
+import com.fc.test.common.dataSources.DataSourceType;
 import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.mapper.custom.RoleDao;
 import com.fc.test.mapper.custom.TsysUserDao;
@@ -60,9 +62,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 		String password = new String((char[]) token.getCredentials());
 		// 通过username从数据库中查找 User对象，如果找到，没找到.
 		// 实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
-		
 		TsysUser userInfo = tsysUserDao.queryUserName(username);
-		
 //		System.out.println(userInfo);
 //		System.out.println("----->>userInfo=" + userInfo.getUsername() + "---"+ userInfo.getPassword());
 		if (userInfo == null)
