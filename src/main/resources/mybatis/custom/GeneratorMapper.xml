@@ -63,18 +63,18 @@
 		,IS_NULLABLE as is_nullable
 		,DATA_TYPE as data_type
 		,CHARACTER_MAXIMUM_LENGTH as character_maximum_length
-		,CHARACTER_OCTET_LENGTH as character_octet_length
-		,NUMERIC_PRECISION as numeric_precision
-		,NUMERIC_SCALE as numeric_scale
-		,DATETIME_PRECISION as datetime_precision
-		,CHARACTER_SET_NAME as character_set_name
-		,COLLATION_NAME as collation_name
+		<!-- #,CHARACTER_OCTET_LENGTH as character_octet_length
+		#,NUMERIC_PRECISION as numeric_precision
+		#,NUMERIC_SCALE as numeric_scale
+		#,DATETIME_PRECISION as datetime_precision
+		#,CHARACTER_SET_NAME as character_set_name
+		#,COLLATION_NAME as collation_name -->
 		,COLUMN_TYPE as column_type
 		,COLUMN_KEY as column_key
 		,EXTRA as extra
-		,PRIVILEGES as privileges
+		<!-- #,PRIVILEGES as privileges -->
 		,COLUMN_COMMENT as column_comment
-		,GENERATION_EXPRESSION as generation_expression
+		<!-- ,GENERATION_EXPRESSION as generation_expression -->
 		 from information_schema.columns
  		where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
 	</select>
@@ -90,18 +90,18 @@
 		,IS_NULLABLE as is_nullable
 		,DATA_TYPE as data_type
 		,CHARACTER_MAXIMUM_LENGTH as character_maximum_length
-		,CHARACTER_OCTET_LENGTH as character_octet_length
-		,NUMERIC_PRECISION as numeric_precision
-		,NUMERIC_SCALE as numeric_scale
-		,DATETIME_PRECISION as datetime_precision
-		,CHARACTER_SET_NAME as character_set_name
-		,COLLATION_NAME as collation_name
+		<!-- #,CHARACTER_OCTET_LENGTH as character_octet_length
+		#,NUMERIC_PRECISION as numeric_precision
+		#,NUMERIC_SCALE as numeric_scale
+		#,DATETIME_PRECISION as datetime_precision
+		#,CHARACTER_SET_NAME as character_set_name
+		#,COLLATION_NAME as collation_name -->
 		,COLUMN_TYPE as column_type
 		,COLUMN_KEY as column_key
 		,EXTRA as extra
-		,PRIVILEGES as privileges
+		<!-- #,PRIVILEGES as privileges -->
 		,COLUMN_COMMENT as column_comment
-		,GENERATION_EXPRESSION as generation_expression
+		<!-- ,GENERATION_EXPRESSION as generation_expression -->
 		 from information_schema.columns
  		where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
 	</select>

@@ -54,7 +54,7 @@ public class GeneratorService {
 	  * @return
 	  */
 	public List<BeanColumn> queryColumns2(String tableName){
-		System.out.println("ssssssss"+JSONUtil.toJsonPrettyStr(generatorMapper.queryColumns3(tableName)));
+		System.out.println("queryColumns2>>>"+JSONUtil.toJsonPrettyStr(generatorMapper.queryColumns3(tableName)));
 		return generatorMapper.queryColumns2(tableName);
 	 }
 	
