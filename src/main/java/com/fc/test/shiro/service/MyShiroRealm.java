@@ -1,9 +1,6 @@
 package com.fc.test.shiro.service;
 
 import java.util.List;
-
-import com.fc.test.common.dataSources.DataSourceContextHolder;
-import com.fc.test.common.dataSources.DataSourceType;
 import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.mapper.custom.RoleDao;
 import com.fc.test.mapper.custom.TsysUserDao;
