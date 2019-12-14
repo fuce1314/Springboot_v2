@@ -280,7 +280,7 @@ UEditor|百度富文本||
 - https://gitee.com/bdj/SpringBoot_v2/wikis
 
 ### 项目视频列表
-- 自动生成代码视频：https://url.cn/58DDn5Y
+- 自动生成代码视频：https://www.ixigua.com/i6770180517477220875/
 
 ### 更新日志
 - https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970
