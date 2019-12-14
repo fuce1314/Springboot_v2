@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
  * @DATE 2019/9/2 0002 15:21
  */
 @Configuration
-public class QuartzScheduler {
+public class QuartzSchedulerUtil {
 
     @Autowired
     private  Scheduler scheduler;

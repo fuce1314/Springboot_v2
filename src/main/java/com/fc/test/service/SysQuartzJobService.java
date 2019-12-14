@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.quartz.QuartzScheduler;
+import com.fc.test.common.quartz.QuartzSchedulerUtil;
 import com.fc.test.common.quartz.ScheduleConstants;
 import com.fc.test.common.support.Convert;
 import com.fc.test.mapper.auto.SysQuartzJobMapper;
@@ -30,7 +30,7 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
 	@Autowired
 	private SysQuartzJobMapper sysQuartzJobMapper;
 	@Autowired
-	private QuartzScheduler scheduler;
+	private QuartzSchedulerUtil scheduler;
       	   	      	      	      	      	      	      	      	      	
 	/**
 	 * 分页查询
