@@ -5,8 +5,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +22,7 @@ import java.lang.reflect.Method;
 @Order(1)
 //@EnableAsync
 public class DataSourceAspect {
-	private static final Logger log = LoggerFactory.getLogger(DataSourceAspect.class);
+	//private static final Logger log = LoggerFactory.getLogger(DataSourceAspect.class);
 	
 	@Pointcut("@annotation(com.fc.test.common.dataSources.DataSource)")
     public void dsPointCut()
@@ -76,17 +74,4 @@ public class DataSourceAspect {
             return dataSource;
         }
     }
-//	
-//	
-//	@Before("@annotation(ds)")
-//    public void beforeDataSource(DataSource ds) {
-//        DataSourceType value = ds.value();
-//        DataSourceContextHolder.setDataSource(value);
-//        log.info("当前使用的数据源为：{}", value);
-//    }
-//	
-//    @After("@annotation(ds)")
-//    public void afterDataSource(DataSource ds){
-//        DataSourceContextHolder.clearDataSource();
-//    }
 }

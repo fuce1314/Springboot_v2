@@ -280,7 +280,7 @@ UEditor|百度富文本||
 - https://gitee.com/bdj/SpringBoot_v2/wikis
 
 ### 项目视频列表
-- 自动生成代码视频：https://url.cn/58DDn5Y
+- 自动生成代码视频：https://www.ixigua.com/i6770180517477220875/
 
 ### 更新日志
 - https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970
@@ -314,9 +314,10 @@ https://gitee.com/agile-bpm
 ### QQ大神群推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0921/140036_b5ab7bf7_123301.png "我萌的征途是架构狮！群聊二维码.png")
 
-### 感谢开源软件列表
-1. 人人renren-generator 自动生成项目参照人人自动生成 https://gitee.com/renrenio/renren-generator
+### 精品开源项目推荐
+https://gitee.com/Jmysy/Pear-One-Layui
 
+### 感谢开源软件列表
 
 
 

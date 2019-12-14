@@ -1,9 +1,6 @@
 package com.fc.test.shiro.service;
 
 import java.util.List;
-
-import com.fc.test.common.dataSources.DataSourceContextHolder;
-import com.fc.test.common.dataSources.DataSourceType;
 import com.fc.test.mapper.custom.PermissionDao;
 import com.fc.test.mapper.custom.RoleDao;
 import com.fc.test.mapper.custom.TsysUserDao;
@@ -35,13 +32,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyShiroRealm extends AuthorizingRealm {
 	
-	
-	
 	@Autowired
 	private TsysUserDao tsysUserDao;
 	
 	@Autowired
 	private PermissionDao permissionDao;//权限dao
+	
 	@Autowired
 	private RoleDao roleDao ;//角色dao
 	
@@ -90,10 +86,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		TsysUser userinfo  = (TsysUser)principals.getPrimaryPrincipal();
 		String uid=userinfo.getId();
-		
 		List<TsysRole> tsysRoles= roleDao.queryUserRole(uid);
-		
-		
 		for(TsysRole userrole:tsysRoles){
 			//System.out.println("角色名字:"+gson.toJson(userrole));
 			String rolid=userrole.getId();//角色id
@@ -107,8 +100,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 				
 			}
 		}
- 
- 
 		
 		return authorizationInfo;
 	}
