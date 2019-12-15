@@ -18,10 +18,11 @@ import ${globalConfig.parentPack}.model.custom.Tablepar;
 import ${globalConfig.parentPack}.model.custom.TitleVo;
 import ${globalConfig.parentPack}.service.${TsysTables.tableModel}Service;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("${TsysTables.tableModel}Controller")
-@Api(value = "${TsysTables.tableComment}" ,description = "${TsysTables.tableComment})
+@Api(value = "${TsysTables.tableComment}")
 public class ${TsysTables.tableModel}Controller extends BaseController{
 	
 	private String prefix = "gen/${TsysTables.tableModel_a}";
@@ -132,7 +133,7 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
     }
 
     
-         /**
+    /**
    	 * 根据主键查询
    	 * 
    	 * @param id
@@ -141,7 +142,7 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
    	 */
    	@PostMapping("/get/{id}")
    	@ApiOperation(value = "根据id查询唯一", notes = "根据id查询唯一")
-   	public Object edit(@PathVariable("id") String id) {
+   	public ${TsysTables.tableModel} edit(@PathVariable("id") String id) {
    		return ${TsysTables.tableModel_a}Service.selectByPrimaryKey(id);
    	}
     
