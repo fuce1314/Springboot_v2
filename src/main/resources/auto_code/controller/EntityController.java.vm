@@ -21,7 +21,7 @@ import io.swagger.annotations.Api;
 
 @Controller
 @RequestMapping("${TsysTables.tableModel}Controller")
-@Api(value = "${TsysTables.tableComment}")
+@Api(value = "${TsysTables.tableComment}" ,description = "${TsysTables.tableComment})
 public class ${TsysTables.tableModel}Controller extends BaseController{
 	
 	private String prefix = "gen/${TsysTables.tableModel_a}";
@@ -132,6 +132,18 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
     }
 
     
+         /**
+   	 * 根据主键查询
+   	 * 
+   	 * @param id
+   	 * @param mmap
+   	 * @return
+   	 */
+   	@PostMapping("/get/{id}")
+   	@ApiOperation(value = "根据id查询唯一", notes = "根据id查询唯一")
+   	public Object edit(@PathVariable("id") String id) {
+   		return ${TsysTables.tableModel_a}Service.selectByPrimaryKey(id);
+   	}
     
 
 	
