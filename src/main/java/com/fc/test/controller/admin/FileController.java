@@ -58,14 +58,14 @@ public class FileController extends BaseController{
 	/**
 	 * 文件列表
 	 * @param tablepar
-	 * @param searchTxt 搜索字符
+	 * @param searchText 搜索字符
 	 * @return
 	 */
 	@PostMapping("/list")
 	@RequiresPermissions("system:file:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<TsysFile> page=sysFileService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<TsysFile> page=sysFileService.list(tablepar,searchText) ; 
 		TableSplitResult<TsysFile> result=new TableSplitResult<TsysFile>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

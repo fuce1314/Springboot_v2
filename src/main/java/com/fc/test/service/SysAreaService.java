@@ -33,15 +33,16 @@ public class SysAreaService {
 	 * @return
 	 */
 	 public PageInfo<SysArea> list(Tablepar tablepar,String name){
+		
 	        SysAreaExample testExample=new SysAreaExample();
 	        testExample.setOrderByClause("id ASC");
 	        if(name!=null&&!"".equals(name)){
 	        	testExample.createCriteria().andAreaNameLike("%"+name+"%");
 	        }
-
 	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
 	        List<SysArea> list= sysAreaMapper.selectByExample(testExample);
 	        PageInfo<SysArea> pageInfo = new PageInfo<SysArea>(list);
+	       
 	        return  pageInfo;
 	 }
 

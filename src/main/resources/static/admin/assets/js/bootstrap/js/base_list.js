@@ -68,7 +68,7 @@
 				 var search = {};
 				 search.pageSize= params.pageSize;
 				 search.pageNum=params.pageNumber;
-				 search.searchTxt=params.searchText;
+				 search.searchText=params.searchText;
 				 return search;
 				 
 			},
@@ -79,6 +79,7 @@
 					 search[field.name] = field.value;
                  });
 				 var params = $("#dataTable").bootstrapTable("getOptions");
+				 console.log(params.searchText);
 				 params.queryParams=function(params){
 					/* return {
 							pageSize: params.pageSize,  //每页要显示的数据条数
@@ -88,9 +89,12 @@
 					        sortOrder: params.order, // 排序规则
 					        dataId: $("#dataId").val() // 额外添加的参数
 						};*/
+						
 						search.pageSize= params.pageSize;
 						search.pageNum=params.pageNumber;
-						search.searchText=params.searchText;
+						if($.common.isNotEmpty(params.searchText)){
+							search.searchText=params.searchText;
+						}
 					 return search;
 				 }
 				 $("#dataTable").bootstrapTable("refresh", params)

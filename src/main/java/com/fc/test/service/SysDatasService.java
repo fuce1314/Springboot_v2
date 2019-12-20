@@ -33,11 +33,11 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<TsysDatas> list(Tablepar tablepar,String searchTxt){
+	 public PageInfo<TsysDatas> list(Tablepar tablepar,String searchText){
 	        TsysDatasExample testExample=new TsysDatasExample();
 	        testExample.setOrderByClause("id+0 DESC");
-	        if(searchTxt!=null&&!"".equals(searchTxt)){
-	        	testExample.createCriteria().andIdLike("%"+searchTxt+"%");
+	        if(searchText!=null&&!"".equals(searchText)){
+	        	testExample.createCriteria().andIdLike("%"+searchText+"%");
 	        }
 	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
 	        List<TsysDatas> list= tsysDatasMapper.selectByExample(testExample);

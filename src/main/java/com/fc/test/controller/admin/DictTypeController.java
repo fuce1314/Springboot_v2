@@ -53,15 +53,15 @@ public class DictTypeController extends BaseController{
 	/**
 	 * 字典类型表集合查询
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @return
 	 */
 	//@Log(title = "字典类型表集合查询", action = "111")
 	@PostMapping("/list")
 	@RequiresPermissions("system:dictType:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<TSysDictType> page=tSysDictTypeService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<TSysDictType> page=tSysDictTypeService.list(tablepar,searchText) ; 
 		TableSplitResult<TSysDictType> result=new TableSplitResult<TSysDictType>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

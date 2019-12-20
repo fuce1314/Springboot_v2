@@ -55,14 +55,14 @@ public class RoleController extends BaseController{
 	/**
 	 * 角色列表
 	 * @param tablepar
-	 * @param searchTxt 搜索字符
+	 * @param searchText 搜索字符
 	 * @return
 	 */
 	@PostMapping("/list")
 	@RequiresPermissions("system:user:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<TsysRole> page=sysRoleService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<TsysRole> page=sysRoleService.list(tablepar,searchText) ; 
 		TableSplitResult<TsysRole> result=new TableSplitResult<TsysRole>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

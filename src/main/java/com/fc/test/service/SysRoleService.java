@@ -39,11 +39,11 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<TsysRole> list(Tablepar tablepar,String searchTxt){
+	 public PageInfo<TsysRole> list(Tablepar tablepar,String searchText){
 	        TsysRoleExample testExample=new TsysRoleExample();
 	        testExample.setOrderByClause("id+0 DESC");
-	        if(searchTxt!=null&&!"".equals(searchTxt)){
-	        	testExample.createCriteria().andNameLike("%"+searchTxt+"%");
+	        if(searchText!=null&&!"".equals(searchText)){
+	        	testExample.createCriteria().andNameLike("%"+searchText+"%");
 	        }
 
 	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
