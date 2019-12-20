@@ -53,7 +53,7 @@ public class QuartzJobLogController extends BaseController{
 	/**
 	 * 定时任务调度日志list
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @return
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:01:26
@@ -62,8 +62,8 @@ public class QuartzJobLogController extends BaseController{
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysQuartzJobLog:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<SysQuartzJobLog> page=sysQuartzJobLogService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<SysQuartzJobLog> page=sysQuartzJobLogService.list(tablepar,searchText) ; 
 		TableSplitResult<SysQuartzJobLog> result=new TableSplitResult<SysQuartzJobLog>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

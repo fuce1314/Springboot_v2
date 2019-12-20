@@ -58,7 +58,7 @@ public class DictDataController extends BaseController{
 	/**
 	 * 字典数据表集合查询
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @param dictId
 	 * @return
 	 */
@@ -66,8 +66,8 @@ public class DictDataController extends BaseController{
 	@PostMapping("/list")
 	@RequiresPermissions("system:dictData:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt,String dictId){
-		PageInfo<TSysDictData> page=tSysDictDataService.list(tablepar,searchTxt,dictId) ;
+	public Object list(Tablepar tablepar,String searchText,String dictId){
+		PageInfo<TSysDictData> page=tSysDictDataService.list(tablepar,searchText,dictId) ;
 		TableSplitResult<TSysDictData> result=new TableSplitResult<TSysDictData>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

@@ -51,7 +51,7 @@ public class SysProvinceController extends BaseController{
 	/**
 	 *list查询
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @return
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:10:39
@@ -60,8 +60,8 @@ public class SysProvinceController extends BaseController{
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysProvince:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<SysProvince> page=sysProvinceService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<SysProvince> page=sysProvinceService.list(tablepar,searchText) ; 
 		TableSplitResult<SysProvince> result=new TableSplitResult<SysProvince>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

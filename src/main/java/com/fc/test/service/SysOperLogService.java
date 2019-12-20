@@ -26,11 +26,11 @@ public class SysOperLogService implements BaseService<TsysOperLog, TsysOperLogEx
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<TsysOperLog> list(Tablepar tablepar,String searchTxt){
+	 public PageInfo<TsysOperLog> list(Tablepar tablepar,String searchText){
 	        TsysOperLogExample testExample=new TsysOperLogExample();
 	        testExample.setOrderByClause("id+0 DESC");
-	        if(searchTxt!=null&&!"".equals(searchTxt)){
-	        	testExample.createCriteria().andTitleLike("%"+searchTxt+"%");
+	        if(searchText!=null&&!"".equals(searchText)){
+	        	testExample.createCriteria().andTitleLike("%"+searchText+"%");
 	        }
 
 	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());

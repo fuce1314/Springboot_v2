@@ -49,14 +49,14 @@ public class LogController extends BaseController{
 	/**
 	 * 文件列表
 	 * @param tablepar
-	 * @param searchTxt 搜索字符
+	 * @param searchText 搜索字符
 	 * @return
 	 */
 	@PostMapping("/list")
 	@RequiresPermissions("system:log:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<TsysOperLog> page=sysOperLogService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<TsysOperLog> page=sysOperLogService.list(tablepar,searchText) ; 
 		TableSplitResult<TsysOperLog> result=new TableSplitResult<TsysOperLog>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

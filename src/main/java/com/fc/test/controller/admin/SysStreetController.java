@@ -51,15 +51,15 @@ public class SysStreetController extends BaseController{
 	/**
 	 * list查询
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @return
 	 */
 	//@Log(title = "街道设置集合查询", action = "111")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysStreet:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<SysStreet> page=sysStreetService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<SysStreet> page=sysStreetService.list(tablepar,searchText) ; 
 		TableSplitResult<SysStreet> result=new TableSplitResult<SysStreet>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

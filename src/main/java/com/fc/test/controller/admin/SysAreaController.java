@@ -53,7 +53,7 @@ public class SysAreaController extends BaseController{
 	/**
 	 * list集合
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @return
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:04:53
@@ -62,8 +62,8 @@ public class SysAreaController extends BaseController{
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysArea:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<SysArea> page=sysAreaService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<SysArea> page=sysAreaService.list(tablepar,searchText) ; 
 		TableSplitResult<SysArea> result=new TableSplitResult<SysArea>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

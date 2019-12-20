@@ -16,7 +16,7 @@
     <result column="childcount" jdbcType="INTEGER" property="childCount"/>
   </resultMap>
    <sql id="Base_Column_List">
-     id, `name`, descripion, url, pid, perms, type, icon, order_num
+     id, name, descripion, url, pid, perms, type, icon, order_num
   </sql>
    <select id="findAll"  resultMap="BaseResultMap">
 

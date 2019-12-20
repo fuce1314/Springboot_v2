@@ -52,15 +52,15 @@ public class SysCityController extends BaseController{
 	/**
 	 * 城市设置list
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @return
 	 */
 	//@Log(title = "城市设置集合查询", action = "111")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysCity:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<SysCity> page=sysCityService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<SysCity> page=sysCityService.list(tablepar,searchText) ; 
 		TableSplitResult<SysCity> result=new TableSplitResult<SysCity>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

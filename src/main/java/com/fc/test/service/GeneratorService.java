@@ -30,9 +30,9 @@ public class GeneratorService {
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<TsysTables> list(Tablepar tablepar,String searchTxt){
+	 public PageInfo<TsysTables> list(Tablepar tablepar,String searchText){
 		 	PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
-		 	List<TsysTables> list=  generatorMapper.queryList(searchTxt);
+		 	List<TsysTables> list=  generatorMapper.queryList(searchText);
 		    PageInfo<TsysTables> pageInfo = new PageInfo<TsysTables>(list);  
 		    
 		    return pageInfo;

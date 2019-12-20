@@ -53,27 +53,27 @@ public class PermissionController  extends BaseController{
 	/**
 	 * 权限列表
 	 * @param tablepar
-	 * @param searchTxt 搜索字符
+	 * @param searchText 搜索字符
 	 * @return
 	 */
 	@PostMapping("/list")
 	@RequiresPermissions("system:permission:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<TsysPermission> page= sysPermissionService.list(tablepar, searchTxt) ;
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<TsysPermission> page= sysPermissionService.list(tablepar, searchText) ;
 		TableSplitResult<TsysPermission> result=new TableSplitResult<TsysPermission>(page.getPageNum(), page.getTotal(), page.getList());
 		return  result;
 	}
 	/**
 	 * 权限列表
 	 * @param tablepar
-	 * @param searchTxt 搜索字符
+	 * @param searchText 搜索字符
 	 * @return
 	 */
 	@PostMapping("/list2")
 	@ResponseBody
-	public Object list2(Tablepar tablepar,String searchTxt){
-		List<TsysPermission> page= sysPermissionService.list2(searchTxt) ;
+	public Object list2(Tablepar tablepar,String searchText){
+		List<TsysPermission> page= sysPermissionService.list2(searchText) ;
 		return  page;
 	}
 	/**

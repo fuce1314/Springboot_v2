@@ -53,15 +53,15 @@ public class QuartzJobController extends BaseController{
 	/**
 	 * 定时任务调度list
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @return
 	 */
 	//@Log(title = "定时任务调度表集合查询", action = "111")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysQuartzJob:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<SysQuartzJob> page=sysQuartzJobService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<SysQuartzJob> page=sysQuartzJobService.list(tablepar,searchText) ; 
 		TableSplitResult<SysQuartzJob> result=new TableSplitResult<SysQuartzJob>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

@@ -55,7 +55,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	 * list页面
 	 * @param tablepar
-	 * @param searchTxt
+	 * @param searchText
 	 * @return
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:09:35
@@ -64,8 +64,8 @@ public class SysNoticeController extends BaseController{
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysNotice:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchTxt){
-		PageInfo<SysNotice> page=sysNoticeService.list(tablepar,searchTxt) ; 
+	public Object list(Tablepar tablepar,String searchText){
+		PageInfo<SysNotice> page=sysNoticeService.list(tablepar,searchText) ; 
 		TableSplitResult<SysNotice> result=new TableSplitResult<SysNotice>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}
@@ -93,10 +93,10 @@ public class SysNoticeController extends BaseController{
 	 */
 	@PostMapping("/viewUserlist")
 	@ResponseBody
-    public Object viewUserlist(Tablepar tablepar,String searchTxt)
+    public Object viewUserlist(Tablepar tablepar,String searchText)
     {
         
-		PageInfo<SysNotice> page=sysNoticeService.list(ShiroUtils.getUser(), tablepar, searchTxt);
+		PageInfo<SysNotice> page=sysNoticeService.list(ShiroUtils.getUser(), tablepar, searchText);
 		TableSplitResult<SysNotice> result=new TableSplitResult<SysNotice>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
     }

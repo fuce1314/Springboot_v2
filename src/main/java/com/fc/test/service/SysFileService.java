@@ -51,11 +51,11 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<TsysFile> list(Tablepar tablepar,String searchTxt){
+	 public PageInfo<TsysFile> list(Tablepar tablepar,String searchText){
 	        TsysFileExample testExample=new TsysFileExample();
 	        testExample.setOrderByClause("id+0 DESC");
-	        if(searchTxt!=null&&!"".equals(searchTxt)){
-	        	testExample.createCriteria().andFileNameLike("%"+searchTxt+"%");
+	        if(searchText!=null&&!"".equals(searchText)){
+	        	testExample.createCriteria().andFileNameLike("%"+searchText+"%");
 	        }
 
 	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
