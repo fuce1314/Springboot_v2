@@ -230,12 +230,13 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 		TSysRoleUserExample tSysRoleUserExample=new TSysRoleUserExample();
 		tSysRoleUserExample.createCriteria().andSysUserIdEqualTo(record.getId());
 		tSysRoleUserMapper.deleteByExample(tSysRoleUserExample);
-		//添加新的角色信息
-		for (String role : roles) {
-			TSysRoleUser tSysRoleUser= new TSysRoleUser(SnowflakeIdWorker.getUUID(), record.getId(), role);
-			tSysRoleUserMapper.insertSelective(tSysRoleUser);
+		if(roles!=null) {
+			//添加新的角色信息
+			for (String role : roles) {
+				TSysRoleUser tSysRoleUser= new TSysRoleUser(SnowflakeIdWorker.getUUID(), record.getId(), role);
+				tSysRoleUserMapper.insertSelective(tSysRoleUser);
+			}
 		}
-		
 		//修改用户信息
 		return 1;
 	}
