@@ -5,7 +5,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>springboot_v2</artifactId>
-	<version>3.4</version>
+	<version>3.5</version>
 	<packaging>war</packaging>
 	<name>springboot_v2</name>
 	<description>springbootv2系统</description>

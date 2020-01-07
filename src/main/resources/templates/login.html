@@ -230,14 +230,19 @@ $(document).ready(function(){
 			},
 			baiduMap:function(){
 				// 百度地图API功能
-		    	var map = new BMap.Map("test1");
-		    	var point = new BMap.Point(106.475851,29.542392);
-		    	map.centerAndZoom(point, 10);
-		    	var marker = new BMap.Marker(point);  // 创建标注
-		    	map.addOverlay(marker);               // 将标注添加到地图中
-		    	marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-		    	map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的
-		    	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+				try {
+					var map = new BMap.Map("test1");
+			    	var point = new BMap.Point(106.475851,29.542392);
+			    	map.centerAndZoom(point, 10);
+			    	var marker = new BMap.Marker(point);  // 创建标注
+			    	map.addOverlay(marker);               // 将标注添加到地图中
+			    	marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+			    	map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的
+			    	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+				} catch (e) {
+					
+				}
+		    	
 			},
 			showdd:function(){
 				var timer;
