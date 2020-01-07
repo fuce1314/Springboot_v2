@@ -1,5 +1,5 @@
 #线上数据库环境
-#prod环境  mysql7.0
+#mysql7.0
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -11,9 +11,9 @@ spring:
         url: jdbc:mysql://localhost:3306/springbootv2?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
         username: root
         password: root
-     #备数据源
+     #备数据源 #关闭
      slave:
-        enabled : false #关闭
+        enabled: false
         url: jdbc:mysql://localhost:3306/springbootv3?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
         username: root
         password: root
