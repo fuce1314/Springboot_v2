@@ -150,9 +150,15 @@ public class AdminController extends BaseController{
 			            ae.printStackTrace();
 			            return AjaxResult.error(500,"用户名或密码不正确");
 			        }
+			 }else {
+				 if(StringUtils.isNotNull(ShiroUtils.getUser())) {
+		         	 //跳转到 get请求的登陆方法
+		    		 //view.setViewName("redirect:/"+prefix+"/index");
+		     		 return  AjaxResult.success();
+		     	 }else {
+		     		 return  AjaxResult.error(500,"未知账户");
+		     	 }
 			 }
-			 return AjaxResult.error(500,"用户名或密码不正确");
-			 
 		 }else{
 			return AjaxResult.error(500,"验证码不正确!");
 		 }
