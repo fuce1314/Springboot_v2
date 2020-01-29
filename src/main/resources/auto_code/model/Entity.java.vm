@@ -22,8 +22,8 @@ public class ${TsysTables.tableModel} implements Serializable {
 	#if(${column.beanType} == "java.util.Date")
 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	#end
-@ApiModelProperty(value = "$column.column_comment") 
-private ${column.attrType} ${column.beanName};
+@ApiModelProperty(value = "$column.column_comment")
+	private ${column.attrType} ${column.beanName};
 	#end
 	
 	#foreach ($column in $beanColumns)
