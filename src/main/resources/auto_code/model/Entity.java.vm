@@ -29,21 +29,21 @@ public class ${TsysTables.tableModel} implements Serializable {
 	#foreach ($column in $beanColumns)
 	#if($column.beanType == "java.util.String")
 	
-	public $column.attrType get${column.beanName_A}() {
+	public $column.attrType get${column.funName}() {
         return $column.beanName;
     }
 
-    public void set${column.beanName_A}(${column.attrType} ${column.beanName}){
+    public void set${column.funName}(${column.attrType} ${column.beanName}){
         this.${column.beanName} = ${column.beanName} == null ? null : ${column.beanName}.trim();
     }
 			
 	#else
 
-	public ${column.attrType} get${column.beanName_A}() {
+	public ${column.attrType} get${column.funName}() {
         return ${column.beanName};
     }
 
-    public void set${column.beanName_A}(${column.attrType} ${column.beanName}) {
+    public void set${column.funName}(${column.attrType} ${column.beanName}) {
         this.${column.beanName} = ${column.beanName};
     }
 	 

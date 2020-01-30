@@ -274,10 +274,9 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         }
         return new StrBuilder(strLen).append(Character.toLowerCase(str.charAt(0))).append(str.substring(1)).toString();
     }
-    
 
     /**
-     * 下划线转驼峰命名 nameVc>>name_vc
+     * 驼峰命名转下划线 nameVc>>name_vc
      */
     public static String toUnderScoreCase(String s)
     {
@@ -338,6 +337,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         }
         return false;
     }
+   
     
     /**
      * 将下划线大写方式命名的字符串转换为驼峰式。如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。 例如：HELLO_WORLD->HelloWorld
@@ -417,8 +417,36 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         }
         return stringBuffer.toString();
     }
-
     
+    /**
+     * get方法名字转成 t_b_abc>>tBAbc
+     * @param str
+     * @return
+     * @author fuce
+     * @Date 2020年1月30日 下午11:55:54
+     */
+    public static String toFUNName(String str) {
+    	StringBuffer buffer=new StringBuffer();
+    	String name=str;
+    	if(name.contains("_")) {
+    		// 用下划线将原始字符串分割
+            String[] camels = name.split("_");
+            boolean b=true;
+            
+            for (String str1 : camels) {
+            	if(str1.length()==1&&b) {
+            		b=false;
+            		buffer.append(str1);
+            	}else {
+            		buffer.append(StringUtils.firstUpperCase(str1));
+            	}
+				
+			}
+    	}else {
+    		buffer.append(StringUtils.firstUpperCase(name));
+    	}
+		return buffer.toString();
+    }
 
     /**
      * 列名转换成Java属性名
@@ -426,6 +454,8 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
     public static String columnToJava(String columnName) {
         return WordUtils.capitalizeFully(columnName, new char[]{'_'}).replace("_", "" );
     }
+    
+    
     /**
      * 表名转换成Java类名
      */
