@@ -72,6 +72,9 @@ public class BeanColumn {
 	/**实体mapper需要的数据库类型**/
     private String beanTypeXml=getBeanTypeXml();
     
+    /** get set 方法 **/
+    private String funName=getFunName();
+    
 	public BeanColumn() {
 		super();
 	}
@@ -376,6 +379,16 @@ public class BeanColumn {
 	}
 	public void setBeanTypeXml(String beanTypeXml) {
 		this.beanTypeXml = beanTypeXml;
+	}
+	
+	public String getFunName() {
+		if(this.getBeanName()==null) {
+			return null;
+		}
+		return StringUtils.toFUNName(this.column_name);
+	}
+	public void setFunName(String funName) {
+		this.funName = funName;
 	}
     
 	
