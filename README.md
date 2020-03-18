@@ -317,9 +317,11 @@ https://gitee.com/agile-bpm
 ### 精品开源项目推荐
 https://gitee.com/Jmysy/Pear-One-Layui
 
-### 感谢开源软件列表
+### 使用v2做得系统
 
+![自动化运维](https://images.gitee.com/uploads/images/2020/0311/171512_69596856_123301.png "屏幕截图.png")
 
+![输网络法庭](https://images.gitee.com/uploads/images/2020/0311/171614_f30e1ac2_123301.png "屏幕截图.png")
 
 
 *

@@ -50,10 +50,11 @@ spring:
           multi-statement-allow: true
 
 #mysql 8.0
+
 #spring:
 #  datasource:
 #    type: com.alibaba.druid.pool.DruidDataSource
-#    driverClassName: com.mysql.jdbc.Driver
+#    driverClassName: com.mysql.cj.jdbc.Driver
 #    #druid连接池配置
 #    druid:
 #     # 主库数据源

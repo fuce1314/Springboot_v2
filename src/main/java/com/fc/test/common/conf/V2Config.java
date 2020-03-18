@@ -80,7 +80,7 @@ public class V2Config
 		return isstatic;
 	}
 
-	public static void setIsstatic(String isstatic) {
+	public  void setIsstatic(String isstatic) {
 		V2Config.isstatic = isstatic;
 	}
 
@@ -88,7 +88,7 @@ public class V2Config
 		return isroot_dir;
 	}
 
-	public static void setIsroot_dir(String isroot_dir) {
+	public void setIsroot_dir(String isroot_dir) {
 		V2Config.isroot_dir = isroot_dir;
 	}
 
@@ -96,7 +96,7 @@ public class V2Config
 		return email_smtp;
 	}
 
-	public static void setEmail_smtp(String email_smtp) {
+	public void setEmail_smtp(String email_smtp) {
 		V2Config.email_smtp = email_smtp;
 	}
 
@@ -104,7 +104,7 @@ public class V2Config
 		return email_port;
 	}
 
-	public static void setEmail_port(String email_port) {
+	public void setEmail_port(String email_port) {
 		V2Config.email_port = email_port;
 	}
 
@@ -112,7 +112,7 @@ public class V2Config
 		return email_account;
 	}
 
-	public static void setEmail_account(String email_account) {
+	public void setEmail_account(String email_account) {
 		V2Config.email_account = email_account;
 	}
 
@@ -120,7 +120,7 @@ public class V2Config
 		return email_password;
 	}
 
-	public static void setEmail_password(String email_password) {
+	public void setEmail_password(String email_password) {
 		V2Config.email_password = email_password;
 	}
 
@@ -128,7 +128,7 @@ public class V2Config
 		return demoEnabled;
 	}
 
-	public static void setDemoEnabled(String demoEnabled) {
+	public void setDemoEnabled(String demoEnabled) {
 		V2Config.demoEnabled = demoEnabled;
 	}
 
@@ -136,7 +136,7 @@ public class V2Config
 		return rollVerification;
 	}
 
-	public  void setRollVerification(Boolean rollVerification) {
+	public void setRollVerification(Boolean rollVerification) {
 		V2Config.rollVerification = rollVerification;
 	}
 	
