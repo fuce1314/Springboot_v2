@@ -190,10 +190,10 @@ var typeUrl=window.rootPath+"/DictTypeController/view";
                     }
                 }
 			},{
-			    field: 'dataStatus',
+			    field: 'status',
 			    title: '状态',
                 formatter: function(value, item, index) {
-                    if (item.dataStatus == 0){
+                    if (value == 0){
                         return "正常";
                     }else {
                         return "停用";
