@@ -311,8 +311,7 @@ https://gitee.com/agile-bpm
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
 
-### QQ大神群推荐:
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0921/140036_b5ab7bf7_123301.png "我萌的征途是架构狮！群聊二维码.png")
+
 
 ### 精品开源项目推荐
 https://gitee.com/Jmysy/Pear-One-Layui
