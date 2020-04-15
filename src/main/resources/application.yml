@@ -42,6 +42,8 @@ spring :
   # 环境 dev|test|prod
   profiles :
     active : dev
+    #引入其他配置文件，例如ftpHX 未配置文件application-ftpHX.yml
+    #include: ftpHX,ftpCloud
   servlet:
     multipart:
       max-request-size: 100MB
