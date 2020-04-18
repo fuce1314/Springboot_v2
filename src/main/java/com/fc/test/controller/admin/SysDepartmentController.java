@@ -1,7 +1,6 @@
 package com.fc.test.controller.admin;
 
 import java.util.List;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.auto.SysDepartment;
-import com.fc.test.model.auto.TsysPermission;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
@@ -24,7 +22,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("SysDepartmentController")
+@RequestMapping("/SysDepartmentController")
 @Api(value = "部门表")
 public class SysDepartmentController extends BaseController{
 	
@@ -32,7 +30,7 @@ public class SysDepartmentController extends BaseController{
 	@Autowired
 	private SysDepartmentService sysDepartmentService;
 	
-	@GetMapping("view")
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysDepartment:view")
     public String view(ModelMap model)
     {	
@@ -42,7 +40,7 @@ public class SysDepartmentController extends BaseController{
     }
 	
 	//@Log(title = "部门表集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysDepartment:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText){
@@ -69,7 +67,7 @@ public class SysDepartmentController extends BaseController{
     }
 	
 	//@Log(title = "部门表新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("gen:sysDepartment:add")
 	@ResponseBody
 	public AjaxResult add(SysDepartment sysDepartment){
@@ -87,7 +85,7 @@ public class SysDepartmentController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "部门表删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysDepartment:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -104,7 +102,7 @@ public class SysDepartmentController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysDepartment sysDepartment){
 		int b=sysDepartmentService.checkNameUnique(sysDepartment);

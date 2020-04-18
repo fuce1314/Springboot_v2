@@ -92,7 +92,7 @@ public class DictDataController extends BaseController{
      * @return
      */
 	//@Log(title = "字典数据表新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("system:dictData:add")
 	@ResponseBody
 	public AjaxResult add(TSysDictData tSysDictData, Model model){

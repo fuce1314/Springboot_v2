@@ -17,7 +17,7 @@ import com.fc.test.common.domain.AjaxResult;
 @RequestMapping("/ApiController")
 public class ApiController {
 	
-	@GetMapping("test")
+	@GetMapping("/test")
 	@ResponseBody
 	public AjaxResult test() {
 
