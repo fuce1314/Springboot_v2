@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2020-04-18 21:24:39
+Date: 2020-04-18 21:36:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -521,16 +521,16 @@ INSERT INTO `t_sys_permission` VALUES ('3799592408418918422', '测试表添加',
 INSERT INTO `t_sys_permission` VALUES ('3799592408418918433', '测试表删除', '测试表删除', '/TestController/remove', '0', '379959240841891840', 'gen:test:remove', '2', 'entypo-trash', null, '0');
 INSERT INTO `t_sys_permission` VALUES ('3799592408418918444', '测试表修改', '测试表修改', '/TestController/edit', '0', '379959240841891840', 'gen:test:edit', '2', 'fa fa-wrench', null, '0');
 INSERT INTO `t_sys_permission` VALUES ('4', '用户管理', '用户展示', '/UserController/view', '0', '592059865673760768', 'system:user:view', '1', 'icon icon-user', '1', '0');
-INSERT INTO `t_sys_permission` VALUES ('410791701859405824', '岗位表管理', '岗位表展示', '/SysPositionController/view', '0', '592059865673760768', 'gen:sysPosition:view', '1', 'fa fa-vcard', '17', '0');
-INSERT INTO `t_sys_permission` VALUES ('4107917018594058251', '岗位表集合', '岗位表集合', '/SysPositionController/list', '0', '410791701859405824', 'gen:sysPosition:list', '2', '', null, '0');
-INSERT INTO `t_sys_permission` VALUES ('4107917018594058262', '岗位表添加', '岗位表添加', '/SysPositionController/add', '0', '410791701859405824', 'gen:sysPosition:add', '2', 'entypo-plus-squared', null, '0');
-INSERT INTO `t_sys_permission` VALUES ('4107917018594058273', '岗位表删除', '岗位表删除', '/SysPositionController/remove', '0', '410791701859405824', 'gen:sysPosition:remove', '2', 'entypo-trash', null, '0');
-INSERT INTO `t_sys_permission` VALUES ('4107917018594058284', '岗位表修改', '岗位表修改', '/SysPositionController/edit', '0', '410791701859405824', 'gen:sysPosition:edit', '2', 'fa fa-wrench', null, '0');
-INSERT INTO `t_sys_permission` VALUES ('410989805699207168', '部门表管理', '部门表展示', '/SysDepartmentController/view', '0', '592059865673760768', 'gen:sysDepartment:view', '1', 'fa fa-odnoklassniki', '18', '0');
-INSERT INTO `t_sys_permission` VALUES ('4109898056992071691', '部门表集合', '部门表集合', '/SysDepartmentController/list', '0', '410989805699207168', 'gen:sysDepartment:list', '2', '', null, '0');
-INSERT INTO `t_sys_permission` VALUES ('4109898056992071702', '部门表添加', '部门表添加', '/SysDepartmentController/add', '0', '410989805699207168', 'gen:sysDepartment:add', '2', 'entypo-plus-squared', null, '0');
-INSERT INTO `t_sys_permission` VALUES ('4109898056992071713', '部门表删除', '部门表删除', '/SysDepartmentController/remove', '0', '410989805699207168', 'gen:sysDepartment:remove', '2', 'entypo-trash', null, '0');
-INSERT INTO `t_sys_permission` VALUES ('4109898056992071724', '部门表修改', '部门表修改', '/SysDepartmentController/edit', '0', '410989805699207168', 'gen:sysDepartment:edit', '2', 'fa fa-wrench', null, '0');
+INSERT INTO `t_sys_permission` VALUES ('410791701859405824', '岗位管理', '岗位展示', '/SysPositionController/view', '0', '592059865673760768', 'gen:sysPosition:view', '1', 'fa fa-vcard', '17', '0');
+INSERT INTO `t_sys_permission` VALUES ('4107917018594058251', '岗位表集合', '岗位集合', '/SysPositionController/list', '0', '410791701859405824', 'gen:sysPosition:list', '2', '', null, '0');
+INSERT INTO `t_sys_permission` VALUES ('4107917018594058262', '岗位表添加', '岗位添加', '/SysPositionController/add', '0', '410791701859405824', 'gen:sysPosition:add', '2', 'entypo-plus-squared', null, '0');
+INSERT INTO `t_sys_permission` VALUES ('4107917018594058273', '岗位表删除', '岗位删除', '/SysPositionController/remove', '0', '410791701859405824', 'gen:sysPosition:remove', '2', 'entypo-trash', null, '0');
+INSERT INTO `t_sys_permission` VALUES ('4107917018594058284', '岗位表修改', '岗位修改', '/SysPositionController/edit', '0', '410791701859405824', 'gen:sysPosition:edit', '2', 'fa fa-wrench', null, '0');
+INSERT INTO `t_sys_permission` VALUES ('410989805699207168', '部门管理', '部门展示', '/SysDepartmentController/view', '0', '592059865673760768', 'gen:sysDepartment:view', '1', 'fa fa-odnoklassniki', '18', '0');
+INSERT INTO `t_sys_permission` VALUES ('4109898056992071691', '部门集合', '部门集合', '/SysDepartmentController/list', '0', '410989805699207168', 'gen:sysDepartment:list', '2', '', null, '0');
+INSERT INTO `t_sys_permission` VALUES ('4109898056992071702', '部门添加', '部门添加', '/SysDepartmentController/add', '0', '410989805699207168', 'gen:sysDepartment:add', '2', 'entypo-plus-squared', null, '0');
+INSERT INTO `t_sys_permission` VALUES ('4109898056992071713', '部门删除', '部门删除', '/SysDepartmentController/remove', '0', '410989805699207168', 'gen:sysDepartment:remove', '2', 'entypo-trash', null, '0');
+INSERT INTO `t_sys_permission` VALUES ('4109898056992071724', '部门修改', '部门修改', '/SysDepartmentController/edit', '0', '410989805699207168', 'gen:sysDepartment:edit', '2', 'fa fa-wrench', null, '0');
 INSERT INTO `t_sys_permission` VALUES ('486690002869157888', '用户密码修改', '用户密码修改', '/UserController/editPwd', '0', '4', 'system:user:editPwd', '2', 'entypo-tools', '3', '0');
 INSERT INTO `t_sys_permission` VALUES ('496126970468237312', '日志展示', '日志管理', '/LogController/view', '0', '592059865673760768', 'system:log:view', '1', 'fa fa-info', '9', '0');
 INSERT INTO `t_sys_permission` VALUES ('496127240363311104', '日志删除', '日志删除', '/LogController/remove', '0', '496126970468237312', 'system:log:remove', '2', 'entypo-trash', null, '0');
