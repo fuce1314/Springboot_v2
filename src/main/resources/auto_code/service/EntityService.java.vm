@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import cn.hutool.core.util.StrUtil;
 import ${globalConfig.parentPack}.common.base.BaseService;
 import ${globalConfig.parentPack}.common.support.Convert;
 import ${globalConfig.parentPack}.mapper.auto.${TsysTables.tableModel}Mapper;
@@ -13,6 +14,7 @@ import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel};
 import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel}Example;
 import ${globalConfig.parentPack}.model.custom.Tablepar;
 import ${globalConfig.parentPack}.util.SnowflakeIdWorker;
+import com.fc.test.util.StringUtils;
 
 /**
  * ${TsysTables.tableComment} ${TsysTables.tableModel}Service
@@ -52,7 +54,9 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	        if(name!=null&&!"".equals(name)){
 	        	testExample.createCriteria().and${conditionQueryField}Like("%"+name+"%");
 	        }
-
+			if(StrUtil.isNotEmpty(tablepar.getOrderByColumn())) {
+	        	testExample.setOrderByClause(StringUtils.toUnderScoreCase(tablepar.getOrderByColumn()) +" "+tablepar.getIsAsc());
+	        }
 	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
 	        List<${TsysTables.tableModel}> list= ${TsysTables.tableModel_a}Mapper.selectByExample(testExample);
 	        PageInfo<${TsysTables.tableModel}> pageInfo = new PageInfo<${TsysTables.tableModel}>(list);

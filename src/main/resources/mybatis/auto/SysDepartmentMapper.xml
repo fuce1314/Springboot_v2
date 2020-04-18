@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.test.mapper.auto.SysDepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.SysDepartment">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="leader" jdbcType="VARCHAR" property="leader" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="childcount" jdbcType="INTEGER" property="childCount"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+<sql id="Base_Column_List">
+	  	  	      	id,
+       	  	      	parent_id,
+       	  	      	dept_name,
+       	  	      	leader,
+       	  	      	phone,
+       	  	      	email,
+       	  	      	status,
+       	  	    	order_num,
+       	  	    	(select count(1) from t_sys_department where parent_id=a.id) childcount
+       	</sql>
+  <select id="selectByExample" parameterType="com.fc.test.model.auto.SysDepartmentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sys_department a
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_department a
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_sys_department
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.SysDepartmentExample">
+    delete from t_sys_department
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="com.fc.test.model.auto.SysDepartment">
+    insert into t_sys_department (
+      	  	       id,
+       	  	       parent_id,
+       	  	       dept_name,
+       	  	       leader,
+       	  	       phone,
+       	  	       email,
+       	  	       status,
+       	  	       order_num
+       	    )
+    values (
+	  	  	      	#{id,jdbcType=INTEGER},
+       	  	      	#{parentId,jdbcType=VARCHAR},
+       	  	      	#{deptName,jdbcType=VARCHAR},
+       	  	      	#{leader,jdbcType=VARCHAR},
+       	  	      	#{phone,jdbcType=VARCHAR},
+       	  	      	#{email,jdbcType=VARCHAR},
+       	  	      	#{status,jdbcType=INTEGER},
+       	  	    	#{orderNum,jdbcType=INTEGER}
+       	    )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.fc.test.model.auto.SysDepartment">
+    insert into t_sys_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+          
+      <if test="id != null">
+        id,
+      </if>
+      
+         
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      
+         
+      <if test="deptName != null">
+        dept_name,
+      </if>
+      
+         
+      <if test="leader != null">
+        leader,
+      </if>
+      
+         
+      <if test="phone != null">
+        phone,
+      </if>
+      
+         
+      <if test="email != null">
+        email,
+      </if>
+      
+         
+      <if test="status != null">
+        status,
+      </if>
+      
+         
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      
+         </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+          <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+          <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+          <if test="leader != null">
+        #{leader,jdbcType=VARCHAR},
+      </if>
+          <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+          <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+          <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+          <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+        </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="com.fc.test.model.auto.SysDepartmentExample" resultType="java.lang.Long">
+    select count(*) from t_sys_department a
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_sys_department
+    <set>
+          <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+          <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=VARCHAR},
+      </if>
+          <if test="record.deptName != null">
+        dept_name = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+          <if test="record.leader != null">
+        leader = #{record.leader,jdbcType=VARCHAR},
+      </if>
+          <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+          <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+          <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+          <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=INTEGER},
+      </if>
+         
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  <update id="updateByExample" parameterType="map">
+    update t_sys_department
+    set
+            	     	 id = #{record.id,jdbcType=INTEGER},
+    	         	     	 parent_id = #{record.parentId,jdbcType=VARCHAR},
+    	         	     	 dept_name = #{record.deptName,jdbcType=VARCHAR},
+    	         	     	 leader = #{record.leader,jdbcType=VARCHAR},
+    	         	     	 phone = #{record.phone,jdbcType=VARCHAR},
+    	         	     	 email = #{record.email,jdbcType=VARCHAR},
+    	         	     	 status = #{record.status,jdbcType=INTEGER},
+    	         	     	 order_num = #{record.orderNum,jdbcType=INTEGER}
+    	         <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.SysDepartment">
+    update t_sys_department
+    <set>
+                          <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+                      <if test="deptName != null">
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+                      <if test="leader != null">
+        leader = #{leader,jdbcType=VARCHAR},
+      </if>
+                      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+                      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+                      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+                      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+              </set>
+    where 
+            id = #{id,jdbcType=INTEGER}
+                                                                  
+  </update>
+
+      	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	
+
+  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.SysDepartment">
+    update t_sys_department
+    set 
+             	        	    	 			parent_id = #{parentId,jdbcType=VARCHAR},
+		     	        	    	 			dept_name = #{deptName,jdbcType=VARCHAR},
+		     	        	    	 			leader = #{leader,jdbcType=VARCHAR},
+		     	        	    	 			phone = #{phone,jdbcType=VARCHAR},
+		     	        	    	 			email = #{email,jdbcType=VARCHAR},
+		     	        	    	 			status = #{status,jdbcType=INTEGER},
+		     	        	    	 			order_num = #{orderNum,jdbcType=INTEGER}
+		     	        where 
+            id = #{id,jdbcType=INTEGER}
+                                                                    
+  </update>
+  
+                                            
+</mapper>

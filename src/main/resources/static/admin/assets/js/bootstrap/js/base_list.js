@@ -20,7 +20,7 @@
 			            striped: true,           //是否显示行间隔色
 			            cache: false,            //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 			            pagination: true,          //是否显示分页（*）
-			            sortable: false,           //是否启用排序
+			            sortable: true,           //是否启用排序
 			            sortOrder: "asc",          //排序方式
 			            queryParams: $.table.queryParams,//传递参数（*）
 			            smartDisplay:false,
@@ -69,6 +69,9 @@
 				 search.pageSize= params.pageSize;
 				 search.pageNum=params.pageNumber;
 				 search.searchText=params.searchText;
+				 //排序
+				 search.orderByColumn=params.sortName;
+				 search.isAsc=params.sortOrder;
 				 return search;
 				 
 			},
@@ -79,7 +82,6 @@
 					 search[field.name] = field.value;
                  });
 				 var params = $("#dataTable").bootstrapTable("getOptions");
-				 console.log(params.searchText);
 				 params.queryParams=function(params){
 					/* return {
 							pageSize: params.pageSize,  //每页要显示的数据条数
@@ -89,7 +91,8 @@
 					        sortOrder: params.order, // 排序规则
 					        dataId: $("#dataId").val() // 额外添加的参数
 						};*/
-						
+					 	search.orderByColumn=params.sortName;
+					 	search.isAsc=params.sortOrder;
 						search.pageSize= params.pageSize;
 						search.pageNum=params.pageNumber;
 						if($.common.isNotEmpty(params.searchText)){
