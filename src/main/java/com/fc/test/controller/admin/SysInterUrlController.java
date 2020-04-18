@@ -21,7 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("SysInterUrlController")
+@RequestMapping("/SysInterUrlController")
 @Api(value = "拦截url表")
 public class SysInterUrlController extends BaseController{
 	
@@ -29,7 +29,7 @@ public class SysInterUrlController extends BaseController{
 	@Autowired
 	private SysInterUrlService sysInterUrlService;
 	
-	@GetMapping("view")
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysInterUrl:view")
     public String view(ModelMap model)
     {	
@@ -39,7 +39,7 @@ public class SysInterUrlController extends BaseController{
     }
 	
 	//@Log(title = "拦截url表集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysInterUrl:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText){
@@ -59,7 +59,7 @@ public class SysInterUrlController extends BaseController{
     }
 	
 	//@Log(title = "拦截url表新增", action = "111")
-	@PostMapping("add")
+	@PostMapping("/add")
 	@RequiresPermissions("gen:sysInterUrl:add")
 	@ResponseBody
 	public AjaxResult add(SysInterUrl sysInterUrl){
@@ -71,13 +71,29 @@ public class SysInterUrlController extends BaseController{
 		}
 	}
 	
+	
+	@GetMapping("/copy/{id}")
+	@RequiresPermissions("gen:sysInterUrl:add")
+	@ResponseBody
+	public AjaxResult add(@PathVariable("id") String id){
+		SysInterUrl sysInterUrl= sysInterUrlService.selectByPrimaryKey(id);
+		sysInterUrl.setInterName(sysInterUrl.getInterName()+"复制");
+		int b=sysInterUrlService.insertSelective(sysInterUrl);
+		if(b>0){
+			return success();
+		}else{
+			return error();
+		}
+	}
+	
+	
 	/**
 	 * 删除用户
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "拦截url表删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysInterUrl:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -94,7 +110,7 @@ public class SysInterUrlController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysInterUrl sysInterUrl){
 		int b=sysInterUrlService.checkNameUnique(sysInterUrl);

@@ -21,7 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("SysPositionController")
+@RequestMapping("/SysPositionController")
 @Api(value = "岗位表")
 public class SysPositionController extends BaseController{
 	
@@ -29,7 +29,10 @@ public class SysPositionController extends BaseController{
 	@Autowired
 	private SysPositionService sysPositionService;
 	
-	@GetMapping("view")
+	/**
+	 * list展示
+	 */
+	@GetMapping("/view")
 	@RequiresPermissions("gen:sysPosition:view")
     public String view(ModelMap model)
     {	
@@ -38,8 +41,11 @@ public class SysPositionController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * 分页集合
+	 */
 	//@Log(title = "岗位表集合查询", action = "111")
-	@PostMapping("list")
+	@PostMapping("/list")
 	@RequiresPermissions("gen:sysPosition:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText){
@@ -49,15 +55,17 @@ public class SysPositionController extends BaseController{
 	}
 	
 	/**
-     * 新增
+     * 新增跳转
      */
-
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
+    /**
+     * 新增
+     */
 	//@Log(title = "岗位表新增", action = "111")
 	@PostMapping("add")
 	@RequiresPermissions("gen:sysPosition:add")
@@ -77,7 +85,7 @@ public class SysPositionController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "岗位表删除", action = "111")
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysPosition:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
@@ -94,7 +102,7 @@ public class SysPositionController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
-	@PostMapping("checkNameUnique")
+	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysPosition sysPosition){
 		int b=sysPositionService.checkNameUnique(sysPosition);
