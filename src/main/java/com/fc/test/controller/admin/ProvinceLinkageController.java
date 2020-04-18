@@ -22,6 +22,7 @@ import com.fc.test.service.SysProvinceService;
 import com.fc.test.service.SysStreetService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 省份联动controller
@@ -45,7 +46,13 @@ public class ProvinceLinkageController  extends BaseController{
 	
 	private String prefix = "admin/province";
 	
-	
+	/**
+	 * 分页list页面
+	 * @param model
+	 * @param dictId
+	 * @return
+	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
     public String view(ModelMap model)
     {	
@@ -54,11 +61,13 @@ public class ProvinceLinkageController  extends BaseController{
 		model.addAttribute("provinceList",sysProvinceService.selectByExample(new SysProvinceExample()));
         return prefix + "/list";
     }
+	
 	/**
 	 * 市查询
 	 * @param pid
 	 * @return
 	 */
+	@ApiOperation(value = "市查询", notes = "市查询")
 	@GetMapping("/getCity")
 	@ResponseBody
 	public List<SysCity> getCity(String pid){
@@ -74,6 +83,7 @@ public class ProvinceLinkageController  extends BaseController{
 	 * @param pid
 	 * @return
 	 */
+	@ApiOperation(value = "区查询", notes = "区查询")
 	@GetMapping("/getArea")
 	@ResponseBody
 	public List<SysArea> getArea(String pid){
@@ -88,6 +98,7 @@ public class ProvinceLinkageController  extends BaseController{
 	 * @param pid
 	 * @return
 	 */
+	@ApiOperation(value = "街道查询", notes = "街道查询")
 	@GetMapping("/getStreet")
 	@ResponseBody
 	public List<SysStreet> getStreet(String pid){

@@ -18,6 +18,7 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysStreetService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 街道Controller
@@ -39,6 +40,7 @@ public class SysStreetController extends BaseController{
 	 * @param model
 	 * @return
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysStreet:view")
     public String view(ModelMap model)
@@ -55,6 +57,7 @@ public class SysStreetController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "街道设置集合查询", action = "111")
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysStreet:list")
 	@ResponseBody
@@ -69,6 +72,7 @@ public class SysStreetController extends BaseController{
 	 * @param modelMap
 	 * @return
 	 */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -83,6 +87,7 @@ public class SysStreetController extends BaseController{
      * @Date 2019年11月11日 下午4:13:37
      */
 	//@Log(title = "街道设置新增", action = "111")
+	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("gen:sysStreet:add")
 	@ResponseBody
@@ -101,6 +106,7 @@ public class SysStreetController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "街道设置删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysStreet:remove")
 	@ResponseBody
@@ -118,6 +124,7 @@ public class SysStreetController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysStreet sysStreet){
@@ -136,6 +143,7 @@ public class SysStreetController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -149,6 +157,7 @@ public class SysStreetController extends BaseController{
 	 * @return
 	 */
     //@Log(title = "街道设置修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("gen:sysStreet:edit")
     @PostMapping("/edit")
     @ResponseBody

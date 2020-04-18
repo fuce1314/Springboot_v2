@@ -32,6 +32,7 @@ public class SysPositionController extends BaseController{
 	/**
 	 * list展示
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysPosition:view")
     public String view(ModelMap model)
@@ -45,6 +46,7 @@ public class SysPositionController extends BaseController{
 	 * 分页集合
 	 */
 	//@Log(title = "岗位表集合查询", action = "111")
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysPosition:list")
 	@ResponseBody
@@ -57,6 +59,7 @@ public class SysPositionController extends BaseController{
 	/**
      * 新增跳转
      */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -67,6 +70,7 @@ public class SysPositionController extends BaseController{
      * 新增
      */
 	//@Log(title = "岗位表新增", action = "111")
+	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("add")
 	@RequiresPermissions("gen:sysPosition:add")
 	@ResponseBody
@@ -85,6 +89,7 @@ public class SysPositionController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "岗位表删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysPosition:remove")
 	@ResponseBody
@@ -102,6 +107,7 @@ public class SysPositionController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysPosition sysPosition){
@@ -120,6 +126,7 @@ public class SysPositionController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -132,6 +139,7 @@ public class SysPositionController extends BaseController{
      * 修改保存
      */
     //@Log(title = "岗位表修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("gen:sysPosition:edit")
     @PostMapping("/edit")
     @ResponseBody

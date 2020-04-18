@@ -2,6 +2,7 @@ package com.fc.test.controller.admin;
 
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,8 @@ import com.github.pagehelper.PageInfo;
  * @author fuce 
  * @date: 2018年9月30日 下午9:28:31
  */
-@Api(value = "日志记录")
 @Controller
+@Api(value = "日志记录")
 @RequestMapping("/LogController")
 public class LogController extends BaseController{
 
@@ -36,6 +37,7 @@ public class LogController extends BaseController{
 	 * @param model
 	 * @return
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("system:log:view")
     public String view(ModelMap model)
@@ -52,6 +54,7 @@ public class LogController extends BaseController{
 	 * @param searchText 搜索字符
 	 * @return
 	 */
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("system:log:list")
 	@ResponseBody
@@ -67,6 +70,8 @@ public class LogController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
+	//@Log(title = "删除日志", action = "1")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("system:log:remove")
 	@ResponseBody

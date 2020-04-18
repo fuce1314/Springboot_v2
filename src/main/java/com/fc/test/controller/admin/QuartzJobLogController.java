@@ -18,6 +18,7 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysQuartzJobLogService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 定时任务日志Controller
@@ -41,6 +42,7 @@ public class QuartzJobLogController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:01:13
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysQuartzJobLog:view")
     public String view(ModelMap model)
@@ -59,6 +61,7 @@ public class QuartzJobLogController extends BaseController{
 	 * @Date 2019年11月11日 下午4:01:26
 	 */
 	//@Log(title = "定时任务调度日志表集合查询", action = "111")
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysQuartzJobLog:list")
 	@ResponseBody
@@ -75,6 +78,7 @@ public class QuartzJobLogController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年9月14日 下午11:50:42
 	 */
+	 @ApiOperation(value = "查看详情", notes = "查看详情")
 	 @GetMapping("/detail/{id}")
      public String detail(@PathVariable("id") String id,ModelMap modelMap)
      {
@@ -93,6 +97,7 @@ public class QuartzJobLogController extends BaseController{
 	 * @Date 2019年11月20日 下午10:51:52
 	 */
 	//@Log(title = "定时任务调度日志表删除", action = "111")
+	@ApiOperation(value = "定时任务日志删除", notes = "定时任务日志删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysQuartzJobLog:remove")
 	@ResponseBody

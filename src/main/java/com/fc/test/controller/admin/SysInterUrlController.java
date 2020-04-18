@@ -20,15 +20,23 @@ import com.fc.test.service.SysInterUrlService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@Api(value = "拦截url表")
 @Controller
 @RequestMapping("/SysInterUrlController")
-@Api(value = "拦截url表")
 public class SysInterUrlController extends BaseController{
 	
 	private String prefix = "admin/sysInterUrl";
 	@Autowired
 	private SysInterUrlService sysInterUrlService;
 	
+	/**
+	 * 分页跳转
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2020年4月18日 下午11:43:33
+	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysInterUrl:view")
     public String view(ModelMap model)
@@ -38,7 +46,16 @@ public class SysInterUrlController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * 分页查询
+	 * @param tablepar
+	 * @param searchText
+	 * @return
+	 * @author fuce
+	 * @Date 2020年4月18日 下午11:43:42
+	 */
 	//@Log(title = "拦截url表集合查询", action = "111")
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysInterUrl:list")
 	@ResponseBody
@@ -49,16 +66,24 @@ public class SysInterUrlController extends BaseController{
 	}
 	
 	/**
-     * 新增
+     * 新增跳转
      */
-
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
-	//@Log(title = "拦截url表新增", action = "111")
+	/**
+	 * 新增
+	 * @param sysInterUrl
+	 * @return
+	 * @author fuce
+	 * @Date 2020年4月18日 下午11:44:30
+	 */
+	//@Log(title = "拦截url表新增", action = "1")
+	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("gen:sysInterUrl:add")
 	@ResponseBody
@@ -71,7 +96,15 @@ public class SysInterUrlController extends BaseController{
 		}
 	}
 	
-	
+	/**
+	 * 复制
+	 * @param id
+	 * @return
+	 * @author fuce
+	 * @Date 2020年4月18日 下午11:44:42
+	 */
+	//@Log(title = "复制", action = "1")
+	@ApiOperation(value = "复制", notes = "复制")
 	@GetMapping("/copy/{id}")
 	@RequiresPermissions("gen:sysInterUrl:add")
 	@ResponseBody
@@ -93,6 +126,7 @@ public class SysInterUrlController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "拦截url表删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysInterUrl:remove")
 	@ResponseBody
@@ -110,6 +144,7 @@ public class SysInterUrlController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysInterUrl sysInterUrl){
@@ -128,6 +163,7 @@ public class SysInterUrlController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -139,7 +175,8 @@ public class SysInterUrlController extends BaseController{
 	/**
      * 修改保存
      */
-    //@Log(title = "拦截url表修改", action = "111")
+    //@Log(title = "拦截url表修改", action = "1")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("gen:sysInterUrl:edit")
     @PostMapping("/edit")
     @ResponseBody

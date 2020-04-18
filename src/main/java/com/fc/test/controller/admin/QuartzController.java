@@ -3,6 +3,8 @@ package com.fc.test.controller.admin;
 import com.fc.test.common.base.BaseController;
 import com.fc.test.model.custom.TitleVo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,7 @@ public class QuartzController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午3:45:53
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
     public String view(ModelMap model)
     {	

@@ -22,6 +22,7 @@ import com.fc.test.util.SimpleEmailUtil;
 import com.github.pagehelper.PageInfo;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 邮件发送Controller
@@ -46,6 +47,7 @@ public class EmailController extends BaseController{
 	 * @param dictId
 	 * @return
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("system:email:view")
     public String view(ModelMap model)
@@ -61,6 +63,7 @@ public class EmailController extends BaseController{
 	 * @param dictId
 	 * @return
 	 */
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("system:email:list")
 	@ResponseBody
@@ -73,6 +76,7 @@ public class EmailController extends BaseController{
 	/**
      * 新增跳转
      */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -87,6 +91,8 @@ public class EmailController extends BaseController{
 	 * @throws Exception
 	 * @author fuce
 	 */
+	//@Log(title = "新增邮件", action = "1")
+	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("system:email:add")
 	@ResponseBody
@@ -105,6 +111,8 @@ public class EmailController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
+	//@Log(title = "删除邮件", action = "1")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("system:email:remove")
 	@ResponseBody
@@ -122,6 +130,7 @@ public class EmailController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(TSysEmail tSysEmail){
@@ -140,6 +149,7 @@ public class EmailController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -151,6 +161,8 @@ public class EmailController extends BaseController{
 	/**
      * 修改保存
      */
+	//@Log(title = "修改保存", action = "1")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("system:email:edit")
     @PostMapping("/edit")
     @ResponseBody

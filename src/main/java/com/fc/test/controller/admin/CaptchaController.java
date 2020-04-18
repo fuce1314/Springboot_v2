@@ -1,6 +1,7 @@
 package com.fc.test.controller.admin;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class CaptchaController extends BaseController
     /**
      * 验证码生成
      */
+    @ApiOperation(value = "验证码生成", notes = "验证码生成")
     @GetMapping("/captchaImage")
     public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response)
     {
@@ -106,6 +108,7 @@ public class CaptchaController extends BaseController
      * @author fuce
      * @Date 2019年11月23日 下午6:12:27
      */
+    @ApiOperation(value = "滚动条验证码", notes = "滚动条验证码")
     @PostMapping("/isVerify")
     @ResponseBody
 	public boolean isVerify(@RequestBody List<Integer> datas) {
