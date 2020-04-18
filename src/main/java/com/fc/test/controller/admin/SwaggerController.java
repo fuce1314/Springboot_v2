@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fc.test.common.base.BaseController;
 import com.fc.test.model.custom.TitleVo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * SwaggerController
@@ -30,6 +31,7 @@ public class SwaggerController  extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:04:20
 	 */
+	@ApiOperation(value = "展示页面", notes = "展示页面")
 	@GetMapping("/view")
 	@RequiresPermissions("system:swagger:view")
     public String view(ModelMap model)

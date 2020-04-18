@@ -20,6 +20,7 @@ import com.fc.test.service.SysNoticeService;
 import com.fc.test.shiro.util.ShiroUtils;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 公告Controller
@@ -44,6 +45,7 @@ public class SysNoticeController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:09:24
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysNotice:view")
     public String view(ModelMap model)
@@ -61,6 +63,7 @@ public class SysNoticeController extends BaseController{
 	 * @Date 2019年11月11日 下午4:09:35
 	 */
 	//@Log(title = "公告集合查询", action = "111")
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysNotice:list")
 	@ResponseBody
@@ -78,6 +81,7 @@ public class SysNoticeController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:09:42
 	 */
+	@ApiOperation(value = "对应的用户的展示页面", notes = "对应的用户的展示页面")
 	@GetMapping("/viewUser")
     public String viewUser(ModelMap model)
     {	
@@ -91,6 +95,7 @@ public class SysNoticeController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "table根据公告id查询跳转到公告详情页面", notes = "table根据公告id查询跳转到公告详情页面")
 	@PostMapping("/viewUserlist")
 	@ResponseBody
     public Object viewUserlist(Tablepar tablepar,String searchText)
@@ -106,6 +111,7 @@ public class SysNoticeController extends BaseController{
 	 * @param modelMap
 	 * @return
 	 */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -119,6 +125,7 @@ public class SysNoticeController extends BaseController{
 	 * @Date 2019年11月11日 下午4:07:09
 	 */
 	//@Log(title = "公告新增", action = "111")
+    @ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("gen:sysNotice:add")
 	@ResponseBody
@@ -137,6 +144,7 @@ public class SysNoticeController extends BaseController{
 	 * @return
 	 **/
 	//@Log(title = "公告删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysNotice:remove")
 	@ResponseBody
@@ -154,6 +162,7 @@ public class SysNoticeController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysNotice sysNotice){
@@ -171,6 +180,8 @@ public class SysNoticeController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	//@Log(title = "字典数据表删除", action = "1")
+	@ApiOperation(value = "根据公告id查询跳转到公告详情页面", notes = " 根据公告id查询跳转到公告详情页面")
 	@GetMapping("/viewinfo/{id}")
     public String viewinfo(@PathVariable("id") String id,ModelMap mmap)
     {
@@ -191,6 +202,7 @@ public class SysNoticeController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -203,6 +215,7 @@ public class SysNoticeController extends BaseController{
      * 修改保存
      */
     //@Log(title = "公告修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("gen:sysNotice:edit")
     @PostMapping("/edit")
     @ResponseBody

@@ -18,6 +18,7 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysAreaService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 地区Controller
@@ -41,6 +42,7 @@ public class SysAreaController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:05:04
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysArea:view")
     public String view(ModelMap model)
@@ -59,6 +61,7 @@ public class SysAreaController extends BaseController{
 	 * @Date 2019年11月11日 下午4:04:53
 	 */
 	//@Log(title = "地区设置集合查询", action = "111")
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysArea:list")
 	@ResponseBody
@@ -71,6 +74,7 @@ public class SysAreaController extends BaseController{
 	/**
      * 新增跳转
      */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -85,6 +89,7 @@ public class SysAreaController extends BaseController{
      * @Date 2019年11月11日 下午4:04:41
      */
 	//@Log(title = "地区设置新增", action = "111")
+	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("gen:sysArea:add")
 	@ResponseBody
@@ -103,6 +108,7 @@ public class SysAreaController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "地区设置删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysArea:remove")
 	@ResponseBody
@@ -120,6 +126,7 @@ public class SysAreaController extends BaseController{
 	 * @param SysArea
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysArea sysArea){
@@ -138,6 +145,7 @@ public class SysAreaController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
     {
@@ -150,6 +158,7 @@ public class SysAreaController extends BaseController{
      * 修改保存
      */
     //@Log(title = "地区设置修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("gen:sysArea:edit")
     @PostMapping("/edit")
     @ResponseBody

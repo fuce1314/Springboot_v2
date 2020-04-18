@@ -19,6 +19,7 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysQuartzJobService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 
@@ -42,6 +43,7 @@ public class QuartzJobController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午3:55:01
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysQuartzJob:view")
     public String view(ModelMap model)
@@ -57,6 +59,7 @@ public class QuartzJobController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "定时任务调度表集合查询", action = "111")
+	@ApiOperation(value = "定时任务调度list", notes = "定时任务调度list")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysQuartzJob:list")
 	@ResponseBody
@@ -71,6 +74,7 @@ public class QuartzJobController extends BaseController{
 	 * @param modelMap
 	 * @return
 	 */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -85,6 +89,7 @@ public class QuartzJobController extends BaseController{
      * @Date 2019年11月11日 下午4:00:08
      */
 	//@Log(title = "定时任务调度表新增", action = "111")
+	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("gen:sysQuartzJob:add")
 	@ResponseBody
@@ -103,6 +108,7 @@ public class QuartzJobController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "定时任务调度表删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysQuartzJob:remove")
 	@ResponseBody
@@ -120,6 +126,7 @@ public class QuartzJobController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysQuartzJob sysQuartzJob){
@@ -138,6 +145,7 @@ public class QuartzJobController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -150,6 +158,7 @@ public class QuartzJobController extends BaseController{
      * 修改保存
      */
     //@Log(title = "定时任务调度表修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("gen:sysQuartzJob:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -161,6 +170,8 @@ public class QuartzJobController extends BaseController{
     /**
      * 任务调度状态修改
      */
+	//@Log(title = "任务调度状态修改", action = "1")
+	@ApiOperation(value = "任务调度状态修改", notes = "任务调度状态修改")
     @PostMapping("/changeStatus")
     @ResponseBody
     public AjaxResult changeStatus(SysQuartzJob job) throws SchedulerException
@@ -173,6 +184,8 @@ public class QuartzJobController extends BaseController{
     /**
      * 任务调度立即执行一次
      */
+	//@Log(title = "任务调度立即执行一次", action = "1")
+	@ApiOperation(value = "任务调度立即执行一次", notes = "任务调度立即执行一次")
     @PostMapping("/run")
     @ResponseBody
     public AjaxResult run(SysQuartzJob job) throws SchedulerException

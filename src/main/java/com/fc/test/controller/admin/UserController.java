@@ -23,6 +23,7 @@ import com.fc.test.model.custom.TitleVo;
 import com.github.pagehelper.PageInfo;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 用户Controller
@@ -44,6 +45,7 @@ public class UserController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:14:34
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("system:user:view")
     public String view(ModelMap model)
@@ -62,6 +64,8 @@ public class UserController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:14:40
 	 */
+	//@Log(title = "分页查询", action = "1")
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("system:user:list")
 	@ResponseBody
@@ -77,6 +81,7 @@ public class UserController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:14:51
 	 */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -95,6 +100,7 @@ public class UserController extends BaseController{
 	 * @Date 2019年11月11日 下午4:14:57
 	 */
     @Log(title = "用户新增", action = "111")
+    @ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("system:user:add")
 	@ResponseBody
@@ -112,6 +118,8 @@ public class UserController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
+    //@Log(title = "删除用户", action = "1")
+  	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("system:user:remove")
 	@ResponseBody
@@ -129,6 +137,7 @@ public class UserController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkLoginNameUnique")
 	@ResponseBody
 	public int checkLoginNameUnique(TsysUser tsysUser){
@@ -142,11 +151,12 @@ public class UserController extends BaseController{
 	
 	
 	/**
-	 * 修改用户
+	 * 修改用户跳转
 	 * @param id
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -161,6 +171,8 @@ public class UserController extends BaseController{
 	/**
      * 修改保存用户
      */
+	//@Log(title = "修改保存用户", action = "1")
+    @ApiOperation(value = "修改保存用户", notes = "修改保存用户")
     @RequiresPermissions("system:user:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -172,11 +184,13 @@ public class UserController extends BaseController{
     
     
     /**
-	 * 修改用户密码
+	 * 修改用户密码跳转
 	 * @param id
 	 * @param mmap
 	 * @return
 	 */
+    //@Log(title = "修改用户密码", action = "1")
+    @ApiOperation(value = "修改用户密码跳转", notes = "修改用户密码跳转")
 	@GetMapping("/editPwd/{id}")
     public String editPwd(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -186,6 +200,8 @@ public class UserController extends BaseController{
 	/**
      * 修改保存用户
      */
+    //@Log(title = "修改用户密码", action = "1")
+    @ApiOperation(value = "修改用户密码", notes = "修改用户密码")
     @RequiresPermissions("system:user:editPwd")
     @PostMapping("/editPwd")
     @ResponseBody

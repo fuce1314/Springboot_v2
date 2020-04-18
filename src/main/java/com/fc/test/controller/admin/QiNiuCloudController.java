@@ -5,6 +5,8 @@ import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.QiNiuCloudService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,7 @@ public class QiNiuCloudController extends BaseController {
     * @Author QQ1057718016
     * @Date 2019年11月20日 下午10:19:55
     */
+    @ApiOperation(value = "分页跳转", notes = "分页跳转")
     @GetMapping("/view")
     @RequiresPermissions("system:qiniucloud:view")
     public String view(ModelMap model)
@@ -53,6 +56,8 @@ public class QiNiuCloudController extends BaseController {
      * @Author QQ1057718016
      * @Date 2019年11月20日 下午10:08:10
      */
+    //@Log(title = "七牛文件上传", action = "1")
+  	@ApiOperation(value = "七牛文件上传", notes = "七牛文件上传")
     @PostMapping("/uploadToQiNiu")
     @ResponseBody
     public AjaxResult upload(@RequestParam("file")MultipartFile uploadFile){

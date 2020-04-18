@@ -9,6 +9,7 @@ import com.fc.test.common.base.BaseController;
 import com.fc.test.model.custom.TitleVo;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 表单构建Controller
@@ -24,6 +25,8 @@ public class ToolController  extends BaseController{
 	//跳转页面参数
 	private String prefix = "admin/tool";
 	
+	
+	@ApiOperation(value = "表单构建工具类", notes = "表单构建工具类")
 	@GetMapping("/view")
     public String view(ModelMap model)
     {	

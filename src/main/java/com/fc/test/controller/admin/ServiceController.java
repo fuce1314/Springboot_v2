@@ -9,6 +9,7 @@ import com.fc.test.common.base.BaseController;
 import com.fc.test.model.custom.Service;
 import com.fc.test.model.custom.TitleVo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 服务器信息Controller
@@ -32,6 +33,7 @@ public class ServiceController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:04:03
 	 */
+	@ApiOperation(value = "展示页面", notes = "展示页面")
 	@GetMapping("/view")
 	@RequiresPermissions("system:service:view")
     public String view(ModelMap model)

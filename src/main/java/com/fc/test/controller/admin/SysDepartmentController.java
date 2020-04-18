@@ -21,15 +21,23 @@ import com.fc.test.service.SysDepartmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@Api(value = "部门表")
 @Controller
 @RequestMapping("/SysDepartmentController")
-@Api(value = "部门表")
 public class SysDepartmentController extends BaseController{
 	
 	private String prefix = "admin/sysDepartment";
 	@Autowired
 	private SysDepartmentService sysDepartmentService;
 	
+	/**
+	 * 分页跳转
+	 * @param model
+	 * @return
+	 * @author fuce
+	 * @Date 2020年4月18日 下午11:48:55
+	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysDepartment:view")
     public String view(ModelMap model)
@@ -39,7 +47,16 @@ public class SysDepartmentController extends BaseController{
         return prefix + "/list";
     }
 	
+	/**
+	 * 分页查询
+	 * @param tablepar
+	 * @param searchText
+	 * @return
+	 * @author fuce
+	 * @Date 2020年4月18日 下午11:48:34
+	 */
 	//@Log(title = "部门表集合查询", action = "111")
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysDepartment:list")
 	@ResponseBody
@@ -49,6 +66,7 @@ public class SysDepartmentController extends BaseController{
 		return  result;
 	}
 	
+	@ApiOperation(value = "分页查询2", notes = "分页查询2")
 	@PostMapping("/list2")
 	@ResponseBody
 	public Object list2(Tablepar tablepar,String searchText){
@@ -59,14 +77,22 @@ public class SysDepartmentController extends BaseController{
 	/**
      * 新增
      */
-
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
+    /**
+     * 新增
+     * @param sysDepartment
+     * @return
+     * @author fuce
+     * @Date 2020年4月18日 下午11:47:51
+     */
 	//@Log(title = "部门表新增", action = "111")
+    @ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("gen:sysDepartment:add")
 	@ResponseBody
@@ -80,11 +106,12 @@ public class SysDepartmentController extends BaseController{
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除
 	 * @param ids
 	 * @return
 	 */
 	//@Log(title = "部门表删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysDepartment:remove")
 	@ResponseBody
@@ -102,6 +129,7 @@ public class SysDepartmentController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysDepartment sysDepartment){
@@ -120,6 +148,7 @@ public class SysDepartmentController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -139,6 +168,7 @@ public class SysDepartmentController extends BaseController{
      * 修改保存
      */
     //@Log(title = "部门表修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("gen:sysDepartment:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -166,6 +196,7 @@ public class SysDepartmentController extends BaseController{
      * 跳转到菜单树页面
      * @return
      */
+   	@ApiOperation(value = "跳转到菜单树页面", notes = "跳转到菜单树页面")
     @GetMapping("/tree")
     public String Tree(){
     	 return prefix + "/tree";
@@ -176,6 +207,7 @@ public class SysDepartmentController extends BaseController{
      * @param pid 父id【没用到】
      * @return
      */
+    @ApiOperation(value = "获取菜单树", notes = "获取菜单树")
     @PostMapping("/tree/{pid}")
     @ResponseBody
     public AjaxResult Tree(@PathVariable("pid") String pid){

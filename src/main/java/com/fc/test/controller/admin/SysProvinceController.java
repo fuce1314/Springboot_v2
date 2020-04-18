@@ -18,6 +18,7 @@ import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.SysProvinceService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 省份Controller
@@ -40,6 +41,7 @@ public class SysProvinceController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:10:48
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:sysProvince:view")
     public String view(ModelMap model)
@@ -57,6 +59,7 @@ public class SysProvinceController extends BaseController{
 	 * @Date 2019年11月11日 下午4:10:39
 	 */
 	//@Log(title = "省份表集合查询", action = "111")
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("gen:sysProvince:list")
 	@ResponseBody
@@ -72,6 +75,7 @@ public class SysProvinceController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月11日 下午4:10:20
 	 */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
@@ -86,6 +90,7 @@ public class SysProvinceController extends BaseController{
 	 * @Date 2019年11月11日 下午4:10:26
 	 */
 	//@Log(title = "省份表新增", action = "111")
+    @ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
 	@RequiresPermissions("gen:sysProvince:add")
 	@ResponseBody
@@ -104,6 +109,7 @@ public class SysProvinceController extends BaseController{
 	 * @return
 	 */
 	//@Log(title = "省份表删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
 	@PostMapping("/remove")
 	@RequiresPermissions("gen:sysProvince:remove")
 	@ResponseBody
@@ -121,6 +127,7 @@ public class SysProvinceController extends BaseController{
 	 * @param tsysUser
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(SysProvince sysProvince){
@@ -139,6 +146,7 @@ public class SysProvinceController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
     {
@@ -151,6 +159,7 @@ public class SysProvinceController extends BaseController{
      * 修改保存
      */
     //@Log(title = "省份表修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("gen:sysProvince:edit")
     @PostMapping("/edit")
     @ResponseBody
