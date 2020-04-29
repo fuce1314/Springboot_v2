@@ -69,7 +69,11 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
 	
 	@Override
 	public int updateByPrimaryKeySelective(SysQuartzJob record) {
-		return sysQuartzJobMapper.updateByPrimaryKeySelective(record);
+		int i= sysQuartzJobMapper.updateByPrimaryKeySelective(record);
+		if(i>0) {
+			scheduler.modifyJob(record);
+		}
+		return i;
 	}
 	
 	/**
