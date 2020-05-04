@@ -46,8 +46,10 @@ spring :
     #include: ftpHX,ftpCloud
   servlet:
     multipart:
+      #设置总上传的数据大小
       max-request-size: 100MB
-      maxFileSize : 10MB
+      #单个文件大小
+      maxFileSize : 30MB
         #shiro 报错修改的地方
     max-connections: 200000
     max-http-post-size: 9000000
