@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ClassUtils;
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.conf.V2Config;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TsysDatasMapper;
 import com.fc.test.mapper.auto.TsysFileDataMapper;
 import com.fc.test.mapper.auto.TsysFileMapper;
@@ -70,7 +70,7 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 	 */
 	@Transactional
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		//删除本地文件
 		List<TsysDatas> datas=tsysDatasDao.selectByPrimaryKeys(lista);
 		for (TsysDatas tsysDatas : datas) {
@@ -96,7 +96,7 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 	 * @param ids 文件集合 1,2,3
 	 */
 	public int deleteBydataFile(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		//删除本地文件
 		TsysDatasExample example=new TsysDatasExample();
 		example.createCriteria().andIdIn(lista);

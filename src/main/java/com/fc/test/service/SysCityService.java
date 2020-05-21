@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysCityMapper;
 import com.fc.test.model.auto.SysCity;
 import com.fc.test.model.auto.SysCityExample;
@@ -47,7 +47,7 @@ public class SysCityService {
 
 	
 	public int deleteByPrimaryKey(String ids) {
-		Integer[] integers = Convert.toIntArray(",", ids);
+		Integer[] integers = ConvertUtil.toIntArray(",", ids);
 		List<Integer> stringB = Arrays.asList(integers);
 		SysCityExample example=new SysCityExample();
 		example.createCriteria().andIdIn(stringB);

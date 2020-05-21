@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TsysPermissionMapper;
 import com.fc.test.mapper.auto.TsysPermissionRoleMapper;
 import com.fc.test.mapper.custom.PermissionDao;
@@ -70,7 +70,7 @@ public class SysPermissionService implements BaseService<TsysPermission, TsysPer
 	@Override
 	public int deleteByPrimaryKey(String ids) {
 		//转成集合
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		
 		
 		//判断角色是否删除去除

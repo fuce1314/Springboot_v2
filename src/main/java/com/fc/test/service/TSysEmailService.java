@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TSysEmailMapper;
 import com.fc.test.model.auto.TSysEmail;
 import com.fc.test.model.auto.TSysEmailExample;
@@ -49,7 +49,7 @@ public class TSysEmailService implements BaseService<TSysEmail, TSysEmailExample
 
 	@Override
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		TSysEmailExample example=new TSysEmailExample();
 		example.createCriteria().andIdIn(lista);
 		return tSysEmailMapper.deleteByExample(example);

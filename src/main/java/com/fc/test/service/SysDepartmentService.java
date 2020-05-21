@@ -12,7 +12,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import cn.hutool.core.util.StrUtil;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysDepartmentMapper;
 import com.fc.test.model.auto.SysDepartment;
 import com.fc.test.model.auto.SysDepartmentExample;
@@ -72,7 +72,7 @@ public class SysDepartmentService implements BaseService<SysDepartment, SysDepar
 	@Override
 	public int deleteByPrimaryKey(String ids) {
 
-		Integer[] integers = Convert.toIntArray(",", ids);
+		Integer[] integers = ConvertUtil.toIntArray(",", ids);
 		List<Integer> stringB = Arrays.asList(integers);
 		SysDepartmentExample example = new SysDepartmentExample();
 		example.createCriteria().andIdIn(stringB);

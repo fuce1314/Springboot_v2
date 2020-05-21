@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TSysRoleUserMapper;
 import com.fc.test.mapper.auto.TsysRoleMapper;
 import com.fc.test.mapper.auto.TsysUserMapper;
@@ -74,7 +74,7 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	
 	@Override
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		TsysUserExample example=new TsysUserExample();
 		example.createCriteria().andIdIn(lista);
 		return tsysUserMapper.deleteByExample(example);

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysStreetMapper;
 import com.fc.test.model.auto.SysStreet;
 import com.fc.test.model.auto.SysStreetExample;
@@ -49,7 +49,7 @@ public class SysStreetService implements BaseService<SysStreet, SysStreetExample
 	@Override
 	public int deleteByPrimaryKey(String ids) {
 					
-			Integer[] integers = Convert.toIntArray(",", ids);
+			Integer[] integers = ConvertUtil.toIntArray(",", ids);
 			List<Integer> stringB = Arrays.asList(integers);
 			SysStreetExample example=new SysStreetExample();
 			example.createCriteria().andIdIn(stringB);
