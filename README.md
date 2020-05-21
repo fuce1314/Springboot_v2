@@ -309,6 +309,9 @@ UEditor|百度富文本||
 | Aini-H      |QQ1057718016             | 七牛云上传                                   |                                        |
 
 
+### 借鉴项目列表
+https://gitee.com/renrenio/renren-generator 人人得代码自动生成，改成自动录入数据库
+https://gitee.com/y_project/RuoYi-fast 借鉴ry.js
 
 ### AgileBPM GVP项目
 专注于解决企业工作流实施难的问题
