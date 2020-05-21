@@ -321,7 +321,7 @@ https://gitee.com/agile-bpm
 
 
 ### 精品开源项目推荐
-https://gitee.com/Jmysy/Pear-One-Layui
+[https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/Jmysy/Pear-Admin-Layui)
 
 ### 使用v2做得系统
 
