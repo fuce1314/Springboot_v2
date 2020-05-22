@@ -2,12 +2,10 @@ package com.fc.test.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TsysDatasMapper;
 import com.fc.test.mapper.auto.TsysFileDataMapper;
 import com.fc.test.model.auto.TsysDatas;
@@ -25,7 +23,7 @@ public class SysFileDatasService implements BaseService<TsysFileData, TsysFileDa
 	
 	@Override
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		TsysFileDataExample example=new TsysFileDataExample();
 		example.createCriteria().andIdIn(lista);
 		return tsysFileDataMapper.deleteByExample(example);

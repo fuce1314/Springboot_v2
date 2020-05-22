@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import cn.hutool.core.util.RandomUtil;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TsysPermissionRoleMapper;
 import com.fc.test.mapper.auto.TsysRoleMapper;
 import com.fc.test.mapper.custom.RoleDao;
@@ -68,7 +68,7 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 	@Override
 	@Transactional
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		//先删除角色下面的所有权限
 		TsysPermissionRoleExample permissionRoleExample=new TsysPermissionRoleExample();
 		permissionRoleExample.createCriteria().andRoleIdIn(lista);
@@ -100,7 +100,7 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 		String roleid=SnowflakeIdWorker.getUUID();
 		record.setId(roleid);
 		//添加权限
-		List<String> prems=Convert.toListStrArray(prem);
+		List<String> prems=ConvertUtil.toListStrArray(prem);
 		for (String premid : prems) {
 			TsysPermissionRole tsysPermissionRole=new TsysPermissionRole(RandomUtil.randomUUID() , roleid, premid);
 			tsysPermissionRoleMapper.insertSelective(tsysPermissionRole);
@@ -132,7 +132,7 @@ public class SysRoleService implements BaseService<TsysRole, TsysRoleExample> {
 		permissionRoleExample.createCriteria().andRoleIdEqualTo(record.getId());
 		tsysPermissionRoleMapper.deleteByExample(permissionRoleExample);
 		//添加权限关联
-		List<String> prems=Convert.toListStrArray(prem);
+		List<String> prems=ConvertUtil.toListStrArray(prem);
 		for (String pre : prems) {
 			TsysPermissionRole permissionRole=new TsysPermissionRole(RandomUtil.randomUUID(), record.getId(), pre);
 			tsysPermissionRoleMapper.insertSelective(permissionRole);

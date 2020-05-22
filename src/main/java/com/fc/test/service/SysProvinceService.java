@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysProvinceMapper;
 import com.fc.test.model.auto.SysProvince;
 import com.fc.test.model.auto.SysProvinceExample;
@@ -47,7 +47,7 @@ public class SysProvinceService{
 
 	
 	public int deleteByPrimaryKey(String ids) {
-		Integer[] integers = Convert.toIntArray(",", ids);
+		Integer[] integers = ConvertUtil.toIntArray(",", ids);
 		List<Integer> stringB = Arrays.asList(integers);
 		SysProvinceExample example=new SysProvinceExample();
 		example.createCriteria().andIdIn(stringB);

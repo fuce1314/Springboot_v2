@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TSysDictDataMapper;
 import com.fc.test.mapper.auto.TSysDictTypeMapper;
 import com.fc.test.model.auto.TSysDictDataExample;
@@ -57,7 +57,7 @@ public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTyp
 	@Transactional
 	public int deleteByPrimaryKey(String ids) {
 		//查询type数据得data中DictType有哪些
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		TSysDictTypeExample example=new TSysDictTypeExample();
 		example.createCriteria().andIdIn(lista);
 		List<TSysDictType> dictTypes=tSysDictTypeMapper.selectByExample(example);

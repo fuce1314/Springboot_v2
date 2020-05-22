@@ -3,7 +3,7 @@ package com.fc.test.service;
 import java.util.Date;
 import java.util.List;
 
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TSysDictDataMapper;
 import com.fc.test.mapper.auto.TSysDictTypeMapper;
 import com.fc.test.model.auto.TSysDictData;
@@ -60,7 +60,7 @@ public class SysDictDataService implements BaseService<TSysDictData, TSysDictDat
 
 	@Override
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista= Convert.toListStrArray(ids);
+		List<String> lista= ConvertUtil.toListStrArray(ids);
 		TSysDictDataExample example=new TSysDictDataExample();
 		example.createCriteria().andIdIn(lista);
 		return tSysDictDataMapper.deleteByExample(example);

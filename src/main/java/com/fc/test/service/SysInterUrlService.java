@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysInterUrlMapper;
 import com.fc.test.model.auto.SysInterUrl;
 import com.fc.test.model.auto.SysInterUrlExample;
@@ -49,7 +49,7 @@ public class SysInterUrlService implements BaseService<SysInterUrl, SysInterUrlE
 	@Override
 	public int deleteByPrimaryKey(String ids) {
 				
-			List<String> lista=Convert.toListStrArray(ids);
+			List<String> lista=ConvertUtil.toListStrArray(ids);
 			SysInterUrlExample example=new SysInterUrlExample();
 			example.createCriteria().andIdIn(lista);
 			return sysInterUrlMapper.deleteByExample(example);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysQuartzJobLogMapper;
 import com.fc.test.model.auto.SysQuartzJobLog;
 import com.fc.test.model.auto.SysQuartzJobLogExample;
@@ -48,7 +48,7 @@ public class SysQuartzJobLogService implements BaseService<SysQuartzJobLog, SysQ
 
 	@Override
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		SysQuartzJobLogExample example=new SysQuartzJobLogExample();
 		example.createCriteria().andIdIn(lista);
 		return sysQuartzJobLogMapper.deleteByExample(example);

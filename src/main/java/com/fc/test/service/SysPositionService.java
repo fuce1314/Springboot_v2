@@ -7,7 +7,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import cn.hutool.core.util.StrUtil;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysPositionMapper;
 import com.fc.test.model.auto.SysPosition;
 import com.fc.test.model.auto.SysPositionExample;
@@ -56,7 +56,7 @@ public class SysPositionService implements BaseService<SysPosition, SysPositionE
 	@Override
 	public int deleteByPrimaryKey(String ids) {
 				
-			List<String> lista=Convert.toListStrArray(ids);
+			List<String> lista=ConvertUtil.toListStrArray(ids);
 			SysPositionExample example=new SysPositionExample();
 			example.createCriteria().andIdIn(lista);
 			return sysPositionMapper.deleteByExample(example);

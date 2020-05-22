@@ -5,14 +5,13 @@ import java.util.Random;
 import com.google.code.kaptcha.text.impl.DefaultTextCreator;
 
 /**
- * 验证码文本生成器
- * 
+ * 验证码实现类
  * @author cs
  */
 public class KaptchaTextCreator extends DefaultTextCreator
 {
 
-    private static final String[] CNUMBERS = "0,1,2,3,4,5,6,7,8,9,10".split(",");
+    private static final String[] CNUMBERS = {"0","1","2","3","4","5","6","7","8","9","10"};
 
     @Override
     public String getText()

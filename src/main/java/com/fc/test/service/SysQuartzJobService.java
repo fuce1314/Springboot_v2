@@ -10,7 +10,7 @@ import com.github.pagehelper.PageInfo;
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.quartz.QuartzSchedulerUtil;
 import com.fc.test.common.quartz.ScheduleConstants;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysQuartzJobMapper;
 import com.fc.test.model.auto.SysQuartzJob;
 import com.fc.test.model.auto.SysQuartzJobExample;
@@ -53,7 +53,7 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
 
 	@Override
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		SysQuartzJobExample example=new SysQuartzJobExample();
 		example.createCriteria().andIdIn(lista);
 		return sysQuartzJobMapper.deleteByExample(example);

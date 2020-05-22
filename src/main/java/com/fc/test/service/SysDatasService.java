@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.file.FileUploadUtils;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TsysDatasMapper;
 import com.fc.test.model.auto.TsysDatas;
 import com.fc.test.model.auto.TsysDatasExample;
@@ -48,7 +48,7 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
 	
 	@Override
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		TsysDatasExample example=new TsysDatasExample();
 		example.createCriteria().andIdIn(lista);
 		return tsysDatasMapper.deleteByExample(example);

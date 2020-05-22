@@ -7,6 +7,9 @@ import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.custom.TitleVo;
 import com.fc.test.service.*;
 import com.fc.test.util.StringUtils;
+
+import cn.hutool.core.util.StrUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -135,7 +138,7 @@ public class BaseController
      */
     public String redirect(String url)
     {
-        return StringUtils.format("redirect:{}", url);
+    	return StrUtil.format("redirect:{}", url);
     }
     
     
