@@ -186,6 +186,17 @@ var prefix = window.rootPath + "/SysQuartzJobController";
 			{
 			    field: 'misfirePolicy',
 			    title: 'cron计划策略',
+			    formatter: function (value, row, index) {
+			    	var actions = [];
+				    if(value==1){
+			        	 actions.push('<span class="badge badge-info">立即执行</span>');
+			        }else if(value==2){
+			        	 actions.push('<span class="badge badge-important">执行一次</span>');
+			        }else if(value==3){
+			        	 actions.push('<span class="badge badge-warning">放弃</span>');
+			        }
+				    return actions.join('');
+			    }
 			},
 			{
 			    field: 'concurrent',
