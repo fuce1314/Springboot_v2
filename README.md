@@ -314,7 +314,8 @@ https://gitee.com/agile-bpm
 
 
 ### 精品开源项目推荐
-[https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/Jmysy/Pear-Admin-Layui)
+- [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/Jmysy/Pear-Admin-Layui)
+- [ApiBoot为接口服务而生](https://gitee.com/minbox-projects/api-boot?_from=gitee_search)
 
 ### 使用v2做得系统
 
