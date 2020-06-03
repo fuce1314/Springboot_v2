@@ -48,11 +48,11 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<${TsysTables.tableModel}> list(Tablepar tablepar,String name){
+	 public PageInfo<${TsysTables.tableModel}> list(Tablepar tablepar,String searchText){
 	        ${TsysTables.tableModel}Example testExample=new ${TsysTables.tableModel}Example();
 	        testExample.setOrderByClause("${pk_column_name} ASC");
-	        if(name!=null&&!"".equals(name)){
-	        	testExample.createCriteria().and${conditionQueryField}Like("%"+name+"%");
+	        if(StrUtil.isNotEmpty(searchText)){
+	        	testExample.createCriteria().and${conditionQueryField}Like("%"+searchText+"%");
 	        }
 			if(StrUtil.isNotEmpty(tablepar.getOrderByColumn())) {
 	        	testExample.setOrderByClause(StringUtils.toUnderScoreCase(tablepar.getOrderByColumn()) +" "+tablepar.getIsAsc());
