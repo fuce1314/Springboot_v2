@@ -74,7 +74,7 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 		//删除本地文件
 		List<TsysDatas> datas=tsysDatasDao.selectByPrimaryKeys(lista);
 		for (TsysDatas tsysDatas : datas) {
-			deletefile(tsysDatas.getFilePath());
+			deletefile(tsysDatas);
 			//删除文件存储表
 			tsysDatasMapper.deleteByPrimaryKey(tsysDatas.getId());
 			
@@ -103,7 +103,7 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 		List<TsysDatas> datas=tsysDatasMapper.selectByExample(example);
 		
 		for (TsysDatas tsysDatas : datas) {
-			deletefile(tsysDatas.getFilePath());
+			deletefile(tsysDatas);
 			//删除文件存储表
 			tsysDatasMapper.deleteByPrimaryKey(tsysDatas.getId());
 		}
@@ -115,13 +115,12 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 	/**
 	 *删除本地文件方法
 	 */
-	public void deletefile(String filePath) {
-		if("Y".equals(V2Config.getIsstatic())) {
-			String url=ClassUtils.getDefaultClassLoader().getResource("").getPath()+filePath;
-			
+	public void deletefile(TsysDatas tsysDatas) {
+		if("Y".equals(tsysDatas.getFileType())) {
+			String url=ClassUtils.getDefaultClassLoader().getResource("").getPath()+tsysDatas.getFileAbsolutePath();
 			FileUtil.del(url);
 		}else {
-			FileUtil.del(filePath);
+			FileUtil.del(tsysDatas.getFileAbsolutePath());
 		}
 		
 		

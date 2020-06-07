@@ -244,6 +244,76 @@ public class TsysDatasExample {
             return (Criteria) this;
         }
 
+        public Criteria andFileAbsolutePathIsNull() {
+            addCriterion("file_absolute_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathIsNotNull() {
+            addCriterion("file_absolute_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathEqualTo(String value) {
+            addCriterion("file_absolute_path =", value, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathNotEqualTo(String value) {
+            addCriterion("file_absolute_path <>", value, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathGreaterThan(String value) {
+            addCriterion("file_absolute_path >", value, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathGreaterThanOrEqualTo(String value) {
+            addCriterion("file_absolute_path >=", value, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathLessThan(String value) {
+            addCriterion("file_absolute_path <", value, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathLessThanOrEqualTo(String value) {
+            addCriterion("file_absolute_path <=", value, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathLike(String value) {
+            addCriterion("file_absolute_path like", value, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathNotLike(String value) {
+            addCriterion("file_absolute_path not like", value, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathIn(List<String> values) {
+            addCriterion("file_absolute_path in", values, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathNotIn(List<String> values) {
+            addCriterion("file_absolute_path not in", values, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathBetween(String value1, String value2) {
+            addCriterion("file_absolute_path between", value1, value2, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileAbsolutePathNotBetween(String value1, String value2) {
+            addCriterion("file_absolute_path not between", value1, value2, "fileAbsolutePath");
+            return (Criteria) this;
+        }
+
         public Criteria andFileSuffixIsNull() {
             addCriterion("file_suffix is null");
             return (Criteria) this;
@@ -311,6 +381,76 @@ public class TsysDatasExample {
 
         public Criteria andFileSuffixNotBetween(String value1, String value2) {
             addCriterion("file_suffix not between", value1, value2, "fileSuffix");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeIsNull() {
+            addCriterion("file_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeIsNotNull() {
+            addCriterion("file_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeEqualTo(String value) {
+            addCriterion("file_type =", value, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeNotEqualTo(String value) {
+            addCriterion("file_type <>", value, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeGreaterThan(String value) {
+            addCriterion("file_type >", value, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("file_type >=", value, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeLessThan(String value) {
+            addCriterion("file_type <", value, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeLessThanOrEqualTo(String value) {
+            addCriterion("file_type <=", value, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeLike(String value) {
+            addCriterion("file_type like", value, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeNotLike(String value) {
+            addCriterion("file_type not like", value, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeIn(List<String> values) {
+            addCriterion("file_type in", values, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeNotIn(List<String> values) {
+            addCriterion("file_type not in", values, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeBetween(String value1, String value2) {
+            addCriterion("file_type between", value1, value2, "fileType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileTypeNotBetween(String value1, String value2) {
+            addCriterion("file_type not between", value1, value2, "fileType");
             return (Criteria) this;
         }
     }

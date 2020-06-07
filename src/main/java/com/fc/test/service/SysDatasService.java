@@ -2,11 +2,9 @@ package com.fc.test.service;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.file.FileUploadUtils;
@@ -68,14 +66,20 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
 	 */
 	public String insertSelective(MultipartFile file) throws IOException {
 		//文件上传获取文件名字
-        String files = FileUploadUtils.upload(file);
-        //补充完整url地址 
-        String filesURL="";
-        if ("Y".equals(V2Config.getIsstatic())) {
-        	filesURL=V2Config.getIsroot_dir()+files;
-		}else {
-			filesURL=V2Config.getProfile()+files;
-		}
+        String files_name = FileUploadUtils.upload(file);
+        //相对路径——项目url请求路径
+        String relative_filesURL=V2Config.getIsroot_dir()+files_name;
+        //绝对路径-删除需要得路径
+        String absolute_filesURL=null;
+        
+        
+    	if ("Y".equals(V2Config.getIsstatic())) {//项目路径
+           	absolute_filesURL=V2Config.getIsroot_dir()+files_name;
+   		}else {//磁盘路径
+   			absolute_filesURL=V2Config.getDefaultBaseDir()+files_name;
+   			//filesURL=V2Config.getIsroot_dir()+files;
+   		}
+     
         String fileName=file.getOriginalFilename();
     	// 获得文件后缀名称
     	String suffixName = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
@@ -83,12 +87,15 @@ public class SysDatasService implements BaseService<TsysDatas, TsysDatasExample>
     		//如果没有后缀默认后缀
     		suffixName=FileUploadUtils.IMAGE_JPG_EXTENSION;
     	}
-        
+     
 		TsysDatas record=new TsysDatas();
 		//添加雪花主键id
 		record.setId(SnowflakeIdWorker.getUUID());
-		record.setFilePath(filesURL);
+		record.setFilePath(relative_filesURL);
+		record.setFileAbsolutePath(absolute_filesURL);
 		record.setFileSuffix(suffixName);
+		//上传路径类型
+		record.setFileType(V2Config.getIsstatic());
 		if(tsysDatasMapper.insertSelective(record)>0)
 		{
 			return record.getId();

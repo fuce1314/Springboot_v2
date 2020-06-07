@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.commons.fileupload.FileUploadBase.FileSizeLimitExceededException;
 import org.apache.shiro.crypto.hash.Md5Hash;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fc.test.common.conf.FileConfig;
 import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.exception.file.FileNameLengthLimitExceededException;
@@ -29,15 +27,13 @@ public class FileUploadUtils {
     /**
      * 默认上传的地址
      */
-    private static String defaultBaseDir = V2Config.getProfile();
+    private static String defaultBaseDir = V2Config.getDefaultBaseDir();
     
     /**
      * 是否上传到static
      */
     private static String isstatic=V2Config.getIsstatic();
     
-
-
     /**
      * 默认的文件名最大长度
      */

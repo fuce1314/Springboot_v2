@@ -52,7 +52,7 @@ public class UeditorService {
         if ("Y".equals(V2Config.getIsstatic())) {
         	filesURL=V2Config.getIsroot_dir()+files;
 		}else {
-			filesURL=V2Config.getProfile()+files;
+			filesURL=V2Config.getDefaultBaseDir()+files;
 		}
         
         
