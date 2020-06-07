@@ -4,10 +4,14 @@
   <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysDatas" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="file_absolute_path" property="fileAbsolutePath" jdbcType="VARCHAR" />
+    <result column="file_suffix" property="fileSuffix" jdbcType="VARCHAR" />
+    <result column="file_type" property="fileType" jdbcType="VARCHAR" />
   </resultMap>
+  
 
   <sql id="Base_Column_List" >
-    id, file_path
+    id, file_path, file_absolute_path, file_suffix, file_type
   </sql>
 
   <select id="selectByPrimaryKeys" resultMap="BaseResultMap" parameterType="java.util.List" >

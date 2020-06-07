@@ -1,11 +1,8 @@
 package com.fc.test.service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -16,8 +13,6 @@ import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.SysDepartmentMapper;
 import com.fc.test.model.auto.SysDepartment;
 import com.fc.test.model.auto.SysDepartmentExample;
-import com.fc.test.model.auto.TsysPermission;
-import com.fc.test.model.auto.TsysPermissionExample;
 import com.fc.test.model.custom.BootstrapTree;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.util.StringUtils;

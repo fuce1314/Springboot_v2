@@ -38,7 +38,7 @@
 		</javaTypeResolver>
 		<!-- 生成模型的包名和位置 -->
 		<javaModelGenerator targetPackage="com.fc.test.model.auto"
-			targetProject="D:\springbootv2-log\src\main\java">
+			targetProject="D:\Users\Administrator\git\SpringBoot_v2\src\main\java">
 			 <!-- 是否对model添加 构造函数 -->
             <property name="constructorBased" value="true"/>
 			<!-- 是否允许子包，即targetPackage.schemaName.tableName -->
@@ -47,12 +47,12 @@
 		</javaModelGenerator>
 		<!-- 生成的映射文件包名和位置 -->
 		<sqlMapGenerator targetPackage="mybatis.auto"
-			targetProject="D:\springbootv2-log\src\main\resources">
+			targetProject="D:\Users\Administrator\git\SpringBoot_v2\src\main\resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成DAO的包名和位置 -->
 		<javaClientGenerator type="XMLMAPPER" targetPackage="com.fc.test.mapper.auto"
-			targetProject="D:\springbootv2-log\src\main\java">
+			targetProject="D:\Users\Administrator\git\SpringBoot_v2\src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
@@ -62,7 +62,7 @@
 		
 		
 		
-		<table tableName='t_test_copy' domainObjectName='TestCopy'/>
+		<table tableName='t_sys_datas' domainObjectName='TsysDatas'/>
 
 
 	</context>

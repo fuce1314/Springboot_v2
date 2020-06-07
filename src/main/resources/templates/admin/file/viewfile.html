@@ -48,16 +48,10 @@ label.error {
 					<div class="panel-body">
 						<form  class="form-horizontal m" id="form-view" >
 							<div class="form-group" th:each="sysdata : ${tsysDatas}">
-								<div class="col-sm-8" th:if="${is_static=='Y'}">
+								<div class="col-sm-8">
 								
 									<img th:if="${sysdata.fileSuffix=='.jpg' || sysdata.fileSuffix=='.gif'||sysdata.fileSuffix=='.png'||sysdata.fileSuffix=='.jpeg'}" th:src="@{'/'+${sysdata.filePath}}">
 									<a th:if="${sysdata.fileSuffix!='.jpg' || sysdata.fileSuffix!='.gif'||sysdata.fileSuffix!='.png'||sysdata.fileSuffix!='.jpeg'}" th:href="@{'/'+${sysdata.filePath}}">点击下载</a>
-									
-								</div>
-								<div class="col-sm-8" th:if="${is_static=='N'}">
-									<img th:if="${sysdata.fileSuffix=='.jpg' || sysdata.fileSuffix=='.gif'||sysdata.fileSuffix=='.png'||sysdata.fileSuffix=='.jpeg'}"  th:src="'../viewImg/'+${sysdata.id}">
-									<a th:if="${sysdata.fileSuffix!='.jpg' || sysdata.fileSuffix!='.gif'||sysdata.fileSuffix!='.png'||sysdata.fileSuffix!='.jpeg'}" th:href="@{'/'+${sysdata.filePath}}">点击下载</a>
-									
 								</div>
 							</div>
 						</form>

@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.fc.test.common.base.BaseController;
-import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.common.file.FileUtils;
 import com.fc.test.model.auto.TsysDatas;
@@ -230,11 +228,6 @@ public class FileController extends BaseController{
 	@ApiOperation(value = "展示文件跳转页面", notes = "展示文件跳转页面")
     @GetMapping("/viewfile/{id}")
     public String viewfile(@PathVariable("id") String id,ModelMap mmap){
-    	if("Y".equals(V2Config.getIsstatic())) {//为静态目录存放的时候
-    		mmap.put("is_static","Y");
-    	}else {//为自定义存放目录的时候
-    		mmap.put("is_static","N");
-    	}
     	mmap.put("tsysDatas",sysFileDatasService.queryfileID(id));
         return prefix + "/viewfile";
     }

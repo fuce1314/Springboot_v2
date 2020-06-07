@@ -19,7 +19,7 @@ public class V2Config
     /** 版权年份 */
     private String copyrightYear;
     /** 上传路径 */
-    private static String profile;
+    private static String defaultBaseDir;
     /** 是否开启 上传static **/
     private static String isstatic;
     /** 开启存放静态文件夹后目录 **/
@@ -65,16 +65,15 @@ public class V2Config
     {
         this.copyrightYear = copyrightYear;
     }
+    
 
-    public static String getProfile()
-    {
-        return profile;
-    }
+	public static String getDefaultBaseDir() {
+		return defaultBaseDir;
+	}
 
-    public void setProfile(String profile)
-    {
-    	V2Config.profile = profile;
-    }
+	public  void setDefaultBaseDir(String defaultBaseDir) {
+		V2Config.defaultBaseDir = defaultBaseDir;
+	}
 
 	public static String getIsstatic() {
 		return isstatic;

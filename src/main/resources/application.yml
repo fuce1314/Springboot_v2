@@ -6,12 +6,12 @@ fuce:
   version: 3.7
   #版权年份
   copyrightYear: 2018
-  #头像上传路径
-  profile: D:/profile/
-  #地址是否放入项目static目录，如果未Y 放入static。 profile配置失效
+  #文件上传路径
+  defaultBaseDir: D:/v2file/
+  #地址是否放入项目static目录，如果未Y 放入项目得static。 profile配置失效。  为N存放在D:/v2file/ 前端读取相同，不受影响
   isstatic: Y
   #开启存放静态文件夹后目录
-  isroot_dir: static/images_upload/
+  isroot_dir: static/file_upload/
   #邮件功能
   #邮箱发送smtp
   email_smtp: smtp.sina.com
