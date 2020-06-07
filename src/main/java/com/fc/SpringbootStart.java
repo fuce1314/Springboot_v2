@@ -17,7 +17,7 @@ public class SpringbootStart {
 
         SpringApplication.run(SpringbootStart.class, args);
         System.out.println("*******************************************\n" + 
-        		"* 码云地址                                                                                                        *\n" + 
+        		"* 码云地址                                  *\n" +
         		"* https://gitee.com/bdj/SpringBoot_v2     *\n" + 
         		"*                                         *\n" + 
         		"*******************************************\n" + 
