@@ -61,7 +61,11 @@
 		
 		
 		
-		
+		<!-- 		
+		<table domainObjectName="t_sys_datas" tableName="TsysDatas">  
+		    <columnOverride column="address" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		 -->
 		<table tableName='t_sys_datas' domainObjectName='TsysDatas'/>
 
 
