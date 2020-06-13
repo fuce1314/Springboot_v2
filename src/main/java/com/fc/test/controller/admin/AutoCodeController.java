@@ -6,7 +6,6 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.model.auto.TsysPermission;
@@ -159,6 +158,11 @@ public class AutoCodeController extends BaseController {
 	 * @param tableName 表名
 	 * @param conditionQueryField  条件查询字段
 	 * @param pid 父id
+	 * @param sqlcheck 是否录入数据
+	 * @param vhtml 生成html
+	 * @param vController 生成controller
+	 * @param vservice 生成service
+	 * @param vMapperORdao 生成mapper or dao
 	 * @return
 	 * @throws Exception
 	 * @author fuce
@@ -169,7 +173,7 @@ public class AutoCodeController extends BaseController {
 	@PostMapping("/saveOne")
 	@ResponseBody
 	public AjaxResult saveOne(String allColumnss, String tableName, String conditionQueryField, String pid,
-			int sqlcheck) throws Exception {
+			int sqlcheck,Boolean vhtml,Boolean vController,Boolean vService,Boolean vMapperORdao) throws Exception {
 		JSONArray array = JSONUtil.parseArray(allColumnss);
 		// 遗留可用前端修改传入的字段等信息（未完善）
 		List<BeanColumn> beanColumns2 = JSONUtil.toList(array, BeanColumn.class);
@@ -177,7 +181,7 @@ public class AutoCodeController extends BaseController {
 		if (list.size() > 0) {
 			TsysTables tables = list.get(0);
 			List<BeanColumn> beanColumns = generatorService.queryColumns2(tableName);
-			AutoCodeUtil.autoCodeOneModel(sysUtilService, tables, beanColumns, conditionQueryField, pid, sqlcheck);
+			AutoCodeUtil.autoCodeOneModel(sysUtilService, tables, beanColumns, conditionQueryField, pid, sqlcheck, vhtml, vController, vService, vMapperORdao);
 		}
 		return AjaxResult.success();
 	}

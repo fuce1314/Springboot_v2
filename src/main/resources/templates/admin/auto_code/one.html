@@ -95,8 +95,6 @@
                 		
                 	</div>
                 	<div  class="col-sm-6">
-                		
-                		
                 		<div class="nest" id="basicClose2">
 						        <div class="title-alt">
 						            <h6>单表生成Ⅱ</h6>
@@ -154,8 +152,6 @@
 						                                </div>
 	                                        		</div>
 	                                        	</div>
-	                                            
-												
 	                                        </div>
 		                               </div>
 		                               <div class="form-group">
@@ -183,7 +179,65 @@
 						        </div>
 						    </div>
 						</div>
+                		<!-- 选择生成的东西 -->
+                		<div  class="col-sm-12">
+                			<div class="nest" id="basicClose3">
+						        <div class="title-alt">
+						            <h6>单表生成Ⅲ</h6>
+						            <div class="titleClose">
+						                <a class="gone" href="#basicClose2">
+						                    <span class="entypo-cancel"></span>
+						                </a>
+						            </div>
+						            <div class="titleToggle">
+						                <a class="nav-toggle-alt" href="#basic2">
+						                    <span class="entypo-up-open"></span>
+						                </a>
+						            </div>
+						
+						        </div>
+						
+						        <div class="body-nest" id="basic3">
+									<form method="post" class="form-horizontal bucket-form">
+		                               <div class="form-group">
+	                                        
+	                                        <div class="col-sm-12">
+		                                        <div class="row">
+		                                        	<div class="col-sm-3">
+			                                        	<label class="checkbox checkbox-primary">
+											                <input id="vhtml" class="styled" type="checkbox" checked="">
+											                <label for="vhtml">生成html</label>
+											            </label>
+											            
+		                                        	</div>
+		                                        	<div class="col-sm-3">
+		                                        		<label class="checkbox checkbox-primary">
+											                <input id="vController" class="styled" type="checkbox" checked="">
+											                <label for="vController">生成Controller</label>
+											            </label>
+		                                        	</div>
+		                                        	<div class="col-sm-3">
+		                                        		<label class="checkbox checkbox-primary">
+											                <input id="vservice" class="styled" type="checkbox" checked="">
+											                <label for="vservice">生成Service</label>
+											            </label>
+		                                        	</div>
+		                                        	
+		                                        	<div class="col-sm-3">
+		                                        		<label class="checkbox checkbox-primary">
+											                <input id="vMapperORdao" class="styled" type="checkbox" checked="checked">
+											                <label for="vMapperORdao">生成model与mapper</label>
+											            </label>
+		                                        	</div>
+		                                        </div>
+	                                        </div>
+		                               </div>
+	                                </form>
+	                             
+						        </div>
+						    </div>
                 		
+                		</div>
                 		
                 		
                 		
@@ -270,11 +324,8 @@
 <script type="text/javascript" th:src="@{/static/admin/assets/js/wizard/build/jquery.steps.js}"></script>
 <!-- 提示插件  -->
 <script type="text/javascript" th:src="@{/static/admin/assets/js/tip/jquery.tooltipster.js}"></script>
-
 <script type="text/javascript">
-<!-- jquery-export 表格导出插件 -->
 
-<!-- 导出 -->
 var dataUrl11=window.rootPath+"/autoCodeController/queryTableInfo";
 var removeUrl=window.rootPath+"/generatorController/remove";
 var createUrl=window.rootPath+"/generatorController/add";
@@ -282,8 +333,6 @@ var updateUrl=window.rootPath+"/generatorController/edit/{id}";
 var exportUrl=window.rootPath+"/generatorController/export";
 var createUrl=window.rootPath+"/generatorController/code";
 
-
-	
 	var $dataTableHot = $("#dataTable").bootstrapTable({
             search: false,
             pagination: true,
@@ -468,6 +517,7 @@ function divonclick(){
 		var allColumnss=JSON.stringify($dataTableHot.bootstrapTable('getSelections'));
 		var pid=$("#menuid").val();
 		var sql=$("#sql").val();
+		var vMapperORdao="";
 		
 		
 		if(sql=="1"){
@@ -496,7 +546,13 @@ function divonclick(){
 		$.ajax({
 			type : "POST",
 	  		url : rootPath + "/autoCodeController/saveOne",
-	  		data :{"tableName":tableName,"conditionQueryField":conditionQueryField,"pid":pid,"sqlcheck":sql,"allColumnss":allColumnss},
+	  		data :{"tableName":tableName,"conditionQueryField":conditionQueryField,"pid":pid,"sqlcheck":sql,
+	  			"vhtml":$("#vhtml").is(':checked'),
+	  			"vController":$("#vController").is(':checked'),
+	  			"vservice":$("#vservice").is(':checked'),
+	  			"vMapperORdao":$("#vMapperORdao").is(':checked'),
+	  			"allColumnss":allColumnss
+	  		},
 	  		async : false,
 			success:function(data){
 				$.operate.saveSuccess(data);

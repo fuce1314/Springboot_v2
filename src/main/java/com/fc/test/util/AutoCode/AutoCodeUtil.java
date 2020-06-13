@@ -63,11 +63,22 @@ public class AutoCodeUtil {
 
 	/**
 	 * 创建单表
+	 * @param tableName 表名
+	 * @param conditionQueryField  条件查询字段
+	 * @param pid 父id
+	 * @param sqlcheck 是否录入数据
+	 * @param vhtml 生成html
+	 * @param vController 生成controller
+	 * @param vservice 生成service
+	 * @param vMapperORdao 生成mapper or dao
 	 * @author fuce
 	 * @Date 2019年8月24日 下午11:44:54
 	 */
-	public static void autoCodeOneModel(SysUtilService sysUtilService,TsysTables tables,List<BeanColumn> beanColumns,String conditionQueryField,String pid,int sqlcheck){
-		 //设置velocity资源加载器
+	public static void autoCodeOneModel(SysUtilService sysUtilService,TsysTables tables,
+			List<BeanColumn> beanColumns,String conditionQueryField,String pid,int sqlcheck,
+			Boolean vhtml,Boolean vController,Boolean vService,Boolean vMapperORdao){
+		
+		//设置velocity资源加载器
         Properties prop = new Properties();
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader" );
         Velocity.init(prop);
@@ -90,8 +101,24 @@ public class AutoCodeUtil {
         map.put("JavaClassPackages", getJavaClassPackage(beanColumns));
         VelocityContext context = new VelocityContext(map);
         
-      //获取模板列表
+        //获取模板列表
         List<String> templates = getTemplates();
+        if(vhtml!=true) {
+        	templates.remove("auto_code/html/list.html.vm");
+        	templates.remove("auto_code/html/add.html.vm");
+        	templates.remove("auto_code/html/edit.html.vm");
+        }else if (vController!=true) {
+        	templates.remove("auto_code/controller/EntityController.java.vm");
+		}else if (vService!=true) {
+			templates.remove("auto_code/service/EntityService.java.vm");
+		}else if (vMapperORdao!=true) {
+			templates.remove("auto_code/model/Entity.java.vm");
+			templates.remove("auto_code/model/EntityExample.java.vm");
+        	templates.remove("auto_code/mapperxml/EntityMapper.xml.vm");
+        	templates.remove("auto_code/mapper/EntityMapper.java.vm");
+		}
+        
+        
         for (String template : templates) {
         	try {
         		if(template.contains("menu.sql.vm")) {
