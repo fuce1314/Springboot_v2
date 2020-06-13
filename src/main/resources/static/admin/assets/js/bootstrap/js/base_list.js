@@ -191,9 +191,9 @@
                 }
                 $.modal.closeLoading();
             },
-            saveSuccess: function(result) {
+            saveSuccess: function(result,isRefresh) {
                 if (result.code == web_status.SUCCESS) {
-                    $.modal.msgReload("保存成功,正在刷新数据请稍后……", modal_status.SUCCESS)
+                    $.modal.msgReload("保存成功,正在刷新数据请稍后……", modal_status.SUCCESS,isRefresh)
                 } else {
                     $.modal.alertError(result.msg);
                 }
@@ -254,13 +254,15 @@
                     btnclass: ["btn btn-primary"],
                 })
             },
-            msgReload: function(msg, type) {
+            msgReload: function(msg, type,isRefresh) {
                 layer.msg(msg, {
                     icon: $.modal.icon(type),
                     time: 500,
                     shade: [0.1, "#8F8F8F"]
                 }, function() {
-                    $.modal.reload();
+                	if(isRefresh==null||typeof(isRefresh) == undefined){
+                		$.modal.reload();
+                	}
                 })
             },
             alertError: function(content) {

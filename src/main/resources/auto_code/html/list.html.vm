@@ -149,7 +149,7 @@
 	   #end
    #end
 
-<!-- 导出 -->
+/**  请求URL配置   **/
 var dataUrl=window.rootPath+"/${TsysTables.tableModel}Controller/list";
 var removeUrl=window.rootPath+"/${TsysTables.tableModel}Controller/remove";
 var createUrl=window.rootPath+"/${TsysTables.tableModel}Controller/add";

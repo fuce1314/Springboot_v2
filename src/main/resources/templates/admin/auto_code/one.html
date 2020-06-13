@@ -218,8 +218,8 @@
 		                                        	</div>
 		                                        	<div class="col-sm-3">
 		                                        		<label class="checkbox checkbox-primary">
-											                <input id="vservice" class="styled" type="checkbox" checked="">
-											                <label for="vservice">生成Service</label>
+											                <input id="vService" class="styled" type="checkbox" checked="">
+											                <label for="vService">生成Service</label>
 											            </label>
 		                                        	</div>
 		                                        	
@@ -549,13 +549,13 @@ function divonclick(){
 	  		data :{"tableName":tableName,"conditionQueryField":conditionQueryField,"pid":pid,"sqlcheck":sql,
 	  			"vhtml":$("#vhtml").is(':checked'),
 	  			"vController":$("#vController").is(':checked'),
-	  			"vservice":$("#vservice").is(':checked'),
+	  			"vService":$("#vService").is(':checked'),
 	  			"vMapperORdao":$("#vMapperORdao").is(':checked'),
 	  			"allColumnss":allColumnss
 	  		},
 	  		async : false,
 			success:function(data){
-				$.operate.saveSuccess(data);
+				$.operate.saveSuccess(data,false);
 			}
 		});
 		
