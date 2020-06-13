@@ -1,7 +1,6 @@
 package com.fc.test.common.conf;
 
 import java.util.Properties;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.google.code.kaptcha.impl.DefaultKaptcha;

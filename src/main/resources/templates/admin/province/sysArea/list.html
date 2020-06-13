@@ -136,10 +136,7 @@
 <!-- 遮罩层 -->
 <script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
 
-<script type="text/javascript"  th:inline="javascript">
-
-      	   	      	      	      	      	      	      	      	      	      	      	      	      
-<!-- 导出 -->
+<script type="text/javascript"  th:inline="javascript">      	      	      	      	      	      	      	      	      
 var types = [[${@dict.getType('sys_province_state')}]];
 var dataUrl=window.rootPath+"/SysAreaController/list";
 var removeUrl=window.rootPath+"/SysAreaController/remove";
