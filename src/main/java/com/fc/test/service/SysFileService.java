@@ -2,13 +2,11 @@ package com.fc.test.service;
 
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ClassUtils;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TsysDatasMapper;
 import com.fc.test.mapper.auto.TsysFileDataMapper;
@@ -25,7 +23,6 @@ import com.fc.test.shiro.util.ShiroUtils;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
 import cn.hutool.core.io.FileUtil;
 
 @Service
