@@ -2,11 +2,9 @@ package com.fc.test.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.fc.test.common.base.BaseService;
 import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TSysRoleUserMapper;
