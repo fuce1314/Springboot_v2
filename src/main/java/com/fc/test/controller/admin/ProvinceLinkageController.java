@@ -79,7 +79,6 @@ public class ProvinceLinkageController  extends BaseController{
 	
 	/**
 	 * 区查询
-	 * TODO(请说明这个方法的作用).
 	 * @param pid
 	 * @return
 	 */

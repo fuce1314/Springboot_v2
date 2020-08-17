@@ -241,7 +241,7 @@ public class FileController extends BaseController{
     public void viewIMG(@PathVariable("id") String id,HttpServletRequest request,HttpServletResponse response){
     	TsysDatas datas= sysDatasService.selectByPrimaryKey(id);
     	try {
-			FileUtils.readIMGTohtml(request, response, datas.getFilePath());
+			FileUtils.readIMGTohtml(request, response, datas.getFileAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

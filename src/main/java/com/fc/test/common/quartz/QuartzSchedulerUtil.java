@@ -270,7 +270,8 @@ public class QuartzSchedulerUtil {
     }
     
     
-    public void getquartzList() throws SchedulerException {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void getquartzList() throws SchedulerException {
 
         List<String> triggerGroupNames = scheduler.getTriggerGroupNames();
         for (String groupName : triggerGroupNames) {

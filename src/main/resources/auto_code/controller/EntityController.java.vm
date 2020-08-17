@@ -50,8 +50,8 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
 	@PostMapping("/list")
 	@RequiresPermissions("gen:${TsysTables.tableModel_a}:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,String searchText){
-		PageInfo<${TsysTables.tableModel}> page=${TsysTables.tableModel_a}Service.list(tablepar,searchText) ; 
+	public Object list(Tablepar tablepar,${TsysTables.tableModel} record){
+		PageInfo<${TsysTables.tableModel}> page=${TsysTables.tableModel_a}Service.list(tablepar,record) ; 
 		TableSplitResult<${TsysTables.tableModel}> result=new TableSplitResult<${TsysTables.tableModel}>(page.getPageNum(), page.getTotal(), page.getList()); 
 		return  result;
 	}

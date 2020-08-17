@@ -83,7 +83,6 @@ public class DictTypeController extends BaseController{
 	
     /**
      * 新增保存
-     * TODO(请说明这个方法的作用).
      * @param tSysDictType
      * @param model
      * @return

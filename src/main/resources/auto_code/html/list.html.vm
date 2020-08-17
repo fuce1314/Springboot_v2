@@ -54,10 +54,15 @@
                             <div class="body-nest" id="search_div" style="display: none">
                                 <div class="form_left">
                                     <form role="form" class="form-inline">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail2" class="sr-only">搜索名字</label>
-                                            <input type="text" name="searchText" placeholder="搜索名字"class="form-control">
-                                        </div>
+                                    	#foreach ($column in $beanColumns)
+											
+											<div class="form-group">
+	                                            <label for="exampleInputEmail2" class="sr-only">${column.column_comment}</label>
+	                                            <input type="text" name="${column.beanName}" placeholder="${column.column_comment}"class="form-control">
+	                                        </div>
+	                                        
+										#end
+										
                                         <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
                                     </form>
                                 </div>

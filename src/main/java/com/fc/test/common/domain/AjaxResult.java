@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
 * @ClassName: AjaxResult
-* @Description: TODO(ajax操作消息提醒)
+* @Description: ajax操作消息提醒
 * @author fuce
 * @date 2018年8月18日
 *

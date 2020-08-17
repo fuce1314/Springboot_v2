@@ -16,6 +16,7 @@ import com.fc.test.model.auto.TsysFile;
 import com.fc.test.model.auto.TsysFileData;
 import com.fc.test.shiro.util.ShiroUtils;
 import com.fc.test.util.SnowflakeIdWorker;
+import com.fc.test.util.StringUtils;
 
 /**
  * 百度文件上传service
@@ -49,17 +50,32 @@ public class UeditorService {
         String files = FileUploadUtils.upload(file);
         //补充完整url地址 
         String filesURL="";
+        //补充完整的真实地址
+        String filesAbPath="";
         if ("Y".equals(V2Config.getIsstatic())) {
+        	//相对-static/file_upload
         	filesURL=V2Config.getIsroot_dir()+files;
+        	filesAbPath=V2Config.getIsroot_dir()+files;
 		}else {
-			filesURL=V2Config.getDefaultBaseDir()+files;
+			//绝对-D:/v2file
+			filesURL=V2Config.getIsroot_dir()+files;
+			filesAbPath=V2Config.getDefaultBaseDir()+files;
 		}
-        
+        String fileName=file.getOriginalFilename();
+    	// 获得文件后缀名称
+    	String suffixName = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+    	if(StringUtils.isEmpty(suffixName)) {
+    		//如果没有后缀默认后缀
+    		suffixName=FileUploadUtils.IMAGE_JPG_EXTENSION;
+    	}
         
 		TsysDatas record=new TsysDatas();
 		//添加雪花主键id
 		record.setId(SnowflakeIdWorker.getUUID());
 		record.setFilePath(filesURL);
+		record.setFileAbsolutePath(filesAbPath);
+		record.setFileSuffix(suffixName);
+		record.setFileType(V2Config.getIsstatic());
 		if(tsysDatasMapper.insertSelective(record)>0)
 		{
 			return record;

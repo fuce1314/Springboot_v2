@@ -1,7 +1,6 @@
 package com.fc.test.model.auto;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

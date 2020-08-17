@@ -1,11 +1,11 @@
 package com.fc.test.common.quartz.task;
-
-import java.util.Date;
+import java.util.List;
 import cn.hutool.core.date.DateUtil;
-import com.fc.test.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.fc.test.mapper.auto.TsysUserMapper;
+import com.fc.test.model.auto.TsysUser;
+import com.fc.test.model.auto.TsysUserExample;
 
 /**
  *测试类
@@ -34,8 +34,8 @@ public class V2Task {
      */
     public void runTask2(Integer a,Long b,String c,Boolean d,Double e)
     {
-    	//List<TsysUser> list=  tsysUserMapper.selectByExample(new TsysUserExample());
-    	//System.err.println("用户查询num："+list.size());
+    	List<TsysUser> list=  tsysUserMapper.selectByExample(new TsysUserExample());
+    	System.err.println("用户查询num："+list.size());
         System.out.println("正在执行定时任务，带多个参数的方法"+a+"   "+b+" "+c+"  "+d+" "+e+"执行时间:"+DateUtil.now());
     }
 }

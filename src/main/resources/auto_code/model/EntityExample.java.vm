@@ -3,7 +3,7 @@ package ${globalConfig.parentPack}.model.auto;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import cn.hutool.core.util.StrUtil;
 /**
  * ${TsysTables.tableComment} ${TsysTables.tableModel}Example
  * @author ${globalConfig.author}_自动生成
@@ -184,8 +184,40 @@ public class ${TsysTables.tableModel}Example {
         }
         
 	#end
+	
+		 public Criteria andLikeQuery(${TsysTables.tableModel} record) {
+		 	List<String> list= new ArrayList<String>();
+		 	List<String> list2= new ArrayList<String>();
+        	StringBuffer buffer=new StringBuffer();
+        	
+        	#foreach ($column in $beanColumns)
+			 if(record.get${column.funName}()!=null&&StrUtil.isNotEmpty(record.get${column.funName}().toString())) {
+    			 list.add("ifnull($column.column_name,'')");
+    		 }
+			#end
+			#foreach ($column in $beanColumns)
+				 if(record.get${column.funName}()!=null&&StrUtil.isNotEmpty(record.get${column.funName}().toString())) {
+        			list2.add("'%"+record.get${column.funName}()+"%'");
+        		 }
+			#end
+        	
+        	buffer.append(" CONCAT(");
+	        buffer.append(StrUtil.join("",list));
+        	buffer.append(")");
+        	buffer.append("like CONCAT(");
+        	
+        	
+        	buffer.append(StrUtil.join("",list2));
+        	
+        	buffer.append(")");
+        	if(!" CONCAT()like CONCAT()".equals(buffer.toString())) {
+        		addCriterion(buffer.toString());
+        	}
+        	return (Criteria) this;
+        }
+        
 }
-
+	
     public static class Criteria extends GeneratedCriteria {
 
         protected Criteria() {
