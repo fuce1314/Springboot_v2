@@ -255,7 +255,7 @@ public class GlobalConfig {
 	}
 
 	/**
-	 * TODO
+	 * 构造方法
 	 * @param tableNames 数据库表配置
 	 * @param parentPack 生成代码的父包 
 	 * @param parentPath 生成代码的项目路径

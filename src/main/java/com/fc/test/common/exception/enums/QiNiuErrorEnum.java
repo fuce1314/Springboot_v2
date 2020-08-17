@@ -37,7 +37,6 @@ public enum QiNiuErrorEnum {
 		this.msg = msg;
 	}
 	/**
-	 * TODO
 	 * @param code
 	 * @param msg
 	 * @author fuce

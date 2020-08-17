@@ -34,7 +34,7 @@ public class TableConfig {
 	}
 
 	/**
-	 * TODO
+	 * 构造方法
 	 * @param dataName
 	 * @param aliasName
 	 * @author fuce

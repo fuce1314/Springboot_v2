@@ -26,7 +26,6 @@ public class QuartzController extends BaseController{
 
 	/**
 	 * 定时页面展示
-	 * TODO(请说明这个方法的作用).
 	 * @param model
 	 * @return
 	 * @author fuce

@@ -51,7 +51,6 @@ public class AutoCodeConfig {
     
     /**
      * 获取配置文件value
-     * TODO(请说明这个方法的作用).
      * @param key
      * @return
      * @author fuce
