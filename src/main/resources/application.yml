@@ -53,11 +53,15 @@ spring :
         #shiro 报错修改的地方
     max-connections: 200000
     max-http-post-size: 9000000
-    # 服务模块
+  #热部署模块
   devtools:
     restart:
-      # 热部署开关
+      #热部署开关
       enabled: true
+      #指定热部署的目录
+      additional-paths: src/main/java
+      #指定目录不更新
+      exclude: test/**
   mvc:   #静态文件
     static-path-pattern : /static/**
   #模板引擎
