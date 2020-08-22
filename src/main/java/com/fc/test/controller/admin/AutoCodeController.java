@@ -2,7 +2,6 @@ package com.fc.test.controller.admin;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -174,9 +173,9 @@ public class AutoCodeController extends BaseController {
 	@ResponseBody
 	public AjaxResult saveOne(String allColumnss, String tableName, String conditionQueryField, String pid,
 			int sqlcheck,Boolean vhtml,Boolean vController,Boolean vService,Boolean vMapperORdao) throws Exception {
-		JSONArray array = JSONUtil.parseArray(allColumnss);
+		//JSONArray array = JSONUtil.parseArray(allColumnss);
 		// 遗留可用前端修改传入的字段等信息（未完善）
-		List<BeanColumn> beanColumns2 = JSONUtil.toList(array, BeanColumn.class);
+		//List<BeanColumn> beanColumns2 = JSONUtil.toList(array, BeanColumn.class);
 		List<TsysTables> list = generatorService.queryList(tableName);
 		if (list.size() > 0) {
 			TsysTables tables = list.get(0);

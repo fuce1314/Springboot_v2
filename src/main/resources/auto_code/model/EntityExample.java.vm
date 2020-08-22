@@ -191,28 +191,55 @@ public class ${TsysTables.tableModel}Example {
         	StringBuffer buffer=new StringBuffer();
         	
         	#foreach ($column in $beanColumns)
+			 
 			 if(record.get${column.funName}()!=null&&StrUtil.isNotEmpty(record.get${column.funName}().toString())) {
     			 list.add("ifnull($column.column_name,'')");
     		 }
+    		 
 			#end
 			#foreach ($column in $beanColumns)
-				 if(record.get${column.funName}()!=null&&StrUtil.isNotEmpty(record.get${column.funName}().toString())) {
-        			list2.add("'%"+record.get${column.funName}()+"%'");
-        		 }
+			
+			 if(record.get${column.funName}()!=null&&StrUtil.isNotEmpty(record.get${column.funName}().toString())) {
+    			list2.add("'%"+record.get${column.funName}()+"%'");
+    		 }
+        		 
 			#end
         	
         	buffer.append(" CONCAT(");
-	        buffer.append(StrUtil.join("",list));
+	        buffer.append(StrUtil.join(",",list));
         	buffer.append(")");
-        	buffer.append("like CONCAT(");
+        	buffer.append(" like CONCAT(");
         	
         	
-        	buffer.append(StrUtil.join("",list2));
+        	buffer.append(StrUtil.join(",",list2));
         	
         	buffer.append(")");
-        	if(!" CONCAT()like CONCAT()".equals(buffer.toString())) {
+        	if(!" CONCAT() like CONCAT()".equals(buffer.toString())) {
         		addCriterion(buffer.toString());
         	}
+        	return (Criteria) this;
+        }
+        
+        public Criteria andLikeQuery2(String searchText) {
+		 	List<String> list= new ArrayList<String>();
+		 
+        	StringBuffer buffer=new StringBuffer();
+        	
+        	#foreach ($column in $beanColumns)
+        	
+    		list.add("ifnull($column.column_name,'')");
+			
+			#end
+			
+        	buffer.append(" CONCAT(");
+	        buffer.append(StrUtil.join(",",list));
+        	buffer.append(")");
+        	buffer.append("like '%");
+        	buffer.append(searchText);
+        	buffer.append("%'");
+        	
+        	addCriterion(buffer.toString());
+        	
         	return (Criteria) this;
         }
         

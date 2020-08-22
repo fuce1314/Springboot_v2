@@ -10,6 +10,7 @@ public class Tablepar {
 	private int pageSize;//数量
 	private String orderByColumn;//排序字段
 	private String isAsc;//排序字符 asc desc 
+	private String searchText;//列表table里面的搜索
 	public int getPageNum() {
 		return pageNum;
 	}
@@ -33,6 +34,12 @@ public class Tablepar {
 	}
 	public void setIsAsc(String isAsc) {
 		this.isAsc = isAsc;
+	}
+	public String getSearchText() {
+		return searchText;
+	}
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
 	}
 	
 }
