@@ -24,11 +24,7 @@ public class AutoCodeConfig {
 
 	static {
 		configuration=getConfig();
-		
-		
-		
-		globalConfig =new GlobalConfig(null, configuration.getString("parentPack"), configuration.getString("parentPath"),configuration.getBoolean("cover"),
-				configuration.getBoolean("swagger"),configuration.getString("javaSource"),configuration.getString("resources"),configuration.getString("xmlPath"),configuration.getString("packageBean"),configuration.getString("packageDao"),configuration.getString("packageController"), configuration.getString("packageService"), configuration.getString("tablePrefix"),configuration.getBoolean("autoCode"), configuration.getBoolean("watchMobel"),configuration.getString("author"),configuration.getString("email"));
+		globalConfig =new GlobalConfig(null, configuration.getString("parentPack"), configuration.getString("parentPath"),configuration.getBoolean("cover"),configuration.getBoolean("swagger"),configuration.getString("javaSource"),configuration.getString("resources"),configuration.getString("xmlPath"),configuration.getString("packageBean"),configuration.getString("packageDao"),configuration.getString("packageController"), configuration.getString("packageService"), configuration.getString("tablePrefix"),configuration.getBoolean("autoCode"), configuration.getBoolean("watchMobel"),configuration.getString("author"),configuration.getString("email"));
 	}
 	public AutoCodeConfig() {
 		super();
@@ -41,7 +37,10 @@ public class AutoCodeConfig {
      */
     public static  Configuration getConfig() {
         try {
-            return new PropertiesConfiguration("auto_code/auto_code_config.properties" );
+        	final PropertiesConfiguration proCfing = new PropertiesConfiguration();
+        	proCfing.setEncoding("UTF-8");
+        	proCfing.load("auto_code/auto_code_config.properties");
+        	return proCfing;
         } catch (ConfigurationException e) {
             System.out.println("获取配置文件失败");
         	e.printStackTrace();
