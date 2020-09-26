@@ -36,7 +36,7 @@ public class UeditorService {
 	//文件信息mapper
 	@Autowired
 	private TsysFileMapper tsysFileMapper;
-
+	
     
     /**
 	 * 文件上传文件存储到文件表
