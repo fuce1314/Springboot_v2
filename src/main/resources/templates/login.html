@@ -191,7 +191,7 @@
 <script type="text/javascript" th:src="@{/static/admin/assets/js/validate/jquery.validate.min.js}"></script>
 <script type="text/javascript" th:src="@{/static/admin/assets/js/validate/messages_zh.min.js}"></script>
 <script type="text/javascript" th:src="@{/static/admin/assets/js/validate/jquery.validate.extend.js}"></script>
-<script type="text/javascript" th:src="@{/static/js/baidumap.js}"></script>
+<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=R4pWCxXH9qm9ZpbnppGyxUGKydAd6esD"></script> -->
 <!--兼容移动端滑块滑动表单安全验证码jquery插件 -->
 <script type="text/javascript" th:src="@{/static/login/disk/longbow.slidercaptcha.js}"></script>
 <script type="text/javascript" th:inline="javascript">
@@ -204,7 +204,7 @@ $(document).ready(function(){
 			init:function(){
 				this.iftop();
 				this.yzmRefresh();
-				this.baiduMap();
+				//this.baiduMap();
 				this.loginSubmit();
 				this.showdd();
 				this.ifyzm();
@@ -230,7 +230,7 @@ $(document).ready(function(){
 			},
 			baiduMap:function(){
 				// 百度地图API功能
-				try {
+				/* try {
 					var map = new BMap.Map("test1");
 			    	var point = new BMap.Point(106.475851,29.542392);
 			    	map.centerAndZoom(point, 10);
@@ -241,7 +241,7 @@ $(document).ready(function(){
 			    	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
 				} catch (e) {
 					
-				}
+				} */
 		    	
 			},
 			showdd:function(){
