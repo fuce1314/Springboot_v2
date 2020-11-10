@@ -27,17 +27,17 @@ public class MyWebAppConfigurer  extends  WebMvcConfigurationSupport  {
 	/**
      * 默认上传的地址
      */
-    private static String defaultBaseDir = V2Config.getDefaultBaseDir();
+    private  String defaultBaseDir = V2Config.getDefaultBaseDir();
     
     /**
      * 静态文件夹后目录
      */
-    private static String isrootDir=V2Config.getIsroot_dir();
+    private  String isrootDir=V2Config.getIsroot_dir();
     
     /**
      * 是否上传到static
      */
-    private static  String isstatic=V2Config.getIsstatic();
+    private   String isstatic=V2Config.getIsstatic();
 	
 	
 	/** 解决跨域问题 **/
