@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -23,7 +24,7 @@
 		<commons.fileupload.version>1.3.3</commons.fileupload.version>
 		<commons.io.version>2.5</commons.io.version>
 	</properties>
-	
+
 	<!-- https://mvnrepository.com/ 查找jar网站 -->
 	<dependencies>
 		<!-- SpringBoot Web容器 -->
@@ -45,15 +46,15 @@
 		</dependency>
 		<!-- 添加swagger2 -->
 		<dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-        </dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
 		<!--GSON -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -65,20 +66,17 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.5</version>
 		</dependency>
-		<!-- mysql驱动7.0-->
+		<!-- mysql驱动7.0 -->
+		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+			</dependency> -->
+		<!-- mysql驱动8.0 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-		</dependency> 
-
-		<!-- mysql驱动8.0
-		 <dependency> 
-		 	<groupId>mysql</groupId> 
-		 	<artifactId>mysql-connector-java</artifactId> 
 			<version>8.0.11</version>
-		 </dependency>
-		 -->
-		<!--druid 数据源监控-->
+		</dependency>
+
+		<!--druid 数据源监控 -->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -155,12 +153,12 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
 		<dependency>
-		    <groupId>org.apache.velocity</groupId>
-		    <artifactId>velocity</artifactId>
-		    <version>1.7</version>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
 		</dependency>
 		<!-- websocket -->
-		 <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
@@ -176,14 +174,14 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<!-- mail -->
 		<dependency>
-		    <groupId>javax.mail</groupId>
-		    <artifactId>mail</artifactId>
-		    <version>1.4.7</version>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
 		</dependency>
-		
+
 		<!--百度UEditor依赖的jar包 -->
 		<dependency>
 			<groupId>org.json</groupId>
@@ -191,13 +189,14 @@
 			<version>20180813</version>
 		</dependency>
 		<dependency>
-			 <groupId>ueditor</groupId>
-			 <artifactId>1.4.3</artifactId>
+			<groupId>ueditor</groupId>
+			<artifactId>1.4.3</artifactId>
 			<version>1.8</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>
 		</dependency>
-		<!--quartz依赖-->
+
+		<!--quartz依赖 -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
@@ -208,7 +207,12 @@
 			<artifactId>qiniu-java-sdk</artifactId>
 			<version>[7.2.0, 7.2.99]</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.68</version>
+		</dependency>
 	</dependencies>
 
 
@@ -220,13 +224,13 @@
 			<!-- JUnit 配置 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-	 			<artifactId>maven-surefire-plugin</artifactId>
-	 			<!--忽略测试启动类 -->
+				<artifactId>maven-surefire-plugin</artifactId>
+				<!--忽略测试启动类 -->
 				<configuration>
 					<skip>true</skip>
 				</configuration>
 			</plugin>
-			<!-- generator 配置-->
+			<!-- generator 配置 -->
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -280,6 +284,6 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 
 </project>

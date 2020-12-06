@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.shiro.util.ShiroUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +27,6 @@ public class ApiController {
 	@GetMapping("/test")
 	@ResponseBody
 	public AjaxResult test() {
-
-		return AjaxResult.success();
+		return AjaxResult.successData(200, ShiroUtils.getLoginName());
 	}
 }
