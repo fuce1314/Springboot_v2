@@ -1,5 +1,9 @@
 package com.fc.test.mapper.custom;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.fc.test.model.auto.TsysUser;
 
 /**
@@ -15,4 +19,13 @@ public interface TsysUserDao {
 	 * @return
 	 */
 	public TsysUser queryUserName(String username);
+	
+	/**
+	 * 查询用户详情
+	 * String name 如果没用 注解@Param("") 它到mapper里面为_parameter
+	 * @return
+	 * @author fuce
+	 * @Date 2020年12月6日 下午9:02:20
+	 */
+	public List<TsysUser> queryUserInfo(String username);
 }
