@@ -171,6 +171,85 @@ public class AdminController extends BaseController {
 		}
 
 	}
+	
+	
+	/**
+	 * 手机登录
+	 * @param user
+	 * @param redirectAttributes
+	 * @param rememberMe
+	 * @param request
+	 * @return
+	 * @author fuce
+	 * @Date 2020年12月7日 上午12:54:28
+	 */
+	@ApiOperation(value = "手机登录", notes = "手机登录")
+	@PostMapping("/API/login")
+	@ResponseBody
+	public AjaxResult APIlogin(TsysUser user,boolean rememberMe,HttpServletRequest request) {
+		// ModelAndView view =new ModelAndView();
+		Boolean yz = true;
+//		if (V2Config.getRollVerification()) {// 滚动验证
+//			yz = true;
+//		} else {// 图片验证
+//			String scode = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+//			yz = StringUtils.isNotEmpty(scode) && StringUtils.isNotEmpty(code) && scode.equals(code);
+//		}
+		System.out.println("/API/login手机请求");
+		// 判断验证码
+		if (yz) {
+			String userName = user.getUsername();
+			Subject currentUser = SecurityUtils.getSubject();
+			// 是否验证通过
+			if (!currentUser.isAuthenticated()) {
+				UsernamePasswordToken token = new UsernamePasswordToken(userName, user.getPassword());
+				try {
+					if (rememberMe) {
+						token.setRememberMe(true);
+					}
+					// 存入用户
+					currentUser.login(token);
+					if (StringUtils.isNotNull(ShiroUtils.getUser())) {
+						// 若为前后端分离版本，则可把sessionId返回，作为分离版本的请求头authToken
+						 String authToken = ShiroUtils.getSessionId();
+						 return AjaxResult.successData(200, authToken);
+						//return AjaxResult.success();
+					} else {
+						return AjaxResult.error(500, "未知账户");
+					}
+				} catch (UnknownAccountException uae) {
+					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
+					return AjaxResult.error(500, "未知账户");
+				} catch (IncorrectCredentialsException ice) {
+					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
+					return AjaxResult.error(500, "用户名或密码不正确");
+				} catch (LockedAccountException lae) {
+					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,账户已锁定");
+					return AjaxResult.error(500, "账户已锁定");
+				} catch (ExcessiveAttemptsException eae) {
+					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误次数过多");
+					return AjaxResult.error(500, "用户名或密码错误次数过多");
+				} catch (AuthenticationException ae) {
+					// 通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
+					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,堆栈轨迹如下");
+					ae.printStackTrace();
+					return AjaxResult.error(500, "用户名或密码不正确");
+				}
+			} else {
+				if (StringUtils.isNotNull(ShiroUtils.getUser())) {
+					// 跳转到 get请求的登陆方法
+					// view.setViewName("redirect:/"+prefix+"/index");
+					 String authToken = ShiroUtils.getSessionId();
+					 return AjaxResult.successData(200, authToken);
+				} else {
+					return AjaxResult.error(500, "未知账户");
+				}
+			}
+		} else {
+			return AjaxResult.error(500, "验证码不正确!");
+		}
+
+	}
 
 	/**
 	 * 退出登陆

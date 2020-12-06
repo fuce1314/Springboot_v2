@@ -1,16 +1,13 @@
 package com.fc.test.shiro.service;
 
 import java.io.PrintWriter;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-
-import com.alibaba.fastjson.JSON;
 import com.fc.test.common.domain.AjaxResult;
+import cn.hutool.json.JSONUtil;
 
 /**
  * @author ：LX 
@@ -50,7 +47,7 @@ public class CORSAuthenticationFilter extends FormAuthenticationFilter {
 		res.setCharacterEncoding("UTF-8");
 		PrintWriter writer = res.getWriter();
 //        ResultJson resultJson = new ResultJson(Constant.ERROR_CODE_NO_LOGIN, ResultEnum.ERROR.getStatus(), "请先登录系统！", null);
-		writer.write(JSON.toJSONString(AjaxResult.error(500, "请先登录系统！")));
+		writer.write(JSONUtil.toJsonStr(AjaxResult.error(500, "请先登录系统！")));
 		writer.close();
 		return false;
 	}

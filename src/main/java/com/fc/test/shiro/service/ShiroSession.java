@@ -35,7 +35,7 @@ public class ShiroSession extends DefaultWebSessionManager {
 	public ShiroSession() {
 		super();
 		// 设置 shiro session 失效时间，默认为30分钟，这里现在设置为15分钟
-		// setGlobalSessionTimeout(MILLIS_PER_MINUTE * 15);
+		setGlobalSessionTimeout(MILLIS_PER_MINUTE * 15);
 	}
 
 	/**

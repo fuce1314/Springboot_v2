@@ -42,6 +42,11 @@ public class ShiroFilterMapFactory {
 		filterChainDefinitionMap.put("/static/**", "anon");
 		filterChainDefinitionMap.put("/admin/login", "anon");
 		filterChainDefinitionMap.put("/admin/logout", "logout");
+		
+		//手机登录
+		filterChainDefinitionMap.put("/admin/API/login", "anon");
+				
+		
 		// 放验证码
 		filterChainDefinitionMap.put("/captcha/**", "anon");
 		// 释放 druid 监控画面

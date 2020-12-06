@@ -11,19 +11,33 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * 该接口为了前后端分离or手机端服务不用登录的接口  访问地址:localhot:8080/ApiController/test
- * 如何还需要其他 接口不登陆就能访问：ShiroFilterMapFactory.java里面配置开放自己的controller
- * @ClassName: ApiController
+ * token测试   
+ * 
+ * head 参数
+ * authToken:4acf8612-d66c-4770-a775-c9418c65bacd
+ * @ClassName: ApiController2
  * @author fuce
- * @date 2020-04-15 22:59
+ * @date 2020-12-07 00:56
  */
-@Api(value = "api_test")
+@Api(value = "iphoneAPI")
 @Controller
 @RequestMapping("/api")
 public class ApiController2 {
-	
-	//@Log(title = "${TsysTables.tableComment}集合查询", action = "111")
-	@ApiOperation(value = "测试方法", notes = "测试方法")
+	/**
+	 * 第一步：token获取
+	 * post：http://localhost:8080/admin/API/login
+	 * body参数：
+	 * username:admin
+	 * password:admin
+	 * 返回 {"code":200,"data":"1487913f-5a64-488d-9fc7-243d004faae2"}
+	 * 第二步：请求测试
+	 * get:请求地址：http://localhost:8080/api/test
+	 * head参数：
+	 * authToken:1487913f-5a64-488d-9fc7-243d004faae2
+	 * 返回信息
+	 * {"code":200,"data":"admin"}
+	 */
+	@ApiOperation(value = "token测试方法", notes = "token测试方法")
 	@GetMapping("/test")
 	@ResponseBody
 	public AjaxResult test() {

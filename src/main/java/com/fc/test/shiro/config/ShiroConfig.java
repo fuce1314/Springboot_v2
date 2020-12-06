@@ -4,7 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.Filter;
-
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
@@ -19,15 +18,12 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
-import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import com.fc.test.shiro.service.CORSAuthenticationFilter;
 import com.fc.test.shiro.service.MyShiroRealm;
 import com.fc.test.shiro.service.ShiroSession;
 import com.fc.test.shiro.service.UuidSessionIdGenerator;
-
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 
 /**
