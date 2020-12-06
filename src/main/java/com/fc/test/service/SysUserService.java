@@ -11,6 +11,7 @@ import com.fc.test.mapper.auto.TSysRoleUserMapper;
 import com.fc.test.mapper.auto.TsysRoleMapper;
 import com.fc.test.mapper.auto.TsysUserMapper;
 import com.fc.test.mapper.custom.RoleDao;
+import com.fc.test.mapper.custom.TsysUserDao;
 import com.fc.test.model.auto.TSysRoleUser;
 import com.fc.test.model.auto.TSysRoleUserExample;
 import com.fc.test.model.auto.TsysRole;
@@ -50,6 +51,10 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	@Autowired
 	private TsysRoleMapper tsysRoleMapper;
 	
+	//自定义用户dao
+	@Autowired
+	private TsysUserDao userDao ;
+	
 	/**
 	 * 分页查询
 	 * @param pageNum
@@ -57,16 +62,20 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 	 * @return
 	 */
 	 public PageInfo<TsysUser> list(Tablepar tablepar,String username){
-	        TsysUserExample testExample=new TsysUserExample();
-	        testExample.setOrderByClause("id+0 DESC");
-	        if(username!=null&&!"".equals(username)){
-	        	testExample.createCriteria().andUsernameLike("%"+username+"%");
-	        }
-
-	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
-	        List<TsysUser> list= tsysUserMapper.selectByExample(testExample);
-	        PageInfo<TsysUser> pageInfo = new PageInfo<TsysUser>(list);
-	        return  pageInfo;
+//	        TsysUserExample testExample=new TsysUserExample();
+//	        testExample.setOrderByClause("id+0 DESC");
+//	        if(username!=null&&!"".equals(username)){
+//	        	testExample.createCriteria().andUsernameLike("%"+username+"%");
+//	        }
+//
+//	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
+//	        List<TsysUser> list= tsysUserMapper.selectByExample(testExample);
+//	        PageInfo<TsysUser> pageInfo = new PageInfo<TsysUser>(list);
+//	        return  pageInfo;
+		 PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
+		 List<TsysUser> list= userDao.queryUserInfo(username);
+		 PageInfo<TsysUser> pageInfo = new PageInfo<TsysUser>(list);
+		 return  pageInfo;
 	 }
 
 	

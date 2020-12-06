@@ -2,6 +2,7 @@ package com.fc.test.controller.admin;
 
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,12 +15,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.common.log.Log;
+import com.fc.test.model.auto.SysDepartment;
+import com.fc.test.model.auto.SysDepartmentExample;
+import com.fc.test.model.auto.SysPosition;
+import com.fc.test.model.auto.SysPositionExample;
 import com.fc.test.model.auto.TsysRole;
 import com.fc.test.model.auto.TsysUser;
 import com.fc.test.model.custom.RoleVo;
 import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
+import com.fc.test.service.SysDepartmentService;
+import com.fc.test.service.SysPositionService;
 import com.github.pagehelper.PageInfo;
 
 import io.swagger.annotations.Api;
@@ -37,6 +44,12 @@ import io.swagger.annotations.ApiOperation;
 public class UserController extends BaseController{
 	
 	private String prefix = "admin/user";
+	//部门
+	@Autowired
+	private SysDepartmentService departmentService;
+	//岗位
+	@Autowired
+	private SysPositionService positionService;
 	
 	/**
 	 * 展示跳转页面
@@ -87,7 +100,16 @@ public class UserController extends BaseController{
     {
     	//添加角色列表
 		List<TsysRole> tsysRoleList=sysRoleService.queryList();
+		//部门列表
+		List<SysDepartment> departments=departmentService.selectByExample(new SysDepartmentExample());
+		//岗位列表
+		List<SysPosition> sysPositions=positionService.selectByExample(new SysPositionExample());
+		//角色
 		modelMap.put("tsysRoleList",tsysRoleList);
+		//部门
+		modelMap.put("departmentsList",departments);
+		//岗位
+		modelMap.put("sysPositionsList",sysPositions);
         return prefix + "/add";
     }
 	/**
@@ -162,9 +184,12 @@ public class UserController extends BaseController{
     {
 		//查询所有角色
 		List<RoleVo> roleVos=sysUserService.getUserIsRole(id);
+		//岗位列表
+		List<SysPosition> sysPositions=positionService.selectByExample(new SysPositionExample());
 		mmap.put("roleVos",roleVos);
         mmap.put("TsysUser", sysUserService.selectByPrimaryKey(id));
-
+        //岗位
+        mmap.put("sysPositionsList",sysPositions);
         return prefix + "/edit";
     }
 	

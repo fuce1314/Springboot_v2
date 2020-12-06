@@ -383,6 +383,136 @@ public class TsysUserExample {
             addCriterion("nickname not between", value1, value2, "nickname");
             return (Criteria) this;
         }
+
+        public Criteria andDepIdIsNull() {
+            addCriterion("dep_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdIsNotNull() {
+            addCriterion("dep_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdEqualTo(Integer value) {
+            addCriterion("dep_id =", value, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdNotEqualTo(Integer value) {
+            addCriterion("dep_id <>", value, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdGreaterThan(Integer value) {
+            addCriterion("dep_id >", value, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("dep_id >=", value, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdLessThan(Integer value) {
+            addCriterion("dep_id <", value, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdLessThanOrEqualTo(Integer value) {
+            addCriterion("dep_id <=", value, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdIn(List<Integer> values) {
+            addCriterion("dep_id in", values, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdNotIn(List<Integer> values) {
+            addCriterion("dep_id not in", values, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdBetween(Integer value1, Integer value2) {
+            addCriterion("dep_id between", value1, value2, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("dep_id not between", value1, value2, "depId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdIsNull() {
+            addCriterion("pos_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdIsNotNull() {
+            addCriterion("pos_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdEqualTo(String value) {
+            addCriterion("pos_id =", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdNotEqualTo(String value) {
+            addCriterion("pos_id <>", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdGreaterThan(String value) {
+            addCriterion("pos_id >", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdGreaterThanOrEqualTo(String value) {
+            addCriterion("pos_id >=", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdLessThan(String value) {
+            addCriterion("pos_id <", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdLessThanOrEqualTo(String value) {
+            addCriterion("pos_id <=", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdLike(String value) {
+            addCriterion("pos_id like", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdNotLike(String value) {
+            addCriterion("pos_id not like", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdIn(List<String> values) {
+            addCriterion("pos_id in", values, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdNotIn(List<String> values) {
+            addCriterion("pos_id not in", values, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdBetween(String value1, String value2) {
+            addCriterion("pos_id between", value1, value2, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdNotBetween(String value1, String value2) {
+            addCriterion("pos_id not between", value1, value2, "posId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
