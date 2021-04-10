@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.SysNoticeMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.SysNotice">
+<mapper namespace="com.fc.v2.mapper.auto.SysNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.SysNotice">
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="content" jdbcType="VARCHAR" property="content" />
@@ -77,7 +77,7 @@
        	  	      	create_username,
        	  	    	  	create_time
        	</sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.SysNoticeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.SysNoticeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,14 +102,14 @@
     delete from t_sys_notice
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.SysNoticeExample">
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.SysNoticeExample">
     delete from t_sys_notice
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   
-  <insert id="insert" parameterType="com.fc.test.model.auto.SysNotice">
+  <insert id="insert" parameterType="com.fc.v2.model.auto.SysNotice">
     insert into t_sys_notice (
       	  	       id,
        	  	       title,
@@ -130,7 +130,7 @@
        	    )
   </insert>
   
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.SysNotice">
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.SysNotice">
     insert into t_sys_notice
     <trim prefix="(" suffix=")" suffixOverrides=",">
           
@@ -194,7 +194,7 @@
         </trim>
   </insert>
   
-  <select id="countByExample" parameterType="com.fc.test.model.auto.SysNoticeExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.SysNoticeExample" resultType="java.lang.Long">
     select count(*) from t_sys_notice
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -249,7 +249,7 @@
   </update>
   
   
-      <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.SysNotice">
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.SysNotice">
     update t_sys_notice
     <set>
                           <if test="title != null">
@@ -278,7 +278,7 @@
 
       	      	   	      	   	      	   	      	   	      	   	      	   	      	
 
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.SysNotice">
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.SysNotice">
     update t_sys_notice
     set 
              	        	    	 			title = #{title,jdbcType=VARCHAR},

@@ -1,218 +1,131 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-      xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
-<head th:replace="admin/common/html/head :: head_Normal(~{::title},~{::link},~{::style})">
-
-<title th:text=${title}></title>
-<!-- 这儿引用单独的css link -->
-<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
-<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
-<!-- select2样式 -->
-<link th:href="@{/static/admin/assets/js/select2/css/select2.min.css}" rel="stylesheet"/>
-
-
-<style type="text/css">
-/**
-*这里写单独的css样式
-*/
-
-</style>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('省份联动')"/>
 </head>
-
-<body id="listbody">
-<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 代码编写处 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # -->
-
-<!-- 右边内容 -->
-<div class="wrap-fluid">
-    <div class="container-fluid paper-wrap bevel tlbr">
-        <!-- 内容 -->
-        <!--标题 通用-->
-        <div th:replace="admin/common/html/title :: title(${title},${parenttitle},${isMsg},${msgHTML})">
-        </div>
-        <!-- 结束标题 通用-->
-        <div class="content-wrap">
-            <!-- 结束内容 -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <!-- 空白页开始-->
-                    <div class="nest" id="Blank_PageClose">
-                        <div class="title-alt">
-                            <h6>表单</h6>
-                            <div class="titleClose">
-                                <a class="gone" href="#Blank_PageClose">
-                                    <span class="entypo-cancel"></span>
-                                </a>
-                            </div>
-                            <div class="titleToggle">
-                                <a class="nav-toggle-alt" href="#Blank_Page_Content">
-                                    <span class="entypo-up-open"></span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="body-nest" id="Blank_Page_Content">
-                        	<div class="alert alert-info">
-                                <button data-dismiss="alert" class="close" type="button">×</button>
-                                <span class="entypo-info-circled"></span>
-                                <strong>说明!</strong>&nbsp;&nbsp; 为了节约数据内存， t_sys_province 省份 t_sys_city 市 t_sys_area 区 t_sys_street 街道 表数据不全，请自行在码云下载4张表的全部数据 <a href="https://gitee.com/bdj/SpringBoot_v2/attach_files">点我下载</a>
-                            </div>
-                       		<form  class="form-horizontal m" id="form-add">
-                       			
-								
-								<div class="form-group">
-	                        		<label class="col-sm-2 control-label ">省份：</label>
-									<div class="col-sm-5">
-										 <select class="form-control" id="province_select">
-											<option th:each="list : ${provinceList}" th:text="${list.provinceName}" th:value="${list.provinceCode}">First</option>	  
-										 </select>
-									</div>
-								</div>
-								
-								<div class="form-group">
-	                        		<label class="col-sm-2 control-label ">城市：</label>
-									<div class="col-sm-5">
-										 <select class="form-control" id="city_select">
-											
-										 </select>
-									</div>
-								</div>
-								<div class="form-group">
-	                        		<label class="col-sm-2 control-label ">区县：</label>
-									<div class="col-sm-5">
-										 <select class="form-control" id="area_select" >
-											
-										 </select>
-									</div>
-								</div>
-								<div class="form-group">
-	                        		<label class="col-sm-2 control-label ">街道：</label>
-									<div class="col-sm-5">
-										 <select class="form-control" id="street_select" >
-											
-										 </select>
-									</div>
-								</div>
-								
-						   </form>
-                        	
-                        </div>
-                    </div>
-                </div>
-                <!-- 空白页结束 -->
-            </div>
-            <!-- 结束内容 -->
-        </div>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+       <blockquote class="layui-elem-quote">
+           <strong>说明!</strong>&nbsp;&nbsp; 为了节约数据内存， t_sys_province 省份 t_sys_city 市 t_sys_area 区 t_sys_street 街道 表数据不全，请自行在码云下载4张表的全部数据 <a href="https://gitee.com/bdj/SpringBoot_v2/attach_files">点我下载</a>
+       </blockquote>
     </div>
 </div>
-<!-- 结束右边内容 -->
-<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 代码编写处 END# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # -->
-
-
-
-
-
-
-
-<!-- 右侧隐藏滑块内容 -->
-<div th:include="admin/common/html/rightHide :: rightHide">
-    
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="" onsubmit="return false">
+          <div class="layui-form-item">
+            <label class="layui-form-label">省份</label>
+            <div class="layui-input-block">
+              <select name="qytt" lay-verify="required" lay-filter="province_select" lay-search="" id="province_select">
+                <option value=""></option>
+                <option th:each="list : ${provinceList}" th:text="${list.provinceName}" th:value="${list.provinceCode}">First</option>
+              </select>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">城市</label>
+            <div class="layui-input-block">
+              <select name="x3ppx" lay-filter="city_select" lay-verify="required" lay-search=""  id="city_select">
+              </select>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">区县</label>
+            <div class="layui-input-block">
+              <select name="mm4es" lay-filter="area_select" lay-verify="required" lay-search=""  id="area_select" >
+              </select>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">街道</label>
+            <div class="layui-input-block">
+              <select name="jmobv" lay-verify="required" lay-search=""  id="street_select">
+              </select>
+            </div>
+          </div>
+        </form>
+    </div>
 </div>
-   <!-- END 右侧隐藏滑块内容-->
+</body>
 
-<!-- 通用js -->
-<div th:include="admin/common/html/js :: onload_js">
-   
-</div>
 
-<!-- 弹窗 -->
-<script th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
-<!-- 遮罩层 -->
-<script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
-<script th:src="@{/static/admin/assets/js/select2/js/select2.full.min.js}" type="text/javascript"></script>
-
-<script type="text/javascript" th:inline="javascript">
+<th:block th:include="include :: footer"/>
+<script>
 
 //城市查询
 function cityList(){
-	$("#city_select").html("");
-	$.ajax({
-		type: 'get',
-		dataType: 'json',
-	    url: window.rootPath+"/ProvinceLinkageController/getCity?pid="+$("#province_select").val(),
-		success:function(data){
-		  for (var i = 0; i < data.length; i++) {
-			  $("#city_select").append("<option value='"+data[i].cityCode+"'>"+data[i].cityName+"</option>");
-			  
-		  }
-		  $("#city_select").select2({
-			    placeholder: "请选择"
-			}).on("change", function(e) {
-				 areaList();
-			})
-		  if(data.length<=1){
-			  areaList();
-		  }
-		 
-		}
-	})
+
 }
 
 //区县查询
 function areaList(){
-	$("#area_select").html("");
-	$.ajax({
-		type: 'get',
-		dataType: 'json',
-	    url: window.rootPath+"/ProvinceLinkageController/getArea?pid="+$("#city_select").val(),
-		success:function(data){
-		  for (var i = 0; i < data.length; i++) {
-			  $("#area_select").append("<option value='"+data[i].areaCode+"'>"+data[i].areaName+"</option>");
-		  }
-		  $("#area_select").select2({
-			    placeholder: "请选择"
-			}).on("change", function(e) {
-				streetList();
-			})
-			if(data.length<=1){
-				streetList();
-			}
-		}
-	})
+
 }
 
 //街道查询
 function streetList(){
-	$("#street_select").html("");
-	$.ajax({
-		type: 'get',
-		dataType: 'json',
-	    url: window.rootPath+"/ProvinceLinkageController/getStreet?pid="+$("#area_select").val(),
-		success:function(data){
-		  for (var i = 0; i < data.length; i++) {
-			  $("#street_select").append("<option value='"+data[i].streetCode+"'>"+data[i].streetName+"</option>");
-		  }
-		  $("#street_select").select2({
-			    placeholder: "请选择"
-			});
-		}
-	})
+
 }
 
-$(function(){
-	
-	$("#province_select").select2({
-	    placeholder: "请选择"
-	}).on("change", function(e) {
-		cityList();
-	})
-	if($("#province_select option").size()<=1){
-		cityList();
-	}
-})
+
 </script>
+<script>
+    layui.use(['form','jquery'], function () {
+        let $ = layui.jquery;
+        let form = layui.form;
+        let MODULE_PATH = rootPath+"/SysProvinceController/";
 
-</body>
+        form.on('select(province_select)', function(data){
+            $("#city_select").empty();
+            $("#city_select").html("<option></option>");
+            $.ajax({
+                type: 'get',
+                dataType: 'json',
+                url: rootPath+"/ProvinceLinkageController/getCity?pid="+$("#province_select").val(),
+                success:function(data){
+                  for (var i = 0; i < data.length; i++) {
+                      $("#city_select").append("<option value='"+data[i].cityCode+"'>"+data[i].cityName+"</option>");
+                  }
+                  form.render('select');
+                }
+            })
 
+        });
 
+        form.on('select(city_select)', function(data){
+          $("#area_select").empty();
+          $("#area_select").html("<option></option>");
+          $.ajax({
+              type: 'get',
+              dataType: 'json',
+              url: rootPath+"/ProvinceLinkageController/getArea?pid="+$("#city_select").val(),
+              success:function(data){
+                for (var i = 0; i < data.length; i++) {
+                    $("#area_select").append("<option value='"+data[i].areaCode+"'>"+data[i].areaName+"</option>");
+                }
+                 form.render('select');
+              }
+          })
+
+        });
+
+        form.on('select(area_select)', function(data){
+            $("#street_select").empty();
+            $("#street_select").html("<option></option>");
+            $.ajax({
+                type: 'get',
+                dataType: 'json',
+                url: rootPath+"/ProvinceLinkageController/getStreet?pid="+$("#area_select").val(),
+                success:function(data){
+                  for (var i = 0; i < data.length; i++) {
+                      $("#street_select").append("<option value='"+data[i].streetCode+"'>"+data[i].streetName+"</option>");
+                  }
+                   form.render('select');
+                }
+            })
+        });
+
+    })
+</script>
 </html>

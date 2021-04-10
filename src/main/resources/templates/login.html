@@ -1,421 +1,116 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>SpringBoot_v2</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="SpringBoot_v2,脚手架">
-	<meta name="author" content="QQ87766867">
-	<!--样式 -->
-	<script type="text/javascript" th:src="@{/static/admin/assets/js/jquery.min.js}"></script>
-	<!--  <link rel="stylesheet" href="@{/static/admin/assets/css/style.css}"> -->
-	<link rel="stylesheet" th:href="@{/static/admin/assets/css/loader-style.css}">
-	<link rel="stylesheet" th:href="@{/static/admin/assets/css/bootstrap.css}">
-	<link rel="stylesheet" th:href="@{/static/admin/assets/css/signin.css}">
-	<!--icons -->
-    <link rel="icon" th:href="@{/static/admin/images/favicon.ico}" type="image/x-icon">
-    
-    <!-- 滚动验证码 -->
-    <link rel="stylesheet" th:href="@{/static/login/disk/slidercaptcha.css}">
-    <style type="text/css">
-.container-fluid{
-
-    /* position: relative; */
-    margin: 0 auto;
-}
-.slidercaptcha {
-    margin: 0 auto;
-    width: 314px;
-    height: 286px;
-    border-radius: 4px;
-    background-color:white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
-    margin-top: 40px;
-}
-.card-header {
-    padding: .75rem 1.25rem;
-    margin-bottom: 0;
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 1px solid rgba(0,0,0,.125);
-}
-.slidercaptcha .card-body {
-	padding: 1rem;
-}
-
-.slidercaptcha canvas:first-child {
-	border-radius: 4px;
-	border: 1px solid #e6e8eb;
-}
-
-.slidercaptcha.card .card-header {
-	background-image: none;
-	background-color: rgba(0, 0, 0, 0.03);
-}
-
-.refreshIcon {
-	/* top: -50px; */
-    font-size: 1.8rem;
-}
-    </style>
+    <th:block th:include="include :: header('登录')"/>
+    <link rel="stylesheet" th:href="@{/static/admin/css/other/login.css}" />
 </head>
-<body>
-
-<div style="position: fixed;z-index: 9999; right: 0;">
-	<a target="_blank" href='https://gitee.com/bdj/SpringBoot_v2'><img src='https://gitee.com/bdj/SpringBoot_v2/widgets/widget_1.svg?color=f20049' alt='Fork me on Gitee'></img></a>
-</div>
-<!-- Preloader -->
-<div id="preloader">
-	<div id="divstatus">
-		&nbsp;
-	</div>
-</div>
-<div class="container">
-	<div class="" id="login-wrapper">
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-				<div id="logo-login">
-					<h1>SpringBoot
-					<span>v2</span>
-					</h1>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-				<div class="account-box">
-					<form role="form"  method="post" id="loginForm">
-						<div class="form-group">
-							<a href="#" class="pull-right label-forgot">忘记账号?</a>
-							<label for="inputUsernameEmail">账号</label>
-							<input type="text" placeholder="请输入账号"  name="username" id="loginname"  class="form-control">
-						</div>
-						<div class="form-group">
-							<a href="#" class="pull-right label-forgot">忘记密码?</a>
-							<label for="inputPassword">密码</label>
-							<input type="password" placeholder="请输入密码" name="password" id="password"  class="form-control">
-						</div>
-						<div class="form-group" id="yazm_div" th:if="${RollVerification!=true}">
-							<label for="inputPassword">验证码</label>
-							<div class="row">
-								<div class="col-lg-6">
-									<input class="form-control" name="code" id="code"  placeholder="请输入验证码">
-								</div>
-								 <div class="col-lg-6">
-								 	 <img height="33px"  id="codeImg" alt="点击更换" title="点击更换" th:src="@{/captcha/captchaImage?type=char}" />
-								 </div>
-								
-							</div>
-                           
-						</div>
-						<div class="checkbox pull-left">
-							<label>
-							<input type="checkbox">记住账号</label>
-						</div>
-						<button class="btn btn btn-primary pull-right" type="submit">登录</button>
-					</form>
-					<a class="forgotLnk" href="index-2.html"></a>
-					<div class="or-box">
-						<center><span class="text-center login-with">登录 or <b>注册</b></span></center>
-						<div class="row">
-							<div class="col-md-6 row-block">
-								<a target="_blank" href="https://gitee.com/bdj/SpringBoot_v2" class="btn btn-facebook btn-block">
-								<span class="entypo-cloud space-icon"></span>Gitee</a>
-							</div>
-							<div class="col-md-6 row-block">
-								<a target="_blank" href="https://github.com/fuce1314/Springboot_v2" class="btn btn-twitter btn-block">
-								<span class="entypo-github space-icon"></span>Github</a>
-							</div>
-							
-						</div>
-						<div style="margin-top:25px" class="row">
-							<div class="col-md-6 row-block">
-								<a target="_blank" href="https://gitee.com/bdj/SpringBoot_v2/wikis" class="btn btn-google btn-block">
-								<span class="entypo-book-open space-icon"></span>Wiki</a>
-							</div>
-							<div class="col-md-6 row-block">
-								<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce" class="btn btn-instagram btn-block">
-								<span class="entypo-qq space-icon"></span>QQ群</a>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<div class="row-block">
-						<div class="row">
-							<div class="col-md-12 row-block">
-								<a href="index-2.html" class="btn btn-primary btn-block">新建账号</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div style="text-align:center;margin:0 auto;">
-		<h6 style="color:#fff;">用心开发的脚手架</h6>
-	</div>
-</div>
-<div id="test1" class="gmap3">
-</div>
-
-
-
-
-<!-- 验证码滚动弹窗 -->
-<div class="container-fluid row modal fade bs-example-modal-lg"  style="display: none;" id="myModal">
-	<div class="">
-		<div class="col-12">
-			<div class="slidercaptcha card">
-				<div class="card-header">
-					<span>请完成安全验证</span>
-				</div>
-				<div class="card-body"><div id="captcha"></div></div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-<!-- 页面预加载插件 -->
-<script type="text/javascript" th:src="@{/static/admin/assets/js/preloader.js}"></script>
-<!-- bootstarp -->
-<script type="text/javascript" th:src="@{/static/admin/assets/js/bootstrap.js}"></script>
-<script type="text/javascript" th:src="@{/static/admin/assets/js/app.js}"></script>
-<script type="text/javascript" th:src="@{/static/admin/assets/js/load.js}"></script>
-<!-- 弹窗 -->
-<script  th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
-<script th:src="@{/static/admin/assets/js/bootstrap/js/base_list.js}" type="text/javascript"></script>
-<!-- jquery-validate 表单验证插件 -->
-<script type="text/javascript" th:src="@{/static/admin/assets/js/validate/jquery.validate.min.js}"></script>
-<script type="text/javascript" th:src="@{/static/admin/assets/js/validate/messages_zh.min.js}"></script>
-<script type="text/javascript" th:src="@{/static/admin/assets/js/validate/jquery.validate.extend.js}"></script>
-<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=R4pWCxXH9qm9ZpbnppGyxUGKydAd6esD"></script> -->
-<!--兼容移动端滑块滑动表单安全验证码jquery插件 -->
-<script type="text/javascript" th:src="@{/static/login/disk/longbow.slidercaptcha.js}"></script>
-<script type="text/javascript" th:inline="javascript">
-window.rootPath=[[${rootPath}]];
-var isRoll=[[${RollVerification}]];
-$(document).ready(function(){
-	(function(window,document){
-		window.v2={
-			version:"3.2",
-			init:function(){
-				this.iftop();
-				this.yzmRefresh();
-				//this.baiduMap();
-				this.loginSubmit();
-				this.showdd();
-				this.ifyzm();
-				this.rollVerification();
-			},
-			ifyzm:function(){
-				if(isRoll){
-					$("#yazm_div").hide();
-				}
-			},
-			iftop:function(){
-				//session获取iframe处理
-		    	if (window != top) {
-		          top.location.href = location.href;
-		        }
-			},
-			yzmRefresh:function(){
-				//刷新验证码
-		    	$('#codeImg').click(function() {
-					var url =rootPath+"/captcha/captchaImage?type=char&s=" + Math.random();
-					$("#codeImg").attr("src", url);
-				});
-			},
-			baiduMap:function(){
-				// 百度地图API功能
-				/* try {
-					var map = new BMap.Map("test1");
-			    	var point = new BMap.Point(106.475851,29.542392);
-			    	map.centerAndZoom(point, 10);
-			    	var marker = new BMap.Marker(point);  // 创建标注
-			    	map.addOverlay(marker);               // 将标注添加到地图中
-			    	marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-			    	map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的
-			    	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-				} catch (e) {
-					
-				} */
-		    	
-			},
-			showdd:function(){
-				var timer;
-				var current = 0;
-				var fhi = 1;
-				var current2 = 1;
-				var showfh=function(){
-					fhi = 1;
-					//关闭提示晃动屏幕，注释掉这句话即可
-					timer = setInterval(xzfh2, 10); 
-				};
-				var xzfh=function(){
-					current = (current)%360;
-					document.body.style.transform = 'rotate('+current+'deg)';
-					current ++;
-					if(current>360){current = 0;}
-				};
-				var xzfh2=function(){
-					if(fhi>50){
-						document.body.style.transform = '';
-						clearInterval(timer);
-						return;
-					}
-					current = (current2)%360;
-					document.body.style.transform = 'rotate('+current+'deg)';
-					current ++;
-					if(current2 == 1){current2 = -1;}else{current2 = 1;}
-					fhi++;
-				};
-				return {
-					init:function(){
-						showfh();
-					}
-				};
-			},
-			rollVerification:function(){
-				$('#captcha').sliderCaptcha({
-					width: 280,
-			        height: 150,
-			        sliderL: 42,//拼图宽度
-			        sliderR: 9,//拼图突出半径
-			        offset: 5,//验证容错偏差值 默认5个像素偏差即认为验证通过
-			        loadingText: '正在加载中...',//	图片加载时显示的文本信息
-			        failedText: '再试一次',
-			        barText: '向右滑动填充拼图',
-			        repeatIcon: 'fa fa-refresh',
-			        remoteUrl:rootPath+"/captcha/isVerify",
-			        verify: function (arr, url) {
-			            var ret = false;
-			            $.ajax({
-			                url: rootPath+"/captcha/isVerify",
-			                data: JSON.stringify(arr),
-			                async: false,
-			                cache: false,
-			                type: 'POST',
-			                contentType: 'application/json',
-			                dataType: 'json',
-			                success: function (result) {
-			                    ret = result;
-			                }
-			            });
-			            return ret;
-			        },
-					setSrc: function () {
-						//return 'http://images.sdgxgz.com/Pic' + Math.round(Math.random() * 136) + '.jpg';
-						return  rootPath+'/static/login/img/1.jpg';
-					},
-					onSuccess: function () {
-						var dataFormJson=$("#loginForm").serialize();
-						$.ajax({
-							cache : true,
-							type : "POST",
-							url : rootPath + "/admin/login",
-							data : dataFormJson,
-							async : false,
-							error : function(request) {
-								$.modal.alertError("系统错误");
-							},
-							success : function(data) {
-								if(data.code==200){
-									 location.href = rootPath + '/admin/index';
-								}else{
-									$('#myModal').modal('hide');
-									$('#captcha').sliderCaptcha('reset');
-									v2.showdd().init();
-									layer.msg(data.msg, function(){
-										//关闭后的操作
-									});
-								}
-								
-							}
-						});
-					},
-					onFail: function () {
-
-			        },
-			        onRefresh: function () {
-			        
-			        }
-				});
-				
-			},
-			loginSubmit:function(){
-				$("#loginForm").validate({
-					rules:{
-						username:{
-							required:true,
-							minlength: 1,
-							maxlength: 20,
-						},
-						password:{
-							required:true,
-							minlength: 1,
-							maxlength: 20,
-						},
-						code:{
-							required:true,
-							minlength: 4,
-							maxlength: 20,
-						}
-					},
-					messages: {
-				        "name": {
-				            remote: "名称已经存在"
-				        }
-				    },
-					submitHandler:function(form){
-						if(isRoll){
-							$('#myModal').modal('show');
-						}else{
-							var dataFormJson=$("#loginForm").serialize();
-							$.ajax({
-								cache : true,
-								type : "POST",
-								url : rootPath + "/admin/login",
-								data : dataFormJson,
-								async : false,
-								error : function(request) {
-									$.modal.alertError("系统错误");
-								},
-								success : function(data) {
-									if(data.code==200){
-										 location.href = rootPath + '/admin/index';
-									}else{
-										v2.showdd().init();
-										layer.msg(data.msg, function(){
-											//关闭后的操作
-										});
-									}
-									
-								}
-							});
-						}
-						
-					}
-				});
-			}
-		};
-		
-		v2.init();
-	})(window,document);
-})
-
-</script>
+<!-- 代 码 结 构 -->
+<body th:background="@{/static/admin/images/login.svg}">
+<form class="layui-form" action="javascript:void(0);">
+    <div class="layui-form-item">
+        <img class="logo" th:src="@{/static/admin/images/logo.png}" />
+        <div class="title">springboot-v2</div>
+        <div class="desc">
+            	v2新的一年新的开始
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <input name="username" type="text" placeholder="账 户 : admin " value="admin" hover class="layui-input"  />
+    </div>
+    <div class="layui-form-item">
+        <input name="password" type="password" placeholder="密 码 : admin " value="admin" hover class="layui-input"  />
+    </div>
+    <div class="layui-form-item">
+        <input placeholder="验证码 : " name="captcha" hover class="code layui-input layui-input-inline"  />
+        <img th:src="@{/captcha/captchaImage?type=char}" class="codeImage" id="captchaImage"/>
+    </div>
+    <div class="layui-form-item">
+        <input type="checkbox" name="remember-me" title="记住密码" lay-skin="primary">
+    </div>
+    <div class="layui-form-item">
+        <button class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
+            登 入
+        </button>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
 <script>
-//
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?76968355bd5f8c263c65a1ad6dca8fa8";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+    layui.use(['form','jquery','layer'], function() {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let layer = layui.layer;
+
+        form.on('submit(login)', function(data){
+            let loader = layer.load();
+            $(".login").html("<i class='layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading' />");
+            $.ajax({
+                url:rootPath+'/admin/login',
+                data:data.field,
+                type:"post",
+                dataType:'json',
+                success:function(result){
+                    layer.close(loader);
+                    if(result.code==200){
+                        layer.msg(result.msg,{icon:1,time:1000},function(){
+                            location.href = rootPath+"/admin/index";
+                        })
+                    }else{
+                        layer.msg(result.msg,{icon:2,time:1000},function(){
+                            document.getElementById("captchaImage").src=rootPath+"/captcha/captchaImage?type=char&s="+Math.random();
+                        });
+                    }
+                    $(".login").html("登 入")
+                }
+            });
+            return false;
+        });
+
+        $("#captchaImage").click(function(){
+            document.getElementById("captchaImage").src=rootPath+"/captcha/captchaImage?type=char&s="+Math.random();
+        })
+        setInterval(function(){
+            document.getElementById("captchaImage").src=rootPath+"/captcha/captchaImage?type=char&s="+Math.random();
+        },30000);
+
+        validateKickout();
+
+    })
+
+
 </script>
+<!-- Session 过期处理 -->
+<script>
+    if(window!=top){ top.location.href = location.href; }
+    function validateKickout() {
+        if (getParam("kickout") == 1) {
+            layer.alert("<font color='red'>您已在别处登录，请您修改密码或重新登录</font>", {
+                    icon: 0,
+                    title: "系统提示"
+                },
+                function(index) {
+                    //关闭弹窗
+                    layer.close(index);
+                });
+        }else if(getParam("sessionout") == 1){
+            layer.alert("<font color='red'>登录已过期，请重新登录</font>", {
+                    icon: 0,
+                    title: "系统提示"
+                },
+                function(index) {
+                    //关闭弹窗
+                    layer.close(index);
+                });
+        }
+    }
+
+    function getParam(paramName) {
+        var reg = new RegExp("(^|&)" + paramName + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);
+        return null;
+    }
+
+</script>
+
 </body>
 </html>

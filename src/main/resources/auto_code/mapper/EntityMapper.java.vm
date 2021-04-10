@@ -1,52 +1,52 @@
-package ${globalConfig.parentPack}.mapper.auto;
+package ${parentPack}.mapper.auto;
 
-import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel};
-import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel}Example;
+import ${parentPack}.model.auto.${tableInfo.javaTableName};
+import ${parentPack}.model.auto.${tableInfo.javaTableName}Example;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * ${TsysTables.tableComment} ${TsysTables.tableModel}Mapper
- * @author ${globalConfig.author}_自动生成
- * @email ${globalConfig.email}
+ * ${tableInfo.tableComment} ${tableInfo.javaTableName}Mapper
+ * @author ${author}_自动生成
+ * @email ${email}
  * @date ${datetime}
  */
-public interface ${TsysTables.tableModel}Mapper {
+public interface ${tableInfo.javaTableName}Mapper {
    #set( $pklag = false)
-   #set( $pk_attrType = '')
+   #set( $pk_javaType = '')
    #foreach ($column in $beanColumns)
 	   #if(${column.column_key} == 'PRI')
 	   	#set( $pklag = true )
-	   	#set( $pk_attrType=$column.attrType)
+	   	#set( $pk_javaType=$column.javaType)
 	   #end
    #end
 
-    long countByExample(${TsysTables.tableModel}Example example);
+    long countByExample(${tableInfo.javaTableName}Example example);
 
-    int deleteByExample(${TsysTables.tableModel}Example example);
+    int deleteByExample(${tableInfo.javaTableName}Example example);
 	#if(${pklag} == true)
 	
-    int deleteByPrimaryKey(${pk_attrType} id);
+    int deleteByPrimaryKey(${pk_javaType} id);
 	#end
 	
-    int insert(${TsysTables.tableModel} record);
+    int insert(${tableInfo.javaTableName} record);
 
-    int insertSelective(${TsysTables.tableModel} record);
+    int insertSelective(${tableInfo.javaTableName} record);
 
-    List<${TsysTables.tableModel}> selectByExample(${TsysTables.tableModel}Example example);
+    List<${tableInfo.javaTableName}> selectByExample(${tableInfo.javaTableName}Example example);
 	#if(${pklag} == true)
 	
-    ${TsysTables.tableModel} selectByPrimaryKey(${pk_attrType} id);
+    ${tableInfo.javaTableName} selectByPrimaryKey(${pk_javaType} id);
 	#end
 	
-    int updateByExampleSelective(@Param("record") ${TsysTables.tableModel} record, @Param("example") ${TsysTables.tableModel}Example example);
+    int updateByExampleSelective(@Param("record") ${tableInfo.javaTableName} record, @Param("example") ${tableInfo.javaTableName}Example example);
 
-    int updateByExample(@Param("record") ${TsysTables.tableModel} record, @Param("example") ${TsysTables.tableModel}Example example); 
+    int updateByExample(@Param("record") ${tableInfo.javaTableName} record, @Param("example") ${tableInfo.javaTableName}Example example); 
 	#if(${pklag} == true)
 	
-    int updateByPrimaryKeySelective(${TsysTables.tableModel} record);
+    int updateByPrimaryKeySelective(${tableInfo.javaTableName} record);
 
-    int updateByPrimaryKey(${TsysTables.tableModel} record);
+    int updateByPrimaryKey(${tableInfo.javaTableName} record);
   	#end
   	
 }

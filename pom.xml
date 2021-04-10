@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.example</groupId>
-	<artifactId>springboot_v2</artifactId>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.1</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.fc</groupId>
+    <artifactId>v2</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>v2</name>
 	<packaging>war</packaging>
-	<name>springboot_v2</name>
-	<description>springbootv2系统</description>
+    <description>springboot-v2-pear</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
-		<relativePath /> <!-- 从存储库查找父级 -->
-	</parent>
-
-	<properties>
+    <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<commons.fileupload.version>1.3.3</commons.fileupload.version>
 		<commons.io.version>2.5</commons.io.version>
 	</properties>
-	
-	<!-- https://mvnrepository.com/ 查找jar网站 -->
+
+    <!-- https://mvnrepository.com/ 查找jar网站 -->
 	<dependencies>
+	
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.apache.commons</groupId>
+		  <artifactId>commons-pool2</artifactId>
+		</dependency>
+		
 		<!-- SpringBoot Web容器 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,22 +52,23 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- 添加swagger2 -->
+		<!-- knife4j -->
 		<dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-        </dependency>
+		    <groupId>com.github.xiaoymin</groupId>
+		    <artifactId>knife4j-spring-boot-starter</artifactId>
+		    <version>2.0.7</version>
+		</dependency>
 		<!--GSON -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
+		<!-- JSON 解 析 工 具 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.68</version>
+        </dependency>
 		<!-- pageHelper -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
@@ -69,12 +79,12 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-		</dependency> 
+		</dependency>
 
 		<!-- mysql驱动8.0
-		 <dependency> 
-		 	<groupId>mysql</groupId> 
-		 	<artifactId>mysql-connector-java</artifactId> 
+		 <dependency>
+		 	<groupId>mysql</groupId>
+		 	<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.11</version>
 		 </dependency>
 		 -->
@@ -147,12 +157,6 @@
 			<artifactId>hutool-all</artifactId>
 			<version>4.1.12</version>
 		</dependency>
-		<!-- google验证码 -->
-		<dependency>
-			<groupId>com.github.penggle</groupId>
-			<artifactId>kaptcha</artifactId>
-			<version>2.3.2</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
 		<dependency>
 		    <groupId>org.apache.velocity</groupId>
@@ -176,44 +180,37 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<!-- mail -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
 		    <artifactId>mail</artifactId>
 		    <version>1.4.7</version>
 		</dependency>
-		
-		<!--百度UEditor依赖的jar包 -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20180813</version>
-		</dependency>
-		<dependency>
-			 <groupId>ueditor</groupId>
-			 <artifactId>1.4.3</artifactId>
-			<version>1.8</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>
-		</dependency>
 		<!--quartz依赖-->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 		</dependency>
-		<!-- 七牛云 -->
+		<!--
+			验证码
+			https://gitee.com/whvse/EasyCaptcha?_from=gitee_search
+		-->
 		<dependency>
-			<groupId>com.qiniu</groupId>
-			<artifactId>qiniu-java-sdk</artifactId>
-			<version>[7.2.0, 7.2.99]</version>
+		  <groupId>com.github.whvcse</groupId>
+		  <artifactId>easy-captcha</artifactId>
+		  <version>1.6.2</version>
+	   </dependency>
+		<!-- 亚马逊aws-s3 -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.543</version>
 		</dependency>
 		
 	</dependencies>
 
-
-
-	<build>
+    <build>
 		<!-- 打包不带版本号 -->
 		<!-- <finalName>springboot_v2</finalName> -->
 		<plugins>
@@ -254,32 +251,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<!-- 阿里云maven仓库 -->
-	<repositories>
-		<repository>
-			<id>public</id>
-			<name>aliyun nexus</name>
-			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>public</id>
-			<name>aliyun nexus</name>
-			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-	
 
 </project>

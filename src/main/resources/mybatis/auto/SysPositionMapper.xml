@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.SysPositionMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.SysPosition">
+<mapper namespace="com.fc.v2.mapper.auto.SysPositionMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.SysPosition">
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="post_name" jdbcType="VARCHAR" property="postName" />
     <result column="order_num" jdbcType="INTEGER" property="orderNum" />
@@ -71,7 +71,7 @@
        	  	      	order_num,
        	  	    	  	status
        	</sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.SysPositionExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.SysPositionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -96,14 +96,14 @@
     delete from t_sys_position
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.SysPositionExample">
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.SysPositionExample">
     delete from t_sys_position
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   
-  <insert id="insert" parameterType="com.fc.test.model.auto.SysPosition">
+  <insert id="insert" parameterType="com.fc.v2.model.auto.SysPosition">
     insert into t_sys_position (
       	  	       id,
        	  	       post_name,
@@ -118,7 +118,7 @@
        	    )
   </insert>
   
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.SysPosition">
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.SysPosition">
     insert into t_sys_position
     <trim prefix="(" suffix=")" suffixOverrides=",">
           
@@ -158,7 +158,7 @@
         </trim>
   </insert>
   
-  <select id="countByExample" parameterType="com.fc.test.model.auto.SysPositionExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.SysPositionExample" resultType="java.lang.Long">
     select count(*) from t_sys_position
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -201,7 +201,7 @@
   </update>
   
   
-      <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.SysPosition">
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.SysPosition">
     update t_sys_position
     <set>
                           <if test="postName != null">
@@ -221,7 +221,7 @@
 
       	      	   	      	   	      	   	      	
 
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.SysPosition">
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.SysPosition">
     update t_sys_position
     set 
              	        	    	 			post_name = #{postName,jdbcType=VARCHAR},

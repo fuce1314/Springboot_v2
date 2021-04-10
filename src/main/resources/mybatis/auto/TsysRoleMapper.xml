@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fc.test.mapper.auto.TsysRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysRole" >
+<mapper namespace="com.fc.v2.mapper.auto.TsysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.TsysRole" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List" >
     id, name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.test.model.auto.TsysRoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.v2.model.auto.TsysRoleExample" >
     select
     <if test="distinct" >
       distinct
@@ -90,17 +90,17 @@
     delete from t_sys_role
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TsysRoleExample" >
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.TsysRoleExample" >
     delete from t_sys_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fc.test.model.auto.TsysRole" >
+  <insert id="insert" parameterType="com.fc.v2.model.auto.TsysRole" >
     insert into t_sys_role (id, name)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysRole" >
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.TsysRole" >
     insert into t_sys_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -119,7 +119,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fc.test.model.auto.TsysRoleExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.TsysRoleExample" resultType="java.lang.Integer" >
     select count(*) from t_sys_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -147,7 +147,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TsysRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.TsysRole" >
     update t_sys_role
     <set >
       <if test="name != null" >
@@ -156,7 +156,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TsysRole" >
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.TsysRole" >
     update t_sys_role
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}

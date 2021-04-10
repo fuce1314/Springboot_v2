@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="include :: header('全局配置')"/>
+    <link rel="stylesheet" th:href="@{/static/component/highlight/styles/vs.css}">
+	<script th:src="@{/static/component/highlight/highlight.pack.js}"></script>
+	<style type="text/css">
+		div.code {
+		  white-space: pre;
+		}
+	</style>
+</head>
+<body class="pear-container">
+
+    <div class="user-main">
+    	
+    	<div class="layui-card">
+	    	<div class="layui-tab layui-tab-brief" lay-filter="test1">
+				<ul class="layui-tab-title">
+				    <li th:each="mapEntry,userStat: ${viewmap}" th:text="${mapEntry.key}" th:lay-id="${userStat.index}" >用户管理</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item" th:each="mapEntry: ${viewmap}">
+						<pre>
+							<code th:if="${mapEntry.key.indexOf('.java')!=-1}" class="language-java" th:text="${mapEntry.value}">
+							</code>
+							<code th:if="${mapEntry.key.indexOf('.sql')!=-1}" class="language-sql"  th:text="${mapEntry.value}">
+							</code>
+							<code th:if="${mapEntry.key.indexOf('.html')!=-1}" class="language-html" th:text="${mapEntry.value}">
+							</code>
+							<code th:if="${mapEntry.key.indexOf('.xml')!=-1}" class="language-xml" th:text="${mapEntry.value}">
+							</code>
+						</pre>
+					</div>  
+				</div>
+			</div>
+    	</div>
+    </div>
+</body>
+
+
+<th:block th:include="include :: footer"/>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+	  document.querySelectorAll('pre code').forEach((block) => {
+	    hljs.highlightBlock(block);
+	  });
+	});
+    layui.use(['element','jquery'], function () {
+    	var element = layui.element;
+    	 element.tabChange('test1', "0"); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
+    	  
+    })
+</script>
+</html>

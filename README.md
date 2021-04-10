@@ -1,182 +1,22 @@
+### 公告
+
+由于以前的v2有白屏bug（偶尔需要点击2次才能展示内容，无法debug），个人无法解决，v2以前全新换皮肤。如果你要研究可以查看分支：【20210101v2】
+master为最新皮肤
+
 
 ### 前言
 - SpringBoot_v2项目是努力打造springboot框架的极致细腻的脚手架。包括一套漂亮的前台。无其他杂七杂八的功能，原生纯净。
 - 服务器演示：http://47.99.218.99:8080/springboot_v2/ 账号:admin 密码:admin
+老版本v2分支为[20210101v2](https://gitee.com/bdj/SpringBoot_v2/tree/20210101v2/)
+目前mater为新皮肤
 
 ### 项目介绍
   基于springboot的一款纯净脚手架。努力打造一款免费开源、注释全、文档全适合新手学习、方便快速二次开发的框架。
-   
-
 ##### 1. 没有基础版、没有vip版本、没有付费群、没有收费二维码
 ##### 2. 遵循开源真谛，一切免费才是真开源
 ##### 3. 不求回报，你使用快乐就是这个项目最大的快乐！
 
 
-
-### 组织架构
-
-```
-Springboot
-├─doc  项目SQL语句以及文档
-│
-├─common 公共模块
-│  ├─base Base继承通用类
-│  ├─conf springBoot所有配置
-│  ├─domain 前台返回包
-│  ├─druid druid连接池
-│  ├─exception 异常处理包
-│  ├─file 文件上传
-│  ├─interceptor 拦截器
-│  ├─log 日志记录AOP
-│  ├─domain 前台返回包
-│  ├─quartz Spring定时器
-│  └─support 工具包
-│
-├─controller 请求访问模块
-│  ├─admin 模版后台请求包
-│  ├─websocket websoket消息请求
-│  └─HomeController.java 首页访问类
-│
-├─Mapper Dao模块
-│  ├─auto mybatis-generator.xml自动生成Dao
-│  └─custom 自定义Dao
-│
-├─Model 实体类模块
-│  ├─auto mybatis-generator.xml自动生成实体包
-│  └─custom 自定义实体
-│
-├─Service 服务层模块[没写抽象模块，因为我觉得没什么用，可能我能力不足]
-│
-├─shiro 权限模块
-│  ├─config shiro配置
-│  ├─service shiro服务层
-│  └─util shiro通用方法
-│
-├─util 工具模块
-│
-├─SpringbootSwagger2Application 启动类
-│ 
-├─SpringbootWebInitializer tomcat启动类
-│
-├─test 测试类
-│
-├─resources 配置文件夹
-│  ├─ehcache shiro权限缓存配置
-│  ├─generator 自动生成模板以及配置目录
-│  │   ├─MyBatisGenerator mybates半自动生成工具
-│  │   │   ├─1.bat 执行批处理
-│  │   │   ├─generator.xml generator配置文件
-│  │   │   ├─mybatis-generator-core-1.3.2.jar generator1.3.2版本
-│  │   │   ├─mybatis-generator-core-1.3.7.jar generator1.3.7版本【默认】
-│  │   │   └─mysqldriver.jar mysql驱动【该驱动为8.0一下的版本不支持8.0自行替换】
-│  │   │
-│  │   ├─template 模板文件假
-│  │   │   ├─controller anction模板
-│  │   │   ├─html html页面模板
-│  │   │   ├─mapper dao模板
-│  │   │   ├─mapperxml daoxml模板
-│  │   │   ├─model 实体模板
-│  │   │   ├─service service模板
-│  │   │   └─sql sql模板
-│  │   │
-│  │   └─generator.properties 自动生成配置文件
-│  │
-│  ├─mybatis mybatis Mapper.xml生成文件夹
-│  │   ├─auto自动生成的Mapper.xml文件夹
-│  │   └─custom 手写Mapper.xml文件夹
-│  │
-│  ├─static 静态文件存放文件夹[后台模版就放在此文件夹下面。所有的模版页面都在下面]
-│  │   ├─admin 后台目录存放
-│  │   │  ├─assets js、css存放路径
-│  │   │  ├─assets js、css存放路径
-│  │   │  └─bootstarp 后台模板存放路径
-│  │   ├─js js存放
-│  │   └─login 登录页面js、css、image
-│  │
-│  ├─templates 前台HTML存放文件夹
-│  │   ├─admin 动态后台html模板
-│  │   ├─error 错误页面html模板
-│  │   └─login.html 登录html页面
-│  │
-│  ├─application-dev.yml 开发环境配置
-│  ├─application-prod.yml 生产环境配置
-│  ├─application.yml springboot配置
-│  ├─banner1.txt springboot 启动动画
-│  ├─logback.xml log4j配置文件
-│  └─mybatis-generator.xml mybates自动生成 xml、dao、model
-│  
-└─pom.xml   maven.xml
-
-
-```
-
-### 技术选项
-
-技术|名称|官网|备注
----|---|---|---
-springboot|springboot框架 ||
-Apache Shiro|权限框架||
-MyBatis Generator|代码生成||
-PageHelper|MyBatis物理分页插件||
-hikari|数据库连接池||
-Thymeleaf|模板引擎||
-Log4J|日志组件||
-Swagger2|接口测试框架||
-Maven|项目构建管理||
-Websocket|websocket消息通知||
-velocity|模板引擎||
-kaptcha|google验证码||
-devtools|热部署||
-GSON|谷歌json||
-druid|阿里连接池||
-quartz|定时框架||
-
-
-
-
-### 前端技术
-技术|名称|官网|备注
----|---|---|---
-jQuery|函式库 || 
-bootstrap|前端页面框架||
-Font-awesome|字体图标||
-jquery.validate|jquery验证插件||
-vue|渐进式框架||
-ladda.min.js|按钮加载js||
-bootstrap-table|表格组件||
-layer.js|弹窗组件||
-jquery.blockUI.js|遮蔽层组件||
-bootstrap-table-export.js|前台导出组件||
-bootstrap-treeview|树结构组件||
-bootstrap-colorpicker|颜色组件||
-dropzone|文件上传||
-bootstrap-wysihtml5|富文本||
-bootstrap-switch|开关按钮||
-UEditor|百度富文本||
-
-### jar版本
-
-| 名称       | 版本          | 备注 |
-|------------|---------------|------|
-| springBoot | 2.0.0.RELEASE |      |
-| mybatis-spring 1.3.2 | 1.3.2         |      |
-| swagger2   | 2.7.0         |      |
-| swagger-ui | 2.7.0         |      |
-| gson       | 2.8.2         |      |
-| pagehelper | 4.1.4         |      |
-| mysql|5.1.40 OR   8.0.11      |      |
-| shiro|1.4.0         |      |
-| thymeleaf-extras-shiro|2.0.0         |      |
-| thymeleaf|2.0.0.RELEASE         |      |
-| commons-lang3|  3.7       |      |
-| commons-lang|2.4         |      |
-| commons-io|2.5         |      |
-| commons-fileupload|1.3.3         |      |
-| spring-boot-devtools|2.0.0.RELEASE         |      |
-| hutool| 4.1.10        |      |
-| druid| 1.1.10        |      |
-| kaptcha| 2.3.2        |      |
-| velocity| 1.7        |      |
 
 ### 开发环境
 - JDK8.0
@@ -186,6 +26,7 @@ UEditor|百度富文本||
 ### 资源下载
 - JDK8 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 - Maven http://maven.apache.org/download.cgi
+- minio http://www.minio.org.cn/ （文件存储）
 
 
 ### 部署流程
@@ -210,14 +51,10 @@ UEditor|百度富文本||
 ### 数据库模型
 ![数据库模型](https://images.gitee.com/uploads/images/2019/0701/001953_dd7a387e_123301.png "数据库模型.png")
 
-### 界面风格
-|![登录界面](https://images.gitee.com/uploads/images/2019/0617/214247_d40363b4_123301.png "登录界面.png")     | ![权限界面](https://images.gitee.com/uploads/images/2019/0921/134912_1fcad28d_123301.png "权限列表.png")    |
+### 新界面风格
+|![输入图片说明](https://images.gitee.com/uploads/images/2021/0101/134930_749be44d_123301.png "屏幕截图.png")  | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0101/135013_703123c3_123301.png "屏幕截图.png")    |
 | --- | --- |
-|![权限添加](https://images.gitee.com/uploads/images/2019/0701/002939_3514f4b9_123301.png "权限添加.png")     |![修改角色](https://images.gitee.com/uploads/images/2019/0701/003259_7c28607d_123301.png "屏幕截图.png")     |
-|![表单构建](https://images.gitee.com/uploads/images/2019/0610/014618_33e1edf9_123301.png "表单构建.png")     |![代码生成界面](https://images.gitee.com/uploads/images/2019/0921/135051_b8acc5f6_123301.png "代码生成.png")     |
-|![字典表界面](https://images.gitee.com/uploads/images/2019/0921/135710_a09e8233_123301.png "字典表.png")     |![定时器界面](https://images.gitee.com/uploads/images/2019/0921/135755_19c23d8f_123301.png "定时器.png")     |
-![公告界面](https://images.gitee.com/uploads/images/2019/0921/135843_3bc64939_123301.png "公告界面.png")     | ![邮件发送功能](https://images.gitee.com/uploads/images/2019/0701/003722_d73d40a5_123301.png "邮件发送功能.png")    |
-|![首页](https://images.gitee.com/uploads/images/2019/0609/210649_a934ea28_123301.png "首页.png")     |![swagger2](https://images.gitee.com/uploads/images/2019/0609/210335_d3efad8c_123301.png "swagger2.png")     |
+|![输入图片说明](https://images.gitee.com/uploads/images/2021/0101/135035_24fdcafb_123301.png "屏幕截图.png")    | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0101/135102_7ba9097f_123301.png "屏幕截图.png")     |
 
 
 ### 后台代码注释风格
@@ -231,23 +68,6 @@ UEditor|百度富文本||
 ![HTML代码页面](https://images.gitee.com/uploads/images/2018/0822/004608_c55d62a4_123301.jpeg "HTML代码页面.jpg")
 ![js引入](https://images.gitee.com/uploads/images/2018/0909/203322_6dc467c2_123301.jpeg "js引入.jpg")
 
-### 代码自动生成功能
-![代码生成界面](https://images.gitee.com/uploads/images/2019/0921/135051_b8acc5f6_123301.png "代码生成.png")
-全局配置想生成到什么地方就生成到什么地方，自动执行权限sql
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0921/142230_8f3730cc_123301.png "屏幕截图.png")
-
-### 后期功能
-
-功能|描述
----|---
- 字典表|完成
- 部署文档|完成
- 文件上传|完成
- 再次优化|完成
- add跟eidt页面js写出js文件|完成
- 500页面|完成
- 404页面|完成
- 权限错误页面|完成
 
 ### 情况说明
 - 如果您喜欢Springboot_v2，可以clone下来使用，您的star将是本人前进的动力，如果您有技术疑问，可以加群交流。
@@ -319,9 +139,4 @@ https://gitee.com/agile-bpm
 
 ### 使用v2做得系统
 
-![自动化运维](https://images.gitee.com/uploads/images/2020/0311/171512_69596856_123301.png "屏幕截图.png")
 
-![输网络法庭](https://images.gitee.com/uploads/images/2020/0311/171614_f30e1ac2_123301.png "屏幕截图.png")
-
-
-*

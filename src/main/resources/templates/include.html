@@ -1,0 +1,20 @@
+<!-- 通用CSS -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header(title)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/static/component/pear/css/pear.css}">
+</head>
+
+<!-- 通用JS -->
+<div th:fragment="footer">
+    <script> let rootPath="[[${rootPath}]]";</script>
+    <script th:src="@{/static/component/layui/layui.js}"></script>
+    <script th:src="@{/static/component/pear/pear.js}"></script>
+    <script th:src="@{/static/component/jquery.min.js}"></script>
+</div>
+

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.TSysEmailMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TSysEmail">
+<mapper namespace="com.fc.v2.mapper.auto.TSysEmailMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.TSysEmail">
     <constructor>
       <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="receivers_email" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List">
     id, receivers_email, title, content, send_user_id, send_user_name, create_time
   </sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.TSysEmailExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.TSysEmailExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,13 +97,13 @@
     delete from t_sys_email
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TSysEmailExample">
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.TSysEmailExample">
     delete from t_sys_email
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fc.test.model.auto.TSysEmail">
+  <insert id="insert" parameterType="com.fc.v2.model.auto.TSysEmail">
     insert into t_sys_email (id, receivers_email, title, 
       content, send_user_id, send_user_name, 
       create_time)
@@ -111,7 +111,7 @@
       #{content,jdbcType=VARCHAR}, #{sendUserId,jdbcType=VARCHAR}, #{sendUserName,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TSysEmail">
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.TSysEmail">
     insert into t_sys_email
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -160,7 +160,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fc.test.model.auto.TSysEmailExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.TSysEmailExample" resultType="java.lang.Long">
     select count(*) from t_sys_email
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -208,7 +208,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TSysEmail">
+  <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.TSysEmail">
     update t_sys_email
     <set>
       <if test="receiversEmail != null">
@@ -232,7 +232,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TSysEmail">
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.TSysEmail">
     update t_sys_email
     set receivers_email = #{receiversEmail,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},

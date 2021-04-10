@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.SysQuartzJobLogMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.SysQuartzJobLog">
+<mapper namespace="com.fc.v2.mapper.auto.SysQuartzJobLogMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.SysQuartzJobLog">
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="job_name" jdbcType="VARCHAR" property="jobName" />
     <result column="job_group" jdbcType="VARCHAR" property="jobGroup" />
@@ -81,7 +81,7 @@
        	  	      	start_time,
        	  	    	  	end_time
        	</sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.SysQuartzJobLogExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.SysQuartzJobLogExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -106,14 +106,14 @@
     delete from t_sys_quartz_job_log
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.SysQuartzJobLogExample">
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.SysQuartzJobLogExample">
     delete from t_sys_quartz_job_log
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   
-  <insert id="insert" parameterType="com.fc.test.model.auto.SysQuartzJobLog">
+  <insert id="insert" parameterType="com.fc.v2.model.auto.SysQuartzJobLog">
     insert into t_sys_quartz_job_log (
       	  	       id,
        	  	       job_name,
@@ -138,7 +138,7 @@
        	    )
   </insert>
   
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.SysQuartzJobLog">
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.SysQuartzJobLog">
     insert into t_sys_quartz_job_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
           
@@ -218,7 +218,7 @@
         </trim>
   </insert>
   
-  <select id="countByExample" parameterType="com.fc.test.model.auto.SysQuartzJobLogExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.SysQuartzJobLogExample" resultType="java.lang.Long">
     select count(*) from t_sys_quartz_job_log
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -281,7 +281,7 @@
   </update>
   
   
-      <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.SysQuartzJobLog">
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.SysQuartzJobLog">
     update t_sys_quartz_job_log
     <set>
                           <if test="jobName != null">
@@ -316,7 +316,7 @@
 
       	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	
 
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.SysQuartzJobLog">
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.SysQuartzJobLog">
     update t_sys_quartz_job_log
     set 
              	        	    	 			job_name = #{jobName,jdbcType=VARCHAR},

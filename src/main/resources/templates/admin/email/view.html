@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('邮件新增')"/>
+</head>
+<body>
+<form class="layui-form" th:object="${TSysEmail}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">接收人电子邮件</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{receiversEmail}" type="text" name="receiversEmail" autocomplete="off" placeholder="xxx@cc.com" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">邮件标题</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{title}" type="text" name="title" autocomplete="off"  class="layui-input" placeholder="邮件标题">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">内容</label>
+                    <div class="layui-input-block">
+                        <textarea id="content" name="content" style="display: none;" th:text="*{content}"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery','layedit'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let MODULE_PATH = rootPath+"/EmailController";
+
+         let layedite=layui.layedit;
+         let layeditIndex=layedite.build('content'); //建立编辑器
+
+    })
+</script>
+</body>
+</html>

@@ -1,326 +1,255 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-      xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
-<head th:replace="admin/common/html/head :: Head_Premiss(~{::title},~{::link},~{::style})">
-
-<title th:text=${title}></title>
-<!-- 这儿引用单独的css link -->
-<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
-<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
-
-<link rel="stylesheet" th:href="@{/static/js/bootstrap-treetable/bootstrap-treetable.min.css}">
-
-<style type="text/css">
-/**
-*这里写单独的css样式
-*/
-
-</style>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('部门列表')"/>
 </head>
-
-<body id="listbody">
-<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 代码编写处 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # -->
-
-<!-- 右边内容 -->
-<div class="wrap-fluid">
-    <div class="container-fluid paper-wrap bevel tlbr">
-        <!-- 内容 -->
-        <!--标题 通用-->
-        <div th:replace="admin/common/html/title :: title(${title},${parenttitle},${isMsg},${msgHTML})">
-        </div>
-        <!-- 结束标题 通用-->
-        <div class="content-wrap">
-            <!-- 结束内容 -->
-            <div class="row">
-                <div class="col-sm-12">
-                <!-- 搜索条件 -->
-                
-                	 <div class="nest" id="inlineClose">
-                            <div class="title-alt">
-                                <h6>搜索条件</h6>
-                                <div class="titleClose">
-                                    <a class="gone" href="#inlineClose">
-                                        <span class="entypo-cancel"></span>
-                                    </a>
-                                </div>
-                                <div class="titleToggle">
-                                    <a class="nav-toggle-alt" href="#search_div" >
-                                        <span class="entypo-down-open"></span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="body-nest" id="search_div" style="display: none">
-                                <div class="form_left">
-                                    <form role="form" class="form-inline">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail2" class="sr-only">搜索名字</label>
-                                            <input type="text" name="searchText" placeholder="搜索名字"class="form-control">
-                                        </div>
-                                        <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                	<!-- END搜索条件 -->
-                    <!-- 空白页开始-->
-                    <div class="nest" id="Blank_PageClose">
-                        <div class="title-alt">
-                            <h6>表单</h6>
-                            <div class="titleClose">
-                                <a class="gone" href="#Blank_PageClose">
-                                    <span class="entypo-cancel"></span>
-                                </a>
-                            </div>
-                            <div class="titleToggle">
-                                <a class="nav-toggle-alt" href="#Blank_Page_Content">
-                                    <span class="entypo-up-open"></span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="body-nest" id="Blank_Page_Content">
-                            <!-- 工具条 -->
-                            <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
-                            	<button onclick="add()" type="button" class="btn btn-primary">
-                                    <span class="entypo-plus-squared"></span>&nbsp;&nbsp;新增
-                                </button>
-                               <button onclick="batRemove()" type="button" class="btn btn-info">
-                                    <span class="entypo-trash"></span>&nbsp;&nbsp;删除
-                               </button>
-                               <button id="expandAllBtn"  type="button" class="btn btn-success">
-                                    <span class="entypo-shuffle"></span>&nbsp;&nbsp;展开/折叠
-                               </button>
-                               
-                           </div>
-                            <!-- 工具条 end-->
-                           <table id="demo" class="table-striped footable-res footable metro-blue" data-page-size="6">
-                                   
-                           </table>
-                        </div>
-                    </div>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">权限名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="powerName" placeholder="" class="layui-input">
                 </div>
-                <!-- 空白页结束 -->
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="department-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                    查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                    重置
+                </button>
             </div>
-            <!-- 结束内容 -->
-        </div>
+        </form>
     </div>
 </div>
-<!-- 结束右边内容 -->
-<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 代码编写处 END# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # -->
-
-
-
-
-
-
-
-<!-- 右侧隐藏滑块内容 -->
-<div th:include="admin/common/html/rightHide :: rightHide">
-    
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="department-table" lay-filter="department-table"></table>
+    </div>
 </div>
-   <!-- END 右侧隐藏滑块内容-->
 
-<!-- 通用js -->
-<div th:include="admin/common/html/js :: onload_js_Premiss">
-   
-</div>
-<script th:src="@{/static/js/bootstrap-treetable/bootstrap-treetable.min.js}" type="text/javascript"></script>
-<script type="text/javascript">
-var dataUrl=window.rootPath+"/SysDepartmentController/list2";
-var removeUrl=window.rootPath+"/SysDepartmentController/remove";
-var createUrl=window.rootPath+"/SysDepartmentController/add";
-var updateUrl=window.rootPath+"/SysDepartmentController/edit/{id}";
-var exportUrl=window.rootPath+"/SysDepartmentController/export";
-
-
-var treeTable = $('#demo').bootstrapTreeTable({
-    toolbar: "#demo-toolbar",//顶部工具条
-    expandColumn : 3,// 在哪一列上面显示展开按钮
-    url: dataUrl,// 请求后台的URL（*）
-    type: 'post',
-    id : "id",
-    rootIdValue: '0',
-    parentId: 'parentId',
-    striped:true,
-    columns: [
-		{
-		    checkbox: true
-		},
-		{
-		    field: 'id',
-		    title: '序号',
-		    visible: false //隐藏
-		},
-		{
-		    field: 'parentId',
-		    visible: false, //隐藏
-		    title: '父id'
-		},
-		{
-		    field: 'deptName',
-		    title: '部门名称'
-		},
-		{
-		    field: 'leader',
-		    title: '部门负责人'
-		},
-		{
-		    field: 'phone',
-		    title: '电话'
-		},
-		{
-		    field: 'email',
-		    title: '邮箱'
-		},
-		{
-		    field: 'status',
-		    title: '状态',
-		    formatter: function (value, row, index) {
-		        var actions = [];
-		        if(value==0){
-		        	 actions.push('<span class="label label-danger">关闭</span>');
-		        }else if(value==1){
-		        	 actions.push('<span class="label label-primary">开启</span>');
-		        }
-		      	return actions.join('');			    
-			}
-		},
-		{
-		    field: 'orderNum',
-		    title: '排序',
-		    sortable:true,//设置true为允许列可以排序
-			order: 'asc' //排序顺序
-		},
-		{
-		    title: '操作',
-		    formatter: function (value, row, index) {
-		        var id = row.id;
-		        var actions = [];
-		        if(row.id!=1){
-		        	actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="edit(' + row.id + ')"><i class="fa fa-edit"></i>编辑</a> ');
-			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="remove(' + row.id + ')"><i class="fa fa-remove"></i>删除</a>');
-		        }
-		        return actions.join('');
-		    }
-		}
-    ],
-    onAll: function(data) {
-        console.log("onAll");
-        return false;
-    },
-    onLoadSuccess: function(data) {
-        console.log("onLoadSuccess");
-        return false;
-    },
-    onLoadError: function(status) {
-        console.log("onLoadError");
-        return false;
-    },
-    onClickCell: function(field, value, row, $element) {
-        console.log("onClickCell",row);
-        return false;
-    },
-    onDblClickCell: function(field, value, row, $element) {
-        console.log("onDblClickCell",row);
-        return false;
-    },
-    onClickRow: function(row, $element) {
-        console.log("onClickRow",row);
-        return false;
-    },
-    onDblClickRow: function(row, $element) {
-        console.log("onDblClickRow",row);
-        return false;
-    }
-   
-});
-$("#selectBtn").click(function(){
-    var selecteds = $('#demo').bootstrapTreeTable('getSelections');
-    $.each(selecteds,function(_i,_item){
-        console.log(_item);
-    });
-    alert("看console");
-})
-
-var _expandFlag_all = false;
-$("#expandAllBtn").click(function(){
-    if(_expandFlag_all){
-        $('#demo').bootstrapTreeTable('expandAll');
-    }else{
-        $('#demo').bootstrapTreeTable('collapseAll');
-    }
-    _expandFlag_all = _expandFlag_all?false:true;
-})
-var _showFlag = true;
-$("#showColumnBtn").click(function(){
-    if(_showFlag){
-        $('#demo').bootstrapTreeTable('hideColumn',"orderNum");
-    }else{
-        $('#demo').bootstrapTreeTable('showColumn',"orderNum");
-    }
-    _showFlag = _showFlag?false:true;
-})
-$("#destroyBtn").click(function(){
-    $('#demo').bootstrapTreeTable('destroy');
-})
-
-
+<script type="text/html" id="department-toolbar">
+    <button shiro:hasPermission="gen:sysDepartment:add"  class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+        新增
+    </button>
+    <button shiro:hasPermission="gen:sysDepartment:remove"  class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+        删除
+    </button>
 </script>
-<script type="text/javascript">
 
-function add(){
-	$.modal.open("添加部门", createUrl);
-}
-
-function batRemove(){
-	
-	var rows = $('#demo').bootstrapTreeTable('getSelections');
-    if (rows.length == 0) {
-        $.modal.alertWarning("请至少选择一条记录");
-        return
-    }
-    $.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function() {
-    	var rowid=[];
-    	for ( var i in rows) {
-    		rowid.push(rows[i].id);
-		}
-        var url = removeUrl;
-        var data = {
-            "ids": rowid.join()
-        };
-        $.operate.submit(url, "post", "json", data);
-    })
-}
-
-function edit(id){
-	 var url = updateUrl.replace("{id}", id);
-     $.modal.open("修改权限", url);
-}
-
-function remove(id){
-	
-	$.modal.confirm("确定删除该条权限信息吗？", function() {
-        var url = removeUrl.replace("{id}", id);
-        var data = {
-            "ids": id
-        };
-        $.operate.submit(url, "post", "json", data);
-    })
-}
-
-
-//重写刷新方法
-$.table.refresh=function() {
-	$('#demo').bootstrapTreeTable("refresh",{
-		url:dataUrl,
-		silent:true
-	});
-}
+<script type="text/html" id="department-bar">
+    <button shiro:hasPermission="gen:sysDepartment:edit"  class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+    </button>
+    <button shiro:hasPermission="gen:sysDepartment:remove"  class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    </button>
 </script>
+
+
+<script type="text/html" id="department-enable">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="department-enable" {{ d.status== 1 ? 'checked' : '' }}>
+</script>
+
+
 
 </body>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['table', 'form', 'jquery', 'treetable'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let treetable = layui.treetable;
+
+        let MODULE_PATH = rootPath+"/SysDepartmentController/";
+
+        window.render = function () {
+            treetable.render({
+                treeColIndex: 1,
+                treeSpid: 0,
+                treeIdName: 'id',
+                treePidName: 'parentId',
+                skin: 'line',
+                method: 'get',
+                treeDefaultClose: true,
+                toolbar: '#department-toolbar',
+                elem: '#department-table',
+                url: MODULE_PATH+'list',
+                page: false,
+                cols: [
+                    [
+                        {type: 'checkbox'},
+                        {field: 'deptName', minWidth: 200, title: '部门名称'},
+                        {field: 'leader', title: '部门负责人'},
+                        {field: 'phone', title: '电话'},
+                        {field: 'email', title: '邮箱'},
+                        {field: 'status', title: '状态',templet: '#department-enable'},
+                        {field: 'orderNum', title: '排序'},
+                        {title: '操作', templet: '#department-bar', width: 150, align: 'center'}
+                    ]
+                ]
+            });
+        }
+
+        render();
+
+        form.on('submit(department-query)', function (data) {
+            var keyword = data.field.powerName;
+            var $tds = $('#department-table').next('.treeTable').find('.layui-table-body tbody tr td');
+            if (!keyword) {
+                $tds.css('background-color', 'transparent');
+                layer.msg("请输入关键字", {icon: 5});
+                return;
+            }
+            var searchCount = 0;
+            $tds.each(function () {
+                $(this).css('background-color', 'transparent');
+                if ($(this).text().indexOf(keyword) >= 0) {
+                    $(this).css('background-color', 'rgba(250,230,160,0.5)');
+                    if (searchCount == 0) {
+                        $('body,html').stop(true);
+                        $('body,html').animate({scrollTop: $(this).offset().top - 150}, 500);
+                    }
+                    searchCount++;
+                }
+            });
+            if (searchCount == 0) {
+                layer.msg("没有匹配结果", {icon: 5});
+            } else {
+                treetable.expandAll('#department-table');
+            }
+            return false;
+        });
+
+        table.on('tool(department-table)', function (obj) {
+            if (obj.event === 'remove') {
+                window.remove(obj);
+            } else if (obj.event === 'edit') {
+                window.edit(obj);
+            }
+        })
 
 
+        table.on('toolbar(department-table)', function (obj) {
+            if (obj.event === 'add') {
+                window.add();
+            } else if (obj.event === 'refresh') {
+                window.refresh();
+            } else if (obj.event === 'batchRemove') {
+                window.batchRemove(obj);
+            }
+        });
+
+        form.on('switch(department-enable)', function (obj) {
+            let operate;
+
+            if (obj.elem.checked) {
+                operate = 1;
+            } else {
+                operate = 0;
+            }
+
+            let loading = layer.load()
+
+            $.ajax({
+                url: MODULE_PATH+'updateVisible',
+                data: JSON.stringify({id: this.value,status:operate}),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    layer.close(loading);
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+        });
+
+
+        window.add = function () {
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['450px', '500px'],
+                content: MODULE_PATH + 'add'
+            });
+        }
+
+        window.edit = function (obj) {
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['450px', '500px'],
+                content: MODULE_PATH + 'edit/' + obj.data['id']
+            });
+        }
+
+        window.remove = function (obj) {
+            layer.confirm('确定要删除该部门', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "remove?ids=" + obj.data['id'],
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                obj.del();
+
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        //批量删除
+        window.batchRemove = function (obj) {
+            let data = table.checkStatus(obj.config.id).data;
+            if (data.length === 0) {
+                layer.msg("未选中数据", {icon: 3, time: 1000});
+                return false;
+            }
+            let ids = "";
+            for (let i = 0; i < data.length; i++) {
+                ids += data[i].id + ",";
+            }
+            ids = ids.substr(0, ids.length - 1);
+            layer.confirm('确定要删除这些部门', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "remove?ids=" + ids,
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                table.reload('department-table');
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+
+    })
+</script>
 </html>

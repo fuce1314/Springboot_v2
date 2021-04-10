@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.SysDepartmentMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.SysDepartment">
+<mapper namespace="com.fc.v2.mapper.auto.SysDepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.SysDepartment">
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
     <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
@@ -81,7 +81,7 @@
        	  	    	order_num,
        	  	    	(select count(1) from t_sys_department where parent_id=a.id) childcount
        	</sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.SysDepartmentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.SysDepartmentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -106,14 +106,14 @@
     delete from t_sys_department
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.SysDepartmentExample">
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.SysDepartmentExample">
     delete from t_sys_department
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   
-  <insert id="insert" parameterType="com.fc.test.model.auto.SysDepartment">
+  <insert id="insert" parameterType="com.fc.v2.model.auto.SysDepartment">
     insert into t_sys_department (
       	  	       id,
        	  	       parent_id,
@@ -136,7 +136,7 @@
        	    )
   </insert>
   
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.SysDepartment">
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.SysDepartment">
     insert into t_sys_department
     <trim prefix="(" suffix=")" suffixOverrides=",">
           
@@ -208,7 +208,7 @@
         </trim>
   </insert>
   
-  <select id="countByExample" parameterType="com.fc.test.model.auto.SysDepartmentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.SysDepartmentExample" resultType="java.lang.Long">
     select count(*) from t_sys_department a
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -267,7 +267,7 @@
   </update>
   
   
-      <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.SysDepartment">
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.SysDepartment">
     update t_sys_department
     <set>
                           <if test="parentId != null">
@@ -299,7 +299,7 @@
 
       	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	
 
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.SysDepartment">
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.SysDepartment">
     update t_sys_department
     set 
              	        	    	 			parent_id = #{parentId,jdbcType=VARCHAR},

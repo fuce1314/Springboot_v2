@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.SysStreetMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.SysStreet">
+<mapper namespace="com.fc.v2.mapper.auto.SysStreetMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.SysStreet">
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="street_code" jdbcType="VARCHAR" property="streetCode" />
     <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
@@ -87,7 +87,7 @@
        	  	      	memo,
        	  	    	  	data_state
        	</sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.SysStreetExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.SysStreetExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -112,14 +112,14 @@
     delete from t_sys_street
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.SysStreetExample">
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.SysStreetExample">
     delete from t_sys_street
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   
-  <insert id="insert" parameterType="com.fc.test.model.auto.SysStreet">
+  <insert id="insert" parameterType="com.fc.v2.model.auto.SysStreet">
     insert into t_sys_street (
       	  	       id,
        	  	       street_code,
@@ -150,7 +150,7 @@
        	    )
   </insert>
   
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.SysStreet">
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.SysStreet">
     insert into t_sys_street
     <trim prefix="(" suffix=")" suffixOverrides=",">
           
@@ -254,7 +254,7 @@
         </trim>
   </insert>
   
-  <select id="countByExample" parameterType="com.fc.test.model.auto.SysStreetExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.SysStreetExample" resultType="java.lang.Long">
     select count(*) from t_sys_street
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -329,7 +329,7 @@
   </update>
   
   
-      <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.SysStreet">
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.SysStreet">
     update t_sys_street
     <set>
                           <if test="streetCode != null">
@@ -373,7 +373,7 @@
 
       	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	
 
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.SysStreet">
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.SysStreet">
     update t_sys_street
     set 
              	        	    	 			street_code = #{streetCode,jdbcType=VARCHAR},

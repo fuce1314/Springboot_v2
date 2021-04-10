@@ -10,7 +10,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 	
 	
 	<!-- 定义日志的根目录 -->
-    <property name="LOG_HOME" value="d:\\springbootv2-log" />
+    <property name="LOG_HOME" value="/springbootv2-log" />
 	  <!-- 定义日志文件名称 -->
     <property name="appName" value="springbootv2"></property>
      

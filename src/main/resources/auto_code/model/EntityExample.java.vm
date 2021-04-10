@@ -1,16 +1,16 @@
-package ${globalConfig.parentPack}.model.auto;
+package ${parentPack}.model.auto;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import cn.hutool.core.util.StrUtil;
+
 /**
- * ${TsysTables.tableComment} ${TsysTables.tableModel}Example
- * @author ${globalConfig.author}_自动生成
- * @email ${globalConfig.email}
+ * ${tableInfo.tableComment} ${tableInfo.javaTableName}Example
+ * @author ${author}_自动生成
  * @date ${datetime}
  */
-public class ${TsysTables.tableModel}Example {
+public class ${tableInfo.javaTableName}Example {
 
     protected String orderByClause;
 
@@ -18,7 +18,7 @@ public class ${TsysTables.tableModel}Example {
 
     protected List<Criteria> oredCriteria;
 
-    public ${TsysTables.tableModel}Example() {
+    public ${tableInfo.javaTableName}Example() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -111,108 +111,100 @@ public class ${TsysTables.tableModel}Example {
             }
             criteria.add(new Criterion(condition, value1, value2));
         }
-		#foreach ($column in $beanColumns)
+        
+		#foreach ($column in $beanColumns)##
 		
-        public Criteria and${column.beanName_A}IsNull() {
-            addCriterion("$column.column_name is null");
+        public Criteria and${column.javaName}IsNull() {
+            addCriterion("${column.column_name} is null");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}IsNotNull() {
-            addCriterion("$column.column_name is not null");
+        public Criteria and${column.javaName}IsNotNull() {
+            addCriterion("${column.column_name} is not null");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}EqualTo(${column.attrType} value) {
-            addCriterion("$column.column_name =", value, "${column.beanName}");
+        public Criteria and${column.javaName}EqualTo(${column.javaType} value) {
+            addCriterion("${column.column_name} =", value, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}NotEqualTo(${column.attrType} value) {
-            addCriterion("$column.column_name <>", value, "${column.beanName}");
+        public Criteria and${column.javaName}NotEqualTo(${column.javaType} value) {
+            addCriterion("${column.column_name} <>", value, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}GreaterThan(${column.attrType} value) {
-            addCriterion("$column.column_name >", value, "${column.beanName}");
+        public Criteria and${column.javaName}GreaterThan(${column.javaType} value) {
+            addCriterion("${column.column_name} >", value, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}GreaterThanOrEqualTo(${column.attrType} value) {
-            addCriterion("$column.column_name >=", value, "${column.beanName}");
+        public Criteria and${column.javaName}GreaterThanOrEqualTo(${column.javaType} value) {
+            addCriterion("${column.column_name} >=", value, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}LessThan(${column.attrType} value) {
-            addCriterion("$column.column_name <", value, "${column.beanName}");
+        public Criteria and${column.javaName}LessThan(${column.javaType} value) {
+            addCriterion("${column.column_name} <", value, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}LessThanOrEqualTo(${column.attrType} value) {
-            addCriterion("$column.column_name <=", value, "${column.beanName}");
+        public Criteria and${column.javaName}LessThanOrEqualTo(${column.javaType} value) {
+            addCriterion("${column.column_name} <=", value, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}Like(${column.attrType} value) {
-            addCriterion("$column.column_name like", value, "${column.beanName}");
+        public Criteria and${column.javaName}Like(${column.javaType} value) {
+            addCriterion("${column.column_name} like", value, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}NotLike(${column.attrType} value) {
-            addCriterion("$column.column_name not like", value, "${column.beanName}");
+        public Criteria and${column.javaName}NotLike(${column.javaType} value) {
+            addCriterion("${column.column_name} not like", value, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}In(List<${column.attrType}> values) {
-            addCriterion("$column.column_name in", values, "${column.beanName}");
+        public Criteria and${column.javaName}In(List<${column.javaType}> values) {
+            addCriterion("${column.column_name} in", values, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}NotIn(List<${column.attrType}> values) {
-            addCriterion("$column.column_name not in", values, "${column.beanName}");
+        public Criteria and${column.javaName}NotIn(List<${column.javaType}> values) {
+            addCriterion("${column.column_name} not in", values, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}Between(${column.attrType} value1, ${column.attrType} value2) {
-            addCriterion("$column.column_name between", value1, value2, "${column.beanName}");
+        public Criteria and${column.javaName}Between(${column.javaType} value1, ${column.javaType} value2) {
+            addCriterion("${column.column_name} between", value1, value2, "${column.beanName}");
             return (Criteria) this;
         }
 
-        public Criteria and${column.beanName_A}NotBetween(${column.attrType} value1, ${column.attrType} value2) {
-            addCriterion("$column.column_name not between", value1, value2, "${column.beanName}");
+        public Criteria and${column.javaName}NotBetween(${column.javaType} value1, ${column.javaType} value2) {
+            addCriterion("${column.column_name} not between", value1, value2, "${column.beanName}");
             return (Criteria) this;
         }
         
-	#end
+		#end##
 	
-		 public Criteria andLikeQuery(${TsysTables.tableModel} record) {
+		 public Criteria andLikeQuery(${tableInfo.javaTableName} record) {
 		 	List<String> list= new ArrayList<String>();
 		 	List<String> list2= new ArrayList<String>();
         	StringBuffer buffer=new StringBuffer();
-        	
-        	#foreach ($column in $beanColumns)
-			 
-			 if(record.get${column.funName}()!=null&&StrUtil.isNotEmpty(record.get${column.funName}().toString())) {
-    			 list.add("ifnull($column.column_name,'')");
-    		 }
-    		 
-			#end
-			#foreach ($column in $beanColumns)
-			
-			 if(record.get${column.funName}()!=null&&StrUtil.isNotEmpty(record.get${column.funName}().toString())) {
-    			list2.add("'%"+record.get${column.funName}()+"%'");
-    		 }
-        		 
-			#end
-        	
+#foreach ($column in $beanColumns)##
+			if(record.get${column.javaName}()!=null&&StrUtil.isNotEmpty(record.get${column.javaName}().toString())) {
+    			 list.add("ifnull(${column.column_name},'')");
+    		}
+#end##
+#foreach ($column in $beanColumns)##
+			if(record.get${column.javaName}()!=null&&StrUtil.isNotEmpty(record.get${column.javaName}().toString())) {
+    			list2.add("'%"+record.get${column.javaName}()+"%'");
+    		}
+#end##
         	buffer.append(" CONCAT(");
 	        buffer.append(StrUtil.join(",",list));
         	buffer.append(")");
         	buffer.append(" like CONCAT(");
-        	
-        	
         	buffer.append(StrUtil.join(",",list2));
-        	
         	buffer.append(")");
         	if(!" CONCAT() like CONCAT()".equals(buffer.toString())) {
         		addCriterion(buffer.toString());
@@ -222,31 +214,23 @@ public class ${TsysTables.tableModel}Example {
         
         public Criteria andLikeQuery2(String searchText) {
 		 	List<String> list= new ArrayList<String>();
-		 
         	StringBuffer buffer=new StringBuffer();
-        	
-        	#foreach ($column in $beanColumns)
-        	
-    		list.add("ifnull($column.column_name,'')");
-			
-			#end
-			
+#foreach ($column in $beanColumns)##
+    		list.add("ifnull(${column.column_name},'')");
+#end##
         	buffer.append(" CONCAT(");
 	        buffer.append(StrUtil.join(",",list));
         	buffer.append(")");
         	buffer.append("like '%");
         	buffer.append(searchText);
         	buffer.append("%'");
-        	
         	addCriterion(buffer.toString());
-        	
         	return (Criteria) this;
         }
         
 }
 	
     public static class Criteria extends GeneratedCriteria {
-
         protected Criteria() {
             super();
         }

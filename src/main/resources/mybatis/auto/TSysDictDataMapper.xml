@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.TSysDictDataMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TSysDictData">
+<mapper namespace="com.fc.v2.mapper.auto.TSysDictDataMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.TSysDictData">
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="dict_sort" jdbcType="INTEGER" property="dictSort" />
     <result column="dict_label" jdbcType="VARCHAR" property="dictLabel" />
@@ -91,7 +91,7 @@
        	  	      	update_time,
        	  	    	  	remark
        	</sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.TSysDictDataExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.TSysDictDataExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -116,14 +116,14 @@
     delete from t_sys_dict_data
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TSysDictDataExample">
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.TSysDictDataExample">
     delete from t_sys_dict_data
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   
-  <insert id="insert" parameterType="com.fc.test.model.auto.TSysDictData">
+  <insert id="insert" parameterType="com.fc.v2.model.auto.TSysDictData">
     insert into t_sys_dict_data (
       	  	       id,
        	  	       dict_sort,
@@ -158,7 +158,7 @@
        	    )
   </insert>
   
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TSysDictData">
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.TSysDictData">
     insert into t_sys_dict_data
     <trim prefix="(" suffix=")" suffixOverrides=",">
           
@@ -278,7 +278,7 @@
         </trim>
   </insert>
   
-  <select id="countByExample" parameterType="com.fc.test.model.auto.TSysDictDataExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.TSysDictDataExample" resultType="java.lang.Long">
     select count(*) from t_sys_dict_data
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -361,7 +361,7 @@
   </update>
   
   
-      <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TSysDictData">
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.TSysDictData">
     update t_sys_dict_data
     <set>
                          
@@ -412,7 +412,7 @@
 
       	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	
 
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TSysDictData">
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.TSysDictData">
     update t_sys_dict_data
     set 
 		     	        	    	 			dict_sort = #{dictSort,jdbcType=INTEGER},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fc.test.mapper.auto.SysProvinceMapper">
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.SysProvince">
+<mapper namespace="com.fc.v2.mapper.auto.SysProvinceMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.SysProvince">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="province_code" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -78,7 +78,7 @@
     id, province_code, province_name, short_name, lng, lat, sort, gmt_create, gmt_modified, 
     memo, data_state
   </sql>
-  <select id="selectByExample" parameterType="com.fc.test.model.auto.SysProvinceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.SysProvinceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from t_sys_province
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.SysProvinceExample">
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.SysProvinceExample">
     delete from t_sys_province
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fc.test.model.auto.SysProvince">
+  <insert id="insert" parameterType="com.fc.v2.model.auto.SysProvince">
     insert into t_sys_province (id, province_code, province_name, 
       short_name, lng, lat, 
       sort, gmt_create, gmt_modified, 
@@ -118,7 +118,7 @@
       #{sort,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
       #{memo,jdbcType=VARCHAR}, #{dataState,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.SysProvince">
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.SysProvince">
     insert into t_sys_province
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -191,7 +191,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fc.test.model.auto.SysProvinceExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.SysProvinceExample" resultType="java.lang.Long">
     select count(*) from t_sys_province
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -255,7 +255,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.SysProvince">
+  <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.SysProvince">
     update t_sys_province
     <set>
       <if test="provinceCode != null">
@@ -291,7 +291,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.SysProvince">
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.SysProvince">
     update t_sys_province
     set province_code = #{provinceCode,jdbcType=VARCHAR},
       province_name = #{provinceName,jdbcType=VARCHAR},

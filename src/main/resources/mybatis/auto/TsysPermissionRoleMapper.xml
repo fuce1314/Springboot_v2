@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fc.test.mapper.auto.TsysPermissionRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysPermissionRole" >
+<mapper namespace="com.fc.v2.mapper.auto.TsysPermissionRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.TsysPermissionRole" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="role_id" property="roleId" jdbcType="VARCHAR" />
     <result column="permission_id" property="permissionId" jdbcType="VARCHAR" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List" >
     id, role_id, permission_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.test.model.auto.TsysPermissionRoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.v2.model.auto.TsysPermissionRoleExample" >
     select
     <if test="distinct" >
       distinct
@@ -91,19 +91,19 @@
     delete from t_sys_permission_role
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TsysPermissionRoleExample" >
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.TsysPermissionRoleExample" >
     delete from t_sys_permission_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fc.test.model.auto.TsysPermissionRole" >
+  <insert id="insert" parameterType="com.fc.v2.model.auto.TsysPermissionRole" >
     insert into t_sys_permission_role (id, role_id, permission_id
       )
     values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{permissionId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysPermissionRole" >
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.TsysPermissionRole" >
     insert into t_sys_permission_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fc.test.model.auto.TsysPermissionRoleExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.TsysPermissionRoleExample" resultType="java.lang.Integer" >
     select count(*) from t_sys_permission_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TsysPermissionRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.TsysPermissionRole" >
     update t_sys_permission_role
     <set >
       <if test="roleId != null" >
@@ -172,7 +172,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TsysPermissionRole" >
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.TsysPermissionRole" >
     update t_sys_permission_role
     set role_id = #{roleId,jdbcType=VARCHAR},
       permission_id = #{permissionId,jdbcType=VARCHAR}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fc.test.mapper.auto.TsysOperLogMapper" >
-  <resultMap id="BaseResultMap" type="com.fc.test.model.auto.TsysOperLog" >
+<mapper namespace="com.fc.v2.mapper.auto.TsysOperLogMapper" >
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.TsysOperLog" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="method" property="method" jdbcType="VARCHAR" />
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List" >
     id, title, method, oper_name, oper_url, oper_param, error_msg, oper_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.test.model.auto.TsysOperLogExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fc.v2.model.auto.TsysOperLogExample" >
     select
     <if test="distinct" >
       distinct
@@ -96,13 +96,13 @@
     delete from t_sys_oper_log
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fc.test.model.auto.TsysOperLogExample" >
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.TsysOperLogExample" >
     delete from t_sys_oper_log
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fc.test.model.auto.TsysOperLog" >
+  <insert id="insert" parameterType="com.fc.v2.model.auto.TsysOperLog" >
     insert into t_sys_oper_log (id, title, method, 
       oper_name, oper_url, oper_param, 
       error_msg, oper_time)
@@ -110,7 +110,7 @@
       #{operName,jdbcType=VARCHAR}, #{operUrl,jdbcType=VARCHAR}, #{operParam,jdbcType=VARCHAR}, 
       #{errorMsg,jdbcType=VARCHAR}, #{operTime,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" parameterType="com.fc.test.model.auto.TsysOperLog" >
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.TsysOperLog" >
     insert into t_sys_oper_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -165,7 +165,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fc.test.model.auto.TsysOperLogExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.TsysOperLogExample" resultType="java.lang.Integer" >
     select count(*) from t_sys_oper_log
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -217,7 +217,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fc.test.model.auto.TsysOperLog" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.TsysOperLog" >
     update t_sys_oper_log
     <set >
       <if test="title != null" >
@@ -244,7 +244,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.auto.TsysOperLog" >
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.TsysOperLog" >
     update t_sys_oper_log
     set title = #{title,jdbcType=VARCHAR},
       method = #{method,jdbcType=VARCHAR},

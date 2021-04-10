@@ -1,81 +1,89 @@
-package ${globalConfig.parentPack}.controller.gen;
+package ${parentPack}.controller.gen;
 
+import ${parentPack}.common.base.BaseController;
+import ${parentPack}.common.domain.AjaxResult;
+import ${parentPack}.common.domain.ResultTable;
+import ${parentPack}.model.custom.Tablepar;
+import ${parentPack}.model.auto.${tableInfo.javaTableName};
+import ${parentPack}.service.${tableInfo.javaTableName}Service;
+import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.github.pagehelper.PageInfo;
-import ${globalConfig.parentPack}.common.base.BaseController;
-import ${globalConfig.parentPack}.common.domain.AjaxResult;
-import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel};
-import ${globalConfig.parentPack}.model.custom.TableSplitResult;
-import ${globalConfig.parentPack}.model.custom.Tablepar;
-import ${globalConfig.parentPack}.model.custom.TitleVo;
-import ${globalConfig.parentPack}.service.${TsysTables.tableModel}Service;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
-@Api(value = "${TsysTables.tableComment}")
+/**
+ * ${tableInfo.tableComment}Controller
+ * @ClassName: ${tableInfo.javaTableName}Controller
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Api(value = "${tableInfo.tableComment}")
 @Controller
-@RequestMapping("/${TsysTables.tableModel}Controller")
-public class ${TsysTables.tableModel}Controller extends BaseController{
+@RequestMapping("/${tableInfo.javaTableName}Controller")
+public class ${tableInfo.javaTableName}Controller extends BaseController{
 	
-	private String prefix = "gen/${TsysTables.tableModel_a}";
+	private String prefix = "gen/${tableInfo.javaTableName_a}";
+	
 	@Autowired
-	private ${TsysTables.tableModel}Service ${TsysTables.tableModel_a}Service;
+	private ${tableInfo.javaTableName}Service ${tableInfo.javaTableName_a}Service;
+	
 	
 	/**
-	 * 分页跳转
+	 * ${tableInfo.tableComment}页面展示
+	 * @param model
+	 * @return String
+	 * @author ${author}
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:${TsysTables.tableModel_a}:view")
+	@RequiresPermissions("gen:${tableInfo.javaTableName_a}:view")
     public String view(ModelMap model)
-    {	
-		String str="${TsysTables.tableComment}";
-		setTitle(model, new TitleVo("列表", str+"管理", true,"欢迎进入"+str+"页面", true, false));
+    {
         return prefix + "/list";
     }
 	
 	/**
-	 * 分页查询
+	 * list集合
+	 * @param tablepar
+	 * @param searchText
+	 * @return
 	 */
-	//@Log(title = "${TsysTables.tableComment}集合查询", action = "111")
-	@ApiOperation(value = "分页查询", notes = "分页查询")
-	@PostMapping("/list")
-	@RequiresPermissions("gen:${TsysTables.tableModel_a}:list")
+	//@Log(title = "${tableInfo.tableComment}", action = "111")
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
+	@GetMapping("/list")
+	@RequiresPermissions("gen:${tableInfo.javaTableName_a}:list")
 	@ResponseBody
-	public Object list(Tablepar tablepar,${TsysTables.tableModel} record){
-		PageInfo<${TsysTables.tableModel}> page=${TsysTables.tableModel_a}Service.list(tablepar,record) ; 
-		TableSplitResult<${TsysTables.tableModel}> result=new TableSplitResult<${TsysTables.tableModel}>(page.getPageNum(), page.getTotal(), page.getList()); 
-		return  result;
+	public ResultTable list(Tablepar tablepar,${tableInfo.javaTableName} ${tableInfo.javaTableName_a}){
+		PageInfo<${tableInfo.javaTableName}> page=${tableInfo.javaTableName_a}Service.list(tablepar,${tableInfo.javaTableName_a}) ; 
+		return pageTable(page.getList(),page.getTotal());
 	}
 	
 	/**
      * 新增跳转
      */
-    @ApiOperation(value = "新增跳转", notes = "新增跳转")
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
     }
 	
-	/**
-     * 新增
+    /**
+     * 新增保存
+     * @param 
+     * @return
      */
-	//@Log(title = "${TsysTables.tableComment}新增", action = "111")
-   	@ApiOperation(value = "新增", notes = "新增")
+	//@Log(title = "${tableInfo.tableComment}新增", action = "111")
+	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("gen:${TsysTables.tableModel_a}:add")
+	@RequiresPermissions("gen:${tableInfo.javaTableName_a}:add")
 	@ResponseBody
-	public AjaxResult add(${TsysTables.tableModel} ${TsysTables.tableModel_a}){
-		int b=${TsysTables.tableModel_a}Service.insertSelective(${TsysTables.tableModel_a});
+	public AjaxResult add(${tableInfo.javaTableName} ${tableInfo.javaTableName_a}){
+		int b=${tableInfo.javaTableName_a}Service.insertSelective(${tableInfo.javaTableName_a});
 		if(b>0){
 			return success();
 		}else{
@@ -84,38 +92,21 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
 	}
 	
 	/**
-	 * 删除
+	 * ${tableInfo.tableComment}删除
 	 * @param ids
 	 * @return
 	 */
-	//@Log(title = "${TsysTables.tableComment}删除", action = "111")
+	//@Log(title = "${tableInfo.tableComment}删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
-	@PostMapping("/remove")
-	@RequiresPermissions("gen:${TsysTables.tableModel_a}:remove")
+	@DeleteMapping("/remove")
+	@RequiresPermissions("gen:${tableInfo.javaTableName_a}:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
-		int b=${TsysTables.tableModel_a}Service.deleteByPrimaryKey(ids);
+		int b=${tableInfo.javaTableName_a}Service.deleteByPrimaryKey(ids);
 		if(b>0){
 			return success();
 		}else{
 			return error();
-		}
-	}
-	
-	/**
-	 * 检查Name
-	 * @param tsysUser
-	 * @return
-	 */
-	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
-	@PostMapping("/checkNameUnique")
-	@ResponseBody
-	public int checkNameUnique(${TsysTables.tableModel} ${TsysTables.tableModel_a}){
-		int b=${TsysTables.tableModel_a}Service.checkNameUnique(${TsysTables.tableModel_a});
-		if(b>0){
-			return 1;
-		}else{
-			return 0;
 		}
 	}
 	
@@ -128,9 +119,9 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
 	 */
 	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") String id, ModelMap mmap)
+    public String edit(@PathVariable("id") String id, ModelMap map)
     {
-        mmap.put("${TsysTables.tableModel}", ${TsysTables.tableModel_a}Service.selectByPrimaryKey(id));
+        map.put("${tableInfo.javaTableName}", ${tableInfo.javaTableName_a}Service.selectByPrimaryKey(id));
 
         return prefix + "/edit";
     }
@@ -138,29 +129,17 @@ public class ${TsysTables.tableModel}Controller extends BaseController{
 	/**
      * 修改保存
      */
-    //@Log(title = "${TsysTables.tableComment}修改", action = "111")
-    @ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("gen:${TsysTables.tableModel_a}:edit")
+    //@Log(title = "${tableInfo.tableComment}修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
+    @RequiresPermissions("gen:${tableInfo.javaTableName_a}:edit")
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(${TsysTables.tableModel} record)
+    public AjaxResult editSave(${tableInfo.javaTableName} ${tableInfo.javaTableName_a})
     {
-        return toAjax(${TsysTables.tableModel_a}Service.updateByPrimaryKeySelective(record));
+        return toAjax(${tableInfo.javaTableName_a}Service.updateByPrimaryKeySelective(${tableInfo.javaTableName_a}));
     }
 
     
-    /**
-   	 * 根据主键查询
-   	 * 
-   	 * @param id
-   	 * @param mmap
-   	 * @return
-   	 */
-   	@ApiOperation(value = "根据id查询唯一", notes = "根据id查询唯一")
-   	@PostMapping("/get/{id}")
-   	public ${TsysTables.tableModel} edit(@PathVariable("id") String id) {
-   		return ${TsysTables.tableModel_a}Service.selectByPrimaryKey(id);
-   	}
     
 
 	

@@ -1,331 +1,220 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
->
-<head th:replace="admin/common/html/tableHead :: tableHead(~{::title},~{::link},~{::style})">
-
-	<title th:text=${title}></title>
-	<!-- 这儿引用单独的css link -->
-	<!-- Ladda for Bootstrap 3按钮加载进度插件 -->
-	<link rel="stylesheet" th:href="@{/static/admin/assets/js/button/ladda/ladda.min.css}">
-	<!-- bootstrap-table表单样式 -->
-	<link th:href="@{/static/admin/assets/js/bootstrap/css/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
-
-	<style type="text/css">
-
-		body {
-			color: #9ea7b3;
-			font-family: "Open Sans", Arial, sans-serif !important;
-			font-size: 13px !important;
-			line-height: 20px;
-			overflow-x: hidden !important;
-			min-height: 100%;
-			z-index: -2;
-			margin: 0px !important;
-			background-image: none;
-			-moz-background-size: cover;
-			-webkit-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-		}
-
-		label.error {
-			position: absolute;
-			right: 18px;
-			top: 5px;
-			color: #ef392b;
-			font-size: 12px;
-		}
-
-		.ico-list .fa {
-			margin: 5px;
-			padding: 5px;
-			cursor: pointer;
-			font-size: 18px;
-			width: 28px;
-			border-radius: 3px;
-		}
-
-		.ico-list .fa:hover {
-			background-color: #1d9d74;
-			color: #ffffff;
-		}
-	</style>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('权限修改')"/>
 </head>
-
 <body>
+<form class="layui-form" th:object="${TsysPermission}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
 
-<div id="fcapp" class="content-wrap">
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="nest" id="elementClose">
-				<div class="">
-				</div>
-				<div class="body-nest" id="element">
-					<div class="panel-body">
-						<form class="form-horizontal m" id="form-edit" th:object="${TsysPermission}">
-							<input id="id" name="id" type="hidden" th:field="*{id}"/>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">类型：</label>
-								<div class="col-sm-8">
-									<label class="radio-inline"><input type="radio" name="type" value="0" v-model="menu.type"> 目录</label>
-									<label class="radio-inline"><input type="radio" name="type" value="1" v-model="menu.type"> 菜单</label>
-									<label class="radio-inline"><input type="radio" name="type" value="2" v-model="menu.type"> 按钮</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<!-- 验证用 -->
-								<input class="form-control" type="hidden" id="checkname" name="checkname" th:value="*{name}"/>
-								<label class="col-sm-3 control-label ">权限名称：</label>
-								<div class="col-sm-8">
-									<input class="form-control" type="text" id="name" name="name" th:value="*{name}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label ">上级菜单：</label>
-								<div class="col-sm-8">
-									<input class="form-control" type="hidden" id="pid" name="pid" th:value="*{pid}"/>
-									<input class="form-control" readonly="true" type="text" id="pidName" th:value="${pattsysPermission.name}" onclick="selectMenuTree()"/>
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" th:value="*{id}" name="id" lay-verify="title" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
 
-								</div>
-							</div>
-							<div v-if="menu.type == 1 || menu.type == 2" class="form-group">
-								<!-- 验证用 -->
-								<input class="form-control" type="hidden" id="checkurl" th:value="*{url}"/>
-								<label class="col-sm-3 control-label ">权限URL：</label>
-								<div class="col-sm-8">
-									<input class="form-control" type="text" id="url" name="url" th:value="*{url}"/>
-								</div>
-							</div>
-							<div v-if="menu.type == 1" class="form-group">
-								<label class="col-sm-3 control-label ">打开方式：</label>
-								<div class="col-sm-8">
-									<select class="form-control" id="isBlank" name="isBlank" th:field="*{isBlank}">
-										<option value="0" th:selected="${TsysPermission.isBlank ==0}">签页</option>
-										<option value="1" th:selected="${TsysPermission.isBlank ==1}">新窗口</option>
-									</select>
-								</div>
-							</div>
-							<div v-if="menu.type == 1 || menu.type == 2" class="form-group">
-								<!-- 验证用 -->
-								<input class="form-control" type="hidden" id="checkurl" th:value="*{url}"/>
-								<label class="col-sm-3 control-label ">权限关键字：</label>
-								<div class="col-sm-8">
-									<input class="form-control" type="text" id="perms" name="perms" th:value="*{perms}" placeholder="多个用逗号分隔，如：user:list,user:create"/>
-								</div>
-							</div>
-							<div v-if="menu.type != 2" class="form-group">
-								<label class="col-sm-3 control-label ">排序：</label>
-								<div class="col-sm-8">
-									<input class="form-control" type="number" id="orderNum" name="orderNum" th:value="*{orderNum}"/>
-								</div>
-							</div>
-							<div v-if="menu.type != 2" class="form-group">
-								<label class="col-sm-3 control-label ">图标：</label>
-								<div class="col-sm-8">
-									<input class="form-control" onfocus="showdrop();" type="text" id="icon" name="icon" th:value="*{icon}"/>
-									<!-- 
-										<code style="margin-top: 4px; display: block;">获取图标：https://fontawesome.com/v4.7.0/icons/</code>
-									 -->
-									<div class="ms-parent" style="width: 100%;">
-										<div class="icon-drop animated flipInX" style="display: none;max-height:200px;overflow-y:auto">
-											<div data-th-include="admin/permission/icon"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label ">权限描述：</label>
-								<div class="col-sm-8">
-									<input class="form-control" type="text" id="descripion" name="descripion" th:value="*{descripion}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label ">菜单状态：</label>
-								<div class="col-sm-8">
-									<select class="form-control" id="visible" name="visible" th:field="*{visible}">
-										<option value="0">显示</option>
-										<option value="1">隐藏</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="form-control-static col-sm-offset-9">
-									<button type="submit" class="btn btn-primary">提交</button>
-									<button onclick="$.modal.close()" class="btn btn-danger" type="button">关闭</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="权限名称"
+                               class="layui-input" th:value="*{name}">
+                    </div>
+                </div>
 
-<!-- 通用js -->
-<div th:include="admin/common/html/js :: onload_js">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">父级</label>
+                    <div class="layui-input-block">
+                        <ul id="selectParent" name="parentId" class="dtree" data-id="-1"></ul>
+                    </div>
+                </div>
 
-</div>
-<!-- bootstarp 表格 -->
-<script th:src="@{/static/admin/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js}" type="text/javascript"></script>
-<script th:src="@{/static/admin/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}" type="text/javascript"></script>
-<script th:src="@{/static/admin/assets/js/bootstrap/js/base_list.js}" type="text/javascript"></script>
+                <div class="layui-form-item" id="powerCodeItem">
+                    <label class="layui-form-label">权限关键字</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="powerCode" name="perms" autocomplete="off" placeholder="权限标识" class="layui-input" th:value="*{perms}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class=" ">
+                        <input type="radio" lay-filter="powerType" th:checked="${TsysPermission.type eq 0}"
+                               name="type" value="0" title="目录">
+                        <input type="radio" lay-filter="powerType" th:checked="${TsysPermission.type eq 1}"
+                               name="type" value="1" title="菜单">
+                        <input type="radio" lay-filter="powerType" th:checked="${TsysPermission.type eq 2}"
+                               name="type" value="2" title="按钮">
+                    </div>
+                </div>
+                <div class="layui-form-item" id="powerUrlItem">
+                    <label class="layui-form-label">路径</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="powerUrl" name="url" autocomplete="off" placeholder="菜单路径" class="layui-input"
+                         th:value="*{url}">
+                    </div>
+                </div>
+                <div class="layui-form-item" id="openTypeItem">
+                    <label class="layui-form-label">打开类型</label>
+                    <div class="layui-input-block">
+                        <select name="isBlank" id="openType" th:field="*{isBlank}">
+                            <option value=""></option>
+                            <option value="0">框架</option>
+                            <option value="1">新窗口</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">图标</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="icon" name="icon" lay-filter="icon" class="layui-input"
+                         th:value="*{icon}"
+                        >
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="orderNum" lay-verify="title" autocomplete="off" placeholder="排序" class="layui-input"
+                         th:value="*{orderNum}"
+                        >
+                    </div>
+                </div>
 
+                <div class="layui-form-item" id="visibleItem">
+                    <label class="layui-form-label">菜单状态</label>
+                    <div class="layui-input-block">
+                        <select name="visible" id="visible" th:field="*{visible}">
+                            <option value="0">显示</option>
+                            <option value="1">隐藏</option>
+                        </select>
+                    </div>
+                </div>
 
-<!-- 弹窗 -->
-<script th:src="@{/static/admin/assets/js/layer/layer.js}" type="text/javascript"></script>
-<!-- 遮罩层 -->
-<script th:src="@{/static/admin/assets/js/blockUI/jquery.blockUI.js}" type="text/javascript"></script>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="power-edie">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery', 'iconPicker', 'dtree','dictionary'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let iconPicker = layui.iconPicker;
+        let dtree = layui.dtree;
+        let MODULE_PATH = rootPath+"/PermissionController";
+        dtree.renderSelect({
+            elem: "#selectParent",
+            url: MODULE_PATH+"/selectParent",
+            method: 'get',
+            selectInputName: {nodeId: "pid"},
+            skin: "layui",
+            dataFormat: "list",
+            response: {treeId: "id", parentId: "pid", title: "name"},  //修改response中返回数据的定义
+            selectInitVal: '[[${TsysPermission.pid}]]'
+        });
 
+        form.on("radio(powerType)", function (data) {
+            if (this.value == '0') {
+                $("#powerUrlItem").hide();
+                $("#powerCodeItem").hide();
+                $("#openTypeItem").hide();
+                $("#powerUrl").val("");
+                $("#powerCode").val("");
+                $("#openType").val("");
+            } else if (this.value == '1') {
+                $("#powerUrlItem").show();
+                $("#powerCodeItem").show();
+                $("#openTypeItem").show();
+            } else if (this.value == '2') {
+                $("#powerUrlItem").hide();
+                $("#openTypeItem").hide();
+                $("#powerCodeItem").show();
+                $("#powerUrl").val("");
+                $("#openType").val("");
+            }
+        });
 
-<script type="text/javascript">
-	$(function () {
-		var vm = new Vue({
-			el: "#fcapp",
-			data: {
-				"menu": {
-					type: [[${TsysPermission.type}]]
-				}
-			}
+        form.on('submit(power-edie)', function (data) {
+            data.field.icon = "layui-icon " + data.field.icon;
+            $.ajax({
+                url: MODULE_PATH+'/edit',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.render();
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
 
-		});
+        iconPicker.render({
+            // 选择器，推荐使用input
+            elem: '#icon',
+            // 数据类型：fontClass/unicode，推荐使用fontClass
+            type: 'fontClass',
+            // 是否开启搜索：true/false
+            search: true,
+            // 是否开启分页
+            page: true,
+            // 每页显示数量，默认12
+            limit: 12,
+            // 点击回调
+            click: function (data) {
+                console.log(data);
+            }
+        });
 
-		//表单验证
-		$("#form-edit").validate({
-			rules: {
-				name: {
-					required: true,
-					minlength: 2,
-					maxlength: 20,
-					remote: {
-						url: rootPath + "/PermissionController/checkNameUnique",
-						type: "post",
-						dataType: "json",
-						dataFilter: function (data, type) {
-							if ($("#checkname").val() == $("#name").val()) {
-								return true;
-							} else {
-								if (data == "0") {
-									return true;
-								} else {
-									return false;
-								}
-							}
+        iconPicker.checkIcon("icon", '[[${TsysPermission.icon}]]');
 
-						}
-					}
-				},
-				url: {
-					required: true,
-					minlength: 1,
-					maxlength: 100,
-					remote: {
-						url: rootPath + "/PermissionController/checkURLUnique",
-						type: "post",
-						dataType: "json",
-						dataFilter: function (data, type) {
-							var u = $("#url").val();
-							if ($("#checkurl").val() == $("#url").val()) {
-								return true;
-							} else {
-								if (data == "0" || u == "#") {
-									return true;
-								} else {
-									return false;
-								}
-							}
-						}
-					}
-				},
-				perms: {
-					required: true,
-					minlength: 1,
-					maxlength: 100,
-					remote: {
-						url: rootPath + "/PermissionController/checkPermsUnique",
-						type: "post",
-						dataType: "json",
-						dataFilter: function (data, type) {
-							var u = $("#url").val();
-							if ($("#perms").val() == $("#perms").val()) {
-								return true;
-							} else {
-								if (data == "0" || u == "#") {
-									return true;
-								} else {
-									return false;
-								}
-							}
-						}
-					}
-				}
+         window.init = function (type) {
+            if (type == '0') {
+                $("#powerUrlItem").hide();
+                $("#powerCodeItem").hide();
+                $("#openTypeItem").hide();
+                $("#powerUrl").val("");
+                $("#powerCode").val("");
+                $("#openType").val("");
+            } else if (type == '1') {
+                $("#powerUrlItem").show();
+                $("#powerCodeItem").show();
+                $("#openTypeItem").show();
+            } else if (type == '2') {
+                $("#powerUrlItem").hide();
+                $("#openTypeItem").hide();
+                $("#powerCodeItem").show();
+                $("#powerUrl").val("");
+                $("#openType").val("");
+            }
+        }
 
-			},
-			messages: {
-				"name": {
-					remote: "权限名字已经存在"
-				},
-				"url": {
-					remote: "权限地址已经存在"
-				},
-				"perms": {
-					remote: "权限关键字已经存在"
-				}
-			},
-			submitHandler: function (form) {
-				edit();
-			}
-		});
+        window.init('[[${TsysPermission.type}]]');
 
-	});
-
-	//提交修改方法
-	function edit() {
-		var dataFormJson = $("#form-edit").serialize();
-		$.ajax({
-			cache: true,
-			type: "POST",
-			url: rootPath + "/PermissionController/edit",
-			data: dataFormJson,
-			async: false,
-			error: function (request) {
-				$.modal.alertError("系统错误");
-			},
-			success: function (data) {
-				$.operate.saveSuccess(data);
-			}
-		});
-	}
-
-	/*菜单管理-修改-选择菜单树*/
-	function selectMenuTree() {
-		var url = rootPath + "/PermissionController/tree";
-		$.modal.open("选择菜单", url, '380', '380');
-	}
-
-	//显示图标
-	function showdrop() {
-		$(".icon-drop").show();
-	}
-
-	$(function () {
-
-		$("#form-edit").click(function (event) {
-			var obj = event.srcElement || event.target;
-			if (!$(obj).is("input[name='icon']")) {
-				$(".icon-drop").hide();
-			}
-		});
-		$(".icon-drop").find(".ico-list i").on("click", function () {
-			$('#icon').val($(this).attr('class'));
-		});
-
-	});
+    })
 </script>
-
-
+<script>
+</script>
 </body>
-
-
 </html>

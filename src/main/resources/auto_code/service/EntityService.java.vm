@@ -1,4 +1,4 @@
-package ${globalConfig.parentPack}.service;
+package ${parentPack}.service;
 
 import java.util.List;
 import java.util.Arrays;
@@ -7,27 +7,27 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import cn.hutool.core.util.StrUtil;
-import ${globalConfig.parentPack}.common.base.BaseService;
-import ${globalConfig.parentPack}.common.support.ConvertUtil;
-import ${globalConfig.parentPack}.mapper.auto.${TsysTables.tableModel}Mapper;
-import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel};
-import ${globalConfig.parentPack}.model.auto.${TsysTables.tableModel}Example;
-import ${globalConfig.parentPack}.model.custom.Tablepar;
-import ${globalConfig.parentPack}.util.SnowflakeIdWorker;
-import com.fc.test.util.StringUtils;
+import ${parentPack}.common.base.BaseService;
+import ${parentPack}.common.support.ConvertUtil;
+import ${parentPack}.mapper.auto.${tableInfo.javaTableName}Mapper;
+import ${parentPack}.model.auto.${tableInfo.javaTableName};
+import ${parentPack}.model.auto.${tableInfo.javaTableName}Example;
+import ${parentPack}.model.custom.Tablepar;
+import ${parentPack}.util.SnowflakeIdWorker;
+import ${parentPack}.util.StringUtils;
 
 /**
- * ${TsysTables.tableComment} ${TsysTables.tableModel}Service
- * @Title: ${TsysTables.tableModel}Service.java 
- * @Package ${globalConfig.parentPack}.service 
- * @author ${globalConfig.author}_自动生成
- * @email ${globalConfig.email}
+ * ${tableInfo.tableComment} ${tableInfo.javaTableName}Service
+ * @Title: ${tableInfo.javaTableName}Service.java 
+ * @Package ${parentPack}.service 
+ * @author ${author}_自动生成
+ * @email ${email}
  * @date ${datetime}  
  **/
 @Service
-public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables.tableModel}, ${TsysTables.tableModel}Example>{
+public class ${tableInfo.javaTableName}Service implements BaseService<${tableInfo.javaTableName}, ${tableInfo.javaTableName}Example>{
 	@Autowired
-	private ${TsysTables.tableModel}Mapper ${TsysTables.tableModel_a}Mapper;
+	private ${tableInfo.javaTableName}Mapper ${tableInfo.javaTableName_a}Mapper;
 	
    #set( $pklag = false)
    #set( $pkfield = '' )
@@ -36,9 +36,9 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
    #foreach ($column in $beanColumns)
 	   #if(${column.column_key} == 'PRI')
 	   	#set( $pklag = true )
-	   	#set( $pkfield = $column.beanName_A )
+	   	#set( $pkfield = $column.javaName )
 	   	#set( $pk_column_name=$column.column_name)
-	   	#set( $pk_attrType=$column.attrType)
+	   	#set( $pk_attrType=$column.javaType)
 	   #end
    #end
 	
@@ -48,23 +48,23 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	 * @param pageSize
 	 * @return
 	 */
-	 public PageInfo<${TsysTables.tableModel}> list(Tablepar tablepar,${TsysTables.tableModel} record){
-	        ${TsysTables.tableModel}Example testExample=new ${TsysTables.tableModel}Example();
+	 public PageInfo<${tableInfo.javaTableName}> list(Tablepar tablepar,${tableInfo.javaTableName} ${tableInfo.javaTableName_a}){
+	        ${tableInfo.javaTableName}Example testExample=new ${tableInfo.javaTableName}Example();
 			//搜索
 			if(StrUtil.isNotEmpty(tablepar.getSearchText())) {//小窗体
 	        	testExample.createCriteria().andLikeQuery2(tablepar.getSearchText());
 	        }else {//大搜索
-	        	testExample.createCriteria().andLikeQuery(record);
+	        	testExample.createCriteria().andLikeQuery(${tableInfo.javaTableName_a});
 	        }
 			//表格排序
-			if(StrUtil.isNotEmpty(tablepar.getOrderByColumn())) {
-	        	testExample.setOrderByClause(StringUtils.toUnderScoreCase(tablepar.getOrderByColumn()) +" "+tablepar.getIsAsc());
-	        }else{
-	        	testExample.setOrderByClause("${pk_column_name} ASC");
-	        }
-	        PageHelper.startPage(tablepar.getPageNum(), tablepar.getPageSize());
-	        List<${TsysTables.tableModel}> list= ${TsysTables.tableModel_a}Mapper.selectByExample(testExample);
-	        PageInfo<${TsysTables.tableModel}> pageInfo = new PageInfo<${TsysTables.tableModel}>(list);
+			//if(StrUtil.isNotEmpty(tablepar.getOrderByColumn())) {
+	        //	testExample.setOrderByClause(StringUtils.toUnderScoreCase(tablepar.getOrderByColumn()) +" "+tablepar.getIsAsc());
+	        //}else{
+	        //	testExample.setOrderByClause("${pk_column_name} ASC");
+	        //}
+	        PageHelper.startPage(tablepar.getPage(), tablepar.getLimit());
+	        List<${tableInfo.javaTableName}> list= ${tableInfo.javaTableName_a}Mapper.selectByExample(testExample);
+	        PageInfo<${tableInfo.javaTableName}> pageInfo = new PageInfo<${tableInfo.javaTableName}>(list);
 	        return  pageInfo;
 	 }
 #if(${pklag} == true)
@@ -74,25 +74,25 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 		#if(${pk_attrType} == 'String')
 		
 			List<String> lista=ConvertUtil.toListStrArray(ids);
-			${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
+			${tableInfo.javaTableName}Example example=new ${tableInfo.javaTableName}Example();
 			example.createCriteria().and${pkfield}In(lista);
-			return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+			return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
 			
 		#elseif(${pk_attrType} == 'Long')
 		
 			Long[] integers = ConvertUtil.toLongArray(",", ids);
 			List<Long> stringB = Arrays.asList(integers);
-			${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
+			${tableInfo.javaTableName}Example example=new ${tableInfo.javaTableName}Example();
 			example.createCriteria().and${pkfield}In(stringB);
-			return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+			return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
 		
 		#else
 			
 			Integer[] integers = ConvertUtil.toIntArray(",", ids);
 			List<Integer> stringB = Arrays.asList(integers);
-			${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
+			${tableInfo.javaTableName}Example example=new ${tableInfo.javaTableName}Example();
 			example.createCriteria().and${pkfield}In(stringB);
-			return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+			return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
 			
 		#end
 		
@@ -100,27 +100,27 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	
 	
 	@Override
-	public ${TsysTables.tableModel} selectByPrimaryKey(String id) {
+	public ${tableInfo.javaTableName} selectByPrimaryKey(String id) {
 		#if(${pk_attrType} == 'String')
 		
-			return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id);
+			return ${tableInfo.javaTableName_a}Mapper.selectByPrimaryKey(id);
 		#elseif(${pk_attrType} == 'Long')
 		
 			Long id1 = Long.valueOf(id);
-			return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id1);
+			return ${tableInfo.javaTableName_a}Mapper.selectByPrimaryKey(id1);
 			
 		#else
 		
 			Integer id1 = Integer.valueOf(id);
-			return ${TsysTables.tableModel_a}Mapper.selectByPrimaryKey(id1);
+			return ${tableInfo.javaTableName_a}Mapper.selectByPrimaryKey(id1);
 		#end
 		
 	}
 
 	
 	@Override
-	public int updateByPrimaryKeySelective(${TsysTables.tableModel} record) {
-		return ${TsysTables.tableModel_a}Mapper.updateByPrimaryKeySelective(record);
+	public int updateByPrimaryKeySelective(${tableInfo.javaTableName} record) {
+		return ${tableInfo.javaTableName_a}Mapper.updateByPrimaryKeySelective(record);
 	}
 	
 #end	
@@ -129,7 +129,7 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 	 * 添加
 	 */
 	@Override
-	public int insertSelective(${TsysTables.tableModel} record) {
+	public int insertSelective(${tableInfo.javaTableName} record) {
 		#if(${pk_attrType} == 'String')
 		
 		//添加雪花主键id
@@ -141,53 +141,41 @@ public class ${TsysTables.tableModel}Service implements BaseService<${TsysTables
 		
 		#end
 		
-		return ${TsysTables.tableModel_a}Mapper.insertSelective(record);
+		return ${tableInfo.javaTableName_a}Mapper.insertSelective(record);
 	}
 	
 	
 	@Override
-	public int updateByExampleSelective(${TsysTables.tableModel} record, ${TsysTables.tableModel}Example example) {
+	public int updateByExampleSelective(${tableInfo.javaTableName} record, ${tableInfo.javaTableName}Example example) {
 		
-		return ${TsysTables.tableModel_a}Mapper.updateByExampleSelective(record, example);
+		return ${tableInfo.javaTableName_a}Mapper.updateByExampleSelective(record, example);
 	}
 
 	
 	@Override
-	public int updateByExample(${TsysTables.tableModel} record, ${TsysTables.tableModel}Example example) {
+	public int updateByExample(${tableInfo.javaTableName} record, ${tableInfo.javaTableName}Example example) {
 		
-		return ${TsysTables.tableModel_a}Mapper.updateByExample(record, example);
+		return ${tableInfo.javaTableName_a}Mapper.updateByExample(record, example);
 	}
 
 	@Override
-	public List<${TsysTables.tableModel}> selectByExample(${TsysTables.tableModel}Example example) {
+	public List<${tableInfo.javaTableName}> selectByExample(${tableInfo.javaTableName}Example example) {
 		
-		return ${TsysTables.tableModel_a}Mapper.selectByExample(example);
-	}
-
-	
-	@Override
-	public long countByExample(${TsysTables.tableModel}Example example) {
-		
-		return ${TsysTables.tableModel_a}Mapper.countByExample(example);
+		return ${tableInfo.javaTableName_a}Mapper.selectByExample(example);
 	}
 
 	
 	@Override
-	public int deleteByExample(${TsysTables.tableModel}Example example) {
+	public long countByExample(${tableInfo.javaTableName}Example example) {
 		
-		return ${TsysTables.tableModel_a}Mapper.deleteByExample(example);
+		return ${tableInfo.javaTableName_a}Mapper.countByExample(example);
 	}
+
 	
-	/**
-	 * 检查name
-	 * @param ${TsysTables.tableModel_a}
-	 * @return
-	 */
-	public int checkNameUnique(${TsysTables.tableModel} ${TsysTables.tableModel_a}){
-		${TsysTables.tableModel}Example example=new ${TsysTables.tableModel}Example();
-		example.createCriteria().and${conditionQueryField}EqualTo(${TsysTables.tableModel_a}.get${conditionQueryField}());
-		List<${TsysTables.tableModel}> list=${TsysTables.tableModel_a}Mapper.selectByExample(example);
-		return list.size();
+	@Override
+	public int deleteByExample(${tableInfo.javaTableName}Example example) {
+		
+		return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
 	}
 
 

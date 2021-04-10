@@ -2,18 +2,18 @@
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
     #druid连接池配置
     druid:
      #主库数据源
      master:
-        url: jdbc:mysql://localhost:3306/springbootv2?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+        url: jdbc:mysql://localhost:3306/springbootv2pear?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT
         username: root
         password: root
      #备数据源 #关闭
      slave:
         enabled: false
-        url: jdbc:mysql://localhost:3306/springbootv3?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+        url: jdbc:mysql://localhost:3306/springbootv3?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT&autoReconnect=true&useSSL=false
         username: root
         password: root
         #配置初始化连接数大小

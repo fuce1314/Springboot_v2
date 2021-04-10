@@ -15,3 +15,7 @@
 rebel.xml
 /.factorypath
 /.springBeans
+/target/
+/.apt_generated/
+/bin/
+/.apt_generated_tests/
