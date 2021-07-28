@@ -1,5 +1,6 @@
 package com.fc.v2.common.conf;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.fc.v2.common.dataSources.DataSourceType;
 import com.fc.v2.common.dataSources.DynamicDataSource;
@@ -15,10 +16,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
-
-import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+import javax.sql.DataSource;
 
 /**
  * Mybatis多数据源配置
@@ -33,7 +33,7 @@ public class MybatisConfig {
 	
 	@Bean
     @ConfigurationProperties("spring.datasource.druid.master")
-    public DataSource masterDataSource()
+    public DruidDataSource masterDataSource()
     {
         return DruidDataSourceBuilder.create().build();
     }

@@ -112,7 +112,7 @@ public class ShiroConfig {
 		shiroSession.setSessionDAO(sessionDAO);
 		return shiroSession;
 	}
-
+	
 	/**
 	 * 加密算法
 	 * 

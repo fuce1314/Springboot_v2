@@ -1,7 +1,7 @@
 {
 	"logo": {
 		"title": "springboot-v2",
-		"image": "/static/admin/images/logo.png"
+		"image": "static/admin/images/logo.png"
 	},
 	"menu": {
 		"data": "/admin/getUserMenu",

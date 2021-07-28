@@ -305,6 +305,7 @@ public class SysPermissionService implements BaseService<TsysPermission, TsysPer
 	public List<TsysPermission> getall(String userid){
 		if(StringUtils.isEmpty(userid)) {
 			TsysPermissionExample example = new TsysPermissionExample();
+			example.createCriteria().andVisibleEqualTo(0);
 			example.setOrderByClause("order_num  is null  ASC,order_num  ASC");
 			return  tsysPermissionMapper.selectByExample(example);
 		}

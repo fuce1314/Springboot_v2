@@ -57,6 +57,19 @@
         .user-collasped.user-left{
             width: 0px;
         }
+        
+        .layui-table-cell{
+    overflow: visible;
+}
+.layui-layer-tips{
+    display: none
+}
+/* 设置下拉框的高度与表格单元相同 */
+td .layui-form-select{
+    margin-top: -10px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
     </style>
 </head>
 <body class="pear-container">
@@ -142,7 +155,7 @@
 						    	</div>
 						    </div>
 						    <div class="layui-form-item">
-								<div class="layui-form-item" pane>
+								<div class="layui-form-item">
 									<label class="layui-form-label">自定义路径</label>
 									<div class="layui-input-block">
 									  <input th:value="${parentPath}" type="text" name="parentPath" autocomplete="off" placeholder="请输入标题" class="layui-input">
@@ -213,7 +226,9 @@
     <span>离线</span>
     {{# } }}
 </script>
-
+<script type="text/javascript" th:inline="javascript">
+var dictTypes_list = [[${dictTypes}]];
+</script>
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['table', 'dtree','form','element','jquery'], function () {
@@ -236,7 +251,26 @@
                 {title: '是否自增', field: 'extra', align: 'center'},
                 {title: '是否可为空', field: 'is_nullable', align: 'center'},
                 {title: '默认值', field: 'column_default', align: 'center'},
-                {title: '备注', field: 'column_comment', align: 'center'}
+                {title: '备注', width:300,field: 'column_comment', align: 'center',width:150},
+                {title: '字段类型', field: 'htmlType', align: 'center',templet:function(data){
+                	var html="<select lay-filter=\"demo\" init-data='"+data.LAY_TABLE_INDEX+"'>";
+                	    html+="<option value=\"1\">字符串</option>";
+                	    html+="<option value=\"2\">字典表</option>";
+                	    html+="<option value=\"3\">开关类型</option>";
+                	    html+="<option value=\"4\">时间类型</option>";
+                	    html+="<option value=\"5\">文件上传</option>";
+                		html+="</select>";
+                	return html;
+                }},
+                {title: '字典选择', field: 'dictTypeName', align: 'center',templet:function(data){
+                	
+                	var html="<select lay-filter=\"demo2\" init-data='"+data.LAY_TABLE_INDEX+"'>";
+                		for(var i=0;i<dictTypes_list.length;i++){
+                			html+="<option value=\""+dictTypes_list[i].dictType+"\">"+dictTypes_list[i].dictName+"</option>";
+                		}
+                		html+="</select>";
+                	return html;
+                }}
                /*  {title: '操作', toolbar: '#user-bar', align: 'center'} */
             ]
         ]
@@ -265,6 +299,27 @@
             text: {none: '暂无表字段信息'},
             defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh'}, 'filter', 'print', 'exports']
         });
+        
+        
+        form.on('select(demo)', function(data){
+        	
+        	var init_data=$(data.elem).attr("init-data");
+        	var checkStatus = table.cache["global-table"][init_data];
+        	checkStatus.htmlType=data.value;
+        	console.log("sss"+JSON.stringify(checkStatus));
+		});
+        
+		form.on('select(demo2)', function(data){
+        	
+        	var init_data=$(data.elem).attr("init-data");
+        	var checkStatus = table.cache["global-table"][init_data];
+        	checkStatus.dictTypeName=data.value;
+        	debugger
+        	console.log("sss"+JSON.stringify(checkStatus));
+		});
+        
+        
+        
 		//文档地址：http://www.wisdomelon.com/DTreeHelper/
         dtree.render({
             elem: "#dept-tree",
@@ -353,7 +408,6 @@
         		return
         	}
         	var autoConfigData = form.val("autoConfigForm");
-        	console.log(autoConfigData);
         	var urlpar="tableName="+autoConfigData.tableName+"&tableComment="+autoConfigData.tableComment+"&author="
         	+autoConfigData.author+"&pid="+autoConfigData.pid;
         	
@@ -387,13 +441,15 @@
         		layer.msg("未选表！", {icon: 2, time: 1000});
         		return
         	}
+        	console.log(table.cache["global-table"]);
         	var autoConfigData = form.val("autoConfigForm");
+        	autoConfigData.beanColumns=table.cache["global-table"];
         	let loading = layer.load();
         	 $.ajax({
                  url: MODULE_PATH + "/createAuto",
                  dataType: 'json',
-                 data:autoConfigData,
-                 contentType: 'application/x-www-form-urlencoded',
+                 data:JSON.stringify(autoConfigData),
+                 contentType: 'application/json',
                  type: 'post',
                  success: function (result) {
                      layer.close(loading);

@@ -25,7 +25,7 @@
         <img th:src="@{/captcha/captchaImage?type=char}" class="codeImage" id="captchaImage"/>
     </div>
     <div class="layui-form-item">
-        <input type="checkbox" name="remember-me" title="记住密码" lay-skin="primary">
+        <input type="checkbox" name="rememberMe" title="记住密码" lay-skin="primary">
     </div>
     <div class="layui-form-item">
         <button class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
@@ -39,8 +39,8 @@
         let form = layui.form;
         let $ = layui.jquery;
         let layer = layui.layer;
-
         form.on('submit(login)', function(data){
+        	$(".login").attr("disabled","disabled")
             let loader = layer.load();
             $(".login").html("<i class='layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading' />");
             $.ajax({
@@ -49,8 +49,8 @@
                 type:"post",
                 dataType:'json',
                 success:function(result){
-                    layer.close(loader);
                     if(result.code==200){
+                    	
                         layer.msg(result.msg,{icon:1,time:1000},function(){
                             location.href = rootPath+"/admin/index";
                         })
@@ -58,8 +58,10 @@
                         layer.msg(result.msg,{icon:2,time:1000},function(){
                             document.getElementById("captchaImage").src=rootPath+"/captcha/captchaImage?type=char&s="+Math.random();
                         });
+                        $(".login").removeAttr("disabled");
                     }
                     $(".login").html("登 入")
+                    layer.close(loader);
                 }
             });
             return false;

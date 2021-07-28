@@ -177,6 +177,15 @@ public class ${tableInfo.javaTableName}Service implements BaseService<${tableInf
 		
 		return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
 	}
+	
+	/**
+	 * 修改权限状态展示或者不展示
+	 * @param ${tableInfo.javaTableName_a}
+	 * @return
+	 */
+	public int updateVisible(${tableInfo.javaTableName} ${tableInfo.javaTableName_a}) {
+		return ${tableInfo.javaTableName_a}Mapper.updateByPrimaryKeySelective(${tableInfo.javaTableName_a});
+	}
 
 
 }

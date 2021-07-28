@@ -157,7 +157,7 @@ layui.define(['jquery', 'element'], function(exports) {
 		}
 		element.tabAdd(this.option.elem, {
 			title: title,
-			content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +
+			content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +rootPath+
 				opt.url + '" style="width:100%;height:100%;"></iframe>',
 			id: opt.id
 		});
@@ -217,7 +217,7 @@ layui.define(['jquery', 'element'], function(exports) {
 			}
 			element.tabAdd(elem, {
 				title: title,
-				content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +
+				content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +rootPath+
 					opt.url + '" style="width:100%;height:100%;"></iframe>',
 				id: opt.id
 			});
@@ -251,7 +251,7 @@ layui.define(['jquery', 'element'], function(exports) {
 				}
 				element.tabAdd(elem, {
 					title: title,
-					content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +
+					content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +rootPath+
 						opt.url + '" style="width:100%;height:100%;"></iframe>',
 					id: opt.id
 				});
@@ -293,7 +293,7 @@ layui.define(['jquery', 'element'], function(exports) {
 			}
 			element.tabAdd(this.option.elem, {
 				title: title,
-				content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +
+				content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +rootPath+
 					opt.url + '" style="width:100%;height:100%;"></iframe>',
 				id: opt.id
 			});
@@ -336,7 +336,7 @@ layui.define(['jquery', 'element'], function(exports) {
 				}
 				element.tabAdd(this.option.elem, {
 					title: title,
-					content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +
+					content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id + '" scrolling="auto" frameborder="0" src="' +rootPath+
 						opt.url + '" style="width:100%;height:100%;"></iframe>',
 					id: opt.id
 				});
@@ -374,8 +374,7 @@ layui.define(['jquery', 'element'], function(exports) {
 			$(".layui-tab[lay-filter='" + elem + "'] .layui-tab-content .layui-show").find("iframe")[0].contentWindow
 				.location.reload(true);
 		} else {
-			$(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-content .layui-show").find("iframe")[0].contentWindow
-				.location.reload(true);
+			//$(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-content .layui-show").find("iframe")[0].contentWindow.location.reload(true);
 		}
 	}
 
@@ -472,11 +471,11 @@ layui.define(['jquery', 'element'], function(exports) {
 
 				// 处 理 显 示 内 容
 				content += '<div class="layui-show layui-tab-item"><iframe id="' + item.id + '" data-frameid="' + item.id +
-					'"  src="' + item.url +
+					'"  src="' +rootPath+ item.url +
 					'" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%;height: 100%;"></iframe></div>'
 			} else {
 				// 处 理 显 示 内 容
-				content += '<div class="layui-tab-item"><iframe id="' + item.id + '" data-frameid="' + item.id + '"  src="' +
+				content += '<div class="layui-tab-item"><iframe id="' + item.id + '" data-frameid="' + item.id + '"  src="' +rootPath+
 					item.url +
 					'" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%;height: 100%;"></iframe></div>'
 			}

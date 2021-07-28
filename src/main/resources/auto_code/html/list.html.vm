@@ -51,13 +51,78 @@
 </script>
 
 
-<script type="text/html" id="${tableInfo.javaTableName_a}-type">
-    {{\#if (d.dataState == '0') { }}
-    <span class="layui-badge layui-bg-orange">开启</span>
-    {{# }else if(d.dataState == '-1'){ }}
-    <span class="layui-badge layui-bg-blue">关闭</span>
+#set($isdate = false)
+#set($isupload = false)
+#foreach ($column in $beanColumns)
+	#if(${column.column_key} != 'PRI')
+		#if(${column.htmlType} == 2)
+
+<script type="text/html" id="${column.beanName}-type">
+	
+#foreach ($dictData in $column.autoDictType.dictDatas)
+
+	{{\#if (d.${column.beanName} == ${dictData.dictValue}) { }}
+    <span class="layui-badge layui-bg-${dictData.listClass}-blue">${dictData.dictLabel}</span>
+#end
     {{# } }}
 </script>
+		#elseif(${column.htmlType} == 3)
+
+<script type="text/html" id="${column.beanName}-enable">
+    <input type="checkbox" name="${column.beanName}" value="{{d.id}}" lay-skin="switch" lay-text="是|否" lay-filter="${column.beanName}-enable" {{d.${column.beanName}== 1 ? 'checked' : '' }} >
+</script>
+		#elseif(${column.htmlType} == 5)
+			#set($isupload =true)
+			
+<script type="text/html" id="${column.beanName}-img">
+	 {{\#if (d.${column.beanName} != null && d.${column.beanName} != '') { }}
+		<a onclick='view("{{d.${column.beanName}}}")'>
+			{{d.${column.beanName}}}
+			<i class="layui-icon layui-icon-template" lay-filter="${column.beanName}-view"></i>
+    	</a>
+	 {{# } else { }}
+		-
+	 {{# } }}
+</script>
+		#end
+	#end
+#end
+
+
+<script type="text/javascript" th:inline="javascript">
+#foreach ($column in $beanColumns)
+#if(${column.htmlType} == 2)
+	var ${column.beanName}_list = [[${@dict.getType('$column.autoDictType.dictType.dictType')}]];
+	
+#end
+#end
+	
+	window.selectDictLabel=function(datas, value) {
+		var actions = [];
+	    $.each(datas, function(index, dict) {
+	        if (dict.dictValue == ('' + value)) {
+	        	var listClass = ("default"== dict.listClass) ? "" : "badge badge-" + dict.listClass;
+	        	actions.push(sprintf("<span class='%s'>%s</span>", listClass, dict.dictLabel));
+	            return false;
+	        }
+	    });
+	    return actions.join('');
+	}
+	window.sprintf=function (str) {
+	    var args = arguments, flag = true, i = 1;
+	    str = str.replace(/%s/g, function () {
+	        var arg = args[i++];
+	        if (typeof arg === 'undefined') {
+	            flag = false;
+	            return '';
+	        }
+	        return arg;
+	    });
+	    return flag ? str : '';
+	}
+</script>	
+	
+
 
 <th:block th:include="include :: footer"/>
 <script>
@@ -65,18 +130,36 @@
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
-
+		#if($isupload==true)
+		 let BUCKETURL_PATH='[[${bucketURL}]]';
+		#end	
+		
         let MODULE_PATH = rootPath+"/${tableInfo.javaTableName}Controller/";
         let cols = [
             [
-                {type: 'checkbox'},
+               {type: 'checkbox'},
+#foreach ($column in $beanColumns)
+	#if(${column.htmlType} == 1)
+                	
+               {title: '${column.column_comment}', field: '${column.beanName}', align: 'center'},
+    #elseif(${column.htmlType} == 2)
+                	
+        	   {title: '${column.column_comment}', field: '${column.beanName}', align: 'center',templet:function(d){
+				  return selectDictLabel(${column.beanName}_list, d.${column.beanName});
+			   }},
+    #elseif(${column.htmlType} == 3)
+                	
+               {title: '${column.column_comment}', field: '${column.beanName}', align: 'center',templet: '#${column.beanName}-enable'},
+    #elseif(${column.htmlType} == 5)
+                	
+               {title: '${column.column_comment}', field: '${column.beanName}', align: 'center',templet: '#${column.beanName}-img'},
+    #else
+                		
+               {title: '${column.column_comment}', field: '${column.beanName}', align: 'center'},
+	#end
+#end
                 
-                #foreach ($column in $beanColumns)
-					{title: '${column.column_comment}', field: '${column.beanName}', align: 'center'},
-					
-				#end
-                
-                {title: '操作', toolbar: '#${tableInfo.javaTableName_a}-bar', align: 'center'}
+               {title: '操作', toolbar: '#${tableInfo.javaTableName_a}-bar', align: 'center'}
             ]
         ]
 
@@ -197,6 +280,20 @@
                 })
             });
         }
+        
+        
+#if($isupload==true) 
+		 //查看
+        window.view = function (obj) {
+            layer.open({
+                type: 1,
+                title: '查看',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: "<img style=\"width:500px\" src=\""+BUCKETURL_PATH+"/"+obj+"\">"
+            });
+        }
+#end   
         //刷新按钮
         window.refresh = function () {
             table.reload('${tableInfo.javaTableName_a}-table');

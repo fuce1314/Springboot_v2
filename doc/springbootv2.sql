@@ -3,15 +3,15 @@
 
  Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 50725
+ Source Server Version : 50734
  Source Host           : localhost:3306
- Source Schema         : springbootv2pear
+ Source Schema         : springbootv2
 
  Target Server Type    : MySQL
- Target Server Version : 50725
+ Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 18/01/2021 03:00:43
+ Date: 07/07/2021 23:56:46
 */
 
 SET NAMES utf8mb4;
@@ -36,7 +36,7 @@ CREATE TABLE `t_sys_area`  (
   `data_state` int(11) NULL DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `Index_1`(`area_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2013 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '地区设置' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2013 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '地区设置' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_area
@@ -99,7 +99,7 @@ CREATE TABLE `t_sys_city`  (
   `data_state` int(11) NULL DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `Index_1`(`city_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 256 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '城市设置' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 256 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '城市设置' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_city
@@ -120,7 +120,7 @@ CREATE TABLE `t_sys_department`  (
   `status` int(255) NULL DEFAULT NULL COMMENT '状态',
   `order_num` int(11) NULL DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_department
@@ -165,6 +165,15 @@ INSERT INTO `t_sys_dict_data` VALUES ('373494384659927040', 0, 'GET请求', '1',
 INSERT INTO `t_sys_dict_data` VALUES ('373494483465146368', 1, 'POST请求', '2', 'sys_inter_url_type', '', 'info', 'N', '0', 'admin', '2020-01-05 01:40:34', 'admin', '2020-12-27 14:26:59', '');
 INSERT INTO `t_sys_dict_data` VALUES ('506431838588375040', 0, 'DELETE请求', '3', 'sys_inter_url_type', '', 'default', 'N', '0', 'admin', '2021-01-05 13:46:10', 'admin', '2021-01-05 13:48:43', '');
 INSERT INTO `t_sys_dict_data` VALUES ('506432620712824832', 0, 'PUT请求', '4', 'sys_inter_url_type', '', 'default', 'N', '0', 'admin', '2021-01-05 13:49:16', 'admin', '2021-01-05 13:49:20', '');
+INSERT INTO `t_sys_dict_data` VALUES ('563746747239763968', 0, '微信', '1', 'payment_type', '', 'default', 'Y', '0', 'admin', '2021-06-12 17:35:09', 'admin', '2021-06-12 17:37:14', '');
+INSERT INTO `t_sys_dict_data` VALUES ('563746783184949248', 0, '支付宝', '2', 'payment_type', '', 'default', 'Y', '0', 'admin', '2021-06-12 17:35:17', 'admin', '2021-06-12 17:37:18', '');
+INSERT INTO `t_sys_dict_data` VALUES ('563746818496794624', 0, '水滴筹', '3', 'payment_type', '', 'default', 'Y', '0', 'admin', '2021-06-12 17:35:26', 'admin', '2021-06-12 17:37:21', '');
+INSERT INTO `t_sys_dict_data` VALUES ('563747125104611328', 0, '火锅底料', '1', 'gift_type', '', 'default', 'Y', '0', 'admin', '2021-06-12 17:36:39', 'admin', '2021-06-12 17:36:50', '');
+INSERT INTO `t_sys_dict_data` VALUES ('563747405598691328', 0, '冒菜底料', '2', 'gift_type', '', 'default', 'Y', '0', 'admin', '2021-06-12 17:37:46', '', '2021-06-12 17:37:46', '');
+INSERT INTO `t_sys_dict_data` VALUES ('563747459235450880', 0, '重庆小面佐料', '3', 'gift_type', '', 'default', 'Y', '0', 'admin', '2021-06-12 17:37:58', '', '2021-06-12 17:37:58', '');
+INSERT INTO `t_sys_dict_data` VALUES ('563747480336994304', 0, '其他', '4', 'gift_type', '', 'default', 'Y', '0', 'admin', '2021-06-12 17:38:03', '', '2021-06-12 17:38:03', '');
+INSERT INTO `t_sys_dict_data` VALUES ('571366029360500736', 0, '是', '1', 'yes_or_no', '', 'default', 'Y', '0', 'admin', '2021-07-03 18:11:27', '', '2021-07-03 18:11:27', '');
+INSERT INTO `t_sys_dict_data` VALUES ('571366105029939200', 0, '否', '-1', 'yes_or_no', '', 'info', 'Y', '0', 'admin', '2021-07-03 18:11:45', '', '2021-07-03 18:11:45', '');
 
 -- ----------------------------
 -- Table structure for t_sys_dict_type
@@ -189,6 +198,9 @@ CREATE TABLE `t_sys_dict_type`  (
 -- ----------------------------
 INSERT INTO `t_sys_dict_type` VALUES ('340079827459641344', '省份状态', 'sys_province_state', '0', 'admin', '2019-10-04 20:42:39', '', '2019-10-04 20:42:39', '省份状态');
 INSERT INTO `t_sys_dict_type` VALUES ('373493952487231488', '拦截器类型', 'sys_inter_url_type', '0', 'admin', '2020-01-05 01:38:28', 'admin', '2020-03-29 23:23:43', '拦截器类型');
+INSERT INTO `t_sys_dict_type` VALUES ('563746635880992768', '捐款类型', 'payment_type', '0', 'admin', '2021-06-12 17:34:42', '', '2021-06-12 17:34:42', '');
+INSERT INTO `t_sys_dict_type` VALUES ('563747016396640256', '礼物类型', 'gift_type', '0', 'admin', '2021-06-12 17:36:13', '', '2021-06-12 17:36:13', '');
+INSERT INTO `t_sys_dict_type` VALUES ('571365854613213184', '是与否', 'yes_or_no', '0', 'admin', '2021-07-03 18:10:45', '', '2021-07-03 18:10:45', '用于select');
 INSERT INTO `t_sys_dict_type` VALUES ('6', '通知类型', 'sys_notice_type', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2020-12-27 14:26:42', '通知类型列表');
 
 -- ----------------------------
@@ -204,7 +216,7 @@ CREATE TABLE `t_sys_email`  (
   `send_user_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '发送人账号',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '电子邮件' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '电子邮件' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_email
@@ -230,7 +242,7 @@ CREATE TABLE `t_sys_file`  (
   `update_user_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人名字',
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '文件信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '文件信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_file
@@ -248,7 +260,7 @@ CREATE TABLE `t_sys_inter_url`  (
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '拦截url',
   `type` int(2) NULL DEFAULT NULL COMMENT '类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '拦截url表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '拦截url表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_inter_url
@@ -325,7 +337,7 @@ CREATE TABLE `t_sys_notice`  (
   `create_username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人name',
   `create_time` datetime NULL DEFAULT NULL COMMENT '发信时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公告' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公告' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_notice
@@ -344,7 +356,7 @@ CREATE TABLE `t_sys_notice_user`  (
   `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户id',
   `state` int(2) NULL DEFAULT NULL COMMENT '0未阅读 1 阅读',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公告_用户外键' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公告_用户外键' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_notice_user
@@ -389,7 +401,7 @@ CREATE TABLE `t_sys_oper_log`  (
   `error_msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `oper_time` date NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '日志记录表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '日志记录表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_oper_log
@@ -448,7 +460,7 @@ CREATE TABLE `t_sys_permission`  (
   `order_num` int(11) NULL DEFAULT NULL COMMENT '排序',
   `visible` int(255) NULL DEFAULT NULL COMMENT '是否可见',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '权限表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_permission
@@ -567,7 +579,7 @@ CREATE TABLE `t_sys_permission_role`  (
   `role_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色id',
   `permission_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色权限中间表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色权限中间表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_permission_role
@@ -687,7 +699,7 @@ CREATE TABLE `t_sys_position`  (
   `order_num` int(11) NULL DEFAULT NULL COMMENT '排序',
   `status` int(11) NULL DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '岗位表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '岗位表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_position
@@ -715,7 +727,7 @@ CREATE TABLE `t_sys_province`  (
   `data_state` int(11) NULL DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `Index_1`(`province_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '省份表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '省份表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_province
@@ -736,7 +748,7 @@ CREATE TABLE `t_sys_quartz_job`  (
   `concurrent` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否并发执行（0允许 1禁止）',
   `status` int(11) NULL DEFAULT NULL COMMENT '任务状态（0正常 1暂停）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_quartz_job
@@ -758,7 +770,7 @@ CREATE TABLE `t_sys_quartz_job_log`  (
   `start_time` datetime NULL DEFAULT NULL COMMENT '开始时间',
   `end_time` datetime NULL DEFAULT NULL COMMENT '结束时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_quartz_job_log
@@ -971,7 +983,7 @@ CREATE TABLE `t_sys_role`  (
   `id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'id',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_role
@@ -989,7 +1001,7 @@ CREATE TABLE `t_sys_role_user`  (
   `sys_user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户id',
   `sys_role_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户角色中间表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户角色中间表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_role_user
@@ -1022,7 +1034,7 @@ CREATE TABLE `t_sys_street`  (
   `data_state` int(11) NULL DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `Index_1`(`street_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '街道设置' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '街道设置' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_street
@@ -1040,7 +1052,7 @@ CREATE TABLE `t_sys_user`  (
   `dep_id` int(11) NULL DEFAULT NULL COMMENT '部门id',
   `pos_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '岗位id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_sys_user
@@ -1061,7 +1073,7 @@ CREATE TABLE `t_test`  (
   `b_c_update` datetime NULL DEFAULT NULL COMMENT '修改时间',
   `t_cb_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '写个字符串',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '测试表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '测试表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_test

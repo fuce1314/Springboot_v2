@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.fc.v2.common.domain.AjaxResult;
 import com.fc.v2.model.auto.SysFile;
+import com.fc.v2.model.auto.TsysUser;
 import com.fc.v2.service.SysFileService;
 import com.fc.v2.shiro.util.ShiroUtils;
 import com.fc.v2.util.SnowflakeIdWorker;
@@ -97,7 +98,13 @@ public class OssEndpoint {
 		String fileSuffixName=uuid+suffixName;
 		PutObjectResult putObjectResult=template.putObject(bucketName, fileSuffixName, object.getInputStream(), object.getSize(), object.getContentType());
 		if(putObjectResult!=null){
-			SysFile sysFile=new SysFile(uuid,  fileSuffixName,  bucketName, object.getSize(), object.getContentType(),ShiroUtils.getUserId(), ShiroUtils.getLoginName(), new Date(),null, null, null);
+			TsysUser tsysUser=ShiroUtils.getUser();
+			SysFile sysFile=null;
+			if(tsysUser!=null) {
+				sysFile=new SysFile(uuid,  fileSuffixName,  bucketName, object.getSize(), object.getContentType(),ShiroUtils.getUserId(), ShiroUtils.getLoginName(), new Date(),null, null, null);
+			}else {
+				sysFile=new SysFile(uuid,  fileSuffixName,  bucketName, object.getSize(), object.getContentType(),"-", "-", new Date(),null, null, null);
+			}
 			int i=sysFileService.insertSelective(sysFile);
 			if(i>0){
 				return AjaxResult.successData(200,template.getObjectInfo(bucketName,  fileSuffixName));
@@ -225,7 +232,13 @@ public class OssEndpoint {
 		String fileSuffixName=uuid+suffixName;
 		PutObjectResult putObjectResult=template.putObject(bucketName, fileSuffixName, file.getInputStream(), file.getSize(), file.getContentType());
 		if(putObjectResult!=null){
-			SysFile sysFile=new SysFile(uuid,  fileSuffixName,  bucketName, file.getSize(), file.getContentType(),ShiroUtils.getUserId(), ShiroUtils.getLoginName(), new Date(),null, null, null);
+			TsysUser tsysUser=ShiroUtils.getUser();
+			SysFile sysFile=null;
+			if(tsysUser!=null) {
+				sysFile=new SysFile(uuid,  fileSuffixName,  bucketName, file.getSize(), file.getContentType(),ShiroUtils.getUserId(), ShiroUtils.getLoginName(), new Date(),null, null, null);
+			}else {
+				sysFile=new SysFile(uuid,  fileSuffixName,  bucketName, file.getSize(), file.getContentType(),"-", "-", new Date(),null, null, null);
+			}
 			int i=sysFileService.insertSelective(sysFile);
 			if(i>0){
 				retmap.put("code",0);

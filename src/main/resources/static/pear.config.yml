@@ -3,7 +3,7 @@ logo:
   ## 网站名称
   title: "springboot-v2"
   ## 网站图标
-  image: "/static/admin/images/logo.png"
+  image: "../static/admin/images/logo.png"
 ## 菜单配置
 menu: 
   ## 菜单数据来源

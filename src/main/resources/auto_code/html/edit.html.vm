@@ -10,34 +10,84 @@
             <div class="main-container">
 #set($isdate = false)
 #foreach ($column in $beanColumns)
-#if(${column.column_key} != 'PRI')
+		#if(${column.column_key} != 'PRI')
+		
+					#if(${column.htmlType} == 1)
+					
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">${column.column_comment}</label>
+		                    <div class="layui-input-block">
+		                        <input th:value="*{${column.beanName}}" type="text" name="${column.beanName}" autocomplete="off" placeholder="${column.column_comment}" class="layui-input">
+		                    </div>
+		                </div>
+					                
+					#elseif(${column.htmlType} == 2)
+					
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">${column.column_comment}</label>
+		                    <div class="layui-input-block">
+		                        <select  name="${column.beanName}" th:field="*{${column.beanName}}">
+		                    		<option value="-1">否</option>
+		                    		<option value="1">是</option>
+		                    	</select>
+		                    </div>
+		                </div>
+					#elseif(${column.htmlType} == 3)
+					
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">${column.column_comment}</label>
+		                    <div class="layui-input-block">
+		                        <select  name="${column.beanName}" th:field="*{${column.beanName}}">
+		                    		<option value="-1">否</option>
+		                    		<option value="1">是</option>
+		                    	</select>
+		                    </div>
+		                </div>            
+					#elseif(${column.htmlType} == 4)
+					#set($isdate =true)
+					
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">${column.column_comment}</label>
+		                    <div class="layui-input-block">
+		                        <input type="text" th:value="${${tableInfo.javaTableName}.dateToStringConvert(${tableInfo.javaTableName}.${column.beanName})}" name="${column.beanName}" autocomplete="off" placeholder="${column.column_comment}" class="layui-input datetime-input">
+		                        
+		                    </div>
+		                </div>
+					#elseif(${column.htmlType} == 5)  
+					             
+		              	<div class="layui-form-item layui-hide">
+		                    <label class="layui-form-label">${column.column_comment}</label>
+		                    <div class="layui-input-block">
+		                        <input type="text" name="${column.beanName}" id="${column.beanName}" autocomplete="off" placeholder="${column.column_comment}" class="layui-input">
+		                    </div>
+		                </div>
+		                
+		                <div class="layui-form-item">
+		                    <label class="layui-form-label">${column.column_comment}</label>
+		                    <div class="layui-input-block">
+		                        <div class="layui-upload-drag" id="${column.beanName}_ImgUpload">
+		                          <i class="layui-icon"></i>
+		                          <p>点击上传，或将文件拖拽到此处</p>
+		                          <div class="layui-hide" id="${column.beanName}_ImgUpload_View">
+		                            <hr>
+		                            <img src="" alt="上传成功后渲染" style="max-width: 196px">
+		                          </div>
+		                        </div>
+		                    </div>
+		                </div>
+					#end
+		#else
 
-#if(${column.beanType} != "java.util.Date")
-				<div class="layui-form-item">
-                    <label class="layui-form-label">${column.column_comment}</label>
-                    <div class="layui-input-block">
-                        <input th:value="*{${column.beanName}}" type="text" name="${column.beanName}" autocomplete="off" placeholder="${column.column_comment}" class="layui-input">
-                    </div>
-                </div>
-#else
-#set($isdate =true)
-				<div class="layui-form-item">
-                    <label class="layui-form-label">${column.column_comment}</label>
-                    <div class="layui-input-block">
-                        <input th:value="${${tableInfo.javaTableName}.dateToStringConvert(${tableInfo.javaTableName}.${column.beanName})}" type="text" name="${column.beanName}" autocomplete="off" placeholder="${column.column_comment}" class="layui-input datetime-input">
-                    </div>
-                </div>
+						<div class="layui-form-item layui-hide">
+		                    <label class="layui-form-label">${column.column_comment}</label>
+		                    <div class="layui-input-block">
+		                        <input type="text" th:value="*{${column.beanName}}" name="${column.beanName}" lay-verify="title"
+		                               autocomplete="off" class="layui-input">
+		                    </div>
+		                </div>
+		#end
 #end
-#else
-				<div class="layui-form-item layui-hide">
-                    <label class="layui-form-label">${column.column_comment}</label>
-                    <div class="layui-input-block">
-                        <input type="text" th:value="*{${column.beanName}}" name="${column.beanName}" lay-verify="title"
-                               autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-#end
-#end
+
             </div>
         </div>
     </div>
@@ -57,11 +107,15 @@
 </form>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','laydate','jquery'], function () {
+    layui.use(['form','laydate',#if($isupload==true)'upload',#end'jquery'], function () {
         let form = layui.form;
         let $ = layui.jquery;
         let MODULE_PATH = rootPath+"/${tableInfo.javaTableName}Controller";
-		
+		#if($isupload==true)
+			let FILE_PATH = rootPath+"/oss";
+			let upload = layui.upload;
+			let BucketName='[[${BucketName}]]';
+		#end
 #if($isdate==true)
 		var laydate = layui.laydate;
         //同时绑定多个
@@ -73,7 +127,38 @@
           });
         });
 #end
+
+#if($isupload==true)
+#foreach ($column in $beanColumns)
+#if(${column.column_key} != 'PRI')
+#if(${column.htmlType} == 5)
+
+		//拖拽上传 文档：https://www.layui.com/doc/modules/upload.html
+		upload.render({
+			elem: '#${column.beanName}_ImgUpload'
+			,url: FILE_PATH+"/object/"+BucketName //改成您自己的上传接口
+			,field: 'object' //设定文件域的字段名
+			,done: function(result){
+				console.log(result);
+				if (result.code==200) {
+					layer.msg('上传成功');
+					layui.$('#${column.beanName}_ImgUpload_View').removeClass('layui-hide').find('img').attr('src', result.data.objectContent.httpRequest.uri);
+					if(result.data.key!=null){
+						$("#${column.beanName}").val(result.data.key);
+					}
+				} else {
+					layer.msg(result.msg, {icon: 2, time: 1000});
+				}
+			}
+		});
+
+#end
+#end
+#end
+#end
+
         form.on('submit(${tableInfo.javaTableName_a}-update)', function (data) {
+        	let loader = layer.load();
             $.ajax({
                 url: MODULE_PATH+'/edit',
                 data: data.field,
@@ -85,17 +170,17 @@
                         layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("${tableInfo.javaTableName_a}-table");
+                            layer.close(loader);
                         });
                     } else {
                         layer.msg(result.msg, {icon: 2, time: 1000});
+                        layer.close(loader);
                     }
                 }
             })
             return false;
         });
     })
-</script>
-<script>
 </script>
 </body>
 </html>

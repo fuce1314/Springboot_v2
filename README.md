@@ -1,5 +1,4 @@
 ### 公告
-1
 
 由于以前的v2有白屏bug（偶尔需要点击2次才能展示内容，无法debug），个人无法解决，v2以前全新换皮肤。如果你要研究可以查看分支：【20210101v2】
 master为最新皮肤
@@ -49,13 +48,14 @@ master为最新皮肤
 - SpringbootStart 启动类
 
 
-### 数据库模型
-![数据库模型](https://images.gitee.com/uploads/images/2019/0701/001953_dd7a387e_123301.png "数据库模型.png")
 
 ### 新界面风格
 |![输入图片说明](https://images.gitee.com/uploads/images/2021/0101/134930_749be44d_123301.png "屏幕截图.png")  | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0101/135013_703123c3_123301.png "屏幕截图.png")    |
 | --- | --- |
 |![输入图片说明](https://images.gitee.com/uploads/images/2021/0101/135035_24fdcafb_123301.png "屏幕截图.png")    | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0101/135102_7ba9097f_123301.png "屏幕截图.png")     |
+
+### 数据库模型
+![数据库模型](https://images.gitee.com/uploads/images/2019/0701/001953_dd7a387e_123301.png "数据库模型.png")
 
 
 ### 后台代码注释风格
@@ -124,20 +124,24 @@ master为最新皮肤
 - https://gitee.com/y_project/RuoYi-fast 借鉴ry.js
 
 
-### AgileBPM GVP项目
-专注于解决企业工作流实施难的问题
-https://gitee.com/agile-bpm
 
+
+### 精品项目推荐
+
+|项目名称 | 项目地址 | 项目介绍 |
+|---|---|---|
+| Jpom GVP项目      | [https://gitee.com/dromara/Jpom](https://gitee.com/dromara/Jpom) | 一款简而轻的低侵入式在线构建、自动部署、日常运维、项目监控软件|
+| AgileBPM GVP项目  | [https://gitee.com/agile-bpm](https://gitee.com/agile-bpm)  | 专注于解决企业工作流实施难的问题  |
+| AlibabaCloud     | [https://gitee.com/matevip/matecloud](https://gitee.com/matevip/matecloud)  | MateCloud是一款基于Spring Cloud Alibaba的微服务架构 |
+| ApiBoot | [https://gitee.com/minbox-projects/api-boot](https://gitee.com/minbox-projects/api-boot)    | 为接口服务而生  |
+| v2皮肤           | [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/pear-admin/Pear-Admin-Layui)                   |
+                                                                                 
 
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
 
 
-
-### 精品开源项目推荐
-- [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/Jmysy/Pear-Admin-Layui)
-- [ApiBoot为接口服务而生](https://gitee.com/minbox-projects/api-boot?_from=gitee_search)
-
 ### 使用v2做得系统
 
-
+###牛油果
+[![Giteye chart](https://chart.giteye.net/gitee/bdj/SpringBoot_v2/Q9GZ48L3.png)](https://giteye.net/chart/Q9GZ48L3)

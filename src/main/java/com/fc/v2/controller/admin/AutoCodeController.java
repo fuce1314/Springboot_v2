@@ -17,9 +17,12 @@ import com.fc.v2.model.custom.TsysTables;
 import com.fc.v2.model.custom.TsysTablesVo;
 import com.fc.v2.model.custom.autocode.AutoCodeConfig;
 import com.fc.v2.model.custom.autocode.AutoConfigModel;
+import com.fc.v2.model.custom.autocode.AutoDictType;
 import com.fc.v2.model.custom.autocode.BeanColumn;
 import com.fc.v2.model.custom.autocode.TableInfo;
+import com.fc.v2.service.DictService;
 import com.fc.v2.service.GeneratorService;
+import com.fc.v2.service.SysDictTypeService;
 import com.fc.v2.util.AutoCode.AutoCodeUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -28,6 +31,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,6 +52,12 @@ public class AutoCodeController extends BaseController {
 	private GeneratorService generatorService;
 	// @Autowired
 	// private SysUtilService sysUtilService;
+	
+	@Autowired
+	private SysDictTypeService tSysDictTypeService;
+	
+	@Autowired
+	private DictService dictService; 
 
 	/**
 	 * 代码自动生成全局配置
@@ -61,9 +71,11 @@ public class AutoCodeController extends BaseController {
 	@GetMapping("/global")
 	@RequiresPermissions("system:autocode:global")
 	public String global(ModelMap modelMap) {
+		
 		modelMap.put("author", AutoCodeConfig.getConfig().getProperty("author"));
 		modelMap.put("email", AutoCodeConfig.getConfig().getProperty("author"));
 		modelMap.put("parentPath", AutoCodeConfig.getConfig().getProperty("parentPath"));
+		modelMap.put("dictTypes",tSysDictTypeService.selectByExample(null));
 		return prefix + "/global";
 	}
 
@@ -119,9 +131,22 @@ public class AutoCodeController extends BaseController {
 	 */
 	@PostMapping("/createAuto")
 	@ResponseBody
-	public AjaxResult createAuto(AutoConfigModel autoConfigModel) {
+	public AjaxResult createAuto(@RequestBody AutoConfigModel autoConfigModel) {
 		// 根据表名查询表字段集合
-		List<BeanColumn> list = generatorService.queryColumns2(autoConfigModel.getTableName());
+		List<BeanColumn> list =autoConfigModel.getBeanColumns() ;// generatorService.queryColumns2(autoConfigModel.getTableName());
+		//根据表的设置查询出字典表需要的数据
+		
+		list.stream().forEach(item ->{
+			if(item.getHtmlType()==2) {
+				AutoDictType autoDictType=new AutoDictType(dictService.getSysDictType(item.getDictTypeName()),dictService.getType(item.getDictTypeName()));
+				item.setAutoDictType(autoDictType);
+			}
+			
+		});
+	
+		
+		
+		
 		// 初始化表信息
 		TableInfo tableInfo = new TableInfo(autoConfigModel.getTableName(), list, autoConfigModel.getTableComment());
 

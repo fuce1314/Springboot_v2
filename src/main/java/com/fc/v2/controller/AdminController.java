@@ -42,7 +42,7 @@ public class AdminController extends BaseController {
 	private String prefix = "admin";
 
 	@ApiOperation(value = "首页", notes = "首页")
-	@GetMapping("/index")
+	@GetMapping({"", "/index"})
 	public String index(HttpServletRequest request) {
 		request.getSession().setAttribute("sessionUserName", ShiroUtils.getUser().getNickname());
 		// 获取公告信息

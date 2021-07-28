@@ -14,6 +14,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+#set($isdate = false)
+#set($isupload = false)
+#foreach ($column in $beanColumns)
+#if(${column.column_key} != 'PRI')
+#if(${column.htmlType} == 4)
+#set($isdate =true)
+#elseif(${column.htmlType} == 5)
+#set($isupload =true)
+#end
+#end
+#end
+#if($isupload==true)
+import com.fc.v2.common.conf.oss.OssConfig;
+#end
 
 /**
  * ${tableInfo.tableComment}Controller
@@ -41,6 +55,9 @@ public class ${tableInfo.javaTableName}Controller extends BaseController{
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("gen:${tableInfo.javaTableName_a}:view")
+#if($isupload==true)
+    @OssConfig
+#end
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -67,6 +84,9 @@ public class ${tableInfo.javaTableName}Controller extends BaseController{
      */
 	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
+#if($isupload==true)
+    @OssConfig
+#end
     public String add(ModelMap modelMap)
     {
         return prefix + "/add";
@@ -119,6 +139,9 @@ public class ${tableInfo.javaTableName}Controller extends BaseController{
 	 */
 	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
+#if($isupload==true)
+    @OssConfig
+#end
     public String edit(@PathVariable("id") String id, ModelMap map)
     {
         map.put("${tableInfo.javaTableName}", ${tableInfo.javaTableName_a}Service.selectByPrimaryKey(id));
@@ -138,6 +161,19 @@ public class ${tableInfo.javaTableName}Controller extends BaseController{
     {
         return toAjax(${tableInfo.javaTableName_a}Service.updateByPrimaryKeySelective(${tableInfo.javaTableName_a}));
     }
+    
+    
+    /**
+	 * 修改状态
+	 * @param record
+	 * @return
+	 */
+    @PutMapping("/updateVisible")
+	@ResponseBody
+    public AjaxResult updateVisible(@RequestBody ${tableInfo.javaTableName} ${tableInfo.javaTableName_a}){
+		int i=${tableInfo.javaTableName_a}Service.updateVisible(${tableInfo.javaTableName_a});
+		return toAjax(i);
+	}
 
     
     

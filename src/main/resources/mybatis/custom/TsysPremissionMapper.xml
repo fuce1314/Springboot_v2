@@ -26,7 +26,7 @@
 <select id="findByAdminUserId" parameterType="String" resultMap="BaseResultMap">
         select distinct p.*,(select count(1) from t_sys_permission where pid=p.id) childcount
         from t_sys_permission_role spr,t_sys_role_user sru,t_sys_permission p
-        where 	spr.role_id = sru.sys_role_id AND spr.permission_id = p.id AND sru.sys_user_id=#{userId} 
+        where 	spr.role_id = sru.sys_role_id AND spr.permission_id = p.id and visible=0  AND sru.sys_user_id=#{userId} 
 		GROUP BY p.id
 		ORDER BY order_num  is null  ASC,order_num  ASC
  </select>
