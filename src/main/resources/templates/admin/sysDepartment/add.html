@@ -12,7 +12,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">部门名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="deptName" lay-verify="title" autocomplete="off" placeholder="权限名称"
+                        <input type="text" name="deptName" lay-verify="title" autocomplete="off" placeholder="部门名称"
                                class="layui-input">
                     </div>
                 </div>
@@ -118,7 +118,22 @@
             })
             return false;
         });
-
+        iconPicker.render({
+            // 选择器，推荐使用input
+            elem: '#icon',
+            // 数据类型：fontClass/unicode，推荐使用fontClass
+            type: 'fontClass',
+            // 是否开启搜索：true/false
+            search: true,
+            // 是否开启分页
+            page: true,
+            // 每页显示数量，默认12
+            limit: 12,
+            // 点击回调
+            click: function (data) {
+                console.log(data);
+            }
+        });
     })
 </script>
 <script>
