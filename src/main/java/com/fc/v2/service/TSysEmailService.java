@@ -2,18 +2,20 @@ package com.fc.v2.service;
 
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+
 import com.fc.v2.common.base.BaseService;
 import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.TSysEmailMapper;
 import com.fc.v2.model.auto.TSysEmail;
 import com.fc.v2.model.auto.TSysEmailExample;
 import com.fc.v2.model.custom.Tablepar;
-import com.fc.v2.shiro.util.ShiroUtils;
+import com.fc.v2.satoken.SaTokenUtil;
 import com.fc.v2.util.SnowflakeIdWorker;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * 电子邮件Service
@@ -74,8 +76,8 @@ public class TSysEmailService implements BaseService<TSysEmail, TSysEmailExample
 	public int insertSelective(TSysEmail record) {
 		//添加雪花主键id
 		record.setId(SnowflakeIdWorker.getUUID());
-		record.setSendUserId(ShiroUtils.getUserId());
-		record.setSendUserName(ShiroUtils.getLoginName());
+		record.setSendUserId(SaTokenUtil.getUserId());
+		record.setSendUserName(SaTokenUtil.getLoginName());
 		record.setCreateTime(new Date());
 		return tSysEmailMapper.insertSelective(record);
 	}

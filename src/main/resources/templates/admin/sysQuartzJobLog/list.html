@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('定时任务日志列表')"/>
 </head>
@@ -32,7 +32,7 @@
 </body>
 
 <script type="text/html" id="role-toolbar">
-    <button shiro:hasPermission="gen:sysQuartzJobLog:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+    <button sa:hasPermission="gen:sysQuartzJobLog:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
@@ -40,10 +40,10 @@
 
 <script type="text/html" id="sysQuartzJobLog-bar">
 
-    <button shiro:hasPermission="gen:sysQuartzJobLog:list" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="detail" title="查看"><i class="layui-icon layui-icon-search"></i>
+    <button sa:hasPermission="gen:sysQuartzJobLog:list" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="detail" title="查看"><i class="layui-icon layui-icon-search"></i>
     </button>
 
-    <button shiro:hasPermission="gen:sysQuartzJobLog:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
+    <button sa:hasPermission="gen:sysQuartzJobLog:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
     </button>
 
 </script>

@@ -95,21 +95,22 @@
 			<artifactId>druid-spring-boot-starter</artifactId>
 			<version>1.2.6</version>
 		</dependency>
-		<!-- shiro权限 -->
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-spring</artifactId>
-			<version>1.7.0</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<!-- shiro权限支持thymeleaf -->
+		
+		<!-- Sa-Token 权限认证, 在线文档：http://sa-token.dev33.cn/ -->
 		<dependency>
-			<groupId>com.github.theborakompanioni</groupId>
-			<artifactId>thymeleaf-extras-shiro</artifactId>
-			<version>2.0.0</version>
+		    <groupId>cn.dev33</groupId>
+		    <artifactId>sa-token-spring-boot-starter</artifactId>
+		    <version>1.26.0</version>
+		</dependency>
+		<!-- Sa-Token 整合 Redis （使用jackson序列化方式） -->
+		<dependency>
+		    <groupId>cn.dev33</groupId>
+		    <artifactId>sa-token-dao-redis-jackson</artifactId>
+		    <version>1.26.0</version>
 		</dependency>
 
 		<!-- thymeleaf模版 -->
@@ -207,6 +208,13 @@
 			<artifactId>aws-java-sdk-s3</artifactId>
 			<version>1.11.543</version>
 		</dependency>
+
+		<!-- 系统监控 -->
+		<dependency>
+			<groupId>com.aizuda</groupId>
+			<artifactId>aizuda-monitor</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 		
 	</dependencies>
 
@@ -244,11 +252,32 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<!-- jar运行配置 -->
+			<!-- jar运行配置 正常打包-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<!-- 打瘦包 需要把上面正常打包注释，复制出 lib文件夹 jar 运行方式 java -Dloader.path="WEB-INF\lib"  -jar v2-0.0.1-SNAPSHOT.jar  
+			<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <layout>ZIP</layout>
+                     <includes>
+                         <include>
+                             <groupId>nothing</groupId>
+                             <artifactId>nothing</artifactId>
+                         </include>
+                         <include>
+                             <groupId>com.fc.V2Application</groupId>
+                             <artifactId>common</artifactId>
+                         </include>
+                     </includes>
+                </configuration>
+            </plugin>
+			-->
+			
 		</plugins>
 	</build>
 

@@ -1,20 +1,21 @@
 package com.fc.v2.service;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fc.v2.common.base.BaseService;
 import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.SysFileMapper;
 import com.fc.v2.model.auto.SysFile;
 import com.fc.v2.model.auto.SysFileExample;
 import com.fc.v2.model.custom.Tablepar;
-import com.fc.v2.shiro.util.ShiroUtils;
+import com.fc.v2.satoken.SaTokenUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class SysFileService implements BaseService<SysFile, SysFileExample> {
@@ -64,9 +65,9 @@ public class SysFileService implements BaseService<SysFile, SysFileExample> {
 		//获取旧数据
 		SysFile old_data=sysFileMapper.selectByPrimaryKey(record.getId());
 		//插入修改人id
-		record.setUpdateUserId(ShiroUtils.getUserId());
+		record.setUpdateUserId(SaTokenUtil.getUserId());
 		//插入修改人name
-		record.setUpdateUserName(ShiroUtils.getLoginName());
+		record.setUpdateUserName(SaTokenUtil.getLoginName());
 		//插入修改时间
 		record.setUpdateTime(new Date());
 		return sysFileMapper.updateByPrimaryKey(old_data);

@@ -1,5 +1,7 @@
 package com.fc.v2.common.conf;
 
+import java.util.List;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,11 @@ public class V2Config
     private String demoEnabled;
     /** 滚动验证码 **/
     private Boolean rollVerification;
+    /** xss不拦截url配置 **/
+    private List<String> xssNotFilterUrl;
+    /** shiro不拦截url配置 **/
+    private List<String> saTokenNotFilterUrl;
+    
 	public String getName() {
 		return name;
 	}
@@ -84,6 +91,17 @@ public class V2Config
 	public void setRollVerification(Boolean rollVerification) {
 		this.rollVerification = rollVerification;
 	}
-    
-	
+	public List<String> getXssNotFilterUrl() {
+		return xssNotFilterUrl;
+	}
+	public void setXssNotFilterUrl(List<String> xssNotFilterUrl) {
+		this.xssNotFilterUrl = xssNotFilterUrl;
+	}
+	public List<String> getSaTokenNotFilterUrl() {
+		return saTokenNotFilterUrl;
+	}
+	public void setSaTokenNotFilterUrl(List<String> saTokenNotFilterUrl) {
+		this.saTokenNotFilterUrl = saTokenNotFilterUrl;
+	}
+
 }

@@ -19,6 +19,10 @@ fuce:
   demo-enabled: false
   #漂亮得拖动验证码 默认false普通验证码、true滚动验证码
   roll-verification: false
+  #xss不拦截url
+  xss-not-filter-url: [/api/v1/token/api_token,/api/v1/yibaotong/save]
+  #shiro不拦截url
+  sa-token-not-filter-url: [/api/v1/token/api_token,/api/v1/yibaotong/save]
 #tomcat config
 server :
   port : 8080
@@ -27,7 +31,7 @@ server :
   #  context-path : /demo
   tomcat :
     uri-encoding : UTF-8
-    #shiro 报错修改的地方
+    #xx 报错修改的地方
     max-connections: 200000
     max-http-form-post-size: 9000000
     threads:
@@ -45,7 +49,7 @@ spring :
       max-request-size: 100MB
       #单个文件大小
       maxFileSize : 30MB
-        #shiro 报错修改的地方
+        #xx 报错修改的地方
     max-connections: 200000
     max-http-post-size: 9000000
   #热部署模块

@@ -61,6 +61,8 @@ public class ResultTable {
         resultTable.setData(data);
         resultTable.setCode(0);
         resultTable.setCount(count);
+        resultTable.setMsg("请求成功");
+        
         return resultTable;
     }
 
@@ -68,6 +70,7 @@ public class ResultTable {
         ResultTable resultTable = new ResultTable();
         resultTable.setData(data);
         resultTable.setCode(0);
+        resultTable.setMsg("请求成功");
         return resultTable;
     }
 }

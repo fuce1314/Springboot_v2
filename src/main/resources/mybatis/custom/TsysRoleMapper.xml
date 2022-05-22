@@ -6,12 +6,20 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
   
-   <sql id="Base_Column_List">
-    id, name
-   </sql>
-  <select id="queryUserRole" parameterType="String" resultType="com.fc.v2.model.auto.TsysRole">
+   	<sql id="Base_Column_List">
+    	id, name
+   	</sql>
+   	
+  	<select id="queryUserRole" parameterType="String" resultType="com.fc.v2.model.auto.TsysRole">
         select r.id,r.name  from t_sys_role r
 		LEFT JOIN t_sys_role_user ru ON  r.id=ru.sys_role_id
 		where ru.sys_user_id=#{userid}
- </select>
+ 	</select>
+ 
+  	<select id="queryUserRoleId" parameterType="String" resultType="String">
+        select r.id from t_sys_role r
+		LEFT JOIN t_sys_role_user ru ON  r.id=ru.sys_role_id
+		where ru.sys_user_id=#{userid}
+ 	</select>
+ 	
 </mapper>

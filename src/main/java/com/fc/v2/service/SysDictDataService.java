@@ -1,5 +1,11 @@
 package com.fc.v2.service;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.fc.v2.common.base.BaseService;
 import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.TSysDictDataMapper;
@@ -8,15 +14,10 @@ import com.fc.v2.model.auto.TSysDictData;
 import com.fc.v2.model.auto.TSysDictDataExample;
 import com.fc.v2.model.auto.TSysDictType;
 import com.fc.v2.model.custom.Tablepar;
-import com.fc.v2.shiro.util.ShiroUtils;
+import com.fc.v2.satoken.SaTokenUtil;
 import com.fc.v2.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * 字典数据表Service
@@ -75,7 +76,7 @@ public class SysDictDataService implements BaseService<TSysDictData, TSysDictDat
 		record.setId(SnowflakeIdWorker.getUUID());
 		record.setCreateTime(new Date());
 		record.setUpdateTime(new Date());
-		record.setCreateBy(ShiroUtils.getUser().getUsername());
+		record.setCreateBy(SaTokenUtil.getUser().getUsername());
 		return tSysDictDataMapper.insertSelective(record);
 	}
 
@@ -87,7 +88,7 @@ public class SysDictDataService implements BaseService<TSysDictData, TSysDictDat
 	@Override
 	public int updateByPrimaryKeySelective(TSysDictData record) {
 		record.setUpdateTime(new Date());
-		record.setUpdateBy(ShiroUtils.getUser().getUsername());
+		record.setUpdateBy(SaTokenUtil.getUser().getUsername());
 		return tSysDictDataMapper.updateByPrimaryKeySelective(record);
 	}
 

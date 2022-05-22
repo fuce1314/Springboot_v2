@@ -1,20 +1,15 @@
 package com.fc.v2.controller;
 
-import com.fc.v2.common.base.BaseController;
-import com.fc.v2.common.domain.AjaxResult;
-import com.fc.v2.model.auto.SysNotice;
-import com.fc.v2.model.auto.TsysUser;
-import com.fc.v2.model.custom.SysMenu;
-import com.fc.v2.shiro.util.ShiroUtils;
-import com.fc.v2.util.StringUtils;
-import com.wf.captcha.utils.CaptchaUtil;
-import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.subject.Subject;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +17,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+
+import com.fc.v2.common.base.BaseController;
+import com.fc.v2.common.domain.AjaxResult;
+import com.fc.v2.mapper.custom.TsysUserDao;
+import com.fc.v2.model.auto.SysNotice;
+import com.fc.v2.model.auto.TsysUser;
+import com.fc.v2.model.custom.SysMenu;
+import com.fc.v2.satoken.SaTokenUtil;
+import com.fc.v2.util.ServletUtils;
+import com.fc.v2.util.StringUtils;
+import com.wf.captcha.utils.CaptchaUtil;
+
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.dev33.satoken.secure.SaSecureUtil;
+import cn.dev33.satoken.stp.StpUtil;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 后台方法
@@ -40,13 +48,16 @@ public class AdminController extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	private String prefix = "admin";
-
+	
+	@Autowired
+	private TsysUserDao tsysUserDao;
+	
 	@ApiOperation(value = "首页", notes = "首页")
 	@GetMapping({"", "/index"})
 	public String index(HttpServletRequest request) {
-		request.getSession().setAttribute("sessionUserName", ShiroUtils.getUser().getNickname());
+		request.getSession().setAttribute("sessionUserName", SaTokenUtil.getUser().getNickname());
 		// 获取公告信息
-		List<SysNotice> notices = sysNoticeService.getuserNoticeNotRead(ShiroUtils.getUser(), 0);
+		List<SysNotice> notices = sysNoticeService.getuserNoticeNotRead(SaTokenUtil.getUser(), 0);
 		request.getSession().setAttribute("notices", notices);
 		return prefix + "/index";
 	}
@@ -58,7 +69,7 @@ public class AdminController extends BaseController {
 	@GetMapping("/getUserMenu")
 	@ResponseBody
 	public List<SysMenu> getUserMenu(){
-		List<SysMenu> sysMenus=sysPermissionService.getSysMenus(ShiroUtils.getUserId());
+		List<SysMenu> sysMenus=sysPermissionService.getSysMenus(SaTokenUtil.getUserId());
 		return sysMenus;
 	}
 
@@ -75,7 +86,7 @@ public class AdminController extends BaseController {
 	@GetMapping("/login")
 	public String login(ModelMap modelMap) {
 		try {
-			if ((null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) || SecurityUtils.getSubject().isRemembered()) {
+			if (StpUtil.isLogin()) {
 				return "redirect:/" + prefix + "/index";
 			} else {
 				System.out.println("--进行登录验证..验证开始");
@@ -119,44 +130,26 @@ public class AdminController extends BaseController {
 		// 判断验证码
 		if (yz) {
 			String userName = user.getUsername();
-			Subject currentUser = SecurityUtils.getSubject();
 			// 是否验证通过
-			if (!currentUser.isAuthenticated()) {
-				UsernamePasswordToken token = new UsernamePasswordToken(userName, user.getPassword());
-				try {
-					if (rememberMe) {
-						token.setRememberMe(true);
-					}
-					// 存入用户
-					currentUser.login(token);
-					if (StringUtils.isNotNull(ShiroUtils.getUser())) {
-						// 若为前后端分离版本，则可把sessionId返回，作为分离版本的请求头authToken
-						// String authToken = ShiroUtils.getSessionId();
-						// return AjaxResult.successData(200, authToken);
-						return AjaxResult.success();
-					} else {
-						return AjaxResult.error(500, "未知账户");
-					}
-				} catch (UnknownAccountException uae) {
+			if (!StpUtil.isLogin()) {
+				TsysUser queryUser = tsysUserDao.queryUserName(userName);
+				// 各种校验 
+				if (queryUser == null) {
 					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
 					return AjaxResult.error(500, "未知账户");
-				} catch (IncorrectCredentialsException ice) {
+				}
+				if (!SaSecureUtil.md5(user.getPassword()).equals(queryUser.getPassword())) {
 					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
 					return AjaxResult.error(500, "用户名或密码不正确");
-				} catch (LockedAccountException lae) {
-					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,账户已锁定");
-					return AjaxResult.error(500, "账户已锁定");
-				} catch (ExcessiveAttemptsException eae) {
-					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误次数过多");
-					return AjaxResult.error(500, "用户名或密码错误次数过多");
-				} catch (AuthenticationException ae) {
-					// 通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
-					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,堆栈轨迹如下");
-					ae.printStackTrace();
-					return AjaxResult.error(500, "用户名或密码不正确");
 				}
+			
+				// 校验通过，开始登录
+				StpUtil.login(queryUser.getId(), rememberMe);
+				SaTokenUtil.setUser(queryUser);
+				StpUtil.getTokenSession().set("ip", ServletUtils.getIP(request));
+				return AjaxResult.success().put("tokenInfo", StpUtil.getTokenInfo());
 			} else {
-				if (StringUtils.isNotNull(ShiroUtils.getUser())) {
+				if (StringUtils.isNotNull(SaTokenUtil.getUser())) {
 					// 跳转到 get请求的登陆方法
 					// view.setViewName("redirect:/"+prefix+"/index");
 					return AjaxResult.success();
@@ -164,6 +157,7 @@ public class AdminController extends BaseController {
 					return AjaxResult.error(500, "未知账户");
 				}
 			}
+			
 		} else {
 			return AjaxResult.error(500, "验证码不正确!");
 		}
@@ -185,7 +179,7 @@ public class AdminController extends BaseController {
 	@PostMapping("/API/login")
 	@ResponseBody
 	public AjaxResult APIlogin(TsysUser user,boolean rememberMe,HttpServletRequest request) {
-		// ModelAndView view =new ModelAndView();
+
 		Boolean yz = true;
 //		if (V2Config.getRollVerification()) {// 滚动验证
 //			yz = true;
@@ -193,52 +187,34 @@ public class AdminController extends BaseController {
 //			String scode = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 //			yz = StringUtils.isNotEmpty(scode) && StringUtils.isNotEmpty(code) && scode.equals(code);
 //		}
-		System.out.println("/API/login手机请求");
 		// 判断验证码
 		if (yz) {
 			String userName = user.getUsername();
-			Subject currentUser = SecurityUtils.getSubject();
 			// 是否验证通过
-			if (!currentUser.isAuthenticated()) {
-				UsernamePasswordToken token = new UsernamePasswordToken(userName, user.getPassword());
-				try {
-					if (rememberMe) {
-						token.setRememberMe(true);
-					}
-					// 存入用户
-					currentUser.login(token);
-					if (StringUtils.isNotNull(ShiroUtils.getUser())) {
-						// 若为前后端分离版本，则可把sessionId返回，作为分离版本的请求头authToken
-						 String authToken = ShiroUtils.getSessionId();
-						 return AjaxResult.successData(200, authToken);
-						//return AjaxResult.success();
-					} else {
-						return AjaxResult.error(500, "未知账户");
-					}
-				} catch (UnknownAccountException uae) {
+			if (!StpUtil.isLogin()) {
+				TsysUser queryUser = tsysUserDao.queryUserName(userName);
+				// 各种校验 
+				if (queryUser == null) {
 					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
 					return AjaxResult.error(500, "未知账户");
-				} catch (IncorrectCredentialsException ice) {
+				}
+				if (!SaSecureUtil.md5(user.getPassword()).equals(queryUser.getPassword())) {
 					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
 					return AjaxResult.error(500, "用户名或密码不正确");
-				} catch (LockedAccountException lae) {
-					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,账户已锁定");
-					return AjaxResult.error(500, "账户已锁定");
-				} catch (ExcessiveAttemptsException eae) {
-					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误次数过多");
-					return AjaxResult.error(500, "用户名或密码错误次数过多");
-				} catch (AuthenticationException ae) {
-					// 通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
-					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,堆栈轨迹如下");
-					ae.printStackTrace();
-					return AjaxResult.error(500, "用户名或密码不正确");
 				}
+			
+				// 校验通过，开始登录
+				StpUtil.login(queryUser.getId(), rememberMe);
+				SaTokenUtil.setUser(queryUser);
+				StpUtil.getTokenSession().set("ip", ServletUtils.getIP(request));
+				Map<String, Object> map=new HashMap<String, Object>();
+				map.put("token",StpUtil.getTokenInfo());
+				map.put("userinfo", queryUser);
+				return AjaxResult.success().put("data",map);
 			} else {
-				if (StringUtils.isNotNull(ShiroUtils.getUser())) {
+				if (StringUtils.isNotNull(SaTokenUtil.getUser())) {
 					// 跳转到 get请求的登陆方法
-					// view.setViewName("redirect:/"+prefix+"/index");
-					 String authToken = ShiroUtils.getSessionId();
-					 return AjaxResult.successData(200, authToken);
+					return AjaxResult.successData(200,  StpUtil.getTokenInfo()).put("msg","登录成功"); 
 				} else {
 					return AjaxResult.error(500, "未知账户");
 				}
@@ -246,6 +222,7 @@ public class AdminController extends BaseController {
 		} else {
 			return AjaxResult.error(500, "验证码不正确!");
 		}
+
 
 	}
 
@@ -259,9 +236,9 @@ public class AdminController extends BaseController {
 	@ResponseBody
 	public AjaxResult LoginOut(HttpServletRequest request, HttpServletResponse response) {
 		// 在这里执行退出系统前需要清空的数据
-		Subject subject = SecurityUtils.getSubject();
+		// ... 
 		// 注销
-		subject.logout();
+		StpUtil.logout();
 		return success();
 	}
 
@@ -296,7 +273,7 @@ public class AdminController extends BaseController {
 	 */
 	@ApiOperation(value = "权限测试跳转页面", notes = "权限测试跳转页面")
 	@GetMapping("Outqx")
-	@RequiresPermissions("system:user:asd")
+	@SaCheckPermission("system:user:asd")
 	public String Outqx(HttpServletRequest request, HttpServletResponse response) {
 
 		return "redirect:/error/500";

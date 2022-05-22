@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('${tableInfo.tableComment}列表')"/>
 </head>
@@ -32,21 +32,21 @@
 </body>
 
 <script type="text/html" id="${tableInfo.javaTableName_a}-toolbar">
-    <button shiro:hasPermission="gen:${tableInfo.javaTableName_a}:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+    <button sa:hasPermission="gen:${tableInfo.javaTableName_a}:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
 		 新增
     </button>
-    <button shiro:hasPermission="gen:${tableInfo.javaTableName_a}:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+    <button sa:hasPermission="gen:${tableInfo.javaTableName_a}:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
 		删除
     </button>
 </script>
 
 <script type="text/html" id="${tableInfo.javaTableName_a}-bar">
-    <button shiro:hasPermission="gen:${tableInfo.javaTableName_a}:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit" title="修改"><i class="layui-icon layui-icon-edit"></i>
+    <button sa:hasPermission="gen:${tableInfo.javaTableName_a}:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit" title="修改"><i class="layui-icon layui-icon-edit"></i>
     </button>
 
-    <button shiro:hasPermission="gen:${tableInfo.javaTableName_a}:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
+    <button sa:hasPermission="gen:${tableInfo.javaTableName_a}:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
@@ -200,7 +200,7 @@
 
         //查询按钮绑定
         form.on('submit(${tableInfo.javaTableName_a}-query)', function (data) {
-            table.reload('${tableInfo.javaTableName_a}-table', {where: data.field})
+            table.reload('${tableInfo.javaTableName_a}-table', {page: {curr: 1}, where: data.field})
             return false;
         });
 

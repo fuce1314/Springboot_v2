@@ -2,7 +2,7 @@ package com.fc.v2.controller.admin;
 
 import java.util.List;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,7 +45,7 @@ public class SysCityController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:sysCity:view")
+	@SaCheckPermission("gen:sysCity:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -60,7 +60,7 @@ public class SysCityController extends BaseController{
 	//@Log(title = "城市设置集合查询", action = "111")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("gen:sysCity:list")
+	@SaCheckPermission("gen:sysCity:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText){
 		PageInfo<SysCity> page=sysCityService.list(tablepar,searchText) ; 
@@ -88,7 +88,7 @@ public class SysCityController extends BaseController{
 	//@Log(title = "城市设置新增", action = "111")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("gen:sysCity:add")
+	@SaCheckPermission("gen:sysCity:add")
 	@ResponseBody
 	public AjaxResult add(SysCity sysCity){
 		int b=sysCityService.insertSelective(sysCity);
@@ -107,7 +107,7 @@ public class SysCityController extends BaseController{
 	//@Log(title = "城市设置删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("gen:sysCity:remove")
+	@SaCheckPermission("gen:sysCity:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysCityService.deleteByPrimaryKey(ids);
@@ -157,7 +157,7 @@ public class SysCityController extends BaseController{
      */
     //@Log(title = "城市设置修改", action = "111")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("gen:sysCity:edit")
+    @SaCheckPermission("gen:sysCity:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(SysCity record)

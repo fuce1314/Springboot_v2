@@ -9,7 +9,7 @@ import com.fc.v2.service.SysDictTypeService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +39,7 @@ public class DictTypeController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("system:dictType:view")
+	@SaCheckPermission("system:dictType:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -54,7 +54,7 @@ public class DictTypeController extends BaseController{
 	//@Log(title = "字典类型表集合查询", action = "111")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("system:dictType:list")
+	@SaCheckPermission("system:dictType:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar, String searchText){
 		PageInfo<TSysDictType> page=tSysDictTypeService.list(tablepar,searchText) ; 
@@ -82,7 +82,7 @@ public class DictTypeController extends BaseController{
 	//@Log(title = "字典类型表新增", action = "111")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("system:dictType:add")
+	@SaCheckPermission("system:dictType:add")
 	@ResponseBody
 	public AjaxResult add(TSysDictType tSysDictType,Model model){
 		int b=tSysDictTypeService.insertSelective(tSysDictType);
@@ -101,7 +101,7 @@ public class DictTypeController extends BaseController{
 	//@Log(title = "字典类型表删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("system:dictType:remove")
+	@SaCheckPermission("system:dictType:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=tSysDictTypeService.deleteByPrimaryKey(ids);
@@ -149,7 +149,7 @@ public class DictTypeController extends BaseController{
      */
     //@Log(title = "字典类型表修改", action = "111")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("system:dictType:edit")
+    @SaCheckPermission("system:dictType:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(TSysDictType record)

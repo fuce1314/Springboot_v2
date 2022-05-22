@@ -1,7 +1,7 @@
 package com.fc.v2.controller.admin;
 
 import com.fc.v2.common.domain.ResultTable;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,7 +33,7 @@ public class SysInterUrlController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:sysInterUrl:view")
+	@SaCheckPermission("gen:sysInterUrl:view")
     public String view(ModelMap model)
     {
 		return prefix + "/list";
@@ -50,7 +50,7 @@ public class SysInterUrlController extends BaseController{
 	//@Log(title = "拦截url表集合查询", action = "111")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("gen:sysInterUrl:list")
+	@SaCheckPermission("gen:sysInterUrl:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar, String searchText){
 		PageInfo<SysInterUrl> page=sysInterUrlService.list(tablepar,searchText) ; 
@@ -77,7 +77,7 @@ public class SysInterUrlController extends BaseController{
 	//@Log(title = "拦截url表新增", action = "1")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("gen:sysInterUrl:add")
+	@SaCheckPermission("gen:sysInterUrl:add")
 	@ResponseBody
 	public AjaxResult add(SysInterUrl sysInterUrl){
 		int b=sysInterUrlService.insertSelective(sysInterUrl);
@@ -98,7 +98,7 @@ public class SysInterUrlController extends BaseController{
 	//@Log(title = "复制", action = "1")
 	@ApiOperation(value = "复制", notes = "复制")
 	@GetMapping("/copy/{id}")
-	@RequiresPermissions("gen:sysInterUrl:add")
+	@SaCheckPermission("gen:sysInterUrl:add")
 	@ResponseBody
 	public AjaxResult copy(@PathVariable("id") String id){
 		SysInterUrl sysInterUrl= sysInterUrlService.selectByPrimaryKey(id);
@@ -120,7 +120,7 @@ public class SysInterUrlController extends BaseController{
 	//@Log(title = "拦截url表删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("gen:sysInterUrl:remove")
+	@SaCheckPermission("gen:sysInterUrl:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysInterUrlService.deleteByPrimaryKey(ids);
@@ -169,7 +169,7 @@ public class SysInterUrlController extends BaseController{
      */
     //@Log(title = "拦截url表修改", action = "1")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("gen:sysInterUrl:edit")
+    @SaCheckPermission("gen:sysInterUrl:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(SysInterUrl record)

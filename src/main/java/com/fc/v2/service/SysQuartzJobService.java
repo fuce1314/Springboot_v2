@@ -162,7 +162,7 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
     public int pauseJob(SysQuartzJob job) throws SchedulerException
     {
         job.setStatus(ScheduleConstants.Status.PAUSE.getValue());
-        //job.setUpdateBy(ShiroUtils.getLoginName());
+        //job.setUpdateBy(SaTokenUtil.getLoginName());
         int rows = sysQuartzJobMapper.updateByPrimaryKeySelective(job);
         if (rows > 0)
         {

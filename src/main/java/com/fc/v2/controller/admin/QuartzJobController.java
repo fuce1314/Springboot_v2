@@ -9,7 +9,7 @@ import com.fc.v2.service.SysQuartzJobService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +40,7 @@ public class QuartzJobController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:sysQuartzJob:view")
+	@SaCheckPermission("gen:sysQuartzJob:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -54,7 +54,7 @@ public class QuartzJobController extends BaseController{
 	//@Log(title = "定时任务调度表集合查询", action = "111")
 	@ApiOperation(value = "定时任务调度list", notes = "定时任务调度list")
 	@GetMapping("/list")
-	@RequiresPermissions("gen:sysQuartzJob:list")
+	@SaCheckPermission("gen:sysQuartzJob:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar, String searchText){
 		PageInfo<SysQuartzJob> page=sysQuartzJobService.list(tablepar,searchText) ; 
@@ -83,7 +83,7 @@ public class QuartzJobController extends BaseController{
 	//@Log(title = "定时任务调度表新增", action = "111")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("gen:sysQuartzJob:add")
+	@SaCheckPermission("gen:sysQuartzJob:add")
 	@ResponseBody
 	public AjaxResult add(SysQuartzJob sysQuartzJob){
 		int b=sysQuartzJobService.insertSelective(sysQuartzJob);
@@ -102,7 +102,7 @@ public class QuartzJobController extends BaseController{
 	//@Log(title = "定时任务调度表删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("gen:sysQuartzJob:remove")
+	@SaCheckPermission("gen:sysQuartzJob:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysQuartzJobService.deleteByPrimaryKey(ids);
@@ -151,7 +151,7 @@ public class QuartzJobController extends BaseController{
      */
     //@Log(title = "定时任务调度表修改", action = "111")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("gen:sysQuartzJob:edit")
+    @SaCheckPermission("gen:sysQuartzJob:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(SysQuartzJob record)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('拦截列表')"/>
 </head>
@@ -32,11 +32,11 @@
 </body>
 
 <script type="text/html" id="role-toolbar">
-    <button shiro:hasPermission="system:email:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+    <button sa:hasPermission="system:email:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
-    <button shiro:hasPermission="system:email:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+    <button sa:hasPermission="system:email:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
@@ -44,10 +44,10 @@
 
 <script type="text/html" id="email-bar">
 
-    <button shiro:hasPermission="system:email:view" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="view" title="查看"><i class="layui-icon layui-icon-search"></i>
+    <button sa:hasPermission="system:email:view" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="view" title="查看"><i class="layui-icon layui-icon-search"></i>
     </button>
 
-    <button shiro:hasPermission="system:email:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
+    <button sa:hasPermission="system:email:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
     </button>
 
 

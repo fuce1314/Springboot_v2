@@ -1,12 +1,9 @@
 package com.fc.v2.common.log;
 
-import com.fc.v2.model.auto.TsysOperLog;
-import com.fc.v2.model.auto.TsysUser;
-import com.fc.v2.service.SysOperLogService;
-import com.fc.v2.shiro.util.ShiroUtils;
-import com.fc.v2.util.ServletUtils;
-import com.fc.v2.util.StringUtils;
-import com.google.gson.Gson;
+import java.lang.reflect.Method;
+import java.util.Date;
+import java.util.Map;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -21,9 +18,13 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Method;
-import java.util.Date;
-import java.util.Map;
+import com.fc.v2.model.auto.TsysOperLog;
+import com.fc.v2.model.auto.TsysUser;
+import com.fc.v2.satoken.SaTokenUtil;
+import com.fc.v2.service.SysOperLogService;
+import com.fc.v2.util.ServletUtils;
+import com.fc.v2.util.StringUtils;
+import com.google.gson.Gson;
 
 /**
  * 操作日志记录处理
@@ -82,13 +83,13 @@ public class LogAspect
             }
 
             // 获取当前的用户
-            TsysUser currentUser = ShiroUtils.getUser();
+            TsysUser currentUser = SaTokenUtil.getUser();
 
             // *========数据库日志=========*//
             TsysOperLog operLog = new TsysOperLog();
            
             //赋值操作
-            /*String ip = ShiroUtils.getIp();
+            /*String ip = SaTokenUtil.getIp();
             operLog.setOperIp(ip);*/
             // 操作地点
             //operLog.setOperLocation(AddressUtils.getRealAddressByIP(ip));

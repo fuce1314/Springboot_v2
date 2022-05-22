@@ -11,7 +11,7 @@ import com.fc.v2.util.SimpleEmailUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +45,7 @@ public class EmailController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("system:email:view")
+	@SaCheckPermission("system:email:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -59,7 +59,7 @@ public class EmailController extends BaseController{
 	 */
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("system:email:list")
+	@SaCheckPermission("system:email:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar, String searchText){
 		PageInfo<TSysEmail> page=tSysEmailService.list(tablepar,searchText) ; 
@@ -88,7 +88,7 @@ public class EmailController extends BaseController{
 	//@Log(title = "新增邮件", action = "1")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("system:email:add")
+	@SaCheckPermission("system:email:add")
 	@ResponseBody
 	public AjaxResult add(@RequestBody TSysEmail tSysEmail,Model model) throws Exception{
 		int b=tSysEmailService.insertSelective(tSysEmail);
@@ -109,7 +109,7 @@ public class EmailController extends BaseController{
 	//@Log(title = "删除邮件", action = "1")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("system:email:remove")
+	@SaCheckPermission("system:email:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=tSysEmailService.deleteByPrimaryKey(ids);

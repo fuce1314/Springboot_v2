@@ -1,5 +1,18 @@
 package com.fc.v2.controller.admin;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.fc.v2.common.base.BaseController;
 import com.fc.v2.common.domain.AjaxResult;
 import com.fc.v2.model.auto.TSysDictData;
@@ -7,14 +20,10 @@ import com.fc.v2.model.custom.Tablepar;
 import com.fc.v2.service.SysDictDataService;
 import com.fc.v2.service.SysDictTypeService;
 import com.github.pagehelper.PageInfo;
+
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
 
 /**
  * 字典表Controller
@@ -41,7 +50,7 @@ public class DictDataController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("system:dictData:view")
+	@SaCheckPermission("system:dictData:view")
     public String view(ModelMap model,String dictId)
     {
     	model.addAttribute("dictId",dictId);
@@ -58,7 +67,7 @@ public class DictDataController extends BaseController{
 	//@Log(title = "字典数据表集合查询", action = "1")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("system:dictData:list")
+	@SaCheckPermission("system:dictData:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText,String dictId){
 		PageInfo<TSysDictData> page=tSysDictDataService.list(tablepar,searchText,dictId) ;
@@ -88,7 +97,7 @@ public class DictDataController extends BaseController{
 	//@Log(title = "字典数据表新增", action = "1")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("system:dictData:add")
+	@SaCheckPermission("system:dictData:add")
 	@ResponseBody
 	public AjaxResult add(TSysDictData tSysDictData, Model model){
 		int b=tSysDictDataService.insertSelective(tSysDictData);
@@ -107,7 +116,7 @@ public class DictDataController extends BaseController{
 	//@Log(title = "字典数据表删除", action = "1")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("system:dictData:remove")
+	@SaCheckPermission("system:dictData:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=tSysDictDataService.deleteByPrimaryKey(ids);
@@ -156,7 +165,7 @@ public class DictDataController extends BaseController{
      */
     //@Log(title = "字典数据表修改", action = "1")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("system:dictData:edit")
+	@SaCheckPermission("system:dictData:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(TSysDictData record)

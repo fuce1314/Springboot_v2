@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import cn.dev33.satoken.util.SaFoxUtil;
 import cn.hutool.core.convert.Convert;
 
 /**
@@ -136,4 +138,24 @@ public class ServletUtils
 
         return false;
     }
+
+
+	private static boolean checkIp(String ip) {
+        return !SaFoxUtil.isEmpty(ip) && !"unknown".equalsIgnoreCase(ip);
+    }
+    
+    /**
+     * 返回请求端的IP地址
+     * @param request /
+     * @return ip
+     */
+	public static String getIP(HttpServletRequest request) {
+		String ip = request.getHeader("x-forwarded-for");
+		ip = checkIp(ip) ? ip : (
+                checkIp(ip = request.getHeader("Proxy-Client-IP")) ? ip : (
+                        checkIp(ip = request.getHeader("WL-Proxy-Client-IP")) ? ip :
+                                request.getRemoteAddr()));
+		return ip.equals("0:0:0:0:0:0:0:1") ? "127.0.0.1" : ip;
+	}
+
 }

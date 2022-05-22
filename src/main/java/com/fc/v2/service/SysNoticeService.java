@@ -1,23 +1,29 @@
 package com.fc.v2.service;
 
-import com.fc.v2.common.base.BaseService;
-import com.fc.v2.common.support.ConvertUtil;
-import com.fc.v2.mapper.auto.SysNoticeMapper;
-import com.fc.v2.mapper.auto.SysNoticeUserMapper;
-import com.fc.v2.model.auto.*;
-import com.fc.v2.model.auto.SysNoticeUserExample.Criteria;
-import com.fc.v2.model.custom.Tablepar;
-import com.fc.v2.shiro.util.ShiroUtils;
-import com.fc.v2.util.SnowflakeIdWorker;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.fc.v2.common.base.BaseService;
+import com.fc.v2.common.support.ConvertUtil;
+import com.fc.v2.mapper.auto.SysNoticeMapper;
+import com.fc.v2.mapper.auto.SysNoticeUserMapper;
+import com.fc.v2.model.auto.SysNotice;
+import com.fc.v2.model.auto.SysNoticeExample;
+import com.fc.v2.model.auto.SysNoticeUser;
+import com.fc.v2.model.auto.SysNoticeUserExample;
+import com.fc.v2.model.auto.SysNoticeUserExample.Criteria;
+import com.fc.v2.model.auto.TsysUser;
+import com.fc.v2.model.auto.TsysUserExample;
+import com.fc.v2.model.custom.Tablepar;
+import com.fc.v2.satoken.SaTokenUtil;
+import com.fc.v2.util.SnowflakeIdWorker;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * 公告 SysNoticeService
@@ -80,7 +86,7 @@ public class SysNoticeService implements BaseService<SysNotice, SysNoticeExample
 				//分页查询对应用户的所有公告信息
 				SysNoticeExample testExample=new SysNoticeExample();
 		        testExample.setOrderByClause("id desc");
-		        com.fc.v2.model.auto.SysNoticeExample.Criteria criteria1= testExample.createCriteria();
+		        SysNoticeExample.Criteria criteria1= testExample.createCriteria();
 		        if(name!=null&&!"".equals(name)){
 		        	criteria1.andTitleLike("%"+name+"%");
 		        }
@@ -130,9 +136,9 @@ public class SysNoticeService implements BaseService<SysNotice, SysNoticeExample
 		//添加雪花主键id
 		record.setId(SnowflakeIdWorker.getUUID());
 		//添加创建人id
-		record.setCreateId(ShiroUtils.getUserId());
+		record.setCreateId(SaTokenUtil.getUserId());
 		//添加创建人
-		record.setCreateUsername(ShiroUtils.getLoginName());
+		record.setCreateUsername(SaTokenUtil.getLoginName());
 		//添加创建时间
 		record.setCreateTime(new Date());
 		sysNoticeMapper.insertSelective(record);
@@ -232,7 +238,7 @@ public class SysNoticeService implements BaseService<SysNotice, SysNoticeExample
 	public void editUserState(String noticeid) {
 		//SysNoticeUser
 		SysNoticeUserExample sysNoticeUserExample=new SysNoticeUserExample();
-		sysNoticeUserExample.createCriteria().andNoticeIdEqualTo(noticeid).andUserIdEqualTo(ShiroUtils.getUserId());
+		sysNoticeUserExample.createCriteria().andNoticeIdEqualTo(noticeid).andUserIdEqualTo(SaTokenUtil.getUserId());
 		List<SysNoticeUser> noticeUsers= sysNoticeUserMapper.selectByExample(sysNoticeUserExample);
 		for (SysNoticeUser sysNoticeUser : noticeUsers) {
 			sysNoticeUser.setState(1);

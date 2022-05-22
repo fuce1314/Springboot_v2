@@ -2,7 +2,7 @@ package com.fc.v2.controller.admin;
 
 import java.util.List;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -42,7 +42,7 @@ public class SysStreetController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:sysStreet:view")
+	@SaCheckPermission("gen:sysStreet:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -57,7 +57,7 @@ public class SysStreetController extends BaseController{
 	//@Log(title = "街道设置集合查询", action = "111")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("gen:sysStreet:list")
+	@SaCheckPermission("gen:sysStreet:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText){
 		PageInfo<SysStreet> page=sysStreetService.list(tablepar,searchText);
@@ -88,7 +88,7 @@ public class SysStreetController extends BaseController{
 	//@Log(title = "街道设置新增", action = "111")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("gen:sysStreet:add")
+	@SaCheckPermission("gen:sysStreet:add")
 	@ResponseBody
 	public AjaxResult add(SysStreet sysStreet){
 		int b=sysStreetService.insertSelective(sysStreet);
@@ -107,7 +107,7 @@ public class SysStreetController extends BaseController{
 	//@Log(title = "街道设置删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("gen:sysStreet:remove")
+	@SaCheckPermission("gen:sysStreet:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysStreetService.deleteByPrimaryKey(ids);
@@ -158,7 +158,7 @@ public class SysStreetController extends BaseController{
 	 */
     //@Log(title = "街道设置修改", action = "111")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("gen:sysStreet:edit")
+    @SaCheckPermission("gen:sysStreet:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(SysStreet record)

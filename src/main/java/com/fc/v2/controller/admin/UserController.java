@@ -2,7 +2,7 @@ package com.fc.v2.controller.admin;
 
 import java.util.List;
 import com.fc.v2.common.domain.ResultTable;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -52,7 +52,7 @@ public class UserController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("system:user:view")
+	@SaCheckPermission("system:user:view")
     public String view(ModelMap model)
     {
 		return prefix + "/list";
@@ -70,7 +70,7 @@ public class UserController extends BaseController{
 	//@Log(title = "分页查询", action = "1")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("system:user:list")
+	@SaCheckPermission("system:user:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar){
 		PageInfo<TsysUser> page=sysUserService.list(tablepar) ;
@@ -113,7 +113,7 @@ public class UserController extends BaseController{
     @Log(title = "用户新增", action = "111")
     @ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("system:user:add")
+	@SaCheckPermission("system:user:add")
 	@ResponseBody
 	public AjaxResult add(TsysUser user,@RequestParam(value="roleIds", required = false)String roleIds){
 		int b=sysUserService.insertUserRoles(user,roleIds);
@@ -132,7 +132,7 @@ public class UserController extends BaseController{
     //@Log(title = "删除用户", action = "1")
   	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("system:user:remove")
+	@SaCheckPermission("system:user:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysUserService.deleteByPrimaryKey(ids);
@@ -187,7 +187,7 @@ public class UserController extends BaseController{
      */
 	//@Log(title = "修改保存用户", action = "1")
     @ApiOperation(value = "修改保存用户", notes = "修改保存用户")
-    @RequiresPermissions("system:user:edit")
+    @SaCheckPermission("system:user:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(TsysUser tsysUser,@RequestParam(value="roleIds", required = false)String roleIds)
@@ -216,7 +216,7 @@ public class UserController extends BaseController{
      */
     //@Log(title = "修改用户密码", action = "1")
     @ApiOperation(value = "修改用户密码", notes = "修改用户密码")
-    @RequiresPermissions("system:user:editPwd")
+    @SaCheckPermission("system:user:editPwd")
     @PostMapping("/editPwd")
     @ResponseBody
     public AjaxResult editPwdSave(TsysUser tsysUser)

@@ -6,9 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipOutputStream;
+
 import javax.servlet.http.HttpServletResponse;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.fc.v2.common.base.BaseController;
 import com.fc.v2.common.domain.AjaxResult;
 import com.fc.v2.common.domain.ResuTree;
@@ -24,16 +34,10 @@ import com.fc.v2.service.DictService;
 import com.fc.v2.service.GeneratorService;
 import com.fc.v2.service.SysDictTypeService;
 import com.fc.v2.util.AutoCode.AutoCodeUtil;
-import org.apache.commons.io.IOUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 代码自动生成
@@ -69,7 +73,7 @@ public class AutoCodeController extends BaseController {
 	 */
 	@ApiOperation(value = " 代码自动生成全局配置", notes = "代码自动生成全局配置")
 	@GetMapping("/global")
-	@RequiresPermissions("system:autocode:global")
+	@SaCheckPermission("system:autocode:global")
 	public String global(ModelMap modelMap) {
 		
 		modelMap.put("author", AutoCodeConfig.getConfig().getProperty("author"));
@@ -173,7 +177,7 @@ public class AutoCodeController extends BaseController {
 		TableInfo tableInfo = new TableInfo(autoConfigModel.getTableName(), list, autoConfigModel.getTableComment());
 		// 自动生成
 		AutoCodeUtil.autoCodeOneModel(tableInfo, autoConfigModel, zip);
-		IOUtils.closeQuietly(zip);
+		IOUtils.close(zip);
 		b = outputStream.toByteArray();
 		response.reset();
 		response.setHeader("Content-Disposition", "attachment; filename=\"v2.zip\"");

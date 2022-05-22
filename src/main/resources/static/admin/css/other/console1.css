@@ -11,6 +11,9 @@
 	line-height: 60px;
 	font-size: 30px;
 	border-right: 1px solid #eceff9;
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .top-panel-tips {

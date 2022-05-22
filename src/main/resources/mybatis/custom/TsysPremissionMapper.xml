@@ -38,6 +38,13 @@
  
  </select>
  
+ <select id="queryPermsList"  parameterType="String" resultType="String">
+ 	select perms from t_sys_permission p
+	left join t_sys_permission_role pr on p.id=pr.permission_id
+	where pr.role_id=#{roleid}
+ 
+ </select>
+ 
  
  
 </mapper>

@@ -5,7 +5,7 @@ import com.fc.v2.common.domain.AjaxResult;
 import com.fc.v2.model.auto.SysFile;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,7 +39,7 @@ public class FileController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("system:file:view")
+	@SaCheckPermission("system:file:view")
     public String view(ModelMap model)
     {
     	model.put("bucketURL",template.getOssProperties().getEndpoint()+"/"+template.getOssProperties().getBucketName());
@@ -54,7 +54,7 @@ public class FileController extends BaseController{
 	 */
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("system:file:list")
+	@SaCheckPermission("system:file:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText){
 		PageInfo<SysFile> page=sysFileService.list(tablepar,searchText) ;
@@ -118,7 +118,7 @@ public class FileController extends BaseController{
 	//@Log(title = "删除日志", action = "1")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("system:file:remove")
+	@SaCheckPermission("system:file:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysFileService.deleteByPrimaryKey(ids);

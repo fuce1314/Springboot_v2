@@ -8,7 +8,7 @@ import com.fc.v2.model.custom.Tablepar;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +33,7 @@ public class LogController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("system:log:view")
+	@SaCheckPermission("system:log:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -47,7 +47,7 @@ public class LogController extends BaseController{
 	 */
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("system:log:list")
+	@SaCheckPermission("system:log:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar, String searchText){
 		PageInfo<TsysOperLog> page=sysOperLogService.list(tablepar,searchText) ; 
@@ -63,7 +63,7 @@ public class LogController extends BaseController{
 	//@Log(title = "删除日志", action = "1")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("system:log:remove")
+	@SaCheckPermission("system:log:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysOperLogService.deleteByPrimaryKey(ids);

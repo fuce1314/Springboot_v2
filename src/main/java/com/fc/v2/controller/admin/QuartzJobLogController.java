@@ -9,7 +9,7 @@ import com.fc.v2.service.SysQuartzJobLogService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,7 +39,7 @@ public class QuartzJobLogController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:sysQuartzJobLog:view")
+	@SaCheckPermission("gen:sysQuartzJobLog:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -56,7 +56,7 @@ public class QuartzJobLogController extends BaseController{
 	//@Log(title = "定时任务调度日志表集合查询", action = "111")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("gen:sysQuartzJobLog:list")
+	@SaCheckPermission("gen:sysQuartzJobLog:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar, String searchText){
 		PageInfo<SysQuartzJobLog> page=sysQuartzJobLogService.list(tablepar,searchText) ; 
@@ -91,7 +91,7 @@ public class QuartzJobLogController extends BaseController{
 	//@Log(title = "定时任务调度日志表删除", action = "111")
 	@ApiOperation(value = "定时任务日志删除", notes = "定时任务日志删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("gen:sysQuartzJobLog:remove")
+	@SaCheckPermission("gen:sysQuartzJobLog:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysQuartzJobLogService.deleteByPrimaryKey(ids);

@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiOperation;
 
 import java.util.List;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,7 +46,7 @@ public class SysAreaController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:sysArea:view")
+	@SaCheckPermission("gen:sysArea:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -63,7 +63,7 @@ public class SysAreaController extends BaseController{
 	//@Log(title = "地区设置集合查询", action = "111")
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/list")
-	@RequiresPermissions("gen:sysArea:list")
+	@SaCheckPermission("gen:sysArea:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText){
 		PageInfo<SysArea> page=sysAreaService.list(tablepar,searchText) ; 
@@ -92,7 +92,7 @@ public class SysAreaController extends BaseController{
 	//@Log(title = "地区设置新增", action = "111")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("gen:sysArea:add")
+	@SaCheckPermission("gen:sysArea:add")
 	@ResponseBody
 	public AjaxResult add(SysArea sysArea){
 		int b=sysAreaService.insertSelective(sysArea);
@@ -111,7 +111,7 @@ public class SysAreaController extends BaseController{
 	//@Log(title = "地区设置删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("gen:sysArea:remove")
+	@SaCheckPermission("gen:sysArea:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysAreaService.deleteByPrimaryKey(ids);
@@ -161,7 +161,7 @@ public class SysAreaController extends BaseController{
      */
     //@Log(title = "地区设置修改", action = "111")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("gen:sysArea:edit")
+    @SaCheckPermission("gen:sysArea:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(SysArea record)

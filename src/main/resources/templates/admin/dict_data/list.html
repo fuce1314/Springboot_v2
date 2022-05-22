@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('字典数据列表')"/>
 </head>
@@ -32,25 +32,25 @@
 </body>
 
 <script type="text/html" id="role-toolbar">
-    <button shiro:hasPermission="system:dictData:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+    <button sa:hasPermission="system:dictData:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
-    <button shiro:hasPermission="system:dictData:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+    <button sa:hasPermission="system:dictData:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
-    <button shiro:hasPermission="system:dictType:view" class="pear-btn pear-btn-warming pear-btn-md" lay-event="dictTypeView">
+    <button sa:hasPermission="system:dictType:view" class="pear-btn pear-btn-warming pear-btn-md" lay-event="dictTypeView">
         <i class="layui-icon layui-icon-return"></i>
         返回字典类型
     </button>
 </script>
 
 <script type="text/html" id="dictData-bar">
-    <button shiro:hasPermission="system:dictData:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit" title="修改"><i class="layui-icon layui-icon-edit"></i>
+    <button sa:hasPermission="system:dictData:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit" title="修改"><i class="layui-icon layui-icon-edit"></i>
     </button>
 
-    <button shiro:hasPermission="system:dictData:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
+    <button sa:hasPermission="system:dictData:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
     </button>
 
 </script>

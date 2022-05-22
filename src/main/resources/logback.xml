@@ -52,7 +52,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 	       	 当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名
 	        TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。
         -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--
             	滚动时产生的文件的存放位置及文件名称 %d{yyyy-MM-dd}：按天进行日志滚动
             	%i：当文件大小超过maxFileSize时，按照i进行文件滚动
@@ -68,9 +68,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 			            当日志文件超过maxFileSize指定的大小时，根据上面提到的%i进行日志文件滚动
 			            注意此处配置SizeBasedTriggeringPolicy是无法实现按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy
             -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>50MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
+             <maxFileSize>50MB</maxFileSize>
         </rollingPolicy>
         <!-- 日志输出格式： -->
         <layout class="ch.qos.logback.classic.PatternLayout">

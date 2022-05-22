@@ -1,6 +1,6 @@
 package com.fc.v2.controller.admin;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,7 +37,7 @@ public class SysProvinceController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:sysProvince:view")
+	@SaCheckPermission("gen:sysProvince:view")
     public String view(ModelMap model)
     {
         return prefix + "/list";
@@ -53,7 +53,7 @@ public class SysProvinceController extends BaseController{
 	//@Log(title = "省份表集合查询", action = "111")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("gen:sysProvince:list")
+	@SaCheckPermission("gen:sysProvince:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String searchText){
 		PageInfo<SysProvince> page=sysProvinceService.list(tablepar,searchText) ; 
@@ -83,7 +83,7 @@ public class SysProvinceController extends BaseController{
 	//@Log(title = "省份表新增", action = "111")
     @ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("gen:sysProvince:add")
+	@SaCheckPermission("gen:sysProvince:add")
 	@ResponseBody
 	public AjaxResult add(SysProvince sysProvince){
 		int b=sysProvinceService.insertSelective(sysProvince);
@@ -102,7 +102,7 @@ public class SysProvinceController extends BaseController{
 	//@Log(title = "省份表删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("gen:sysProvince:remove")
+	@SaCheckPermission("gen:sysProvince:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysProvinceService.deleteByPrimaryKey(ids);
@@ -151,7 +151,7 @@ public class SysProvinceController extends BaseController{
      */
     //@Log(title = "省份表修改", action = "111")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("gen:sysProvince:edit")
+    @SaCheckPermission("gen:sysProvince:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(SysProvince record)

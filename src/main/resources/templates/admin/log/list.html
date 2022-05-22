@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('日志列表')"/>
 </head>
@@ -32,14 +32,14 @@
 </body>
 
 <script type="text/html" id="role-toolbar">
-    <button shiro:hasPermission="system:log:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+    <button sa:hasPermission="system:log:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
 </script>
 
 <script type="text/html" id="log-bar">
-    <button shiro:hasPermission="system:log:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
+    <button sa:hasPermission="system:log:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 

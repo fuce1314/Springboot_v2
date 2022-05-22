@@ -17,4 +17,12 @@ public interface RoleDao {
 	 * @return
 	 */
 	public List<TsysRole> queryUserRole(String userid);
+	
+	/**
+	 * 根据用户id查询角色id 
+	 * @param userid
+	 * @return
+	 */
+	public List<String> queryUserRoleId(String userid);
+	
 }

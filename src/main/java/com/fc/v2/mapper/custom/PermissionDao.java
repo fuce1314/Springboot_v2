@@ -24,6 +24,13 @@ public interface  PermissionDao {
 	  * @return
 	  */
 	 List<TsysPermission> queryRoleId(String roleid);
+
+	 /**
+	  * 根据角色id查询权限码集合 
+	  * @param roleid
+	  * @return
+	  */
+	 List<String> queryPermsList(String roleid);
 	 
 	 
 	 

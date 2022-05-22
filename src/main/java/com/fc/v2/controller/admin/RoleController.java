@@ -8,7 +8,7 @@ import com.fc.v2.model.custom.Tablepar;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +36,7 @@ public class RoleController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("system:role:view")
+	@SaCheckPermission("system:role:view")
     public String view(ModelMap model)
     {
 		return prefix + "/list";
@@ -50,7 +50,7 @@ public class RoleController extends BaseController{
 	 */
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("system:role:list")
+	@SaCheckPermission("system:role:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar){
 		PageInfo<TsysRole> page=sysRoleService.list(tablepar) ;
@@ -76,7 +76,7 @@ public class RoleController extends BaseController{
 	//@Log(title = "角色添加", action = "1")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("system:role:add")
+	@SaCheckPermission("system:role:add")
 	@ResponseBody
 	public AjaxResult add(@RequestBody TsysRole role){
 		int b=sysRoleService.insertSelective(role);
@@ -95,7 +95,7 @@ public class RoleController extends BaseController{
 	//@Log(title = "删除角色", action = "1")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("system:role:remove")
+	@SaCheckPermission("system:role:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysRoleService.deleteByPrimaryKey(ids);
@@ -145,7 +145,7 @@ public class RoleController extends BaseController{
      */
 	//@Log(title = "修改保存角色", action = "1")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("system:role:edit")
+    @SaCheckPermission("system:role:edit")
     @PutMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@RequestBody TsysRole tsysRole)

@@ -11,7 +11,7 @@ import com.fc.v2.common.domain.ResuTree;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,7 +36,7 @@ public class SysDepartmentController extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("gen:sysDepartment:view")
+	@SaCheckPermission("gen:sysDepartment:view")
     public String view(ModelMap model)
     {
 		return prefix + "/list";
@@ -53,7 +53,7 @@ public class SysDepartmentController extends BaseController{
 	//@Log(title = "部门表集合查询", action = "111")
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/list")
-	@RequiresPermissions("gen:sysDepartment:list")
+	@SaCheckPermission("gen:sysDepartment:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar, String searchText){
 		PageInfo<SysDepartment> page=sysDepartmentService.list(tablepar,searchText);
@@ -80,7 +80,7 @@ public class SysDepartmentController extends BaseController{
 	//@Log(title = "部门表新增", action = "111")
     @ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("gen:sysDepartment:add")
+	@SaCheckPermission("gen:sysDepartment:add")
 	@ResponseBody
 	public AjaxResult add(@RequestBody SysDepartment sysDepartment){
 		int b=sysDepartmentService.insertSelective(sysDepartment);
@@ -99,7 +99,7 @@ public class SysDepartmentController extends BaseController{
 	//@Log(title = "部门表删除", action = "111")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("gen:sysDepartment:remove")
+	@SaCheckPermission("gen:sysDepartment:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b=sysDepartmentService.deleteByPrimaryKey(ids);
@@ -150,7 +150,7 @@ public class SysDepartmentController extends BaseController{
      */
     //@Log(title = "部门表修改", action = "111")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("gen:sysDepartment:edit")
+    @SaCheckPermission("gen:sysDepartment:edit")
     @PutMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@RequestBody SysDepartment record)

@@ -1,21 +1,31 @@
 package com.fc.v2.controller.admin;
 
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.fc.v2.common.base.BaseController;
 import com.fc.v2.common.domain.AjaxResult;
 import com.fc.v2.common.domain.ResuTree;
 import com.fc.v2.common.domain.ResultTable;
 import com.fc.v2.model.auto.TsysPermission;
 import com.fc.v2.model.custom.Tablepar;
-import com.fc.v2.shiro.util.ShiroUtils;
 import com.github.pagehelper.PageInfo;
+
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.dev33.satoken.session.SaSessionCustomUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 /**
  * 权限Controller
@@ -39,7 +49,7 @@ public class PermissionController  extends BaseController{
 	 */
 	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
-	@RequiresPermissions("system:permission:view")
+	@SaCheckPermission("system:permission:view")
     public String view(ModelMap model)
     {
 		return prefix + "/list";
@@ -53,7 +63,7 @@ public class PermissionController  extends BaseController{
 	 */
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
-	@RequiresPermissions("system:permission:list")
+	@SaCheckPermission("system:permission:list")
 	@ResponseBody
 	public ResultTable list(Tablepar tablepar,String searchText){
 		PageInfo<TsysPermission> page= sysPermissionService.list(tablepar, searchText) ;
@@ -80,7 +90,7 @@ public class PermissionController  extends BaseController{
 	//@Log(title = "权限添加", action = "1")
 	@ApiOperation(value = "新增", notes = "新增")
 	@PostMapping("/add")
-	@RequiresPermissions("system:permission:add")
+	@SaCheckPermission("system:permission:add")
 	@ResponseBody
 	public AjaxResult add(@RequestBody TsysPermission tsysPermission){
 		int b= sysPermissionService.insertSelective(tsysPermission);
@@ -99,7 +109,7 @@ public class PermissionController  extends BaseController{
 	//@Log(title = "删除权限", action = "1")
 	@ApiOperation(value = "删除", notes = "删除")
 	@DeleteMapping("/remove")
-	@RequiresPermissions("system:permission:remove")
+	@SaCheckPermission("system:permission:remove")
 	@ResponseBody
 	public AjaxResult remove(String ids){
 		int b= sysPermissionService.deleteByPrimaryKey(ids);
@@ -189,7 +199,7 @@ public class PermissionController  extends BaseController{
      */
 	//@Log(title = "修改保存权限", action = "1")
 	@ApiOperation(value = "修改保存", notes = "修改保存")
-    @RequiresPermissions("system:permission:edit")
+    @SaCheckPermission("system:permission:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@RequestBody TsysPermission TsysPermission)
@@ -233,7 +243,7 @@ public class PermissionController  extends BaseController{
      */
 	//@Log(title = "修改保存角色", action = "1")
 	@ApiOperation(value = "授权保存", notes = "授权保存")
-    @RequiresPermissions("system:role:edit")
+    @SaCheckPermission("system:role:edit")
     @PutMapping("/saveRolePower")
     @ResponseBody
     public AjaxResult saveRolePower(String roleId,String powerIds)
@@ -241,7 +251,7 @@ public class PermissionController  extends BaseController{
     	int i=sysRoleService.updateRoleAndPrem(roleId,powerIds);
     	if(i>0) {
     		//大于0刷新权限
-    		ShiroUtils.clearCachedAuthorizationInfo();
+    		SaSessionCustomUtil.getSessionById("role-" + roleId).delete("Permission_List");
     	}
         return toAjax(i);
     }

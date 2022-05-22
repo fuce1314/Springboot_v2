@@ -1,5 +1,13 @@
 package com.fc.v2.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fc.v2.common.base.BaseService;
 import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.TSysDictDataMapper;
@@ -8,17 +16,10 @@ import com.fc.v2.model.auto.TSysDictDataExample;
 import com.fc.v2.model.auto.TSysDictType;
 import com.fc.v2.model.auto.TSysDictTypeExample;
 import com.fc.v2.model.custom.Tablepar;
-import com.fc.v2.shiro.util.ShiroUtils;
+import com.fc.v2.satoken.SaTokenUtil;
 import com.fc.v2.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * 字典类型表Service
@@ -87,7 +88,7 @@ public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTyp
 	@Override
 	public int updateByPrimaryKeySelective(TSysDictType record) {
 		record.setUpdateTime(new Date());
-		record.setUpdateBy(ShiroUtils.getUser().getUsername());
+		record.setUpdateBy(SaTokenUtil.getUser().getUsername());
 		return tSysDictTypeMapper.updateByPrimaryKeySelective(record);
 	}
 	
@@ -100,7 +101,7 @@ public class SysDictTypeService implements BaseService<TSysDictType, TSysDictTyp
 		record.setId(SnowflakeIdWorker.getUUID());
 		record.setCreateTime(new Date());
 		record.setUpdateTime(new Date());
-		record.setCreateBy(ShiroUtils.getUser().getUsername());
+		record.setCreateBy(SaTokenUtil.getUser().getUsername());
 
 		return tSysDictTypeMapper.insertSelective(record);
 	}

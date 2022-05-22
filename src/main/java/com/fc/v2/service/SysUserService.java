@@ -1,5 +1,12 @@
 package com.fc.v2.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fc.v2.common.base.BaseService;
 import com.fc.v2.common.support.ConvertUtil;
 import com.fc.v2.mapper.auto.TSysRoleUserMapper;
@@ -7,7 +14,12 @@ import com.fc.v2.mapper.auto.TsysRoleMapper;
 import com.fc.v2.mapper.auto.TsysUserMapper;
 import com.fc.v2.mapper.custom.RoleDao;
 import com.fc.v2.mapper.custom.TsysUserDao;
-import com.fc.v2.model.auto.*;
+import com.fc.v2.model.auto.TSysRoleUser;
+import com.fc.v2.model.auto.TSysRoleUserExample;
+import com.fc.v2.model.auto.TsysRole;
+import com.fc.v2.model.auto.TsysRoleExample;
+import com.fc.v2.model.auto.TsysUser;
+import com.fc.v2.model.auto.TsysUserExample;
 import com.fc.v2.model.custom.RoleVo;
 import com.fc.v2.model.custom.Tablepar;
 import com.fc.v2.util.MD5Util;
@@ -15,12 +27,8 @@ import com.fc.v2.util.SnowflakeIdWorker;
 import com.fc.v2.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
+import cn.dev33.satoken.stp.StpUtil;
 
 /**
  * 系统用户
@@ -240,6 +248,9 @@ public class SysUserService implements BaseService<TsysUser, TsysUserExample>{
 				tSysRoleUserMapper.insertSelective(tSysRoleUser);
 			}
 		}
+		// 清除此用户角色信息缓存 
+		StpUtil.getSessionByLoginId(record.getId()).delete("Role_List");
+		
 		//修改用户信息
 		return tsysUserMapper.updateByPrimaryKeySelective(record);
 	}

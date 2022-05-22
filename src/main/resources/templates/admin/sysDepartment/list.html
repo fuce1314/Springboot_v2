@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('部门列表')"/>
 </head>
@@ -31,20 +31,20 @@
 </div>
 
 <script type="text/html" id="department-toolbar">
-    <button shiro:hasPermission="gen:sysDepartment:add"  class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+    <button sa:hasPermission="gen:sysDepartment:add"  class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
-    <button shiro:hasPermission="gen:sysDepartment:remove"  class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+    <button sa:hasPermission="gen:sysDepartment:remove"  class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
 </script>
 
 <script type="text/html" id="department-bar">
-    <button shiro:hasPermission="gen:sysDepartment:edit"  class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+    <button sa:hasPermission="gen:sysDepartment:edit"  class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
-    <button shiro:hasPermission="gen:sysDepartment:remove"  class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    <button sa:hasPermission="gen:sysDepartment:remove"  class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
