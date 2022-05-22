@@ -1,4 +1,6 @@
 
+<>![HTML代码页面](https://images.gitee.com/uploads/images/2018/0822/004608_c55d62a4_123301.jpeg "HTML代码页面.jpg")
+
 ### 前言
 - SpringBoot_v2项目是努力打造springboot框架的极致细腻的脚手架。包括一套漂亮的前台。无其他杂七杂八的功能，原生纯净。
 - 服务器演示：http://47.99.218.99:8080/springboot_v2/ 账号:admin 密码:admin
