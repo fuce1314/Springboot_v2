@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.v2.mapper.custom.PermissionDao">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.TsysPermission">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="descripion" jdbcType="VARCHAR" property="descripion" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="is_blank" jdbcType="INTEGER" property="isBlank" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="perms" jdbcType="VARCHAR" property="perms" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="visible" jdbcType="INTEGER" property="visible" />
+    <result column="childcount" jdbcType="INTEGER" property="childCount"/>
+  </resultMap>
+   <sql id="Base_Column_List">
+     id, name, descripion, url, pid, perms, type, icon, order_num
+  </sql>
+   <select id="findAll"  resultMap="BaseResultMap">
+
+	  select  *,(select count(1) from t_sys_permission where pid=a.id) childcount from t_sys_permission a
+	</select>
+
+<select id="findByAdminUserId" parameterType="String" resultMap="BaseResultMap">
+        select distinct p.*,(select count(1) from t_sys_permission where pid=p.id) childcount
+        from t_sys_permission_role spr,t_sys_role_user sru,t_sys_permission p
+        where 	spr.role_id = sru.sys_role_id AND spr.permission_id = p.id and visible=0  AND sru.sys_user_id=#{userId} 
+		GROUP BY p.id
+		ORDER BY order_num  is null  ASC,order_num  ASC
+ </select>
+ 
+ <select id="queryRoleId"  parameterType="String" resultMap="BaseResultMap">
+ 	select p.* from t_sys_permission p
+	left join t_sys_permission_role pr on p.id=pr.permission_id
+	where pr.role_id=#{roleid}
+ 
+ </select>
+ 
+ <select id="queryPermsList"  parameterType="String" resultType="String">
+ 	select perms from t_sys_permission p
+	left join t_sys_permission_role pr on p.id=pr.permission_id
+	where pr.role_id=#{roleid}
+ 
+ </select>
+ 
+ 
+ 
+</mapper>

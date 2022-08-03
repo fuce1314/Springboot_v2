@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.v2.mapper.auto.JzglMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.Jzgl">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="jzbm" jdbcType="VARCHAR" property="jzbm" />
+    <result column="jzmc" jdbcType="VARCHAR" property="jzmc" />
+    <result column="jztm" jdbcType="VARCHAR" property="jztm" />
+    <result column="xh" jdbcType="VARCHAR" property="xh" />
+    <result column="ssfl" jdbcType="VARCHAR" property="ssfl" />
+    <result column="sscj" jdbcType="VARCHAR" property="sscj" />
+    <result column="pch" jdbcType="VARCHAR" property="pch" />
+    <result column="zdkc" jdbcType="VARCHAR" property="zdkc" />
+    <result column="zgkc" jdbcType="VARCHAR" property="zgkc" />
+    <result column="jz_type" jdbcType="INTEGER" property="jzType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="ssjg_id" jdbcType="VARCHAR" property="ssjgId" />
+    <result column="dp_state" jdbcType="INTEGER" property="dpState" />
+    <result column="cpjg_id" jdbcType="VARCHAR" property="cpjgId" />
+  </resultMap>
+  
+  
+  
+  <resultMap id="BaseResultMap2" type="com.fc.v2.model.custom.JzglVo">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="jzbm" jdbcType="VARCHAR" property="jzbm" />
+    <result column="jzmc" jdbcType="VARCHAR" property="jzmc" />
+    <result column="xh" jdbcType="VARCHAR" property="xh" />
+    <result column="pch" jdbcType="VARCHAR" property="pch" />
+    <result column="jz_type" jdbcType="INTEGER" property="jzType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="ssjg_id" jdbcType="VARCHAR" property="ssjgId" />
+    <result column="dp_state" jdbcType="INTEGER" property="dpState" />
+    <result column="cpjg_id" jdbcType="VARCHAR" property="cpjgId" />
+    
+    
+    <result column="jg_name" jdbcType="VARCHAR" property="jgName" />
+    <result column="cpgh" jdbcType="VARCHAR" property="cpgh" />
+  </resultMap>
+  
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+  
+	  	  	      	id,
+       	  	      	jzbm,
+       	  	      	jzmc,
+       	  	      	jztm,
+       	  	      	xh,
+       	  	      	ssfl,
+       	  	      	sscj,
+       	  	      	pch,
+       	  	      	zdkc,
+       	  	      	zgkc,
+       	  	      	jz_type,
+       	  	      	create_time,
+       	  	      	create_user_id,
+       	  	      	create_user_name,
+       	  	      	ssjg_id,
+       	  	      	dp_state,
+       	  	    	  	cpjg_id
+       	  	
+  </sql>
+  
+  <sql id="Base_Column_List2">
+  
+	  	  	      	id,
+       	  	      	jzbm,
+       	  	      	jzmc,
+       	  	      	xh,
+       	  	      	pch,
+       	  	      	jz_type,
+       	  	      	create_time,
+       	  	      	create_user_id,
+       	  	      	create_user_name,
+       	  	      	ssjg_id,
+       	  	      	dp_state,
+       	  	    	cpjg_id,
+       	  	    	jg_name,
+       	  	    	cpgh
+       	  	
+  </sql>
+  
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.JzglExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_jzgl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectByExample2" parameterType="com.fc.v2.model.auto.JzglExample" resultMap="BaseResultMap2">
+    SELECT
+		jzgl.id,
+		jzgl.jzbm,
+		jzgl.jzmc,
+		jzgl.xh,
+		jzgl.pch,
+		jzgl.jz_type,
+		jzgl.create_time,
+		jzgl.create_user_id,
+		jzgl.create_user_name,
+		jzgl.ssjg_id,
+		jzgl.dp_state,
+		jzgl.cpjg_id,
+		jggl.jg_name AS jg_name,
+		cpjg.cpgh AS cpgh 
+	FROM
+	t_jzgl jzgl
+	LEFT JOIN t_jggl jggl ON jggl.id = jzgl.ssjg_id
+	LEFT JOIN t_cpgh cpjg ON cpjg.id = jzgl.cpjg_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  
+  <select id="batchViewIds" parameterType="com.fc.v2.model.auto.JzglExample" resultMap="BaseResultMap2">
+    SELECT
+		jzgl.id,
+		jzgl.jzbm,
+		jzgl.jzmc,
+		jzgl.xh,
+		jzgl.pch,
+		jzgl.jz_type,
+		jzgl.create_time,
+		jzgl.create_user_id,
+		jzgl.create_user_name,
+		jzgl.ssjg_id,
+		jzgl.dp_state,
+		jzgl.cpjg_id,
+		jggl.jg_name AS jg_name,
+		cpjg.cpgh AS cpgh 
+	FROM
+	t_jzgl jzgl
+	LEFT JOIN t_jggl jggl ON jggl.id = jzgl.ssjg_id
+	LEFT JOIN t_cpgh cpjg ON cpjg.id = jzgl.cpjg_id
+   
+    where jzgl.id in
+    <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+        #{id}
+    </foreach>
+    
+  </select>
+  
+  
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_jzgl
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_jzgl
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.JzglExample">
+    delete from t_jzgl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="com.fc.v2.model.auto.Jzgl">
+    insert into t_jzgl (
+      	  	       id,
+       	  	       jzbm,
+       	  	       jzmc,
+       	  	       jztm,
+       	  	       xh,
+       	  	       ssfl,
+       	  	       sscj,
+       	  	       pch,
+       	  	       zdkc,
+       	  	       zgkc,
+       	  	       jz_type,
+       	  	       create_time,
+       	  	       create_user_id,
+       	  	       create_user_name,
+       	  	       ssjg_id,
+       	  	       dp_state,
+       	  	    	  cpjg_id
+       	    )
+    values (
+	  	  	      	#{id,jdbcType=VARCHAR},
+       	  	      	#{jzbm,jdbcType=VARCHAR},
+       	  	      	#{jzmc,jdbcType=VARCHAR},
+       	  	      	#{jztm,jdbcType=VARCHAR},
+       	  	      	#{xh,jdbcType=VARCHAR},
+       	  	      	#{ssfl,jdbcType=VARCHAR},
+       	  	      	#{sscj,jdbcType=VARCHAR},
+       	  	      	#{pch,jdbcType=VARCHAR},
+       	  	      	#{zdkc,jdbcType=VARCHAR},
+       	  	      	#{zgkc,jdbcType=VARCHAR},
+       	  	      	#{jzType,jdbcType=INTEGER},
+       	  	      	#{createTime,jdbcType=TIMESTAMP},
+       	  	      	#{createUserId,jdbcType=VARCHAR},
+       	  	      	#{createUserName,jdbcType=VARCHAR},
+       	  	      	#{ssjgId,jdbcType=VARCHAR},
+       	  	      	#{dpState,jdbcType=INTEGER},
+       	  	    	  #{cpjgId,jdbcType=VARCHAR}
+       	    )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.Jzgl">
+    insert into t_jzgl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+          
+      <if test="id != null">
+        id,
+      </if>
+         
+      <if test="jzbm != null">
+        jzbm,
+      </if>
+         
+      <if test="jzmc != null">
+        jzmc,
+      </if>
+         
+      <if test="jztm != null">
+        jztm,
+      </if>
+         
+      <if test="xh != null">
+        xh,
+      </if>
+         
+      <if test="ssfl != null">
+        ssfl,
+      </if>
+         
+      <if test="sscj != null">
+        sscj,
+      </if>
+         
+      <if test="pch != null">
+        pch,
+      </if>
+         
+      <if test="zdkc != null">
+        zdkc,
+      </if>
+         
+      <if test="zgkc != null">
+        zgkc,
+      </if>
+         
+      <if test="jzType != null">
+        jz_type,
+      </if>
+         
+      <if test="createTime != null">
+        create_time,
+      </if>
+         
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+         
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+         
+      <if test="ssjgId != null">
+        ssjg_id,
+      </if>
+         
+      <if test="dpState != null">
+        dp_state,
+      </if>
+         
+      <if test="cpjgId != null">
+        cpjg_id,
+      </if>
+         </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+          <if test="jzbm != null">
+        #{jzbm,jdbcType=VARCHAR},
+      </if>
+          <if test="jzmc != null">
+        #{jzmc,jdbcType=VARCHAR},
+      </if>
+          <if test="jztm != null">
+        #{jztm,jdbcType=VARCHAR},
+      </if>
+          <if test="xh != null">
+        #{xh,jdbcType=VARCHAR},
+      </if>
+          <if test="ssfl != null">
+        #{ssfl,jdbcType=VARCHAR},
+      </if>
+          <if test="sscj != null">
+        #{sscj,jdbcType=VARCHAR},
+      </if>
+          <if test="pch != null">
+        #{pch,jdbcType=VARCHAR},
+      </if>
+          <if test="zdkc != null">
+        #{zdkc,jdbcType=VARCHAR},
+      </if>
+          <if test="zgkc != null">
+        #{zgkc,jdbcType=VARCHAR},
+      </if>
+          <if test="jzType != null">
+        #{jzType,jdbcType=INTEGER},
+      </if>
+          <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+          <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+          <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+          <if test="ssjgId != null">
+        #{ssjgId,jdbcType=VARCHAR},
+      </if>
+          <if test="dpState != null">
+        #{dpState,jdbcType=INTEGER},
+      </if>
+          <if test="cpjgId != null">
+        #{cpjgId,jdbcType=VARCHAR},
+      </if>
+        </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.JzglExample" resultType="java.lang.Long">
+    select count(*) from t_jzgl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_jzgl
+    <set>
+          <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+          <if test="record.jzbm != null">
+        jzbm = #{record.jzbm,jdbcType=VARCHAR},
+      </if>
+          <if test="record.jzmc != null">
+        jzmc = #{record.jzmc,jdbcType=VARCHAR},
+      </if>
+          <if test="record.jztm != null">
+        jztm = #{record.jztm,jdbcType=VARCHAR},
+      </if>
+          <if test="record.xh != null">
+        xh = #{record.xh,jdbcType=VARCHAR},
+      </if>
+          <if test="record.ssfl != null">
+        ssfl = #{record.ssfl,jdbcType=VARCHAR},
+      </if>
+          <if test="record.sscj != null">
+        sscj = #{record.sscj,jdbcType=VARCHAR},
+      </if>
+          <if test="record.pch != null">
+        pch = #{record.pch,jdbcType=VARCHAR},
+      </if>
+          <if test="record.zdkc != null">
+        zdkc = #{record.zdkc,jdbcType=VARCHAR},
+      </if>
+          <if test="record.zgkc != null">
+        zgkc = #{record.zgkc,jdbcType=VARCHAR},
+      </if>
+          <if test="record.jzType != null">
+        jz_type = #{record.jzType,jdbcType=INTEGER},
+      </if>
+          <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+          <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+          <if test="record.createUserName != null">
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+          <if test="record.ssjgId != null">
+        ssjg_id = #{record.ssjgId,jdbcType=VARCHAR},
+      </if>
+          <if test="record.dpState != null">
+        dp_state = #{record.dpState,jdbcType=INTEGER},
+      </if>
+          <if test="record.cpjgId != null">
+        cpjg_id = #{record.cpjgId,jdbcType=VARCHAR},
+      </if>
+         
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  <update id="updateByExample" parameterType="map">
+    update t_jzgl
+    set
+            	     	 
+    	 id = #{record.id,jdbcType=VARCHAR},
+    	         	     	 
+    	 jzbm = #{record.jzbm,jdbcType=VARCHAR},
+    	         	     	 
+    	 jzmc = #{record.jzmc,jdbcType=VARCHAR},
+    	         	     	 
+    	 jztm = #{record.jztm,jdbcType=VARCHAR},
+    	         	     	 
+    	 xh = #{record.xh,jdbcType=VARCHAR},
+    	         	     	 
+    	 ssfl = #{record.ssfl,jdbcType=VARCHAR},
+    	         	     	 
+    	 sscj = #{record.sscj,jdbcType=VARCHAR},
+    	         	     	 
+    	 pch = #{record.pch,jdbcType=VARCHAR},
+    	         	     	 
+    	 zdkc = #{record.zdkc,jdbcType=VARCHAR},
+    	         	     	 
+    	 zgkc = #{record.zgkc,jdbcType=VARCHAR},
+    	         	     	 
+    	 jz_type = #{record.jzType,jdbcType=INTEGER},
+    	         	     	 
+    	 create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    	         	     	 
+    	 create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+    	         	     	 
+    	 create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+    	         	     	 
+    	 ssjg_id = #{record.ssjgId,jdbcType=VARCHAR},
+    	         	     	 
+    	 dp_state = #{record.dpState,jdbcType=INTEGER},
+    	         	     	 
+    	 cpjg_id = #{record.cpjgId,jdbcType=VARCHAR}
+    	         
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.Jzgl">
+    update t_jzgl
+    <set>
+                          
+      <if test="jzbm != null">
+        jzbm = #{jzbm,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="jzmc != null">
+        jzmc = #{jzmc,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="jztm != null">
+        jztm = #{jztm,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="xh != null">
+        xh = #{xh,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="ssfl != null">
+        ssfl = #{ssfl,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="sscj != null">
+        sscj = #{sscj,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="pch != null">
+        pch = #{pch,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="zdkc != null">
+        zdkc = #{zdkc,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="zgkc != null">
+        zgkc = #{zgkc,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="jzType != null">
+        jz_type = #{jzType,jdbcType=INTEGER},
+      </if>
+                      
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+                      
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="ssjgId != null">
+        ssjg_id = #{ssjgId,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="dpState != null">
+        dp_state = #{dpState,jdbcType=INTEGER},
+      </if>
+                      
+      <if test="cpjgId != null">
+        cpjg_id = #{cpjgId,jdbcType=VARCHAR},
+      </if>
+              </set>
+    
+    where 
+            
+    id = #{id,jdbcType=VARCHAR}
+                                                                                                                                          
+  </update>
+
+      	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	
+
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.Jzgl">
+    update t_jzgl
+    set 
+    		 		 	  	  
+		jzbm = #{jzbm,jdbcType=VARCHAR},
+	  	 		 	  	  
+		jzmc = #{jzmc,jdbcType=VARCHAR},
+	  	 		 	  	  
+		jztm = #{jztm,jdbcType=VARCHAR},
+	  	 		 	  	  
+		xh = #{xh,jdbcType=VARCHAR},
+	  	 		 	  	  
+		ssfl = #{ssfl,jdbcType=VARCHAR},
+	  	 		 	  	  
+		sscj = #{sscj,jdbcType=VARCHAR},
+	  	 		 	  	  
+		pch = #{pch,jdbcType=VARCHAR},
+	  	 		 	  	  
+		zdkc = #{zdkc,jdbcType=VARCHAR},
+	  	 		 	  	  
+		zgkc = #{zgkc,jdbcType=VARCHAR},
+	  	 		 	  	  
+		jz_type = #{jzType,jdbcType=INTEGER},
+	  	 		 	  	  
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+	  	 		 	  	  
+		create_user_id = #{createUserId,jdbcType=VARCHAR},
+	  	 		 	  	  
+		create_user_name = #{createUserName,jdbcType=VARCHAR},
+	  	 		 	  	  
+		ssjg_id = #{ssjgId,jdbcType=VARCHAR},
+	  	 		 	  	  
+		dp_state = #{dpState,jdbcType=INTEGER},
+	  	 		 	  		
+		cpjg_id = #{cpjgId,jdbcType=VARCHAR}
+	  	 		
+    where 
+            
+    id = #{id,jdbcType=VARCHAR}
+                                                                                                                                            
+  </update>
+  
+                                                                                         
+</mapper>

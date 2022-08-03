@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('角色授权')"/>
+</head>
+<body>
+<form class="layui-form" action="">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <ul id="role-power" class="dtree" data-id="0"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="power-save">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    layui.use(['dtree', 'form', 'jquery'], function () {
+        let dtree = layui.dtree;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let MODULE_PATH = rootPath+"/PermissionController";
+        dtree.render({
+            elem: "#role-power",
+            method: "get",
+            url: MODULE_PATH+"/getCheckPrem?roleId=" + [[${roleId}]],
+            dataFormat: "list",
+            checkbar: true,
+            skin: "layui",
+            initLevel: "1",
+            checkbarType: "self",
+            response: {treeId: "powerId", parentId: "parentId", title: "powerName"},
+        });
+
+        form.on('submit(power-save)', function (data) {
+            let param = dtree.getCheckbarNodesParam("role-power");
+            let ids = '';
+            for (let i = 0; i < param.length; i++) {
+                let id = param[i].nodeId;
+                ids += id + ',';
+            }
+            ids = ids.substr(0, ids.length - 1);
+            data.field.roleId = [[${roleId}]];
+            data.field.powerIds = ids;
+
+
+            $.ajax({
+                url: MODULE_PATH+'/saveRolePower',
+                data: data.field,
+                dataType: 'json',
+                type: 'put',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+
+    })
+</script>
+</body>
+</html>

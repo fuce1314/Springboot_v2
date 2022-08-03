@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('字典数据列表')"/>
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">字典名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="searchText" placeholder="" class="layui-input">
+                </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="dictData-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                    查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                    重置
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="dictData-table" lay-filter="dictData-table"></table>
+    </div>
+</div>
+</body>
+
+<script type="text/html" id="role-toolbar">
+    <button sa:hasPermission="system:dictData:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+        新增
+    </button>
+    <button sa:hasPermission="system:dictData:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+        删除
+    </button>
+    <button sa:hasPermission="system:dictType:view" class="pear-btn pear-btn-warming pear-btn-md" lay-event="dictTypeView">
+        <i class="layui-icon layui-icon-return"></i>
+        返回字典类型
+    </button>
+</script>
+
+<script type="text/html" id="dictData-bar">
+    <button sa:hasPermission="system:dictData:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit" title="修改"><i class="layui-icon layui-icon-edit"></i>
+    </button>
+
+    <button sa:hasPermission="system:dictData:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
+    </button>
+
+</script>
+
+
+<script type="text/html" id="dictData-isDefault">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="是|否" lay-filter="dictData-isDefault" {{ d.isDefault== 'Y' ? 'checked' : '' }}>
+</script>
+
+
+<script type="text/html" id="dictData-enable">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="dictData-enable" {{ d.status== 0 ? 'checked' : '' }}>
+</script>
+
+
+
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['table', 'form', 'jquery'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let dictId= '[[${dictId}]]';
+
+        let MODULE_PATH = rootPath+"/DictDataController";
+        let typeUrl= rootPath+"/DictTypeController/view";
+        let cols = [
+            [
+                {type: 'checkbox'},
+                {title: 'ID', field: 'id', align: 'center'},
+                {title: '字典排序', field: 'dictSort', align: 'left'},
+                {title: '字典标签', field: 'dictLabel', align: 'left'},
+                {title: '字典键值', field: 'dictValue', align: 'left'},
+                {title: '字典类型', field: 'dictType', align: 'left'},
+                {title: '是否默认', field: 'isDefault', align: 'left',toolbar: '#dictData-isDefault'},
+                {title: '状态', field: 'status', align: 'left',toolbar: '#dictData-enable'},
+                {title: '创建者', field: 'createBy', align: 'left'},
+                {title: '创建时间', field: 'createTime', align: 'left'},
+                {title: '备注', field: 'remark', align: 'left'},
+                {title: '操作', toolbar: '#dictData-bar', align: 'left',width:150}
+            ]
+        ]
+
+        //table表单列表
+        table.render({
+            elem: '#dictData-table',
+            url: MODULE_PATH + '/list?dictId='+dictId,
+            page: true,
+            method: 'get',
+            cols: cols,
+            skin: 'line',
+            toolbar: '#role-toolbar',
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+            }, 'filter', 'print', 'exports']
+        });
+
+        //table图标事件绑定
+        table.on('tool(dictData-table)', function (obj) {
+            if (obj.event === 'remove') {
+                window.remove(obj);
+            } else if (obj.event === 'edit') {
+                window.edit(obj);
+            }
+        });
+
+        //table工具栏绑定
+        table.on('toolbar(dictData-table)', function (obj) {
+            if (obj.event === 'add') {
+                window.add();
+            } else if (obj.event === 'refresh') {
+                window.refresh();
+            } else if (obj.event === 'batchRemove') {
+                window.batchRemove(obj);
+            } else if (obj.event === 'dictTypeView'){
+                window.dictTypeView();
+            }
+        });
+
+        //查询按钮绑定
+        form.on('submit(dictData-query)', function (data) {
+            table.reload('dictData-table', {where: data.field})
+            return false;
+        });
+
+
+        //添加
+        window.add = function () {
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: MODULE_PATH + '/add?dictId=[[${dictId}]]'
+            });
+        }
+        //修改
+        window.edit = function (obj) {
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: MODULE_PATH + '/edit/' + obj.data['id']
+            });
+        }
+
+        //复制
+        window.copy = function (obj) {
+            layer.confirm('确定复制该元素', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "/copy/" + obj.data['id'],
+                    dataType: 'json',
+                    type: 'get',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        //删除
+        window.remove = function (obj) {
+            layer.confirm('确定要删除该字典数据', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "/remove?ids=" + obj.data['id'],
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                obj.del();
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        //批量删除
+        window.batchRemove = function (obj) {
+            let data = table.checkStatus(obj.config.id).data;
+            if (data.length === 0) {
+                layer.msg("未选中数据", {icon: 3, time: 1000});
+                return false;
+            }
+            let ids = "";
+            for (let i = 0; i < data.length; i++) {
+                ids += data[i].id + ",";
+            }
+            ids = ids.substr(0, ids.length - 1);
+            layer.confirm('确定要删除这些字典数据', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "/remove?ids=" + ids,
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                table.reload('dictData-table');
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        //状态切换绑定
+        form.on('switch(dictData-isDefault)', function (obj) {
+            let operate;
+
+            if (obj.elem.checked) {
+                operate = 'Y';
+            } else {
+                operate = 'N';
+            }
+
+            let loading = layer.load()
+
+            $.ajax({
+                url: MODULE_PATH+'/updateDefault',
+                data: JSON.stringify({id: this.value,isDefault:operate}),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    layer.close(loading);
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+        });
+
+
+        //状态切换绑定
+        form.on('switch(dictData-enable)', function (obj) {
+            let operate;
+
+            if (obj.elem.checked) {
+                operate = '0';
+            } else {
+                operate = '1';
+            }
+
+            let loading = layer.load()
+
+            $.ajax({
+                url: MODULE_PATH+'/updateEnable',
+                data: JSON.stringify({id: this.value,status:operate}),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    layer.close(loading);
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+        });
+
+
+       //返回字典类型
+        window.dictTypeView = function () {
+            window.location.href=typeUrl;
+        }
+        //刷新按钮
+        window.refresh = function () {
+            table.reload('dictData-table');
+        }
+    })
+</script>
+</html>

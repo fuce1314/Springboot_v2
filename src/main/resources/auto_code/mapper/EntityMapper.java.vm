@@ -1,0 +1,52 @@
+package ${parentPack}.mapper.auto;
+
+import ${parentPack}.model.auto.${tableInfo.javaTableName};
+import ${parentPack}.model.auto.${tableInfo.javaTableName}Example;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * ${tableInfo.tableComment} ${tableInfo.javaTableName}Mapper
+ * @author ${author}_自动生成
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${tableInfo.javaTableName}Mapper {
+   #set( $pklag = false)
+   #set( $pk_javaType = '')
+   #foreach ($column in $beanColumns)
+	   #if(${column.column_key} == 'PRI')
+	   	#set( $pklag = true )
+	   	#set( $pk_javaType=$column.javaType)
+	   #end
+   #end
+
+    long countByExample(${tableInfo.javaTableName}Example example);
+
+    int deleteByExample(${tableInfo.javaTableName}Example example);
+	#if(${pklag} == true)
+	
+    int deleteByPrimaryKey(${pk_javaType} id);
+	#end
+	
+    int insert(${tableInfo.javaTableName} record);
+
+    int insertSelective(${tableInfo.javaTableName} record);
+
+    List<${tableInfo.javaTableName}> selectByExample(${tableInfo.javaTableName}Example example);
+	#if(${pklag} == true)
+	
+    ${tableInfo.javaTableName} selectByPrimaryKey(${pk_javaType} id);
+	#end
+	
+    int updateByExampleSelective(@Param("record") ${tableInfo.javaTableName} record, @Param("example") ${tableInfo.javaTableName}Example example);
+
+    int updateByExample(@Param("record") ${tableInfo.javaTableName} record, @Param("example") ${tableInfo.javaTableName}Example example); 
+	#if(${pklag} == true)
+	
+    int updateByPrimaryKeySelective(${tableInfo.javaTableName} record);
+
+    int updateByPrimaryKey(${tableInfo.javaTableName} record);
+  	#end
+  	
+}

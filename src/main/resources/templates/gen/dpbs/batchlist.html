@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('介质管理列表')"/>
+</head>
+<body class="pear-container">
+
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="jzgl-table" lay-filter="jzgl-table"></table>
+    </div>
+</div>
+</body>
+
+
+																													
+<script type="text/html" id="jzType-type">
+	
+
+	{{#if (d.jzType == 1) { }}
+    <span class="layui-badge layui-bg-default-blue">定盘</span>
+
+	{{#if (d.jzType == 2) { }}
+    <span class="layui-badge layui-bg-default-blue">光盘</span>
+    {{# } }}
+</script>
+											
+
+<script type="text/javascript" th:inline="javascript">
+	var jzType_list = [[${@dict.getType('jz_type')}]];
+	var dpState_list = [[${@dict.getType('dp_state')}]];
+	
+	window.selectDictLabel=function(datas, value) {
+		var actions = [];
+	    $.each(datas, function(index, dict) {
+	        if (dict.dictValue == ('' + value)) {
+	        	var listClass = ("default"== dict.listClass) ? "" : "badge badge-" + dict.listClass;
+	        	actions.push(sprintf("<span class='%s'>%s</span>", listClass, dict.dictLabel));
+	            return false;
+	        }
+	    });
+	    return actions.join('');
+	}
+	window.sprintf=function (str) {
+	    var args = arguments, flag = true, i = 1;
+	    str = str.replace(/%s/g, function () {
+	        var arg = args[i++];
+	        if (typeof arg === 'undefined') {
+	            flag = false;
+	            return '';
+	        }
+	        return arg;
+	    });
+	    return flag ? str : '';
+	}
+</script>	
+	
+
+
+<th:block th:include="include :: footer"/>
+<script>
+var id="[[${id}]]";
+    layui.use(['table', 'form', 'jquery'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+		let BUCKETURL_PATH='[[${bucketURL}]]';
+				
+        let MODULE_PATH = rootPath+"/DpjyController";
+        let cols = [
+            [
+
+               {title: '主键', field: 'id', align: 'center',hide:true},
+               
+               {title: '介质名称', field: 'jzmc', align: 'center'},
+               
+               {title: '介质编码', field: 'jzbm', align: 'center'},
+    	                	
+               {title: '机柜名字', field: 'jgName', align: 'center'},
+               
+               {title: '磁盘柜号', field: 'cpgh', align: 'center'},
+               
+               {title: '型号', field: 'xh', align: 'center',hide:true},
+    	                	
+               {title: '所属分类', field: 'ssfl', align: 'center',hide:true},
+    	                	
+               {title: '所属厂家', field: 'sscj', align: 'center',hide:true},
+    	                	
+               {title: '批次号', field: 'pch', align: 'center',hide:true},
+    	                	
+        	   {title: '介质类型', field: 'jzType', align: 'center',templet:function(d){
+				  return selectDictLabel(jzType_list, d.jzType);
+			   }},
+    	                		
+               {title: '创建时间', field: 'createTime', align: 'center'},
+		                	
+               {title: '创建人', field: 'createUserName', align: 'center'},
+           	
+             
+               
+               {title: '定盘状态', field: 'dpState', align: 'center',templet:function(d){
+ 				  return selectDictLabel(dpState_list, d.dpState);
+ 			   }},
+               
+            ]
+        ]
+
+        //table表单列表
+        table.render({
+            elem: '#jzgl-table',
+            url: MODULE_PATH + '/batchView/'+id,
+            page: true,
+            method: 'get',
+            cols: cols,
+            skin: 'line'
+        });
+
+     
+        //刷新按钮
+        window.refresh = function () {
+            table.reload('jzgl-table');
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('岗位修改')"/>
+</head>
+<body>
+<form class="layui-form" action=""  th:object="${SysPosition}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" th:value="*{id}" name="id" lay-verify="title"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">岗位名称</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{postName}" type="text" name="postName" lay-verify="postName" autocomplete="off" placeholder="登录名称" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{orderNum}" type="number" name="orderNum" lay-verify="orderNum" autocomplete="off" value="1" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <select id="status" name="status" th:field="*{status}">
+                            <option value="1">开启</option>
+                            <option value="0">关闭</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="position-update">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let dtree = layui.dtree;
+        let MODULE_PATH = rootPath+"/SysPositionController";
+        //名称验证
+        form.verify({
+            username: function(value){
+                if(value.length < 2){
+                    return '标题至少得2个字符啊';
+                }
+                var msg = "";
+                $.ajax({
+                    url: MODULE_PATH+'/checkNameUnique',
+                    data: "postName="+value,
+                    dataType: 'json',
+                    type: 'post',
+                    async:false,
+                    success: function (result) {
+                            msg=result;
+                    }
+                });
+                if (msg == 1) {
+                   return "已有相同数据";
+                }
+
+            }
+        });
+
+        form.on('submit(position-update)', function (data) {
+            let roleIds = "";
+            $('input[type=checkbox]:checked').each(function () {
+                roleIds += $(this).val() + ",";
+            });
+            roleIds = roleIds.substr(0, roleIds.length - 1);
+            data.field.roleIds = roleIds;
+
+            $.ajax({
+                url: MODULE_PATH+'/edit',
+                data: data.field,
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("position-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+<script>
+</script>
+</body>
+</html>

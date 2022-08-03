@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<!-- Site CSS -->
+		<script src="./jquery-2.2.3.min.js"></script>
+		<link  href="./bootstrap.min.css" rel="stylesheet">
+		<script src="./bootstrap.min.js"></script>
+	</head>
+
+	<body>
+							
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="media">
+			<div class="media-body">
+				<h4 class="media-heading">JavaScript/HTML格式化</h4>
+				<div id="desc1">JavaScript/HTML压缩、格式化工具</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="panel-body">
+		<!--内容块开始-->
+		<div>
+			<textarea id="content" name="RawJson" class="json_input" rows="16" style="width: 100%;" spellcheck="false" placeholder="请输入Javascript 或者 HTML 代码">
+			<div id="app" class="body-container">
+    <div class="spinner">
+      <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+      </div>
+    </div>
+  </div>
+			</textarea>
+		</div>
+		<div class="btn-group" role="group" aria-label="...">
+           <button  id="sels" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    制表符缩进<span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+		  	<li><a href="javascript:;" onclick="sj(1)">1个空格缩进</a></li>
+		    <li><a href="javascript:;" onclick="sj(2)">2个空格缩进</a></li>
+		    <li><a href="javascript:;" onclick="sj(4)">4个空格缩进</a></li>
+		    <li><a href="javascript:;" onclick="sj(8)">8个空格缩进</a></li>
+		  </ul>
+		  <button type="button" class="btn btn-primary" onclick="return do_js_beautify();" id="beautify" >格式化</button>
+		  <button type="button" class="btn btn-primary" onclick="pack_js(0);" >普通压缩</button>
+		  <button type="button" class="btn btn-primary" onclick="pack_js(1);" >加密压缩</button>
+		  <button type="button" class="btn btn-primary" onclick="change();" >JS/HTML互转</button>
+		  
+		  <button type="button" class="btn btn-primary" onclick="convert();" >html转js</button>
+		  
+		  <button type="button" class="btn btn-danger" onclick="Empty();" >清空结果</button>
+		</div>
+		<!--内容块结束-->
+		
+		<div style="padding-top: 10px;">
+			<textarea id="result" name="RawJson" class="json_input" rows="10" style="width: 100%;" spellcheck="false" placeholder=""></textarea>
+		</div>
+		
+		
+	</div>
+	<input type="hidden" id="tabsize" value="1" />
+	<div class="panel-footer" ></div>
+</div>
+<script type="text/javascript">
+	if(window.localStorage && localStorage.getItem("content2format")){
+	 	document.getElementById('content').value = localStorage.getItem("content2format");
+	 	localStorage.setItem("content2format","");
+	}
+	
+
+	function sj(s){
+		$("#tabsize").val(s);
+		$("#sels").text(s+"个空格缩进");
+	}
+
+    function do_js_beautify() {
+        document.getElementById('beautify').disabled = true;
+        js_source = document.getElementById('content').value.replace(/^\s+/, '');
+        tabsize = document.getElementById('tabsize').value;
+        tabchar = ' ';
+        if (tabsize == 1) {
+            tabchar = '\t';
+        }
+        if (js_source && js_source.charAt(0) === '<') {
+            document.getElementById('content').value = style_html(js_source, tabsize, tabchar, 80);
+        } else {
+            document.getElementById('content').value = js_beautify(js_source, tabsize, tabchar);
+        }
+        document.getElementById('beautify').disabled = false;
+        return false;
+    }
+    function pack_js(base64) {
+        var input = document.getElementById('content').value.replace(/^\s+|\s+$/g,"");
+		if(input == ''){
+			alert('请输入需要压缩的内容!');
+			return;
+		}
+		
+        var packer = new Packer;
+        if (base64) {
+            var output = packer.pack(input, 1, 0);
+        } else {
+            var output = packer.pack(input, 0, 0);
+        }
+        document.getElementById('content').value = output;
+    }
+    function Empty() {
+        document.getElementById('content').value = '';
+        document.getElementById('content').select();
+    }
+	
+	 function rechange(){
+		document.getElementById('content').value=document.getElementById('content').value.replace(/document.writeln\("/g,"").replace(/"\);/g,"").replace(/\\\"/g,"\"").replace(/\\\'/g,"\'").replace(/\\\//g,"\/").replace(/\\\\/g,"\\")
+	 }
+	function changeIt(){
+		document.getElementById('content').value="document.writeln(\""+document.getElementById('content').value.replace(/\\/g,"\\\\").replace(/\\/g,"\\/").replace(/\'/g,"\\\'").replace(/\"/g,"\\\"").split('\n').join("\");\ndocument.writeln(\"")+"\");"
+	 }
+	
+	var ischange = false;
+	function change(){
+		if(!ischange){
+			changeIt();
+			
+		}else{
+			rechange();
+		}
+		ischange = !ischange;
+	}
+	
+    function GetFocus() {
+			document.getElementById('content').focus();
+    }
+	function convert(){
+		var txt = "";
+		
+			txt = html2js($("#content").val());
+		
+		$("#result").val(txt);
+	}
+	
+	function html2js(text){
+		var split1 = text.split("\n");
+		text = "var text = \"\";\n";
+		for(var i=0;i<split1.length;i++) {
+			var str = split1[i];
+			text += "text += \""+str.replace(/"/g,"\\\"")+"\";\n";
+		}
+		return text;
+	}
+</script>
+<!-- content ed -->
+<script src="jsformat.js"></script>
+<script src="htmlformat.js"></script>
+<script src="base.js"></script>
+</body></html>

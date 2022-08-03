@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('用户修改')"/>
+</head>
+<body>
+<form class="layui-form" action=""  th:object="${TsysUser}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" th:value="*{id}" name="id" lay-verify="title"
+                               autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录名称</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{username}" type="text" name="username" lay-verify="username" autocomplete="off" placeholder="登录名称" class="layui-input">
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">昵称</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{nickname}" type="text" name="nickname" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">部门</label>
+                    <div class="layui-input-block">
+                        <ul id="selectParent" name="deptId" class="dtree" data-id="0"></ul>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">岗位</label>
+                    <div class="layui-input-block">
+                        <select id="positionId" name="posId" th:field="*{posId}">
+                            <option th:each="list : ${sysPositionsList}" th:text="${list.postName}" th:value="${list.id}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色</label>
+                    <div class="layui-input-block">
+                        <input th:each="sysRole:${roleVos}" th:value="${sysRole.id}" th:title="${sysRole.name}" th:checked="${sysRole.ischeck}"
+                               type="checkbox"  lay-skin="primary">
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="user-update">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery','dtree'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let dtree = layui.dtree;
+        let MODULE_PATH = rootPath+"/UserController";
+        let DEPAR_PATH=rootPath+"/SysDepartmentController";
+        let username='[[${TsysUser.username}]]';
+          //部门树
+        dtree.renderSelect({
+            elem: "#selectParent",
+            url: DEPAR_PATH+"/tree",
+            method: 'get',
+            selectInputName: {nodeId: "depId"},
+            skin: "layui",
+            dataFormat: "list",
+            response: {treeId: "id", parentId: "parentId", title: "deptName"},
+            selectInitVal: "[[${TsysUser.depId}]]"
+        });
+
+
+        //名称验证
+        form.verify({
+            username: function(value){
+                if(value.length < 2){
+                    return '标题至少得2个字符啊';
+                }
+                if(username!=value){
+                	 var msg = "";
+                     $.ajax({
+                         url: MODULE_PATH+'/checkLoginNameUnique',
+                         data: "username="+value,
+                         dataType: 'json',
+                         type: 'post',
+                         async:false,
+                         success: function (result) {
+                                 msg=result;
+                         }
+                     });
+                     if (msg == 1) {
+                        return "已有相同数据";
+                     }
+                }
+               
+
+            }
+        });
+
+        form.on('submit(user-update)', function (data) {
+            let roleIds = "";
+            $('input[type=checkbox]:checked').each(function () {
+                roleIds += $(this).val() + ",";
+            });
+            roleIds = roleIds.substr(0, roleIds.length - 1);
+            data.field.roleIds = roleIds;
+
+            $.ajax({
+                url: MODULE_PATH+'/edit',
+                data: data.field,
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("user-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+<script>
+</script>
+</body>
+</html>

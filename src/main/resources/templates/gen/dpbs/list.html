@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('定盘报损列表')"/>
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="searchText" placeholder="" class="layui-input">
+                </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="dpbs-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                   	 查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+					重置
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="dpbs-table" lay-filter="dpbs-table"></table>
+    </div>
+</div>
+</body>
+
+<script type="text/html" id="dpbs-toolbar">
+    <button sa:hasPermission="gen:dpbs:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+		 新增
+    </button>
+    <button sa:hasPermission="gen:dpbs:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+		删除
+    </button>
+</script>
+
+<script type="text/html" id="dpbs-bar">
+    <button sa:hasPermission="gen:dpbs:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit" title="修改"><i class="layui-icon layui-icon-edit"></i>
+    </button>
+
+    <button sa:hasPermission="gen:dpbs:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
+    </button>
+</script>
+
+
+								
+<script type="text/html" id="shState-type">
+	
+
+	{{#if (d.shState == 1) { }}
+    <span class="layui-badge layui-bg-default-blue">审核中</span>
+
+	{{#if (d.shState == 2) { }}
+    <span class="layui-badge layui-bg-default-blue">通过</span>
+
+	{{#if (d.shState == -1) { }}
+    <span class="layui-badge layui-bg-default-blue">未通过</span>
+    {{# } }}
+</script>
+																																							
+
+<script type="text/javascript" th:inline="javascript">
+	var shState_list = [[${@dict.getType('dp_sh_state')}]];
+	
+	
+	window.selectDictLabel=function(datas, value) {
+		var actions = [];
+	    $.each(datas, function(index, dict) {
+	        if (dict.dictValue == ('' + value)) {
+	        	var listClass = ("default"== dict.listClass) ? "" : "badge badge-" + dict.listClass;
+	        	actions.push(sprintf("<span class='%s'>%s</span>", listClass, dict.dictLabel));
+	            return false;
+	        }
+	    });
+	    return actions.join('');
+	}
+	window.sprintf=function (str) {
+	    var args = arguments, flag = true, i = 1;
+	    str = str.replace(/%s/g, function () {
+	        var arg = args[i++];
+	        if (typeof arg === 'undefined') {
+	            flag = false;
+	            return '';
+	        }
+	        return arg;
+	    });
+	    return flag ? str : '';
+	}
+</script>	
+	
+
+
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['table', 'form', 'jquery'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+				
+        let MODULE_PATH = rootPath+"/DpbsController/";
+        let cols = [
+            [
+               {type: 'checkbox'},
+	                	
+               {title: '主键', field: 'id', align: 'center',hide:true},
+    	                	
+               {title: '报损编号', field: 'bsdh', align: 'center'},
+               
+               {title: '介质', field: 'jzIds', align: 'center',templet:function(d){
+            	   var i=d.jzIds.indexOf(",");
+            	   var str="<a onclick='view(\""+d.id+"\")'>单个</a>";
+            	   if(i>0){
+            		   str="<a onclick='view(\""+d.id+"\")'>多个</a>";
+            	   }
+				  return str;
+			   }},
+			   
+        	   {title: '审核状态', field: 'shState', align: 'center',templet:function(d){
+				  return selectDictLabel(shState_list, d.shState);
+			   }},
+    	                		
+               {title: '申请日期', field: 'sqrq', align: 'center'},
+    	                	
+               {title: '申请人名字', field: 'sqrName', align: 'center'},
+    	                	
+               {title: '制单人名字', field: 'zdrName', align: 'center'},
+    	                	
+               {title: '审核人名字', field: 'shrName', align: 'center'},
+    	                		
+               {title: '审核日期', field: 'shrq', align: 'center'},
+
+               {title: '备注', field: 'bz', align: 'center'},
+                    
+               {title: '操作', toolbar: '#dpbs-bar', align: 'center'}
+            ]
+        ]
+
+        //table表单列表
+        table.render({
+            elem: '#dpbs-table',
+            url: MODULE_PATH + 'list',
+            page: true,
+            method: 'get',
+            cols: cols,
+            skin: 'line',
+            toolbar: '#dpbs-toolbar',
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+            }, 'filter', 'print', 'exports']
+        });
+
+        //table图标事件绑定
+        table.on('tool(dpbs-table)', function (obj) {
+            if (obj.event === 'remove') {
+                window.remove(obj);
+            } else if (obj.event === 'edit') {
+                window.edit(obj);
+            }
+        });
+
+        //table工具栏绑定
+        table.on('toolbar(dpbs-table)', function (obj) {
+            if (obj.event === 'add') {
+                window.add();
+            } else if (obj.event === 'refresh') {
+                window.refresh();
+            } else if (obj.event === 'batchRemove') {
+                window.batchRemove(obj);
+            }
+        });
+
+        //查询按钮绑定
+        form.on('submit(dpbs-query)', function (data) {
+            table.reload('dpbs-table', {page: {curr: 1}, where: data.field})
+            return false;
+        });
+
+
+        //添加
+        window.add = function () {
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: MODULE_PATH + 'add'
+            });
+        }
+        //修改
+        window.edit = function (obj) {
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: MODULE_PATH + 'edit/' + obj.data['id']
+            });
+        }
+        //删除
+        window.remove = function (obj) {
+            layer.confirm('确定要删除该数据', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "remove?ids=" + obj.data['id'],
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                obj.del();
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        //批量删除
+        window.batchRemove = function (obj) {
+            let data = table.checkStatus(obj.config.id).data;
+            if (data.length === 0) {
+                layer.msg("未选中数据", {icon: 3, time: 1000});
+                return false;
+            }
+            let ids = "";
+            for (let i = 0; i < data.length; i++) {
+                ids += data[i].id + ",";
+            }
+            ids = ids.substr(0, ids.length - 1);
+            layer.confirm('确定要删除这些数据', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "remove?ids=" + ids,
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                table.reload('dpbs-table');
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+        
+        //查看
+        window.view = function (obj) {
+            layer.open({
+                type: 2,
+                title: '查看',
+                shade: 0.1,
+                area: ['1130px', '400px'],
+                content: MODULE_PATH+"batchViewList/"+obj
+            });
+        }
+        
+        //刷新按钮
+        window.refresh = function () {
+            table.reload('dpbs-table');
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('介质管理列表')"/>
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="searchText" placeholder="" class="layui-input">
+                </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="jzgl-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                   	 查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+					重置
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="jzgl-table" lay-filter="jzgl-table"></table>
+    </div>
+</div>
+</body>
+
+<script type="text/html" id="jzgl-toolbar">
+    <button sa:hasPermission="gen:jzgl:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+		 新增
+    </button>
+    <button sa:hasPermission="gen:jzgl:remove" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+		删除
+    </button>
+
+	<button sa:hasPermission="gen:jzgl:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="batchjy">
+        <i class="layui-icon layui-icon-add-1"></i>
+		批量借阅
+    </button>
+	<button sa:hasPermission="gen:jzgl:add" class="pear-btn pear-btn-primary pear-btn-md" lay-event="batchbs">
+        <i class="layui-icon layui-icon-add-1"></i>
+		批量借阅
+    </button>
+</script>
+
+<script type="text/html" id="jzgl-bar">
+    <button sa:hasPermission="gen:jzgl:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit" title="修改"><i class="layui-icon layui-icon-edit"></i>
+    </button>
+
+    <button sa:hasPermission="gen:jzgl:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove" title="删除"><i class="layui-icon layui-icon-delete"></i>
+    </button>
+</script>
+
+
+															
+<script type="text/html" id="jztm-img">
+	 {{#if (d.jztm != null && d.jztm != '') { }}
+		<a onclick='view("{{d.jztm}}")'>
+			{{d.jztm}}
+			<i class="layui-icon layui-icon-template" lay-filter="jztm-view"></i>
+    	</a>
+	 {{# } else { }}
+		-
+	 {{# } }}
+</script>
+																														
+<script type="text/html" id="jzType-type">
+	
+
+	{{#if (d.jzType == 1) { }}
+    <span class="layui-badge layui-bg-default-blue">定盘</span>
+
+	{{#if (d.jzType == 2) { }}
+    <span class="layui-badge layui-bg-default-blue">光盘</span>
+    {{# } }}
+</script>
+											
+
+<script type="text/javascript" th:inline="javascript">
+	var jzType_list = [[${@dict.getType('jz_type')}]];
+	var dpState_list = [[${@dict.getType('dp_state')}]];
+	
+	window.selectDictLabel=function(datas, value) {
+		var actions = [];
+	    $.each(datas, function(index, dict) {
+	        if (dict.dictValue == ('' + value)) {
+	        	var listClass = ("default"== dict.listClass) ? "" : "badge badge-" + dict.listClass;
+	        	actions.push(sprintf("<span class='%s'>%s</span>", listClass, dict.dictLabel));
+	            return false;
+	        }
+	    });
+	    return actions.join('');
+	}
+	window.sprintf=function (str) {
+	    var args = arguments, flag = true, i = 1;
+	    str = str.replace(/%s/g, function () {
+	        var arg = args[i++];
+	        if (typeof arg === 'undefined') {
+	            flag = false;
+	            return '';
+	        }
+	        return arg;
+	    });
+	    return flag ? str : '';
+	}
+</script>	
+	
+
+
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['table', 'form', 'jquery'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+		let BUCKETURL_PATH='[[${bucketURL}]]';
+				
+        let MODULE_PATH = rootPath+"/JzglController/";
+        let cols = [
+            [
+               {type: 'checkbox'},
+
+               {title: '主键', field: 'id', align: 'center',hide:true},
+               
+               {title: '介质名称', field: 'jzmc', align: 'center'},
+               
+               {title: '介质编码', field: 'jzbm', align: 'center'},
+    	                	
+               {title: '机柜名字', field: 'jgName', align: 'center'},
+               
+               {title: '磁盘柜号', field: 'cpgh', align: 'center'},
+    	                	
+               {title: '介质条码或者二维码', field: 'jztm', align: 'center',templet: '#jztm-img',hide:true},
+    	                	
+               {title: '型号', field: 'xh', align: 'center',hide:true},
+    	                	
+               {title: '所属分类', field: 'ssfl', align: 'center',hide:true},
+    	                	
+               {title: '所属厂家', field: 'sscj', align: 'center',hide:true},
+    	                	
+               {title: '批次号', field: 'pch', align: 'center',hide:true},
+    	                	
+               {title: '最低库存', field: 'zdkc', align: 'center',hide:true},
+    	                	
+               {title: '最高库存', field: 'zgkc', align: 'center',hide:true},
+    	                	
+        	   {title: '介质类型', field: 'jzType', align: 'center',templet:function(d){
+				  return selectDictLabel(jzType_list, d.jzType);
+			   }},
+    	                		
+               {title: '创建时间', field: 'createTime', align: 'center'},
+		                	
+               {title: '创建人', field: 'createUserName', align: 'center'},
+           	
+             
+               
+               {title: '定盘状态', field: 'dpState', align: 'center',templet:function(d){
+ 				  return selectDictLabel(dpState_list, d.dpState);
+ 			   }},
+               
+               {title: '操作', toolbar: '#jzgl-bar', align: 'center'}
+            ]
+        ]
+
+        //table表单列表
+        table.render({
+            elem: '#jzgl-table',
+            url: MODULE_PATH + 'list',
+            page: true,
+            method: 'get',
+            cols: cols,
+            skin: 'line',
+            toolbar: '#jzgl-toolbar',
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+            }, 'filter', 'print', 'exports']
+        });
+
+        //table图标事件绑定
+        table.on('tool(jzgl-table)', function (obj) {
+            if (obj.event === 'remove') {
+                window.remove(obj);
+            } else if (obj.event === 'edit') {
+                window.edit(obj);
+            }
+        });
+
+        //table工具栏绑定
+        table.on('toolbar(jzgl-table)', function (obj) {
+            if (obj.event === 'add') {
+                window.add();
+            } else if (obj.event === 'refresh') {
+                window.refresh();
+            } else if (obj.event === 'batchRemove') {
+                window.batchRemove(obj);
+            }else if (obj.event === 'batchjy') {
+                window.batchjy(obj);
+            }else if (obj.event === 'batchbs') {
+                window.batchbs(obj);
+            }
+        });
+
+        //查询按钮绑定
+        form.on('submit(jzgl-query)', function (data) {
+            table.reload('jzgl-table', {page: {curr: 1}, where: data.field})
+            return false;
+        });
+
+
+        //添加
+        window.add = function () {
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: MODULE_PATH + 'add'
+            });
+        }
+        
+      //批量借阅
+        window.batchjy = function () {
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: MODULE_PATH + 'batchjy'
+            });
+        }
+      
+      //批量报损
+        window.batchbs = function () {
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: MODULE_PATH + 'batchbs'
+            });
+        }
+        
+        //修改
+        window.edit = function (obj) {
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: MODULE_PATH + 'edit/' + obj.data['id']
+            });
+        }
+        //删除
+        window.remove = function (obj) {
+            layer.confirm('确定要删除该数据', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "remove?ids=" + obj.data['id'],
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                obj.del();
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        //批量删除
+        window.batchRemove = function (obj) {
+            let data = table.checkStatus(obj.config.id).data;
+            if (data.length === 0) {
+                layer.msg("未选中数据", {icon: 3, time: 1000});
+                return false;
+            }
+            let ids = "";
+            for (let i = 0; i < data.length; i++) {
+                ids += data[i].id + ",";
+            }
+            ids = ids.substr(0, ids.length - 1);
+            layer.confirm('确定要删除这些数据', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "remove?ids=" + ids,
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                table.reload('jzgl-table');
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+        
+        
+		 //查看
+        window.view = function (obj) {
+            layer.open({
+                type: 1,
+                title: '查看',
+                shade: 0.1,
+                area: ['500px', '500px'],
+                content: "<img style=\"width:500px\" src=\""+BUCKETURL_PATH+"/"+obj+"\">"
+            });
+        }
+        //刷新按钮
+        window.refresh = function () {
+            table.reload('jzgl-table');
+        }
+    })
+</script>
+</html>

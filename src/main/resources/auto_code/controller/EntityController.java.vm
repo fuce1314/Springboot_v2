@@ -1,0 +1,182 @@
+package ${parentPack}.controller.gen;
+
+import ${parentPack}.common.base.BaseController;
+import ${parentPack}.common.domain.AjaxResult;
+import ${parentPack}.common.domain.ResultTable;
+import ${parentPack}.model.custom.Tablepar;
+import ${parentPack}.model.auto.${tableInfo.javaTableName};
+import ${parentPack}.service.${tableInfo.javaTableName}Service;
+import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+#set($isdate = false)
+#set($isupload = false)
+#foreach ($column in $beanColumns)
+#if(${column.column_key} != 'PRI')
+#if(${column.htmlType} == 4)
+#set($isdate =true)
+#elseif(${column.htmlType} == 5)
+#set($isupload =true)
+#end
+#end
+#end
+#if($isupload==true)
+import com.fc.v2.common.conf.oss.OssConfig;
+#end
+
+/**
+ * ${tableInfo.tableComment}Controller
+ * @ClassName: ${tableInfo.javaTableName}Controller
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Api(value = "${tableInfo.tableComment}")
+@Controller
+@RequestMapping("/${tableInfo.javaTableName}Controller")
+public class ${tableInfo.javaTableName}Controller extends BaseController{
+	
+	private String prefix = "gen/${tableInfo.javaTableName_a}";
+	
+	@Autowired
+	private ${tableInfo.javaTableName}Service ${tableInfo.javaTableName_a}Service;
+	
+	
+	/**
+	 * ${tableInfo.tableComment}页面展示
+	 * @param model
+	 * @return String
+	 * @author ${author}
+	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
+	@GetMapping("/view")
+	@SaCheckPermission("gen:${tableInfo.javaTableName_a}:view")
+#if($isupload==true)
+    @OssConfig
+#end
+    public String view(ModelMap model)
+    {
+        return prefix + "/list";
+    }
+	
+	/**
+	 * list集合
+	 * @param tablepar
+	 * @param searchText
+	 * @return
+	 */
+	//@Log(title = "${tableInfo.tableComment}", action = "111")
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
+	@GetMapping("/list")
+	@SaCheckPermission("gen:${tableInfo.javaTableName_a}:list")
+	@ResponseBody
+	public ResultTable list(Tablepar tablepar,${tableInfo.javaTableName} ${tableInfo.javaTableName_a}){
+		PageInfo<${tableInfo.javaTableName}> page=${tableInfo.javaTableName_a}Service.list(tablepar,${tableInfo.javaTableName_a}) ; 
+		return pageTable(page.getList(),page.getTotal());
+	}
+	
+	/**
+     * 新增跳转
+     */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
+    @GetMapping("/add")
+#if($isupload==true)
+    @OssConfig
+#end
+    public String add(ModelMap modelMap)
+    {
+        return prefix + "/add";
+    }
+	
+    /**
+     * 新增保存
+     * @param 
+     * @return
+     */
+	//@Log(title = "${tableInfo.tableComment}新增", action = "111")
+	@ApiOperation(value = "新增", notes = "新增")
+	@PostMapping("/add")
+	@SaCheckPermission("gen:${tableInfo.javaTableName_a}:add")
+	@ResponseBody
+	public AjaxResult add(${tableInfo.javaTableName} ${tableInfo.javaTableName_a}){
+		int b=${tableInfo.javaTableName_a}Service.insertSelective(${tableInfo.javaTableName_a});
+		if(b>0){
+			return success();
+		}else{
+			return error();
+		}
+	}
+	
+	/**
+	 * ${tableInfo.tableComment}删除
+	 * @param ids
+	 * @return
+	 */
+	//@Log(title = "${tableInfo.tableComment}删除", action = "111")
+	@ApiOperation(value = "删除", notes = "删除")
+	@DeleteMapping("/remove")
+	@SaCheckPermission("gen:${tableInfo.javaTableName_a}:remove")
+	@ResponseBody
+	public AjaxResult remove(String ids){
+		int b=${tableInfo.javaTableName_a}Service.deleteByPrimaryKey(ids);
+		if(b>0){
+			return success();
+		}else{
+			return error();
+		}
+	}
+	
+	
+	/**
+	 * 修改跳转
+	 * @param id
+	 * @param mmap
+	 * @return
+	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
+	@GetMapping("/edit/{id}")
+#if($isupload==true)
+    @OssConfig
+#end
+    public String edit(@PathVariable("id") String id, ModelMap map)
+    {
+        map.put("${tableInfo.javaTableName}", ${tableInfo.javaTableName_a}Service.selectByPrimaryKey(id));
+
+        return prefix + "/edit";
+    }
+	
+	/**
+     * 修改保存
+     */
+    //@Log(title = "${tableInfo.tableComment}修改", action = "111")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
+    @SaCheckPermission("gen:${tableInfo.javaTableName_a}:edit")
+    @PostMapping("/edit")
+    @ResponseBody
+    public AjaxResult editSave(${tableInfo.javaTableName} ${tableInfo.javaTableName_a})
+    {
+        return toAjax(${tableInfo.javaTableName_a}Service.updateByPrimaryKeySelective(${tableInfo.javaTableName_a}));
+    }
+    
+    
+    /**
+	 * 修改状态
+	 * @param record
+	 * @return
+	 */
+    @PutMapping("/updateVisible")
+	@ResponseBody
+    public AjaxResult updateVisible(@RequestBody ${tableInfo.javaTableName} ${tableInfo.javaTableName_a}){
+		int i=${tableInfo.javaTableName_a}Service.updateVisible(${tableInfo.javaTableName_a});
+		return toAjax(i);
+	}
+
+    
+    
+
+	
+}

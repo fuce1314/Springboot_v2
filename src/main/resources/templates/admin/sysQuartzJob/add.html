@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('定时任务新增')"/>
+</head>
+<body>
+<form class="layui-form">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">任务名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="jobName" autocomplete="off" placeholder="任务名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">任务组名</label>
+                    <div class="layui-input-block">
+                        <select name="jobGroup" id="jobGroup">
+                            <option value="DEFAULT">默认</option>
+	                		<option value="SYSTEM">系统</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">调用目标字符串</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="invokeTarget" autocomplete="off"  class="layui-input" placeholder="调用目标字符串">
+                        <blockquote class="layui-elem-quote">
+                            Bean调用示例：v2Task.runTask2(1,2l,'asa',true,2D)
+                            <br>
+                            Class类调用示例：com.fc.test.common.quartz.task.runTask2('ry')
+                            <br>
+                            参数说明：支持字符串，布尔类型，长整型，浮点型，整型
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">cron执行表达式</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cronExpression" autocomplete="off" placeholder="cron执行表达式" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">cron计划策略</label>
+                    <div class=" ">
+                        <input type="radio" lay-filter="powerType" name="misfirePolicy" value="1" title="立即执行">
+                        <input type="radio" lay-filter="powerType" name="misfirePolicy" value="2" title="执行一次">
+                        <input type="radio" lay-filter="powerType" name="misfirePolicy" value="3" title="放弃执行" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否并发执行</label>
+                    <div class="layui-input-block">
+                        <select name="concurrent" id="concurrent">
+                            <option value="0">允许</option>
+							<option value="1">禁止</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">任务状态</label>
+                    <div class="layui-input-block">
+                        <select name="status" id="status">
+                            <option value="0">正常</option>
+							<option value="1">暂停</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="sysQuartzJob-save">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let MODULE_PATH = rootPath+"/SysQuartzJobController";
+        //名称验证
+        form.verify({
+            interName: function(value){
+                if(value.length < 2){
+                    return '至少得2个字符';
+                }
+                var msg = "";
+                $.ajax({
+                    url: MODULE_PATH+'/checkNameUnique',
+                    data: "interName="+value,
+                    dataType: 'json',
+                    type: 'post',
+                    async:false,
+                    success: function (result) {
+                            msg=result;
+                    }
+                });
+                if (msg == 1) {
+                   return "已有相同数据";
+                }
+
+            }
+        });
+
+
+
+        //保存
+        form.on('submit(sysQuartzJob-save)', function (data) {
+            $.ajax({
+                url: MODULE_PATH+'/add',
+                data: data.field,
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("sysQuartzJob-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+</body>
+</html>

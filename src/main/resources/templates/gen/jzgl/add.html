@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('介质管理新增')"/>
+</head>
+<body>
+<form class="layui-form">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+											
+							<div class="layui-form-item">
+			                    <label class="layui-form-label">介质编码</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="jzbm" autocomplete="off" placeholder="介质编码" class="layui-input">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">介质名称</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="jzmc" autocomplete="off" placeholder="介质名称" class="layui-input">
+			                    </div>
+			                </div>
+			                
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">所属机柜</label>
+			                    <div class="layui-input-block">
+			                    	
+			                    	<select id="ssjgId" name="ssjgId">
+										<option th:each="list : ${jggls}" th:text="${list.jgName}" th:value="${list.id}"></option>
+									</select>
+			                    
+			                    </div>
+			                </div>
+			                
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">磁盘柜号</label>
+			                    <div class="layui-input-block">
+			                    	
+			                    	<select id="cpjgId" name="cpjgId">
+										<option th:each="list : ${cpghs}" th:text="${list.cpgh}" th:value="${list.id}"></option>
+									</select>
+			                    
+			                    </div>
+			                </div>
+									
+											
+							
+									
+											
+			              	<div class="layui-form-item layui-hide">
+			                    <label class="layui-form-label">介质条码或者二维码</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="jztm" id="jztm" autocomplete="off" placeholder="介质条码或者二维码" class="layui-input">
+			                    </div>
+			                </div>
+			                
+			                <div class="layui-form-item layui-hide">
+			                    <label class="layui-form-label">介质条码或者二维码</label>
+			                    <div class="layui-input-block">
+			                        <div class="layui-upload-drag" id="jztm_ImgUpload">
+			                          <i class="layui-icon"></i>
+			                          <p>点击上传，或将文件拖拽到此处</p>
+			                          <div class="layui-hide" id="jztm_ImgUpload_View">
+			                            <hr>
+			                            <img src="" alt="上传成功后渲染" style="max-width: 196px">
+			                          </div>
+			                        </div>
+			                    </div>
+			                </div>     
+									
+											
+							<div class="layui-form-item">
+			                    <label class="layui-form-label">型号</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="xh" autocomplete="off" placeholder="型号" class="layui-input">
+			                    </div>
+			                </div>
+									
+											
+							<div class="layui-form-item layui-hide">
+			                    <label class="layui-form-label">所属分类</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="ssfl" autocomplete="off" placeholder="所属分类" class="layui-input">
+			                    </div>
+			                </div>
+									
+											
+							<div class="layui-form-item  layui-hide">
+			                    <label class="layui-form-label">所属厂家</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="sscj" autocomplete="off" placeholder="所属厂家" class="layui-input">
+			                    </div>
+			                </div>
+									
+											
+							<div class="layui-form-item">
+			                    <label class="layui-form-label">批次号</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="pch" autocomplete="off" placeholder="批次号" class="layui-input">
+			                    </div>
+			                </div>
+									
+											
+							<div class="layui-form-item layui-hide">
+			                    <label class="layui-form-label">最低库存</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="zdkc" autocomplete="off" placeholder="最低库存" class="layui-input">
+			                    </div>
+			                </div>
+									
+											
+							<div class="layui-form-item  layui-hide">
+			                    <label class="layui-form-label">最高库存</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="zgkc" autocomplete="off" placeholder="最高库存" class="layui-input">
+			                    </div>
+			                </div>
+									
+											
+							<div class="layui-form-item">
+			                    <label class="layui-form-label">介质类型</label>
+			                    <div class="layui-input-block">
+			                    	<select name="jzType" th:with="type=${@dict.getType('jz_type')}">
+										<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+									</select>
+			                    </div>
+			                </div>
+			                
+			               
+			                
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">定盘状态</label>
+			                    <div class="layui-input-block">
+			                    	<select name="dpState" th:with="type=${@dict.getType('dp_state')}">
+										<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+									</select>
+			                    </div>
+			                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="jzgl-save">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form','laydate','upload','jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let MODULE_PATH = rootPath+"/JzglController";
+
+		let FILE_PATH = rootPath+"/oss";
+        let upload = layui.upload;
+        let BucketName='[[${BucketName}]]';
+		var laydate = layui.laydate;
+        //同时绑定多个
+        lay('.datetime-input').each(function(){
+          laydate.render({
+            elem: this
+            ,trigger: 'click'
+            ,type: 'datetime'
+          });
+        });
+
+																					
+				//拖拽上传 文档：https://www.layui.com/doc/modules/upload.html
+				upload.render({
+					elem: '#jztm_ImgUpload'
+					,url: FILE_PATH+"/object/"+BucketName //改成您自己的上传接口
+					,field: 'object' //设定文件域的字段名
+					,done: function(result){
+						console.log(result);
+						if (result.code==200) {
+							layer.msg('上传成功');
+							layui.$('#jztm_ImgUpload_View').removeClass('layui-hide').find('img').attr('src', result.data.objectContent.httpRequest.uri);
+							if(result.data.key!=null){
+								$("#jztm").val(result.data.key);
+							}
+						} else {
+							layer.msg(result.msg, {icon: 2, time: 1000});
+						}
+					}
+				});
+
+
+																																																																				
+        //保存
+        form.on('submit(jzgl-save)', function (data) {
+        	let loader = layer.load();
+            $.ajax({
+                url: MODULE_PATH+'/add',
+                data: data.field,
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("jzgl-table");
+                            layer.close(loader);
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        layer.close(loader);
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+</body>
+</html>

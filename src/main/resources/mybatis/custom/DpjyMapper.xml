@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.v2.mapper.custom.DpjyDao">
+
+
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.custom.DpjyVo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="jz_ids" jdbcType="VARCHAR" property="jzIds" />
+    <result column="jyrq" jdbcType="TIMESTAMP" property="jyrq" />
+    <result column="jydh" jdbcType="VARCHAR" property="jydh" />
+    <result column="jy_type" jdbcType="INTEGER" property="jyType" />
+    <result column="jyqx" jdbcType="TIMESTAMP" property="jyqx" />
+    <result column="jyr_name" jdbcType="VARCHAR" property="jyrName" />
+    <result column="jyr_id" jdbcType="VARCHAR" property="jyrId" />
+    <result column="zdr_id" jdbcType="VARCHAR" property="zdrId" />
+    <result column="zdr_name" jdbcType="VARCHAR" property="zdrName" />
+    <result column="shr_id" jdbcType="VARCHAR" property="shrId" />
+    <result column="shr_name" jdbcType="VARCHAR" property="shrName" />
+    <result column="sh_rq" jdbcType="TIMESTAMP" property="shRq" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="jynum" jdbcType="INTEGER" property="jynum" />
+    
+    <result column="jzbm" jdbcType="VARCHAR" property="jzbm" />
+    <result column="jzmc" jdbcType="VARCHAR" property="jzmc" />
+  </resultMap>
+ 
+  
+  <sql id="Base_Column_List">
+  
+		dpjy.id as id,
+		dpjy.jz_ids as jz_ids,
+		dpjy.jyrq as jyrq,
+		dpjy.jydh as jydh,
+		dpjy.jy_type as jy_type,
+		dpjy.jyqx as jyqx,
+		dpjy.jyr_name as jyr_name,
+		dpjy.jyr_id as jyr_id,
+		dpjy.zdr_id as zdr_id,
+		dpjy.zdr_name as zdr_name,
+		dpjy.shr_id as shr_id,
+		dpjy.shr_name as shr_name,
+		dpjy.sh_rq as sh_rq,
+		dpjy.remarks as remarks,
+		dpjy.jynum as jynum
+       	  	
+  </sql>
+  
+  
+  
+  <select id="selectByList" resultMap="BaseResultMap" >
+    SELECT <include refid="Base_Column_List" /> from t_dpjy dpjy
+	
+  </select>
+  
+                                                                               
+</mapper>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('公告查看')"/>
+</head>
+<body>
+<form class="layui-form" action=""  th:object="${notice}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input disabled type="text" th:value="*{id}" name="id" lay-verify="title" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">标题</label>
+                    <div class="layui-input-block">
+                        <input disabled th:value="*{title}" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="公告标题" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类型</label>
+                    <div class="layui-input-block">
+                        <select disabled name="type" id="type" th:field="*{type}">
+                            <option value="1">一般</option>
+							<option value="2">重要</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">内容</label>
+                    <div class="layui-input-block">
+                        <textarea disabled placeholder="请输入内容" name="content" class="layui-textarea"  th:text="*{content}" ></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let dtree = layui.dtree;
+        let MODULE_PATH = rootPath+"/SysNoticeController";
+    })
+</script>
+<script>
+</script>
+</body>
+</html>

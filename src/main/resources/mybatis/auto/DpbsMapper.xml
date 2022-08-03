@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.v2.mapper.auto.DpbsMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.Dpbs">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="bsdh" jdbcType="VARCHAR" property="bsdh" />
+    <result column="jz_ids" jdbcType="VARCHAR" property="jzIds" />
+    <result column="sh_state" jdbcType="INTEGER" property="shState" />
+    <result column="sqrq" jdbcType="TIMESTAMP" property="sqrq" />
+    <result column="sqr_id" jdbcType="VARCHAR" property="sqrId" />
+    <result column="sqr_name" jdbcType="VARCHAR" property="sqrName" />
+    <result column="zdr_id" jdbcType="VARCHAR" property="zdrId" />
+    <result column="zdr_name" jdbcType="VARCHAR" property="zdrName" />
+    <result column="shr_id" jdbcType="VARCHAR" property="shrId" />
+    <result column="shr_name" jdbcType="VARCHAR" property="shrName" />
+    <result column="shrq" jdbcType="TIMESTAMP" property="shrq" />
+    <result column="bz" jdbcType="VARCHAR" property="bz" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+  
+	  	  	      	id,
+       	  	      	bsdh,
+       	  	      	jz_ids,
+       	  	      	sh_state,
+       	  	      	sqrq,
+       	  	      	sqr_id,
+       	  	      	sqr_name,
+       	  	      	zdr_id,
+       	  	      	zdr_name,
+       	  	      	shr_id,
+       	  	      	shr_name,
+       	  	      	shrq,
+       	  	    	  	bz
+       	  	
+  </sql>
+  
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.DpbsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_dpbs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_dpbs
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_dpbs
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.DpbsExample">
+    delete from t_dpbs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="com.fc.v2.model.auto.Dpbs">
+    insert into t_dpbs (
+      	  	       id,
+       	  	       bsdh,
+       	  	       jz_ids,
+       	  	       sh_state,
+       	  	       sqrq,
+       	  	       sqr_id,
+       	  	       sqr_name,
+       	  	       zdr_id,
+       	  	       zdr_name,
+       	  	       shr_id,
+       	  	       shr_name,
+       	  	       shrq,
+       	  	    	  bz
+       	    )
+    values (
+	  	  	      	#{id,jdbcType=VARCHAR},
+       	  	      	#{bsdh,jdbcType=VARCHAR},
+       	  	      	#{jzIds,jdbcType=VARCHAR},
+       	  	      	#{shState,jdbcType=INTEGER},
+       	  	      	#{sqrq,jdbcType=TIMESTAMP},
+       	  	      	#{sqrId,jdbcType=VARCHAR},
+       	  	      	#{sqrName,jdbcType=VARCHAR},
+       	  	      	#{zdrId,jdbcType=VARCHAR},
+       	  	      	#{zdrName,jdbcType=VARCHAR},
+       	  	      	#{shrId,jdbcType=VARCHAR},
+       	  	      	#{shrName,jdbcType=VARCHAR},
+       	  	      	#{shrq,jdbcType=TIMESTAMP},
+       	  	    	  #{bz,jdbcType=VARCHAR}
+       	    )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.Dpbs">
+    insert into t_dpbs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+          
+      <if test="id != null">
+        id,
+      </if>
+         
+      <if test="bsdh != null">
+        bsdh,
+      </if>
+         
+      <if test="jzIds != null">
+        jz_ids,
+      </if>
+         
+      <if test="shState != null">
+        sh_state,
+      </if>
+         
+      <if test="sqrq != null">
+        sqrq,
+      </if>
+         
+      <if test="sqrId != null">
+        sqr_id,
+      </if>
+         
+      <if test="sqrName != null">
+        sqr_name,
+      </if>
+         
+      <if test="zdrId != null">
+        zdr_id,
+      </if>
+         
+      <if test="zdrName != null">
+        zdr_name,
+      </if>
+         
+      <if test="shrId != null">
+        shr_id,
+      </if>
+         
+      <if test="shrName != null">
+        shr_name,
+      </if>
+         
+      <if test="shrq != null">
+        shrq,
+      </if>
+         
+      <if test="bz != null">
+        bz,
+      </if>
+         </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+          <if test="bsdh != null">
+        #{bsdh,jdbcType=VARCHAR},
+      </if>
+          <if test="jzIds != null">
+        #{jzIds,jdbcType=VARCHAR},
+      </if>
+          <if test="shState != null">
+        #{shState,jdbcType=INTEGER},
+      </if>
+          <if test="sqrq != null">
+        #{sqrq,jdbcType=TIMESTAMP},
+      </if>
+          <if test="sqrId != null">
+        #{sqrId,jdbcType=VARCHAR},
+      </if>
+          <if test="sqrName != null">
+        #{sqrName,jdbcType=VARCHAR},
+      </if>
+          <if test="zdrId != null">
+        #{zdrId,jdbcType=VARCHAR},
+      </if>
+          <if test="zdrName != null">
+        #{zdrName,jdbcType=VARCHAR},
+      </if>
+          <if test="shrId != null">
+        #{shrId,jdbcType=VARCHAR},
+      </if>
+          <if test="shrName != null">
+        #{shrName,jdbcType=VARCHAR},
+      </if>
+          <if test="shrq != null">
+        #{shrq,jdbcType=TIMESTAMP},
+      </if>
+          <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+        </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.DpbsExample" resultType="java.lang.Long">
+    select count(*) from t_dpbs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_dpbs
+    <set>
+          <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+          <if test="record.bsdh != null">
+        bsdh = #{record.bsdh,jdbcType=VARCHAR},
+      </if>
+          <if test="record.jzIds != null">
+        jz_ids = #{record.jzIds,jdbcType=VARCHAR},
+      </if>
+          <if test="record.shState != null">
+        sh_state = #{record.shState,jdbcType=INTEGER},
+      </if>
+          <if test="record.sqrq != null">
+        sqrq = #{record.sqrq,jdbcType=TIMESTAMP},
+      </if>
+          <if test="record.sqrId != null">
+        sqr_id = #{record.sqrId,jdbcType=VARCHAR},
+      </if>
+          <if test="record.sqrName != null">
+        sqr_name = #{record.sqrName,jdbcType=VARCHAR},
+      </if>
+          <if test="record.zdrId != null">
+        zdr_id = #{record.zdrId,jdbcType=VARCHAR},
+      </if>
+          <if test="record.zdrName != null">
+        zdr_name = #{record.zdrName,jdbcType=VARCHAR},
+      </if>
+          <if test="record.shrId != null">
+        shr_id = #{record.shrId,jdbcType=VARCHAR},
+      </if>
+          <if test="record.shrName != null">
+        shr_name = #{record.shrName,jdbcType=VARCHAR},
+      </if>
+          <if test="record.shrq != null">
+        shrq = #{record.shrq,jdbcType=TIMESTAMP},
+      </if>
+          <if test="record.bz != null">
+        bz = #{record.bz,jdbcType=VARCHAR},
+      </if>
+         
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  <update id="updateByExample" parameterType="map">
+    update t_dpbs
+    set
+            	     	 
+    	 id = #{record.id,jdbcType=VARCHAR},
+    	         	     	 
+    	 bsdh = #{record.bsdh,jdbcType=VARCHAR},
+    	         	     	 
+    	 jz_ids = #{record.jzIds,jdbcType=VARCHAR},
+    	         	     	 
+    	 sh_state = #{record.shState,jdbcType=INTEGER},
+    	         	     	 
+    	 sqrq = #{record.sqrq,jdbcType=TIMESTAMP},
+    	         	     	 
+    	 sqr_id = #{record.sqrId,jdbcType=VARCHAR},
+    	         	     	 
+    	 sqr_name = #{record.sqrName,jdbcType=VARCHAR},
+    	         	     	 
+    	 zdr_id = #{record.zdrId,jdbcType=VARCHAR},
+    	         	     	 
+    	 zdr_name = #{record.zdrName,jdbcType=VARCHAR},
+    	         	     	 
+    	 shr_id = #{record.shrId,jdbcType=VARCHAR},
+    	         	     	 
+    	 shr_name = #{record.shrName,jdbcType=VARCHAR},
+    	         	     	 
+    	 shrq = #{record.shrq,jdbcType=TIMESTAMP},
+    	         	     	 
+    	 bz = #{record.bz,jdbcType=VARCHAR}
+    	         
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+      <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.Dpbs">
+    update t_dpbs
+    <set>
+                          
+      <if test="bsdh != null">
+        bsdh = #{bsdh,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="jzIds != null">
+        jz_ids = #{jzIds,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="shState != null">
+        sh_state = #{shState,jdbcType=INTEGER},
+      </if>
+                      
+      <if test="sqrq != null">
+        sqrq = #{sqrq,jdbcType=TIMESTAMP},
+      </if>
+                      
+      <if test="sqrId != null">
+        sqr_id = #{sqrId,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="sqrName != null">
+        sqr_name = #{sqrName,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="zdrId != null">
+        zdr_id = #{zdrId,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="zdrName != null">
+        zdr_name = #{zdrName,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="shrId != null">
+        shr_id = #{shrId,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="shrName != null">
+        shr_name = #{shrName,jdbcType=VARCHAR},
+      </if>
+                      
+      <if test="shrq != null">
+        shrq = #{shrq,jdbcType=TIMESTAMP},
+      </if>
+                      
+      <if test="bz != null">
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+              </set>
+    
+    where 
+            
+    id = #{id,jdbcType=VARCHAR}
+                                                                                                          
+  </update>
+
+      	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	   	      	
+
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.Dpbs">
+    update t_dpbs
+    set 
+    		 		 	  	  
+		bsdh = #{bsdh,jdbcType=VARCHAR},
+	  	 		 	  	  
+		jz_ids = #{jzIds,jdbcType=VARCHAR},
+	  	 		 	  	  
+		sh_state = #{shState,jdbcType=INTEGER},
+	  	 		 	  	  
+		sqrq = #{sqrq,jdbcType=TIMESTAMP},
+	  	 		 	  	  
+		sqr_id = #{sqrId,jdbcType=VARCHAR},
+	  	 		 	  	  
+		sqr_name = #{sqrName,jdbcType=VARCHAR},
+	  	 		 	  	  
+		zdr_id = #{zdrId,jdbcType=VARCHAR},
+	  	 		 	  	  
+		zdr_name = #{zdrName,jdbcType=VARCHAR},
+	  	 		 	  	  
+		shr_id = #{shrId,jdbcType=VARCHAR},
+	  	 		 	  	  
+		shr_name = #{shrName,jdbcType=VARCHAR},
+	  	 		 	  	  
+		shrq = #{shrq,jdbcType=TIMESTAMP},
+	  	 		 	  		
+		bz = #{bz,jdbcType=VARCHAR}
+	  	 		
+    where 
+            
+    id = #{id,jdbcType=VARCHAR}
+                                                                                                            
+  </update>
+  
+                                                                     
+</mapper>

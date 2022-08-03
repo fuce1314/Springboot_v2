@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('磁盘柜号修改')"/>
+</head>
+<body>
+<form class="layui-form" action=""  th:object="${Cpgh}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+		
+						<div class="layui-form-item layui-hide">
+		                    <label class="layui-form-label">主键</label>
+		                    <div class="layui-input-block">
+		                        <input type="text" th:value="*{id}" name="id" lay-verify="title"
+		                               autocomplete="off" class="layui-input">
+		                    </div>
+		                </div>
+						
+										
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">磁盘柜号</label>
+		                    <div class="layui-input-block">
+		                        <input th:value="*{cpgh}" type="text" name="cpgh" autocomplete="off" placeholder="磁盘柜号" class="layui-input">
+		                    </div>
+		                </div>
+					                
+											
+										
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">备注</label>
+		                    <div class="layui-input-block">
+		                        <input th:value="*{remarks}" type="text" name="remarks" autocomplete="off" placeholder="备注" class="layui-input">
+		                    </div>
+		                </div>
+					                
+											
+										
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">最小数量</label>
+		                    <div class="layui-input-block">
+		                        <input th:value="*{minNum}" type="text" name="minNum" autocomplete="off" placeholder="最小数量" class="layui-input">
+		                    </div>
+		                </div>
+					                
+											
+										
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">最大数量</label>
+		                    <div class="layui-input-block">
+		                        <input th:value="*{maxNum}" type="text" name="maxNum" autocomplete="off" placeholder="最大数量" class="layui-input">
+		                    </div>
+		                </div>
+					                
+											
+										
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">预警值</label>
+		                    <div class="layui-input-block">
+		                        <input th:value="*{earlyWarNum}" type="text" name="earlyWarNum" autocomplete="off" placeholder="预警值" class="layui-input">
+		                    </div>
+		                </div>
+					                
+											
+										
+						<div class="layui-form-item">
+		                    <label class="layui-form-label">所属机柜</label>
+		                    <div class="layui-input-block">
+		                        <input th:value="*{ssjg}" type="text" name="ssjg" autocomplete="off" placeholder="所属机柜" class="layui-input">
+		                    </div>
+		                </div>
+					                
+							
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="cpgh-update">
+                <i class="layui-icon layui-icon-ok"></i>
+				提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+				重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form','laydate','jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let MODULE_PATH = rootPath+"/CpghController";
+		
+
+        form.on('submit(cpgh-update)', function (data) {
+        	let loader = layer.load();
+            $.ajax({
+                url: MODULE_PATH+'/edit',
+                data: data.field,
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("cpgh-table");
+                            layer.close(loader);
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        layer.close(loader);
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('字典数据修改')"/>
+</head>
+<body>
+<form class="layui-form" action=""  th:object="${TSysDictData}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" th:value="*{id}" name="id"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典标签</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{dictLabel}" type="text" name="dictLabel" lay-verify="dictLabel" autocomplete="off" placeholder="字典名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典键值</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{dictValue}" type="text" name="dictValue" autocomplete="off"  class="layui-input" placeholder="字典键值">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典类型</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{dictType}" name="dictType" disabled type="text"  autocomplete="off"  class="layui-input layui-btn-disabled" placeholder="字典类型">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">样式属性（其他样式扩展）</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{cssClass}"  type="text" name="cssClass" autocomplete="off"  class="layui-input" placeholder="样式属性 ">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典排序</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{dictSort}"  type="number" name="dictSort" autocomplete="off"  class="layui-input" placeholder="字典排序">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">表格回显样式</label>
+                    <div class="layui-input-block">
+                        <select name="listClass" id="listClass" th:field="*{listClass}">
+                            <option value="default"  selected="selected">默认</option>
+                            <option value="primary">主要</option>
+                            <option value="success">成功</option>
+                            <option value="info">信息</option>
+                            <option value="warning">警告</option>
+                            <option value="important">危险</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否默认</label>
+                    <div class="layui-input-block">
+                        <select name="isDefault" id="isDefault" th:field="*{isDefault}">
+                            <option value="Y">是</option>
+							<option value="N">否</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <select name="dataStatus" id="dataStatus" th:field="*{status}">
+                            <option value="0">正常</option>
+							<option value="1">停用</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{remark}" type="text" name="remark" autocomplete="off"  class="layui-input" placeholder="备注">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="dictData-update">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let dtree = layui.dtree;
+        let MODULE_PATH = rootPath+"/DictDataController";
+        //名称验证
+        form.verify({
+            interName: function(value){
+                if(value.length < 2){
+                    return '标题至少得2个字符啊';
+                }
+                var msg = "";
+                $.ajax({
+                    url: MODULE_PATH+'/checkNameUnique',
+                    data: "dictType="+value,
+                    dataType: 'json',
+                    type: 'post',
+                    async:false,
+                    success: function (result) {
+                        msg=result;
+                    }
+                });
+                if (msg == 1) {
+                   return "已有相同数据";
+                }
+
+            }
+        });
+
+        form.on('submit(dictData-update)', function (data) {
+            $.ajax({
+                url: MODULE_PATH+'/edit',
+                data: data.field,
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("dictData-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+<script>
+</script>
+</body>
+</html>

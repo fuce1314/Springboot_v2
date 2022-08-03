@@ -1,0 +1,28 @@
+layui-table-body, .layui-table-box, .layui-table-cell {
+    overflow: visible;
+}
+td .layui-table-cell .layui-form-select, td .layui-table-cell > input.layui-input {
+    margin-top: -2px;
+    margin-left: -10px;
+    margin-right: -15px;
+}
+.layui-form-checkbox i {
+    border-left: 1px solid #d2d2d2;
+}
+.layui-input {
+    height: 30px;
+    line-height: 30px;
+}
+.layui-input[type=text]:focus {
+    border-color: #5FB878 !important
+}
+.layui-form-item .layui-input[readonly] {
+    background-color: whitesmoke;
+    opacity: 1;
+}
+.menuTree{
+    max-height: 300px;
+    display: none;
+    position: absolute;
+    border-top: none;
+}

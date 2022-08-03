@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('权限修改')"/>
+</head>
+<body>
+<form class="layui-form" th:object="${TsysPermission}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" th:value="*{id}" name="id" lay-verify="title" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="权限名称"
+                               class="layui-input" th:value="*{name}">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">父级</label>
+                    <div class="layui-input-block">
+                        <ul id="selectParent" name="parentId" class="dtree" data-id="-1"></ul>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="powerCodeItem">
+                    <label class="layui-form-label">权限关键字</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="powerCode" name="perms" autocomplete="off" placeholder="权限标识" class="layui-input" th:value="*{perms}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class=" ">
+                        <input type="radio" lay-filter="powerType" th:checked="${TsysPermission.type eq 0}"
+                               name="type" value="0" title="目录">
+                        <input type="radio" lay-filter="powerType" th:checked="${TsysPermission.type eq 1}"
+                               name="type" value="1" title="菜单">
+                        <input type="radio" lay-filter="powerType" th:checked="${TsysPermission.type eq 2}"
+                               name="type" value="2" title="按钮">
+                    </div>
+                </div>
+                <div class="layui-form-item" id="powerUrlItem">
+                    <label class="layui-form-label">路径</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="powerUrl" name="url" autocomplete="off" placeholder="菜单路径" class="layui-input"
+                         th:value="*{url}">
+                    </div>
+                </div>
+                <div class="layui-form-item" id="openTypeItem">
+                    <label class="layui-form-label">打开类型</label>
+                    <div class="layui-input-block">
+                        <select name="isBlank" id="openType" th:field="*{isBlank}">
+                            <option value=""></option>
+                            <option value="0">框架</option>
+                            <option value="1">新窗口</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">图标</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="icon" name="icon" lay-filter="icon" class="layui-input"
+                         th:value="*{icon}"
+                        >
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="orderNum" lay-verify="title" autocomplete="off" placeholder="排序" class="layui-input"
+                         th:value="*{orderNum}"
+                        >
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="visibleItem">
+                    <label class="layui-form-label">菜单状态</label>
+                    <div class="layui-input-block">
+                        <select name="visible" id="visible" th:field="*{visible}">
+                            <option value="0">显示</option>
+                            <option value="1">隐藏</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="power-edie">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery', 'iconPicker', 'dtree','dictionary'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let iconPicker = layui.iconPicker;
+        let dtree = layui.dtree;
+        let MODULE_PATH = rootPath+"/PermissionController";
+        dtree.renderSelect({
+            elem: "#selectParent",
+            url: MODULE_PATH+"/selectParent",
+            method: 'get',
+            selectInputName: {nodeId: "pid"},
+            skin: "layui",
+            dataFormat: "list",
+            response: {treeId: "id", parentId: "pid", title: "name"},  //修改response中返回数据的定义
+            selectInitVal: '[[${TsysPermission.pid}]]'
+        });
+
+        form.on("radio(powerType)", function (data) {
+            if (this.value == '0') {
+                $("#powerUrlItem").hide();
+                $("#powerCodeItem").hide();
+                $("#openTypeItem").hide();
+                $("#powerUrl").val("");
+                $("#powerCode").val("");
+                $("#openType").val("");
+            } else if (this.value == '1') {
+                $("#powerUrlItem").show();
+                $("#powerCodeItem").show();
+                $("#openTypeItem").show();
+            } else if (this.value == '2') {
+                $("#powerUrlItem").hide();
+                $("#openTypeItem").hide();
+                $("#powerCodeItem").show();
+                $("#powerUrl").val("");
+                $("#openType").val("");
+            }
+        });
+
+        form.on('submit(power-edie)', function (data) {
+            data.field.icon = "layui-icon " + data.field.icon;
+            $.ajax({
+                url: MODULE_PATH+'/edit',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.render();
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+
+        iconPicker.render({
+            // 选择器，推荐使用input
+            elem: '#icon',
+            // 数据类型：fontClass/unicode，推荐使用fontClass
+            type: 'fontClass',
+            // 是否开启搜索：true/false
+            search: true,
+            // 是否开启分页
+            page: true,
+            // 每页显示数量，默认12
+            limit: 12,
+            // 点击回调
+            click: function (data) {
+                console.log(data);
+            }
+        });
+
+        iconPicker.checkIcon("icon", '[[${TsysPermission.icon}]]');
+
+         window.init = function (type) {
+            if (type == '0') {
+                $("#powerUrlItem").hide();
+                $("#powerCodeItem").hide();
+                $("#openTypeItem").hide();
+                $("#powerUrl").val("");
+                $("#powerCode").val("");
+                $("#openType").val("");
+            } else if (type == '1') {
+                $("#powerUrlItem").show();
+                $("#powerCodeItem").show();
+                $("#openTypeItem").show();
+            } else if (type == '2') {
+                $("#powerUrlItem").hide();
+                $("#openTypeItem").hide();
+                $("#powerCodeItem").show();
+                $("#powerUrl").val("");
+                $("#openType").val("");
+            }
+        }
+
+        window.init('[[${TsysPermission.type}]]');
+
+    })
+</script>
+<script>
+</script>
+</body>
+</html>
