@@ -1,0 +1,191 @@
+package ${parentPack}.service;
+
+import java.util.List;
+import java.util.Arrays;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import cn.hutool.core.util.StrUtil;
+import ${parentPack}.common.base.BaseService;
+import ${parentPack}.common.support.ConvertUtil;
+import ${parentPack}.mapper.auto.${tableInfo.javaTableName}Mapper;
+import ${parentPack}.model.auto.${tableInfo.javaTableName};
+import ${parentPack}.model.auto.${tableInfo.javaTableName}Example;
+import ${parentPack}.model.custom.Tablepar;
+import ${parentPack}.util.SnowflakeIdWorker;
+import ${parentPack}.util.StringUtils;
+
+/**
+ * ${tableInfo.tableComment} ${tableInfo.javaTableName}Service
+ * @Title: ${tableInfo.javaTableName}Service.java 
+ * @Package ${parentPack}.service 
+ * @author ${author}_自动生成
+ * @email ${email}
+ * @date ${datetime}  
+ **/
+@Service
+public class ${tableInfo.javaTableName}Service implements BaseService<${tableInfo.javaTableName}, ${tableInfo.javaTableName}Example>{
+	@Autowired
+	private ${tableInfo.javaTableName}Mapper ${tableInfo.javaTableName_a}Mapper;
+	
+   #set( $pklag = false)
+   #set( $pkfield = '' )
+   #set( $pk_column_name = '' )
+   #set( $pk_attrType = '')
+   #foreach ($column in $beanColumns)
+	   #if(${column.column_key} == 'PRI')
+	   	#set( $pklag = true )
+	   	#set( $pkfield = $column.javaName )
+	   	#set( $pk_column_name=$column.column_name)
+	   	#set( $pk_attrType=$column.javaType)
+	   #end
+   #end
+	
+	/**
+	 * 分页查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	 public PageInfo<${tableInfo.javaTableName}> list(Tablepar tablepar,${tableInfo.javaTableName} ${tableInfo.javaTableName_a}){
+	        ${tableInfo.javaTableName}Example testExample=new ${tableInfo.javaTableName}Example();
+			//搜索
+			if(StrUtil.isNotEmpty(tablepar.getSearchText())) {//小窗体
+	        	testExample.createCriteria().andLikeQuery2(tablepar.getSearchText());
+	        }else {//大搜索
+	        	testExample.createCriteria().andLikeQuery(${tableInfo.javaTableName_a});
+	        }
+			//表格排序
+			//if(StrUtil.isNotEmpty(tablepar.getOrderByColumn())) {
+	        //	testExample.setOrderByClause(StringUtils.toUnderScoreCase(tablepar.getOrderByColumn()) +" "+tablepar.getIsAsc());
+	        //}else{
+	        //	testExample.setOrderByClause("${pk_column_name} ASC");
+	        //}
+	        PageHelper.startPage(tablepar.getPage(), tablepar.getLimit());
+	        List<${tableInfo.javaTableName}> list= ${tableInfo.javaTableName_a}Mapper.selectByExample(testExample);
+	        PageInfo<${tableInfo.javaTableName}> pageInfo = new PageInfo<${tableInfo.javaTableName}>(list);
+	        return  pageInfo;
+	 }
+#if(${pklag} == true)
+
+	@Override
+	public int deleteByPrimaryKey(String ids) {
+		#if(${pk_attrType} == 'String')
+		
+			List<String> lista=ConvertUtil.toListStrArray(ids);
+			${tableInfo.javaTableName}Example example=new ${tableInfo.javaTableName}Example();
+			example.createCriteria().and${pkfield}In(lista);
+			return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
+			
+		#elseif(${pk_attrType} == 'Long')
+		
+			Long[] integers = ConvertUtil.toLongArray(",", ids);
+			List<Long> stringB = Arrays.asList(integers);
+			${tableInfo.javaTableName}Example example=new ${tableInfo.javaTableName}Example();
+			example.createCriteria().and${pkfield}In(stringB);
+			return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
+		
+		#else
+			
+			Integer[] integers = ConvertUtil.toIntArray(",", ids);
+			List<Integer> stringB = Arrays.asList(integers);
+			${tableInfo.javaTableName}Example example=new ${tableInfo.javaTableName}Example();
+			example.createCriteria().and${pkfield}In(stringB);
+			return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
+			
+		#end
+		
+	}
+	
+	
+	@Override
+	public ${tableInfo.javaTableName} selectByPrimaryKey(String id) {
+		#if(${pk_attrType} == 'String')
+		
+			return ${tableInfo.javaTableName_a}Mapper.selectByPrimaryKey(id);
+		#elseif(${pk_attrType} == 'Long')
+		
+			Long id1 = Long.valueOf(id);
+			return ${tableInfo.javaTableName_a}Mapper.selectByPrimaryKey(id1);
+			
+		#else
+		
+			Integer id1 = Integer.valueOf(id);
+			return ${tableInfo.javaTableName_a}Mapper.selectByPrimaryKey(id1);
+		#end
+		
+	}
+
+	
+	@Override
+	public int updateByPrimaryKeySelective(${tableInfo.javaTableName} record) {
+		return ${tableInfo.javaTableName_a}Mapper.updateByPrimaryKeySelective(record);
+	}
+	
+#end	
+	
+	/**
+	 * 添加
+	 */
+	@Override
+	public int insertSelective(${tableInfo.javaTableName} record) {
+		#if(${pk_attrType} == 'String')
+		
+		//添加雪花主键id
+		record.set${pkfield}(SnowflakeIdWorker.getUUID());
+			
+		#else
+		
+		record.set${pkfield}(null);
+		
+		#end
+		
+		return ${tableInfo.javaTableName_a}Mapper.insertSelective(record);
+	}
+	
+	
+	@Override
+	public int updateByExampleSelective(${tableInfo.javaTableName} record, ${tableInfo.javaTableName}Example example) {
+		
+		return ${tableInfo.javaTableName_a}Mapper.updateByExampleSelective(record, example);
+	}
+
+	
+	@Override
+	public int updateByExample(${tableInfo.javaTableName} record, ${tableInfo.javaTableName}Example example) {
+		
+		return ${tableInfo.javaTableName_a}Mapper.updateByExample(record, example);
+	}
+
+	@Override
+	public List<${tableInfo.javaTableName}> selectByExample(${tableInfo.javaTableName}Example example) {
+		
+		return ${tableInfo.javaTableName_a}Mapper.selectByExample(example);
+	}
+
+	
+	@Override
+	public long countByExample(${tableInfo.javaTableName}Example example) {
+		
+		return ${tableInfo.javaTableName_a}Mapper.countByExample(example);
+	}
+
+	
+	@Override
+	public int deleteByExample(${tableInfo.javaTableName}Example example) {
+		
+		return ${tableInfo.javaTableName_a}Mapper.deleteByExample(example);
+	}
+	
+	/**
+	 * 修改权限状态展示或者不展示
+	 * @param ${tableInfo.javaTableName_a}
+	 * @return
+	 */
+	public int updateVisible(${tableInfo.javaTableName} ${tableInfo.javaTableName_a}) {
+		return ${tableInfo.javaTableName_a}Mapper.updateByPrimaryKeySelective(${tableInfo.javaTableName_a});
+	}
+
+
+}

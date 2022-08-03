@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${parentPack}.mapper.auto.${tableInfo.javaTableName}Mapper">
+  <resultMap id="BaseResultMap" type="${parentPack}.model.auto.${tableInfo.javaTableName}">
+#foreach($column in $beanColumns)
+    <result column="${column.column_name}" jdbcType="${column.jdbcType}" property="${column.beanName}" />
+#end
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+  
+	#set( $lag = 0)
+  	#foreach ($column in $beanColumns)
+  	 #if(($lag+1) >= (${beanColumns.size()}))
+   	  	${column.column_name}
+     #else
+     	${column.column_name},
+     #end
+     #set( $lag = ($lag + 1) )
+  	#end
+  	
+  </sql>
+  
+  <select id="selectByExample" parameterType="${parentPack}.model.auto.${tableInfo.javaTableName}Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tableInfo.tableName}
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+#foreach ($column in $beanColumns)
+#if(${column.column_key} == 'PRI')
+  <select id="selectByPrimaryKey" parameterType="${column.beanType}" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ${tableInfo.tableName}
+    where ${column.column_name} = #{${column.beanName},jdbcType=${column.jdbcType}}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="${column.beanType}">
+    delete from ${tableInfo.tableName}
+    where ${column.column_name} = #{${column.beanName},jdbcType=${column.jdbcType}}
+  </delete>
+#end
+#end
+  <delete id="deleteByExample" parameterType="${parentPack}.model.auto.${tableInfo.javaTableName}Example">
+    delete from ${tableInfo.tableName}
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="${parentPack}.model.auto.${tableInfo.javaTableName}">
+    insert into ${tableInfo.tableName} (
+    #set( $lag = 0)
+  	#foreach ($column in $beanColumns)
+  	 #if(($lag+1)>=(${beanColumns.size()}))	
+   	  ${column.column_name}
+     #else
+      ${column.column_name},
+     #end
+     #set( $lag  = $lag + 1 )
+  	#end
+    )
+    values (
+	#set( $lag = 0)
+  	#foreach ($column in $beanColumns)
+  	 #if(($lag+1)>=(${beanColumns.size()}))	
+   	  #{${column.beanName},jdbcType=${column.jdbcType}}
+     #else
+     	#{${column.beanName},jdbcType=${column.jdbcType}},
+     #end
+     #set( $lag = $lag + 1 )
+  	#end
+    )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="${parentPack}.model.auto.${tableInfo.javaTableName}">
+    insert into ${tableInfo.tableName}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      #foreach ($column in $beanColumns)
+    
+      <if test="${column.beanName} != null">
+        ${column.column_name},
+      </if>
+     #end
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+    #foreach ($column in $beanColumns)
+      <if test="${column.beanName} != null">
+        #{${column.beanName},jdbcType=${column.jdbcType}},
+      </if>
+    #end
+    </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="${parentPack}.model.auto.${tableInfo.javaTableName}Example" resultType="java.lang.Long">
+    select count(*) from ${tableInfo.tableName}
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <update id="updateByExampleSelective" parameterType="map">
+    update ${tableInfo.tableName}
+    <set>
+    #foreach ($column in $beanColumns)
+      <if test="record.${column.beanName} != null">
+        ${column.column_name} = #{record.${column.beanName},jdbcType=${column.jdbcType}},
+      </if>
+    #end
+     
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  <update id="updateByExample" parameterType="map">
+    update ${tableInfo.tableName}
+    set
+    #set( $lag = 0)
+    #foreach ($column in $beanColumns)
+    	 #if(($lag+1)>=(${beanColumns.size()}))
+    	 
+    	 ${column.column_name} = #{record.${column.beanName},jdbcType=${column.jdbcType}}
+    	 #else
+    	 
+    	 ${column.column_name} = #{record.${column.beanName},jdbcType=${column.jdbcType}},
+    	 #end
+     #set( $lag = $lag + 1 )
+    #end
+    
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  #foreach ($column in $beanColumns)
+  #if(${column.column_key} == 'PRI')
+  <update id="updateByPrimaryKeySelective" parameterType="${parentPack}.model.auto.${tableInfo.javaTableName}">
+    update ${tableInfo.tableName}
+    <set>
+    #foreach ($column in $beanColumns)
+      #if(${column.column_key} != 'PRI')
+      
+      <if test="${column.beanName} != null">
+        ${column.column_name} = #{${column.beanName},jdbcType=${column.jdbcType}},
+      </if>
+      #end
+    #end
+    </set>
+    
+    where 
+    #foreach ($column in $beanColumns)
+    #if(${column.column_key} == 'PRI')
+    
+    ${column.column_name} = #{${column.beanName},jdbcType=${column.jdbcType}}
+    #end
+    #end
+  
+  </update>
+
+   #set( $prinum = 0)
+   #foreach ($column in $beanColumns)
+	   #if(${column.column_key} != 'PRI')
+	   	#set( $prinum = $prinum + 1 )
+	   #end
+   #end
+	
+
+  <update id="updateByPrimaryKey" parameterType="${parentPack}.model.auto.${tableInfo.javaTableName}">
+    update ${tableInfo.tableName}
+    set 
+    #set( $lag = 0)
+	#foreach ($column in $beanColumns)
+	 #if(${column.column_key} != 'PRI')
+	  #if(($lag+1)>=(${prinum}))
+		
+		${column.column_name} = #{${column.beanName},jdbcType=${column.jdbcType}}
+	  #else
+	  
+		${column.column_name} = #{${column.beanName},jdbcType=${column.jdbcType}},
+	  #end
+	  #set( $lag = $lag + 1 )
+	 #end
+	#end
+	
+    where 
+    #foreach ($column in $beanColumns)
+    #if(${column.column_key} == 'PRI')
+    
+    ${column.column_name} = #{${column.beanName},jdbcType=${column.jdbcType}}
+    #end
+    #end
+    
+  </update>
+  
+   #end
+   #end
+   
+</mapper>

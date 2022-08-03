@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('权限列表')"/>
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">权限名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="powerName" placeholder="" class="layui-input">
+                </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="power-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                    查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                    重置
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="power-table" lay-filter="power-table"></table>
+    </div>
+</div>
+
+<script type="text/html" id="power-toolbar">
+    <button sa:hasPermission="system:permission:add"  class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+        新增
+    </button>
+    <button sa:hasPermission="system:permission:remove"  class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+        删除
+    </button>
+</script>
+
+<script type="text/html" id="power-bar">
+    <button sa:hasPermission="system:permission:edit"  class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+    </button>
+    <button sa:hasPermission="system:permission:remove"  class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    </button>
+</script>
+
+<script type="text/html" id="power-type">
+    {{#if (d.type == '0') { }}
+    <span class="layui-badge">目录</span>
+    {{# }else if(d.type == '1'){ }}
+    <span class="layui-badge layui-bg-orange">菜单</span>
+    {{# }else if(d.type == '2'){ }}
+    <span class="layui-badge layui-bg-blue">按钮</span>
+    {{# } }}
+</script>
+
+<script type="text/html" id="power-enable">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="power-enable" {{ d.visible== 0 ? 'checked' : '' }}>
+</script>
+
+<script type="text/html" id="icon">
+    <i class="layui-icon {{d.icon}}"></i>
+</script>
+
+</body>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['table', 'form', 'jquery', 'treetable'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let treetable = layui.treetable;
+
+        let MODULE_PATH = rootPath+"/PermissionController/";
+
+        window.render = function () {
+            treetable.render({
+                treeColIndex: 1,
+                treeSpid: 0,
+                treeIdName: 'id',
+                treePidName: 'pId',
+                skin: 'line',
+                method: 'post',
+                treeDefaultClose: true,
+                toolbar: '#power-toolbar',
+                elem: '#power-table',
+                url: MODULE_PATH+'list',
+                page: false,
+                cols: [
+                    [
+                        {type: 'checkbox'},
+                        {field: 'name', minWidth: 200, title: '权限名称'},
+                        {field: 'icon', title: '图标', templet: '#icon'},
+                        {field: 'type', title: '权限类型', templet: '#power-type'},
+                        {field: 'visible', title: '是否可用', templet: '#power-enable'},
+                        {field: 'orderNum', title: '排序'},
+                        {title: '操作', templet: '#power-bar', width: 150, align: 'center'}
+                    ]
+                ]
+            });
+        }
+
+        render();
+
+        form.on('submit(power-query)', function (data) {
+            var keyword = data.field.powerName;
+            var $tds = $('#power-table').next('.treeTable').find('.layui-table-body tbody tr td');
+            if (!keyword) {
+                $tds.css('background-color', 'transparent');
+                layer.msg("请输入关键字", {icon: 5});
+                return;
+            }
+            var searchCount = 0;
+            $tds.each(function () {
+                $(this).css('background-color', 'transparent');
+                if ($(this).text().indexOf(keyword) >= 0) {
+                    $(this).css('background-color', 'rgba(250,230,160,0.5)');
+                    if (searchCount == 0) {
+                        $('body,html').stop(true);
+                        $('body,html').animate({scrollTop: $(this).offset().top - 150}, 500);
+                    }
+                    searchCount++;
+                }
+            });
+            if (searchCount == 0) {
+                layer.msg("没有匹配结果", {icon: 5});
+            } else {
+                treetable.expandAll('#power-table');
+            }
+            return false;
+        });
+
+        table.on('tool(power-table)', function (obj) {
+            if (obj.event === 'remove') {
+                window.remove(obj);
+            } else if (obj.event === 'edit') {
+                window.edit(obj);
+            }
+        })
+
+
+        table.on('toolbar(power-table)', function (obj) {
+            if (obj.event === 'add') {
+                window.add();
+            } else if (obj.event === 'refresh') {
+                window.refresh();
+            } else if (obj.event === 'batchRemove') {
+                window.batchRemove(obj);
+            }
+        });
+
+        form.on('switch(power-enable)', function (obj) {
+            let operate;
+
+            if (obj.elem.checked) {
+                operate = 0;
+            } else {
+                operate = 1;
+            }
+
+            let loading = layer.load()
+
+            $.ajax({
+                url: MODULE_PATH+'updateVisible',
+                data: JSON.stringify({id: this.value,visible:operate}),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    layer.close(loading);
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+        });
+
+
+        window.add = function () {
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['450px', '500px'],
+                content: MODULE_PATH + 'add'
+            });
+        }
+
+        window.edit = function (obj) {
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['450px', '500px'],
+                content: MODULE_PATH + 'edit/' + obj.data['id']
+            });
+        }
+
+        window.remove = function (obj) {
+            layer.confirm('确定要删除该权限', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "remove?ids=" + obj.data['id'],
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                obj.del();
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        //批量删除
+        window.batchRemove = function (obj) {
+            let data = table.checkStatus(obj.config.id).data;
+            if (data.length === 0) {
+                layer.msg("未选中数据", {icon: 3, time: 1000});
+                return false;
+            }
+            let ids = "";
+            for (let i = 0; i < data.length; i++) {
+                ids += data[i].id + ",";
+            }
+            ids = ids.substr(0, ids.length - 1);
+            layer.confirm('确定要删除这些权限', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH + "remove?ids=" + ids,
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code==200) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            	table.reload('power-table');
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+
+
+    })
+</script>
+</html>

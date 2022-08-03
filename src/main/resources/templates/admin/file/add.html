@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('文件新增')"/>
+</head>
+<body>
+<form class="layui-form">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                 <div class="layui-form-item">
+                    <label class="layui-form-label">文件名称</label>
+                    <div class="layui-input-block">
+                        <div class="layui-upload-drag" id="test10">
+                          <i class="layui-icon"></i>
+                          <p>点击上传，或将文件拖拽到此处</p>
+                          <div class="layui-hide" id="uploadDemoView">
+                            <hr>
+                            <img src="" alt="上传成功后渲染" style="max-width: 196px">
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery','upload'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let MODULE_PATH = rootPath+"/FileController";
+        let FILE_PATH = rootPath+"/oss";
+        let upload = layui.upload;
+        let BucketName='[[${BucketName}]]';
+
+         //拖拽上传 文档：https://www.layui.com/doc/modules/upload.html
+        upload.render({
+            elem: '#test10'
+            ,url: FILE_PATH+"/object/"+BucketName //改成您自己的上传接口
+            ,field: 'object' //设定文件域的字段名
+            ,done: function(result){
+               if (result.code==200) {
+                    layer.msg('上传成功');
+                    layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', result.data.objectContent.httpRequest.uri);
+                    parent.layui.table.reload("sysFile-table");
+               } else {
+                    layer.msg(result.msg, {icon: 2, time: 1000});
+               }
+            }
+        });
+
+
+
+        //名称验证
+        form.verify({
+            interName: function(value){
+                if(value.length < 2){
+                    return '至少得2个字符';
+                }
+                var msg = "";
+                $.ajax({
+                    url: MODULE_PATH+'/checkNameUnique',
+                    data: "fileName="+value,
+                    dataType: 'json',
+                    type: 'post',
+                    async:false,
+                    success: function (result) {
+                            msg=result;
+                    }
+                });
+                if (msg == 1) {
+                   return "已有相同数据";
+                }
+
+            }
+        });
+
+
+    })
+</script>
+</body>
+</html>

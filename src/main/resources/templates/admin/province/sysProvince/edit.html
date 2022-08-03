@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('省份修改')"/>
+</head>
+<body>
+<form class="layui-form" action=""  th:object="${SysProvince}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" th:value="*{id}" name="id" lay-verify="title"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">省份代码</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{provinceCode}" type="text" name="provinceCode" lay-verify="provinceCode" autocomplete="off" placeholder="省份代码" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">省份名称</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{provinceName}" type="text" name="provinceName" autocomplete="off"  class="layui-input" placeholder="省份名称">
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">简称</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{shortName}" type="text" name="shortName" autocomplete="off"  class="layui-input" placeholder="简称">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">经度</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{lng}" type="text" name="lng" autocomplete="off"  class="layui-input" placeholder="经度">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">纬度</label>
+                    <div class="layui-input-block">
+                        <input  th:value="*{lat}" type="text" name="lat" autocomplete="off"  class="layui-input" placeholder="纬度">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{sort}" type="number" name="sort" autocomplete="off"  class="layui-input" placeholder="排序">
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <select th:field="*{dataState}" name="dataState" id="dataState" th:with="type=${@dict.getType('sys_province_state')}">
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="position-update">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let dtree = layui.dtree;
+        let MODULE_PATH = rootPath+"/SysProvinceController";
+        //名称验证
+        form.verify({
+            interName: function(value){
+                if(value.length < 2){
+                    return '标题至少得2个字符啊';
+                }
+                var msg = "";
+                $.ajax({
+                    url: MODULE_PATH+'/checkNameUnique',
+                    data: "interName="+value,
+                    dataType: 'json',
+                    type: 'post',
+                    async:false,
+                    success: function (result) {
+                        msg=result;
+                    }
+                });
+                if (msg == 1) {
+                   return "已有相同数据";
+                }
+
+            }
+        });
+
+        form.on('submit(position-update)', function (data) {
+            $.ajax({
+                url: MODULE_PATH+'/edit',
+                data: data.field,
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                type: 'post',
+                success: function (result) {
+                    if (result.code==200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("sysProvince-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+<script>
+</script>
+</body>
+</html>

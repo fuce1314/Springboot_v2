@@ -1,0 +1,71 @@
+{
+	"logo": {
+		"title": "springboot-v2",
+		"image": "static/admin/images/logo.png"
+	},
+	"menu": {
+		"data": "/admin/getUserMenu",
+		"accordion": true,
+		"control": false,
+		"select": "451003242072117248"
+	},
+	"tab": {
+		"muiltTab": true,
+		"keepState": true,
+		"tabMax": 30,
+		"index": {
+			"id": "451003242072117248",
+			"href": "/ServiceController/view",
+			"title": "首页"
+		}
+	},
+	"theme": {
+		"defaultColor": "2",
+		"defaultMenu": "dark-theme",
+		"allowCustom": true
+	},
+	"colors": [{
+			"id": "1",
+			"color": "#FF5722"
+		},
+		{
+			"id": "2",
+			"color": "#5FB878"
+		},
+		{
+			"id": "3",
+			"color": "#1E9FFF"
+		}, {
+			"id": "4",
+			"color": "#FFB800"
+		}, {
+			"id": "5",
+			"color": "darkgray"
+		}
+	],
+	"links": [{
+			"icon": "layui-icon layui-icon-website",
+			"title": "官方网站",
+			"href": "http://www.pearadmin.com"
+		},
+		{
+			"icon": "layui-icon layui-icon-read",
+			"title": "开发文档",
+			"href": "http://www.pearadmin.com/doc/"
+		},
+		{
+			"icon": "layui-icon layui-icon-fonts-code",
+			"title": "开源地址",
+			"href": "https://gitee.com/pear-admin/Pear-Admin-Boot"
+		},
+		{
+			"icon": "layui-icon layui-icon-release",
+			"title": "交流社区",
+			"href": "http://forum.pearadmin.com/"
+		}
+	],
+	"other": {
+		"autoHead": false,
+		"keepLoad": 1200
+	}
+}

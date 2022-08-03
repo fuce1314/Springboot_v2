@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.v2.mapper.auto.TsysPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.fc.v2.model.auto.TsysPermission">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="descripion" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_blank" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="perms" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="visible" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="childcount" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, descripion, url, is_blank, pid, perms, type, icon, order_num, visible, (select count(1) from t_sys_permission where pid=a.id) childcount
+  </sql>
+  <select id="selectByExample" parameterType="com.fc.v2.model.auto.TsysPermissionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sys_permission a
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_permission a
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_sys_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fc.v2.model.auto.TsysPermissionExample">
+    delete from t_sys_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fc.v2.model.auto.TsysPermission">
+    insert into t_sys_permission (id, name, descripion, 
+      url, is_blank, pid, 
+      perms, type, icon, 
+      order_num, visible)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{descripion,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{isBlank,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, 
+      #{perms,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=INTEGER}, #{visible,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fc.v2.model.auto.TsysPermission">
+    insert into t_sys_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="descripion != null">
+        descripion,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="isBlank != null">
+        is_blank,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="perms != null">
+        perms,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="visible != null">
+        visible,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descripion != null">
+        #{descripion,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlank != null">
+        #{isBlank,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="perms != null">
+        #{perms,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null">
+        #{visible,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fc.v2.model.auto.TsysPermissionExample" resultType="java.lang.Long">
+    select count(*) from t_sys_permission a
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_sys_permission
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descripion != null">
+        descripion = #{record.descripion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBlank != null">
+        is_blank = #{record.isBlank,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.perms != null">
+        perms = #{record.perms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.visible != null">
+        visible = #{record.visible,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_sys_permission
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      descripion = #{record.descripion,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      is_blank = #{record.isBlank,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=VARCHAR},
+      perms = #{record.perms,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      order_num = #{record.orderNum,jdbcType=INTEGER},
+      visible = #{record.visible,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fc.v2.model.auto.TsysPermission">
+    update t_sys_permission
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descripion != null">
+        descripion = #{descripion,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlank != null">
+        is_blank = #{isBlank,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="perms != null">
+        perms = #{perms,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null">
+        visible = #{visible,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fc.v2.model.auto.TsysPermission">
+    update t_sys_permission
+    set name = #{name,jdbcType=VARCHAR},
+      descripion = #{descripion,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      is_blank = #{isBlank,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=VARCHAR},
+      perms = #{perms,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      visible = #{visible,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

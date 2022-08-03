@@ -1,0 +1,11 @@
+#set( $id  = $!{SnowflakeIdWorker.getUUID()})
+#set( $id1 = $!{SnowflakeIdWorker.getUUID()})
+#set( $id2 = $!{SnowflakeIdWorker.getUUID()})
+#set( $id3 = $!{SnowflakeIdWorker.getUUID()})
+#set( $id4 = $!{SnowflakeIdWorker.getUUID()})
+INSERT INTO `t_sys_permission` VALUES ('${id}', '${tableInfo.tableComment}管理', '${tableInfo.tableComment}展示', '/${tableInfo.javaTableName}Controller/view','0', '${pid}', 'gen:${tableInfo.javaTableName_a}:view', 1, 'layui-icon layui-icon-face-smile', NULL,0)
+,('${id1}', '${tableInfo.tableComment}集合', '${tableInfo.tableComment}集合', '/${tableInfo.javaTableName}Controller/list','0', '${id}', 'gen:${tableInfo.javaTableName_a}:list', 2, '', NULL,0)
+,('${id2}', '${tableInfo.tableComment}添加', '${tableInfo.tableComment}添加', '/${tableInfo.javaTableName}Controller/add','0', '${id}', 'gen:${tableInfo.javaTableName_a}:add', 2, 'layui-icon layui-icon-add-1', NULL,0)
+,('${id3}', '${tableInfo.tableComment}删除', '${tableInfo.tableComment}删除', '/${tableInfo.javaTableName}Controller/remove','0', '${id}', 'gen:${tableInfo.javaTableName_a}:remove', 2, 'layui-icon layui-icon-delete', NULL,0)
+,('${id4}', '${tableInfo.tableComment}修改', '${tableInfo.tableComment}修改', '/${tableInfo.javaTableName}Controller/edit','0', '${id}', 'gen:${tableInfo.javaTableName_a}:edit', 2, 'layui-icon layui-icon-edit', NULL,0);
+

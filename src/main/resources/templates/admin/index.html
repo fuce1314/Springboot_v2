@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('springboot-v2 开发平台')"/>
+    <link rel="stylesheet" th:href="@{/static/admin/css/load.css}"/>
+    <link rel="stylesheet" th:href="@{/static/admin/css/admin.css}"/>
+    <!-- 主 题 更 换 -->
+    <style id="pearadmin-bg-color"></style>
+</head>
+<!-- 结 构 代 码 -->
+<body class="layui-layout-body pear-admin">
+<!-- 布 局 框 架 -->
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <!-- 顶 部 左 侧 功 能 -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="collaspe layui-nav-item"><a href="#" class="layui-icon layui-icon-shrink-right"></a></li>
+            <li class="refresh layui-nav-item"><a href="#" class="layui-icon layui-icon-refresh-1" title="刷新页面" loading=600></a></li>
+        </ul>
+        <!-- 顶 部 右 侧 菜 单 -->
+        <div id="control" class="layui-layout-control"></div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs"><a href="#" class="fullScreen layui-icon layui-icon-screen-full"></a></li>
+            <li class="layui-nav-item layui-hide-xs">
+                <!--<a th:href="@{/SysNoticeController/viewUser}" class="layui-icon layui-icon-notice">
+                    <span class="layui-badge" th:text="${session.notices.size()}"></span>
+                </a>-->
+
+
+                <a id="menu-msg" class="layui-icon layui-icon-notice" menu-type="1" th:menu-url="@{/SysNoticeController/viewUser}" menu-id="n4" href="javascript:;">
+                    <span class="layui-badge" th:text="${session.notices.size()}"></span>
+                </a>
+
+            </li>
+            <li class="layui-nav-item">
+                <!-- 头 像 -->
+                <a href="javascript:;">
+                    <img src="" id="headImg" class="layui-nav-img">
+                    <span th:text="${session.sessionUserName}"></span>
+                </a>
+                <!-- 功 能 菜 单 -->
+                <dl class="layui-nav-child">
+                    <dd><a user-menu-url="/system/user/center" user-menu-id="5555" user-menu-title="基本资料">基本资料</a></dd>
+                    <dd><a href="javascript:void(0);" class="logout">注销登录</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item setting"><a href="#" class="layui-icon layui-icon-more-vertical"></a></li>
+        </ul>
+    </div>
+    <!-- 侧 边 区 域 -->
+    <div class="layui-side layui-bg-black">
+        <!-- 顶 部 图 标 -->
+        <div class="layui-logo">
+            <img class="logo"></img>
+            <span class="title"></span>
+        </div>
+        <!-- 侧 边 菜 单 -->
+        <div class="layui-side-scroll">
+            <div id="sideMenu"></div>
+        </div>
+    </div>
+    <div class="layui-body">
+        <div id="content"></div>
+    </div>
+</div>
+<!-- 遮 盖 层 -->
+<div class="pear-cover"></div>
+<!-- 加 载 动 画-->
+<div class="loader-main">
+    <div class="loader"></div>
+</div>
+<!-- 依 赖 脚 本 -->
+<th:block th:include="include :: footer"/>
+<script th:src="@{/static/admin/js/headImg.js}"></script>
+<script th:inline="javascript">
+    layui.use(['admin','jquery','layer','popup'], function () {
+        let admin = layui.admin;
+        let $ = layui.jquery;
+        let layer = layui.layer;
+        let popup = layui.popup;
+        admin.render();
+
+        $('#headImg').attr("src",makeHeadImgByUserName([[${session.sessionUserName}]]));
+
+         $("#menu-msg").click(function(){
+
+            layui.tab.addTabOnlyByElem("content",{id:$(this).attr("menu-id"),title:"公告展示",url:$(this).attr("menu-url"),close:"允许关闭"})
+        })
+        
+        // 注销实现
+        admin.logout(function(){
+        	 let loading = layer.load();
+        	 $.ajax({
+     			url: rootPath+'/admin/Loginout',
+     			dataType: 'json',
+     			type: 'get',
+     			success: function(result) {
+     				if (result.code==200) {
+     					popup.success(result.msg, function() {
+     						location.href = rootPath+"/";
+                        });
+                        return true;
+     				}
+     			}
+     		})
+     		 return true;
+        })
+        			
+		
+        
+
+    })
+
+</script>
+</body>
+</html>

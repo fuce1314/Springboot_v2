@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('定时任务日志详情')"/>
+</head>
+<body>
+<form class="layui-form" action=""  th:object="${SysQuartzJobLog}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" th:value="*{id}" name="id" lay-verify="title"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">任务名称</label>
+                    <div class="layui-input-block">
+                        <input disabled th:value="*{jobName}" type="text" name="jobName" autocomplete="off" placeholder="任务名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">任务组名</label>
+                    <div class="layui-input-block">
+                        <select name="jobGroup" id="jobGroup" th:field="*{jobGroup}"  disabled>
+                            <option value="DEFAULT">默认</option>
+	                		<option value="SYSTEM">系统</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">调用目标字符串</label>
+                    <div class="layui-input-block">
+                        <input  disabled th:value="*{invokeTarget}" type="text" name="invokeTarget" autocomplete="off"  class="layui-input" placeholder="调用目标字符串">
+                        <blockquote class="layui-elem-quote">
+                            Bean调用示例：v2Task.runTask2(1,2l,'asa',true,2D)
+                            <br>
+                            Class类调用示例：com.fc.test.common.quartz.task.runTask2('ry')
+                            <br>
+                            参数说明：支持字符串，布尔类型，长整型，浮点型，整型
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">日志信息</label>
+                    <div class="layui-input-block">
+                        <input  disabled th:value="*{jobMessage}" type="text" name="jobMessage" autocomplete="off" placeholder="日志信息" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">执行状态</label>
+                    <div class="layui-input-block">
+                        <span  disabled th:class="${SysQuartzJobLog.status == 0 ? 'layui-badge layui-bg-blue' : 'layui-badge'}" th:text="${SysQuartzJobLog.status == 0 ? '正常' : '失败'}">正常</span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">异常信息</label>
+                    <div class="layui-input-block">
+                        <textarea  disabled  name="content" class="layui-textarea" th:text="*{exceptionInfo}"></textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">开始时间</label>
+                    <div class="layui-input-block">
+                        <input  disabled th:value="${SysQuartzJobLog.getdate(SysQuartzJobLog.startTime)}" type="text"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">结束时间</label>
+                    <div class="layui-input-block">
+                        <input  disabled th:value="${SysQuartzJobLog.getdate(SysQuartzJobLog.endTime)}" type="text" autocomplete="off"  class="layui-input">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let dtree = layui.dtree;
+    })
+</script>
+<script>
+</script>
+</body>
+</html>

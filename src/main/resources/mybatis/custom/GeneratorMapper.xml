@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fc.v2.mapper.auto.GeneratorMapper">
+	<resultMap id="BaseResultMap" type="com.fc.v2.model.custom.TsysTables" >
+	    <result column="table_name" property="tableName" jdbcType="VARCHAR" />
+	    <result column="engine" property="engine" jdbcType="VARCHAR" />
+	    <result column="table_comment" property="tableComment" jdbcType="VARCHAR" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  	</resultMap>
+  	
+  	<resultMap id="BaseResultMap2" type="com.fc.v2.model.custom.autocode.BeanColumn" >
+	    <result column="table_catalog" property="table_catalog" jdbcType="VARCHAR" />
+	    <result column="table_schema" property="table_schema" jdbcType="VARCHAR" />
+	    <result column="table_name" property="table_name" jdbcType="VARCHAR" />
+	    <result column="column_name" property="column_name" jdbcType="VARCHAR" />
+	    <result column="ordinal_position" property="ordinal_position" jdbcType="VARCHAR" />
+	    <result column="column_default" property="column_default" jdbcType="VARCHAR" />
+	    <result column="is_nullable" property="is_nullable" jdbcType="VARCHAR" />
+	    <result column="data_type" property="data_type" jdbcType="VARCHAR" />
+	    <result column="character_maximum_length" property="character_maximum_length" jdbcType="VARCHAR" />
+	    <result column="character_octet_length" property="character_octet_length" jdbcType="VARCHAR" />
+	    <result column="numeric_precision" property="numeric_precision" jdbcType="VARCHAR" />
+	    <result column="numeric_scale" property="numeric_scale" jdbcType="VARCHAR" />
+	    <result column="datetime_precision" property="datetime_precision" jdbcType="VARCHAR" />
+	    <result column="character_set_name" property="character_set_name" jdbcType="VARCHAR" />
+	    <result column="collation_name" property="collation_name" jdbcType="VARCHAR" />
+	    <result column="column_type" property="column_type" jdbcType="VARCHAR" />
+	    <result column="column_key" property="column_key" jdbcType="VARCHAR" />
+	    <result column="extra" property="extra" jdbcType="VARCHAR" />
+	    <result column="privileges" property="privileges" jdbcType="VARCHAR" />
+	    <result column="column_comment" property="column_comment" jdbcType="VARCHAR" />
+	    <result column="generation_expression" property="generation_expression" jdbcType="VARCHAR" />
+  	</resultMap>
+  	<!-- 查询有那些表 -->
+	<select id="queryList" resultMap="BaseResultMap" parameterType="String">
+		select table_name , engine, table_comment , create_time  from information_schema.tables
+		where table_schema = (select database())
+		<if test="_parameter != null and _parameter.trim() != ''">
+			and table_name = #{tableName}
+		</if>
+		order by create_time desc
+	</select>
+	
+	<!-- 查询表 -->
+	<select id="queryTable" resultMap="BaseResultMap" parameterType="String">
+		select table_name , engine, table_comment , create_time from information_schema.tables
+			where table_schema = (select database()) and table_name = #{tableName}
+	</select>
+	
+	<!-- 表字段概况 -->
+	<select id="queryColumns" resultType="map" parameterType="String">
+		select column_name columnName, data_type dataType, column_comment columnComment, column_key columnKey, extra from information_schema.columns
+ 			where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
+	</select>
+	
+	<!-- 表字段详情  -->
+	<select id="queryColumns2" resultMap="BaseResultMap2" parameterType="String">
+		select 
+		TABLE_CATALOG as table_catalog
+		,TABLE_SCHEMA as table_schema
+		,TABLE_NAME as table_name
+		,COLUMN_NAME as column_name
+		,ORDINAL_POSITION as ordinal_position
+		,COLUMN_DEFAULT as column_default
+		,IS_NULLABLE as is_nullable
+		,DATA_TYPE as data_type
+		,CHARACTER_MAXIMUM_LENGTH as character_maximum_length
+		<!-- #,CHARACTER_OCTET_LENGTH as character_octet_length
+		#,NUMERIC_PRECISION as numeric_precision
+		#,NUMERIC_SCALE as numeric_scale
+		#,DATETIME_PRECISION as datetime_precision
+		#,CHARACTER_SET_NAME as character_set_name
+		#,COLLATION_NAME as collation_name -->
+		,COLUMN_TYPE as column_type
+		,COLUMN_KEY as column_key
+		,EXTRA as extra
+		<!-- #,PRIVILEGES as privileges -->
+		,COLUMN_COMMENT as column_comment
+		<!-- ,GENERATION_EXPRESSION as generation_expression -->
+		 from information_schema.columns
+ 		where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
+	</select>
+	
+	<select id="queryColumns3" resultType="map" parameterType="String">
+		select 
+		TABLE_CATALOG as table_catalog
+		,TABLE_SCHEMA as table_schema
+		,TABLE_NAME as table_name
+		,COLUMN_NAME as column_name
+		,ORDINAL_POSITION as ordinal_position
+		,COLUMN_DEFAULT as column_default
+		,IS_NULLABLE as is_nullable
+		,DATA_TYPE as data_type
+		,CHARACTER_MAXIMUM_LENGTH as character_maximum_length
+		<!-- #,CHARACTER_OCTET_LENGTH as character_octet_length
+		#,NUMERIC_PRECISION as numeric_precision
+		#,NUMERIC_SCALE as numeric_scale
+		#,DATETIME_PRECISION as datetime_precision
+		#,CHARACTER_SET_NAME as character_set_name
+		#,COLLATION_NAME as collation_name -->
+		,COLUMN_TYPE as column_type
+		,COLUMN_KEY as column_key
+		,EXTRA as extra
+		<!-- #,PRIVILEGES as privileges -->
+		,COLUMN_COMMENT as column_comment
+		<!-- ,GENERATION_EXPRESSION as generation_expression -->
+		 from information_schema.columns
+ 		where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
+	</select>
+	
+
+	
+</mapper>
